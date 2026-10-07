@@ -45,6 +45,21 @@ def crypttab(text, partition):
     return "\n".join(lines) + "\n"
 
 
+def fstab(text, partition):
+    """Keep Calamares' six mounts on the same mapper as the UKI and crypttab."""
+    if "luksMapperName" not in partition:
+        return text
+    source = "/dev/mapper/" + partition["luksMapperName"]
+    lines = []
+    for line in text.splitlines():
+        fields = line.split()
+        if fields and not line.lstrip().startswith("#") and fields[0] == source:
+            fields[0] = "/dev/mapper/root"
+            line = "\t".join(fields)
+        lines.append(line)
+    return "\n".join(lines) + "\n"
+
+
 def write(root, path, value):
     file = root / path
     file.parent.mkdir(parents=True, exist_ok=True)
@@ -90,6 +105,7 @@ def provision(target, partitions, keyboard=None, username=None):
         run("arch-chroot", root, "pacman-key", *arguments)
     write(root, "etc/kernel/cmdline", command_line + "\n")
     write(root, "etc/crypttab", crypttab((root / "etc/crypttab").read_text(), partition))
+    write(root, "etc/fstab", fstab((root / "etc/fstab").read_text(), partition))
     if keyboard and username:
         if not re.fullmatch(r"[a-z_][a-z0-9_-]*", username):
             raise ValueError("invalid installed username")

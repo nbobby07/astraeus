@@ -26,7 +26,9 @@ not inferred from the partition module. No default-subvolume change is required.
 | `@containers` | `/var/lib/containers` | Container state | Excluded |
 
 Btrfs mounts use `defaults,noatime,compress=zstd:1,subvol=/NAME`; the ESP uses
-`defaults,umask=0077`. Calamares's fstab adds filesystem UUIDs. `/tmp` is tmpfs.
+`defaults,umask=0077`. Unencrypted fstab entries use filesystem UUIDs. For LUKS,
+the finalization job replaces Calamares's temporary mapper source in all six
+entries with `/dev/mapper/root`, matching the UKI and crypttab. `/tmp` is tmpfs.
 No swap partition or swapfile is created. Hibernation and zram policy are not
 implemented. There is no VM-specific subvolume in Phase 1; no virtualization stack
 is installed. Ordinary VM disks under `/home` already remain outside root rollback.

@@ -17,7 +17,8 @@ def qemu_command(code, variables, disk, log, monitor, iso=None, test_share=None)
                "-m", "4096", "-smp", "4", "-device", "virtio-vga",
                "-drive", f"if=pflash,format=raw,readonly=on,file={code}",
                "-drive", f"if=pflash,format=raw,file={variables}",
-               "-drive", f"if=virtio,format=qcow2,file={disk}",
+               "-drive", f"if=none,id=osdisk,format=qcow2,file={disk}",
+               "-device", f"virtio-blk-pci,drive=osdisk,bootindex={2 if iso else 1}",
                "-nic", "user,model=virtio-net-pci", "-display", "none",
                "-serial", f"file:{log}", "-monitor", "none",
                "-qmp", f"unix:{monitor},server=on,wait=off",
@@ -25,9 +26,8 @@ def qemu_command(code, variables, disk, log, monitor, iso=None, test_share=None)
     if test_share:
         command += ["-virtfs", f"local,path={test_share},mount_tag=acceptance,security_model=none,readonly=on"]
     if iso:
-        command += ["-cdrom", str(iso), "-boot", "d"]
-    else:
-        command += ["-boot", "c"]
+        command += ["-drive", f"if=none,id=installiso,format=raw,readonly=on,file={iso}",
+                    "-device", "ide-cd,drive=installiso,bootindex=1"]
     return command
 
 

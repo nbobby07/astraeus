@@ -48,6 +48,16 @@ payload compressor fixed it and has a native byte-comparison regression test.
 A5 failed during initial archive transfer; the builder now uses the same bounded
 curl retries/timeouts as the image build.
 
+The corrected diagnostic Calamares installation completed. Its initial cold boot
+fell through to PXE despite valid GPT/ESP flags and boot files; an explicit QEMU
+virtio disk boot priority reached systemd-boot and the UKI. A wrong LUKS passphrase
+was rejected, and the correct passphrase unlocked root. Boot then found fstab
+still naming Calamares's temporary mapper. Finalization now changes all six mount
+sources to `/dev/mapper/root`, matching crypttab and the embedded command line;
+the regression covers all six mounts, idempotence and untouched ESP/comments.
+The diagnostic disk is being repaired to check the remaining boot path. It is
+not a fresh final-source installation or accepted Phase 1 system.
+
 Final merged-source ISO reproduction, encrypted/plain installed boots, SDDM
 login, installed-session health and second boots remain unaccepted. No installed
 success is inferred from WSL fixtures, live boot or partial Calamares progress.

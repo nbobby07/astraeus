@@ -143,8 +143,13 @@ bash installed-smoke.sh LUKS2
 
 For a local transfer, pass `--test-share /absolute/path/test-scripts` at each
 QEMU launch. Put only the acceptance script in that host directory. The share
-is read-only; mount it with `sudo mount -t 9p -o trans=virtio,version=9p2000.L,ro
-acceptance /mnt` and run `bash /mnt/installed-smoke.sh LUKS2` as the desktop user.
+is read-only. Mount it and run the script as the desktop user:
+
+```sh
+sudo mount -t 9p -o trans=virtio,version=9p2000.L,ro acceptance /mnt
+bash /mnt/installed-smoke.sh LUKS2
+```
+
 Keep credentials in memory. When using Freestyle's interactive CLI to feed
 stdin, disable terminal echo and wait for a readiness marker before transmitting
 the credential; `--text-stdin` by itself cannot control an outer terminal's echo.

@@ -27,6 +27,16 @@ root=UUID=<Btrfs UUID> rootflags=subvol=@ rw
 rd.luks.name=<LUKS UUID>=root root=/dev/mapper/root rootflags=subvol=@ rw
 ```
 
+For encrypted installations, `/etc/crypttab` and all six Btrfs fstab entries use
+the `root` mapper too. Keeping Calamares's temporary mapper name in fstab would
+make the remaining subvolume mounts wait for a device the initramfs never creates.
+
+The QEMU acceptance launcher uses explicit device boot priorities: ISO first and
+disk second during installation, disk first with the ISO detached afterward.
+Legacy/default disk selection fell through to PXE on the validator's OVMF;
+the same disk booted with `virtio-blk-pci,bootindex=1`. See the
+[QEMU bootindex documentation](https://www.qemu.org/docs/master/system/bootindex.html).
+
 The initramfs uses `base systemd autodetect microcode modconf keyboard sd-vconsole
 block sd-encrypt filesystems fsck`, with explicit Btrfs, virtio, NVMe, AHCI and
 USB/HID modules. `sd-vconsole` includes the selected console keymap for passphrase

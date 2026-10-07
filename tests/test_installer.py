@@ -72,9 +72,14 @@ class InstallerTests(unittest.TestCase):
     def test_installed_boot_detaches_iso_and_preserves_disk_and_firmware(self):
         install = smoke.qemu_command("code.fd", "vars.fd", "disk.qcow2", "install.log", "qmp.sock", "live.iso")
         boot = smoke.qemu_command("code.fd", "vars.fd", "disk.qcow2", "boot1.log", "qmp.sock")
-        self.assertIn("-cdrom", install)
+        self.assertIn("ide-cd,drive=installiso,bootindex=1", install)
+        self.assertIn("if=none,id=installiso,format=raw,readonly=on,file=live.iso", install)
+        self.assertIn("virtio-blk-pci,drive=osdisk,bootindex=2", install)
         self.assertNotIn("-cdrom", boot)
-        self.assertIn("if=virtio,format=qcow2,file=disk.qcow2", boot)
+        self.assertNotIn("-boot", boot)
+        self.assertIn("if=none,id=osdisk,format=qcow2,file=disk.qcow2", boot)
+        self.assertIn("virtio-blk-pci,drive=osdisk,bootindex=1", boot)
+        self.assertFalse(any("installiso" in argument for argument in boot))
         self.assertIn("if=pflash,format=raw,file=vars.fd", boot)
         self.assertIn("q35,accel=kvm", boot)
         self.assertFalse(any("vnc" in argument for argument in boot))
@@ -130,6 +135,15 @@ class InstallerTests(unittest.TestCase):
         root.update(luksMapperName="calamares-root", luksUuid=value)
         self.assertEqual(provision.kernel_command_line(root), f"rd.luks.name={value}=root root=/dev/mapper/root rootflags=subvol=@ rw")
         self.assertEqual(provision.crypttab(f"# root\ncalamares-root UUID={value} none luks\n", root), f"# root\nroot UUID={value} none luks\n")
+        mounts = "".join(f"/dev/mapper/calamares-root {point} btrfs defaults,subvol={subvol} 0 0\n"
+                         for subvol, point in installer.SUBVOLUMES.items())
+        mounts += f"UUID={value} /efi vfat umask=0077 0 2\n# /dev/mapper/calamares-root comment\n"
+        fixed = provision.fstab(mounts, root)
+        self.assertEqual(fixed.count("/dev/mapper/root\t"), 6)
+        self.assertIn(f"UUID={value} /efi vfat umask=0077 0 2", fixed)
+        self.assertIn("# /dev/mapper/calamares-root comment", fixed)
+        self.assertEqual(provision.fstab(fixed, root), fixed)
+        self.assertEqual(provision.fstab(mounts, {"uuid": value}), mounts)
         with self.assertRaises(ValueError): provision.crypttab("# missing root\n", root)
         for invalid in [None, "", "../disk", value + " quiet", "$(id)"]:
             root["luksUuid"] = invalid
