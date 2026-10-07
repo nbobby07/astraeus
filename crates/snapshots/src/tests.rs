@@ -1,5 +1,56 @@
 use super::*;
 
+#[test]
+fn boot_identity_allows_only_systemd_detected_console_suffixes() {
+    let expected = "rd.luks.name=uuid=root root=/dev/mapper/root rootflags=subvol=@ rw astraeus.transaction=7-boot";
+    assert!(boot_command_line_matches(expected, expected));
+    for suffix in [
+        "console=hvc0",
+        "console=hvc0 console=tty0",
+        "console=uart,io,0x3f8",
+        "console=uart,io,0x2f8 console=tty0",
+        "console=uart,io,0x3e8 console=hvc0",
+        "console=uart,io,0x2e8 console=hvc0 console=tty0",
+    ] {
+        assert!(boot_command_line_matches(
+            expected,
+            &format!("{expected} {suffix}")
+        ));
+    }
+    for suffix in [
+        "rootflags=subvol=@other",
+        "root=/dev/vda3",
+        "rd.luks.name=other=root",
+        "init=/bin/sh",
+        "systemd.unit=emergency.target",
+        "astraeus.transaction=8-boot",
+        "console=tty0",
+        "console=ttyS9",
+        "console=hvc0 console=uart,io,0x3f8",
+        "console=uart,io,0x3f8 console=tty0 quiet",
+    ] {
+        assert!(
+            !boot_command_line_matches(expected, &format!("{expected} {suffix}")),
+            "{suffix}"
+        );
+    }
+    assert!(!boot_command_line_matches(
+        expected,
+        &expected.replace("7-boot", "8-boot")
+    ));
+    assert!(!boot_command_line_matches(
+        expected,
+        expected.split(" astraeus").next().unwrap()
+    ));
+    let explicit = format!("{expected} console=tty0");
+    assert!(boot_command_line_matches(&explicit, &explicit));
+    assert!(!boot_command_line_matches(
+        &explicit,
+        &format!("{explicit} console=hvc0")
+    ));
+    assert!(!boot_command_line_matches("", "console=hvc0"));
+}
+
 pub(crate) fn image(kernel: &[u8], cmdline: &[u8]) -> Vec<u8> {
     let mut bytes = vec![0u8; 512];
     bytes[..2].copy_from_slice(b"MZ");

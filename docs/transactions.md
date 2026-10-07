@@ -6,9 +6,12 @@ The pre-update snapshot saves the matching UKI before pacman can run hooks. Fail
 snapshot creation prevents package application. A candidate post-snapshot and live
 checks lead to `awaiting_boot`, never immediate success.
 
-`distroctl confirm-boot [ID]` verifies a different kernel boot ID, exact running
-command line and kernel release, root identity, saved/current UKI hash, package map
-and required system health. The regenerated UKI includes a transaction marker.
+`distroctl confirm-boot [ID]` verifies a different kernel boot ID, embedded command line and kernel release, root identity, saved/current UKI hash, package map
+and required system health. The regenerated UKI includes a transaction marker. The checker permits only the
+ordered console suffixes added by systemd-stub 262 when the embedded command line
+has no console parameter. Root, LUKS, transaction and all other embedded arguments
+must remain unchanged; extra boot-mode arguments are refused. This behavior is
+specified in [systemd's console detection](https://github.com/systemd/systemd/blob/v262/src/boot/console.c).
 The installed systemd oneshot runs after NetworkManager, SDDM and logind. It has no
 timer-based promotion. Failed observations remain pending, are retained in
 `boot_attempts`, and block new updates. Explicit retries collect fresh evidence.

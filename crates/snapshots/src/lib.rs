@@ -210,6 +210,47 @@ pub(crate) fn no_links(path: &Path) -> Result<()> {
     Ok(())
 }
 
+/// systemd-stub 262 appends detected consoles only when the UKI has no console=.
+/// Preserve every embedded token, including root/LUKS and the transaction marker.
+/// See systemd v262 src/boot/console.c: cmdline_append_console().
+pub(crate) fn boot_command_line_matches(embedded: &str, running: &str) -> bool {
+    let expected: Vec<_> = embedded.split_whitespace().collect();
+    let actual: Vec<_> = running.split_whitespace().collect();
+    if expected.is_empty() {
+        return false;
+    }
+    let Some(extra) = actual.strip_prefix(expected.as_slice()) else {
+        return false;
+    };
+    if extra.is_empty() {
+        return true;
+    }
+    if expected.iter().any(|word| word.starts_with("console=")) {
+        return false;
+    }
+    let serial = |arg: &str| {
+        matches!(
+            arg,
+            "console=uart,io,0x3f8"
+                | "console=uart,io,0x2f8"
+                | "console=uart,io,0x3e8"
+                | "console=uart,io,0x2e8"
+        )
+    };
+    match extra {
+        [uart]
+        | [uart, "console=tty0"]
+        | [uart, "console=hvc0"]
+        | [uart, "console=hvc0", "console=tty0"]
+            if serial(uart) =>
+        {
+            true
+        }
+        ["console=hvc0"] | ["console=hvc0", "console=tty0"] => true,
+        _ => false,
+    }
+}
+
 /// Parse the small, documented `btrfs subvolume show` identity fields in C locale.
 pub fn parse_subvolume(text: &str) -> Result<Subvolume> {
     let field = |key| -> Result<&str> {

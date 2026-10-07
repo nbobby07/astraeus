@@ -705,7 +705,7 @@ impl<C: Commands> Manager<C> {
         let cmdline = std::str::from_utf8(pe_section(&bytes, b".cmdline")?)?.trim_end_matches('\0');
         let running = self.commands.run("cat", &["/proc/cmdline"])?;
         require(
-            running.split_whitespace().eq(cmdline.split_whitespace()),
+            boot_command_line_matches(cmdline, &running),
             "booted command line differs from intended UKI",
         )?;
         let uname = std::str::from_utf8(pe_section(&bytes, b".uname")?)?.trim_end_matches('\0');
