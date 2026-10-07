@@ -32,9 +32,12 @@ astraeus-preflight -> partition -> mount -> unpackfs -> machineid -> locale
 -> keyboard -> localecfg -> fstab -> users -> astraeus -> umount
 ```
 
-`unpackfs` reads `/opt/distro/install-root.sfs`, a separate root assembled by
+`unpackfs` reads `/run/archiso/airootfs/opt/distro/install-root.sfs`, a separate root assembled by
 pacstrap from `distro/installed/packages.x86_64`. Package signatures are verified
-with the build keyring before packaging. This payload contains no `live` account,
+with the build keyring before packaging. The source is accessed through ArchISO's
+read-only SquashFS mount. Opening it as a loop device through `/opt` triggers
+overlay copy-up into the small live writable layer and fails with ENOSPC.
+This payload contains no `live` account,
 live sudo policy, live firstboot mask, live autologin, ArchISO initramfs hooks,
 installer package or installer configuration. It includes the signed local custom
 repository and pinned HTTPS Arch repositories. During installation a fresh pacman

@@ -61,7 +61,7 @@
         {"filesystem": "btrfs", "options": ["defaults", "noatime", "compress=zstd:1"]}
       ]
     },
-    "unpackfs": {"unpack": [{"source": "/opt/distro/install-root.sfs", "sourcefs": "squashfs", "destination": "/"}]},
+    "unpackfs": {"unpack": [{"source": "/run/archiso/airootfs/opt/distro/install-root.sfs", "sourcefs": "squashfs", "destination": "/"}]},
     "machineid": {"systemd": true, "dbus": true},
     "fstab": {"crypttabOptions": "luks", "tmpOptions": {"default": {"tmpfs": true}}},
     "users": {

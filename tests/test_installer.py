@@ -95,6 +95,8 @@ class InstallerTests(unittest.TestCase):
             mount = json.loads((root / "etc/calamares/modules/mount.conf").read_text())
             self.assertEqual({s["subvolume"]: s["mountPoint"] for s in mount["btrfsSubvolumes"]}, installer.SUBVOLUMES)
             self.assertEqual(json.loads((root / "etc/calamares/modules/partition.conf").read_text())["luksGeneration"], "luks2")
+            unpack = json.loads((root / "etc/calamares/modules/unpackfs.conf").read_text())["unpack"][0]
+            self.assertEqual(unpack["source"], "/run/archiso/airootfs/opt/distro/install-root.sfs")
             self.assertIn("pkexec /usr/bin/calamares", (root / "usr/share/applications/astraeus-install.desktop").read_text())
             users = json.loads((root / "etc/calamares/modules/users.conf").read_text())
             self.assertFalse(users["doAutologin"])
