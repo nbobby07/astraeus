@@ -22,6 +22,8 @@ class QmpTests(unittest.TestCase):
     def test_text_is_validated_before_sending_any_keys(self):
         self.assertEqual(qmp.key_codes("A_0 /"), [["shift", "a"], ["shift", "minus"], ["0"], ["spc"], ["slash"]])
         self.assertEqual(qmp.key_codes("?&*"), [["shift", "slash"], ["shift", "7"], ["shift", "8"]])
+        self.assertEqual(qmp.key_codes("[],"), [["bracket_left"], ["bracket_right"], ["comma"]])
+        self.assertEqual(qmp.key_codes("{}"), [["shift", "bracket_left"], ["shift", "bracket_right"]])
         with self.assertRaises(ValueError):
             qmp.key_codes("sudo\n")
 

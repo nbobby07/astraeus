@@ -13,7 +13,9 @@ def key_codes(text):
                    "|": ["shift", "backslash"], ">": ["shift", "dot"],
                    "'": ["apostrophe"], '"': ["shift", "apostrophe"],
                    "$": ["shift", "4"], "=": ["equal"], "\\": ["backslash"],
-                   "?": ["shift", "slash"], "&": ["shift", "7"], "*": ["shift", "8"]}
+                   "?": ["shift", "slash"], "&": ["shift", "7"], "*": ["shift", "8"],
+                   "[": ["bracket_left"], "]": ["bracket_right"], ",": ["comma"],
+                   "{": ["shift", "bracket_left"], "}": ["shift", "bracket_right"]}
     codes = []
     for char in text:
         if char.isascii() and char.isalnum():
