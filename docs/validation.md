@@ -1,12 +1,18 @@
 # Phase 1 validation: 2026-10-07 UTC
 
+This report records completed local/cloud acceptance. Raw artifacts under `out/`
+are retained by the maintainer and are excluded from Git; paths below identify
+that evidence collection and are not public download links. The
+[installed acceptance screenshot](assets/installed-acceptance.png) is included.
+Milestone tags preserve the historical tested source. Host CI is a separate check.
+
 **PHASE 1 VALIDATED** for the recorded x86-64 UEFI/QEMU/KVM target. Two independent clean builds produced byte-identical ISOs. Fresh encrypted and plain Calamares installations each completed, cold-booted twice without the ISO, reached SDDM, logged into Plasma Wayland, and passed networking, audio, all four status/hardware commands and zero failed system/user units. Neither final installation needed a manual repair. This is development version 0.1.0-dev; no Phase 2 work was started.
 
 ## Source and integration
 
 Baseline: clean `main` at `8dcb2cdf8d9faac97c4ae3367a4d8794a95224ea`. Architecture, building, testing, validation and the complete profile/build pipeline were read before edits. Baseline formatting, two Rust tests and Clippy passed. Baseline Python: Windows 5 passed/3 Linux skips; WSL 7 passed/1 image-tool skip. Both archived databases and 50 upstream package versions verified. Existing Phase 0 reproducibility fixes were retained.
 
-Chat 2's `f961158de9461a16e09abfe1282ae2ce2b48cae0` was inspected against the active core checkpoint, including all seven requested overlapping paths. The active tree was clean and the hardware branch was based on that core checkpoint. Cherry-pick `08b6113fae5ff38ee04965fa7c9460907e53ac6f` applied without conflicts and preserved installer/core changes. The merged commands were subsequently tested inside the final installed Astraeus guests, as ordinary users.
+The hardware branch's `f961158de9461a16e09abfe1282ae2ce2b48cae0` was inspected against the active core checkpoint, including all seven requested overlapping paths. The active tree was clean and the hardware branch was based on that core checkpoint. Cherry-pick `08b6113fae5ff38ee04965fa7c9460907e53ac6f` applied without conflicts and preserved installer/core changes. The merged commands were subsequently tested inside the final installed Astraeus guests, as ordinary users.
 
 Tested implementation: clean `8ac0b4a20da5c3276c2de32989593f331f9ff7ed`.
 
@@ -32,7 +38,7 @@ Both use Arch snapshot `2026/10/01`, epoch `1790812800`, ArchISO `91-1`, Rust `1
 
 Final public repository fingerprint: `D86C18757DB44DD67A4BFB97C06FD56A751C4E95`. Packages and the custom database remain signature-required. The key is a disposable development validation identity, not a production release identity. Builder private signing material was not included in source, ISO or installed payload; completed builder disks were removed after evidence export and process shutdown.
 
-The local [ISO](../out/phase1/iso/astraeus-dev-0.1.0-dev-x86_64.iso) also passed exact size/SHA256 verification. [Comparison record](../out/phase1/reproducibility10.json), [A build record](../out/phase1/A10-evidence/evidence/A/build.log), and [B build record](../out/phase1/B10-evidence/evidence/B/build.log) are retained. Input/package manifests sit beside each build log.
+The local ISO (retained local evidence) also passed exact size/SHA256 verification. Comparison record (retained local evidence), A build record (retained local evidence), and B build record (retained local evidence) are retained. Input/package manifests sit beside each build log.
 
 ## Real installation and boot matrix
 
@@ -135,7 +141,7 @@ The encrypted crypttab data entry is:
 root UUID=0e5796df-94e1-48d6-8b22-ea33984073a1 none luks
 ```
 
-Plain crypttab contains only the package's explanatory comments. Full partition dumps, subvolume lists, both crypttabs and filesystem/mount evidence are retained in the [encrypted audit](../out/phase1/encrypted10-health/boot2/audit.json) and [plain audit](../out/phase1/plain10-health/boot2/audit.json).
+Plain crypttab contains only the package's explanatory comments. Full partition dumps, subvolume lists, both crypttabs and filesystem/mount evidence are retained in the encrypted audit (retained local evidence) and plain audit (retained local evidence).
 
 Actual cryptsetup `2.8.8-1` parameters were inspected, not assumed: LUKS2, Argon2id keyslot 0, time cost 20, memory 397880 KiB, 4 threads, 64-byte/512-bit key, AES-XTS-plain64, 4096-byte sectors, data offset 16777216 bytes. Calibration defaults were retained; no faster test KDF, cipher/key-size override, keyfile or TPM policy was used. Wrong passphrase kept boot blocked and requested another credential; the correct passphrase booted successfully. Full JSON header metadata is retained in the encrypted audit without password/key material.
 
@@ -174,7 +180,7 @@ before 5d1a678ece283c70ef307ec905d1903fa04cc53edbeb4a9ae39ea0e5080fed66
 after  e36b0cf769cd0281cca530b63a045336f8b47f7edb8f6345b6a9c03e9cb017f7
 ```
 
-The second cold boot passed with `loglevel=6` in `/proc/cmdline`, normal LUKS2 unlock, all six mounts and the full health check. No mitigation was disabled. [Regeneration evidence](../out/phase1/encrypted10-health/boot1/uki-regeneration.json) records command output and inspection. Existing Arch hooks plus the selected microcode/ukify/cryptsetup/Btrfs/systemd hooks preserve the standard regeneration path.
+The second cold boot passed with `loglevel=6` in `/proc/cmdline`, normal LUKS2 unlock, all six mounts and the full health check. No mitigation was disabled. Regeneration evidence (retained local evidence) records command output and inspection. Existing Arch hooks plus the selected microcode/ukify/cryptsetup/Btrfs/systemd hooks preserve the standard regeneration path.
 
 SDDM `0.21.0-7` presented password login and Plasma Wayland by default on all four cold boots. Plasma workspace is `6.7.5-1`. Konsole `26.08.1-1` rendered and accepted the actual acceptance commands in both installed systems. Ghostty `1.3.1-2` rendered and accepted commands in the installed encrypted Wayland session; both installations contain it. QEMU software rendering emitted non-fatal Mesa/GTK warnings; no physical GPU acceleration claim is made.
 
@@ -382,7 +388,7 @@ Complete encrypted first-boot `distroctl status --json`, including the normalize
 }
 ```
 
-Complete plain [status JSON](../out/phase1/plain10-health/boot1/status.json), encrypted [hardware text](../out/phase1/encrypted10-health/boot1/hardware.txt) / [hardware JSON](../out/phase1/encrypted10-health/boot1/hardware.json), and plain [hardware text](../out/phase1/plain10-health/boot1/hardware.txt) / [hardware JSON](../out/phase1/plain10-health/boot1/hardware.json) are retained verbatim. Both second-boot output sets are preserved alongside their health logs. These are actual installed Astraeus observations, not WSL fixture output.
+Complete plain status JSON (retained local evidence), encrypted hardware text (retained local evidence) / hardware JSON (retained local evidence), and plain hardware text (retained local evidence) / hardware JSON (retained local evidence) are retained verbatim. Both second-boot output sets are preserved alongside their health logs. These are actual installed Astraeus observations, not WSL fixture output.
 
 ## Tests and failure paths
 
@@ -418,7 +424,7 @@ Earlier failed/canceled attempts were retained as diagnostic evidence and never 
 
 ## Evidence, cleanup and limits
 
-Build evidence: `out/phase1/A10-evidence/`, `B10-evidence/`, source10 archive/metadata and reproducibility10.json. Installed evidence: `out/phase1/encrypted10-health/{boot1,boot2}/`, `plain10-health/{boot1,boot2}/`, redacted installer logs, and `final10-guests/` containing screens, serial and launch commands. [Guest evidence archive](../out/phase1/final10-guests.tar.gz) preserves the native interaction and boot records. Generated artifacts are ignored by Git; accepted findings and representative output are recorded here.
+Build evidence: `out/phase1/A10-evidence/`, `B10-evidence/`, source10 archive/metadata and reproducibility10.json. Installed evidence: `out/phase1/encrypted10-health/{boot1,boot2}/`, `plain10-health/{boot1,boot2}/`, redacted installer logs, and `final10-guests/` containing screens, serial and launch commands. Guest evidence archive (retained local evidence) preserves the native interaction and boot records. Generated artifacts are ignored by Git; accepted findings and representative output are recorded here.
 
 All nested QEMU guests were stopped and this was explicitly checked before cleanup. The existing Freestyle validator `vm-cc9d56de23154de7a22492f24dfaae27` was paused with the official CLI; returned state was `paused`. No new outer VM, paid resize or public console was created. Unrelated `atm10` was untouched. Original Phase 0 artifacts remain retained. Superseded Phase 1 media and completed builder overlays were retired after hash/evidence preservation to stay within the existing 64 GiB disk.
 
@@ -471,7 +477,7 @@ validation commit follows successful tests, documentation and cleanup.
 
 ## Freestyle and clean Arch environments
 
-- VM: `astraeus-phase0-validator`, ID `vm-cc9d56de23154de7a22492f24dfaae27`.
+- VM: `astraeus-phase0-validator`, private infrastructure identifier omitted.
 - Image: `freestyle/ubuntu-lg`, Ubuntu 24.04; snapshot `sh-ffe8873ae9ac4b91b60ef539c3aa59c0`.
 - Outer resources: 8 vCPU, 16 GiB RAM, 64 GB disk.
 - Outer kernel: `6.1.102 #1 SMP PREEMPT_DYNAMIC Wed Aug 26 20:12:24 UTC 2026`.

@@ -1,0 +1,18 @@
+name: Engineering proposal
+description: Discuss a change before implementing it.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and proposed behavior
+      description: Explain the user or engineering need and the smallest useful change.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Scope and validation
+      description: Identify the roadmap phase, affected boundaries and evidence needed to accept it.
+    validations:
+      required: true

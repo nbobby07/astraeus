@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+if command -v python3 >/dev/null 2>&1; then
+    exec python3 scripts/check-commit.py "$1"
+fi
+exec python scripts/check-commit.py "$1"

@@ -1,0 +1,8 @@
+# type(scope): summary, at most 72 characters
+# Types: feat fix docs refactor test build ci perf chore revert
+# Scope is optional. Use ! before : for a breaking change.
+#
+# Explain why this change is needed when the diff does not make it obvious.
+# Record meaningful validation and any remaining limitation.
+#
+# BREAKING CHANGE: describe migration if applicable.

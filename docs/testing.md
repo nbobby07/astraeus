@@ -62,10 +62,10 @@ Use fresh unit and log names for retries. A successful build requires the ISO,
 checksum, resolved manifests and `BUILDER_A_SUCCESS` or `BUILDER_B_SUCCESS`, not
 merely a zero exit-code file. Interrupted attempts are not accepted.
 
-CI runs Rust/Python and shell syntax checks on Ubuntu. A manual workflow dispatch
+CI runs Rust/Python checks on Ubuntu and Windows, plus shell syntax checks on Ubuntu. A manual workflow dispatch
 also checks the archive over HTTPS. It does not use signing secrets, privileged
-runners or claim to build an ISO. No remote CI execution is implied by adding the
-workflow file; a configured remote and an actual run are still required.
+runners or claim to build an ISO. The public repository records actual host-check runs in its Actions tab.
+These checks do not replace the separate guest acceptance record.
 
 ## Phase 0 Linux acceptance
 
