@@ -38,7 +38,7 @@ if [[ -d $share/package-cache ]]; then
     # Reuse only immutable upstream archives; pacman still verifies their signatures.
     cp -a "$share/package-cache/." /var/cache/pacman/pkg/
 fi
-pacman -Syyuu --noconfirm --needed base-devel archiso rust python git gnupg
+pacman -Syyuu --noconfirm --needed base-devel archiso rust python git gnupg systemd-ukify
 pacman -S --noconfirm --needed $(cat distro/packages/calamares/build-packages.x86_64)
 git init -b main
 git status --short > "$evidence/git-status.txt"
