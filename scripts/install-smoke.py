@@ -12,7 +12,7 @@ import shutil
 import subprocess
 
 
-def qemu_command(code, variables, disk, log, monitor, iso=None):
+def qemu_command(code, variables, disk, log, monitor, iso=None, test_share=None):
     command = ["qemu-system-x86_64", "-machine", "q35,accel=kvm", "-cpu", "host",
                "-m", "4096", "-smp", "4", "-device", "virtio-vga",
                "-drive", f"if=pflash,format=raw,readonly=on,file={code}",
@@ -22,6 +22,8 @@ def qemu_command(code, variables, disk, log, monitor, iso=None):
                "-serial", f"file:{log}", "-monitor", "none",
                "-qmp", f"unix:{monitor},server=on,wait=off",
                "-device", "qemu-xhci", "-device", "usb-tablet", "-daemonize"]
+    if test_share:
+        command += ["-virtfs", f"local,path={test_share},mount_tag=acceptance,security_model=none,readonly=on"]
     if iso:
         command += ["-cdrom", str(iso), "-boot", "d"]
     else:
@@ -36,6 +38,7 @@ def main():
     parser.add_argument("--ovmf-code", type=Path, required=True)
     parser.add_argument("--ovmf-vars", type=Path)
     parser.add_argument("--iso", type=Path)
+    parser.add_argument("--test-share", type=Path, help="optional read-only directory of acceptance scripts")
     parser.add_argument("--disk-gib", type=int, default=32)
     parser.add_argument("--run", default="boot1")
     args = parser.parse_args()
@@ -43,6 +46,9 @@ def main():
         parser.error("a Linux KVM host is required")
     code = args.ovmf_code.resolve(strict=True)
     out = args.output.resolve()
+    test_share = args.test_share.resolve(strict=True) if args.test_share else None
+    if test_share and (not test_share.is_dir() or "," in str(test_share) or any(c.isspace() for c in str(test_share))):
+        parser.error("test share must be a directory with no whitespace or commas in its path")
     if not args.run.isalnum() or not 4 <= args.disk_gib <= 256:
         parser.error("run must be alphanumeric; disk size must be 4..256 GiB")
     if any("," in str(p) or any(c.isspace() for c in str(p)) for p in [out, code]):
@@ -66,7 +72,7 @@ def main():
                 parser.error(f"missing installed guest input: {file}")
         session = out / args.run
     session.mkdir(exist_ok=False)
-    command = qemu_command(code, out / "vars.fd", out / "disk.qcow2", session / "serial.log", session / "qmp.sock", iso)
+    command = qemu_command(code, out / "vars.fd", out / "disk.qcow2", session / "serial.log", session / "qmp.sock", iso, test_share)
     command += ["-pidfile", str(session / "qemu.pid")]
     (session / "qemu-command.json").write_text(json.dumps(command, indent=2) + "\n")
     subprocess.run(command, check=True)

@@ -78,6 +78,9 @@ class InstallerTests(unittest.TestCase):
         self.assertIn("if=pflash,format=raw,file=vars.fd", boot)
         self.assertIn("q35,accel=kvm", boot)
         self.assertFalse(any("vnc" in argument for argument in boot))
+        shared = smoke.qemu_command("code.fd", "vars.fd", "disk.qcow2", "boot1.log", "qmp.sock", test_share="scripts")
+        self.assertIn("local,path=scripts,mount_tag=acceptance,security_model=none,readonly=on", shared)
+        self.assertNotIn("-cdrom", shared)
 
     def test_generated_profile_and_account_boundary(self):
         with tempfile.TemporaryDirectory() as temp:

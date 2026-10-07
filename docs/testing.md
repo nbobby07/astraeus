@@ -141,6 +141,14 @@ from this source tree, transferred privately for testing:
 bash installed-smoke.sh LUKS2
 ```
 
+For a local transfer, pass `--test-share /absolute/path/test-scripts` at each
+QEMU launch. Put only the acceptance script in that host directory. The share
+is read-only; mount it with `sudo mount -t 9p -o trans=virtio,version=9p2000.L,ro
+acceptance /mnt` and run `bash /mnt/installed-smoke.sh LUKS2` as the desktop user.
+Keep credentials in memory. When using Freestyle's interactive CLI to feed
+stdin, disable terminal echo and wait for a readiness marker before transmitting
+the credential; `--text-stdin` by itself cannot control an outer terminal's echo.
+
 It runs `distroctl status`, `status --json`, `hardware` and `hardware --json` as
 the installed desktop user. It checks the observed UKI/loader, Btrfs/encryption,
 Plasma Wayland, network/DNS/HTTPS, audio services and failed units, retaining
