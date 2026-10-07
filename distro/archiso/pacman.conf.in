@@ -1,0 +1,17 @@
+[options]
+Architecture = x86_64
+CheckSpace
+SigLevel = Required DatabaseOptional
+LocalFileSigLevel = Required
+GPGDir = @@KEYRING@@
+
+# Curated packages take precedence. Both package and database signatures required.
+[distro]
+SigLevel = Required DatabaseRequired
+Server = file://@@REPO@@
+
+[core]
+Server = https://archive.archlinux.org/repos/@@ARCHIVE@@/$repo/os/$arch
+
+[extra]
+Server = https://archive.archlinux.org/repos/@@ARCHIVE@@/$repo/os/$arch

@@ -1,0 +1,2 @@
+# Ephemeral live media only. Never copy this policy into an installed system.
+live ALL=(ALL:ALL) NOPASSWD: ALL

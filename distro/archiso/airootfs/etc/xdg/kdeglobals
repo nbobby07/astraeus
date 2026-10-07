@@ -1,0 +1,10 @@
+[KDE]
+LookAndFeelPackage=org.kde.breeze.desktop
+SingleClick=false
+
+[General]
+TerminalApplication=ghostty
+TerminalService=com.mitchellh.ghostty.desktop
+ColorScheme=BreezeDark
+font=Noto Sans,10,-1,5,50,0,0,0,0,0
+fixed=Noto Sans Mono,10,-1,5,50,0,0,0,0,0

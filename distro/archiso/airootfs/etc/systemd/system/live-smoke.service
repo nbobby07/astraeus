@@ -1,0 +1,14 @@
+[Unit]
+Description=Phase 0 live desktop boot acceptance check
+After=display-manager.service NetworkManager.service live-keyring.service
+Wants=display-manager.service NetworkManager.service live-keyring.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash /usr/local/libexec/live-smoke.sh
+TimeoutStartSec=300
+StandardOutput=journal+console
+StandardError=journal+console
+
+[Install]
+WantedBy=graphical.target

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2034
+iso_name="@@ID@@"
+iso_label="DISTRO_BOOT"
+iso_publisher="@@NAME@@ contributors"
+iso_application="@@NAME@@ Phase 0 live environment"
+iso_version="@@VERSION@@"
+install_dir="arch"
+arch="x86_64"
+buildmodes=('iso')
+bootmodes=('uefi.systemd-boot')
+pacman_conf="pacman.conf"
+airootfs_image_type="squashfs"
+airootfs_image_tool_options=('-comp' 'xz' '-Xbcj' 'x86' '-b' '1M' '-Xdict-size' '1M')
+# This profile is built as root. ArchISO 91 resolves these commands in its shell.
+# The auxiliary cache contains build-filesystem identity and is safe to regenerate.
+mksquashfs() {
+  command mksquashfs "$@" -e var/cache/ldconfig/aux-cache
+}
+# SOURCE_DATE_EPOCH alone does not normalize ISO directory-record timestamps.
+xorriso() {
+  command xorriso "$@" --set_all_file_dates "$(date -u -d "@$SOURCE_DATE_EPOCH" +%Y%m%d%H%M%S00)"
+}
+file_permissions=(
+  ["/etc/shadow"]="0:0:400"
+  ["/etc/gshadow"]="0:0:400"
+  ["/etc/sudoers.d/10-live"]="0:0:440"
+)

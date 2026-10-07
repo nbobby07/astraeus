@@ -1,0 +1,13 @@
+schema_version = 1
+
+[identity]
+id = "astraeus-dev"
+name = "Project Astraeus"
+version = "0.0.1"
+
+[build]
+architecture = "x86_64"
+archive_date = "2026/10/01"
+source_date_epoch = 1790812800
+archiso_version = "91-1"
+rust_version = "1.98.1"

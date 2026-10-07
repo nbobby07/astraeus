@@ -1,0 +1,37 @@
+pkgname=distroctl
+pkgver=@@VERSION@@
+pkgrel=1
+pkgdesc='Read-only distribution build metadata tools'
+arch=('x86_64')
+depends=('gcc-libs' 'glibc')
+makedepends=('rust')
+source=('platform.tar.xz')
+sha256sums=('@@SHA256@@')
+options=('!lto')
+
+prepare() {
+  [[ $(/usr/bin/rustc --version | cut -d ' ' -f 2) == '@@RUST_VERSION@@' ]] || {
+    echo 'Use the pinned Arch builder Rust package; see docs/building.md.' >&2
+    return 1
+  }
+}
+
+build() {
+  cd "$srcdir/platform"
+  export RUSTC=/usr/bin/rustc
+  export CARGO_HOME="$srcdir/cargo-home"
+  /usr/bin/cargo build --frozen --release -p distroctl
+}
+
+check() {
+  cd "$srcdir/platform"
+  export RUSTC=/usr/bin/rustc
+  export CARGO_HOME="$srcdir/cargo-home"
+  /usr/bin/cargo test --frozen --workspace
+}
+
+package() {
+  cd "$srcdir/platform"
+  install -Dm755 target/release/distroctl "$pkgdir/usr/bin/distroctl"
+  install -Dm644 distro/branding/project.toml "$pkgdir/usr/share/distro/project.toml"
+}

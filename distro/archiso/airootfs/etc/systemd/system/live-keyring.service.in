@@ -1,0 +1,16 @@
+[Unit]
+Description=Initialize live package verification keyring
+After=local-fs.target
+Before=display-manager.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/usr/bin/install -d -m 0755 /etc/pacman.d/gnupg
+ExecStart=/usr/bin/pacman-key --init
+ExecStart=/usr/bin/pacman-key --populate archlinux
+ExecStart=/usr/bin/pacman-key --add /usr/share/distro/repository-key.asc
+ExecStart=/usr/bin/pacman-key --lsign-key @@FINGERPRINT@@
+
+[Install]
+WantedBy=multi-user.target
