@@ -11,10 +11,14 @@ Usage:
   distroctl validate <path>    Validate a project release TOML file
   distroctl snapshot --help   Snapshot commands and recovery usage
   distroctl rollback <id> --dry-run [--json]
+  distroctl update --dry-run [--json]  Plan from existing sync databases
+  distroctl update            Coordinate an update (requires snapshot integration)
+  distroctl history [--json] [--database <path>]  Read transaction history
   distroctl --version
   distroctl --help
 
-Snapshot mutations require root. Rollback execution requires offline recovery.";
+Planning/history are read-only. Package mutation requires root and a snapshot backend.
+Filesystem rollback and boot confirmation are not implemented here.";
 
 fn run(args: &[String]) -> Result<(), String> {
     if matches!(
@@ -31,6 +35,38 @@ fn run(args: &[String]) -> Result<(), String> {
     {
         [] | ["--help"] | ["-h"] => println!("{HELP}"),
         ["--version"] => println!("distroctl {}", env!("CARGO_PKG_VERSION")),
+        ["update", "--dry-run"]
+        | ["update", "--dry-run", "--json"]
+        | ["update", "--json", "--dry-run"] => {
+            println!(
+                "{}",
+                distroctl::updates::dry_run(
+                    &mut distro_transactions::pacman::Pacman::default(),
+                    args.iter().any(|a| a == "--json")
+                )?
+            );
+        }
+        ["update"] => distroctl::updates::update()?,
+        ["history"] | ["history", "--json"] => {
+            print!(
+                "{}",
+                distroctl::updates::history(
+                    std::path::Path::new(distro_transactions::HISTORY_PATH),
+                    args.len() == 2
+                )?
+            );
+        }
+        ["history", "--database", path]
+        | ["history", "--json", "--database", path]
+        | ["history", "--database", path, "--json"] => {
+            print!(
+                "{}",
+                distroctl::updates::history(
+                    std::path::Path::new(path),
+                    args.iter().any(|a| a == "--json")
+                )?
+            );
+        }
         ["info"] | ["info", "--json"] => {
             let project = parse_toml(BUNDLED).map_err(|e| format!("bundled metadata: {e}"))?;
             project.validate()?;

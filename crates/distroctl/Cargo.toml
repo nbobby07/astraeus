@@ -9,5 +9,6 @@ publish.workspace = true
 distro-config = { path = "../config" }
 distro-hardware = { path = "../hardware" }
 distro-snapshots = { path = "../snapshots" }
+distro-transactions = { path = "../transactions" }
 serde.workspace = true
 serde_json.workspace = true

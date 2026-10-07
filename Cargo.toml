@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/distroctl", "crates/config", "crates/hardware", "crates/snapshots"]
+members = ["crates/distroctl", "crates/config", "crates/hardware", "crates/snapshots", "crates/transactions"]
 resolver = "2"
 
 [workspace.package]

@@ -1,9 +1,9 @@
 pkgname=distroctl
 pkgver=@@VERSION@@
 pkgrel=1
-pkgdesc='Distribution status, Btrfs snapshots and offline recovery tools'
+pkgdesc='Distribution status, transactions, snapshots and recovery tools'
 arch=('x86_64')
-depends=('gcc-libs' 'glibc' 'btrfs-progs' 'util-linux' 'coreutils' 'systemd' 'cryptsetup')
+depends=('gcc-libs' 'glibc' 'btrfs-progs' 'util-linux' 'coreutils' 'systemd' 'cryptsetup' 'pacman' 'libarchive' 'mkinitcpio' 'systemd-ukify')
 makedepends=('rust')
 source=('platform.tar.xz')
 sha256sums=('@@SHA256@@')

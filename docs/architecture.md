@@ -13,6 +13,7 @@ The workspace now has four crates:
 distroctl -> distro-config -> serde / TOML
           -> distro-hardware -> serde
           -> distro-snapshots -> serde / serde_json
+          -> distro-transactions -> serde / SQLite / SHA-256
 ```
 
 `distro-config` owns release metadata and validation. Parsing produces a typed
@@ -21,6 +22,10 @@ file I/O and presentation. Metadata and status commands remain read-only.
 The read-only CLI exposes `info`, `validate`, `hardware`, `status`, help and version.
 Phase 2 adds `snapshot` and `rollback` through `distro-snapshots`; privileged
 mutation belongs to that library. See [snapshots and recovery](snapshots.md).
+Phase 2 adds read-only `update --dry-run` and `history`, plus an update coordinator
+that refuses package mutation until the snapshot/boot-generation backend is
+integrated. See [transactions](transactions.md) for the model, failure states,
+history database and integration contract.
 `status` reports observations from procfs, sysfs, EFI variables and the current
 desktop environment, with JSON schema version 1. Unavailable values remain null.
 Neither status nor hardware detection invokes privileged commands or requests root.
