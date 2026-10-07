@@ -94,6 +94,16 @@ assume the host has Linux procfs. Python tests validate module ordering, exact
 subvolume/mount definitions, account policy, encrypted/plain command lines,
 crypttab mapper consistency, UKI inputs and ISO detachment during disk boots.
 
+Hardware/status coverage also includes CPU socket/core topology and ARM model
+fallbacks, available memory and overflow rejection, PCI model/vendor lookup,
+partition capacity/transport/rotational inheritance without `slaves`, firmware
+and multi-vendor VM fallbacks, distinct unavailable/unknown/IO diagnostics,
+human-readable formatting, byte-valued JSON and exact CLI exit codes. Unix-only
+fixtures use real sysfs-style PCI/DRM/block symlinks. Run the workspace tests on
+Linux as well as Windows to exercise those symlinks. See [hardware](hardware.md)
+for schema details and detection limits. These checks do not establish installer
+or physical hardware acceptance.
+
 Additional Bash syntax checks:
 
 ```sh

@@ -48,31 +48,19 @@ fn run(args: &[String]) -> Result<(), String> {
                     serde_json::to_string_pretty(&s).map_err(|e| e.to_string())?
                 );
             } else {
-                use distroctl::known as k;
-                println!("{}\n\nSystem\n  Version       {}\n  Channel       {}\n  Architecture  {}\n\nKernel\n  {}\n\nBoot\n  Firmware      {}\n  Bootloader    {}\n  Stub          {}\n  UKI path      {}\n\nFilesystem\n  Root          {}\n  Encryption    {}\n\nDesktop\n  {}\n  {}\n\nHardware\n  CPU           {}\n  Memory bytes  {}",
-                    k(&s.name), k(&s.version), k(&s.channel), s.hardware.cpu.architecture,
-                    k(&s.kernel), k(&s.boot.firmware), k(&s.boot.bootloader), k(&s.boot.stub), k(&s.boot.uki_path),
-                    k(&s.filesystem.root_type), k(&s.filesystem.encryption), k(&s.desktop.name), k(&s.desktop.session_type), k(&s.hardware.cpu.model),
-                    s.hardware.memory_bytes.map(|v| v.to_string()).unwrap_or_else(|| "unknown".into()));
-                match s.hardware.gpus {
-                    Some(gpus) => {
-                        for gpu in gpus {
-                            println!(
-                                "  GPU           {} {}:{} ({})",
-                                gpu.vendor, gpu.vendor_id, gpu.device_id, gpu.pci_address
-                            );
-                        }
-                    }
-                    None => println!("  GPU           unknown"),
-                }
+                print!("{}", distroctl::format_status(&s));
             }
         }
         ["hardware"] | ["hardware", "--json"] => {
-            println!(
-                "{}",
-                serde_json::to_string_pretty(&distro_hardware::probe())
-                    .map_err(|e| e.to_string())?
-            );
+            let hardware = distro_hardware::probe();
+            if args.len() == 2 {
+                println!(
+                    "{}",
+                    serde_json::to_string_pretty(&hardware).map_err(|e| e.to_string())?
+                );
+            } else {
+                print!("{}", distroctl::format_hardware(&hardware));
+            }
         }
         ["validate", path] => {
             let text = fs::read_to_string(path).map_err(|e| format!("{path}: {e}"))?;

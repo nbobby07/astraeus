@@ -1,24 +1,46 @@
-//! Read-only Linux discovery. Missing observations remain unknown.
+//! Read-only Linux discovery, normalization and capabilities. No subprocesses.
 use serde::Serialize;
-use std::{fs, path::Path};
+use std::{
+    collections::BTreeSet,
+    fs, io,
+    path::{Path, PathBuf},
+};
 
 #[derive(Debug, Default)]
 pub struct RawHardware {
     pub cpuinfo: Option<String>,
     pub meminfo: Option<String>,
-    pub pci: Option<Vec<(String, String, String, String)>>,
+    pub pci: Option<Vec<RawGpu>>,
     pub blocks: Option<Vec<RawBlock>>,
     pub dmi_vendor: Option<String>,
     pub dmi_product: Option<String>,
+    pub hypervisor: Option<String>,
+    pub device_tree_compatible: Option<String>,
+    pub container: Option<String>,
     pub uefi: Option<bool>,
+    pub issues: Vec<ProbeIssue>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
+pub struct RawGpu {
+    pub pci_address: Option<String>,
+    pub vendor_id: Option<String>,
+    pub device_id: Option<String>,
+    pub model: Option<String>,
+    pub driver: Option<String>,
+    pub drm_nodes: Vec<String>,
+    pub boot_vga: Option<bool>,
+}
+
+#[derive(Debug, Default)]
 pub struct RawBlock {
     pub name: String,
     pub model: Option<String>,
     pub sys_path: Option<String>,
     pub sectors: Option<u64>,
+    pub rotational: Option<bool>,
+    pub partition: bool,
+    pub parent: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
@@ -27,102 +49,380 @@ pub struct Cpu {
     pub vendor: Option<String>,
     pub model: Option<String>,
     pub logical_count: Option<usize>,
+    pub physical_core_count: Option<usize>,
 }
 
 #[derive(Debug, Serialize)]
 pub struct Gpu {
-    pub pci_address: String,
-    pub vendor: String,
-    pub vendor_id: String,
-    pub device_id: String,
+    pub pci_address: Option<String>,
+    pub vendor: Option<String>,
+    pub vendor_id: Option<String>,
+    pub device_id: Option<String>,
+    pub model: Option<String>,
+    pub driver: Option<String>,
+    pub drm_nodes: Vec<String>,
+    /// Firmware's boot VGA device, not a guess about the active compositor GPU.
+    pub boot_vga: Option<bool>,
+}
+
+#[derive(Debug, Serialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum StorageKind {
+    Disk,
+    Partition,
+    Mapped,
+}
+
+#[derive(Debug, Serialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum Transport {
+    Nvme,
+    Sata,
+    Virtio,
+    Usb,
 }
 
 #[derive(Debug, Serialize)]
 pub struct Storage {
     pub name: String,
+    pub path: String,
     pub model: Option<String>,
-    pub transport: Option<String>,
+    pub transport: Option<Transport>,
     pub size_bytes: Option<u64>,
+    pub rotational: Option<bool>,
+    pub kind: StorageKind,
+    pub parent: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
 pub struct Capabilities {
     pub uefi: Option<bool>,
     pub virtual_machine: Option<bool>,
+    pub virtualization_type: Option<String>,
+    pub container_type: Option<String>,
+}
+
+#[derive(Debug, Serialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum IssueKind {
+    Unavailable,
+    Unknown,
+    Error,
+}
+
+#[derive(Debug, Serialize)]
+pub struct ProbeIssue {
+    pub source: String,
+    pub kind: IssueKind,
+    pub message: String,
 }
 
 #[derive(Debug, Serialize)]
 pub struct Hardware {
+    pub schema_version: u32,
     pub cpu: Cpu,
     pub memory_bytes: Option<u64>,
+    pub memory_available_bytes: Option<u64>,
     pub gpus: Option<Vec<Gpu>>,
     pub storage: Option<Vec<Storage>>,
     pub capabilities: Capabilities,
+    pub issues: Vec<ProbeIssue>,
 }
 
-fn read(path: impl AsRef<Path>) -> Option<String> {
-    fs::read_to_string(path).ok().map(|s| s.trim().to_owned())
+struct Discovery<'a> {
+    root: &'a Path,
+    issues: Vec<ProbeIssue>,
 }
 
-/// A filesystem root permits captured proc/sysfs fixtures without probing the host.
-pub fn discover(root: &Path) -> RawHardware {
-    let pci = fs::read_dir(root.join("sys/bus/pci/devices"))
-        .ok()
-        .map(|dir| {
-            let mut devices = Vec::new();
-            for entry in dir.flatten() {
-                let p = entry.path();
-                if let (Some(class), Some(vendor), Some(device)) = (
-                    read(p.join("class")),
-                    read(p.join("vendor")),
-                    read(p.join("device")),
-                ) {
-                    devices.push((
-                        entry.file_name().to_string_lossy().into(),
-                        class,
-                        vendor,
-                        device,
-                    ));
+impl Discovery<'_> {
+    fn issue(&mut self, path: &Path, kind: IssueKind, message: String) {
+        self.issues.push(ProbeIssue {
+            source: format!(
+                "/{}",
+                path.strip_prefix(self.root)
+                    .unwrap_or(path)
+                    .to_string_lossy()
+                    .replace('\\', "/")
+            ),
+            kind,
+            message,
+        });
+    }
+
+    fn result<T>(&mut self, path: &Path, result: io::Result<T>, required: bool) -> Option<T> {
+        match result {
+            Ok(value) => Some(value),
+            Err(error) => {
+                let missing = error.kind() == io::ErrorKind::NotFound;
+                if required || !missing {
+                    self.issue(
+                        path,
+                        if missing {
+                            IssueKind::Unavailable
+                        } else {
+                            IssueKind::Error
+                        },
+                        error.to_string(),
+                    );
+                }
+                None
+            }
+        }
+    }
+
+    fn read(&mut self, path: &Path, required: bool) -> Option<String> {
+        self.result(path, fs::read_to_string(path), required)
+            .map(|s| s.trim().to_owned())
+            .filter(|s| !s.is_empty())
+    }
+
+    fn entries(&mut self, path: &Path, required: bool) -> Option<Vec<PathBuf>> {
+        let dir = self.result(path, fs::read_dir(path), required)?;
+        let mut paths = Vec::new();
+        for entry in dir {
+            if let Some(entry) = self.result(path, entry, true) {
+                paths.push(entry.path());
+            }
+        }
+        paths.sort();
+        Some(paths)
+    }
+
+    fn number(&mut self, path: &Path) -> Option<u64> {
+        let value = self.read(path, false)?;
+        match value.parse() {
+            Ok(value) => Some(value),
+            Err(_) => {
+                self.issue(path, IssueKind::Unknown, "invalid unsigned integer".into());
+                None
+            }
+        }
+    }
+
+    fn link_name(&mut self, path: &Path) -> Option<String> {
+        self.result(path, fs::canonicalize(path), false)?
+            .file_name()
+            .map(|s| s.to_string_lossy().into_owned())
+    }
+
+    fn boolean(&mut self, path: &Path) -> Option<bool> {
+        match self.number(path)? {
+            0 => Some(false),
+            1 => Some(true),
+            _ => {
+                self.issue(path, IssueKind::Unknown, "expected 0 or 1".into());
+                None
+            }
+        }
+    }
+}
+
+/// Resolve a partition's containing disk through sysfs, without requiring slaves.
+/// Returns None for a disk. IO errors remain distinguishable from that case.
+pub fn partition_parent(device: &Path) -> io::Result<Option<PathBuf>> {
+    match fs::metadata(device.join("partition")) {
+        Ok(_) => Ok(fs::canonicalize(device)?.parent().map(Path::to_path_buf)),
+        Err(error) if error.kind() == io::ErrorKind::NotFound => Ok(None),
+        Err(error) => Err(error),
+    }
+}
+
+fn node_name(name: &str, prefix: &str) -> bool {
+    name.strip_prefix(prefix)
+        .is_some_and(|n| !n.is_empty() && n.bytes().all(|c| c.is_ascii_digit()))
+}
+
+fn pci_name(text: &str, vendor: &str, device: &str) -> Option<String> {
+    let mut in_vendor = false;
+    for line in text.lines() {
+        if line.starts_with('#') || line.is_empty() {
+            continue;
+        }
+        if !line.starts_with(char::is_whitespace) {
+            in_vendor = line.split_whitespace().next() == Some(vendor);
+        } else if in_vendor && line.starts_with('\t') && !line.starts_with("\t\t") {
+            if let Some((id, name)) = line.trim().split_once(char::is_whitespace) {
+                if id == device {
+                    return Some(name.trim().to_owned());
                 }
             }
-            devices.sort();
-            devices
-        });
-    let blocks = fs::read_dir(root.join("sys/block")).ok().map(|dir| {
+        }
+    }
+    None
+}
+
+fn pci_id(value: Option<String>) -> Option<String> {
+    let value = value?.to_ascii_lowercase();
+    let digits = value.strip_prefix("0x").unwrap_or(&value);
+    (digits.len() == 4 && digits.bytes().all(|b| b.is_ascii_hexdigit()))
+        .then(|| format!("0x{digits}"))
+}
+
+/// The supplied root replaces / for captured proc/sysfs trees. No host files or
+/// environment variables are consulted here.
+pub fn discover(root: &Path) -> RawHardware {
+    let mut d = Discovery {
+        root,
+        issues: Vec::new(),
+    };
+    let pci_ids = ["usr/share/hwdata/pci.ids", "usr/share/misc/pci.ids"]
+        .iter()
+        .find_map(|p| d.read(&root.join(p), false));
+    let pci_dir = root.join("sys/bus/pci/devices");
+    let mut pci = d.entries(&pci_dir, true).map(|paths| {
         let mut devices = Vec::new();
-        for entry in dir.flatten() {
-            let name = entry.file_name().to_string_lossy().into_owned();
-            if ["loop", "ram", "dm-", "zram"]
+        for p in paths {
+            let Some(class) = d.read(&p.join("class"), false) else {
+                continue;
+            };
+            let class = u32::from_str_radix(class.trim_start_matches("0x"), 16).ok();
+            if class.is_none_or(|c| c >> 16 != 3) {
+                continue;
+            }
+            let vendor_id = pci_id(d.read(&p.join("vendor"), false));
+            let device_id = pci_id(d.read(&p.join("device"), false));
+            let model = match (&pci_ids, &vendor_id, &device_id) {
+                (Some(ids), Some(v), Some(i)) => pci_name(ids, &v[2..], &i[2..]),
+                _ => None,
+            };
+            devices.push(RawGpu {
+                pci_address: p.file_name().map(|s| s.to_string_lossy().into_owned()),
+                vendor_id,
+                device_id,
+                model,
+                driver: d.link_name(&p.join("driver")),
+                boot_vga: d.boolean(&p.join("boot_vga")),
+                drm_nodes: Vec::new(),
+            });
+        }
+        devices
+    });
+    // DRM also exposes non-PCI GPUs and virtio/platform devices.
+    if let Some(nodes) = d.entries(&root.join("sys/class/drm"), false) {
+        let devices = pci.get_or_insert_with(Vec::new);
+        let mut drm_devices = Vec::<(PathBuf, usize)>::new();
+        for node in nodes {
+            let name = node.file_name().unwrap().to_string_lossy();
+            if !node_name(&name, "card") && !node_name(&name, "renderD") {
+                continue;
+            }
+            let Some(device) = d.result(
+                &node.join("device"),
+                fs::canonicalize(node.join("device")),
+                false,
+            ) else {
+                continue;
+            };
+            // Walk ancestors to find the owning PCI function (virtio adds a level).
+            let address = device
+                .ancestors()
+                .find(|p| {
+                    p.parent() == Some(&pci_dir)
+                        || p.join("class").is_file() && p.join("vendor").is_file()
+                })
+                .and_then(|p| p.file_name())
+                .map(|s| s.to_string_lossy().into_owned());
+            let index = devices
+                .iter()
+                .position(|gpu| address.is_some() && gpu.pci_address == address)
+                .or_else(|| {
+                    drm_devices
+                        .iter()
+                        .find(|(p, _)| *p == device)
+                        .map(|(_, i)| *i)
+                })
+                .unwrap_or_else(|| {
+                    let i = devices.len();
+                    devices.push(RawGpu {
+                        driver: d.link_name(&device.join("driver")),
+                        ..Default::default()
+                    });
+                    i
+                });
+            if let Some(driver) = d.link_name(&device.join("driver")) {
+                devices[index].driver = Some(driver);
+            }
+            drm_devices.push((device, index));
+            devices[index].drm_nodes.push(format!("/dev/dri/{name}"));
+        }
+    }
+    let class_blocks = root.join("sys/class/block");
+    let block_dir = if class_blocks.is_dir() {
+        class_blocks
+    } else {
+        root.join("sys/block")
+    };
+    let blocks = d.entries(&block_dir, true).map(|mut paths| {
+        // /sys/block only lists disks. Include their partition children as fallback.
+        if block_dir == root.join("sys/block") {
+            for disk in paths.clone() {
+                if let Some(children) = d.entries(&disk, false) {
+                    paths.extend(
+                        children
+                            .into_iter()
+                            .filter(|p| p.join("partition").is_file()),
+                    );
+                }
+            }
+        }
+        let mut blocks = Vec::new();
+        for p in paths {
+            let name = p.file_name().unwrap().to_string_lossy().into_owned();
+            if ["loop", "ram", "zram"]
                 .iter()
                 .any(|prefix| name.starts_with(prefix))
             {
                 continue;
             }
-            let p = entry.path();
-            let link = fs::canonicalize(&p)
-                .ok()
-                .map(|p| p.to_string_lossy().into_owned());
-            devices.push(RawBlock {
+            let parent = d.result(&p, partition_parent(&p), false).flatten();
+            let metadata = parent.as_deref().unwrap_or(&p);
+            let sys_path = d
+                .result(&p, fs::canonicalize(&p), false)
+                .map(|p| p.to_string_lossy().replace('\\', "/"));
+            blocks.push(RawBlock {
                 name,
-                model: read(p.join("device/model")),
-                sys_path: link,
-                sectors: read(p.join("size")).and_then(|s| s.parse::<u64>().ok()),
+                model: d.read(&metadata.join("device/model"), false),
+                sys_path,
+                sectors: d.number(&p.join("size")),
+                rotational: d.boolean(&metadata.join("queue/rotational")),
+                partition: p.join("partition").is_file(),
+                parent: parent
+                    .and_then(|p| p.file_name().map(|s| s.to_string_lossy().into_owned())),
             });
         }
-        devices.sort_by(|a, b| a.name.cmp(&b.name));
-        devices
+        blocks.sort_by(|a, b| a.name.cmp(&b.name));
+        blocks
     });
+    let container = d.read(&root.join("run/systemd/container"), false);
+    let firmware = root.join("sys/firmware");
+    let uefi = d
+        .result(&firmware, fs::read_dir(&firmware), true)
+        .and_then(|_| {
+            let path = firmware.join("efi");
+            match fs::metadata(&path) {
+                Ok(metadata) => Some(metadata.is_dir()),
+                // Containers can mask EFI or load a kernel without guest firmware.
+                Err(e) if e.kind() == io::ErrorKind::NotFound => {
+                    container.is_none().then_some(false)
+                }
+                Err(e) => {
+                    d.result::<()>(&path, Err(e), true);
+                    None
+                }
+            }
+        });
     RawHardware {
-        cpuinfo: read(root.join("proc/cpuinfo")),
-        meminfo: read(root.join("proc/meminfo")),
+        cpuinfo: d.read(&root.join("proc/cpuinfo"), true),
+        meminfo: d.read(&root.join("proc/meminfo"), true),
         pci,
         blocks,
-        dmi_vendor: read(root.join("sys/class/dmi/id/sys_vendor")),
-        dmi_product: read(root.join("sys/class/dmi/id/product_name")),
-        uefi: root
-            .join("sys/firmware")
-            .is_dir()
-            .then(|| root.join("sys/firmware/efi").is_dir()),
+        dmi_vendor: d.read(&root.join("sys/class/dmi/id/sys_vendor"), false),
+        dmi_product: d.read(&root.join("sys/class/dmi/id/product_name"), false),
+        hypervisor: d.read(&root.join("sys/hypervisor/type"), false),
+        device_tree_compatible: d.read(&root.join("proc/device-tree/hypervisor/compatible"), false),
+        container,
+        uefi,
+        issues: d.issues,
     }
 }
 
@@ -133,113 +433,199 @@ fn field(text: &str, name: &str) -> Option<String> {
     })
 }
 
-pub fn normalize(raw: RawHardware) -> Hardware {
-    let cpuinfo = raw.cpuinfo.as_deref().unwrap_or("");
-    let logical_count = raw.cpuinfo.as_ref().and_then(|s| {
-        let n = s
-            .lines()
-            .filter(|line| {
-                line.split_once(':')
-                    .is_some_and(|(k, _)| k.trim() == "processor")
-            })
-            .count();
-        (n > 0).then_some(n)
-    });
-    let memory_bytes = raw
-        .meminfo
-        .as_deref()
-        .and_then(|s| field(s, "MemTotal"))
-        .and_then(|s| {
-            let mut words = s.split_whitespace();
-            let size = words.next()?.parse::<u64>().ok()?;
-            (words.next()? == "kB")
-                .then(|| size.checked_mul(1024))
-                .flatten()
-        });
-    let gpus = raw.pci.map(|devices| {
-        devices
-            .into_iter()
-            .filter(|(_, c, _, _)| c.starts_with("0x03"))
-            .map(|(address, _, vendor_id, device_id)| {
-                let vendor = match vendor_id.to_ascii_lowercase().as_str() {
-                    "0x1002" => "AMD",
-                    "0x10de" => "NVIDIA",
-                    "0x8086" => "Intel",
-                    "0x1af4" => "Virtio",
-                    "0x1234" => "QEMU",
-                    _ => "Unknown",
+fn memory(text: &str, name: &str) -> Option<u64> {
+    let value = field(text, name)?;
+    let mut words = value.split_whitespace();
+    let size = words.next()?.parse::<u64>().ok()?;
+    (words.next()? == "kB" && words.next().is_none())
+        .then(|| size.checked_mul(1024))
+        .flatten()
+}
+
+fn cpu_counts(text: &str) -> (Option<usize>, Option<usize>) {
+    let mut logical = BTreeSet::new();
+    for line in text.lines() {
+        if let Some((key, value)) = line.split_once(':') {
+            if key.trim() == "processor" {
+                let Ok(id) = value.trim().parse::<u32>() else {
+                    return (None, None);
+                };
+                if !logical.insert(id) {
+                    return (None, None);
                 }
-                .to_owned();
-                Gpu {
-                    pci_address: address,
-                    vendor,
-                    vendor_id,
-                    device_id,
-                }
-            })
-            .collect()
-    });
+            }
+        }
+    }
+    let mut cores = BTreeSet::new();
+    let mut complete = true;
+    let mut records = 0;
+    for record in text.split("\n\n") {
+        if field(record, "processor").is_none() {
+            continue;
+        }
+        records += 1;
+        match (
+            field(record, "physical id").and_then(|s| s.parse::<u32>().ok()),
+            field(record, "core id").and_then(|s| s.parse::<u32>().ok()),
+        ) {
+            (Some(socket), Some(core)) => {
+                cores.insert((socket, core));
+            }
+            _ => complete = false,
+        }
+    }
+    (
+        (!logical.is_empty()).then_some(logical.len()),
+        (complete && records == logical.len() && !cores.is_empty()).then_some(cores.len()),
+    )
+}
+
+fn virtualization(raw: &RawHardware) -> Option<String> {
+    if let Some(kind) = &raw.hypervisor {
+        return Some(kind.to_ascii_lowercase());
+    }
+    if let Some(compatible) = &raw.device_tree_compatible {
+        if compatible.split('\0').any(|s| s == "linux,kvm") {
+            return Some("kvm".into());
+        }
+        if compatible.split('\0').any(|s| s.starts_with("xen,")) {
+            return Some("xen".into());
+        }
+    }
     let dmi = format!(
         "{} {}",
         raw.dmi_vendor.as_deref().unwrap_or(""),
         raw.dmi_product.as_deref().unwrap_or("")
     )
     .to_ascii_lowercase();
-    let vm = cpuinfo
-        .lines()
-        .any(|l| l.starts_with("flags") && l.split_whitespace().any(|f| f == "hypervisor"))
-        || [
-            "qemu",
-            "kvm",
-            "vmware",
-            "virtualbox",
-            "virtual machine",
-            "xen",
-            "bochs",
-            "amazon ec2",
-            "google compute",
-        ]
-        .iter()
-        .any(|v| dmi.contains(v));
-    // Absence of VM evidence does not prove physical hardware.
+    [
+        ("vmware", "vmware"),
+        ("virtualbox", "oracle"),
+        ("innotek", "oracle"),
+        ("microsoft corporation virtual machine", "microsoft"),
+        ("parallels", "parallels"),
+        ("qemu", "qemu"),
+        ("kvm", "kvm"),
+        ("xen", "xen"),
+        ("bochs", "bochs"),
+        ("google compute engine", "google"),
+    ]
+    .iter()
+    .find_map(|(needle, kind)| dmi.contains(needle).then(|| (*kind).into()))
+}
+
+pub fn normalize(raw: RawHardware) -> Hardware {
+    let cpuinfo = raw.cpuinfo.as_deref().unwrap_or("").replace("\r\n", "\n");
+    let (logical_count, physical_core_count) = cpu_counts(&cpuinfo);
+    let virtualization_type = virtualization(&raw);
+    let hypervisor_flag = cpuinfo.lines().any(|line| {
+        line.split_once(':').is_some_and(|(key, value)| {
+            key.trim() == "flags" && value.split_whitespace().any(|f| f == "hypervisor")
+        })
+    });
+    let mut issues = raw.issues;
+    let memory_bytes = raw.meminfo.as_deref().and_then(|s| memory(s, "MemTotal"));
+    let memory_available_bytes = raw
+        .meminfo
+        .as_deref()
+        .and_then(|s| memory(s, "MemAvailable"));
+    for name in ["MemTotal", "MemAvailable"] {
+        if raw
+            .meminfo
+            .as_deref()
+            .is_some_and(|s| field(s, name).is_some() && memory(s, name).is_none())
+        {
+            issues.push(ProbeIssue {
+                source: "/proc/meminfo".into(),
+                kind: IssueKind::Unknown,
+                message: format!("invalid {name} byte count"),
+            });
+        }
+    }
     Hardware {
+        schema_version: 1,
         cpu: Cpu {
             architecture: std::env::consts::ARCH.into(),
-            vendor: field(cpuinfo, "vendor_id"),
-            model: field(cpuinfo, "model name"),
+            vendor: field(&cpuinfo, "vendor_id"),
+            model: field(&cpuinfo, "model name")
+                .or_else(|| field(&cpuinfo, "Hardware"))
+                .or_else(|| field(&cpuinfo, "cpu model")),
             logical_count,
+            physical_core_count,
         },
         memory_bytes,
-        gpus,
+        memory_available_bytes,
+        gpus: raw.pci.map(|devices| {
+            devices
+                .into_iter()
+                .map(|d| Gpu {
+                    vendor: d
+                        .vendor_id
+                        .as_deref()
+                        .and_then(|v| match v {
+                            "0x1002" => Some("AMD"),
+                            "0x10de" => Some("NVIDIA"),
+                            "0x8086" => Some("Intel"),
+                            "0x1af4" => Some("Virtio"),
+                            "0x1234" => Some("QEMU"),
+                            "0x15ad" => Some("VMware"),
+                            "0x1414" => Some("Microsoft"),
+                            "0x1b36" => Some("Red Hat"),
+                            _ => None,
+                        })
+                        .map(str::to_owned),
+                    pci_address: d.pci_address,
+                    vendor_id: d.vendor_id,
+                    device_id: d.device_id,
+                    model: d.model,
+                    driver: d.driver,
+                    drm_nodes: d.drm_nodes,
+                    boot_vga: d.boot_vga,
+                })
+                .collect()
+        }),
         storage: raw.blocks.map(|devices| {
             devices
                 .into_iter()
                 .map(|d| {
                     let path = d.sys_path.as_deref().unwrap_or("");
-                    let transport = if d.name.starts_with("nvme") {
-                        Some("nvme")
+                    let transport = if path.contains("/usb") {
+                        Some(Transport::Usb)
+                    } else if d.name.starts_with("nvme") {
+                        Some(Transport::Nvme)
                     } else if path.contains("virtio") || d.name.starts_with("vd") {
-                        Some("virtio")
+                        Some(Transport::Virtio)
                     } else if path.contains("/ata") {
-                        Some("sata")
-                    } else if path.contains("/usb") {
-                        Some("usb")
+                        Some(Transport::Sata)
                     } else {
                         None
                     };
                     Storage {
+                        path: format!("/dev/{}", d.name),
+                        kind: if d.partition {
+                            StorageKind::Partition
+                        } else if d.name.starts_with("dm-") {
+                            StorageKind::Mapped
+                        } else {
+                            StorageKind::Disk
+                        },
                         name: d.name,
                         model: d.model,
-                        transport: transport.map(str::to_owned),
+                        transport,
                         size_bytes: d.sectors.and_then(|n| n.checked_mul(512)),
+                        rotational: d.rotational,
+                        parent: d.parent,
                     }
                 })
                 .collect()
         }),
         capabilities: Capabilities {
             uefi: raw.uefi,
-            virtual_machine: vm.then_some(true),
+            virtual_machine: (virtualization_type.is_some() || hypervisor_flag).then_some(true),
+            virtualization_type,
+            container_type: raw.container,
         },
+        issues,
     }
 }
 
@@ -248,68 +634,4 @@ pub fn probe() -> Hardware {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-    #[test]
-    fn captured_hardware_and_missing_data() {
-        for (vendor, model, gpu_vendor, gpu_name) in [
-            ("AuthenticAMD", "Ryzen", "0x1002", "AMD"),
-            ("GenuineIntel", "Core", "0x8086", "Intel"),
-            ("GenuineIntel", "QEMU", "0x10de", "NVIDIA"),
-        ] {
-            let result = normalize(RawHardware {
-                cpuinfo: Some(format!("processor : 0\nvendor_id : {vendor}\nmodel name : {model}\nflags : sse hypervisor\n\nprocessor : 1")),
-                meminfo: Some("MemTotal: 8192 kB".into()),
-                pci: Some(vec![("0000:01:00.0".into(), "0x030000".into(), gpu_vendor.into(), "0x0001".into()), ("0000:00:02.0".into(), "0x030200".into(), "0x1af4".into(), "0x1050".into())]),
-                uefi: Some(true), ..Default::default()
-            });
-            assert_eq!(result.cpu.vendor.as_deref(), Some(vendor));
-            assert_eq!(result.cpu.model.as_deref(), Some(model));
-            assert_eq!(result.cpu.logical_count, Some(2));
-            assert_eq!(result.memory_bytes, Some(8388608));
-            assert_eq!(result.gpus.as_ref().unwrap()[0].vendor, gpu_name);
-            assert_eq!(result.gpus.as_ref().unwrap().len(), 2);
-            assert_eq!(result.capabilities.virtual_machine, Some(true));
-        }
-        let empty = normalize(RawHardware::default());
-        assert!(
-            empty.cpu.logical_count.is_none()
-                && empty.gpus.is_none()
-                && empty.capabilities.uefi.is_none()
-        );
-        let malformed = normalize(RawHardware {
-            meminfo: Some("MemTotal: 18446744073709551615 kB".into()),
-            ..Default::default()
-        });
-        assert!(malformed.memory_bytes.is_none());
-        let blocks = normalize(RawHardware {
-            blocks: Some(vec![
-                RawBlock {
-                    name: "nvme0n1".into(),
-                    model: Some("NVMe disk".into()),
-                    sys_path: None,
-                    sectors: Some(2048),
-                },
-                RawBlock {
-                    name: "vda".into(),
-                    model: None,
-                    sys_path: None,
-                    sectors: Some(u64::MAX),
-                },
-                RawBlock {
-                    name: "sda".into(),
-                    model: None,
-                    sys_path: Some("/sys/devices/pci/ata1/host0".into()),
-                    sectors: None,
-                },
-            ]),
-            ..Default::default()
-        });
-        let blocks = blocks.storage.unwrap();
-        assert_eq!(blocks[0].transport.as_deref(), Some("nvme"));
-        assert_eq!(blocks[0].size_bytes, Some(1048576));
-        assert_eq!(blocks[1].transport.as_deref(), Some("virtio"));
-        assert!(blocks[1].size_bytes.is_none());
-        assert_eq!(blocks[2].transport.as_deref(), Some("sata"));
-    }
-}
+mod tests;

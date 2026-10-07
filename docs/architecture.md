@@ -23,6 +23,10 @@ desktop environment, with JSON schema version 1. Unavailable values remain null.
 Neither status nor hardware detection invokes privileged commands or requests root.
 The Rust hardware crate separates discovery observations, normalized CPU/memory/
 GPU/storage information, and UEFI/VM capabilities. It does not tune hardware.
+Storage discovery and encryption inspection share the partition-parent resolver,
+which does not require a partition `slaves` directory. CLI presentation is separate
+from the serializable hardware model. [Hardware/status](hardware.md) documents
+sources, JSON schema version 1, partial observations and privilege assumptions.
 
 Python standard-library scripts handle source packaging and image build glue;
 small Bash files call standard Arch publishing tools and perform guest boot
