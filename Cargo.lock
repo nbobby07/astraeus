@@ -18,11 +18,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "distro-snapshots"
+version = "0.1.0-dev"
+dependencies = [
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "distroctl"
 version = "0.1.0-dev"
 dependencies = [
  "distro-config",
  "distro-hardware",
+ "distro-snapshots",
  "serde",
  "serde_json",
 ]

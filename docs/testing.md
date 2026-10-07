@@ -170,6 +170,33 @@ disk. Do not reuse its partial result for acceptance. Neither source inspection,
 unit tests nor a Calamares completion page qualifies Phase 1 without both installed
 systems booting and surviving the second boot. Repeat full ISO A/B comparison.
 
+## Phase 2 snapshot checks
+
+The ordinary Rust/Python checks above include command fixtures and temporary
+trees without mutating host root. Linux has an additional ignored test using
+new 512 MiB Btrfs and 64 MiB FAT regular-file images:
+
+```sh
+cargo test -p distro-snapshots --locked --no-run
+sudo env ASTRAEUS_LOOPBACK_TEST=1 cargo test -p distro-snapshots --locked \
+  disposable_linux_btrfs_roundtrip -- --ignored --nocapture
+```
+
+Use the same Rust toolchain for sudo, or run the compiled test executable with
+`ASTRAEUS_LOOPBACK_TEST=1` and the arguments
+`--ignored --exact system::tests::disposable_linux_btrfs_roundtrip`.
+Required tools: `mkfs.btrfs`, `btrfs`, `mkfs.vfat`, `mount`, `umount`, `findmnt`,
+`sha256sum`, `sync`, loop devices and kernel Btrfs support. Formatters receive
+only the test's newly created regular files. Both mounts are released before
+fixture cleanup.
+
+The test executor permits its isolated fixture in WSL/private namespaces;
+production refuses these environments. Its synthetic PE UKI qualifies storage
+and byte handling only. It passed on WSL2 6.6.114.1 with btrfs-progs 6.17.1 and
+dosfstools 4.2. UEFI boots, encrypted recovery, power cuts, ENOSPC, ESP failures
+and installed non-root listing remain Chat 3 acceptance work. See
+[snapshot policy and recovery](snapshots.md).
+
 ## Later subsystem tests
 
 | Boundary | Required evidence before broadening implementation |

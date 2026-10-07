@@ -1,19 +1,28 @@
 use distro_config::{parse_toml, BUNDLED};
 use std::{env, fs, process::ExitCode};
+mod snapshots;
 
-const HELP: &str = "distroctl: read-only system tools
+const HELP: &str = "distroctl: system tools
 
 Usage:
   distroctl info [--json]       Show metadata compiled into this binary
   distroctl status [--json]     Show observed system status
   distroctl hardware [--json]   Discover hardware without changing it
   distroctl validate <path>    Validate a project release TOML file
+  distroctl snapshot --help   Snapshot commands and recovery usage
+  distroctl rollback <id> --dry-run [--json]
   distroctl --version
   distroctl --help
 
-These commands are read-only. Updates and rollback are not implemented.";
+Snapshot mutations require root. Rollback execution requires offline recovery.";
 
 fn run(args: &[String]) -> Result<(), String> {
+    if matches!(
+        args.first().map(String::as_str),
+        Some("snapshot" | "rollback")
+    ) {
+        return snapshots::run(args).map_err(|e| e.to_string());
+    }
     match args
         .iter()
         .map(String::as_str)
