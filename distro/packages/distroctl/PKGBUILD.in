@@ -1,9 +1,9 @@
 pkgname=distroctl
 pkgver=@@VERSION@@
 pkgrel=1
-pkgdesc='Read-only distribution metadata, hardware and system status tools'
+pkgdesc='Distribution status, Btrfs snapshots and offline recovery tools'
 arch=('x86_64')
-depends=('gcc-libs' 'glibc')
+depends=('gcc-libs' 'glibc' 'btrfs-progs' 'util-linux' 'coreutils' 'systemd' 'cryptsetup')
 makedepends=('rust')
 source=('platform.tar.xz')
 sha256sums=('@@SHA256@@')

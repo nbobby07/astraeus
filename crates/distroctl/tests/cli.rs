@@ -49,10 +49,24 @@ fn cli_contract() {
         &["validate", "missing.toml"],
         &["status", "--bad"],
         &["hardware", "--json", "extra"],
+        &["snapshot", "create", "--reason", "invalid"],
+        &["snapshot", "list", "--execute"],
+        &["snapshot", "show", "../escape"],
+        &["snapshot", "create", "--dry-run", "--dry-run"],
+        &["snapshot", "mark", "1", "known-good"],
+        &["rollback", "1"],
+        &["rollback", "1", "--execute", "--dry-run"],
     ] {
         let output = run(args);
         assert_eq!(output.status.code(), Some(1));
         assert!(!output.stderr.is_empty());
         assert!(output.stdout.is_empty());
+    }
+    for command in ["snapshot", "rollback"] {
+        let help = run(&[command, "--help"]);
+        assert!(help.status.success());
+        assert!(String::from_utf8(help.stdout)
+            .unwrap()
+            .contains("--top-level"));
     }
 }

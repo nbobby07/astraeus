@@ -35,8 +35,10 @@ is installed. Ordinary VM disks under `/home` already remain outside root rollba
 
 The package database remains under `@` so future root rollback cannot separate it
 from installed files. Service state under `/var/lib` otherwise stays with root.
-The ESP and UKI are outside Btrfs snapshots. No snapshot manager, rollback, TPM
-unlock, recovery generations or transaction history is implemented.
+The ESP and UKI are outside Btrfs snapshots. Phase 2's
+[snapshot library](snapshots.md) saves a matching UKI alongside each read-only
+root snapshot and supports explicit offline rollback. TPM unlock, automatic
+recovery boot generations and transaction history remain separate work.
 
 No encryption password or keyfile is written to the payload or installed logs.
 The initramfs asks for the passphrase. The unlocked mapping is named `root` during
