@@ -17,6 +17,13 @@ disk uses GPT, a 1 GiB unencrypted FAT32 ESP at `/efi`, and a Btrfs system
 partition, optionally inside LUKS2. Manual partitioning is disabled for this
 foundation. Existing-system replace/alongside paths need separate qualification.
 
+The passwordless live session does not automatically lock during long installs
+or on resume. A real unattended test reached an upstream lock-screen QML error
+after PAM accepted the blank live account. The live-only `kscreenlockerrc`
+prevents that interruption; it is not copied into the installed payload.
+Installed users retain normal password-protected screen locking. These settings
+use [KDE's screen-lock configuration](https://github.com/KDE/kscreenlocker/blob/master/settings/kscreenlockersettings.kcfg).
+
 `distro/installer/config.json` is the source for module settings. The build
 generator writes JSON, which is valid YAML, into `/etc/calamares/*.conf`. The
 upstream modules perform partitioning, encryption, subvolume creation, extraction,

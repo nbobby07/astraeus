@@ -35,6 +35,8 @@ class BootstrapTests(unittest.TestCase):
         self.assertLess(conf.index("[distro]"), conf.index("[core]"))
         self.assertIn("SigLevel = Required DatabaseRequired", conf)
         self.assertNotIn("TrustAll", conf)
+        locker = (ROOT / "distro/archiso/airootfs/etc/xdg/kscreenlockerrc").read_text()
+        self.assertIn("[Daemon]\nAutolock=false\nLockOnResume=false", locker)
         lock = bootstrap.json.loads((ROOT / "distro/repo/archive.lock.json").read_text())
         self.assertEqual(lock["direct_packages"]["archiso"], project["build"]["archiso_version"])
         self.assertEqual(set(lock["direct_packages"]), bootstrap.upstream_packages())
