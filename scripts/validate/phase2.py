@@ -170,7 +170,13 @@ class VM:
 
     def shutdown(self):
         self.alive()
-        qmp.execute(str(self.monitor), {'execute': 'system_powerdown'})
+        if self.boot_id:
+            # KDE may turn ACPI powerdown into an unanswered dialog. Give the
+            # command channel time to acknowledge, then request a normal shutdown.
+            self.command('systemd-run --unit=astraeus-validation-poweroff --on-active=1s '
+                         '/usr/bin/systemctl poweroff', label='schedule-poweroff')
+        else:
+            qmp.execute(str(self.monitor), {'execute': 'system_powerdown'})
         code = self.child.wait(timeout=60)
         require(code == 0, f'QEMU shutdown exited {code}')
         save(self.session / 'shutdown.json', dict(finished=now(), code=code, graceful=True))
