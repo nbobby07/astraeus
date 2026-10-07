@@ -17,6 +17,11 @@ disk uses GPT, a 1 GiB unencrypted FAT32 ESP at `/efi`, and a Btrfs system
 partition, optionally inside LUKS2. Manual partitioning is disabled for this
 foundation. Existing-system replace/alongside paths need separate qualification.
 
+The Calamares build requires libparted so its storage requirement cannot be
+silently compiled out. [CMake's required-package option](https://cmake.org/cmake/help/latest/variable/CMAKE_REQUIRE_FIND_PACKAGE_PackageName.html)
+makes a missing library fail the build. An 8 GiB guest is checked during
+acceptance before partitioning.
+
 The passwordless live session does not automatically lock during long installs
 or on resume. A real unattended test reached an upstream lock-screen QML error
 after PAM accepted the blank live account. The live-only `kscreenlockerrc`

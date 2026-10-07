@@ -7,7 +7,7 @@ url='https://calamares.io/'
 license=('GPL-3.0-or-later')
 depends=('kpmcore' 'yaml-cpp' 'python' 'qt6-svg' 'qt6-declarative' 'qt6-5compat'
          'polkit-qt6' 'kcoreaddons' 'kconfig' 'ki18n' 'kservice' 'kcrash'
-         'libpwquality' 'rsync' 'squashfs-tools' 'cryptsetup' 'btrfs-progs')
+         'libpwquality' 'rsync' 'squashfs-tools' 'cryptsetup' 'btrfs-progs' 'parted')
 makedepends=('cmake' 'extra-cmake-modules' 'qt6-tools' 'ninja')
 source=("https://codeberg.org/Calamares/calamares/releases/download/v${pkgver}/calamares-${pkgver}.tar.gz")
 sha256sums=('144cbbf6bdcebfb21685950db4f0777218519df095f62f4aa392f28348110d18')
@@ -23,6 +23,7 @@ build() {
   cmake -S "calamares-$pkgver" -B build -G Ninja \
     -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib \
     -DWITH_QT6=ON -DWITH_PYTHON=ON -DWITH_QML=ON -DBUILD_TESTING=OFF \
+    -DCMAKE_REQUIRE_FIND_PACKAGE_LIBPARTED=TRUE \
     -DSKIP_MODULES="$skip"
   cmake --build build -j4
 }

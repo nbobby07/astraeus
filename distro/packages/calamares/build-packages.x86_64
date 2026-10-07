@@ -18,3 +18,4 @@ libpwquality
 rsync
 squashfs-tools
 arch-install-scripts
+parted

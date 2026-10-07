@@ -20,6 +20,18 @@ spec.loader.exec_module(smoke)
 
 
 class InstallerTests(unittest.TestCase):
+    def test_installer_storage_check_cannot_be_silently_disabled(self):
+        recipe = (ROOT / "distro/packages/calamares/PKGBUILD").read_text()
+        self.assertIn("'parted'", recipe)
+        self.assertIn("-DCMAKE_REQUIRE_FIND_PACKAGE_LIBPARTED=TRUE", recipe)
+        build_packages = (ROOT / "distro/packages/calamares/build-packages.x86_64").read_text().splitlines()
+        self.assertIn("parted", build_packages)
+        config = json.loads((ROOT / "distro/installer/config.json").read_text())
+        requirements = config["modules"]["welcome"]["requirements"]
+        self.assertIn("storage", requirements["check"])
+        self.assertIn("storage", requirements["required"])
+        self.assertEqual(requirements["requiredStorage"], 20.0)
+
     @unittest.skipIf(os.name == "nt", "payload staging needs Unix symlinks")
     def test_payload_does_not_clone_live_accounts_or_boot_workarounds(self):
         with tempfile.TemporaryDirectory() as temp:

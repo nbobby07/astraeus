@@ -63,7 +63,30 @@ This checks the repaired core path. It is not a fresh final-source installation
 or accepted Phase 1 system, and its older hardware binary cannot qualify the
 merged command acceptance.
 
-Final merged-source ISO reproduction, encrypted/plain installed boots, SDDM
+The merged-source A8/B8 pair also reproduced exactly: 3527608320 bytes and
+SHA256 `1d32135c7325160f1e6c494c95e86d47dc1d48494616db75354ecbc80c2ecafa`.
+A fresh encrypted installation cold-booted without repairs, reached SDDM and
+Plasma Wayland, and passed all four merged text/JSON commands, networking, audio,
+six mounts and zero failed system/user units. An idle live session exposed a
+passwordless screen-lock QML error; a live-only configuration now disables idle
+locking and is excluded from installed payloads by regression coverage.
+
+A9/B9 reproduced the updated live configuration: 3527608320 bytes, SHA256
+`c5891180663037248c0ebb87bd9168ee152eec3c35a37aea0d0fc57087fa177f`, `cmp` exit 0,
+matching recorded inputs, package manifests and independently built packages.
+Their clean source was `a96cba3766ab713a6cf9ed094fd91b2a00b4005b`, archive SHA256
+`593027c312c8653207544db67aebf2781d6dcdafe6de980b91d21a3a86c18410`.
+The encrypted install completed and remained accessible after five minutes idle.
+Cancellation left its initial disk blank. An 8 GiB failure test then revealed
+Calamares had silently compiled out the welcome storage check because libparted
+was missing, and the partition page allowed proceeding. The package now depends
+on parted and requires its library at CMake configuration. The lock includes
+parted 3.8-1 from the same checksum-verified archive; regression coverage checks
+the dependency, mandatory lookup and 20 GiB requirement. Updated Linux checks
+passed 15 Rust tests, formatting, Clippy and all 15 Python tests. This correction
+requires a new final build and acceptance pair.
+
+Final corrected-source ISO reproduction, encrypted/plain installed boots, SDDM
 login, installed-session health and second boots remain unaccepted. No installed
 success is inferred from WSL fixtures, live boot or partial Calamares progress.
 
