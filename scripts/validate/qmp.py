@@ -3,6 +3,7 @@
 import argparse
 import json
 import socket
+import sys
 import time
 
 
@@ -56,8 +57,13 @@ if __name__ == "__main__":
     parser.add_argument("socket")
     parser.add_argument("command", nargs="?", help="JSON object, e.g. '{\"execute\":\"query-kvm\"}'")
     parser.add_argument("--text", help="type ASCII text into the visibly focused guest console")
+    parser.add_argument("--text-stdin", action="store_true", help="read one text line from stdin, keeping test credentials out of argv")
     parser.add_argument("--enter", action="store_true")
     args = parser.parse_args()
+    if args.text_stdin:
+        if args.text is not None:
+            parser.error("choose --text or --text-stdin")
+        args.text = sys.stdin.readline().rstrip("\r\n")
     if (args.command is None) == (args.text is None) or (args.enter and args.text is None):
         parser.error("choose one JSON command or --text; --enter requires --text")
     if args.text is not None:
