@@ -101,6 +101,11 @@ fn encryption(device: &Path, depth: usize) -> Option<String> {
     if depth > 16 || !device.is_dir() {
         return None;
     }
+    // Partition sysfs directories have no slaves; follow their containing disk.
+    if device.join("partition").is_file() {
+        let path = fs::canonicalize(device).ok()?;
+        return encryption(path.parent()?, depth + 1);
+    }
     if device.join("dm").is_dir() {
         let uuid = fs::read_to_string(device.join("dm/uuid")).ok()?;
         if uuid.starts_with("CRYPT-LUKS2-") {
@@ -271,9 +276,14 @@ mod tests {
         assert_eq!(result.boot.firmware.as_deref(), Some("UEFI"));
         write(
             "proc/self/mountinfo",
-            b"36 1 0:32 /@ / rw - btrfs /dev/vda2 rw,subvol=/@\n",
+            b"36 1 0:32 /@ / rw - btrfs /dev/vda rw,subvol=/@\n",
         );
-        fs::create_dir_all(root.join("sys/class/block/vda2/slaves")).unwrap();
+        fs::create_dir_all(root.join("sys/class/block/vda/slaves")).unwrap();
+        write("sys/class/block/vda/vda2/partition", b"2");
+        assert_eq!(
+            encryption(&root.join("sys/class/block/vda/vda2"), 0).as_deref(),
+            Some("none")
+        );
         assert_eq!(
             collect(&root, desktop()).filesystem.encryption.as_deref(),
             Some("none")
