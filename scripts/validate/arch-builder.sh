@@ -24,6 +24,7 @@ cat > /etc/pacman.conf <<EOF
 [options]
 Architecture = x86_64
 CheckSpace
+XferCommand = /usr/bin/curl -fL --retry 3 --retry-all-errors --connect-timeout 20 --max-time 300 -o %o %u
 SigLevel = Required DatabaseOptional
 LocalFileSigLevel = Required
 [core]
