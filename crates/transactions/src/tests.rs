@@ -104,12 +104,16 @@ impl PackageBackend for Packages {
 #[derive(Default)]
 struct Snapshots {
     created: usize,
+    fail_post: bool,
 }
 impl SnapshotBackend for Snapshots {
     fn boot_id(&mut self) -> Result<String> {
         Ok("boot-before".into())
     }
     fn create_post_transaction_snapshot(&mut self, id: i64, _: &ExecutionPlan) -> Result<String> {
+        if self.fail_post {
+            return Err("injected post-snapshot failure".into());
+        }
         Ok(format!("post:{id}"))
     }
     fn prerequisites(&mut self, _: &ExecutionPlan) -> Result<()> {
@@ -829,4 +833,29 @@ fn stale_confirmation_and_missing_post_snapshot_fail_closed() {
     assert!(confirm(&mut session, record.id, false, &mut Unreachable)
         .unwrap_err()
         .contains("stale"));
+}
+
+#[test]
+fn post_snapshot_failure_retains_pre_snapshot_and_requires_rollback() {
+    let temp = Temp::new();
+    let mut snapshots = Snapshots {
+        fail_post: true,
+        ..Default::default()
+    };
+    let mut packages = Packages::new("");
+    let record = execute(
+        &mut temp.session(),
+        plan(),
+        &mut packages,
+        &mut snapshots,
+        &mut Boot(false),
+        &mut Health(HealthStatus::Pass),
+        || false,
+    )
+    .unwrap();
+    assert_eq!(record.state, TransactionState::RollbackRequired);
+    assert!(record.snapshot.is_some());
+    assert!(record.post_snapshot.is_none());
+    assert!(packages.calls.contains(&"apply"));
+    assert!(record.failure.unwrap().message.contains("post-snapshot"));
 }

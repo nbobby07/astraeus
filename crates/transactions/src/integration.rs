@@ -254,12 +254,7 @@ pub fn confirm(
     }
     if rollback && record.state != TransactionState::RollbackRequired {
         // A verified restoration is the only path allowed from a previously successful update.
-        if record.state == TransactionState::Succeeded {
-            record.transition(TransactionState::RollbackRequired)?;
-            session.save(&record)?;
-        } else {
-            session.advance(&mut record, TransactionState::RollbackRequired)?;
-        }
+        session.advance(&mut record, TransactionState::RollbackRequired)?;
     }
     session.advance(&mut record, terminal)?;
     Ok(record)

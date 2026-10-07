@@ -69,7 +69,9 @@ fn efi(root: &Path, name: &str) -> Option<String> {
         return None;
     }
     let words: Vec<_> = content
-        .chunks_exact(2)
+        .as_chunks::<2>()
+        .0
+        .iter()
         .map(|v| u16::from_le_bytes([v[0], v[1]]))
         .take_while(|v| *v != 0)
         .collect();
