@@ -55,8 +55,13 @@ was rejected, and the correct passphrase unlocked root. Boot then found fstab
 still naming Calamares's temporary mapper. Finalization now changes all six mount
 sources to `/dev/mapper/root`, matching crypttab and the embedded command line;
 the regression covers all six mounts, idempotence and untouched ESP/comments.
-The diagnostic disk is being repaired to check the remaining boot path. It is
-not a fresh final-source installation or accepted Phase 1 system.
+After applying that same mapper transform to the diagnostic disk, a cold boot
+reached SDDM, login selected Plasma Wayland, and the installed-user health script
+passed: UEFI/UKI/LUKS2 observations, all six Btrfs mounts, NetworkManager, DNS,
+outbound HTTPS, PipeWire/Pulse/WirePlumber and zero failed system/user units.
+This checks the repaired core path. It is not a fresh final-source installation
+or accepted Phase 1 system, and its older hardware binary cannot qualify the
+merged command acceptance.
 
 Final merged-source ISO reproduction, encrypted/plain installed boots, SDDM
 login, installed-session health and second boots remain unaccepted. No installed
