@@ -63,6 +63,13 @@ class PacmanContractTests(unittest.TestCase):
             self.assertIn("PackageTrustedOnly", policy)
             after = {str(p.relative_to(root)): p.read_bytes() for p in root.rglob("*") if p.is_file()}
             self.assertEqual(before, after)
+            # Print-mode %s is cache-sensitive, not the immutable archive CSIZE.
+            (root / "cache/linux.pkg.tar.zst").write_bytes(b"x" * 20)
+            cached_before = {str(p.relative_to(root)): p.read_bytes() for p in root.rglob("*") if p.is_file()}
+            cached = run(PACMAN, "--sync", "--sysupgrade", "--print-format", "%n\t%s", "--noconfirm")
+            sizes = dict(row.split("\t") for row in cached.stdout.splitlines())
+            self.assertEqual(sizes, {"linux": "0", "mesa": "20"})
+            self.assertEqual(cached_before, {str(p.relative_to(root)): p.read_bytes() for p in root.rglob("*") if p.is_file()})
 
 
 if __name__ == "__main__":

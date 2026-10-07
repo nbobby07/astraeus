@@ -62,7 +62,10 @@ Phase 1. Refresh/channel selection is not implemented by this branch.
 Installed sizes come from pacman's tagged local `desc` records and sync database
 members, read through `bsdtar -xOf`. It does not scrape localized `pacman -Si`
 output. Identity/version/SHA-256 are cross-checked against resolved targets.
-Download bytes conservatively include already-cached archives. Installed delta
+Archive bytes come from the sync database's `CSIZE`, because pacman's `%s`
+reports remaining download size and becomes zero for cached archives. This was
+confirmed by the native pacman regression after an installed-system update exposed
+plan drift following download. Download bytes conservatively include cached archives. Installed delta
 is the sum of new installed sizes minus old sizes. Missing/malformed sizes,
 checksums, duplicate names, arithmetic overflow or changed installed state fail
 planning rather than inventing data.

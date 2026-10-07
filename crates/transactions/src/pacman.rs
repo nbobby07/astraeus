@@ -278,6 +278,11 @@ impl<R: CommandRunner> PackageBackend for Pacman<R> {
                     return Err("repository metadata changed during planning".into());
                 }
             }
+            // pacman's %s is remaining download size and becomes zero when cached.
+            // Bind the reviewed plan to the repository's immutable archive size.
+            target.archive_bytes = database_field(&desc, "CSIZE")?
+                .parse()
+                .map_err(|_| "invalid archive size")?;
             target.installed_bytes = database_field(&desc, "ISIZE")?
                 .parse()
                 .map_err(|_| "invalid installed size")?;

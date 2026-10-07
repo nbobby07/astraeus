@@ -456,6 +456,7 @@ fn pacman_keeps_signature_policy_and_native_dependency_reasons() {
             planner: PlannerFixture {
                 calls: vec![],
                 fail: false,
+                cached: false,
             },
             policy: "PackageOptional PackageTrustedOnly",
             mutations: vec![],
@@ -485,6 +486,12 @@ fn pacman_keeps_signature_policy_and_native_dependency_reasons() {
     assert!(!backend.runner.mutations[2].contains(&"--downloadonly".into()));
     backend.runner.policy = "";
     backend.verify(&p).unwrap();
+    backend.runner.planner.cached = true;
+    assert_eq!(
+        backend.resolve().unwrap(),
+        p,
+        "download must not change the reviewed plan"
+    );
     backend.runner.fail = true;
     assert!(backend
         .verify(&p)
@@ -567,6 +574,7 @@ fn pacman_machine_output_rejects_ambiguity() {
 struct PlannerFixture {
     calls: Vec<String>,
     fail: bool,
+    cached: bool,
 }
 impl CommandRunner for PlannerFixture {
     fn run(&mut self, program: &str, args: &[String]) -> Result<CommandOutput> {
@@ -579,16 +587,18 @@ impl CommandRunner for PlannerFixture {
             (_, Some("DBPath")) => "/var/lib/pacman/\n".into(),
             ("/usr/bin/pacman", Some("--query")) => "linux 1-1\n".into(),
             ("/usr/bin/pacman", Some("--sync")) => format!(
-                "linux\t2-1\tcore\t10\t{}\t\t\nmesa\t3-1\textra\t4\t{}\t\t\n",
+                "linux\t2-1\tcore\t{}\t{}\t\t\nmesa\t3-1\textra\t4\t{}\t\t\n",
+                if self.cached { 0 } else { 10 },
                 "a".repeat(64),
                 "b".repeat(64)
             ),
             ("/usr/bin/bsdtar", _) => {
                 let linux = args.last().unwrap().starts_with("linux-");
                 format!(
-                    "%NAME%\n{}\n\n%VERSION%\n{}\n\n%ISIZE%\n30\n\n%SHA256SUM%\n{}\n",
+                    "%NAME%\n{}\n\n%VERSION%\n{}\n\n%CSIZE%\n{}\n\n%ISIZE%\n30\n\n%SHA256SUM%\n{}\n",
                     if linux { "linux" } else { "mesa" },
                     if linux { "2-1" } else { "3-1" },
+                    if linux { 10 } else { 4 },
                     if linux { "a" } else { "b" }.repeat(64)
                 )
             }
@@ -612,6 +622,7 @@ fn planner_resolves_real_fields_and_propagates_command_errors() {
         runner: PlannerFixture {
             calls: vec![],
             fail: false,
+            cached: false,
         },
     };
     let plan = backend.resolve().unwrap();
@@ -627,6 +638,12 @@ fn planner_resolves_real_fields_and_propagates_command_errors() {
     assert_eq!(plan.packages.download_bytes, 14);
     assert_eq!(plan.packages.installed_delta_bytes, Some(50));
     assert!(plan.boot.regenerate_uki && plan.snapshot_required);
+    backend.runner.cached = true;
+    assert_eq!(
+        backend.resolve().unwrap(),
+        plan,
+        "download must not change the reviewed plan"
+    );
     backend.runner.fail = true;
     assert!(backend.resolve().is_err());
 }
