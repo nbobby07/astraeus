@@ -11,21 +11,46 @@ Rust formatting, two baseline tests and Clippy passed. Python baseline: Windows
 5 passed/3 Linux skips; WSL 7 passed/1 image-tool skip. Both archived database
 hashes and 50 upstream package versions passed the online check.
 
-Development checks so far: five Rust tests, formatting and Clippy pass; all 13
-Python tests pass under WSL, including native image-tool byte comparison. The new
-stdin QMP regression also passes, bringing the suite to 14 tests. Windows passes
-ten tests with four Unix/Linux skips. Nine Bash files pass syntax checks.
+The hardware/status commit `f961158de9461a16e09abfe1282ae2ce2b48cae0` was
+reviewed and cherry-picked as `08b6113` from a clean tree. It was based directly
+on the current core checkpoint and had no conflicting installer changes.
+After integration, Linux passed 15 Rust tests, formatting, Clippy with warnings
+denied and all 14 Python tests, including native image-tool byte comparison.
+Windows passed 13 Rust tests and ten Python tests with four Unix/Linux skips.
+The installed smoke script now runs all four status/hardware text/JSON commands.
+Nine Bash files passed syntax checks before integration; the changed installed
+smoke script also passed after integration.
 The expanded locked package union contains 73 upstream packages and retains the
 same Phase 0 database hashes, ArchISO version, compiler and snapshot date.
 
 The existing paused Freestyle validator was resumed, with no new outer VM. The
 user authorized official CLI account access. Initial browser transfer failed
-partway and is not accepted evidence. CLI transfer of `source2.tar.xz` matched
-SHA256 `a32743645ca5788938271ea407441317147eca5f3eb77ab067c0c391b6dada62` at both
-ends; that 50460-byte archive launched clean builder A2. Later reviewed installer
-configuration changes require another source transfer before final acceptance.
-No Phase 1 ISO, encrypted/plain installed boot, interactive install, second reboot
-or complete A/B reproducibility result is claimed here yet.
+partway and is not accepted evidence. Clean builders A6/B6 both exited 0 and
+produced byte-identical 3527460864-byte `astraeus-dev-0.1.0-dev-x86_64.iso` files:
+SHA256 `e2aabf771b856a503f7acf396d73d8975b74cc42d1a1069db451b09f5d57dc9c`,
+with `cmp` exit 0. Their source was clean commit
+`ce749b58b00785636b6c9ce1d12c1b82e6114046`, 57556-byte archive SHA256
+`69da31b0e5e4c1b9d8ddc764f08050b214670b8990df0e345e5c5dc4d1e16b5b`.
+The A6 ISO reached Plasma Wayland and its live smoke success marker.
+This pair predates the hardware merge and subsequent installer corrections and
+does not qualify the final source.
+
+Real Calamares interaction found two startup-branding fields missing (`slideshow`
+and `style`), now supplied and covered by generated-profile tests. Installation
+then created the six Btrfs subvolumes but payload mounting failed with ENOSPC:
+loop setup through the live overlay copied the 1.5 GiB image into the 256 MiB
+writable layer. Accessing the read-only ArchISO SquashFS path succeeded; the
+source path and its regression check are corrected. The diagnostic retry uses
+those corrections. Builder A7 was canceled after the payload defect was found;
+it is not a successful build. Earlier A2/A3 failed or were canceled at an image
+timestamp conflict; clearing ambient SOURCE_DATE_EPOCH for the explicit-time
+payload compressor fixed it and has a native byte-comparison regression test.
+A5 failed during initial archive transfer; the builder now uses the same bounded
+curl retries/timeouts as the image build.
+
+Final merged-source ISO reproduction, encrypted/plain installed boots, SDDM
+login, installed-session health and second boots remain unaccepted. No installed
+success is inferred from WSL fixtures, live boot or partial Calamares progress.
 
 # Phase 0 validation: 2026-10-06 to 2026-10-07 UTC
 

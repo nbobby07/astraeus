@@ -141,8 +141,10 @@ from this source tree, transferred privately for testing:
 bash installed-smoke.sh LUKS2
 ```
 
-It checks the observed UKI/loader, Btrfs/encryption, Plasma Wayland, network/DNS/
-HTTPS, audio services and failed units, retaining real status JSON and fstab.
+It runs `distroctl status`, `status --json`, `hardware` and `hardware --json` as
+the installed desktop user. It checks the observed UKI/loader, Btrfs/encryption,
+Plasma Wayland, network/DNS/HTTPS, audio services and failed units, retaining
+both text/JSON command outputs and fstab.
 Open Ghostty and Konsole manually. Shut down and cold boot again with `--run boot2`,
 then repeat the same assertions. Repeat the complete process with a new output
 directory and encryption disabled; pass `none` to its guest acceptance script.
