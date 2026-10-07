@@ -11,6 +11,8 @@ date -u +%FT%TZ
 uname -a
 distroctl status | tee "$out/status.txt"
 distroctl status --json > "$out/status.json"
+distroctl hardware | tee "$out/hardware.txt"
+distroctl hardware --json > "$out/hardware.json"
 python3 - "$out/status.json" "$expected" <<'PY'
 import json,sys
 s=json.load(open(sys.argv[1]))
@@ -21,6 +23,16 @@ assert s['boot']['bootloader'].startswith('systemd-boot'),s
 assert s['boot']['stub'].startswith('systemd-stub'),s
 assert '/EFI/Linux/' in s['boot']['uki_path'].replace('\\','/'),s
 assert s['desktop']['session_type']=='wayland',s
+PY
+python3 - "$out/hardware.json" <<'PY'
+import json,sys
+h=json.load(open(sys.argv[1]))
+assert h['schema_version']==1,h
+assert h['cpu']['architecture']=='x86_64',h
+assert h['cpu']['logical_count']>0,h
+assert h['memory_bytes']>0,h
+assert h['capabilities']['uefi'] is True,h
+assert any(d['kind']=='disk' and d['transport']=='virtio' for d in h['storage']),h
 PY
 systemctl is-active NetworkManager.service sddm.service
 nmcli general
