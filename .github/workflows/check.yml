@@ -29,7 +29,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends squashfs-tools xorriso
+          sudo apt-get install -y --no-install-recommends squashfs-tools xorriso qemu-utils
       - run: python -m unittest discover -s tests -v
       - name: Shell syntax
         if: runner.os == 'Linux'
@@ -43,6 +43,8 @@ jobs:
           bash -n distro/installed/linux.preset.in
           bash -n distro/installed/mkinitcpio.conf
           bash -n tests/boot/installed-smoke.sh
+          bash -n tests/fixtures/phase2/adapter.sh
+          bash -n tests/fixtures/phase2/PKGBUILD
           bash -n .githooks/commit-msg
       - name: Verify archived inputs
         if: github.event_name == 'workflow_dispatch' && runner.os == 'Linux'

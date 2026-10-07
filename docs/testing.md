@@ -1,5 +1,9 @@
 # Verification and acceptance
 
+Phase 2 destructive VM workflows, integration hooks and evidence requirements
+are in [Phase 2 validation infrastructure](phase2-validation.md). Host harness
+tests do not establish installed update or rollback acceptance.
+
 ## Checks that run without an Arch builder
 
 ```sh
