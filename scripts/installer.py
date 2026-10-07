@@ -103,5 +103,5 @@ def build_payload(out, profile, values, run, write, render):
     with (out / "installed-packages.txt").open("w") as log:
         run("pacman", "--root", root, "-Q", stdout=log)
     target = profile / "airootfs/opt/distro/install-root.sfs"
-    run("mksquashfs", root, target, "-noappend", "-comp", "xz", "-Xbcj", "x86", "-b", "1M",
+    run("env", "-u", "SOURCE_DATE_EPOCH", "mksquashfs", root, target, "-noappend", "-comp", "xz", "-Xbcj", "x86", "-b", "1M",
         "-all-time", values["EPOCH"], "-mkfs-time", values["EPOCH"], "-processors", "2")

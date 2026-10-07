@@ -2,6 +2,8 @@ import copy
 import importlib.util
 import json
 import os
+import shutil
+import subprocess
 from pathlib import Path
 import sys
 import tempfile
@@ -54,8 +56,18 @@ class InstallerTests(unittest.TestCase):
             self.assertIn("SigLevel = Required DatabaseRequired", (root / "etc/pacman.conf").read_text())
             self.assertNotIn("XferCommand", (root / "etc/pacman.conf").read_text())
             self.assertIn("-G", calls[0])
-            self.assertEqual(calls[-1][0], "mksquashfs")
+            self.assertEqual(calls[-1][:4], ("env", "-u", "SOURCE_DATE_EPOCH", "mksquashfs"))
             self.assertIn("-all-time", calls[-1])
+            if shutil.which("mksquashfs"):
+                command = [str(a) for a in calls[-1]]
+                env = dict(os.environ, SOURCE_DATE_EPOCH=str(values["EPOCH"]))
+                subprocess.run(command, env=env, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+                first = Path(command[5])
+                second = first.with_name("second.sfs")
+                os.utime(root / "etc/shadow", (12345, 12345))
+                command[5] = str(second)
+                subprocess.run(command, env=env, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+                self.assertEqual(bootstrap.digest(first), bootstrap.digest(second))
 
     def test_installed_boot_detaches_iso_and_preserves_disk_and_firmware(self):
         install = smoke.qemu_command("code.fd", "vars.fd", "disk.qcow2", "install.log", "qmp.sock", "live.iso")
