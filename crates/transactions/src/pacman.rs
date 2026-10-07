@@ -426,8 +426,24 @@ impl<R: CommandRunner> BootBackend for SystemBoot<R> {
             checked(
                 &mut self.runner,
                 "/usr/bin/bootctl",
-                &["--esp-path=/efi", "update"],
+                &["--esp-path=/efi", "--graceful", "update"],
             )?;
+            // bootctl returns failure for an already-current loader without
+            // --graceful. Verify both installed copies even when it skips work.
+            for installed in [
+                "/efi/EFI/systemd/systemd-bootx64.efi",
+                "/efi/EFI/BOOT/BOOTX64.EFI",
+            ] {
+                checked(
+                    &mut self.runner,
+                    "/usr/bin/cmp",
+                    &[
+                        "--",
+                        "/usr/lib/systemd/boot/efi/systemd-bootx64.efi",
+                        installed,
+                    ],
+                )?;
+            }
         }
         Ok(())
     }

@@ -710,6 +710,54 @@ fn system_checks_distinguish_missing_tool_and_failed_check() {
 }
 
 #[test]
+fn boot_refresh_accepts_current_loader_only_with_matching_installed_copies() {
+    struct Runner {
+        fail_at: usize,
+        calls: usize,
+    }
+    impl CommandRunner for Runner {
+        fn prepare_boot(&mut self, _: i64) -> Result<()> {
+            Ok(())
+        }
+        fn run(&mut self, program: &str, args: &[String]) -> Result<CommandOutput> {
+            self.calls += 1;
+            match self.calls {
+                1 => assert_eq!(program, "/usr/bin/mkinitcpio"),
+                2 => {
+                    assert_eq!(program, "/usr/bin/bootctl");
+                    assert_eq!(args, ["--esp-path=/efi", "--graceful", "update"]);
+                }
+                3 | 4 => {
+                    assert_eq!(program, "/usr/bin/cmp");
+                    assert_eq!(args[1], "/usr/lib/systemd/boot/efi/systemd-bootx64.efi");
+                    assert_eq!(
+                        args[2],
+                        if self.calls == 3 {
+                            "/efi/EFI/systemd/systemd-bootx64.efi"
+                        } else {
+                            "/efi/EFI/BOOT/BOOTX64.EFI"
+                        }
+                    );
+                }
+                _ => panic!("unexpected boot command"),
+            }
+            Ok(CommandOutput {
+                success: self.calls != self.fail_at,
+                stdout: String::new(),
+                stderr: "fixture failure".into(),
+            })
+        }
+    }
+    for fail_at in 0..=4 {
+        let mut boot = SystemBoot {
+            runner: Runner { fail_at, calls: 0 },
+        };
+        assert_eq!(boot.regenerate(&plan(), 1).is_ok(), fail_at == 0);
+        assert_eq!(boot.runner.calls, if fail_at == 0 { 4 } else { fail_at });
+    }
+}
+
+#[test]
 fn confirmation_requires_new_boot_matching_generation_and_fresh_health() {
     use crate::integration::{confirm, BootEvidence};
     struct Evidence {
