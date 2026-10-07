@@ -7,17 +7,23 @@ mutation APIs. ArchISO 91 provides image assembly and UEFI systemd-boot support.
 Pacman installs conventional signed Arch packages. The custom `distro` repository
 comes first and initially supplies only `distroctl`.
 
-The workspace now has three crates:
+The workspace now has four crates:
 
 ```text
 distroctl -> distro-config -> serde / TOML
           -> distro-hardware -> serde
+          -> distro-transactions -> serde / SQLite / SHA-256
 ```
 
 `distro-config` owns release metadata and validation. Parsing produces a typed
 value; semantic validation is a separate method. `distroctl` handles arguments,
-file I/O and presentation. Neither crate mutates the system or requests root.
+file I/O and presentation. The Phase 1 inspection paths remain unprivileged and
+read-only; Phase 2 mutation is confined to the transaction boundary.
 The CLI exposes `info`, `validate`, `hardware`, `status`, help and version.
+Phase 2 adds read-only `update --dry-run` and `history`, plus an update coordinator
+that refuses package mutation until the snapshot/boot-generation backend is
+integrated. See [transactions](transactions.md) for the model, failure states,
+history database and integration contract.
 `status` reports observations from procfs, sysfs, EFI variables and the current
 desktop environment, with JSON schema version 1. Unavailable values remain null.
 Neither status nor hardware detection invokes privileged commands or requests root.

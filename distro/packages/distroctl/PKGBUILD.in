@@ -1,9 +1,9 @@
 pkgname=distroctl
 pkgver=@@VERSION@@
 pkgrel=1
-pkgdesc='Read-only distribution metadata, hardware and system status tools'
+pkgdesc='Distribution inspection, update planning and transaction tools'
 arch=('x86_64')
-depends=('gcc-libs' 'glibc')
+depends=('gcc-libs' 'glibc' 'pacman' 'libarchive')
 makedepends=('rust')
 source=('platform.tar.xz')
 sha256sums=('@@SHA256@@')

@@ -49,10 +49,95 @@ fn cli_contract() {
         &["validate", "missing.toml"],
         &["status", "--bad"],
         &["hardware", "--json", "extra"],
+        &["update", "--json"],
+        &["update", "--dry-run", "--bad"],
+        &["history", "--database"],
     ] {
         let output = run(args);
         assert_eq!(output.status.code(), Some(1));
         assert!(!output.stderr.is_empty());
         assert!(output.stdout.is_empty());
     }
+}
+
+#[test]
+fn history_json_does_not_create_a_database() {
+    let path = std::env::temp_dir().join(format!(
+        "astraeus-missing-history-{}.sqlite",
+        std::process::id()
+    ));
+    assert!(!path.exists());
+    let output = Command::new(env!("CARGO_BIN_EXE_distroctl"))
+        .args(["history", "--json", "--database", path.to_str().unwrap()])
+        .output()
+        .unwrap();
+    assert!(output.status.success());
+    assert_eq!(
+        serde_json::from_slice::<serde_json::Value>(&output.stdout).unwrap(),
+        serde_json::json!([])
+    );
+    assert!(!path.exists());
+}
+
+#[test]
+fn dry_run_and_history_share_structured_models() {
+    use distro_transactions::*;
+    struct ReadOnly;
+    impl PackageBackend for ReadOnly {
+        fn resolve(&mut self) -> Result<ExecutionPlan> {
+            Ok(ExecutionPlan::new(
+                CurrentSystemState::new(Default::default()),
+                PackagePlan {
+                    changes: vec![],
+                    targets: vec![],
+                    download_bytes: 0,
+                    installed_delta_bytes: Some(0),
+                },
+            ))
+        }
+        fn prerequisites(&mut self, _: &ExecutionPlan) -> Result<()> {
+            panic!("dry run must only resolve")
+        }
+        fn download(&mut self, _: &ExecutionPlan) -> Result<()> {
+            panic!("dry run must not download")
+        }
+        fn verify(&mut self, _: &ExecutionPlan) -> Result<()> {
+            panic!("dry run must not verify/download")
+        }
+        fn apply(&mut self, _: &ExecutionPlan) -> Result<()> {
+            panic!("dry run must not apply")
+        }
+        fn current_state(&mut self) -> Result<CurrentSystemState> {
+            panic!("use resolved state")
+        }
+    }
+    let text = distroctl::updates::dry_run(&mut ReadOnly, false).unwrap();
+    assert!(text.contains("No changes have been made."));
+    let json: serde_json::Value =
+        serde_json::from_str(&distroctl::updates::dry_run(&mut ReadOnly, true).unwrap()).unwrap();
+    assert_eq!(json["schema_version"], 1);
+    assert_eq!(json["snapshot_required"], false);
+    let dir = std::env::temp_dir().join(format!("astraeus-cli-history-{}", std::process::id()));
+    std::fs::create_dir(&dir).unwrap();
+    let db = dir.join("history.sqlite");
+    let mut session = UpdateSession::open(&db, &dir.join("update.lock")).unwrap();
+    let mut record = TransactionRecord::new(ReadOnly.resolve().unwrap());
+    session.insert(&mut record).unwrap();
+    drop(session);
+    let output = Command::new(env!("CARGO_BIN_EXE_distroctl"))
+        .args(["history", "--database", db.to_str().unwrap(), "--json"])
+        .output()
+        .unwrap();
+    assert!(output.status.success());
+    let records: Vec<TransactionRecord> = serde_json::from_slice(&output.stdout).unwrap();
+    assert_eq!(records, vec![record]);
+    let output = Command::new(env!("CARGO_BIN_EXE_distroctl"))
+        .args(["history", "--database", db.to_str().unwrap()])
+        .output()
+        .unwrap();
+    assert!(output.status.success());
+    assert!(String::from_utf8(output.stdout)
+        .unwrap()
+        .contains("planned"));
+    std::fs::remove_dir_all(dir).unwrap();
 }

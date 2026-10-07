@@ -172,6 +172,22 @@ systems booting and surviving the second boot. Repeat full ISO A/B comparison.
 
 ## Later subsystem tests
 
+Phase 2 transaction tests run with the same workspace commands above on Windows
+and Linux. They cover typed plans, pacman machine-output parsing, byte arithmetic,
+SQLite schema/persistence/read-only history, locking, legal/illegal transitions,
+missing snapshot integration, cancellation, interrupted restart recovery, package
+and UKI failures, health aggregation, CLI dry-run presentation and history JSON.
+Injected package/command backends never mutate the host package database.
+Successful live execution in fixtures ends at `awaiting_boot`; it is not installed
+update or rollback acceptance. See [transactions](transactions.md).
+
+`test_transactions_pacman.py` additionally exercises real pacman when available:
+temporary local/sync databases, dependency resolution, epoch versions, exact
+print-format fields, inherited signature policy and before/after file equality.
+It never installs packages or touches the host database. An extracted pacman can
+be selected with `ASTRAEUS_TEST_PACMAN` and `ASTRAEUS_TEST_PACMAN_CONF`; otherwise
+the check skips when those tools are absent.
+
 | Boundary | Required evidence before broadening implementation |
 | --- | --- |
 | Configuration/planning | Fixture desired/current states, deterministic plans, dry-run side-effect checks |
