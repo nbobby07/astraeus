@@ -647,7 +647,21 @@ impl<C: Commands> Manager<C> {
         Ok(root)
     }
     pub fn mark(&self, id: &SnapshotId, health: Health, evidence: &str) -> Result<Snapshot> {
-        let _lock = self.lock()?;
+        let lock = self.lock()?;
+        self.mark_locked(&lock, id, health, evidence)
+    }
+    pub fn mark_locked(
+        &self,
+        guard: &MutationGuard,
+        id: &SnapshotId,
+        health: Health,
+        evidence: &str,
+    ) -> Result<Snapshot> {
+        require(
+            guard.store == self.store,
+            "lock belongs to another snapshot store",
+        )?;
+        self.no_pending()?;
         let mut snapshot = self.inspect(id)?;
         if matches!(health, Health::Candidate | Health::KnownGood) {
             self.verify_snapshot(&snapshot)?;
@@ -659,6 +673,47 @@ impl<C: Commands> Manager<C> {
         fs::rename(temporary, entry.join("metadata.json"))?;
         self.sync(&entry)?;
         Ok(snapshot)
+    }
+    /// Verify the actual running kernel/root against the saved generation. This is
+    /// boot evidence, not a full filesystem integrity or Secure Boot assertion.
+    pub fn verify_booted(&self, id: &SnapshotId, restored: bool) -> Result<()> {
+        require(
+            self.top.is_none(),
+            "boot confirmation requires the installed system",
+        )?;
+        self.no_pending()?;
+        let snapshot = self.inspect(id)?;
+        self.verify_snapshot(&snapshot)?;
+        let (_, esp_uuid) = self.layout(false)?;
+        let current = self.show(&self.root)?;
+        require(
+            if restored {
+                current.parent_uuid.as_deref() == Some(&snapshot.root.uuid)
+            } else {
+                current == snapshot.source_state
+            },
+            "running root does not match the intended generation",
+        )?;
+        require(
+            esp_uuid == snapshot.boot.esp_uuid
+                && self.digest(&self.esp.join(UKI))? == snapshot.boot.sha256,
+            "running ESP does not match saved UKI",
+        )?;
+        self.verify_root(&self.root, &snapshot.filesystem_uuid, &esp_uuid)?;
+        self.verify_uki(&self.root, &self.esp.join(UKI))?;
+        let bytes = fs::read(self.entry(id)?.join("private/boot.efi"))?;
+        let cmdline = std::str::from_utf8(pe_section(&bytes, b".cmdline")?)?.trim_end_matches('\0');
+        let running = self.commands.run("cat", &["/proc/cmdline"])?;
+        require(
+            running.split_whitespace().eq(cmdline.split_whitespace()),
+            "booted command line differs from intended UKI",
+        )?;
+        let uname = std::str::from_utf8(pe_section(&bytes, b".uname")?)?.trim_end_matches('\0');
+        require(
+            self.commands.run("uname", &["-r"])? == uname,
+            "booted kernel differs from intended UKI",
+        )?;
+        Ok(())
     }
     pub fn plan_rollback(&self, id: &SnapshotId) -> Result<RollbackPlan> {
         let (_, esp_uuid) = self.layout(false)?;

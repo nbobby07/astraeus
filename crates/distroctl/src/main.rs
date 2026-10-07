@@ -12,13 +12,15 @@ Usage:
   distroctl snapshot --help   Snapshot commands and recovery usage
   distroctl rollback <id> --dry-run [--json]
   distroctl update --dry-run [--json]  Plan from existing sync databases
-  distroctl update            Coordinate an update (requires snapshot integration)
+  distroctl update            Apply update with pre/post snapshots
   distroctl history [--json] [--database <path>]  Read transaction history
+  distroctl confirm-boot [<transaction-id>]
+  distroctl finalize-rollback <transaction-id>
   distroctl --version
   distroctl --help
 
 Planning/history are read-only. Package mutation requires root and a snapshot backend.
-Filesystem rollback and boot confirmation are not implemented here.";
+Rollback execution requires offline recovery. Success requires a verified new boot.";
 
 fn run(args: &[String]) -> Result<(), String> {
     if matches!(
@@ -45,6 +47,14 @@ fn run(args: &[String]) -> Result<(), String> {
                     args.iter().any(|a| a == "--json")
                 )?
             );
+        }
+        ["confirm-boot"] => distroctl::updates::confirm_boot(None, false)?,
+        ["confirm-boot", id] | ["finalize-rollback", id] => {
+            let id: i64 = id.parse().map_err(|_| "invalid transaction ID")?;
+            if id <= 0 {
+                return Err("invalid transaction ID".into());
+            }
+            distroctl::updates::confirm_boot(Some(id), args[0] == "finalize-rollback")?;
         }
         ["update"] => distroctl::updates::update()?,
         ["history"] | ["history", "--json"] => {

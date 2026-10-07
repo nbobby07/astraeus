@@ -1,0 +1,13 @@
+[Unit]
+Description=Confirm the pending Astraeus boot using observed health
+After=local-fs.target NetworkManager.service sddm.service systemd-logind.service
+ConditionPathExists=!/run/archiso
+ConditionPathExists=/var/log/astraeus/transactions.sqlite
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/distroctl confirm-boot
+TimeoutStartSec=180
+
+[Install]
+WantedBy=graphical.target

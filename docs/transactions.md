@@ -1,10 +1,30 @@
 # Phase 2 transactions
 
-This branch adds the `distro-transactions` Rust library, read-only planning and
-history commands, and a durable execution coordinator. The CLI deliberately uses
-`UnavailableSnapshots`. A nonempty `distroctl update` records a failed prerequisite
-and exits nonzero before downloading or applying packages. No snapshot, filesystem
-rollback, previous-good boot entry or Secure Boot implementation is included.
+The integrated `distro-transactions` coordinator uses `BtrfsSnapshots`, holding
+`MutationGuard` across planning, pre/post snapshots, package mutation and UKI work.
+The pre-update snapshot saves the matching UKI before pacman can run hooks. Failed
+snapshot creation prevents package application. A candidate post-snapshot and live
+checks lead to `awaiting_boot`, never immediate success.
+
+`distroctl confirm-boot [ID]` verifies a different kernel boot ID, exact running
+command line and kernel release, root identity, saved/current UKI hash, package map
+and required system health. The regenerated UKI includes a transaction marker.
+The installed systemd oneshot runs after NetworkManager, SDDM and logind. It has no
+timer-based promotion. Failed observations remain pending, are retained in
+`boot_attempts`, and block new updates. Explicit retries collect fresh evidence.
+Completed confirmation is idempotent. Older transactions cannot be promoted after
+later nonempty updates. Pre-snapshots are marked known-good only after checking the
+already booted baseline and system health; previous known-good snapshots survive.
+
+`distroctl finalize-rollback ID` verifies the restored root's parent UUID against
+the pre-snapshot, the matching UKI, original complete package map and post-boot
+health before recording `rolled_back`. Offline execution remains mandatory.
+The boot service can also recognize an awaiting transaction restored offline.
+Failures in history or metadata persistence leave a pending record for retry.
+Snapshot metadata and SQLite are separate durable stores, not one atomic commit.
+
+These are implemented interfaces, **not installed-system acceptance evidence**.
+See [integration acceptance](phase2-integration.md) for actual results.
 
 ## Commands
 
@@ -132,10 +152,7 @@ acceptance. Tests inject commands/checks and need no desktop or host mutation.
 An unsuccessful systemd query that cannot establish unit state is unavailable;
 an observed inactive/failed critical service is a failure.
 
-Successful package application and live checks end at `awaiting_boot`, not a
-confirmed successful boot. This branch provides no CLI shortcut to approve that
-state. Boot confirmation and verified rollback finalization need integration with
-the boot-generation owner before production updates can be enabled.
+Successful package application and live checks end at `awaiting_boot`. The integrated boot-confirmation path above supplies fresh evidence before promotion.
 
 ## History database
 
@@ -157,7 +174,7 @@ to 4096 characters; full pacman evidence remains in `/var/log/pacman.log` rather
 than embedded command transcripts. History currently reads all records; add
 indexed summaries and pagination when the retained history requires them.
 
-## Snapshot integration contract
+## Original branch snapshot integration contract (now connected)
 
 Implement `SnapshotBackend` in the snapshot owner's crate:
 
@@ -181,7 +198,7 @@ restore operations or boot-entry mechanics live in this branch.
 Upstream interfaces: [pacman manual](https://man.archlinux.org/man/pacman.8.en),
 [pacman-conf manual](https://man.archlinux.org/man/pacman-conf.8.en).
 
-## Branch validation and handoff
+## Original branch validation and handoff
 
 Base: `aad4409b258a3aa86049b3f737568feaea49d790`, confirmed by the maintainer.
 Branch: `phase2/transactions`, isolated in the existing `838d` Codex worktree.

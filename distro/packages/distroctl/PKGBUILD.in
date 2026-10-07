@@ -34,4 +34,6 @@ package() {
   cd "$srcdir/platform"
   install -Dm755 target/release/distroctl "$pkgdir/usr/bin/distroctl"
   install -Dm644 distro/branding/project.toml "$pkgdir/usr/share/distro/project.toml"
+  install -Dm644 distro/installed/astraeus-confirm-boot.service "$pkgdir/usr/lib/systemd/system/astraeus-confirm-boot.service"
+  install -Dm644 docs/snapshots.md "$pkgdir/usr/share/doc/distroctl/offline-recovery.md"
 }

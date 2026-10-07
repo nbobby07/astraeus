@@ -276,6 +276,18 @@ fn planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots() {
         .create_locked(&lock, Reason::PostUpdate, Some("108".into()))
         .unwrap();
     assert_ne!(before.id, after.id);
+    f.manager
+        .mark_locked(&lock, &after.id, Health::Candidate, "awaiting boot")
+        .unwrap();
+    let foreign = Fixture::new();
+    assert!(foreign
+        .manager
+        .mark_locked(&lock, &after.id, Health::KnownGood, "wrong store")
+        .is_err());
+    assert!(f
+        .manager
+        .mark(&after.id, Health::KnownGood, "second lock forbidden")
+        .is_err());
     drop(lock);
     f.manager
         .mark(&before.id, Health::KnownGood, "verified")

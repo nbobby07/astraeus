@@ -95,6 +95,7 @@ dependencies = [
 name = "distro-transactions"
 version = "0.1.0-dev"
 dependencies = [
+ "distro-snapshots",
  "libc",
  "rusqlite",
  "serde",

@@ -229,7 +229,7 @@ returned snapshot ID in transaction records, respect the snapshot owner's lock,
 and supply product-owned boot confirmation and verified rollback finalization.
 Implement the adapter actions `confirm-boot TRANSACTION_ID` and
 `finalize-rollback TRANSACTION_ID` against those eventual public interfaces.
-They currently exit 77, which is a hard test failure. Never implement them by
+The integration branch connects them to `distroctl confirm-boot` and `distroctl finalize-rollback`; a missing product command is a hard test failure. Never implement them by
 editing SQLite records or returning canned success. The runner independently
 reads history and requires `succeeded` or `rolled_back` for the same transaction.
 Interruption reconciliation invokes the native updater; it must preserve failure

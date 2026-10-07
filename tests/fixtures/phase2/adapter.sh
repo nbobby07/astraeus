@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copy to a private fixture directory. Complete the two finalization hooks after integration.
+# Product integration hooks for disposable acceptance guests.
 # The host invokes this only INSIDE its disposable guest, never on the host.
 set -euo pipefail
 [[ $EUID == 0 && -e /dev/virtio-ports/org.astraeus.validation && $(systemd-detect-virt) == kvm ]]
@@ -73,8 +73,7 @@ EOF
         distroctl rollback "$target" --execute --top-level /mnt/astraeus --esp /mnt/astraeus-esp --json
         ;;
     confirm-boot|finalize-rollback)
-        printf 'Missing product integration: %s\n' "$1" >&2
-        exit 77
+        distroctl "$1" "${2:?transaction required}"
         ;;
     *) printf 'Unknown validation action: %s\n' "$1" >&2; exit 2 ;;
 esac

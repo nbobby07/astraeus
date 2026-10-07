@@ -106,6 +106,12 @@ struct Snapshots {
     created: usize,
 }
 impl SnapshotBackend for Snapshots {
+    fn boot_id(&mut self) -> Result<String> {
+        Ok("boot-before".into())
+    }
+    fn create_post_transaction_snapshot(&mut self, id: i64, _: &ExecutionPlan) -> Result<String> {
+        Ok(format!("post:{id}"))
+    }
     fn prerequisites(&mut self, _: &ExecutionPlan) -> Result<()> {
         Ok(())
     }
@@ -122,7 +128,7 @@ impl SnapshotBackend for Snapshots {
 }
 struct Boot(bool);
 impl BootBackend for Boot {
-    fn regenerate(&mut self, _: &ExecutionPlan) -> Result<()> {
+    fn regenerate(&mut self, _: &ExecutionPlan, _: i64) -> Result<()> {
         if self.0 {
             Err("UKI regeneration failed".into())
         } else {
@@ -677,5 +683,150 @@ fn system_checks_distinguish_missing_tool_and_failed_check() {
         HealthStatus::Unavailable
     );
     assert!(!health_acceptable(&checks));
-    assert!(SystemBoot { runner: Runner }.regenerate(&plan()).is_err());
+    assert!(SystemBoot { runner: Runner }
+        .regenerate(&plan(), 1)
+        .is_err());
+}
+
+#[test]
+fn confirmation_requires_new_boot_matching_generation_and_fresh_health() {
+    use crate::integration::{confirm, BootEvidence};
+    struct Evidence {
+        boot: &'static str,
+        bad: &'static str,
+        rollback: bool,
+        promoted: usize,
+    }
+    impl BootEvidence for Evidence {
+        fn boot_id(&mut self) -> Result<String> {
+            Ok(self.boot.into())
+        }
+        fn verify(&mut self, _: &str, _: i64, rollback: bool) -> Result<()> {
+            self.rollback = rollback;
+            if self.bad == "identity" {
+                Err("wrong root or UKI".into())
+            } else {
+                Ok(())
+            }
+        }
+        fn current_state(&mut self) -> Result<CurrentSystemState> {
+            Ok(if self.rollback || self.bad == "packages" {
+                plan().current
+            } else {
+                plan().expected_state()
+            })
+        }
+        fn health(&mut self, _: &ExecutionPlan) -> Vec<HealthCheckResult> {
+            Health(if self.bad == "health" {
+                HealthStatus::Fail
+            } else {
+                HealthStatus::Pass
+            })
+            .run(&plan())
+        }
+        fn promote(&mut self, _: &str, _: &str) -> Result<()> {
+            if self.bad == "promotion" {
+                return Err("injected metadata write failure".into());
+            }
+            self.promoted += 1;
+            Ok(())
+        }
+    }
+    let temp = Temp::new();
+    let mut session = temp.session();
+    let record = execute(
+        &mut session,
+        plan(),
+        &mut Packages::new(""),
+        &mut Snapshots::default(),
+        &mut Boot(false),
+        &mut Health(HealthStatus::Pass),
+        || false,
+    )
+    .unwrap();
+    let mut e = Evidence {
+        boot: "boot-before",
+        bad: "",
+        rollback: false,
+        promoted: 0,
+    };
+    assert!(confirm(&mut session, record.id, false, &mut e).is_err());
+    for bad in ["identity", "packages", "health", "promotion"] {
+        e.boot = "boot-after";
+        e.bad = bad;
+        assert!(confirm(&mut session, record.id, false, &mut e).is_err());
+        let saved = &session.records().unwrap()[0];
+        assert_eq!(saved.state, TransactionState::AwaitingBoot);
+        assert!(saved.confirmation.is_some());
+        assert_eq!(e.promoted, 0);
+    }
+    drop(session); // interrupted confirmation resumes from persisted intent/evidence
+    let mut session = temp.session();
+    e.bad = "";
+    let good = confirm(&mut session, record.id, false, &mut e).unwrap();
+    assert_eq!(good.state, TransactionState::Succeeded);
+    assert_eq!(e.promoted, 1);
+    assert_eq!(
+        confirm(&mut session, record.id, false, &mut e).unwrap(),
+        good
+    );
+    assert_eq!(e.promoted, 1);
+    assert_eq!(
+        confirm(&mut session, record.id, true, &mut e)
+            .unwrap()
+            .state,
+        TransactionState::RolledBack
+    );
+    assert_eq!(e.promoted, 1);
+    assert_eq!(
+        confirm(&mut session, record.id, true, &mut e)
+            .unwrap()
+            .state,
+        TransactionState::RolledBack
+    );
+}
+
+#[test]
+fn stale_confirmation_and_missing_post_snapshot_fail_closed() {
+    use crate::integration::{confirm, BootEvidence};
+    struct Unreachable;
+    impl BootEvidence for Unreachable {
+        fn boot_id(&mut self) -> Result<String> {
+            panic!("stale record must not probe")
+        }
+        fn verify(&mut self, _: &str, _: i64, _: bool) -> Result<()> {
+            unreachable!()
+        }
+        fn current_state(&mut self) -> Result<CurrentSystemState> {
+            unreachable!()
+        }
+        fn health(&mut self, _: &ExecutionPlan) -> Vec<HealthCheckResult> {
+            unreachable!()
+        }
+        fn promote(&mut self, _: &str, _: &str) -> Result<()> {
+            unreachable!()
+        }
+    }
+    let temp = Temp::new();
+    let mut session = temp.session();
+    let mut record = execute(
+        &mut session,
+        plan(),
+        &mut Packages::new(""),
+        &mut Snapshots::default(),
+        &mut Boot(false),
+        &mut Health(HealthStatus::Pass),
+        || false,
+    )
+    .unwrap();
+    record.post_snapshot = None;
+    session.save(&record).unwrap();
+    assert!(confirm(&mut session, record.id, false, &mut Unreachable)
+        .unwrap_err()
+        .contains("missing generation"));
+    let mut later = TransactionRecord::new(plan());
+    session.insert(&mut later).unwrap();
+    assert!(confirm(&mut session, record.id, false, &mut Unreachable)
+        .unwrap_err()
+        .contains("stale"));
 }

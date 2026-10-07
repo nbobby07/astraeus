@@ -15,6 +15,9 @@ pub struct CommandOutput {
     pub stderr: String,
 }
 pub trait CommandRunner {
+    fn prepare_boot(&mut self, _: i64) -> Result<()> {
+        Err("boot marker writer unavailable".into())
+    }
     fn run(&mut self, program: &str, args: &[String]) -> Result<CommandOutput>;
     fn read_file(&mut self, path: &str) -> Result<String> {
         fs::read_to_string(path).map_err(|e| format!("{path}: {e}"))
@@ -23,6 +26,28 @@ pub trait CommandRunner {
 
 pub struct NativeRunner;
 impl CommandRunner for NativeRunner {
+    fn prepare_boot(&mut self, transaction_id: i64) -> Result<()> {
+        let path = Path::new("/etc/kernel/cmdline");
+        let previous = fs::read_to_string(path).map_err(|e| e.to_string())?;
+        let mut words: Vec<_> = previous
+            .split_whitespace()
+            .filter(|s| !s.starts_with("astraeus.transaction="))
+            .collect();
+        let marker = format!(
+            "astraeus.transaction={transaction_id}-{}",
+            crate::integration::boot_id()?
+        );
+        words.push(&marker);
+        let mut file = fs::OpenOptions::new()
+            .write(true)
+            .truncate(true)
+            .open(path)
+            .map_err(|e| e.to_string())?;
+        use std::io::Write;
+        writeln!(file, "{}", words.join(" ")).map_err(|e| e.to_string())?;
+        file.sync_all().map_err(|e| e.to_string())?;
+        Ok(())
+    }
     fn run(&mut self, program: &str, args: &[String]) -> Result<CommandOutput> {
         let output = Command::new(program)
             .args(args)
@@ -387,8 +412,9 @@ pub struct SystemBoot<R = NativeRunner> {
     pub runner: R,
 }
 impl<R: CommandRunner> BootBackend for SystemBoot<R> {
-    fn regenerate(&mut self, plan: &ExecutionPlan) -> Result<()> {
+    fn regenerate(&mut self, plan: &ExecutionPlan, transaction_id: i64) -> Result<()> {
         if plan.boot.regenerate_uki {
+            self.runner.prepare_boot(transaction_id)?;
             checked(&mut self.runner, "/usr/bin/mkinitcpio", &["-P"])?;
         }
         if plan.boot.update_bootloader {
@@ -450,6 +476,18 @@ impl<R: CommandRunner> HealthChecks for SystemHealth<R> {
                 "critical_services",
                 "/usr/bin/systemctl",
                 vec!["is-active", "NetworkManager.service"],
+                false,
+            ),
+            (
+                "display_manager",
+                "/usr/bin/systemctl",
+                vec!["is-active", "sddm.service"],
+                false,
+            ),
+            (
+                "login_service",
+                "/usr/bin/systemctl",
+                vec!["is-active", "systemd-logind.service"],
                 false,
             ),
             (

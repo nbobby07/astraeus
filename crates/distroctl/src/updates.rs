@@ -75,7 +75,7 @@ pub fn history(path: &Path, json: bool) -> Result<String> {
     Ok(text)
 }
 
-pub fn update() -> Result<()> {
+fn session() -> Result<UpdateSession> {
     require_root()?;
     fs::create_dir_all(Path::new(HISTORY_PATH).parent().unwrap()).map_err(|e| e.to_string())?;
     #[cfg(unix)]
@@ -87,14 +87,22 @@ pub fn update() -> Result<()> {
         )
         .map_err(|e| e.to_string())?;
     }
-    let mut session = UpdateSession::open(Path::new(HISTORY_PATH), Path::new(LOCK_PATH))?;
+    let session = UpdateSession::open(Path::new(HISTORY_PATH), Path::new(LOCK_PATH))?;
     #[cfg(unix)]
     {
         use std::os::unix::fs::PermissionsExt;
         fs::set_permissions(HISTORY_PATH, fs::Permissions::from_mode(0o644))
             .map_err(|e| e.to_string())?;
     }
+    Ok(session)
+}
+
+pub fn update() -> Result<()> {
+    let mut session = session()?;
     session.ensure_ready()?;
+    let mut snapshots = integration::BtrfsSnapshots::new(distro_snapshots::Manager::online(
+        distro_snapshots::Native,
+    ))?;
     let mut packages = Pacman::default();
     let plan = packages.resolve()?;
     print!("{}", format_plan(&plan));
@@ -104,7 +112,7 @@ pub fn update() -> Result<()> {
         &mut session,
         plan,
         &mut packages,
-        &mut UnavailableSnapshots,
+        &mut snapshots,
         &mut SystemBoot {
             runner: NativeRunner,
         },
@@ -126,4 +134,38 @@ pub fn update() -> Result<()> {
             .map(|f| f.message)
             .unwrap_or_else(|| "transaction did not complete".into())),
     }
+}
+
+pub fn confirm_boot(id: Option<i64>, mut rollback: bool) -> Result<()> {
+    let mut session = session()?;
+    session.recover_interrupted()?;
+    let id = match id {
+        Some(id) => id,
+        None => {
+            let pending: Vec<_> = session
+                .records()?
+                .into_iter()
+                .filter(|r| r.state == TransactionState::AwaitingBoot)
+                .collect();
+            if pending.is_empty() {
+                return Ok(());
+            }
+            if pending.len() != 1 {
+                return Err("ambiguous pending boot transactions".into());
+            }
+            // An offline restore may precede this boot. The full confirmation
+            // still requires the restored root parent and saved UKI to match.
+            rollback = Pacman::default().current_state()? == pending[0].plan.current;
+            pending[0].id
+        }
+    };
+    let mut snapshots = integration::BtrfsSnapshots::new(distro_snapshots::Manager::online(
+        distro_snapshots::Native,
+    ))?;
+    let record = integration::confirm(&mut session, id, rollback, &mut snapshots)?;
+    println!(
+        "{}",
+        serde_json::to_string_pretty(&record).map_err(|e| e.to_string())?
+    );
+    Ok(())
 }

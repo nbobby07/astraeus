@@ -192,3 +192,38 @@ Its synthetic UKI qualifies storage/byte handling, not UEFI boot.
 
 Chat 3 owns real plain/encrypted QEMU boots, power-cut recovery, disk-full/ESP
 failure qualification and installed non-root catalog checks. See [testing](testing.md).
+
+## Integrated live-media recovery procedure
+
+The signed distroctl package is included in both the installed payload and live
+ISO, with Btrfs, cryptsetup and UKI inspection dependencies. A copy of this guide
+is installed at `/usr/share/doc/distroctl/offline-recovery.md`. There is no automatic
+fallback menu entry. If disk boot fails, boot the Astraeus ISO from the firmware's
+one-time boot menu, open a terminal, identify the installed disk with `lsblk -f`,
+and run the following with the actual system and ESP partitions. Do not select the
+live media or another disk. Do not mount the installed root or persistent siblings.
+
+```sh
+sudo cryptsetup open /dev/ACTUAL_SYSTEM_PARTITION root  # LUKS2 only
+sudo mkdir -p /mnt/astraeus /mnt/astraeus-esp
+sudo mount -t btrfs -o subvolid=5 /dev/mapper/root /mnt/astraeus
+# Plain root: use /dev/ACTUAL_SYSTEM_PARTITION instead of /dev/mapper/root.
+sudo mount -t vfat /dev/ACTUAL_ESP_PARTITION /mnt/astraeus-esp
+sudo distroctl snapshot list --top-level /mnt/astraeus --esp /mnt/astraeus-esp --json
+sudo distroctl rollback ID --dry-run --top-level /mnt/astraeus --esp /mnt/astraeus-esp --json
+# Inspect target, affected root and preserved siblings. --execute is explicit consent.
+sudo distroctl rollback ID --execute --top-level /mnt/astraeus --esp /mnt/astraeus-esp --json
+sync
+sudo umount /mnt/astraeus-esp /mnt/astraeus
+sudo cryptsetup close root  # only if opened above
+```
+
+Remove the ISO and boot the installed disk. Run `sudo distroctl finalize-rollback
+TRANSACTION_ID` and inspect `distroctl history --json`. A restored filesystem alone
+does not finalize the transaction. If a confirmation unit previously failed,
+inspect its journal and fix the cause before a retry. A new boot clears its failed
+runtime state; do not erase failed-unit evidence to manufacture acceptance.
+
+If `pending.json` exists, stop and follow Interrupted operations above. Root and
+ESP switches are not atomic together. No power-loss protection or automatic
+interrupted-rollback resume is claimed.

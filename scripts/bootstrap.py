@@ -87,7 +87,9 @@ def prepare_package(output):
     out = new_directory(output)
     source = out / "source"
     source.mkdir()
-    for file in [ROOT / "Cargo.toml", ROOT / "Cargo.lock", MANIFEST, *sorted((ROOT / "crates").rglob("*"))]:
+    for file in [ROOT / "Cargo.toml", ROOT / "Cargo.lock", MANIFEST,
+                 ROOT / "distro/installed/astraeus-confirm-boot.service", ROOT / "docs/snapshots.md",
+                 *sorted((ROOT / "crates").rglob("*"))]:
         if file.is_file():
             destination = source / file.relative_to(ROOT)
             destination.parent.mkdir(parents=True, exist_ok=True)

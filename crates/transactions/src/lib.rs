@@ -1,6 +1,7 @@
 //! Update planning and durable orchestration. Filesystem recovery is supplied by the caller.
 mod engine;
 mod history;
+pub mod integration;
 mod model;
 pub mod pacman;
 

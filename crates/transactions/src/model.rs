@@ -217,6 +217,7 @@ impl TransactionState {
                 | (Applying, Validating | RollbackRequired)
                 | (Validating, AwaitingBoot | RollbackRequired)
                 | (AwaitingBoot, Succeeded | RollbackRequired)
+                | (Succeeded, RollbackRequired)
                 | (RollbackRequired, RolledBack)
         )
     }
@@ -290,12 +291,29 @@ pub struct TransactionRecord {
     pub outcome: TransactionOutcome,
     pub plan: ExecutionPlan,
     pub snapshot: Option<String>,
+    #[serde(default)]
+    pub post_snapshot: Option<String>,
+    #[serde(default)]
+    pub update_boot_id: Option<String>,
+    #[serde(default)]
+    pub confirmation: Option<BootConfirmation>,
+    #[serde(default)]
+    pub boot_attempts: Vec<BootConfirmation>,
     pub previous_system_state: String,
     pub resulting_system_state: Option<String>,
     pub failure: Option<Failure>,
     pub health_checks: Vec<HealthCheckResult>,
     pub boot_regenerated: bool,
     pub events: Vec<StateEvent>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct BootConfirmation {
+    pub boot_id: String,
+    pub snapshot: String,
+    pub rollback: bool,
+    pub checks: Vec<HealthCheckResult>,
+    pub error: Option<String>,
 }
 
 pub(crate) fn now() -> u64 {
@@ -317,6 +335,10 @@ impl TransactionRecord {
             previous_system_state: plan.current.id.clone(),
             plan,
             snapshot: None,
+            post_snapshot: None,
+            update_boot_id: None,
+            confirmation: None,
+            boot_attempts: vec![],
             resulting_system_state: None,
             failure: None,
             health_checks: vec![],
