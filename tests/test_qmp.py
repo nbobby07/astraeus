@@ -24,6 +24,7 @@ class QmpTests(unittest.TestCase):
         self.assertEqual(qmp.key_codes("?&*"), [["shift", "slash"], ["shift", "7"], ["shift", "8"]])
         self.assertEqual(qmp.key_codes("[],"), [["bracket_left"], ["bracket_right"], ["comma"]])
         self.assertEqual(qmp.key_codes("{}"), [["shift", "bracket_left"], ["shift", "bracket_right"]])
+        self.assertEqual(qmp.key_codes("@"), [["shift", "2"]])
         with self.assertRaises(ValueError):
             qmp.key_codes("sudo\n")
 
