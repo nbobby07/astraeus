@@ -113,7 +113,8 @@ python3 scripts/install-smoke.py install --iso /absolute/path/current.iso \
 Use `scripts/validate/qmp.py` with the emitted private monitor for screenshots,
 mouse/keyboard interaction, installation cancellation, a wrong unlock attempt,
 and normal Calamares installation. Test-only credentials stay disposable and out
-of source/log files. Preserve the install summary, completion and boot screenshots,
+of source/log files; use `qmp.py --text-stdin` to avoid credentials in command arguments.
+Preserve the install summary, completion and boot screenshots,
 Calamares log, `/var/log/installer/storage.json`, partition table and UKI inspection.
 
 Shut down and quit that QEMU process, then cold boot the same disk without ISO:

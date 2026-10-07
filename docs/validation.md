@@ -12,8 +12,9 @@ Rust formatting, two baseline tests and Clippy passed. Python baseline: Windows
 hashes and 50 upstream package versions passed the online check.
 
 Development checks so far: five Rust tests, formatting and Clippy pass; all 13
-Python tests pass under WSL, including native image-tool byte comparison. Windows
-passes nine tests with four Unix/Linux skips. Nine Bash files pass syntax checks.
+Python tests pass under WSL, including native image-tool byte comparison. The new
+stdin QMP regression also passes, bringing the suite to 14 tests. Windows passes
+ten tests with four Unix/Linux skips. Nine Bash files pass syntax checks.
 The expanded locked package union contains 73 upstream packages and retains the
 same Phase 0 database hashes, ArchISO version, compiler and snapshot date.
 
