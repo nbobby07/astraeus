@@ -27,6 +27,10 @@ jobs:
           bash -n distro/archiso/profiledef.sh.in
           bash -n distro/packages/distroctl/PKGBUILD.in
           bash -n scripts/validate/arch-builder.sh
+          bash -n distro/packages/calamares/PKGBUILD
+          bash -n distro/installed/linux.preset.in
+          bash -n distro/installed/mkinitcpio.conf
+          bash -n tests/boot/installed-smoke.sh
       - name: Verify archived inputs
         if: github.event_name == 'workflow_dispatch'
         run: python3 scripts/bootstrap.py verify-archive

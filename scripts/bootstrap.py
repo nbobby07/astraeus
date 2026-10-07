@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase 0 build glue; Python 3.11+, no third-party modules."""
+"""Reproducible ArchISO and installed-payload build glue; Python 3.11+."""
 import argparse
 import datetime as dt
 import hashlib
@@ -18,6 +18,10 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "distro/branding/project.toml"
+sys.path.insert(0, str(ROOT / "scripts"))
+import installer
+
+CUSTOM_PACKAGES = {"distroctl", "calamares"}
 
 
 def project():
@@ -92,22 +96,28 @@ def prepare_package(output):
     write(source / ".cargo/config.toml", '[source.crates-io]\nreplace-with = "vendored-sources"\n'
           '[source.vendored-sources]\ndirectory = "vendor"\n')
     archive(source, out / "platform.tar.xz", data["build"]["source_date_epoch"])
-    values = {"VERSION": data["identity"]["version"], "SHA256": digest(out / "platform.tar.xz"),
+    values = {"VERSION": data["identity"]["version"].replace("-", "."), "SHA256": digest(out / "platform.tar.xz"),
               "RUST_VERSION": data["build"]["rust_version"]}
     write(out / "PKGBUILD", render((ROOT / "distro/packages/distroctl/PKGBUILD.in").read_text(), values))
+    shutil.copytree(ROOT / "distro/packages/calamares", out / "calamares")
     print(f"Prepared {out}. Run makepkg as a non-root user in the pinned Arch builder.")
 
 
-def packages():
-    return [line.strip() for line in (ROOT / "distro/archiso/packages.x86_64").read_text().splitlines()
+def packages(path="distro/archiso/packages.x86_64"):
+    return [line.strip() for line in (ROOT / path).read_text().splitlines()
             if line.strip() and not line.startswith("#")]
+
+
+def upstream_packages():
+    return (set(packages()) | set(packages("distro/installed/packages.x86_64"))
+            | set(packages("distro/packages/calamares/build-packages.x86_64")) | {"archiso", "rust"}) - CUSTOM_PACKAGES
 
 
 def check_archive():
     lock = json.loads((ROOT / "distro/repo/archive.lock.json").read_text())
     if lock["archive_date"] != project()["build"]["archive_date"]:
         raise ValueError("archive lock and manifest disagree")
-    if set(lock["direct_packages"]) != (set(packages()) - {"distroctl"}) | {"archiso", "rust"}:
+    if set(lock["direct_packages"]) != upstream_packages():
         raise ValueError("archive lock and package list disagree")
     found = {}
     for repo, expected in lock["databases"].items():
@@ -123,13 +133,13 @@ def check_archive():
                     name = desc.split("%NAME%\n")[1].splitlines()[0]
                     version = desc.split("%VERSION%\n")[1].splitlines()[0]
                     found[name] = version
-    missing = set(packages()) - {"distroctl"} - found.keys()
+    missing = upstream_packages() - found.keys()
     if missing:
         raise ValueError(f"packages absent from locked snapshot: {sorted(missing)}")
     for name, version in lock["direct_packages"].items():
         if found.get(name) != version:
             raise ValueError(f"version mismatch: {name}")
-    print(f"Verified both database hashes and {len(packages()) - 1} upstream package names.")
+    print(f"Verified both database hashes and {len(upstream_packages())} upstream package names.")
 
 
 def create_profile(out, repo, fingerprint):
@@ -166,7 +176,7 @@ def create_profile(out, repo, fingerprint):
         run("pacman-key", "--gpgdir", keyring, *args)
     values = dict(ID=data["identity"]["id"], NAME=data["identity"]["name"],
                   VERSION=data["identity"]["version"], ARCHIVE=data["build"]["archive_date"],
-                  KEYRING=keyring, REPO=repo, FINGERPRINT=fingerprint)
+                  KEYRING=keyring, REPO=repo, FINGERPRINT=fingerprint, EPOCH=data["build"]["source_date_epoch"])
     for template in sorted(profile.rglob("*.in")):
         write(template.with_suffix(""), render(template.read_text(), values))
         template.unlink()
@@ -180,9 +190,10 @@ def create_profile(out, repo, fingerprint):
     build_config = profile / "pacman.conf"
     write(build_config, build_config.read_text().replace("[options]\n", "[options]\n"
           "XferCommand = /usr/bin/curl -fL --retry 3 --retry-all-errors --connect-timeout 20 --max-time 300 -o %o %u\n", 1))
-    write(root / "etc/os-release", f'NAME="{values["NAME"]}"\nPRETTY_NAME="{values["NAME"]} (Phase 0 live)"\n'
-          f'ID={values["ID"]}\nID_LIKE=arch\nVERSION_ID={values["VERSION"]}\n')
-    write(root / "etc/issue", f'{values["NAME"]}: ephemeral Phase 0 live environment\n')
+    write(root / "etc/os-release", f'NAME="{values["NAME"]}"\nPRETTY_NAME="{values["NAME"]} (Live installer)"\n'
+          f'ID={values["ID"]}\nID_LIKE=arch\nVERSION_ID={values["VERSION"]}\nVARIANT_ID=development\n')
+    write(root / "etc/issue", f'{values["NAME"]}: ephemeral live installation environment\n')
+    installer.stage(root, values, write)
     (root / "etc/localtime").symlink_to("/usr/share/zoneinfo/UTC")
     links = {
         "default.target": "/usr/lib/systemd/system/graphical.target",
@@ -206,7 +217,7 @@ def build_iso(output, repo, fingerprint):
         raise ValueError("ISO builds require an x86_64 Arch Linux builder; see docs/building.md")
     if os.geteuid() != 0:
         raise ValueError("mkarchiso build must run as root inside a disposable Arch builder")
-    for tool in ["mkarchiso", "pacman", "pacman-key", "gpg", "xorriso", "mksquashfs", "curl"]:
+    for tool in ["mkarchiso", "pacman", "pacstrap", "pacman-key", "gpg", "xorriso", "mksquashfs", "curl"]:
         if not shutil.which(tool):
             raise ValueError(f"required build tool unavailable: {tool}")
     version = run("pacman", "-Q", "archiso", capture_output=True, text=True).stdout.split()[1]
@@ -216,6 +227,9 @@ def build_iso(output, repo, fingerprint):
     out = new_directory(output)
     profile = create_profile(out, repo, fingerprint)
     env = dict(os.environ, SOURCE_DATE_EPOCH=str(data["build"]["source_date_epoch"]), TZ="UTC", LC_ALL="C")
+    values = dict(ID=data["identity"]["id"], NAME=data["identity"]["name"], VERSION=data["identity"]["version"],
+                  ARCHIVE=data["build"]["archive_date"], EPOCH=data["build"]["source_date_epoch"], FINGERPRINT=fingerprint)
+    installer.build_payload(out, profile, values, lambda *a, **kw: run(*a, env=env, **kw), write, render)
     run("mkarchiso", "-v", "-w", out / "work", "-o", out / "iso", profile, env=env)
     with (out / "builder-packages.txt").open("w") as builder_log:
         run("pacman", "-Q", stdout=builder_log)

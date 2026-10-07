@@ -85,6 +85,65 @@ hashes differ, byte reproducibility remains an open issue even when both boot.
 Booting this image on bare metal is additional compatibility work, not established
 by a virtio/QEMU pass.
 
+## Phase 1 installation tests
+
+The ordinary Rust checks also exercise hardware fixture normalization, missing
+observations, malformed mount data, EFI UTF-16 decoding, encrypted/plain Btrfs
+root detection and status/hardware JSON CLI output. Tests do not require root or
+assume the host has Linux procfs. Python tests validate module ordering, exact
+subvolume/mount definitions, account policy, encrypted/plain command lines,
+crypttab mapper consistency, UKI inputs and ISO detachment during disk boots.
+
+Additional Bash syntax checks:
+
+```sh
+bash -n distro/packages/calamares/PKGBUILD
+bash -n distro/installed/mkinitcpio.conf
+bash -n distro/installed/linux.preset.in
+bash -n tests/boot/installed-smoke.sh
+```
+
+On the Linux KVM validator, create independent clean disks for both scenarios:
+
+```sh
+python3 scripts/install-smoke.py install --iso /absolute/path/current.iso \
+  --ovmf-code "$OVMF_CODE" --ovmf-vars "$OVMF_VARS" --output out/install-encrypted
+```
+
+Use `scripts/validate/qmp.py` with the emitted private monitor for screenshots,
+mouse/keyboard interaction, installation cancellation, a wrong unlock attempt,
+and normal Calamares installation. Test-only credentials stay disposable and out
+of source/log files. Preserve the install summary, completion and boot screenshots,
+Calamares log, `/var/log/installer/storage.json`, partition table and UKI inspection.
+
+Shut down and quit that QEMU process, then cold boot the same disk without ISO:
+
+```sh
+python3 scripts/install-smoke.py boot --output out/install-encrypted \
+  --ovmf-code "$OVMF_CODE" --run boot1
+```
+
+Unlock and log in at SDDM. In the installed user session run the acceptance script
+from this source tree, transferred privately for testing:
+
+```sh
+bash installed-smoke.sh LUKS2
+```
+
+It checks the observed UKI/loader, Btrfs/encryption, Plasma Wayland, network/DNS/
+HTTPS, audio services and failed units, retaining real status JSON and fstab.
+Open Ghostty and Konsole manually. Shut down and cold boot again with `--run boot2`,
+then repeat the same assertions. Repeat the complete process with a new output
+directory and encryption disabled; pass `none` to its guest acceptance script.
+
+`install-smoke.py` is a semi-automated launcher, not a substitute for Calamares
+execution. It never calls installation successful. Test an undersized disk using
+`--disk-gib 8` and confirm refusal before disk mutation. Cancel before the summary
+commit. An interrupted-install test is optional and must use another disposable
+disk. Do not reuse its partial result for acceptance. Neither source inspection,
+unit tests nor a Calamares completion page qualifies Phase 1 without both installed
+systems booting and surviving the second boot. Repeat full ISO A/B comparison.
+
 ## Later subsystem tests
 
 | Boundary | Required evidence before broadening implementation |

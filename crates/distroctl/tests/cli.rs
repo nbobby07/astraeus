@@ -12,6 +12,17 @@ fn cli_contract() {
     assert!(info.status.success());
     let json: serde_json::Value = serde_json::from_slice(&info.stdout).unwrap();
     assert_eq!(json["build"]["architecture"], "x86_64");
+    for command in ["status", "hardware"] {
+        assert!(run(&[command]).status.success());
+        let output = run(&[command, "--json"]);
+        assert!(output.status.success());
+        let value: serde_json::Value = serde_json::from_slice(&output.stdout).unwrap();
+        if command == "status" {
+            assert_eq!(value["schema_version"], 1);
+        } else {
+            assert!(value["cpu"]["architecture"].is_string());
+        }
+    }
     assert!(run(&["--help"]).status.success());
     assert!(run(&[
         "validate",

@@ -1,3 +1,31 @@
+# Phase 1 validation
+
+**PHASE 1 NOT YET VALIDATED.** Implementation and clean-builder validation are
+in progress. The Phase 0 results below apply to their recorded source/artifacts;
+they do not establish installed-system boot or reproducibility for Phase 1.
+
+Baseline inspected before edits: clean `main` at
+`8dcb2cdf8d9faac97c4ae3367a4d8794a95224ea`. Architecture, building, testing and
+validation documentation and the complete profile/build pipeline were read.
+Rust formatting, two baseline tests and Clippy passed. Python baseline: Windows
+5 passed/3 Linux skips; WSL 7 passed/1 image-tool skip. Both archived database
+hashes and 50 upstream package versions passed the online check.
+
+Development checks so far: five Rust tests, formatting and Clippy pass; all 13
+Python tests pass under WSL, including native image-tool byte comparison. Windows
+passes nine tests with four Unix/Linux skips. Nine Bash files pass syntax checks.
+The expanded locked package union contains 73 upstream packages and retains the
+same Phase 0 database hashes, ArchISO version, compiler and snapshot date.
+
+The existing paused Freestyle validator was resumed, with no new outer VM. The
+user authorized official CLI account access. Initial browser transfer failed
+partway and is not accepted evidence. CLI transfer of `source2.tar.xz` matched
+SHA256 `a32743645ca5788938271ea407441317147eca5f3eb77ab067c0c391b6dada62` at both
+ends; that 50460-byte archive launched clean builder A2. Later reviewed installer
+configuration changes require another source transfer before final acceptance.
+No Phase 1 ISO, encrypted/plain installed boot, interactive install, second reboot
+or complete A/B reproducibility result is claimed here yet.
+
 # Phase 0 validation: 2026-10-06 to 2026-10-07 UTC
 
 **PHASE 0 VALIDATED** for the recorded x86-64 QEMU/KVM environment. Two independent

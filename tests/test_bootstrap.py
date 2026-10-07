@@ -37,7 +37,7 @@ class BootstrapTests(unittest.TestCase):
         self.assertNotIn("TrustAll", conf)
         lock = bootstrap.json.loads((ROOT / "distro/repo/archive.lock.json").read_text())
         self.assertEqual(lock["direct_packages"]["archiso"], project["build"]["archiso_version"])
-        self.assertEqual(set(lock["direct_packages"]), (set(packages) - {"distroctl"}) | {"archiso", "rust"})
+        self.assertEqual(set(lock["direct_packages"]), bootstrap.upstream_packages())
 
     @unittest.skipIf(os.name == "nt", "profile staging needs Linux symlinks")
     def test_profile_generation_and_fingerprint_rejection(self):

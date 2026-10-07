@@ -4,7 +4,7 @@ linux-firmware
 intel-ucode
 amd-ucode
 mkinitcpio
-mkinitcpio-archiso
+systemd-ukify
 archlinux-keyring
 btrfs-progs
 cryptsetup
@@ -38,7 +38,6 @@ flatpak
 ghostty
 konsole
 dolphin
-kate
 noto-fonts
 noto-fonts-emoji
 ttf-dejavu
@@ -49,7 +48,3 @@ man-db
 usbutils
 pciutils
 distroctl
-calamares
-arch-install-scripts
-rsync
-squashfs-tools

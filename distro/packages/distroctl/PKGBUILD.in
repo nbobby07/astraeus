@@ -1,7 +1,7 @@
 pkgname=distroctl
 pkgver=@@VERSION@@
 pkgrel=1
-pkgdesc='Read-only distribution build metadata tools'
+pkgdesc='Read-only distribution metadata, hardware and system status tools'
 arch=('x86_64')
 depends=('gcc-libs' 'glibc')
 makedepends=('rust')

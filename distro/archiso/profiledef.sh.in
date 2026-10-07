@@ -3,7 +3,7 @@
 iso_name="@@ID@@"
 iso_label="DISTRO_BOOT"
 iso_publisher="@@NAME@@ contributors"
-iso_application="@@NAME@@ Phase 0 live environment"
+iso_application="@@NAME@@ live installer"
 iso_version="@@VERSION@@"
 install_dir="arch"
 arch="x86_64"

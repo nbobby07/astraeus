@@ -44,9 +44,34 @@ that cannot enroll keys automatically needs an explicit explained user step.
 There must be no unsigned fallback that silently weakens a promised verified boot
 chain. Distinguish owner-managed keys from compatibility with factory trust stores.
 
+## Phase 1 installation security
+
+The installed package payload is separate from the live root. It contains no
+empty-password live account, passwordless sudo policy, live autologin or firstboot
+mask. Calamares creates password-authenticated wheel access and locks root login.
+The final distribution job validates the target mount and actual Btrfs subvolumes
+before writes; it cannot operate on `/`. Partition UUIDs and keyboard/username
+tokens are checked before configuration writes. External programs use argument
+arrays rather than interpolated shell commands. No installer password is passed
+to the distribution provisioning job or saved in its storage report.
+
+Encrypted installation uses LUKS2 with KPMcore's cryptsetup invocation and
+Argon2id's normal hardware-calibrated defaults. Actual KDF/segment settings are
+recorded after formatting. A finalization check rejects another LUKS generation
+or KDF. No initramfs keyfile, weak test KDF, TPM unlocking, encrypted discard or
+kernel mitigation override is added. The crypttab root name matches the initramfs
+mapping to avoid a second unlock under a different name.
+
+Read-only Rust status/hardware commands have ordinary file-read privileges.
+Inaccessible EFI/hardware fields return unknown, not invented boot success.
+Only Calamares and its separate provisioning job require privilege. distroctl is
+never setuid or given capabilities. UKIs remain unsigned in Phase 1, with signing
+reserved at the standard ukify output boundary. QEMU uses private Unix QMP sockets
+and user-mode NAT; no public VNC, noVNC or guest shell is exposed.
+
 ## Recovery constraints
 
-LUKS2 and Btrfs are intended installed-system components, not proof that this
+LUKS2 and Btrfs are installed-system components, not proof that this
 ephemeral ISO is encrypted. Snapshot rollback must coordinate the ESP and root
 generation and keep a boot-confirmed fallback. Snapshots do not protect against
 disk loss or hostile physical access. Secret provisioning, firmware trust,

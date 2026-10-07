@@ -1,0 +1,34 @@
+pkgname=calamares
+pkgver=3.4.3
+pkgrel=1
+pkgdesc='Distribution-independent graphical installer'
+arch=('x86_64')
+url='https://calamares.io/'
+license=('GPL-3.0-or-later')
+depends=('kpmcore' 'yaml-cpp' 'python' 'qt6-svg' 'qt6-declarative' 'qt6-5compat'
+         'polkit-qt6' 'kcoreaddons' 'kconfig' 'ki18n' 'kservice' 'kcrash'
+         'libpwquality' 'rsync' 'squashfs-tools' 'cryptsetup' 'btrfs-progs')
+makedepends=('cmake' 'extra-cmake-modules' 'qt6-tools' 'ninja')
+source=("https://codeberg.org/Calamares/calamares/releases/download/v${pkgver}/calamares-${pkgver}.tar.gz")
+sha256sums=('144cbbf6bdcebfb21685950db4f0777218519df095f62f4aa392f28348110d18')
+
+build() {
+  # Build only the upstream modules used by this profile.
+  local keep=' welcome locale keyboard partition users summary finished mount unpackfs machineid localecfg fstab umount '
+  local skip='' module
+  for module in "$srcdir/calamares-$pkgver/src/modules/"*/; do
+    module=$(basename "$module")
+    [[ $keep == *" $module "* ]] || skip+="$module;"
+  done
+  cmake -S "calamares-$pkgver" -B build -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib \
+    -DWITH_QT6=ON -DWITH_PYTHON=ON -DWITH_QML=ON -DBUILD_TESTING=OFF \
+    -DSKIP_MODULES="$skip"
+  cmake --build build -j4
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+  # Profile configuration is owned by Astraeus, not upstream examples.
+  rm -rf "$pkgdir/etc/calamares"
+}

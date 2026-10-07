@@ -82,6 +82,33 @@ output. No network repository is created by these commands.
 
 ## Build the live ISO
 
+Phase 1 also requires the signed `calamares` package. After package preparation,
+install the pinned build prerequisites and build the upstream release as `builder`:
+
+```sh
+sudo pacman -S --needed $(cat distro/packages/calamares/build-packages.x86_64)
+(
+  cd .build/package/calamares
+  makepkg --config /etc/makepkg.conf --cleanbuild --sign --key "$KEY"
+)
+bash scripts/publish-repo.sh "$KEY" out/phase1-repo \
+  .build/package/*.pkg.tar.zst .build/package/calamares/*.pkg.tar.zst
+```
+
+Use this complete repository as `--repo` below. The existing `out/repo` example
+must likewise contain both signed packages. Publication always requires a new
+directory. The Calamares source URL/version/hash and its minimal upstream module
+selection are in the reviewable PKGBUILD. Build prerequisites also belong to the
+archive lock; verification checks the union of live, installed and builder inputs.
+
+Before mkarchiso, the ISO builder creates `installed-root/` with pacstrap from the
+separate explicit installed package list. It verifies packages with the isolated
+build keyring, stages installed configuration and creates a timestamp-normalized
+`install-root.sfs` inside the live profile. Account policy, keyring initialization
+and bootable UKI generation happen later in Calamares. This second payload means
+Phase 1 images require more disk space than Phase 0. Allocate 50 GiB free for an
+individual clean builder as a conservative allowance; measure actual usage.
+
 From the source root in the pinned Arch builder:
 
 ```sh
@@ -97,7 +124,7 @@ the custom database before installation. The live ISO includes the signed custom
 repository so its pacman configuration never refers to the build host.
 
 Successful output includes `iso/*.iso`, `iso/SHA256SUMS`, `inputs.json`,
-`builder-packages.txt`, `image-packages.txt`, the generated `profile/`, `keyring/`
+`builder-packages.txt`, `image-packages.txt`, `installed-packages.txt`, the generated `profile/`, `keyring/`
 and `work/`. The isolated keyring contains locally generated trust material and
 is not a release artifact. Do not distribute it. Retain the package/repository
 inputs, manifests and boot logs with the ISO. No automatic publication occurs.

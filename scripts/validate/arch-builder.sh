@@ -38,6 +38,7 @@ if [[ -d $share/package-cache ]]; then
     cp -a "$share/package-cache/." /var/cache/pacman/pkg/
 fi
 pacman -Syyuu --noconfirm --needed base-devel archiso rust python git gnupg
+pacman -S --noconfirm --needed $(cat distro/packages/calamares/build-packages.x86_64)
 git init -b main
 git status --short > "$evidence/git-status.txt"
 git rev-parse HEAD > "$evidence/git-head.txt" 2>&1 || true
@@ -51,6 +52,9 @@ chown -R builder:builder /build/operating-system
 epoch=$(python3 -c 'import tomllib; print(tomllib.load(open("distro/branding/project.toml","rb"))["build"]["source_date_epoch"])')
 runuser -u builder -- env SOURCE_DATE_EPOCH="$epoch" PACKAGER='Distribution developers' \
     bash -c 'python3 scripts/bootstrap.py package --output .build/package && cd .build/package && makepkg --config /etc/makepkg.conf --cleanbuild --noconfirm'
+runuser -u builder -- env SOURCE_DATE_EPOCH="$epoch" PACKAGER='Distribution developers' \
+    bash -c 'cd .build/package/calamares && makepkg --config /etc/makepkg.conf --cleanbuild --noconfirm'
+cp .build/package/calamares/*.pkg.tar.zst .build/package/
 sha256sum .build/package/*.pkg.tar.zst > "$evidence/platform-package-sha256.txt"
 if [[ $label == A ]]; then
     [[ ! -e $share/repo ]]
@@ -73,6 +77,7 @@ repo=/build/operating-system/out/repo
 printf '%s\n' "python3 scripts/bootstrap.py iso --repo $repo --fingerprint $key --output /build/iso-build" > "$evidence/command.txt"
 python3 scripts/bootstrap.py iso --repo "$repo" --fingerprint "$key" --output /build/iso-build
 cp /build/iso-build/{builder-packages.txt,image-packages.txt,inputs.json} "$evidence/"
+cp /build/iso-build/installed-packages.txt "$evidence/"
 cp /build/iso-build/iso/* "$evidence/"
 stat -c '%n %s bytes' "$evidence/"*.iso | tee "$evidence/iso-size.txt"
 echo "BUILDER_${label}_SUCCESS"

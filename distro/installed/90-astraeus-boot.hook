@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = systemd
+
+[Action]
+Description = Update the installed systemd-boot loader
+When = PostTransaction
+Exec = /usr/bin/bootctl --esp-path=/efi update

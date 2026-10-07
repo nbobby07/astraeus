@@ -1,0 +1,77 @@
+{
+  "settings": {
+    "modules-search": ["/etc/calamares/modules", "local"],
+    "sequence": [
+      {"show": ["welcome", "locale", "keyboard", "partition", "users", "summary"]},
+      {"exec": ["astraeus-preflight", "partition", "mount", "unpackfs", "machineid", "locale", "keyboard", "localecfg", "fstab", "users", "astraeus", "umount"]},
+      {"show": ["finished"]}
+    ],
+    "branding": "astraeus",
+    "prompt-install": true,
+    "dont-chroot": false,
+    "oem-setup": false,
+    "disable-cancel": false,
+    "disable-cancel-during-exec": false,
+    "hide-back-and-next-during-exec": true,
+    "quit-at-end": false
+  },
+  "modules": {
+    "welcome": {
+      "showSupportUrl": false, "showKnownIssuesUrl": false,
+      "showReleaseNotesUrl": false, "showDonateUrl": false,
+      "requirements": {
+        "requiredStorage": 20.0, "requiredRam": 2.0,
+        "check": ["storage", "ram", "root"], "required": ["storage", "ram", "root"]
+      }
+    },
+    "locale": {"region": "America", "zone": "Los_Angeles", "adjustLiveTimezone": false},
+    "keyboard": {"xOrgConfFileName": "/etc/X11/xorg.conf.d/00-keyboard.conf", "convertedKeymapPath": "/usr/share/kbd/keymaps/xkb", "configure": {"kwin": true}},
+    "partition": {
+      "efi": {"mountPoint": "/efi", "recommendedSize": "1GiB", "minimumSize": "1GiB", "label": "EFI"},
+      "lvm": {"enable": false},
+      "userSwapChoices": ["none"], "initialSwapChoice": "none",
+      "initialPartitioningChoice": "none",
+      "defaultPartitionTableType": "gpt", "requiredPartitionTableType": "gpt",
+      "defaultFileSystemType": "btrfs", "availableFileSystemTypes": ["btrfs"],
+      "luksGeneration": "luks2", "enableLuksAutomatedPartitioning": true,
+      "preCheckEncryption": true,
+      "allowManualPartitioning": false,
+      "partitionLayout": [{"name": "System", "filesystem": "btrfs", "mountPoint": "/", "size": "100%", "minSize": "19GiB"}]
+    },
+    "mount": {
+      "extraMounts": [
+        {"device": "proc", "fs": "proc", "mountPoint": "/proc"},
+        {"device": "sys", "fs": "sysfs", "mountPoint": "/sys"},
+        {"device": "/dev", "mountPoint": "/dev", "options": ["bind"]},
+        {"device": "tmpfs", "fs": "tmpfs", "mountPoint": "/run"},
+        {"device": "/run/udev", "mountPoint": "/run/udev", "options": ["bind"]},
+        {"device": "efivarfs", "fs": "efivarfs", "mountPoint": "/sys/firmware/efi/efivars", "efi": true}
+      ],
+      "btrfsSubvolumes": [
+        {"mountPoint": "/", "subvolume": "/@"},
+        {"mountPoint": "/home", "subvolume": "/@home"},
+        {"mountPoint": "/.snapshots", "subvolume": "/@snapshots"},
+        {"mountPoint": "/var/log", "subvolume": "/@log"},
+        {"mountPoint": "/var/cache", "subvolume": "/@cache"},
+        {"mountPoint": "/var/lib/containers", "subvolume": "/@containers"}
+      ],
+      "mountOptions": [
+        {"filesystem": "default", "options": ["defaults"]},
+        {"filesystem": "efi", "options": ["defaults", "umask=0077"]},
+        {"filesystem": "btrfs", "options": ["defaults", "noatime", "compress=zstd:1"]}
+      ]
+    },
+    "unpackfs": {"unpack": [{"source": "/opt/distro/install-root.sfs", "sourcefs": "squashfs", "destination": "/"}]},
+    "machineid": {"systemd": true, "dbus": true},
+    "fstab": {"crypttabOptions": "luks", "tmpOptions": {"default": {"tmpfs": true}}},
+    "users": {
+      "defaultGroups": ["wheel"], "autologinGroup": "", "sudoersGroup": "wheel", "sudoersConfigureWithGroup": true,
+      "setRootPassword": false, "displayAutologin": false, "doAutologin": false,
+      "passwordRequirements": {"minLength": 8, "maxLength": -1},
+      "allowWeakPasswords": false,
+      "user": {"shell": "/bin/bash", "forbidden_names": ["root", "live"], "home_permissions": "o700"},
+      "hostname": {"location": "EtcFile", "writeHostsFile": true, "template": "${login}-system"}
+    },
+    "finished": {"restartNowMode": "user-unchecked", "restartNowCommand": "systemctl -i reboot", "notifyOnFinished": false}
+  }
+}

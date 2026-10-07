@@ -7,17 +7,22 @@ mutation APIs. ArchISO 91 provides image assembly and UEFI systemd-boot support.
 Pacman installs conventional signed Arch packages. The custom `distro` repository
 comes first and initially supplies only `distroctl`.
 
-The workspace has two crates:
+The workspace now has three crates:
 
 ```text
 distroctl -> distro-config -> serde / TOML
+          -> distro-hardware -> serde
 ```
 
 `distro-config` owns release metadata and validation. Parsing produces a typed
 value; semantic validation is a separate method. `distroctl` handles arguments,
 file I/O and presentation. Neither crate mutates the system or requests root.
-The CLI exposes `info`, `validate`, help and version. Its command dispatch can
-grow when real subsystems exist. Unsupported commands fail, including `status`.
+The CLI exposes `info`, `validate`, `hardware`, `status`, help and version.
+`status` reports observations from procfs, sysfs, EFI variables and the current
+desktop environment, with JSON schema version 1. Unavailable values remain null.
+Neither status nor hardware detection invokes privileged commands or requests root.
+The Rust hardware crate separates discovery observations, normalized CPU/memory/
+GPU/storage information, and UEFI/VM capabilities. It does not tune hardware.
 
 Python standard-library scripts handle source packaging and image build glue;
 small Bash files call standard Arch publishing tools and perform guest boot
@@ -48,7 +53,8 @@ installed. This account policy must never be copied to an installed system.
 
 ## Assumptions and boundaries
 
-- English (US), one live user, no disk installation or persistence in this phase.
+- English (US), one disposable live user. Phase 1 adds Calamares and a separate
+  installed payload; the live environment itself remains ephemeral.
 - Build on a disposable Arch x86-64 machine using the dated full repository set.
   Do not switch a daily-use workstation to these build mirrors.
 - Package snapshots are pinned inputs, not a tested stable distribution channel.
@@ -79,7 +85,14 @@ with argument-array subprocess calls, inspected plans and structured failures.
 Reusable libraries serve both CLI and future Qt/QML applications. Do not add a
 daemon until lifetime, arbitration or privilege requirements justify it.
 
-## Proposed installed Btrfs layout
+## Phase 1 installed foundation
+
+Calamares 3.4.3 integrates the normal installer pages and upstream storage/account
+jobs. A separately assembled explicit package set keeps live account and boot
+workarounds out of persistent installations. See [installation](installation.md)
+and [boot](boot.md) for source/configuration boundaries and validation status.
+
+## Installed Btrfs layout
 
 Flat sibling subvolumes under top-level ID 5, mounted by explicit `subvol=` paths:
 
@@ -91,15 +104,14 @@ Flat sibling subvolumes under top-level ID 5, mounted by explicit `subvol=` path
 | `@log` | `/var/log` | Retain evidence of failed updates and boots |
 | `@cache` | `/var/cache` | Avoid snapshot retention of large download caches |
 | `@containers` | `/var/lib/containers` | Keep container data outside OS generations |
-| `@vm` | `/var/lib/libvirt/images` | Keep VM disk state outside OS rollback |
-| `@transactions` | `/var/lib/distro` | Keep durable transaction/recovery journal |
 
 Do not split all of `/var`: the package database must match the restored files.
 Do not exclude all of `/var/lib`: service schema migrations need explicit recovery
 policy. Docker, when added, needs its own data-root/subvolume decision; user
-containers/VMs under `/home` are already excluded. `/tmp` is tmpfs. Initially use
-zram instead of placing an ordinary swapfile in a snapshotted root. These are
-Phase 1 design inputs, not an implemented installer.
+containers/VMs under `/home` are already excluded. `/tmp` is tmpfs. No swap or
+hibernation policy is added in Phase 1. The six subvolumes above are the implemented
+Calamares configuration; actual installed-system qualification is recorded in
+[validation](validation.md). [Storage](storage.md) documents mount options.
 
 Btrfs snapshots are not recursive across subvolumes and are not backups. See the
 [upstream Btrfs description](https://btrfs.readthedocs.io/en/latest/Subvolumes.html).
