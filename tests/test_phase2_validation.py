@@ -31,12 +31,13 @@ def evidence(value):
 
 def transaction_evidence():
     before = dict(history=evidence([]), snapshots=evidence([]))
-    record = dict(schema_version=1, id=7, state='awaiting_boot', outcome='awaiting_boot', snapshot='snap-7',
+    record = dict(schema_version=1, id=7, state='awaiting_boot', outcome='awaiting_boot', snapshot='snap-7', post_snapshot='post-7', update_boot_id='old-boot',
                   plan=dict(current=dict(packages={'fixture': '1-1'}), packages=dict(changes=[dict(kind='upgrade', name='fixture', to='2-1')])),
                   events=[dict(state=s) for s in ['planned', 'snapshot_created', 'applying', 'awaiting_boot']],
                   health_checks=[dict(required=True, status='pass')], boot_regenerated=True)
-    snapshot = dict(id='snap-7', reason='pre-update', transaction_id='7', root=dict(read_only=True))
-    after = dict(history=evidence([record]), snapshots=evidence([snapshot]), packages=dict(code=0, error=None, output='fixture 2-1'))
+    snapshot = dict(id='snap-7', reason='pre-update', transaction_id='7', root=dict(read_only=True), health='known-good', boot=dict(sha256='b'*64))
+    post = dict(id='post-7', reason='post-update', transaction_id='7', root=dict(read_only=True), health='candidate', boot=dict(sha256='a'*64))
+    after = dict(history=evidence([record]), snapshots=evidence([snapshot, post]), **{'uki-sha256': dict(code=0, output='a'*64+' uki.efi')}, packages=dict(code=0, error=None, output='fixture 2-1'))
     return before, after
 
 
@@ -51,10 +52,16 @@ class ValidationTests(unittest.TestCase):
                     final = copy.deepcopy(changed)
                     record = json.loads(final['history']['output'])[0]
                     record['state'] = record['outcome'] = 'succeeded' if scenario == 'update-success' else 'rolled_back'
+                    record['confirmation'] = dict(error=None, snapshot='post-7' if scenario == 'update-success' else 'snap-7',
+                                                  rollback=scenario != 'update-success', boot_id='new-boot', checks=[dict(required=True, status='pass')])
                     final['history'] = evidence([record])
+                    snapshots = json.loads(final['snapshots']['output'])
+                    snapshots[1]['health'] = 'known-good'
+                    final['snapshots'] = evidence(snapshots)
                     if scenario == 'rollback':
                         final['root']['output'] = 'version-A'
                         final['packages']['output'] = 'fixture 1-1'
+                        final['uki-sha256']['output'] = 'b'*64+' uki.efi'
                     final['persistent'] = dict(code=0, output='token' if lost_home else 'token-after-snapshot')
                     vm = Mock(out=Path(temp))
                     vm.command.return_value = dict(code=0, output='version-A')
@@ -127,6 +134,25 @@ class ValidationTests(unittest.TestCase):
         before['snapshots'] = copy.deepcopy(after['snapshots'])
         with self.assertRaisesRegex(RuntimeError, 'stale'):
             phase2.transaction(before, after, ['awaiting_boot'])
+
+    def test_terminal_transaction_requires_actual_uki_and_boot_evidence(self):
+        before, after = transaction_evidence()
+        record = json.loads(after['history']['output'])[0]
+        record.update(state='succeeded', outcome='succeeded', confirmation=dict(error=None, snapshot='post-7',
+            rollback=False, boot_id='new-boot', checks=[dict(required=True, status='pass')]))
+        after['history'] = evidence([record])
+        snapshots = json.loads(after['snapshots']['output'])
+        snapshots[1]['health'] = 'known-good'
+        after['snapshots'] = evidence(snapshots)
+        phase2.transaction(before, after, ['succeeded'])
+        after['uki-sha256']['output'] = 'b'*64+' uki.efi'
+        with self.assertRaisesRegex(RuntimeError, 'UKI'):
+            phase2.transaction(before, after, ['succeeded'])
+        after['uki-sha256']['output'] = 'a'*64+' uki.efi'
+        record['confirmation']['boot_id'] = 'old-boot'
+        after['history'] = evidence([record])
+        with self.assertRaisesRegex(RuntimeError, 'new-boot'):
+            phase2.transaction(before, after, ['succeeded'])
 
     def test_failed_probe_cannot_be_used_as_evidence(self):
         with self.assertRaisesRegex(RuntimeError, 'missing evidence'):

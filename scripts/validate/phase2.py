@@ -204,6 +204,10 @@ def observe(vm, label, product=True):
         'subvolumes': 'btrfs subvolume list /', 'boot': 'bootctl status --no-pager',
         'root': f'cat {SENTINEL}', 'persistent': f'cat {PERSISTENT}',
         'journal': 'journalctl -b -p warning --no-pager -n 100',
+        'boot-journal': 'journalctl -b --no-pager',
+        'uki-sha256': 'sha256sum /efi/EFI/Linux/astraeus-dev-linux.efi',
+        'kernel-command-line': 'cat /proc/cmdline',
+        'pacman-log': 'tail -c 1048576 /var/log/pacman.log',
         'transaction-log': 'tail -c 1048576 /var/log/astraeus-validation-update.log',
     }
     if product:
@@ -271,6 +275,18 @@ def transaction(before, after, states, transaction_id=None):
                 expected[change['name']] = change.get('to', change.get('version'))
         actual = dict(line.split(maxsplit=1) for line in value(after, 'packages').splitlines())
         require(actual == expected, 'installed packages disagree with the transaction plan')
+    if record['state'] in ['succeeded', 'rolled_back']:
+        rollback = record['state'] == 'rolled_back'
+        reference = record['snapshot'] if rollback else record.get('post_snapshot')
+        targets = [s for s in snapshots if s['id'] == reference]
+        require(len(targets) == 1 and targets[0]['health'] == 'known-good', 'confirmed generation is not known-good')
+        require(value(after, 'uki-sha256').split()[0] == targets[0]['boot']['sha256'], 'active UKI differs from confirmed generation')
+        confirmation = record.get('confirmation') or {}
+        require(confirmation.get('error') is None and confirmation.get('snapshot') == reference
+                and confirmation.get('rollback') is rollback and confirmation.get('boot_id')
+                and confirmation['boot_id'] != record.get('update_boot_id'), 'missing matching new-boot confirmation')
+        checks = confirmation.get('checks', [])
+        require(checks and all(c['status'] != 'fail' and (not c['required'] or c['status'] == 'pass') for c in checks), 'post-boot health evidence missing')
     return record
 
 
