@@ -4,8 +4,10 @@ Phase 1 installation foundation for an Arch-derived, x86-64, UEFI-only operating
 The temporary identity lives in `distro/branding/project.toml`. The Phase 0 image
 passed independent ISO byte comparison and UEFI/KVM Plasma Wayland validation.
 See the [validation record](docs/validation.md) for exact artifacts and limits.
-Version 0.1.0-dev is under development. Installed-system validation is a separate
-gate; the Phase 0 result does not validate the new installer.
+Version 0.1.0-dev passed Phase 1 validation: independent byte-identical ISOs,
+fresh encrypted/plain Calamares installs, and two disk-only boots of each installed
+Plasma Wayland system with all four hardware/status commands and healthy services.
+Qualification covers the recorded UEFI/QEMU/KVM target; this is a development build.
 
 Implemented: Rust workspace, read-only `distroctl`, typed release metadata,
 ArchISO profile for Plasma Wayland, signed local package repository tooling,

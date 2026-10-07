@@ -1,7 +1,8 @@
 # Installation foundation
 
-Phase 1 source is under development. Successful unit tests or an installer success
-page do not establish installed-OS acceptance. See [validation](validation.md).
+Phase 1 passed fresh encrypted and plain installation acceptance under UEFI/KVM,
+including two disk-only boots, normal-user command/service checks and a UKI
+regeneration boot. See [validation](validation.md) for the tested source and limits.
 
 The live application menu exposes **Install Project Astraeus**. Calamares 3.4.3
 is built from the upstream release, SHA256

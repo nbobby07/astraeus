@@ -1,94 +1,428 @@
-# Phase 1 validation
+# Phase 1 validation: 2026-10-07 UTC
 
-**PHASE 1 NOT YET VALIDATED.** Implementation and clean-builder validation are
-in progress. The Phase 0 results below apply to their recorded source/artifacts;
-they do not establish installed-system boot or reproducibility for Phase 1.
+**PHASE 1 VALIDATED** for the recorded x86-64 UEFI/QEMU/KVM target. Two independent clean builds produced byte-identical ISOs. Fresh encrypted and plain Calamares installations each completed, cold-booted twice without the ISO, reached SDDM, logged into Plasma Wayland, and passed networking, audio, all four status/hardware commands and zero failed system/user units. Neither final installation needed a manual repair. This is development version 0.1.0-dev; no Phase 2 work was started.
 
-Baseline inspected before edits: clean `main` at
-`8dcb2cdf8d9faac97c4ae3367a4d8794a95224ea`. Architecture, building, testing and
-validation documentation and the complete profile/build pipeline were read.
-Rust formatting, two baseline tests and Clippy passed. Python baseline: Windows
-5 passed/3 Linux skips; WSL 7 passed/1 image-tool skip. Both archived database
-hashes and 50 upstream package versions passed the online check.
+## Source and integration
 
-The hardware/status commit `f961158de9461a16e09abfe1282ae2ce2b48cae0` was
-reviewed and cherry-picked as `08b6113` from a clean tree. It was based directly
-on the current core checkpoint and had no conflicting installer changes.
-After integration, Linux passed 15 Rust tests, formatting, Clippy with warnings
-denied and all 14 Python tests, including native image-tool byte comparison.
-Windows passed 13 Rust tests and ten Python tests with four Unix/Linux skips.
-The installed smoke script now runs all four status/hardware text/JSON commands.
-Nine Bash files passed syntax checks before integration; the changed installed
-smoke script also passed after integration.
-The expanded locked package union contains 73 upstream packages and retains the
-same Phase 0 database hashes, ArchISO version, compiler and snapshot date.
+Baseline: clean `main` at `8dcb2cdf8d9faac97c4ae3367a4d8794a95224ea`. Architecture, building, testing, validation and the complete profile/build pipeline were read before edits. Baseline formatting, two Rust tests and Clippy passed. Baseline Python: Windows 5 passed/3 Linux skips; WSL 7 passed/1 image-tool skip. Both archived databases and 50 upstream package versions verified. Existing Phase 0 reproducibility fixes were retained.
 
-The existing paused Freestyle validator was resumed, with no new outer VM. The
-user authorized official CLI account access. Initial browser transfer failed
-partway and is not accepted evidence. Clean builders A6/B6 both exited 0 and
-produced byte-identical 3527460864-byte `astraeus-dev-0.1.0-dev-x86_64.iso` files:
-SHA256 `e2aabf771b856a503f7acf396d73d8975b74cc42d1a1069db451b09f5d57dc9c`,
-with `cmp` exit 0. Their source was clean commit
-`ce749b58b00785636b6c9ce1d12c1b82e6114046`, 57556-byte archive SHA256
-`69da31b0e5e4c1b9d8ddc764f08050b214670b8990df0e345e5c5dc4d1e16b5b`.
-The A6 ISO reached Plasma Wayland and its live smoke success marker.
-This pair predates the hardware merge and subsequent installer corrections and
-does not qualify the final source.
+Chat 2's `f961158de9461a16e09abfe1282ae2ce2b48cae0` was inspected against the active core checkpoint, including all seven requested overlapping paths. The active tree was clean and the hardware branch was based on that core checkpoint. Cherry-pick `08b6113fae5ff38ee04965fa7c9460907e53ac6f` applied without conflicts and preserved installer/core changes. The merged commands were subsequently tested inside the final installed Astraeus guests, as ordinary users.
 
-Real Calamares interaction found two startup-branding fields missing (`slideshow`
-and `style`), now supplied and covered by generated-profile tests. Installation
-then created the six Btrfs subvolumes but payload mounting failed with ENOSPC:
-loop setup through the live overlay copied the 1.5 GiB image into the 256 MiB
-writable layer. Accessing the read-only ArchISO SquashFS path succeeded; the
-source path and its regression check are corrected. The diagnostic retry uses
-those corrections. Builder A7 was canceled after the payload defect was found;
-it is not a successful build. Earlier A2/A3 failed or were canceled at an image
-timestamp conflict; clearing ambient SOURCE_DATE_EPOCH for the explicit-time
-payload compressor fixed it and has a native byte-comparison regression test.
-A5 failed during initial archive transfer; the builder now uses the same bounded
-curl retries/timeouts as the image build.
+Tested implementation: clean `8ac0b4a20da5c3276c2de32989593f331f9ff7ed`.
 
-The corrected diagnostic Calamares installation completed. Its initial cold boot
-fell through to PXE despite valid GPT/ESP flags and boot files; an explicit QEMU
-virtio disk boot priority reached systemd-boot and the UKI. A wrong LUKS passphrase
-was rejected, and the correct passphrase unlocked root. Boot then found fstab
-still naming Calamares's temporary mapper. Finalization now changes all six mount
-sources to `/dev/mapper/root`, matching crypttab and the embedded command line;
-the regression covers all six mounts, idempotence and untouched ESP/comments.
-After applying that same mapper transform to the diagnostic disk, a cold boot
-reached SDDM, login selected Plasma Wayland, and the installed-user health script
-passed: UEFI/UKI/LUKS2 observations, all six Btrfs mounts, NetworkManager, DNS,
-outbound HTTPS, PipeWire/Pulse/WirePlumber and zero failed system/user units.
-This checks the repaired core path. It is not a fresh final-source installation
-or accepted Phase 1 system, and its older hardware binary cannot qualify the
-merged command acceptance.
+```text
+source10.tar.xz
+70844 bytes
+SHA256 ed56ca7a8f86d06eae1917cf209efefc16bd50a8f18ca7a7562dea8253c5d196
+```
 
-The merged-source A8/B8 pair also reproduced exactly: 3527608320 bytes and
-SHA256 `1d32135c7325160f1e6c494c95e86d47dc1d48494616db75354ecbc80c2ecafa`.
-A fresh encrypted installation cold-booted without repairs, reached SDDM and
-Plasma Wayland, and passed all four merged text/JSON commands, networking, audio,
-six mounts and zero failed system/user units. An idle live session exposed a
-passwordless screen-lock QML error; a live-only configuration now disables idle
-locking and is excluded from installed payloads by regression coverage.
+Local and remote source hashes matched. The final report-only commit follows acceptance; production files under `crates/`, `distro/` and `scripts/` remain those recorded in the tested inputs manifest.
 
-A9/B9 reproduced the updated live configuration: 3527608320 bytes, SHA256
-`c5891180663037248c0ebb87bd9168ee152eec3c35a37aea0d0fc57087fa177f`, `cmp` exit 0,
-matching recorded inputs, package manifests and independently built packages.
-Their clean source was `a96cba3766ab713a6cf9ed094fd91b2a00b4005b`, archive SHA256
-`593027c312c8653207544db67aebf2781d6dcdafe6de980b91d21a3a86c18410`.
-The encrypted install completed and remained accessible after five minutes idle.
-Cancellation left its initial disk blank. An 8 GiB failure test then revealed
-Calamares had silently compiled out the welcome storage check because libparted
-was missing, and the partition page allowed proceeding. The package now depends
-on parted and requires its library at CMake configuration. The lock includes
-parted 3.8-1 from the same checksum-verified archive; regression coverage checks
-the dependency, mandatory lookup and 20 GiB requirement. Updated Linux checks
-passed 15 Rust tests, formatting, Clippy and all 15 Python tests. This correction
-requires a new final build and acceptance pair.
+## ISO and independent builds
 
-Final corrected-source ISO reproduction, encrypted/plain installed boots, SDDM
-login, installed-session health and second boots remain unaccepted. No installed
-success is inferred from WSL fixtures, live boot or partial Calamares progress.
+```text
+astraeus-dev-0.1.0-dev-x86_64.iso
+3527583744 bytes
+SHA256 afac8d64163b716be0bc175bca7e2ffe20f092d123c0ccf518ae17e97c015d37
+```
+
+Builders A10 and B10 each used a fresh 36 GiB overlay, fresh OVMF variables, 6 vCPU and 6 GiB RAM. Both exited 0 with their success markers. Full ISO `cmp` exited 0. Recorded inputs, builder/live/installed package manifests and independently compiled unsigned package hashes matched. A generated the signed custom repository; B independently compiled the packages and consumed the same published signed repository bytes. This proves image reproducibility with fixed signed inputs, not independent timestamped signing operations.
+
+Both use Arch snapshot `2026/10/01`, epoch `1790812800`, ArchISO `91-1`, Rust `1.98.1`, and the same verified cloud base as Phase 0. Both database hashes and 74 direct upstream package versions verified. The final manifests contain 682 live packages and 676 installed packages; installed selection is explicitly maintained separately. Calamares remains live-only.
+
+Final public repository fingerprint: `D86C18757DB44DD67A4BFB97C06FD56A751C4E95`. Packages and the custom database remain signature-required. The key is a disposable development validation identity, not a production release identity. Builder private signing material was not included in source, ISO or installed payload; completed builder disks were removed after evidence export and process shutdown.
+
+The local [ISO](../out/phase1/iso/astraeus-dev-0.1.0-dev-x86_64.iso) also passed exact size/SHA256 verification. [Comparison record](../out/phase1/reproducibility10.json), [A build record](../out/phase1/A10-evidence/evidence/A/build.log), and [B build record](../out/phase1/B10-evidence/evidence/B/build.log) are retained. Input/package manifests sit beside each build log.
+
+## Real installation and boot matrix
+
+| Gate | Encrypted `astraeus-encrypted` | Plain `astraeus-plain` |
+| --- | --- | --- |
+| Fresh disk / UEFI variables | 32 GiB blank disk / fresh VARS | 32 GiB blank disk / fresh VARS |
+| Native Calamares installation | Completed | Completed |
+| Filesystem | LUKS2 containing Btrfs | Btrfs |
+| First cold boot, ISO detached | Passed | Passed |
+| systemd-boot / active UKI | Observed in installed CLI and bootctl | Observed in installed CLI and bootctl |
+| SDDM password login / default session | Passed / Plasma Wayland | Passed / Plasma Wayland |
+| All four text/JSON commands, non-root | Passed | Passed |
+| NetworkManager / DNS / outbound HTTPS | Passed | Passed |
+| PipeWire / Pulse / WirePlumber | Active | Active |
+| Six Btrfs mounts | Passed | Passed |
+| Failed system/user units | 0 / 0 | 0 / 0 |
+| Second disk-only cold boot and login | Passed | Passed |
+| Second-boot commands / network / audio / failed units | Passed / passed / active / 0 | Passed / passed / active / 0 |
+
+Actual QEMU command records for all four cold boots were checked: KVM acceleration and explicit disk boot priority were present, with no ISO drive or ISO path. The same installed disk and VARS persisted between boots. Acceptance did not bypass Calamares partitioning, extraction or account setup. Mouse/keyboard interaction used private QMP sockets and captured actual native pages. No public VNC or shell was exposed.
+
+Calamares version: `3.4.3-1`, built from upstream release SHA256 `144cbbf6bdcebfb21685950db4f0777218519df095f62f4aa392f28348110d18`. Pages: welcome/language, locale/timezone, keyboard, partition, users, summary, installation, finished. Encryption was initially recommended/selected and explicitly disabled for the plain install. Language/locale was American English; timezone America/Los_Angeles; keyboard English (US).
+
+Execution modules:
+
+```text
+astraeus-preflight -> partition -> mount -> unpackfs -> machineid -> locale
+-> keyboard -> localecfg -> fstab -> users -> astraeus -> umount
+```
+
+Native upstream modules created the partitions, LUKS2, six sibling subvolumes, filesystems, locale, fstab and accounts. Two small distribution jobs check requirements and finalize already-mounted filesystems, repository trust, services and standard boot tooling. They do not partition disks or receive passwords. No custom installer or GRUB was introduced.
+
+The installed account is `validator`, UID/GID 1000, with wheel membership and password-authenticated sudo. Root password login is locked; there is no automatic login. Both retain normal password-protected screen locking. Audits confirm the live account, Calamares binary, live idle-lock configuration and live firstboot mask are absent. Selected US layout is present in both vconsole and the installed user's Plasma configuration.
+
+## Actual storage
+
+Both disks have GPT. ESP starts at sector 4096 and contains 2097152 sectors, exactly 1073741824 bytes, FAT32, mounted at `/efi`. System partition starts at sector 2101248 and contains 65007544 sectors, 33283862528 bytes. Sectors are 512 bytes. The encrypted mapping contains 33267085312 bytes after its LUKS2 header.
+
+| Identifier | Encrypted | Plain |
+| --- | --- | --- |
+| ESP filesystem UUID | `1160-9EE2` | `2E95-28AE` |
+| LUKS2 UUID | `0e5796df-94e1-48d6-8b22-ea33984073a1` | None |
+| Btrfs UUID | `749738e8-aa7a-4598-9bb4-33d57bbb605a` | `333d0b41-df5b-44b4-a61d-218319dbf128` |
+| Root source at boot | `/dev/mapper/root` | `/dev/vda2` |
+
+Both have sibling subvolume IDs 256 through 261, all with top-level ID 5:
+
+| Subvolume | Mount |
+| --- | --- |
+| `@` | `/` |
+| `@home` | `/home` |
+| `@snapshots` | `/.snapshots` |
+| `@log` | `/var/log` |
+| `@cache` | `/var/cache` |
+| `@containers` | `/var/lib/containers` |
+
+Fstab selects `defaults,noatime,compress=zstd:1` and each named subvolume. ESP uses `defaults,umask=0077`. Actual plain Btrfs mounts additionally show the kernel's `discard=async` default; the encrypted mapper does not enable discard. `/tmp` is tmpfs; no swap or hibernation path is configured. [Storage design](storage.md) records each subvolume's purpose and future rollback boundary; rollback itself is not implemented.
+
+Actual encrypted fstab:
+
+```fstab
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a device; this may
+# be used with UUID= as a more robust way to name devices that works even if
+# disks are added and removed. See fstab(5).
+#
+# <file system>             <mount point>  <type>  <options>  <dump>  <pass>
+UUID=1160-9EE2                            /efi           vfat    defaults,umask=0077 0 2
+/dev/mapper/root	/	btrfs	subvol=/@,defaults,noatime,compress=zstd:1	0	0
+/dev/mapper/root	/home	btrfs	subvol=/@home,defaults,noatime,compress=zstd:1	0	0
+/dev/mapper/root	/.snapshots	btrfs	subvol=/@snapshots,defaults,noatime,compress=zstd:1	0	0
+/dev/mapper/root	/var/log	btrfs	subvol=/@log,defaults,noatime,compress=zstd:1	0	0
+/dev/mapper/root	/var/cache	btrfs	subvol=/@cache,defaults,noatime,compress=zstd:1	0	0
+/dev/mapper/root	/var/lib/containers	btrfs	subvol=/@containers,defaults,noatime,compress=zstd:1	0	0
+```
+
+Actual plain fstab:
+
+```fstab
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a device; this may
+# be used with UUID= as a more robust way to name devices that works even if
+# disks are added and removed. See fstab(5).
+#
+# <file system>             <mount point>  <type>  <options>  <dump>  <pass>
+UUID=2E95-28AE                            /efi           vfat    defaults,umask=0077 0 2
+UUID=333d0b41-df5b-44b4-a61d-218319dbf128 /              btrfs   subvol=/@,defaults,noatime,compress=zstd:1 0 0
+UUID=333d0b41-df5b-44b4-a61d-218319dbf128 /home          btrfs   subvol=/@home,defaults,noatime,compress=zstd:1 0 0
+UUID=333d0b41-df5b-44b4-a61d-218319dbf128 /.snapshots    btrfs   subvol=/@snapshots,defaults,noatime,compress=zstd:1 0 0
+UUID=333d0b41-df5b-44b4-a61d-218319dbf128 /var/log       btrfs   subvol=/@log,defaults,noatime,compress=zstd:1 0 0
+UUID=333d0b41-df5b-44b4-a61d-218319dbf128 /var/cache     btrfs   subvol=/@cache,defaults,noatime,compress=zstd:1 0 0
+UUID=333d0b41-df5b-44b4-a61d-218319dbf128 /var/lib/containers btrfs   subvol=/@containers,defaults,noatime,compress=zstd:1 0 0
+```
+
+The encrypted crypttab data entry is:
+
+```text
+root UUID=0e5796df-94e1-48d6-8b22-ea33984073a1 none luks
+```
+
+Plain crypttab contains only the package's explanatory comments. Full partition dumps, subvolume lists, both crypttabs and filesystem/mount evidence are retained in the [encrypted audit](../out/phase1/encrypted10-health/boot2/audit.json) and [plain audit](../out/phase1/plain10-health/boot2/audit.json).
+
+Actual cryptsetup `2.8.8-1` parameters were inspected, not assumed: LUKS2, Argon2id keyslot 0, time cost 20, memory 397880 KiB, 4 threads, 64-byte/512-bit key, AES-XTS-plain64, 4096-byte sectors, data offset 16777216 bytes. Calibration defaults were retained; no faster test KDF, cipher/key-size override, keyfile or TPM policy was used. Wrong passphrase kept boot blocked and requested another credential; the correct passphrase booted successfully. Full JSON header metadata is retained in the encrypted audit without password/key material.
+
+## Boot, desktop and services
+
+Both installed systems run kernel `7.2.7-arch1-1`, systemd-boot and systemd-stub `262-1-arch`, mkinitcpio `42.1-1` and systemd-ukify `262-1`. One Type #2 UKI is stored at `/efi/EFI/Linux/astraeus-dev-linux.efi`; systemd-boot discovers it as the default and also exposes Firmware Settings. Loader timeout is 3 seconds and editor access is disabled.
+
+Actual initramfs configuration:
+
+```sh
+MODULES=(btrfs virtio_pci virtio_blk nvme ahci xhci_pci usbhid hid_generic)
+BINARIES=()
+FILES=()
+HOOKS=(base systemd autodetect microcode modconf keyboard sd-vconsole block sd-encrypt filesystems fsck)
+COMPRESSION="zstd"
+```
+
+The preset reads `/boot/vmlinuz-linux` and `/etc/kernel/cmdline`; UKI inspection shows `.linux`, `.initrd`, `.uname`, `.osrel`, `.cmdline` and `.sbat`. Native mkinitcpio replaces the embedded os-release VERSION_ID with the kernel version, while preserving Astraeus identity; the running system's release version remains 0.1.0-dev. See [upstream mkinitcpio v42.1](https://github.com/archlinux/mkinitcpio/blob/v42.1/mkinitcpio#L538).
+
+Original encrypted command line:
+
+```text
+rd.luks.name=0e5796df-94e1-48d6-8b22-ea33984073a1=root root=/dev/mapper/root rootflags=subvol=@ rw
+```
+
+Plain command line:
+
+```text
+root=UUID=333d0b41-df5b-44b4-a61d-218319dbf128 rootflags=subvol=@ rw
+```
+
+A real relevant-input test appended `loglevel=6` to the encrypted system's command line and ran `mkinitcpio -P`. Rebuild exited 0, UKI inspection contained the change, and its hash changed:
+
+```text
+before 5d1a678ece283c70ef307ec905d1903fa04cc53edbeb4a9ae39ea0e5080fed66
+after  e36b0cf769cd0281cca530b63a045336f8b47f7edb8f6345b6a9c03e9cb017f7
+```
+
+The second cold boot passed with `loglevel=6` in `/proc/cmdline`, normal LUKS2 unlock, all six mounts and the full health check. No mitigation was disabled. [Regeneration evidence](../out/phase1/encrypted10-health/boot1/uki-regeneration.json) records command output and inspection. Existing Arch hooks plus the selected microcode/ukify/cryptsetup/Btrfs/systemd hooks preserve the standard regeneration path.
+
+SDDM `0.21.0-7` presented password login and Plasma Wayland by default on all four cold boots. Plasma workspace is `6.7.5-1`. Konsole `26.08.1-1` rendered and accepted the actual acceptance commands in both installed systems. Ghostty `1.3.1-2` rendered and accepted commands in the installed encrypted Wayland session; both installations contain it. QEMU software rendering emitted non-fatal Mesa/GTK warnings; no physical GPU acceleration claim is made.
+
+NetworkManager `1.58.1-1` was active after both boots on both disks; nmcli, DNS lookup and real HTTPS access to the Arch archive passed. PipeWire and PipeWire Pulse `1:1.6.9-1`, and WirePlumber `0.5.18-1`, were active under both normal user sessions after both boots. Both system and user failed-unit files were empty. Complete versions, account, keyboard, timezone, loader and UKI data are in the audits.
+
+## Installed hardware and CLI output
+
+The reusable Rust probe observed x86_64, `AuthenticAMD`, CPU model `19/01`, 4 logical and 4 physical guest cores, approximately 3.8 GiB total memory plus available memory, Virtio GPU `0x1af4:0x1050` with PCI driver/DRM nodes/boot-VGA flag, a 32 GiB virtio disk, partition capacities and `vda` parents, UEFI and positive QEMU virtualization evidence. Model/transport/parent fields that are unavailable remain null. Container type is null. No tuning or recommendations are performed.
+
+The kernel also exposes a QEMU DVD-ROM `sr0` with a reported approximately 1 GiB capacity. Optical-media presence is not separately probed. This is a kernel device observation, not ISO-attachment evidence; the actual cold-boot QEMU command records prove the ISO was absent.
+
+Each accepted installed user session executed, without sudo:
+
+```sh
+distroctl status
+distroctl status --json
+distroctl hardware
+distroctl hardware --json
+```
+
+Encrypted first-boot `distroctl status`:
+
+```text
+Project Astraeus
+
+System
+  Version       0.1.0-dev
+  Channel       development
+  Architecture  x86_64
+  Hostname      astraeus-encrypted
+
+Kernel
+  Version       7.2.7-arch1-1
+
+Boot
+  Firmware      UEFI
+  Bootloader    systemd-boot 262-1-arch
+  Stub          systemd-stub 262-1-arch
+  UKI path      \EFI\Linux\astraeus-dev-linux.efi
+
+Filesystem
+  Root          btrfs
+  Encryption    LUKS2
+
+Desktop
+  Name          KDE
+  Session       wayland
+
+Hardware
+  CPU           19/01
+  Logical CPUs  4
+  GPU           Virtio Virtio 1.0 GPU
+  Memory        3.8 GiB
+  Storage       /dev/sr0 (1024.0 MiB), /dev/vda (32.0 GiB)
+```
+
+Plain first-boot `distroctl status`:
+
+```text
+Project Astraeus
+
+System
+  Version       0.1.0-dev
+  Channel       development
+  Architecture  x86_64
+  Hostname      astraeus-plain
+
+Kernel
+  Version       7.2.7-arch1-1
+
+Boot
+  Firmware      UEFI
+  Bootloader    systemd-boot 262-1-arch
+  Stub          systemd-stub 262-1-arch
+  UKI path      \EFI\Linux\astraeus-dev-linux.efi
+
+Filesystem
+  Root          btrfs
+  Encryption    none
+
+Desktop
+  Name          KDE
+  Session       wayland
+
+Hardware
+  CPU           19/01
+  Logical CPUs  4
+  GPU           Virtio Virtio 1.0 GPU
+  Memory        3.8 GiB
+  Storage       /dev/sr0 (1024.0 MiB), /dev/vda (32.0 GiB)
+```
+
+Complete encrypted first-boot `distroctl status --json`, including the normalized hardware model:
+
+```json
+{
+  "schema_version": 1,
+  "name": "Project Astraeus",
+  "version": "0.1.0-dev",
+  "channel": "development",
+  "hostname": "astraeus-encrypted",
+  "kernel": "7.2.7-arch1-1",
+  "boot": {
+    "firmware": "UEFI",
+    "bootloader": "systemd-boot 262-1-arch",
+    "stub": "systemd-stub 262-1-arch",
+    "uki_path": "\\EFI\\Linux\\astraeus-dev-linux.efi"
+  },
+  "filesystem": {
+    "root_type": "btrfs",
+    "source": "/dev/mapper/root",
+    "options": "rw,noatime,rw,compress=zstd:1,space_cache=v2,subvolid=256,subvol=/@",
+    "encryption": "LUKS2"
+  },
+  "desktop": {
+    "name": "KDE",
+    "session_type": "wayland"
+  },
+  "hardware": {
+    "schema_version": 1,
+    "cpu": {
+      "architecture": "x86_64",
+      "vendor": "AuthenticAMD",
+      "model": "19/01",
+      "logical_count": 4,
+      "physical_core_count": 4
+    },
+    "memory_bytes": 4089905152,
+    "memory_available_bytes": 2817626112,
+    "gpus": [
+      {
+        "pci_address": "0000:00:02.0",
+        "vendor": "Virtio",
+        "vendor_id": "0x1af4",
+        "device_id": "0x1050",
+        "model": "Virtio 1.0 GPU",
+        "driver": "virtio-pci",
+        "drm_nodes": [
+          "/dev/dri/card1",
+          "/dev/dri/renderD128"
+        ],
+        "boot_vga": true
+      }
+    ],
+    "storage": [
+      {
+        "name": "dm-0",
+        "path": "/dev/dm-0",
+        "model": null,
+        "transport": null,
+        "size_bytes": 33267085312,
+        "rotational": true,
+        "kind": "mapped",
+        "parent": null
+      },
+      {
+        "name": "sr0",
+        "path": "/dev/sr0",
+        "model": "QEMU DVD-ROM",
+        "transport": "sata",
+        "size_bytes": 1073741312,
+        "rotational": false,
+        "kind": "disk",
+        "parent": null
+      },
+      {
+        "name": "vda",
+        "path": "/dev/vda",
+        "model": null,
+        "transport": "virtio",
+        "size_bytes": 34359738368,
+        "rotational": true,
+        "kind": "disk",
+        "parent": null
+      },
+      {
+        "name": "vda1",
+        "path": "/dev/vda1",
+        "model": null,
+        "transport": "virtio",
+        "size_bytes": 1073741824,
+        "rotational": true,
+        "kind": "partition",
+        "parent": "vda"
+      },
+      {
+        "name": "vda2",
+        "path": "/dev/vda2",
+        "model": null,
+        "transport": "virtio",
+        "size_bytes": 33283862528,
+        "rotational": true,
+        "kind": "partition",
+        "parent": "vda"
+      }
+    ],
+    "capabilities": {
+      "uefi": true,
+      "virtual_machine": true,
+      "virtualization_type": "qemu",
+      "container_type": null
+    },
+    "issues": []
+  }
+}
+```
+
+Complete plain [status JSON](../out/phase1/plain10-health/boot1/status.json), encrypted [hardware text](../out/phase1/encrypted10-health/boot1/hardware.txt) / [hardware JSON](../out/phase1/encrypted10-health/boot1/hardware.json), and plain [hardware text](../out/phase1/plain10-health/boot1/hardware.txt) / [hardware JSON](../out/phase1/plain10-health/boot1/hardware.json) are retained verbatim. Both second-boot output sets are preserved alongside their health logs. These are actual installed Astraeus observations, not WSL fixture output.
+
+## Tests and failure paths
+
+- Linux: `cargo test --workspace --locked`, 15 tests passed; `cargo fmt --check` passed; `cargo clippy --workspace --all-targets --locked -- -D warnings` passed.
+- Windows: 13 Rust tests passed, formatting and Clippy passed. Two Unix-specific sysfs-symlink tests are Linux-only.
+- `python3 -m unittest discover -s tests -v`: all 15 Linux tests passed, including native SquashFS/xorriso byte comparison. Windows passed 11 with 4 Unix/Linux skips.
+- All nine CI Bash syntax checks passed; the changed Calamares recipe was checked again after the libparted correction.
+- Archive verification passed for both original database hashes and all 74 selected upstream package versions.
+- Two independent final Arch builds, full ISO byte comparison and matching input/package manifests passed.
+- Two real final Calamares installs and four installed disk-only KVM boots passed the full normal-user acceptance script.
+- Final 8 GiB guest was blocked at welcome with “At least 20 GiB is required”; Next was disabled, and sfdisk/lsblk confirmed the disk remained blank.
+- Wrong LUKS2 credential was rejected during the final encrypted boot; correct unlock passed on both boots.
+- Real Calamares cancellation before mutation on Source9 returned to desktop and left the disk blank. The cancellation path itself was unchanged by Source10's build-dependency fix.
+- Malformed installer configuration, weak/incorrect policy choices, mount/UUID inputs and encrypted/plain boot inputs have unit regression coverage. Builder interruption cannot produce accepted success evidence.
+
+## Real bugs found and fixed
+
+| Cause | Fix | Regression / actual verification |
+| --- | --- | --- |
+| Encryption probe expected a partition `slaves` directory | Shared sysfs partition-parent resolver | Fixture and real-symlink tests; final encrypted/plain status |
+| QMP text input lacked JSON and subvolume punctuation | Complete needed key map and prevalidate before sending | Input/invalid-input tests; actual private GUI/console interaction |
+| CLI PTY input could echo credentials or arrive before echo was disabled | Non-echo stdin plus readiness marker before transmitting | stdin tests/documented workflow; final installer evidence checked against disposable credentials |
+| Ambient SOURCE_DATE_EPOCH conflicted with explicit installed SquashFS times | Clear ambient variable for explicit-time compressor | Native byte regression with ambient epoch and changed file time; final ISO pair |
+| Initial archive transfer had unbounded/default network behavior | Reuse bounded curl retries/connect/transfer timeouts | Successful clean builders and locked archive verification |
+| Calamares branding omitted required slideshow/style fields | Supply native required fields | Generated-profile regression; actual final startup |
+| Loop setup via live overlay copied the large install image into its small writable layer | Read payload through ArchISO's read-only lower SquashFS mount | Source-path regression; both final installs |
+| fstab retained Calamares's temporary encrypted mapper after crypttab/UKI used `root` | Rewrite all six mount sources consistently | Six-mount/idempotence/plain/ESP/comment regression; final encrypted two boots |
+| OVMF default disk selection fell through to PXE | Explicit ISO/disk device boot priorities | Launcher regression and four ISO-free final boots |
+| Passwordless live idle lock hit a QML error after PAM accepted the blank account | Disable idle/resume lock only in live configuration | Payload-boundary tests; final install stayed accessible unattended; installed audit excludes live setting |
+| libparted missing during compilation silently removed Calamares's storage check | Add parted build/runtime dependency and mandatory CMake find-package lookup | Policy/dependency regression, both native builds found libparted, final 8 GiB refusal before writes |
+
+Earlier failed/canceled attempts were retained as diagnostic evidence and never counted as accepted installs or builds. Historical Source6, Source8 and Source9 ISO pairs reproduced before later installer defects were corrected. Diagnostic disk repairs were used only to isolate causes; final Source10 installations received no manual target repairs.
+
+## Evidence, cleanup and limits
+
+Build evidence: `out/phase1/A10-evidence/`, `B10-evidence/`, source10 archive/metadata and reproducibility10.json. Installed evidence: `out/phase1/encrypted10-health/{boot1,boot2}/`, `plain10-health/{boot1,boot2}/`, redacted installer logs, and `final10-guests/` containing screens, serial and launch commands. [Guest evidence archive](../out/phase1/final10-guests.tar.gz) preserves the native interaction and boot records. Generated artifacts are ignored by Git; accepted findings and representative output are recorded here.
+
+All nested QEMU guests were stopped and this was explicitly checked before cleanup. The existing Freestyle validator `vm-cc9d56de23154de7a22492f24dfaae27` was paused with the official CLI; returned state was `paused`. No new outer VM, paid resize or public console was created. Unrelated `atm10` was untouched. Original Phase 0 artifacts remain retained. Superseded Phase 1 media and completed builder overlays were retired after hash/evidence preservation to stay within the existing 64 GiB disk.
+
+Qualification covers this UEFI/KVM virtual target and erase-disk workflow. Physical hardware, proprietary/hybrid GPUs, physical audio output, mixed firmware, manual/alongside/dual-boot layouts, low-RAM refusal and power loss during partition mutation remain unqualified. QEMU graphics use software rendering; the SDDM greeter's layout indicator is unpolished, while actual console and user keyboard configurations were verified as US. No enforced Secure Boot, production release signing, TPM unlock, swap/hibernation, recovery generations, transactional update or rollback manager was implemented. No Phase 2 work was started.
 
 # Phase 0 validation: 2026-10-06 to 2026-10-07 UTC
 
