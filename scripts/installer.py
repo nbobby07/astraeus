@@ -49,6 +49,8 @@ def stage(live, values, write):
                     "versionedName": values["NAME"] + " " + values["VERSION"],
                     "shortVersionedName": values["NAME"], "bootloaderEntryName": values["NAME"]},
         "images": {"productIcon": "logo.svg", "productLogo": "logo.svg", "productWelcome": "logo.svg"},
+        "slideshow": ["logo.svg"],
+        "style": {},
         "uploadServer": {"type": "none"},
     }
     write(config / "branding/astraeus/branding.desc", json.dumps(branding, indent=2) + "\n")

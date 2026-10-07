@@ -85,6 +85,12 @@ class InstallerTests(unittest.TestCase):
             values = {"NAME": "Test OS", "ID": "test-os", "VERSION": "0.1.0-dev"}
             installer.stage(root, values, bootstrap.write)
             settings = json.loads((root / "etc/calamares/settings.conf").read_text())
+            branding_dir = root / "etc/calamares/branding/astraeus"
+            branding = json.loads((branding_dir / "branding.desc").read_text())
+            self.assertTrue(branding["slideshow"])
+            self.assertIsInstance(branding["style"], dict)
+            for image in branding["slideshow"]:
+                self.assertTrue((branding_dir / image).is_file())
             self.assertEqual(settings["sequence"][1]["exec"][-2:], ["astraeus", "umount"])
             mount = json.loads((root / "etc/calamares/modules/mount.conf").read_text())
             self.assertEqual({s["subvolume"]: s["mountPoint"] for s in mount["btrfsSubvolumes"]}, installer.SUBVOLUMES)
