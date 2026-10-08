@@ -167,6 +167,7 @@ fn ensure_not_stale(records: &[TransactionRecord], id: i64) -> Result<()> {
 }
 
 /// Run before offline rollback changes the root. History remains on @log.
+/// Accepts mutation_possible states too: a killed updater never reaches recover_interrupted.
 pub fn validate_rollback_target(
     records: &[TransactionRecord],
     transaction_id: Option<&str>,
@@ -184,7 +185,7 @@ pub fn validate_rollback_target(
         .ok_or("snapshot transaction history missing")?;
     ensure_not_stale(records, id)?;
     if record.snapshot.as_deref() != Some(snapshot)
-        || !(record.state.mutation_possible() || record.state == TransactionState::Succeeded)
+        || !(record.state == TransactionState::Succeeded || record.state.mutation_possible())
     {
         return Err("target is not an eligible transaction pre-update snapshot".into());
     }
