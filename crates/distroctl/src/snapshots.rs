@@ -104,6 +104,19 @@ pub fn run(args: &[String]) -> Result<()> {
         }
         ["rollback", id] => {
             let id = SnapshotId::parse(id)?;
+            let snapshot = manager.inspect(&id)?;
+            if snapshot.transaction_id.is_some() {
+                let history = flags.get("--top-level").map_or_else(
+                    || Path::new(distro_transactions::HISTORY_PATH).to_path_buf(),
+                    |top| Path::new(top).join("@log/astraeus/transactions.sqlite"),
+                );
+                let records = distro_transactions::read_history(&history)?;
+                distro_transactions::integration::validate_rollback_target(
+                    &records,
+                    snapshot.transaction_id.as_deref(),
+                    id.as_str(),
+                )?;
+            }
             match (
                 flags.contains_key("--dry-run"),
                 flags.contains_key("--execute"),

@@ -1,6 +1,6 @@
 # Phase 2 integration acceptance
 
-**Review follow-up awaiting acceptance.** The two runtime fixes described below
+**Review follow-up awaiting acceptance.** The runtime fixes described below
 must pass fresh installed-system validation before PR #3 is merged. The historical
 `dde0970` build's A-G results remain recorded here; they do not qualify newer code.
 
@@ -26,7 +26,13 @@ An interrupted health update could leave `metadata.next` while an older
 known-good `metadata.json` remained eligible for rollback. Snapshot mutation and
 rollback planning now refuse any store with an unfinished health write. Regression
 tests cover both gaps. Security review and Bugbot reported no additional findings.
-Fresh ISO and installed-system results for these fixes will be recorded below.
+Follow-up review also found that stale transaction-linked snapshots could be
+restored offline even though confirmation refused them. The CLI now reads the
+installed history from persistent @log before both dry-run and execution, rejects
+stale or ineligible transaction targets, and shares the recency check with boot
+confirmation. The first review rebuild was stopped when this finding arrived;
+its source is not an accepted artifact. Fresh ISO and installed-system results
+for the completed fixes will be recorded below.
 
 ## Source and merge audit
 

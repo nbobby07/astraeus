@@ -156,6 +156,46 @@ impl BootEvidence for BtrfsSnapshots {
     }
 }
 
+fn ensure_not_stale(records: &[TransactionRecord], id: i64) -> Result<()> {
+    if records
+        .iter()
+        .any(|r| r.id > id && !r.plan.packages.changes.is_empty())
+    {
+        return Err("stale transaction cannot be confirmed after a later update".into());
+    }
+    Ok(())
+}
+
+/// Run before offline rollback changes the root. History remains on @log.
+pub fn validate_rollback_target(
+    records: &[TransactionRecord],
+    transaction_id: Option<&str>,
+    snapshot: &str,
+) -> Result<()> {
+    let Some(id) = transaction_id else {
+        return Ok(());
+    };
+    let id = id
+        .parse::<i64>()
+        .map_err(|_| "invalid snapshot transaction ID")?;
+    let record = records
+        .iter()
+        .find(|r| r.id == id)
+        .ok_or("snapshot transaction history missing")?;
+    ensure_not_stale(records, id)?;
+    if record.snapshot.as_deref() != Some(snapshot)
+        || !matches!(
+            record.state,
+            TransactionState::AwaitingBoot
+                | TransactionState::RollbackRequired
+                | TransactionState::Succeeded
+        )
+    {
+        return Err("target is not an eligible transaction pre-update snapshot".into());
+    }
+    Ok(())
+}
+
 pub fn confirm(
     session: &mut UpdateSession,
     id: i64,
@@ -182,12 +222,7 @@ pub fn confirm(
     {
         return Ok(record); // Idempotent retry after durable completion, not new health evidence.
     }
-    if records
-        .iter()
-        .any(|r| r.id > id && !r.plan.packages.changes.is_empty())
-    {
-        return Err("stale transaction cannot be confirmed after a later update".into());
-    }
+    ensure_not_stale(&records, id)?;
     if !matches!(
         (rollback, record.state),
         (false, TransactionState::AwaitingBoot)

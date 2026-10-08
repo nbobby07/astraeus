@@ -888,6 +888,31 @@ fn confirmation_requires_new_boot_matching_generation_and_fresh_health() {
 }
 
 #[test]
+fn rollback_planning_rejects_targets_that_confirmation_cannot_finalize() {
+    use crate::integration::validate_rollback_target;
+    let mut original = TransactionRecord::new(plan());
+    original.id = 1;
+    original.state = TransactionState::Succeeded;
+    original.snapshot = Some("pre-1".into());
+    assert!(validate_rollback_target(&[original.clone()], Some("1"), "pre-1").is_ok());
+    assert!(validate_rollback_target(&[], Some("1"), "pre-1").is_err());
+    assert!(validate_rollback_target(&[original.clone()], Some("1"), "post-1").is_err());
+    let mut later = TransactionRecord::new(plan());
+    later.id = 2;
+    later.state = TransactionState::Failed; // Even a pre-mutation failure makes the old target stale.
+    assert!(
+        validate_rollback_target(&[original.clone(), later.clone()], Some("1"), "pre-1")
+            .unwrap_err()
+            .contains("stale")
+    );
+    later.plan.packages.changes.clear(); // Empty plans do not advance the generation.
+    assert!(validate_rollback_target(&[original.clone(), later], Some("1"), "pre-1").is_ok());
+    original.state = TransactionState::RolledBack;
+    assert!(validate_rollback_target(&[original], Some("1"), "pre-1").is_err());
+    assert!(validate_rollback_target(&[], None, "manual").is_ok());
+}
+
+#[test]
 fn stale_confirmation_and_missing_post_snapshot_fail_closed() {
     use crate::integration::{confirm, BootEvidence};
     struct Unreachable;

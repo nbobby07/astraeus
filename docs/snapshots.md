@@ -187,6 +187,12 @@ Known Good" entry. Boot menus, Secure Boot enforcement, firmware overrides,
 bootloader binary rollback and multiple kernels are not implemented/qualified.
 The integrated updater rejects systemd/bootloader update plans before mutation
 and never refreshes the loader copies as part of a package transaction.
+For transaction-linked rollback targets, the CLI reads persistent @log history
+before planning or execution. Only an eligible transaction's recorded pre-update
+snapshot can be restored; a later nonempty transaction makes the target stale,
+including a later update that failed before mutation. This matches finalization's
+recency rule and prevents switching to a state it cannot record. Unlinked manual
+snapshots retain their explicit offline workflow.
 There is no full data scrub, backup replication, automatic retention,
 multi-device Btrfs qualification or cross-filesystem atomicity.
 
