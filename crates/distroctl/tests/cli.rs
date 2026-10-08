@@ -48,6 +48,8 @@ fn cli_contract() {
         &["validate"],
         &["validate", "missing.toml"],
         &["status", "--bad"],
+        &["security", "status", "--execute"],
+        &["security", "enroll"],
         &["hardware", "--json", "extra"],
         &["snapshot", "create", "--reason", "invalid"],
         &["snapshot", "list", "--execute"],
@@ -72,6 +74,20 @@ fn cli_contract() {
             .unwrap()
             .contains("--top-level"));
     }
+}
+
+#[test]
+fn security_status_does_not_invent_success_without_the_installed_helper() {
+    if std::path::Path::new("/usr/bin/astraeus-secure-boot").exists() {
+        return;
+    }
+    let output = Command::new(env!("CARGO_BIN_EXE_distroctl"))
+        .args(["security", "status", "--json"])
+        .output()
+        .unwrap();
+    assert!(!output.status.success());
+    assert!(output.stdout.is_empty());
+    assert!(String::from_utf8_lossy(&output.stderr).contains("inspection unavailable"));
 }
 
 #[test]

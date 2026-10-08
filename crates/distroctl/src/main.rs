@@ -7,6 +7,7 @@ const HELP: &str = "distroctl: system tools
 Usage:
   distroctl info [--json]       Show metadata compiled into this binary
   distroctl status [--json]     Show observed system status
+  distroctl security status [--json]  Inspect Secure Boot policy and signatures
   distroctl hardware [--json]   Discover hardware without changing it
   distroctl validate <path>    Validate a project release TOML file
   distroctl snapshot --help   Snapshot commands and recovery usage
@@ -37,6 +38,18 @@ fn run(args: &[String]) -> Result<(), String> {
     {
         [] | ["--help"] | ["-h"] => println!("{HELP}"),
         ["--version"] => println!("distroctl {}", env!("CARGO_PKG_VERSION")),
+        ["security", "status"] | ["security", "status", "--json"] => {
+            let status = std::process::Command::new("/usr/bin/astraeus-secure-boot")
+                .args(&args[1..])
+                .env_clear()
+                .env("PATH", "/usr/bin:/bin")
+                .env("LC_ALL", "C")
+                .status()
+                .map_err(|e| format!("Secure Boot inspection unavailable: {e}"))?;
+            if !status.success() {
+                return Err("Secure Boot inspection failed".into());
+            }
+        }
         ["update", "--dry-run"]
         | ["update", "--dry-run", "--json"]
         | ["update", "--json", "--dry-run"] => {

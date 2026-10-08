@@ -8,6 +8,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -20,6 +21,35 @@ spec.loader.exec_module(smoke)
 
 
 class InstallerTests(unittest.TestCase):
+    def test_secure_boot_guard_aborts_before_installer_writes(self):
+        config = installer.configuration()
+        read_text, is_dir = Path.read_text, Path.is_dir
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            mounts = {root / sub['mountPoint'].lstrip('/'): 'btrfs ' + sub['subvolume']
+                      for sub in config['modules']['mount']['btrfsSubvolumes']}
+            calls = []
+            def run(*args):
+                calls.append(args)
+                if args[0] == 'findmnt':
+                    return 'vfat' if args[3] == root / 'efi' else mounts[args[3]]
+                self.assertEqual(args, ('arch-chroot', root, '/usr/bin/astraeus-secure-boot', 'guard-legacy'))
+                raise RuntimeError('Secure Boot requires boot-generation integration')
+            def read(path, *args, **kwargs):
+                if path == Path('/usr/share/distro/installer/config.json'):
+                    return json.dumps(config)
+                return read_text(path, *args, **kwargs)
+            with patch.object(provision.os, 'geteuid', return_value=0, create=True), \
+                    patch.object(provision.os.path, 'ismount', return_value=True), \
+                    patch.object(provision, 'run', side_effect=run), \
+                    patch.object(Path, 'read_text', read), \
+                    patch.object(Path, 'is_dir', lambda p: True if p == Path('/sys/firmware/efi') else is_dir(p)):
+                with self.assertRaisesRegex(RuntimeError, 'boot-generation integration'):
+                    provision.provision(root, [{'fs': 'btrfs', 'mountPoint': '/',
+                                               'uuid': '12345678-1234-1234-1234-123456789abc'}])
+            self.assertEqual(list(root.iterdir()), [])
+            self.assertFalse(any('bootctl' in args for args in calls))
+
     def test_installer_storage_check_cannot_be_silently_disabled(self):
         recipe = (ROOT / "distro/packages/calamares/PKGBUILD").read_text()
         self.assertIn("'parted'", recipe)

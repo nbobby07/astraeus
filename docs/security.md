@@ -38,11 +38,17 @@ Boot capable. Test using a separate non-enforcing OVMF variable store. Scripts
 never disable Secure Boot, alter host firmware or enroll keys. Machines enforcing
 Secure Boot are outside this phase's boot acceptance target.
 
-Phase 1 introduces systemd-boot and UKIs for installed systems. Phase 3 adds UKI
-and bootloader signing, key handling/enrollment and chain verification. Firmware
+Phase 1 introduces systemd-boot and UKIs for installed systems. Phase 3 now has
+[owner signing, candidate verification and read-only trust inspection](secure-boot.md).
+Activation and enforcing-OVMF acceptance remain integration gates. Firmware
 that cannot enroll keys automatically needs an explicit explained user step.
 There must be no unsigned fallback that silently weakens a promised verified boot
 chain. Distinguish owner-managed keys from compatibility with factory trust stores.
+
+The signing helper never writes firmware or the ESP. Provisioned systems stage
+new UKIs privately and block package updates pending generation integration.
+Unknown firmware state remains unknown; signatures do not authenticate writable
+root contents. See [ADR 0003](adr/0003-owner-secure-boot.md) for the trust boundary.
 
 ## Phase 1 installation security
 
