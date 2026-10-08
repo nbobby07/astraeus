@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "mode": "firmware",
+  "started": "2026-10-08T18:50:29.855388+00:00",
+  "source_commit": "6a8fda25d25df74215ed0bbe06b97804e053d950",
+  "integrated_acceptance": false,
+  "security_acceptance": true,
+  "injection_only": false,
+  "finished": "2026-10-08T18:50:33.783077+00:00"
+}

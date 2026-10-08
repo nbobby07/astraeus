@@ -1,0 +1,132 @@
+{
+  "accepted": true,
+  "kind": "phase3-installed-fixture",
+  "created": "2026-10-08T18:40:03.501982+00:00",
+  "encryption": "none",
+  "source_commit": "6a8fda25d25df74215ed0bbe06b97804e053d950",
+  "original": {
+    "accepted": true,
+    "created": "2026-10-08T09:20:17.094349+00:00",
+    "encryption": "none",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "harness_files": {
+        "scripts/validate/phase2.py": "99bbc05567010d77c4854d0e622cb10095387cf55b8bed87aabc132ec1698a0a",
+        "scripts/validate/qmp.py": "79c9edb5d6d3ece66d77b224eadc40c140c0dec0b33b530a10d513a98e2eb5d0",
+        "scripts/install-smoke.py": "dcb51bcf1f9d7be7453d3a4954099f371d14b26406ab8e315f2844a23e43cc27"
+      },
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      },
+      "files": {
+        "phase2-guest.py": "8d70b8bb02dab8739e104a761cded1fcb9ad82dd665f1241a9b5e4c69fef4cae",
+        "installed-smoke.sh": "88fa95c0ad7164b681ff6bd527992911cf760f830c4f2782fb36edf188b1a5f5",
+        "fixtures/installed-security.py": "d644bff90dce6181d1d9daaa5043b51b84bf5306481a9c912fbc6bdc162b5e8b",
+        "fixtures/prepare-baseline.sh": "1c9584f3f22bfa096dccec365fd089f1c93588e858d431a19ca78541437ab7e2",
+        "fixtures/repository-fingerprint.txt": "da57a9e6d28291b96269866181cdddb54991a65e23f3a16a39e6c3781fcb869a",
+        "fixtures/audit-installed.py": "0183dfa72bfd1e0d9058e48607163abac138f3ccfe1895f2b1ca6c9eac24bd85",
+        "fixtures/export-evidence.py": "ab794cd9e5d731787218c9fbe60d650f9b1ae33d8843041f1c569e555ce9bc53",
+        "fixtures/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+        "fixtures/adapter.sh": "36a0bdeacbc0df9a6d5d3359f290d6f964079fc1dcb64182a92dd3cfb067115f",
+        "fixtures/export-calamares.py": "ce25bde931a4921559f426c7aea800c17b62d8d28ad88d70c56fe15292ce7cbc",
+        "fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst.sig": "fdaac98d86b0c16b5c3f718c29bdde1df7a9fc02354898905352ec81a39989b1",
+        "fixtures/fixture-repo-2/distro.db": "d2366c5826883061b3c092e5fae9e12fca3851cf0a6e78aaea855b2333b81b8b",
+        "fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst": "b429a718056ac020337bcfdf8fa0f9261ecb6620f1bb788e09cabc3985e485ec",
+        "fixtures/fixture-repo-2/distro.files.tar.gz.sig": "94ff086a884c5ad3bfe64ee9b569a92845dc48af2a6c7ec70e16d144d8e2bce7",
+        "fixtures/fixture-repo-2/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+        "fixtures/fixture-repo-2/distro.files": "9f2bffab5d5458bee6f367cad100c6550cbd3c2f50f81af18cc145f1508be120",
+        "fixtures/fixture-repo-2/distro.db.tar.gz": "d2366c5826883061b3c092e5fae9e12fca3851cf0a6e78aaea855b2333b81b8b",
+        "fixtures/fixture-repo-2/SHA256SUMS": "d2c3bef0f16f9b358e633a293ef3b6b9f198e199fd59b3c0e6772336b604b35d",
+        "fixtures/fixture-repo-2/distro.files.sig": "94ff086a884c5ad3bfe64ee9b569a92845dc48af2a6c7ec70e16d144d8e2bce7",
+        "fixtures/fixture-repo-2/distro.db.sig": "93d5bec0b4ddb02b41928c08fa68efc82e05c485b63448cf4954fcd5732cb9a3",
+        "fixtures/fixture-repo-2/distro.files.tar.gz": "9f2bffab5d5458bee6f367cad100c6550cbd3c2f50f81af18cc145f1508be120",
+        "fixtures/fixture-repo-2/distro.db.tar.gz.sig": "93d5bec0b4ddb02b41928c08fa68efc82e05c485b63448cf4954fcd5732cb9a3",
+        "fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst": "2c4cc4f35a0b4136d69b7f79ef8cc8a4d067d6ab396391055c47212189054941",
+        "fixtures/fixture-repo-1/distro.db": "efe62c308e092185a53940d24e6141221d9a17517b7e68913790142e77ff602a",
+        "fixtures/fixture-repo-1/distro.files.tar.gz.sig": "56ae51fe9ef954cdd79aa198ea1d474126b834ff8a26266843aee317518733a5",
+        "fixtures/fixture-repo-1/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+        "fixtures/fixture-repo-1/distro.files": "2759560b5418650927a6887254d5d79e9a62adedfe6013b1db0e5e03328654b9",
+        "fixtures/fixture-repo-1/distro.db.tar.gz": "efe62c308e092185a53940d24e6141221d9a17517b7e68913790142e77ff602a",
+        "fixtures/fixture-repo-1/SHA256SUMS": "2df659ac72a068407c0af80e8e16e4221ac460552b31d5407e7a2d0da94e4dae",
+        "fixtures/fixture-repo-1/distro.files.sig": "56ae51fe9ef954cdd79aa198ea1d474126b834ff8a26266843aee317518733a5",
+        "fixtures/fixture-repo-1/distro.db.sig": "402f93c67a3b70cf085f63ed4cc833fd056820a3b17a61ee9f0b731f02fa2cca",
+        "fixtures/fixture-repo-1/distro.files.tar.gz": "2759560b5418650927a6887254d5d79e9a62adedfe6013b1db0e5e03328654b9",
+        "fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst.sig": "a7aab5db2306f4a9cf6aa42e4e545897a88ccd6c0484faf72b51ce9a107457bc",
+        "fixtures/fixture-repo-1/distro.db.tar.gz.sig": "402f93c67a3b70cf085f63ed4cc833fd056820a3b17a61ee9f0b731f02fa2cca"
+      },
+      "host": {
+        "platform": "linux",
+        "qemu": "QEMU emulator version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)\nCopyright (c) 2003-2023 Fabrice Bellard and the QEMU Project developers\n"
+      }
+    },
+    "sha256": {
+      "disk.qcow2": "677b2676e5b98af30d04149f21ad235969a8391ffcd20ff0f5598fac922e7ca3",
+      "vars.fd": "b47749489b2c211aec87293367fe0a7f5e4ec532fd6dd1d3cd137ee46c7106fe"
+    }
+  },
+  "original_path": "/home/ubuntu/p2sec/base-plain",
+  "trust": {
+    "accepted": true,
+    "kind": "phase3-firmware-fixture",
+    "created": "2026-10-08T18:36:50.749532+00:00",
+    "nonce": "b58c31e6d31043b590f45d63e18a75b4",
+    "owner_guid": "74f86102-e3cc-4f6d-bcf2-7864d34abf67",
+    "certificate_sha256": {
+      "trusted": "08a1c08c0cff31f7517fd20a929af454b9139eaa5d05b8843d42846f43a59a74",
+      "untrusted": "976fcbbb37c86cc733077c1319f5e26dd5abd965cd32b615a77c1bb4f068458e"
+    },
+    "source_commit": "6a8fda25d25df74215ed0bbe06b97804e053d950",
+    "probe_sha256": "c1205c067ec9ed441ce314df00fd203539c3f12b787e57c48c46b2fc29165089",
+    "ovmf_code": {
+      "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+      "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+    },
+    "ovmf_template": {
+      "path": "/usr/share/OVMF/OVMF_VARS_4M.fd",
+      "sha256": "5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e"
+    },
+    "sha256": {
+      "disk.qcow2": "c2c6d93a089ffb2b8bfee71bc2d9534f0c02d6b6c25dfbf0152f8dae91a1c90e",
+      "vars.fd": "624c14cf2dcdf9366c1faadc665c8919b06d2578f75e951ab7a642b46f2a26c4"
+    },
+    "public_sha256": {
+      "public/tampered.efi": "6c4404114fa9603379cd0c0efde7c718a7c346d0e71e44e3b8b59bf06efaf7c9",
+      "public/trusted.efi": "a26c76b48df6dd790fdbb485de026fc4b0bd93b0c8599408386b3b41d69e2d80",
+      "public/unsigned.efi": "d13c6956abce1d5fc21b9fcbc5c760409e27a75bf1c11e86a918c8b8990fb58a",
+      "public/probe.efi": "aa9bc56c8388a9d0eca88f71fe7833ad98985b223a5bd55804e1c072701a9cc7",
+      "public/trusted.pem": "6cfb7ce9ae28995ce47a6a6af3c2f6008fb75a705f9373561fcca83f2966cba3",
+      "public/untrusted.pem": "22e6db8e0b9b4372a1f8fbfae33bc004014091e5f7459de3d3841e1d0bef3f21",
+      "public/untrusted.efi": "ba3cb60b30d71810d26518444ad1bfcf6fc67ef27a076bd199acb993417bf89e",
+      "public/untrusted.der": "976fcbbb37c86cc733077c1319f5e26dd5abd965cd32b615a77c1bb4f068458e",
+      "public/boot.efi": "bafbbe4dc57377d833e530022f3a608e99c2e108ca5c53128a7337c04a2e4577",
+      "public/trusted.der": "08a1c08c0cff31f7517fd20a929af454b9139eaa5d05b8843d42846f43a59a74"
+    }
+  },
+  "trust_path": "/home/ubuntu/p3/firmware-base-r3",
+  "esp_offset": 2097152,
+  "ovmf_code": {
+    "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+    "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+  },
+  "sha256": {
+    "disk.qcow2": "252a8bbe4fcf6f94208c59d1f466c2d1be0533c1bc70feea8fa33caf4567c095",
+    "vars.fd": "624c14cf2dcdf9366c1faadc665c8919b06d2578f75e951ab7a642b46f2a26c4"
+  },
+  "public_sha256": {
+    "public/uki.efi": "c9f82468afbb5375f49673e701f7136ac7c0300357ffc6a71a52716a35599a3b",
+    "public/uki-unsigned.efi": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24",
+    "public/fallback-unsigned.efi": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1",
+    "public/fallback.efi": "8664887987f64787ca171d84ecdd22a1b3fb72d7651a3dee69ee41a4d128740a",
+    "public/loader-unsigned.efi": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1",
+    "public/loader.efi": "8664887987f64787ca171d84ecdd22a1b3fb72d7651a3dee69ee41a4d128740a"
+  }
+}

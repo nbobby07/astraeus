@@ -12,7 +12,7 @@ import shutil
 import subprocess
 
 
-def qemu_command(code, variables, disk, log, monitor, iso=None, test_share=None):
+def qemu_command(code, variables, disk, log, monitor, iso=None, test_share=None, secure_boot=False):
     command = ["qemu-system-x86_64", "-machine", "q35,accel=kvm", "-cpu", "host",
                "-m", "4096", "-smp", "4", "-device", "virtio-vga",
                "-drive", f"if=pflash,format=raw,readonly=on,file={code}",
@@ -23,6 +23,9 @@ def qemu_command(code, variables, disk, log, monitor, iso=None, test_share=None)
                "-serial", f"file:{log}", "-monitor", "none",
                "-qmp", f"unix:{monitor},server=on,wait=off",
                "-device", "qemu-xhci", "-device", "usb-tablet", "-daemonize"]
+    if secure_boot:
+        command[command.index("q35,accel=kvm")] = "q35,accel=kvm,smm=on"
+        command += ["-global", "driver=cfi.pflash01,property=secure,value=on"]
     if test_share:
         command += ["-virtfs", f"local,path={test_share},mount_tag=acceptance,security_model=none,readonly=on"]
     if iso:

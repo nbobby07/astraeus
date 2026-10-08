@@ -1,0 +1,10 @@
+{
+  "fault": "untrusted",
+  "path": "/efi/EFI/Linux/astraeus-dev-linux.efi",
+  "before_sha256": "c9f82468afbb5375f49673e701f7136ac7c0300357ffc6a71a52716a35599a3b",
+  "started": 1791485288.1220388,
+  "expected": "refusal, never timeout-based acceptance",
+  "replacement_sha256": "9740a845ce8d81d7da4eebf7044ac15d41ef644e6b4f476b0508eb59ef10f24e",
+  "finished": 1791485289.7346656,
+  "after_sha256": "9740a845ce8d81d7da4eebf7044ac15d41ef644e6b4f476b0508eb59ef10f24e"
+}

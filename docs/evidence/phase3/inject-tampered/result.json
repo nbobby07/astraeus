@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "mode": "inject",
+  "started": "2026-10-08T18:44:08.135143+00:00",
+  "source_commit": "6a8fda25d25df74215ed0bbe06b97804e053d950",
+  "integrated_acceptance": false,
+  "security_acceptance": false,
+  "injection_only": true,
+  "finished": "2026-10-08T18:44:40.677036+00:00"
+}
