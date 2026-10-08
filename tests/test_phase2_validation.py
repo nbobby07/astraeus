@@ -43,7 +43,7 @@ def transaction_evidence():
 
 class ValidationTests(unittest.TestCase):
     def test_confirmation_waits_for_service_and_preserves_job_failure(self):
-        for action in ['confirm-boot', 'finalize-rollback']:
+        for action in ['confirm-boot', 'finalize-rollback', 'reconcile']:
             vm = Mock()
             phase2.adapter(vm, action, '7')
             calls = vm.command.call_args_list
