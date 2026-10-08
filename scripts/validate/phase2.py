@@ -36,6 +36,12 @@ def require(condition, message):
         raise RuntimeError(message)
 
 
+class QemuExited(RuntimeError):
+    def __init__(self, code):
+        self.returncode = code
+        super().__init__(f'QEMU exited before acceptance (exit {code})')
+
+
 def now():
     return datetime.now(timezone.utc).isoformat()
 
@@ -110,7 +116,11 @@ class VM:
         save(self.session / 'process.json', dict(pid=self.child.pid, started=now(), iso=str(iso) if iso else None))
 
     def alive(self):
-        require(self.child is not None and self.child.poll() is None, 'QEMU exited before acceptance')
+        require(self.child is not None, 'QEMU has not been started')
+        code = self.child.poll()
+        if code is not None:
+            save(self.session / 'qemu-exit.json', dict(time=now(), code=code))
+            raise QemuExited(code)
 
     def command(self, command, timeout=None, check=True, label='command'):
         self.alive()
@@ -416,9 +426,17 @@ def scenario(vm, args):
             vm.start()
             try:
                 vm.ready()
-            except TimeoutError:
-                vm.qmp_state('expected-boot-failure')
-                save(vm.session / 'expected-boot-failure.json', dict(time=now(), timeout=args.timeout))
+            except (TimeoutError, QemuExited) as error:
+                if isinstance(error, QemuExited):
+                    # With no valid UKI, systemd-boot selects firmware setup.
+                    # Its reset exits QEMU cleanly because we use -no-reboot.
+                    require(error.returncode == 0, 'QEMU crashed during the broken-boot test')
+                    require('Reboot Into Firmware Interface' in (vm.session / 'serial.log').read_text(errors='replace'),
+                            'clean QEMU exit lacks firmware-reset evidence')
+                else:
+                    vm.qmp_state('expected-boot-failure')
+                save(vm.session / 'expected-boot-failure.json', dict(time=now(), timeout=args.timeout,
+                     reason=str(error), qemu_exit=getattr(error, 'returncode', None)))
                 vm.stop()
             else:
                 raise RuntimeError('broken UKI unexpectedly booted')

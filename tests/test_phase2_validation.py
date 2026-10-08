@@ -42,6 +42,39 @@ def transaction_evidence():
 
 
 class ValidationTests(unittest.TestCase):
+    def test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset(self):
+        for code, firmware, allowed in [(None, False, True), (0, True, True),
+                                       (0, False, False), (1, True, False), (-9, True, False)]:
+            with self.subTest(code=code, firmware=firmware), tempfile.TemporaryDirectory() as temp:
+                path = Path(temp)
+                (path / 'serial.log').write_text('Reboot Into Firmware Interface' if firmware else '')
+                if code is None:
+                    failure = TimeoutError('expected broken boot')
+                else:
+                    process = phase2.VM(path, None, None, 1)
+                    process.session, process.child = path, Mock()
+                    process.child.poll.return_value = code
+                    with self.assertRaises(phase2.QemuExited) as caught:
+                        process.alive()
+                    failure = caught.exception
+                    self.assertEqual(json.loads((path / 'qemu-exit.json').read_text())['code'], code)
+                before, changed = transaction_evidence()
+                before.update(root=dict(code=0, output='version-A'), packages=dict(code=0, output='fixture 1-1'))
+                changed['root'] = dict(code=0, output='version-B')
+                vm = Mock(out=path, session=path)
+                vm.command.return_value = dict(code=0, output='version-A')
+                vm.ready.side_effect = [None, failure, None]
+                args = SimpleNamespace(scenario='boot-recovery', timeout=1, encryption='LUKS2', iso=Path('recovery.iso'))
+                def hook(_vm, action, *_args, **_kwargs):
+                    if action == 'recover':
+                        raise RuntimeError('recovery reached')
+                    return dict(code=0)
+                with patch.object(phase2, 'observe', side_effect=[before, changed]), \
+                     patch.object(phase2, 'healthy'), patch.object(phase2, 'adapter', side_effect=hook) as adapter:
+                    with self.assertRaisesRegex(RuntimeError, 'recovery reached' if allowed else 'crashed|lacks firmware'):
+                        phase2.scenario(vm, args)
+                    self.assertEqual(any(c.args[1] == 'recover' for c in adapter.call_args_list), allowed)
+
     def test_interruption_requires_package_mutation_before_power_cut(self):
         for sentinel, packages, cut in [('version-A', 'fixture 2-1', False),
                                         ('version-B', 'fixture 1-1', False),
