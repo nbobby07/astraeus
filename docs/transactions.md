@@ -143,7 +143,11 @@ the last durable intent remains authoritative.
 
 ## Boot and health
 
-Boot work reuses `mkinitcpio -P` and `bootctl --esp-path=/efi update`. Existing Arch
+Boot work reuses `mkinitcpio -P` and `bootctl --esp-path=/efi --graceful update`.
+Both installed systemd-boot EFI copies must then match the packaged x86-64 loader
+byte-for-byte. This accepts an already-current loader without ignoring missing
+or mismatched files. Independently signed loader overrides are not qualified.
+Existing Arch
 and Astraeus hooks remain unchanged; the explicit post-transaction commands may
 repeat their work so failures have a checked exit status. The snapshot backend
 must preserve the current ESP artifacts before any package hook can overwrite
@@ -151,7 +155,7 @@ them. A root snapshot alone is insufficient.
 
 Structured checks cover pacman's database, repository configuration,
 `ukify inspect` of the product UKI, installed bootloader, failed system units, a writable
-root mount, NetworkManager and `distroctl info --json`. Spawn/read errors are
+root mount, NetworkManager, SDDM, logind and `distroctl info --json`. Spawn/read errors are
 `unavailable`, unsuccessful checks are `fail`. All current system checks are
 required. Optional checks can warn or be unavailable; any explicit failure blocks
 acceptance. Tests inject commands/checks and need no desktop or host mutation.
@@ -195,11 +199,12 @@ Implement `SnapshotBackend` in the snapshot owner's crate:
 4. `request_rollback(reference)` requests recovery. The transaction remains
    rollback-required until the external recovery owner verifies completion.
 
-Replace `UnavailableSnapshots` in `crates/distroctl/src/updates.rs` only after
-that contract, preserved boot artifacts and boot-confirmation/finalization paths
-are connected and tested on disposable installed systems. Do not equate the
-trait's existence or fake-backed tests with working rollback. No Btrfs commands,
-restore operations or boot-entry mechanics live in this branch.
+The integrated CLI now uses `BtrfsSnapshots` from the transaction integration
+module; `UnavailableSnapshots` remains a fail-closed library/test backend.
+The existing snapshot crate owns Btrfs operations and saved boot artifacts.
+Verified boot confirmation and rollback finalization supply the missing lifecycle.
+See [actual installed-system results](phase2-integration.md); mock-backed tests
+alone do not establish working update or recovery.
 
 Upstream interfaces: [pacman manual](https://man.archlinux.org/man/pacman.8.en),
 [pacman-conf manual](https://man.archlinux.org/man/pacman-conf.8.en).

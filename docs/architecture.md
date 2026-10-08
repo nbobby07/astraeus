@@ -13,7 +13,7 @@ The workspace now has five crates:
 distroctl -> distro-config -> serde / TOML
           -> distro-hardware -> serde
           -> distro-snapshots -> serde / serde_json
-          -> distro-transactions -> serde / SQLite / SHA-256
+          -> distro-transactions -> distro-snapshots / serde / SQLite / SHA-256
 ```
 
 `distro-config` owns release metadata and validation. Parsing produces a typed

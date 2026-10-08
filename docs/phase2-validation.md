@@ -1,8 +1,9 @@
 # Phase 2 destructive validation harness
 
-This branch supplies test infrastructure, not a transaction engine or snapshot
-implementation. **Phase 2 installed update and rollback acceptance has not passed.**
-No Phase 1 acceptance claim is changed.
+This document began as the validation branch handoff. The integrated product and
+actual acceptance results are recorded in [Phase 2 integration](phase2-integration.md).
+The branch history below describes the original infrastructure work. No Phase 1
+acceptance claim is changed.
 
 Base: `aad4409b258a3aa86049b3f737568feaea49d790`. Branch: `phase2/validation`.
 Inspected integration inputs:
@@ -170,7 +171,10 @@ Repeat with the following scenario/fault combinations:
 | `boot-recovery` | Good live update, then overwrite its active UKI only in the overlay; failed boot window; recovery ISO restore; disk-only reboot and original system checks |
 
 The boot-failure window is an expected absence of readiness only after explicit
-UKI damage. It cannot make the scenario pass: successful offline recovery, a new
+UKI damage. A clean QEMU exit is also accepted at this stage only when its serial
+log shows systemd-boot's firmware-setup path: `-no-reboot` turns that firmware
+reset into exit 0. The runner records the exit status and rejects crashes or
+unexplained exits. Neither failure path can make the scenario pass: successful offline recovery, a new
 boot, restored package/root state and persistent data are still mandatory. This
 is a recovery-media test; it does not prove an automatic fallback entry exists.
 

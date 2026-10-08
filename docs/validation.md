@@ -1,5 +1,12 @@
 # Phase 1 validation: 2026-10-07 UTC
 
+This is the historical Phase 1 report. Current integration and acceptance results
+are in [Phase 2 integration](phase2-integration.md). During Phase 2, the old remote
+ISO copies were retired only after exact comparison and local hash verification;
+the validated `afac8d64…` ISO remains at `out/phase1/iso/` in the original checkout
+and `D:\Astraeus-Phase2-Evidence\phase1-validated-afac8d64.iso`. Original installed
+disks and evidence logs were retained.
+
 This report records completed local/cloud acceptance. Raw artifacts under `out/`
 are retained by the maintainer and are excluded from Git; paths below identify
 that evidence collection and are not public download links. The
