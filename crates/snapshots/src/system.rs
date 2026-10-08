@@ -238,6 +238,10 @@ impl<C: Commands> Manager<C> {
         let allowed: Vec<_> = SUBVOLUMES.iter().map(|(_, p)| Path::new(p)).collect();
         for m in &mounts {
             let p = Path::new(&m.target);
+            require(
+                p == self.esp || !p.starts_with(&self.esp),
+                "nested mount beneath ESP hides firmware boot artifacts",
+            )?;
             if let Some(top) = &self.top {
                 require(
                     p == top || !p.starts_with(top),

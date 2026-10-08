@@ -34,6 +34,12 @@ confirmation. The first review rebuild was stopped when this finding arrived;
 its source is not an accepted artifact. Fresh ISO and installed-system results
 for the completed fixes will be recorded below.
 
+Further review found that mounts beneath the ESP could hide the firmware's actual
+UKI. Layout validation now rejects all ESP descendants in both installed and
+recovery modes. Rollback eligibility also accepts interrupted Applying/Validating
+records, which finalization already reconciles to recovery-required, so recovery
+does not depend on booting the damaged system first. Regressions cover both cases.
+
 ## Source and merge audit
 
 Branch: `phase2/integration`, in the Codex `phase2-integration/operating-system`

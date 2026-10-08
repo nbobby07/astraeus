@@ -193,6 +193,9 @@ snapshot can be restored; a later nonempty transaction makes the target stale,
 including a later update that failed before mutation. This matches finalization's
 recency rule and prevents switching to a state it cannot record. Unlinked manual
 snapshots retain their explicit offline workflow.
+Interrupted Applying/Validating transactions remain eligible for offline recovery;
+their intent is reconciled during verified finalization. Both installed and
+recovery layouts reject mounts beneath the ESP, which could hide firmware files.
 There is no full data scrub, backup replication, automatic retention,
 multi-device Btrfs qualification or cross-filesystem atomicity.
 

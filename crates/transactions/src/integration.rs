@@ -184,12 +184,7 @@ pub fn validate_rollback_target(
         .ok_or("snapshot transaction history missing")?;
     ensure_not_stale(records, id)?;
     if record.snapshot.as_deref() != Some(snapshot)
-        || !matches!(
-            record.state,
-            TransactionState::AwaitingBoot
-                | TransactionState::RollbackRequired
-                | TransactionState::Succeeded
-        )
+        || !(record.state.mutation_possible() || record.state == TransactionState::Succeeded)
     {
         return Err("target is not an eligible transaction pre-update snapshot".into());
     }

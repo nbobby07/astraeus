@@ -301,6 +301,41 @@ fn planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots() {
 }
 
 #[test]
+fn nested_esp_mounts_are_rejected_online_and_offline() {
+    for recovery in [true, false] {
+        let f = Fixture::new();
+        let manager = if recovery {
+            Manager::recovery(
+                f.fake.clone(),
+                f.manager.top.as_ref().unwrap(),
+                &f.manager.esp,
+            )
+            .unwrap()
+        } else {
+            let mut mounts: Vec<_> = SUBVOLUMES.iter().map(|(s,p)| serde_json::json!({"target":p,"fstype":"btrfs","fsroot":format!("/{s}"),"uuid":FS,"options":"rw"})).collect();
+            mounts.push(serde_json::json!({"target":"/efi","fstype":"vfat","fsroot":"/","uuid":ESP,"options":"rw"}));
+            *f.fake.mounts.borrow_mut() = serde_json::json!({"filesystems":mounts});
+            Manager {
+                commands: f.fake.clone(),
+                top: None,
+                root: "/".into(),
+                store: f.manager.store.clone(),
+                esp: "/efi".into(),
+            }
+        };
+        assert!(manager.plan_create().is_ok());
+        f.fake.mounts.borrow_mut()["filesystems"].as_array_mut().unwrap().push(
+            serde_json::json!({"target":manager.esp.join("EFI/Linux"),"fstype":"tmpfs","fsroot":"/","uuid":null,"options":"rw"}));
+        assert!(manager
+            .plan_create()
+            .unwrap_err()
+            .to_string()
+            .contains("nested mount beneath ESP"));
+        assert!(!manager.store.exists());
+    }
+}
+
+#[test]
 fn unfinished_health_change_blocks_all_mutation_and_rollback_planning() {
     let f = Fixture::new();
     let snapshot = f.create();

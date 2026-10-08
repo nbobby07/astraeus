@@ -895,6 +895,11 @@ fn rollback_planning_rejects_targets_that_confirmation_cannot_finalize() {
     original.state = TransactionState::Succeeded;
     original.snapshot = Some("pre-1".into());
     assert!(validate_rollback_target(&[original.clone()], Some("1"), "pre-1").is_ok());
+    for interrupted in [TransactionState::Applying, TransactionState::Validating] {
+        original.state = interrupted;
+        assert!(validate_rollback_target(&[original.clone()], Some("1"), "pre-1").is_ok());
+    }
+    original.state = TransactionState::Succeeded;
     assert!(validate_rollback_target(&[], Some("1"), "pre-1").is_err());
     assert!(validate_rollback_target(&[original.clone()], Some("1"), "post-1").is_err());
     let mut later = TransactionRecord::new(plan());
