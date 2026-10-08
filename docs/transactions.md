@@ -143,10 +143,12 @@ the last durable intent remains authoritative.
 
 ## Boot and health
 
-Boot work reuses `mkinitcpio -P` and `bootctl --esp-path=/efi --graceful update`.
-Both installed systemd-boot EFI copies must then match the packaged x86-64 loader
-byte-for-byte. This accepts an already-current loader without ignoring missing
-or mismatched files. Independently signed loader overrides are not qualified.
+Boot work reuses `mkinitcpio -P`. Loader binaries are not changed transactionally:
+plans changing the `systemd` package or requesting a bootloader update are rejected
+in full before package mutation, because snapshots currently preserve only the UKI.
+Both installed systemd-boot EFI copies must match the packaged x86-64 loader
+byte-for-byte after UKI work. Missing or mismatched copies fail the transaction.
+Independently signed loader overrides are not qualified.
 Existing Arch
 and Astraeus hooks remain unchanged; the explicit post-transaction commands may
 repeat their work so failures have a checked exit status. The snapshot backend

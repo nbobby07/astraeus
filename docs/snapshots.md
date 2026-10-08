@@ -159,6 +159,13 @@ pair or finish installing the verified target pair, then sync both filesystems.
 Only archive the intent after checking the resulting pair and recording manual
 recovery evidence. No automatic resume or interactive recovery command exists.
 
+An unfinished health write leaves `metadata.next` beside `metadata.json`. Its
+presence blocks new mutations and rollback planning across the store, even when
+there is no `pending.json`. Do not discard it to reuse an older known-good label.
+Inspect and retain both records offline, check their snapshot identity and health
+evidence, and resolve the interrupted change before continuing. A pending promotion
+does not establish a healthy boot; unknown health must remain unconfirmed or bad.
+
 ## Integration and limits
 
 Mounted Btrfs UUIDs identify ordinary partitions, virtio devices and LUKS mappings;
@@ -178,6 +185,8 @@ The stable UKI path matches Phase 1. A boot-generation owner must extend the
 binding and loader checks before introducing an independent "Astraeus Previous
 Known Good" entry. Boot menus, Secure Boot enforcement, firmware overrides,
 bootloader binary rollback and multiple kernels are not implemented/qualified.
+The integrated updater rejects systemd/bootloader update plans before mutation
+and never refreshes the loader copies as part of a package transaction.
 There is no full data scrub, backup replication, automatic retention,
 multi-device Btrfs qualification or cross-filesystem atomicity.
 

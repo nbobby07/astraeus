@@ -418,18 +418,12 @@ pub struct SystemBoot<R = NativeRunner> {
 }
 impl<R: CommandRunner> BootBackend for SystemBoot<R> {
     fn regenerate(&mut self, plan: &ExecutionPlan, transaction_id: i64) -> Result<()> {
+        plan.validate()?;
         if plan.boot.regenerate_uki {
             self.runner.prepare_boot(transaction_id)?;
             checked(&mut self.runner, "/usr/bin/mkinitcpio", &["-P"])?;
-        }
-        if plan.boot.update_bootloader {
-            checked(
-                &mut self.runner,
-                "/usr/bin/bootctl",
-                &["--esp-path=/efi", "--graceful", "update"],
-            )?;
-            // bootctl returns failure for an already-current loader without
-            // --graceful. Verify both installed copies even when it skips work.
+            // Loader binaries are outside the saved UKI recovery boundary.
+            // Reject systemd plans before mutation and only read these copies.
             for installed in [
                 "/efi/EFI/systemd/systemd-bootx64.efi",
                 "/efi/EFI/BOOT/BOOTX64.EFI",

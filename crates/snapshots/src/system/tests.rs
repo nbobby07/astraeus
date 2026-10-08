@@ -301,6 +301,32 @@ fn planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots() {
 }
 
 #[test]
+fn unfinished_health_change_blocks_all_mutation_and_rollback_planning() {
+    let f = Fixture::new();
+    let snapshot = f.create();
+    let mut good = f
+        .manager
+        .mark(&snapshot.id, Health::KnownGood, "boot passed")
+        .unwrap();
+    good.set_health(Health::Bad, "boot regression observed")
+        .unwrap();
+    let temporary = f.manager.entry(&snapshot.id).unwrap().join("metadata.next");
+    write_new(&temporary, &serde_json::to_vec(&good).unwrap(), 0o644).unwrap();
+    assert!(!f.manager.store.join("pending.json").exists());
+    assert!(f.manager.plan_create().is_err());
+    assert!(f.manager.lock().is_err());
+    assert!(f.manager.plan_rollback(&snapshot.id).is_err());
+    assert!(f.manager.rollback(&snapshot.id).is_err());
+    assert!(f
+        .manager
+        .mark(&snapshot.id, Health::KnownGood, "retry")
+        .is_err());
+    assert!(f.manager.delete(&snapshot.id).is_err());
+    assert!(temporary.exists());
+    assert!(!f.manager.store.join("pending.json").exists());
+}
+
+#[test]
 fn wrong_layout_missing_tools_metadata_and_targets_fail_closed() {
     let f = Fixture::new();
     f.fake.mounts.borrow_mut()["filesystems"][1]["fstype"] = "ext4".into();

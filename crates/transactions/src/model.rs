@@ -96,6 +96,11 @@ pub struct ExecutionPlan {
 
 impl ExecutionPlan {
     pub fn validate(&self) -> Result<()> {
+        if self.boot.update_bootloader
+            || self.packages.changes.iter().any(|c| c.name() == "systemd")
+        {
+            return Err("systemd/bootloader updates are unsupported until loader binaries can be restored with the root; entire plan rejected".into());
+        }
         if self.schema_version != 1
             || self.current != CurrentSystemState::new(self.current.packages.clone())
         {
@@ -157,13 +162,14 @@ impl ExecutionPlan {
             desired: DesiredUpdate::SystemUpgrade,
             boot: BootArtifacts {
                 regenerate_uki: changed,
-                update_bootloader: changed,
+                update_bootloader: false,
             },
             packages,
             snapshot_required: changed,
             notes: vec![
                 "Uses existing sync databases; does not refresh repositories.".into(),
                 "Boot regeneration is conservative for every nonempty update.".into(),
+                "Loader binaries are not updated; plans changing systemd are rejected.".into(),
             ],
         }
     }

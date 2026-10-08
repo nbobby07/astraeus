@@ -1,6 +1,10 @@
 # Phase 2 integration acceptance
 
-**PHASE 2 VALIDATED.** Tests A through G passed in disposable installed-system
+**Review follow-up awaiting acceptance.** The two runtime fixes described below
+must pass fresh installed-system validation before PR #3 is merged. The historical
+`dde0970` build's A-G results remain recorded here; they do not qualify newer code.
+
+Tests A through G passed in disposable installed-system
 VMs, including real LUKS2 recovery and two byte-identical clean ISO builds.
 Acceptance ran on 2026-10-07/08 UTC. The safety boundaries below still apply.
 
@@ -9,6 +13,20 @@ and [artifact checksum manifest](evidence/phase2/artifacts.json). These retain f
 attempts alongside passing reruns. Host test logs are in `docs/evidence/phase2/`.
 The full raw VM archives and ISO copies remain at the local paths recorded below;
 this Git publication does not publish installation media or a stable release.
+
+## PR review follow-up
+
+Code review identified two recovery gaps after the first acceptance run. The
+updater previously refreshed loader binaries although snapshots preserve only the
+UKI. It now rejects entire plans changing systemd or requesting bootloader updates
+before any mutation, and only compares the installed loader copies. No package
+plan is silently reduced. Full loader backup/restore remains outside this change.
+
+An interrupted health update could leave `metadata.next` while an older
+known-good `metadata.json` remained eligible for rollback. Snapshot mutation and
+rollback planning now refuse any store with an unfinished health write. Regression
+tests cover both gaps. Security review and Bugbot reported no additional findings.
+Fresh ISO and installed-system results for these fixes will be recorded below.
 
 ## Source and merge audit
 

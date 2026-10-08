@@ -259,7 +259,19 @@ impl<C: Commands> Manager<C> {
         Ok((fs_uuid.into(), esp_uuid.into()))
     }
     fn no_pending(&self) -> Result<()> {
-        require(!self.store.join("pending.json").try_exists()?, "unfinished operation: inspect astraeus/pending.json and recover offline before continuing")
+        require(!self.store.join("pending.json").try_exists()?, "unfinished operation: inspect astraeus/pending.json and recover offline before continuing")?;
+        if self.store.try_exists()? {
+            for entry in fs::read_dir(&self.store)? {
+                let entry = entry?;
+                if entry.file_type()?.is_dir() {
+                    require(
+                        !entry.path().join("metadata.next").try_exists()?,
+                        "unfinished health change: inspect snapshot metadata.next and recover offline before continuing",
+                    )?;
+                }
+            }
+        }
+        Ok(())
     }
     fn entry(&self, id: &SnapshotId) -> Result<PathBuf> {
         SnapshotId::parse(id.as_str())?;

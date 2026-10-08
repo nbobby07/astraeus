@@ -13,6 +13,9 @@ mutation and recovery from a broken UKI. Two independent builds produced identic
 ISO bytes. The [Phase 2 acceptance record](docs/phase2-integration.md) identifies
 the tested source, image hashes, evidence and remaining limits.
 
+PR review follow-up fixes are awaiting fresh installed-system acceptance before
+merge; the report distinguishes those changes from the validated ISO source.
+
 This is a development project. The qualified target is **x86-64 UEFI under
 QEMU/KVM**, using disposable disks. Physical hardware, dual boot and enforced
 Secure Boot have not been qualified. There is no supported stable release or

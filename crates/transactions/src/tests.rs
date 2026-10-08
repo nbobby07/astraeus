@@ -710,7 +710,7 @@ fn system_checks_distinguish_missing_tool_and_failed_check() {
 }
 
 #[test]
-fn boot_refresh_accepts_current_loader_only_with_matching_installed_copies() {
+fn boot_refresh_only_reads_matching_installed_loader_copies() {
     struct Runner {
         fail_at: usize,
         calls: usize,
@@ -723,16 +723,12 @@ fn boot_refresh_accepts_current_loader_only_with_matching_installed_copies() {
             self.calls += 1;
             match self.calls {
                 1 => assert_eq!(program, "/usr/bin/mkinitcpio"),
-                2 => {
-                    assert_eq!(program, "/usr/bin/bootctl");
-                    assert_eq!(args, ["--esp-path=/efi", "--graceful", "update"]);
-                }
-                3 | 4 => {
+                2 | 3 => {
                     assert_eq!(program, "/usr/bin/cmp");
                     assert_eq!(args[1], "/usr/lib/systemd/boot/efi/systemd-bootx64.efi");
                     assert_eq!(
                         args[2],
-                        if self.calls == 3 {
+                        if self.calls == 2 {
                             "/efi/EFI/systemd/systemd-bootx64.efi"
                         } else {
                             "/efi/EFI/BOOT/BOOTX64.EFI"
@@ -748,12 +744,48 @@ fn boot_refresh_accepts_current_loader_only_with_matching_installed_copies() {
             })
         }
     }
-    for fail_at in 0..=4 {
+    for fail_at in 0..=3 {
         let mut boot = SystemBoot {
             runner: Runner { fail_at, calls: 0 },
         };
         assert_eq!(boot.regenerate(&plan(), 1).is_ok(), fail_at == 0);
-        assert_eq!(boot.runner.calls, if fail_at == 0 { 4 } else { fail_at });
+        assert_eq!(boot.runner.calls, if fail_at == 0 { 3 } else { fail_at });
+    }
+}
+
+#[test]
+fn systemd_or_loader_mutation_rejects_the_entire_plan_before_execution() {
+    let mut systemd = plan();
+    systemd.current = CurrentSystemState::new(BTreeMap::from([("systemd".into(), "1-1".into())]));
+    systemd.packages.changes = vec![PackageChange::Upgrade {
+        name: "systemd".into(),
+        from: "1-1".into(),
+        to: "2-1".into(),
+    }];
+    systemd.packages.targets[0].name = "systemd".into();
+    let mut loader = plan();
+    loader.boot.update_bootloader = true;
+    for rejected in [systemd, loader] {
+        assert!(rejected
+            .validate()
+            .unwrap_err()
+            .contains("entire plan rejected"));
+        let temp = Temp::new();
+        let mut packages = Packages::new("");
+        let mut snapshots = Snapshots::default();
+        assert!(execute(
+            &mut temp.session(),
+            rejected,
+            &mut packages,
+            &mut snapshots,
+            &mut Boot(false),
+            &mut Health(HealthStatus::Pass),
+            || false
+        )
+        .is_err());
+        assert!(packages.calls.is_empty());
+        assert_eq!(snapshots.created, 0);
+        assert!(temp.session().records().unwrap().is_empty());
     }
 }
 
