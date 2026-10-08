@@ -206,7 +206,8 @@ class BootstrapTests(unittest.TestCase):
             server.server_close()
             worker.join()
 
-    @unittest.skipUnless(shutil.which("pacman") and os.name != "nt", "requires Linux pacman")
+    @unittest.skipUnless(os.name != "nt" and shutil.which("pacman") and os.geteuid() == 0,
+                         "requires Linux pacman as root for isolated database sync")
     def test_pacman_resolves_both_roots_from_verified_local_metadata(self):
         requests = []
         buffer = io.BytesIO()

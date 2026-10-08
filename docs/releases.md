@@ -11,11 +11,18 @@ source checkpoints. Their validation evidence is in [validation](validation.md).
 Later documentation and repository-workflow commits do not change what was
 tested. Preserve these tags and commits; do not move them to newer code.
 
-Phase 2 runtime source is `dde0970118ed3003221770d9004bea3147c030ef`, with final
+Historical Phase 2 runtime source is `dde0970118ed3003221770d9004bea3147c030ef`, with final
 acceptance harness `2bc521943cf616aae1a572858a3ed15007ca8826` and report commit
 `31b045018eb21df636d2b623702ef5e195c872f5`. See [Phase 2 acceptance](phase2-integration.md)
 for the complete integration history and artifact hashes. Later documentation
 commits do not imply that the accepted ISO was rebuilt from those commits.
+
+The hardened source was freshly requalified on 2026-10-08 at runtime commit
+`0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1`, whose production inputs match main
+`01ed00da86db276c4d3b6a4dd7ab756e367c0741`. The
+[requalification report](phase2-security-requalification.md) records the new
+reproducible ISO pair, installations, A-G and security checks. This is a development
+qualification, not a stable release or a public ISO publication.
 
 Version identity and image build versions live in
 `distro/branding/project.toml`; the Cargo workspace version must stay consistent.

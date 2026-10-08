@@ -49,6 +49,10 @@ When = $when
 Exec = /bin/bash $state/inject.sh
 EOF
         ;;
+    disarm)
+        [[ ${2:?fault required} == space ]]
+        python3 "$guest" fault space-reset
+        ;;
     reconcile)
         # Native updater recovers durable intent under its lock; expected to refuse another update.
         if distroctl update; then

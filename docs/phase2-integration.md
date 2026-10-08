@@ -1,8 +1,12 @@
 # Phase 2 integration acceptance
 
-**Review follow-up awaiting acceptance.** The runtime fixes described below
-pass host checks and code review but still need fresh installed-system qualification. The historical
-`dde0970` build's A-G results remain recorded here; they do not qualify newer code.
+**Current hardened source requalified on 2026-10-08.** Fresh Calamares installs,
+two cold desktop boots per installation, A-G, and security regressions passed for
+runtime `0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1`. Its production inputs match
+GitHub main `01ed00da86db276c4d3b6a4dd7ab756e367c0741`.
+See the [post-security requalification report](phase2-security-requalification.md)
+for the new ISO pair and evidence. The remaining record below describes historical
+`dde0970` acceptance and is preserved unchanged as validation history.
 
 Tests A through G passed in disposable installed-system
 VMs, including real LUKS2 recovery and two byte-identical clean ISO builds.

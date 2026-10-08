@@ -40,7 +40,7 @@ uses the wrong directory. It also checks that bounded archive retries apply only
 to the build configuration and retain required repository signatures.
 
 Archive regressions exercise real curl against oversized and slow loopback
-responses. With Linux pacman installed, the resolver test checks that two isolated
+responses. With Linux pacman installed and root privileges, the resolver test checks that two isolated
 database roots consume the pinned local bytes even when a remote server offers
 different metadata. Rust tests cover migration, publication failure recovery,
 public reader contention and private lock modes. Running the Linux transaction
