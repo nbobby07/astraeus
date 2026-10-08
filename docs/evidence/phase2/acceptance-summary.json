@@ -1,0 +1,1001 @@
+[
+  {
+    "run": "final-failure-luks",
+    "passed": true,
+    "started": "2026-10-08T00:14:16.814136+00:00",
+    "mode": "run",
+    "scenario": "update-failure",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T00:21:06.596340+00:00",
+    "after-rollback": {
+      "id": 1,
+      "state": "rolled_back",
+      "outcome": "rolled_back",
+      "snapshot": "1791418549-876422264-1218",
+      "post_snapshot": null,
+      "update_boot_id": "1aaf8458-e996-4019-bacf-f3ddc1f2b7da",
+      "failure": {
+        "at": "applying",
+        "message": "package application: /usr/bin/pacman failed: error: command failed to execute correctly\nerror: failed to commit transaction (failed to run transaction hooks)",
+        "interrupted": false
+      },
+      "confirmation": {
+        "boot_id": "a62e6483-e62b-43d8-b003-2c70835062e1",
+        "snapshot": "1791418549-876422264-1218",
+        "rollback": true,
+        "checks": [
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "sentinel": "version-A",
+      "persistent": "3176dfbf47b54a5796d1d2aa5299635e-after-snapshot",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "after-update": {
+      "id": 1,
+      "state": "rollback_required",
+      "outcome": "rollback_required",
+      "snapshot": "1791418549-876422264-1218",
+      "post_snapshot": null,
+      "update_boot_id": "1aaf8458-e996-4019-bacf-f3ddc1f2b7da",
+      "failure": {
+        "at": "applying",
+        "message": "package application: /usr/bin/pacman failed: error: command failed to execute correctly\nerror: failed to commit transaction (failed to run transaction hooks)",
+        "interrupted": false
+      },
+      "confirmation": null,
+      "sentinel": "version-A",
+      "persistent": "3176dfbf47b54a5796d1d2aa5299635e",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "persistent_subvolume_ids": {
+      "@home": [
+        "257",
+        "257"
+      ],
+      "@snapshots": [
+        "258",
+        "258"
+      ],
+      "@log": [
+        "259",
+        "259"
+      ],
+      "@cache": [
+        "260",
+        "260"
+      ],
+      "@containers": [
+        "261",
+        "261"
+      ]
+    }
+  },
+  {
+    "run": "final-interrupted-applied-luks",
+    "passed": true,
+    "started": "2026-10-08T00:40:38.006775+00:00",
+    "mode": "run",
+    "scenario": "interruption",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T00:50:13.042340+00:00",
+    "after-rollback": {
+      "id": 1,
+      "state": "rolled_back",
+      "outcome": "rolled_back",
+      "snapshot": "1791420146-148730148-1222",
+      "post_snapshot": null,
+      "update_boot_id": "0c269520-6787-4dd0-bba7-b2d4ca56aa75",
+      "failure": {
+        "at": "applying",
+        "message": "previous updater stopped before completing this phase; inspect pacman lock/log before recovery",
+        "interrupted": true
+      },
+      "confirmation": {
+        "boot_id": "abd99186-b908-4d75-82b8-20260d8a8a1c",
+        "snapshot": "1791420146-148730148-1222",
+        "rollback": true,
+        "checks": [
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "sentinel": "version-A",
+      "persistent": "86ae77f495fc4f118c0120c825c5eda9-after-snapshot",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "interrupted-before-powercut": {
+      "id": 1,
+      "state": "applying",
+      "outcome": "in_progress",
+      "snapshot": "1791420146-148730148-1222",
+      "post_snapshot": null,
+      "update_boot_id": "0c269520-6787-4dd0-bba7-b2d4ca56aa75",
+      "failure": null,
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "86ae77f495fc4f118c0120c825c5eda9",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "after-interruption": {
+      "id": 1,
+      "state": "rollback_required",
+      "outcome": "rollback_required",
+      "snapshot": "1791420146-148730148-1222",
+      "post_snapshot": null,
+      "update_boot_id": "0c269520-6787-4dd0-bba7-b2d4ca56aa75",
+      "failure": {
+        "at": "applying",
+        "message": "previous updater stopped before completing this phase; inspect pacman lock/log before recovery",
+        "interrupted": true
+      },
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "86ae77f495fc4f118c0120c825c5eda9",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "reconciled": {
+      "id": 1,
+      "state": "rollback_required",
+      "outcome": "rollback_required",
+      "snapshot": "1791420146-148730148-1222",
+      "post_snapshot": null,
+      "update_boot_id": "0c269520-6787-4dd0-bba7-b2d4ca56aa75",
+      "failure": {
+        "at": "applying",
+        "message": "previous updater stopped before completing this phase; inspect pacman lock/log before recovery",
+        "interrupted": true
+      },
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "86ae77f495fc4f118c0120c825c5eda9",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "persistent_subvolume_ids": {
+      "@home": [
+        "257",
+        "257"
+      ],
+      "@snapshots": [
+        "258",
+        "258"
+      ],
+      "@log": [
+        "259",
+        "259"
+      ],
+      "@cache": [
+        "260",
+        "260"
+      ],
+      "@containers": [
+        "261",
+        "261"
+      ]
+    }
+  },
+  {
+    "run": "final-interrupted-luks",
+    "passed": true,
+    "started": "2026-10-08T00:31:11.012072+00:00",
+    "mode": "run",
+    "scenario": "interruption",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T00:40:04.326840+00:00",
+    "after-rollback": {
+      "id": 1,
+      "state": "rolled_back",
+      "outcome": "rolled_back",
+      "snapshot": "1791419561-299718233-1218",
+      "post_snapshot": null,
+      "update_boot_id": "f0d557ee-b931-40c9-8bee-ea9970c3a7c4",
+      "failure": {
+        "at": "applying",
+        "message": "previous updater stopped before completing this phase; inspect pacman lock/log before recovery",
+        "interrupted": true
+      },
+      "confirmation": {
+        "boot_id": "94f48470-b1ca-4e9e-843a-57323f521539",
+        "snapshot": "1791419561-299718233-1218",
+        "rollback": true,
+        "checks": [
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "sentinel": "version-A",
+      "persistent": "6a4a71b5ca9b4615b65279d8267fcdc1-after-snapshot",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "interrupted-before-powercut": {
+      "id": 1,
+      "state": "applying",
+      "outcome": "in_progress",
+      "snapshot": "1791419561-299718233-1218",
+      "post_snapshot": null,
+      "update_boot_id": "f0d557ee-b931-40c9-8bee-ea9970c3a7c4",
+      "failure": null,
+      "confirmation": null,
+      "sentinel": "version-A",
+      "persistent": "6a4a71b5ca9b4615b65279d8267fcdc1",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "after-interruption": {
+      "id": 1,
+      "state": "rollback_required",
+      "outcome": "rollback_required",
+      "snapshot": "1791419561-299718233-1218",
+      "post_snapshot": null,
+      "update_boot_id": "f0d557ee-b931-40c9-8bee-ea9970c3a7c4",
+      "failure": {
+        "at": "applying",
+        "message": "previous updater stopped before completing this phase; inspect pacman lock/log before recovery",
+        "interrupted": true
+      },
+      "confirmation": null,
+      "sentinel": "version-A",
+      "persistent": "6a4a71b5ca9b4615b65279d8267fcdc1",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "reconciled": {
+      "id": 1,
+      "state": "rollback_required",
+      "outcome": "rollback_required",
+      "snapshot": "1791419561-299718233-1218",
+      "post_snapshot": null,
+      "update_boot_id": "f0d557ee-b931-40c9-8bee-ea9970c3a7c4",
+      "failure": {
+        "at": "applying",
+        "message": "previous updater stopped before completing this phase; inspect pacman lock/log before recovery",
+        "interrupted": true
+      },
+      "confirmation": null,
+      "sentinel": "version-A",
+      "persistent": "6a4a71b5ca9b4615b65279d8267fcdc1",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "persistent_subvolume_ids": {
+      "@home": [
+        "257",
+        "257"
+      ],
+      "@snapshots": [
+        "258",
+        "258"
+      ],
+      "@log": [
+        "259",
+        "259"
+      ],
+      "@cache": [
+        "260",
+        "260"
+      ],
+      "@containers": [
+        "261",
+        "261"
+      ]
+    }
+  },
+  {
+    "run": "final-rollback-luks",
+    "passed": true,
+    "started": "2026-10-08T00:21:55.605341+00:00",
+    "mode": "run",
+    "scenario": "rollback",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T00:30:31.587719+00:00",
+    "after-rollback": {
+      "id": 1,
+      "state": "rolled_back",
+      "outcome": "rolled_back",
+      "snapshot": "1791419003-10410913-1214",
+      "post_snapshot": "1791419023-224992153-1214",
+      "update_boot_id": "3b7cbcbe-9b6b-4135-9b0a-c2fefcbfcfe3",
+      "failure": null,
+      "confirmation": {
+        "boot_id": "c6b3bb73-8845-408d-b588-605e5cb4bea0",
+        "snapshot": "1791419003-10410913-1214",
+        "rollback": true,
+        "checks": [
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "sentinel": "version-A",
+      "persistent": "64bdfca5779a417086293873dc4bb5bc-after-snapshot",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "after-update": {
+      "id": 1,
+      "state": "awaiting_boot",
+      "outcome": "awaiting_boot",
+      "snapshot": "1791419003-10410913-1214",
+      "post_snapshot": "1791419023-224992153-1214",
+      "update_boot_id": "3b7cbcbe-9b6b-4135-9b0a-c2fefcbfcfe3",
+      "failure": null,
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "64bdfca5779a417086293873dc4bb5bc",
+      "uki": "4c4e019fb74524daaa8176adf111aae1686bde8c346b74e6c71d6df0df1f0d1b  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "persistent_subvolume_ids": {
+      "@home": [
+        "257",
+        "257"
+      ],
+      "@snapshots": [
+        "258",
+        "258"
+      ],
+      "@log": [
+        "259",
+        "259"
+      ],
+      "@cache": [
+        "260",
+        "260"
+      ],
+      "@containers": [
+        "261",
+        "261"
+      ]
+    }
+  },
+  {
+    "run": "final-rollback-plain",
+    "passed": true,
+    "started": "2026-10-08T01:39:58.499603+00:00",
+    "mode": "run",
+    "scenario": "rollback",
+    "encryption": "none",
+    "finished": "2026-10-08T01:50:11.558344+00:00",
+    "after-rollback": {
+      "id": 1,
+      "state": "rolled_back",
+      "outcome": "rolled_back",
+      "snapshot": "1791423633-437521075-792",
+      "post_snapshot": "1791423650-711621815-792",
+      "update_boot_id": "8c4b86a6-4652-4cf7-b212-fe2110c8898d",
+      "failure": null,
+      "confirmation": {
+        "boot_id": "7dee42be-96e6-4afe-853f-f080f5810e96",
+        "snapshot": "1791423633-437521075-792",
+        "rollback": true,
+        "checks": [
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "sentinel": "version-A",
+      "persistent": "bfb87f4534b84206965e9fc7a4da3710-after-snapshot",
+      "uki": "a72680410879aef2210df5af3172d6892eb72c9e24c3323cc1d3dcf8eae3fa64  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "after-update": {
+      "id": 1,
+      "state": "awaiting_boot",
+      "outcome": "awaiting_boot",
+      "snapshot": "1791423633-437521075-792",
+      "post_snapshot": "1791423650-711621815-792",
+      "update_boot_id": "8c4b86a6-4652-4cf7-b212-fe2110c8898d",
+      "failure": null,
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "bfb87f4534b84206965e9fc7a4da3710",
+      "uki": "92268d676c7fe69d44a654bf13963855cd900056313d27a763022b230e10f0ff  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "persistent_subvolume_ids": {
+      "@home": [
+        "257",
+        "257"
+      ],
+      "@snapshots": [
+        "258",
+        "258"
+      ],
+      "@log": [
+        "259",
+        "259"
+      ],
+      "@cache": [
+        "260",
+        "260"
+      ],
+      "@containers": [
+        "261",
+        "261"
+      ]
+    }
+  },
+  {
+    "run": "final-success-luks",
+    "passed": false,
+    "started": "2026-10-08T00:05:28.326152+00:00",
+    "mode": "run",
+    "scenario": "update-success",
+    "encryption": "LUKS2",
+    "error": "RuntimeError: guest command confirm-boot exited 1; see /home/ubuntu/p2r4/final-success-luks/boot-2/079-confirm-boot.json",
+    "finished": "2026-10-08T00:08:31.074599+00:00",
+    "after-update": {
+      "id": 1,
+      "state": "awaiting_boot",
+      "outcome": "awaiting_boot",
+      "snapshot": "1791418015-417279222-1223",
+      "post_snapshot": "1791418026-631554364-1223",
+      "update_boot_id": "f61a62d0-ed8e-4cb5-99f1-2a8438eb8547",
+      "failure": null,
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "a87706ea1f8e4953baa5b8f32474ebab",
+      "uki": "ed29d9444c9d9d99719fdc8f1867d44ea9dd93aaaf91712137cb39e92c0f8016  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    }
+  },
+  {
+    "run": "final-success-luks2",
+    "passed": true,
+    "started": "2026-10-08T00:10:44.780504+00:00",
+    "mode": "run",
+    "scenario": "update-success",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T00:13:21.570846+00:00",
+    "after-reboot": {
+      "id": 1,
+      "state": "succeeded",
+      "outcome": "succeeded",
+      "snapshot": "1791418314-247291677-1210",
+      "post_snapshot": "1791418332-282315836-1210",
+      "update_boot_id": "865db8a5-ec27-4921-800b-1ef9bcbbc961",
+      "failure": null,
+      "confirmation": {
+        "boot_id": "b6ddde41-84a6-4142-a288-9bf9eaee7b6f",
+        "snapshot": "1791418332-282315836-1210",
+        "rollback": false,
+        "checks": [
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "sentinel": "version-B",
+      "persistent": "1a871c35a8e64dad8125646f59bd303f-after-snapshot",
+      "uki": "b935bd1c434c9386bf762cf955b0cb0b1448d9f6e45384ca412ae40c34355980  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "after-update": {
+      "id": 1,
+      "state": "awaiting_boot",
+      "outcome": "awaiting_boot",
+      "snapshot": "1791418314-247291677-1210",
+      "post_snapshot": "1791418332-282315836-1210",
+      "update_boot_id": "865db8a5-ec27-4921-800b-1ef9bcbbc961",
+      "failure": null,
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "1a871c35a8e64dad8125646f59bd303f",
+      "uki": "b935bd1c434c9386bf762cf955b0cb0b1448d9f6e45384ca412ae40c34355980  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    }
+  },
+  {
+    "run": "final-unbootable-luks",
+    "passed": false,
+    "started": "2026-10-08T00:50:43.431163+00:00",
+    "mode": "run",
+    "scenario": "boot-recovery",
+    "encryption": "LUKS2",
+    "error": "RuntimeError: QEMU exited before acceptance",
+    "finished": "2026-10-08T00:53:42.473580+00:00",
+    "after-update": {
+      "id": 1,
+      "state": "awaiting_boot",
+      "outcome": "awaiting_boot",
+      "snapshot": "1791420762-64944046-1219",
+      "post_snapshot": "1791420777-228371740-1219",
+      "update_boot_id": "f8f67666-c0f1-4ca3-99e8-62e08a76a96c",
+      "failure": null,
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "8be90c1d86dd4362bdd75e6f60311aac",
+      "uki": "da5b218596c1619779881f7ee60865d2299e27c4a147707d8216cd52fcb1f7c2  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    }
+  },
+  {
+    "run": "final-unbootable-luks2",
+    "passed": false,
+    "started": "2026-10-08T00:58:36.161084+00:00",
+    "mode": "run",
+    "scenario": "boot-recovery",
+    "encryption": "LUKS2",
+    "error": "TimeoutError: guest readiness timed out; unlock LUKS/start the test agent through private QMP",
+    "finished": "2026-10-08T01:05:37.713456+00:00",
+    "after-update": {
+      "id": 1,
+      "state": "awaiting_boot",
+      "outcome": "awaiting_boot",
+      "snapshot": "1791421199-886740104-1220",
+      "post_snapshot": "1791421213-68779117-1220",
+      "update_boot_id": "dbb222f9-1c67-4831-a025-003b3f61e9c1",
+      "failure": null,
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "d851736f6ba24377897de0035a14f5dc",
+      "uki": "a71acdf0db6deb966a238e72f0b41023ceb84de66f32fd7445f79cbac8be3143  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    }
+  },
+  {
+    "run": "final-unbootable-luks3",
+    "passed": true,
+    "started": "2026-10-08T01:06:16.049131+00:00",
+    "mode": "run",
+    "scenario": "boot-recovery",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T01:14:09.533707+00:00",
+    "after-rollback": {
+      "id": 1,
+      "state": "rolled_back",
+      "outcome": "rolled_back",
+      "snapshot": "1791421664-534646356-1226",
+      "post_snapshot": "1791421679-72916327-1226",
+      "update_boot_id": "80894e7c-c2c6-4b80-803a-2d1b3cff5d9b",
+      "failure": null,
+      "confirmation": {
+        "boot_id": "6cdf2b2a-ec0c-4b40-8b58-73f26134947a",
+        "snapshot": "1791421664-534646356-1226",
+        "rollback": true,
+        "checks": [
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "sentinel": "version-A",
+      "persistent": "fa3a92b6c2ad48319cca172389b2c7c5-after-snapshot",
+      "uki": "46b316e054c727a45f56f2a95e1420076737b31c3093657b8d5070517e1a32a4  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "after-update": {
+      "id": 1,
+      "state": "awaiting_boot",
+      "outcome": "awaiting_boot",
+      "snapshot": "1791421664-534646356-1226",
+      "post_snapshot": "1791421679-72916327-1226",
+      "update_boot_id": "80894e7c-c2c6-4b80-803a-2d1b3cff5d9b",
+      "failure": null,
+      "confirmation": null,
+      "sentinel": "version-B",
+      "persistent": "fa3a92b6c2ad48319cca172389b2c7c5",
+      "uki": "265116c35d898e19b36e85601e526016667c4039ddb0cc472eb96735c9b6d4ab  /efi/EFI/Linux/astraeus-dev-linux.efi"
+    },
+    "persistent_subvolume_ids": {
+      "@home": [
+        "257",
+        "257"
+      ],
+      "@snapshots": [
+        "258",
+        "258"
+      ],
+      "@log": [
+        "259",
+        "259"
+      ],
+      "@cache": [
+        "260",
+        "260"
+      ],
+      "@containers": [
+        "261",
+        "261"
+      ]
+    }
+  }
+]

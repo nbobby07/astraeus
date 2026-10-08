@@ -129,23 +129,27 @@ Btrfs snapshots are not recursive across subvolumes and are not backups. See the
 
 ## Transactions and boot generations
 
-The FAT ESP is outside Btrfs and cannot be rolled back by restoring `@`. A future
-generation must bind its root snapshot, kernel/modules, initramfs/UKI, boot entry,
-package changes and signing identity. Retain a known-good boot artifact before
-switching a boot entry. Never overwrite the only bootable UKI during an update.
+The FAT ESP is outside Btrfs and cannot be rolled back by restoring `@`. The
+snapshot manager saves the matching UKI with root metadata before package hooks
+can overwrite the active artifact. Offline recovery restores the root and saved
+UKI together, retaining their predecessors. No automatic fallback entry or Secure
+Boot signing policy is implemented.
 
-Durable phases will distinguish preparation, downloaded/verified inputs,
-pre-snapshot, package mutation, boot-artifact staging, validated candidate and
-boot-confirmed success. Persist intent before each irreversible step. A crash
-during pacman mutation means recovery-required, not an automatic retry or success.
-Hold the platform transaction lock and respect pacman's own lock.
+Durable phases distinguish preparation, downloaded/verified inputs, pre-snapshot,
+package mutation, boot-artifact work, validated candidate and boot-confirmed
+success. Intent is persisted before mutation. A crash during pacman application
+means recovery-required. The coordinator holds MutationGuard through the update
+and respects pacman's own lock. Independent package tools do not honor Astraeus's
+advisory lock and must not run concurrently.
 
-A successful package command and post-update snapshot are not proof of a good
-boot. Promote a candidate only after a defined boot-health check. Preserve failed
-transaction history outside `@`. Test power loss, disk full, failed signature,
-interrupted initramfs generation and ESP write failure before declaring rollback
-ready. Initial updates may wrap pacman and Btrfs; do not claim atomic live-system
-mutation or cross-filesystem atomicity.
+A successful package command and post-update snapshot leave the transaction at
+awaiting_boot. Confirmation checks a new kernel boot ID, intended root, saved and
+active UKI, running kernel/command line, package map and required services before
+known-good promotion. Transaction history lives on persistent @log. See the
+[acceptance report](phase2-integration.md) for successful real update, interruption
+and recovery scenarios. Root/ESP changes remain non-atomic; disk-full failures,
+arbitrary write-boundary power loss and interrupted rollback resumption remain
+unqualified.
 
 Upstream references: [ArchISO 91 source](https://github.com/archlinux/archiso/tree/v91),
 [Arch archive](https://wiki.archlinux.org/title/Arch_Linux_Archive),

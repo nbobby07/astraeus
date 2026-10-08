@@ -5,11 +5,13 @@ installer and a small Rust interface for inspecting the running system.
 
 [![Checks](https://github.com/nbobby07/astraeus/actions/workflows/check.yml/badge.svg)](https://github.com/nbobby07/astraeus/actions/workflows/check.yml)
 
-**Current milestone: Phase 1 validated.** Version `0.1.0-dev` installs to encrypted
-or plain Btrfs and boots into KDE Plasma Wayland. Two independent builds produced
-identical ISO bytes. Both installed systems passed two cold boots with the ISO
-removed. The [validation record](docs/validation.md) identifies the tested source,
-image hashes, commands and remaining limits.
+**Current milestone: Phase 2 validated.** Version `0.1.0-dev` installs to encrypted
+or plain Btrfs and boots into KDE Plasma Wayland. Signed package updates now use
+pre-update snapshots and verified boot confirmation. Disposable installed guests
+passed successful and failed updates, plain and LUKS2 rollback, interrupted
+mutation and recovery from a broken UKI. Two independent builds produced identical
+ISO bytes. The [Phase 2 acceptance record](docs/phase2-integration.md) identifies
+the tested source, image hashes, evidence and remaining limits.
 
 This is a development project. The qualified target is **x86-64 UEFI under
 QEMU/KVM**, using disposable disks. Physical hardware, dual boot and enforced
@@ -31,6 +33,11 @@ public ISO download yet.
   observations; unavailable fields remain unknown.
 - Signed custom packages and repository metadata, locked Arch archive inputs,
   offline Rust package builds and measured ISO reproducibility.
+- Package update plans, durable transaction history, Btrfs snapshots with matching
+  UKIs, and boot confirmation that checks the running state and required services.
+- Explicit offline rollback through the existing live ISO, preserving all five
+  persistent subvolumes. Recovery requires manual intervention; root and ESP
+  changes are not atomic, and general power-loss safety is not qualified.
 
 ![Encrypted Astraeus installation passing its second disk-only boot](docs/assets/installed-acceptance.png)
 
@@ -108,8 +115,10 @@ UEFI -> systemd-boot -> Unified Kernel Image -> initramfs
                                                       -> SDDM -> Plasma Wayland
 ```
 
-The Rust workspace contains three crates: release metadata in `distro-config`,
-hardware discovery in `distro-hardware`, and CLI presentation in `distroctl`.
+The Rust workspace contains five crates: release metadata in `distro-config`,
+hardware discovery in `distro-hardware`, snapshots and recovery in
+`distro-snapshots`, update coordination in `distro-transactions`, and CLI
+presentation in `distroctl`.
 Python standard-library scripts assemble the image and finalize the installed
 system. Calamares handles partitioning, extraction and account setup through
 its upstream modules. Pacman remains the package manager.
@@ -134,15 +143,16 @@ have no implementation claim.
 | --- | --- | --- |
 | 0 | Validated | Reproducible, signed-package Plasma live image |
 | 1 | Validated | Real installer, Btrfs/LUKS2, installed UKI and hardware/status |
-| 2 | Planned | Package transactions, snapshot history and boot-tested rollback |
+| 2 | Validated | Package transactions, snapshot history and boot-tested offline rollback |
 | 3 | Planned | Enforced Secure Boot, signing and known-good fallback |
 | 4 | Planned | Gaming stack and diagnostics across GPU families |
 | 5 | Planned | Performance policies backed by measurements and restoration tests |
 | 6 | Planned | Declarative state, planning, diff and adoption |
 
-The [full roadmap](docs/roadmap.md) lists exit gates and deferred work. Btrfs
-subvolumes are present; automated rollback is not. A stable `v0.1` requires the
-future install, update, break, rollback and reboot acceptance flow.
+The [full roadmap](docs/roadmap.md) lists exit gates and deferred work. The recorded
+install, update, break, rollback and reboot flow has passed on the qualified VM
+target. Automatic fallback and enforced Secure Boot remain future work. This
+development milestone does not establish a stable release.
 
 ## Documentation
 
@@ -150,7 +160,10 @@ future install, update, break, rollback and reboot acceptance flow.
 - [Building and reproducibility](docs/building.md)
 - [Installation](docs/installation.md), [storage](docs/storage.md) and [boot](docs/boot.md)
 - [Hardware/status schema](docs/hardware.md) and [configuration](docs/configuration.md)
-- [Tests](docs/testing.md) and [recorded validation](docs/validation.md)
+- [Tests](docs/testing.md), [Phase 2 acceptance](docs/phase2-integration.md) and
+  [historical Phase 1 validation](docs/validation.md)
+- [Transactions](docs/transactions.md), [snapshots and recovery](docs/snapshots.md),
+  and [installed-system QEMU runner](docs/phase2-validation.md)
 - [Signing model](docs/security.md) and [reporting vulnerabilities](SECURITY.md)
 - [Contributing](CONTRIBUTING.md) and [release procedure](docs/releases.md)
 

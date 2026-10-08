@@ -1,7 +1,8 @@
 # Milestones and releases
 
-There is no stable release or public ISO download yet. `0.1.0-dev` records the
-installation milestone; it does not promise an update or rollback service.
+There is no stable release or public ISO download yet. `0.1.0-dev` now includes
+validated package updates and manual offline rollback on the recorded QEMU/KVM
+target. It does not promise production support or automatic recovery.
 
 ## Source milestones
 
@@ -9,6 +10,12 @@ Annotated tags `phase-0-validated` and `phase-1-validated` identify the historic
 source checkpoints. Their validation evidence is in [validation](validation.md).
 Later documentation and repository-workflow commits do not change what was
 tested. Preserve these tags and commits; do not move them to newer code.
+
+Phase 2 runtime source is `dde0970118ed3003221770d9004bea3147c030ef`, with final
+acceptance harness `2bc521943cf616aae1a572858a3ed15007ca8826` and report commit
+`31b045018eb21df636d2b623702ef5e195c872f5`. See [Phase 2 acceptance](phase2-integration.md)
+for the complete integration history and artifact hashes. Later documentation
+commits do not imply that the accepted ISO was rebuilt from those commits.
 
 Version identity and image build versions live in
 `distro/branding/project.toml`; the Cargo workspace version must stay consistent.

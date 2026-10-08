@@ -197,20 +197,26 @@ fixture cleanup.
 The test executor permits its isolated fixture in WSL/private namespaces;
 production refuses these environments. Its synthetic PE UKI qualifies storage
 and byte handling only. It passed on WSL2 6.6.114.1 with btrfs-progs 6.17.1 and
-dosfstools 4.2. UEFI boots, encrypted recovery, power cuts, ENOSPC, ESP failures
-and installed non-root listing remain Chat 3 acceptance work. See
-[snapshot policy and recovery](snapshots.md).
+dosfstools 4.2. Real UEFI boots, plain/LUKS2 recovery and a verified mutation
+interruption subsequently passed through the existing QEMU runner. See the
+[Phase 2 acceptance record](phase2-integration.md) and
+[snapshot policy and recovery](snapshots.md). ENOSPC, arbitrary power-cut points
+and interrupted root/ESP rollback remain outside that qualification.
 
-## Later subsystem tests
+## Transaction and boot-confirmation tests
 
 Phase 2 transaction tests run with the same workspace commands above on Windows
 and Linux. They cover typed plans, pacman machine-output parsing, byte arithmetic,
 SQLite schema/persistence/read-only history, locking, legal/illegal transitions,
 missing snapshot integration, cancellation, interrupted restart recovery, package
 and UKI failures, health aggregation, CLI dry-run presentation and history JSON.
+Integration checks cover snapshot failure before package mutation, boot identity,
+required health evidence, idempotent confirmation and rollback finalization.
 Injected package/command backends never mutate the host package database.
 Successful live execution in fixtures ends at `awaiting_boot`; it is not installed
-update or rollback acceptance. See [transactions](transactions.md).
+update or rollback acceptance. The real installed scenarios are recorded in
+[Phase 2 acceptance](phase2-integration.md). See [transactions](transactions.md)
+for the product lifecycle.
 
 `test_transactions_pacman.py` additionally exercises real pacman when available:
 temporary local/sync databases, dependency resolution, epoch versions, exact

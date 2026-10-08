@@ -4,6 +4,12 @@
 VMs, including real LUKS2 recovery and two byte-identical clean ISO builds.
 Acceptance ran on 2026-10-07/08 UTC. The safety boundaries below still apply.
 
+The repository includes the [machine-readable scenario receipts](evidence/phase2/acceptance-summary.json)
+and [artifact checksum manifest](evidence/phase2/artifacts.json). These retain failed
+attempts alongside passing reruns. Host test logs are in `docs/evidence/phase2/`.
+The full raw VM archives and ISO copies remain at the local paths recorded below;
+this Git publication does not publish installation media or a stable release.
+
 ## Source and merge audit
 
 Branch: `phase2/integration`, in the Codex `phase2-integration/operating-system`

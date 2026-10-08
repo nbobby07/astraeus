@@ -1,29 +1,36 @@
 # Roadmap and acceptance gates
 
-Phases 0 and 1 are validated on the recorded x86-64 UEFI/QEMU/KVM target.
-The current version is `0.1.0-dev`. See [validation](validation.md) for the exact
-implementation, hashes and installed-guest results. Phase 2 has not started.
+Phases 0 through 2 are validated on the recorded x86-64 UEFI/QEMU/KVM target.
+The current version is `0.1.0-dev`. See [Phase 2 acceptance](phase2-integration.md)
+and [historical Phase 1 validation](validation.md) for exact source revisions,
+hashes and installed-guest results. Phase 3 has not started.
 
 | Phase | State | Deliverable | Evidence needed to close |
 | --- | --- | --- | --- |
 | 0 | Validated | Workspace, signed package repository, Plasma live ISO | Independent ISO byte comparison, UEFI/KVM Wayland boot, interactive desktop and service checks |
 | 1 | Validated | Calamares, Btrfs, optional LUKS2, installed UKI, hardware/status | Fresh encrypted and plain native installations; two ISO-detached boots of each; actual CLI, network, audio and failed-unit checks; repeated ISO comparison |
-| 2 | Planned | Package transactions, snapshots, history, rollback | Break a test package, restore the matching root and boot generation, reboot; inject update failures and verify durable recovery state |
+| 2 | Validated | Package transactions, snapshots, history, offline rollback | Passed signed update, failed update, plain/LUKS2 rollback, interrupted mutation, unbootable recovery and independent full ISO comparison |
 | 3 | Planned | Secure Boot, signing and fallback | Enforcing OVMF accepts signed generations, rejects tampering and boots a known-good fallback |
 | 4 | Planned | Gaming preset and diagnostics | Steam, Vulkan and the 32-bit stack validated across documented GPU families |
 | 5 | Planned | Measured performance policies | Recorded baselines, power/thermal context, safety checks, restoration and repeatable improvements |
 | 6 | Planned | Declarative state | Parse, validate, plan, diff, apply and adopt against resolved package state; safe failure handling |
 
-## Next engineering boundary
+## Validated boundary and remaining limits
 
-Phase 2 must coordinate the package database, root snapshot and ESP boot artifacts.
-A successful pacman invocation is insufficient: a candidate needs a healthy boot,
-and the previous generation must remain bootable. Interrupted mutation needs an
-explicit recovery state. The [architecture](architecture.md) records these
-constraints. Phase 2 implementation is a separate milestone.
+Phase 2 coordinates the package database, root snapshot and saved UKI. A successful
+pacman invocation leaves a candidate awaiting boot; promotion requires evidence
+of the intended running state and healthy required services. Interrupted mutation
+records a recovery state. The [architecture](architecture.md) records these
+boundaries and the [acceptance report](phase2-integration.md) records actual tests.
 
-The first stable `v0.1` requires the complete install, update, deliberate break,
-rollback and reboot flow, with user files and failure logs preserved. Milestone
+Recovery is manual through trusted live media. Root and ESP changes are not atomic;
+automatic fallback, general power-loss safety, full-disk fault qualification and
+interrupted rollback resumption remain unresolved. Physical hardware and arbitrary
+kernel/systemd upgrades are not qualified by the controlled fixture updates.
+
+The install, update, deliberate break, rollback and reboot flow passed with user
+files and failure logs preserved. That evidence qualifies this development
+milestone, not a stable `v0.1` release or broader compatibility. Milestone
 completion tags are evidence markers, not stable releases.
 
 ## Work without a scheduled phase
