@@ -1,6 +1,7 @@
 # Post-security Phase 2 requalification
 
-Status: PASS. Current hardened production inputs are requalified for the recorded
+Status: PASS, including the required health, service and space fault variants.
+Current hardened production inputs are requalified for the recorded
 x86-64 QEMU/KVM target. Both fresh installations, A-G and applicable security
 regressions passed; verified evidence is preserved outside Freestyle.
 Historical acceptance of `dde0970118ed3003221770d9004bea3147c030ef` remains separate.
@@ -306,7 +307,8 @@ promotional credits and excluding transfer. CPU-time metering was unavailable;
 this estimate uses actual elapsed runtime and the unchanged 8-vCPU/16-GiB
 allocation. It is not an invoice. No plan, billing or unrelated resource changed.
 
-Only the root prerequisite in the native pacman test needed a tracked fix. No
+Initially only the root prerequisite in the native pacman test needed a tracked
+fix. Review follow-up also fixes the space fixture, as recorded below. No
 production code changed during acceptance, so the tested ISO inputs remained
 frozen. The report commit contains documentation and evidence only and is
 separate from runtime `0f984fc`. GitHub Checks is run on the report revision;
@@ -330,3 +332,69 @@ Physical hardware, dual boot, enforced Secure Boot, arbitrary power-loss points,
 automatic recovery, full-disk failure behavior, root/ESP exhaustion and physical
 audio playback remain outside this qualification. Root and ESP switching are not
 atomic. A test at one interrupted-update barrier cannot establish general crash safety.
+
+## Review follow-up: omitted required fault variants
+
+Codex review of report commit `d10e56f` identified three scenarios required by
+[the harness matrix](phase2-validation.md#acceptance-scenarios) that the initial
+requalification omitted: health failure, service failure and package-cache space
+rejection. The initial blanket PASS was premature. The original evidence archives
+are preserved unchanged; a separate supplement records these additional runs.
+
+The follow-up reuses the same frozen runtime `0f984fc`, accepted ISO A and sealed
+LUKS2 baseline. It uses fresh overlays for each fault. Health and service runs use the original
+harness. The space rerun uses test-only harness fix `88bce55`, described below.
+No production input, signing requirement or acceptance gate changes.
+
+| Required scenario | Result |
+| --- | --- |
+| `update-failure --fault health` | PASS |
+| `update-failure --fault service` | PASS |
+| `rejected-update --fault space` | PASS after fixture correction; initial refusal retained |
+
+The separately reported CI problem was a stale cancellation in the original
+push run. The manual archive-verification workflow shared its concurrency group
+and cancelled it. A partial rerun passed Ubuntu but retained the cancelled
+Windows result. Rerunning the Windows job completed that run successfully without
+changing the workflow or tests.
+
+The first space run correctly refused an unsupported nested mount beneath
+`/var/cache/pacman/pkg` before creating a transaction. It therefore failed the
+insufficient-space acceptance assertion, rather than passing for an unrelated
+refusal. This was an obsolete fixture layout after mount-policy hardening.
+
+Test-only commit `88bce5546b555dc6b75ef563a0f6783ea9f1e08b` mounts the bounded
+16 MiB tmpfs under `/run`, preserves the original cache directory beside its
+original path, and temporarily points the standard cache path to the tmpfs.
+After verifying the actual insufficient-space failure and unchanged package and
+snapshot state, the runner requires successful restoration of the original cache
+and unmounts the fixture before reboot. The guest privilege/KVM guards remain.
+The production mount policy and disk-space checks are unchanged. The fixture
+files are not packaged into the ISO, so the frozen image pair remains applicable.
+
+A new regression test checks the runtime mount location, actual cache symlink,
+restoration of the original inode and cached file contents, preserved fault
+marker, and refusal of an invalid cleanup state. The Linux root suite passed all
+44 Python tests; Windows passed 32 with 12 platform/tool skips. Bash syntax passed.
+
+The completed supplement is
+`D:/Astraeus-Phase2-Evidence/security-0f984fc-review-followup-evidence.tar.xz`,
+863,120 bytes, SHA-256
+`bb8b2e139cb1cd112cc9d42097e6649afb335fbc53c4d9d588e13a3fcedeb92f`.
+All 542 indexed member hashes were verified after download; credential scanning
+passed. The [supplemental receipts](evidence/phase2-security/review-followup-summary.json)
+are also appended to the main scenario index, including the failed original
+space run and passing rerun.
+
+Health and service faults produced `rollback_required` for the intended failed
+check, then restored the original root/packages/UKI and user data and finalized
+as `rolled_back` on new encrypted boots. The corrected space run exited 1 with
+268,439,681 bytes required and zero available, recorded `failed`, created no
+snapshot, changed no packages, restored the cache and passed its disk-only boot.
+
+After verified export, all four follow-up overlays were retired and the validator
+was paused again at `2026-10-08T15:30:07Z`. Both sealed baselines and all logs remain.
+The account again showed zero running VMs, with unrelated `atm10` still paused.
+The follow-up added 2,238 seconds (37m 18s), about $0.33 compute before allowances.
+Combined qualification runtime is 15,726 seconds (4h 22m 6s). These are elapsed
+allocation estimates, not invoiced charges.

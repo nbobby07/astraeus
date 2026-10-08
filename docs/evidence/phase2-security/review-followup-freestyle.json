@@ -1,0 +1,10 @@
+{
+  "initial_total_run_seconds": 70546,
+  "final_total_run_seconds": 72784,
+  "followup_run_seconds": 2238,
+  "combined_qualification_seconds": 15726,
+  "final_state": "paused",
+  "account_running_count": 0,
+  "paused_at": "2026-10-08T15:30:07.436737Z",
+  "approximate_followup_compute_usd_before_allowances": 0.3288368
+}

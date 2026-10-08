@@ -1,0 +1,615 @@
+[
+  {
+    "run": "extra-health-failure",
+    "passed": true,
+    "started": "2026-10-08T14:52:58.942879+00:00",
+    "mode": "run",
+    "scenario": "update-failure",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T15:00:47.443790+00:00",
+    "fault": "health",
+    "update_exit_code": 1,
+    "rejection": {
+      "at": "validating",
+      "message": "post-update health checks did not pass",
+      "interrupted": false
+    },
+    "failed_health_checks": [
+      {
+        "name": "failed_system_units",
+        "status": "fail",
+        "required": true,
+        "detail": "astraeus-validation-failed.service loaded failed failed astraeus-validation-failed.service\n"
+      }
+    ],
+    "final_transaction": {
+      "id": 1,
+      "state": "rolled_back",
+      "outcome": "rolled_back",
+      "snapshot": "1791471292-794775343-857",
+      "post_snapshot": "1791471310-534342014-857",
+      "update_boot_id": "d70f5fce-e7ad-404b-8ccc-9a031e0d3aeb",
+      "confirmation": {
+        "boot_id": "eeba2b7a-8424-4626-a3ab-da82d155c017",
+        "snapshot": "1791471292-794775343-857",
+        "rollback": true,
+        "checks": [
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "failure": {
+        "at": "validating",
+        "message": "post-update health checks did not pass",
+        "interrupted": false
+      },
+      "events": [
+        {
+          "state": "planned",
+          "timestamp": 1791471287
+        },
+        {
+          "state": "preparing",
+          "timestamp": 1791471287
+        },
+        {
+          "state": "downloaded",
+          "timestamp": 1791471292
+        },
+        {
+          "state": "snapshot_pending",
+          "timestamp": 1791471292
+        },
+        {
+          "state": "snapshot_created",
+          "timestamp": 1791471295
+        },
+        {
+          "state": "applying",
+          "timestamp": 1791471295
+        },
+        {
+          "state": "validating",
+          "timestamp": 1791471298
+        },
+        {
+          "state": "rollback_required",
+          "timestamp": 1791471313
+        },
+        {
+          "state": "rolled_back",
+          "timestamp": 1791471634
+        }
+      ]
+    },
+    "baseline": {
+      "path": "/home/ubuntu/p2sec/base-luks",
+      "manifest": {
+        "accepted": true,
+        "created": "2026-10-08T08:02:36.698178+00:00",
+        "encryption": "LUKS2",
+        "inputs": {
+          "source_commits": [
+            "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+          ],
+          "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+          "harness_dirty": false,
+          "harness_files": {
+            "scripts/validate/phase2.py": "99bbc05567010d77c4854d0e622cb10095387cf55b8bed87aabc132ec1698a0a",
+            "scripts/validate/qmp.py": "79c9edb5d6d3ece66d77b224eadc40c140c0dec0b33b530a10d513a98e2eb5d0",
+            "scripts/install-smoke.py": "dcb51bcf1f9d7be7453d3a4954099f371d14b26406ab8e315f2844a23e43cc27"
+          },
+          "iso": {
+            "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+            "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+          },
+          "ovmf_code": {
+            "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+            "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+          },
+          "files": {
+            "phase2-guest.py": "8d70b8bb02dab8739e104a761cded1fcb9ad82dd665f1241a9b5e4c69fef4cae",
+            "installed-smoke.sh": "88fa95c0ad7164b681ff6bd527992911cf760f830c4f2782fb36edf188b1a5f5",
+            "fixtures/installed-security.py": "d644bff90dce6181d1d9daaa5043b51b84bf5306481a9c912fbc6bdc162b5e8b",
+            "fixtures/prepare-baseline.sh": "1c9584f3f22bfa096dccec365fd089f1c93588e858d431a19ca78541437ab7e2",
+            "fixtures/repository-fingerprint.txt": "da57a9e6d28291b96269866181cdddb54991a65e23f3a16a39e6c3781fcb869a",
+            "fixtures/audit-installed.py": "0183dfa72bfd1e0d9058e48607163abac138f3ccfe1895f2b1ca6c9eac24bd85",
+            "fixtures/export-evidence.py": "ab794cd9e5d731787218c9fbe60d650f9b1ae33d8843041f1c569e555ce9bc53",
+            "fixtures/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+            "fixtures/adapter.sh": "36a0bdeacbc0df9a6d5d3359f290d6f964079fc1dcb64182a92dd3cfb067115f",
+            "fixtures/export-calamares.py": "ce25bde931a4921559f426c7aea800c17b62d8d28ad88d70c56fe15292ce7cbc",
+            "fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst.sig": "fdaac98d86b0c16b5c3f718c29bdde1df7a9fc02354898905352ec81a39989b1",
+            "fixtures/fixture-repo-2/distro.db": "d2366c5826883061b3c092e5fae9e12fca3851cf0a6e78aaea855b2333b81b8b",
+            "fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst": "b429a718056ac020337bcfdf8fa0f9261ecb6620f1bb788e09cabc3985e485ec",
+            "fixtures/fixture-repo-2/distro.files.tar.gz.sig": "94ff086a884c5ad3bfe64ee9b569a92845dc48af2a6c7ec70e16d144d8e2bce7",
+            "fixtures/fixture-repo-2/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+            "fixtures/fixture-repo-2/distro.files": "9f2bffab5d5458bee6f367cad100c6550cbd3c2f50f81af18cc145f1508be120",
+            "fixtures/fixture-repo-2/distro.db.tar.gz": "d2366c5826883061b3c092e5fae9e12fca3851cf0a6e78aaea855b2333b81b8b",
+            "fixtures/fixture-repo-2/SHA256SUMS": "d2c3bef0f16f9b358e633a293ef3b6b9f198e199fd59b3c0e6772336b604b35d",
+            "fixtures/fixture-repo-2/distro.files.sig": "94ff086a884c5ad3bfe64ee9b569a92845dc48af2a6c7ec70e16d144d8e2bce7",
+            "fixtures/fixture-repo-2/distro.db.sig": "93d5bec0b4ddb02b41928c08fa68efc82e05c485b63448cf4954fcd5732cb9a3",
+            "fixtures/fixture-repo-2/distro.files.tar.gz": "9f2bffab5d5458bee6f367cad100c6550cbd3c2f50f81af18cc145f1508be120",
+            "fixtures/fixture-repo-2/distro.db.tar.gz.sig": "93d5bec0b4ddb02b41928c08fa68efc82e05c485b63448cf4954fcd5732cb9a3",
+            "fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst": "2c4cc4f35a0b4136d69b7f79ef8cc8a4d067d6ab396391055c47212189054941",
+            "fixtures/fixture-repo-1/distro.db": "efe62c308e092185a53940d24e6141221d9a17517b7e68913790142e77ff602a",
+            "fixtures/fixture-repo-1/distro.files.tar.gz.sig": "56ae51fe9ef954cdd79aa198ea1d474126b834ff8a26266843aee317518733a5",
+            "fixtures/fixture-repo-1/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+            "fixtures/fixture-repo-1/distro.files": "2759560b5418650927a6887254d5d79e9a62adedfe6013b1db0e5e03328654b9",
+            "fixtures/fixture-repo-1/distro.db.tar.gz": "efe62c308e092185a53940d24e6141221d9a17517b7e68913790142e77ff602a",
+            "fixtures/fixture-repo-1/SHA256SUMS": "2df659ac72a068407c0af80e8e16e4221ac460552b31d5407e7a2d0da94e4dae",
+            "fixtures/fixture-repo-1/distro.files.sig": "56ae51fe9ef954cdd79aa198ea1d474126b834ff8a26266843aee317518733a5",
+            "fixtures/fixture-repo-1/distro.db.sig": "402f93c67a3b70cf085f63ed4cc833fd056820a3b17a61ee9f0b731f02fa2cca",
+            "fixtures/fixture-repo-1/distro.files.tar.gz": "2759560b5418650927a6887254d5d79e9a62adedfe6013b1db0e5e03328654b9",
+            "fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst.sig": "a7aab5db2306f4a9cf6aa42e4e545897a88ccd6c0484faf72b51ce9a107457bc",
+            "fixtures/fixture-repo-1/distro.db.tar.gz.sig": "402f93c67a3b70cf085f63ed4cc833fd056820a3b17a61ee9f0b731f02fa2cca"
+          },
+          "host": {
+            "platform": "linux",
+            "qemu": "QEMU emulator version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)\nCopyright (c) 2003-2023 Fabrice Bellard and the QEMU Project developers\n"
+          }
+        },
+        "sha256": {
+          "disk.qcow2": "ecd3a271112b76d6f749781be9c7d13d8f20dd8d2a1a27f96bc81f9ff9b6819e",
+          "vars.fd": "3da3d157e48687ce89b78106a7d68d36cb8c3a58bb8901c2b04b1ad5c650816a"
+        }
+      }
+    },
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "final_root": "version-A",
+    "final_uki_sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+    "final_failed_units": ""
+  },
+  {
+    "run": "extra-service-failure",
+    "passed": true,
+    "started": "2026-10-08T15:01:47.384123+00:00",
+    "mode": "run",
+    "scenario": "update-failure",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T15:09:25.230691+00:00",
+    "fault": "service",
+    "update_exit_code": 1,
+    "rejection": {
+      "at": "validating",
+      "message": "post-update health checks did not pass",
+      "interrupted": false
+    },
+    "failed_health_checks": [
+      {
+        "name": "critical_services",
+        "status": "fail",
+        "required": true,
+        "detail": ""
+      }
+    ],
+    "final_transaction": {
+      "id": 1,
+      "state": "rolled_back",
+      "outcome": "rolled_back",
+      "snapshot": "1791471796-134208553-852",
+      "post_snapshot": "1791471812-932290108-852",
+      "update_boot_id": "fde58399-f814-4360-88b6-29d3e23ddb85",
+      "confirmation": {
+        "boot_id": "db31aabc-7041-46a3-ac5c-036efaf4e6a2",
+        "snapshot": "1791471796-134208553-852",
+        "rollback": true,
+        "checks": [
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "failure": {
+        "at": "validating",
+        "message": "post-update health checks did not pass",
+        "interrupted": false
+      },
+      "events": [
+        {
+          "state": "planned",
+          "timestamp": 1791471790
+        },
+        {
+          "state": "preparing",
+          "timestamp": 1791471790
+        },
+        {
+          "state": "downloaded",
+          "timestamp": 1791471795
+        },
+        {
+          "state": "snapshot_pending",
+          "timestamp": 1791471795
+        },
+        {
+          "state": "snapshot_created",
+          "timestamp": 1791471798
+        },
+        {
+          "state": "applying",
+          "timestamp": 1791471799
+        },
+        {
+          "state": "validating",
+          "timestamp": 1791471801
+        },
+        {
+          "state": "rollback_required",
+          "timestamp": 1791471814
+        },
+        {
+          "state": "rolled_back",
+          "timestamp": 1791472151
+        }
+      ]
+    },
+    "baseline": {
+      "path": "/home/ubuntu/p2sec/base-luks",
+      "manifest": {
+        "accepted": true,
+        "created": "2026-10-08T08:02:36.698178+00:00",
+        "encryption": "LUKS2",
+        "inputs": {
+          "source_commits": [
+            "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+          ],
+          "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+          "harness_dirty": false,
+          "harness_files": {
+            "scripts/validate/phase2.py": "99bbc05567010d77c4854d0e622cb10095387cf55b8bed87aabc132ec1698a0a",
+            "scripts/validate/qmp.py": "79c9edb5d6d3ece66d77b224eadc40c140c0dec0b33b530a10d513a98e2eb5d0",
+            "scripts/install-smoke.py": "dcb51bcf1f9d7be7453d3a4954099f371d14b26406ab8e315f2844a23e43cc27"
+          },
+          "iso": {
+            "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+            "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+          },
+          "ovmf_code": {
+            "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+            "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+          },
+          "files": {
+            "phase2-guest.py": "8d70b8bb02dab8739e104a761cded1fcb9ad82dd665f1241a9b5e4c69fef4cae",
+            "installed-smoke.sh": "88fa95c0ad7164b681ff6bd527992911cf760f830c4f2782fb36edf188b1a5f5",
+            "fixtures/installed-security.py": "d644bff90dce6181d1d9daaa5043b51b84bf5306481a9c912fbc6bdc162b5e8b",
+            "fixtures/prepare-baseline.sh": "1c9584f3f22bfa096dccec365fd089f1c93588e858d431a19ca78541437ab7e2",
+            "fixtures/repository-fingerprint.txt": "da57a9e6d28291b96269866181cdddb54991a65e23f3a16a39e6c3781fcb869a",
+            "fixtures/audit-installed.py": "0183dfa72bfd1e0d9058e48607163abac138f3ccfe1895f2b1ca6c9eac24bd85",
+            "fixtures/export-evidence.py": "ab794cd9e5d731787218c9fbe60d650f9b1ae33d8843041f1c569e555ce9bc53",
+            "fixtures/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+            "fixtures/adapter.sh": "36a0bdeacbc0df9a6d5d3359f290d6f964079fc1dcb64182a92dd3cfb067115f",
+            "fixtures/export-calamares.py": "ce25bde931a4921559f426c7aea800c17b62d8d28ad88d70c56fe15292ce7cbc",
+            "fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst.sig": "fdaac98d86b0c16b5c3f718c29bdde1df7a9fc02354898905352ec81a39989b1",
+            "fixtures/fixture-repo-2/distro.db": "d2366c5826883061b3c092e5fae9e12fca3851cf0a6e78aaea855b2333b81b8b",
+            "fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst": "b429a718056ac020337bcfdf8fa0f9261ecb6620f1bb788e09cabc3985e485ec",
+            "fixtures/fixture-repo-2/distro.files.tar.gz.sig": "94ff086a884c5ad3bfe64ee9b569a92845dc48af2a6c7ec70e16d144d8e2bce7",
+            "fixtures/fixture-repo-2/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+            "fixtures/fixture-repo-2/distro.files": "9f2bffab5d5458bee6f367cad100c6550cbd3c2f50f81af18cc145f1508be120",
+            "fixtures/fixture-repo-2/distro.db.tar.gz": "d2366c5826883061b3c092e5fae9e12fca3851cf0a6e78aaea855b2333b81b8b",
+            "fixtures/fixture-repo-2/SHA256SUMS": "d2c3bef0f16f9b358e633a293ef3b6b9f198e199fd59b3c0e6772336b604b35d",
+            "fixtures/fixture-repo-2/distro.files.sig": "94ff086a884c5ad3bfe64ee9b569a92845dc48af2a6c7ec70e16d144d8e2bce7",
+            "fixtures/fixture-repo-2/distro.db.sig": "93d5bec0b4ddb02b41928c08fa68efc82e05c485b63448cf4954fcd5732cb9a3",
+            "fixtures/fixture-repo-2/distro.files.tar.gz": "9f2bffab5d5458bee6f367cad100c6550cbd3c2f50f81af18cc145f1508be120",
+            "fixtures/fixture-repo-2/distro.db.tar.gz.sig": "93d5bec0b4ddb02b41928c08fa68efc82e05c485b63448cf4954fcd5732cb9a3",
+            "fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst": "2c4cc4f35a0b4136d69b7f79ef8cc8a4d067d6ab396391055c47212189054941",
+            "fixtures/fixture-repo-1/distro.db": "efe62c308e092185a53940d24e6141221d9a17517b7e68913790142e77ff602a",
+            "fixtures/fixture-repo-1/distro.files.tar.gz.sig": "56ae51fe9ef954cdd79aa198ea1d474126b834ff8a26266843aee317518733a5",
+            "fixtures/fixture-repo-1/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+            "fixtures/fixture-repo-1/distro.files": "2759560b5418650927a6887254d5d79e9a62adedfe6013b1db0e5e03328654b9",
+            "fixtures/fixture-repo-1/distro.db.tar.gz": "efe62c308e092185a53940d24e6141221d9a17517b7e68913790142e77ff602a",
+            "fixtures/fixture-repo-1/SHA256SUMS": "2df659ac72a068407c0af80e8e16e4221ac460552b31d5407e7a2d0da94e4dae",
+            "fixtures/fixture-repo-1/distro.files.sig": "56ae51fe9ef954cdd79aa198ea1d474126b834ff8a26266843aee317518733a5",
+            "fixtures/fixture-repo-1/distro.db.sig": "402f93c67a3b70cf085f63ed4cc833fd056820a3b17a61ee9f0b731f02fa2cca",
+            "fixtures/fixture-repo-1/distro.files.tar.gz": "2759560b5418650927a6887254d5d79e9a62adedfe6013b1db0e5e03328654b9",
+            "fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst.sig": "a7aab5db2306f4a9cf6aa42e4e545897a88ccd6c0484faf72b51ce9a107457bc",
+            "fixtures/fixture-repo-1/distro.db.tar.gz.sig": "402f93c67a3b70cf085f63ed4cc833fd056820a3b17a61ee9f0b731f02fa2cca"
+          },
+          "host": {
+            "platform": "linux",
+            "qemu": "QEMU emulator version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)\nCopyright (c) 2003-2023 Fabrice Bellard and the QEMU Project developers\n"
+          }
+        },
+        "sha256": {
+          "disk.qcow2": "ecd3a271112b76d6f749781be9c7d13d8f20dd8d2a1a27f96bc81f9ff9b6819e",
+          "vars.fd": "3da3d157e48687ce89b78106a7d68d36cb8c3a58bb8901c2b04b1ad5c650816a"
+        }
+      }
+    },
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "final_root": "version-A",
+    "final_uki_sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+    "final_failed_units": ""
+  },
+  {
+    "run": "extra-space-rejection-r2",
+    "passed": true,
+    "started": "2026-10-08T15:23:39.315832+00:00",
+    "mode": "run",
+    "scenario": "rejected-update",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T15:26:29.955162+00:00",
+    "fault": "space",
+    "update_exit_code": 1,
+    "rejection": {
+      "at": "preparing",
+      "message": "package prerequisites: insufficient disk space: 268439681 bytes required, 0 available",
+      "interrupted": false
+    },
+    "failed_health_checks": [],
+    "final_transaction": {
+      "id": 1,
+      "state": "failed",
+      "outcome": "failed",
+      "snapshot": null,
+      "post_snapshot": null,
+      "update_boot_id": null,
+      "confirmation": null,
+      "failure": {
+        "at": "preparing",
+        "message": "package prerequisites: insufficient disk space: 268439681 bytes required, 0 available",
+        "interrupted": false
+      },
+      "events": [
+        {
+          "state": "planned",
+          "timestamp": 1791473102
+        },
+        {
+          "state": "preparing",
+          "timestamp": 1791473103
+        },
+        {
+          "state": "failed",
+          "timestamp": 1791473104
+        }
+      ]
+    },
+    "baseline": {
+      "path": "/home/ubuntu/p2sec/base-luks",
+      "manifest": {
+        "accepted": true,
+        "created": "2026-10-08T08:02:36.698178+00:00",
+        "encryption": "LUKS2",
+        "inputs": {
+          "source_commits": [
+            "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+          ],
+          "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+          "harness_dirty": false,
+          "harness_files": {
+            "scripts/validate/phase2.py": "99bbc05567010d77c4854d0e622cb10095387cf55b8bed87aabc132ec1698a0a",
+            "scripts/validate/qmp.py": "79c9edb5d6d3ece66d77b224eadc40c140c0dec0b33b530a10d513a98e2eb5d0",
+            "scripts/install-smoke.py": "dcb51bcf1f9d7be7453d3a4954099f371d14b26406ab8e315f2844a23e43cc27"
+          },
+          "iso": {
+            "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+            "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+          },
+          "ovmf_code": {
+            "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+            "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+          },
+          "files": {
+            "phase2-guest.py": "8d70b8bb02dab8739e104a761cded1fcb9ad82dd665f1241a9b5e4c69fef4cae",
+            "installed-smoke.sh": "88fa95c0ad7164b681ff6bd527992911cf760f830c4f2782fb36edf188b1a5f5",
+            "fixtures/installed-security.py": "d644bff90dce6181d1d9daaa5043b51b84bf5306481a9c912fbc6bdc162b5e8b",
+            "fixtures/prepare-baseline.sh": "1c9584f3f22bfa096dccec365fd089f1c93588e858d431a19ca78541437ab7e2",
+            "fixtures/repository-fingerprint.txt": "da57a9e6d28291b96269866181cdddb54991a65e23f3a16a39e6c3781fcb869a",
+            "fixtures/audit-installed.py": "0183dfa72bfd1e0d9058e48607163abac138f3ccfe1895f2b1ca6c9eac24bd85",
+            "fixtures/export-evidence.py": "ab794cd9e5d731787218c9fbe60d650f9b1ae33d8843041f1c569e555ce9bc53",
+            "fixtures/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+            "fixtures/adapter.sh": "36a0bdeacbc0df9a6d5d3359f290d6f964079fc1dcb64182a92dd3cfb067115f",
+            "fixtures/export-calamares.py": "ce25bde931a4921559f426c7aea800c17b62d8d28ad88d70c56fe15292ce7cbc",
+            "fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst.sig": "fdaac98d86b0c16b5c3f718c29bdde1df7a9fc02354898905352ec81a39989b1",
+            "fixtures/fixture-repo-2/distro.db": "d2366c5826883061b3c092e5fae9e12fca3851cf0a6e78aaea855b2333b81b8b",
+            "fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst": "b429a718056ac020337bcfdf8fa0f9261ecb6620f1bb788e09cabc3985e485ec",
+            "fixtures/fixture-repo-2/distro.files.tar.gz.sig": "94ff086a884c5ad3bfe64ee9b569a92845dc48af2a6c7ec70e16d144d8e2bce7",
+            "fixtures/fixture-repo-2/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+            "fixtures/fixture-repo-2/distro.files": "9f2bffab5d5458bee6f367cad100c6550cbd3c2f50f81af18cc145f1508be120",
+            "fixtures/fixture-repo-2/distro.db.tar.gz": "d2366c5826883061b3c092e5fae9e12fca3851cf0a6e78aaea855b2333b81b8b",
+            "fixtures/fixture-repo-2/SHA256SUMS": "d2c3bef0f16f9b358e633a293ef3b6b9f198e199fd59b3c0e6772336b604b35d",
+            "fixtures/fixture-repo-2/distro.files.sig": "94ff086a884c5ad3bfe64ee9b569a92845dc48af2a6c7ec70e16d144d8e2bce7",
+            "fixtures/fixture-repo-2/distro.db.sig": "93d5bec0b4ddb02b41928c08fa68efc82e05c485b63448cf4954fcd5732cb9a3",
+            "fixtures/fixture-repo-2/distro.files.tar.gz": "9f2bffab5d5458bee6f367cad100c6550cbd3c2f50f81af18cc145f1508be120",
+            "fixtures/fixture-repo-2/distro.db.tar.gz.sig": "93d5bec0b4ddb02b41928c08fa68efc82e05c485b63448cf4954fcd5732cb9a3",
+            "fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst": "2c4cc4f35a0b4136d69b7f79ef8cc8a4d067d6ab396391055c47212189054941",
+            "fixtures/fixture-repo-1/distro.db": "efe62c308e092185a53940d24e6141221d9a17517b7e68913790142e77ff602a",
+            "fixtures/fixture-repo-1/distro.files.tar.gz.sig": "56ae51fe9ef954cdd79aa198ea1d474126b834ff8a26266843aee317518733a5",
+            "fixtures/fixture-repo-1/repository-key.asc": "a28f990e08b1d8a676d897b80339377059c3072841a71e70f396793647b8bd8f",
+            "fixtures/fixture-repo-1/distro.files": "2759560b5418650927a6887254d5d79e9a62adedfe6013b1db0e5e03328654b9",
+            "fixtures/fixture-repo-1/distro.db.tar.gz": "efe62c308e092185a53940d24e6141221d9a17517b7e68913790142e77ff602a",
+            "fixtures/fixture-repo-1/SHA256SUMS": "2df659ac72a068407c0af80e8e16e4221ac460552b31d5407e7a2d0da94e4dae",
+            "fixtures/fixture-repo-1/distro.files.sig": "56ae51fe9ef954cdd79aa198ea1d474126b834ff8a26266843aee317518733a5",
+            "fixtures/fixture-repo-1/distro.db.sig": "402f93c67a3b70cf085f63ed4cc833fd056820a3b17a61ee9f0b731f02fa2cca",
+            "fixtures/fixture-repo-1/distro.files.tar.gz": "2759560b5418650927a6887254d5d79e9a62adedfe6013b1db0e5e03328654b9",
+            "fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst.sig": "a7aab5db2306f4a9cf6aa42e4e545897a88ccd6c0484faf72b51ce9a107457bc",
+            "fixtures/fixture-repo-1/distro.db.tar.gz.sig": "402f93c67a3b70cf085f63ed4cc833fd056820a3b17a61ee9f0b731f02fa2cca"
+          },
+          "host": {
+            "platform": "linux",
+            "qemu": "QEMU emulator version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)\nCopyright (c) 2003-2023 Fabrice Bellard and the QEMU Project developers\n"
+          }
+        },
+        "sha256": {
+          "disk.qcow2": "ecd3a271112b76d6f749781be9c7d13d8f20dd8d2a1a27f96bc81f9ff9b6819e",
+          "vars.fd": "3da3d157e48687ce89b78106a7d68d36cb8c3a58bb8901c2b04b1ad5c650816a"
+        }
+      }
+    },
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "88bce5546b555dc6b75ef563a0f6783ea9f1e08b",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "final_root": "version-A",
+    "final_uki_sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+    "final_failed_units": ""
+  },
+  {
+    "run": "extra-space-rejection",
+    "passed": false,
+    "started": "2026-10-08T15:10:43.361420+00:00",
+    "mode": "run",
+    "scenario": "rejected-update",
+    "encryption": "LUKS2",
+    "error": "RuntimeError: missing failed transaction",
+    "finished": "2026-10-08T15:12:22.659673+00:00",
+    "fault": "space",
+    "rejection_diagnostic": "distroctl: unsupported nested mount in system/persistent tree\n"
+  }
+]

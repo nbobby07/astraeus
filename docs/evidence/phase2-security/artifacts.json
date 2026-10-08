@@ -35,5 +35,12 @@
     "bytes": 527728,
     "sha256": "a745ce45523d3eb7b0290bd0886b6e7f21c6374ff1d84b4c87184f936e200926",
     "verified": true
+  },
+  "review_followup": {
+    "path": "D:\\Astraeus-Phase2-Evidence\\security-0f984fc-review-followup-evidence.tar.xz",
+    "bytes": 863120,
+    "sha256": "bb8b2e139cb1cd112cc9d42097e6649afb335fbc53c4d9d588e13a3fcedeb92f",
+    "verified": true,
+    "member_hashes_verified": 542
   }
 }
