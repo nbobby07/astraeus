@@ -1,0 +1,252 @@
+{
+  "plain": {
+    "desktop_acceptance": true,
+    "boots": [
+      {
+        "boot_id": "278c1f6e-4c82-469d-a191-cac2bd529750",
+        "distroctl_sha256": "b3259b5a98679623f1378bfb252c037b92c38fbfb093dbcf50c6180f12a725b5  /usr/bin/distroctl",
+        "uki_sha256": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "storage": {
+          "root": {
+            "device": "/dev/vda2",
+            "uuid": "f15dfa26-1d54-46f0-9df9-49d5983fe6b8",
+            "fs": "btrfs",
+            "mountPoint": "/",
+            "luksUuid": null
+          },
+          "subvolumes": [
+            {
+              "mountPoint": "/",
+              "subvolume": "/@"
+            },
+            {
+              "mountPoint": "/home",
+              "subvolume": "/@home"
+            },
+            {
+              "mountPoint": "/.snapshots",
+              "subvolume": "/@snapshots"
+            },
+            {
+              "mountPoint": "/var/log",
+              "subvolume": "/@log"
+            },
+            {
+              "mountPoint": "/var/cache",
+              "subvolume": "/@cache"
+            },
+            {
+              "mountPoint": "/var/lib/containers",
+              "subvolume": "/@containers"
+            }
+          ],
+          "luks": null,
+          "kernel_command_line": "root=UUID=f15dfa26-1d54-46f0-9df9-49d5983fe6b8 rootflags=subvol=@ rw"
+        },
+        "root_account": "root L 2026-10-08 -1 -1 -1 -1",
+        "installer_absent": true,
+        "live_account_absent": true
+      },
+      {
+        "boot_id": "38e1f97d-4dd3-4261-8c12-459f4f242614",
+        "distroctl_sha256": "b3259b5a98679623f1378bfb252c037b92c38fbfb093dbcf50c6180f12a725b5  /usr/bin/distroctl",
+        "uki_sha256": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "storage": {
+          "root": {
+            "device": "/dev/vda2",
+            "uuid": "f15dfa26-1d54-46f0-9df9-49d5983fe6b8",
+            "fs": "btrfs",
+            "mountPoint": "/",
+            "luksUuid": null
+          },
+          "subvolumes": [
+            {
+              "mountPoint": "/",
+              "subvolume": "/@"
+            },
+            {
+              "mountPoint": "/home",
+              "subvolume": "/@home"
+            },
+            {
+              "mountPoint": "/.snapshots",
+              "subvolume": "/@snapshots"
+            },
+            {
+              "mountPoint": "/var/log",
+              "subvolume": "/@log"
+            },
+            {
+              "mountPoint": "/var/cache",
+              "subvolume": "/@cache"
+            },
+            {
+              "mountPoint": "/var/lib/containers",
+              "subvolume": "/@containers"
+            }
+          ],
+          "luks": null,
+          "kernel_command_line": "root=UUID=f15dfa26-1d54-46f0-9df9-49d5983fe6b8 rootflags=subvol=@ rw"
+        },
+        "root_account": "root L 2026-10-08 -1 -1 -1 -1",
+        "installer_absent": true,
+        "live_account_absent": true
+      }
+    ]
+  },
+  "luks": {
+    "desktop_acceptance": true,
+    "boots": [
+      {
+        "boot_id": "62be08c9-0c77-42aa-abc9-a9ea36131a41",
+        "distroctl_sha256": "b3259b5a98679623f1378bfb252c037b92c38fbfb093dbcf50c6180f12a725b5  /usr/bin/distroctl",
+        "uki_sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "storage": {
+          "root": {
+            "device": "/dev/vda2",
+            "uuid": "65b8e779-9cd1-47c3-8227-f035ad76c494",
+            "fs": "btrfs",
+            "mountPoint": "/",
+            "luksUuid": "65b8e779-9cd1-47c3-8227-f035ad76c494"
+          },
+          "subvolumes": [
+            {
+              "mountPoint": "/",
+              "subvolume": "/@"
+            },
+            {
+              "mountPoint": "/home",
+              "subvolume": "/@home"
+            },
+            {
+              "mountPoint": "/.snapshots",
+              "subvolume": "/@snapshots"
+            },
+            {
+              "mountPoint": "/var/log",
+              "subvolume": "/@log"
+            },
+            {
+              "mountPoint": "/var/cache",
+              "subvolume": "/@cache"
+            },
+            {
+              "mountPoint": "/var/lib/containers",
+              "subvolume": "/@containers"
+            }
+          ],
+          "luks": {
+            "uuid": "65b8e779-9cd1-47c3-8227-f035ad76c494",
+            "keyslots": {
+              "0": {
+                "kdf": {
+                  "type": "argon2id",
+                  "time": 15,
+                  "memory": 464370,
+                  "cpus": 4,
+                  "salt": "yudm8xfBOxcWptdtrwGr+vVX3VW5Lz1wg/D5bvPgPrc="
+                },
+                "area": {
+                  "type": "raw",
+                  "offset": "32768",
+                  "size": "258048",
+                  "encryption": "aes-xts-plain64",
+                  "key_size": 64
+                }
+              }
+            },
+            "segments": {
+              "0": {
+                "type": "crypt",
+                "offset": "16777216",
+                "size": "dynamic",
+                "iv_tweak": "0",
+                "encryption": "aes-xts-plain64",
+                "sector_size": 4096
+              }
+            }
+          },
+          "kernel_command_line": "rd.luks.name=65b8e779-9cd1-47c3-8227-f035ad76c494=root root=/dev/mapper/root rootflags=subvol=@ rw"
+        },
+        "root_account": "root L 2026-10-08 -1 -1 -1 -1",
+        "installer_absent": true,
+        "live_account_absent": true
+      },
+      {
+        "boot_id": "023e301c-05ac-4722-88dd-3e7ffe97c6f3",
+        "distroctl_sha256": "b3259b5a98679623f1378bfb252c037b92c38fbfb093dbcf50c6180f12a725b5  /usr/bin/distroctl",
+        "uki_sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "storage": {
+          "root": {
+            "device": "/dev/vda2",
+            "uuid": "65b8e779-9cd1-47c3-8227-f035ad76c494",
+            "fs": "btrfs",
+            "mountPoint": "/",
+            "luksUuid": "65b8e779-9cd1-47c3-8227-f035ad76c494"
+          },
+          "subvolumes": [
+            {
+              "mountPoint": "/",
+              "subvolume": "/@"
+            },
+            {
+              "mountPoint": "/home",
+              "subvolume": "/@home"
+            },
+            {
+              "mountPoint": "/.snapshots",
+              "subvolume": "/@snapshots"
+            },
+            {
+              "mountPoint": "/var/log",
+              "subvolume": "/@log"
+            },
+            {
+              "mountPoint": "/var/cache",
+              "subvolume": "/@cache"
+            },
+            {
+              "mountPoint": "/var/lib/containers",
+              "subvolume": "/@containers"
+            }
+          ],
+          "luks": {
+            "uuid": "65b8e779-9cd1-47c3-8227-f035ad76c494",
+            "keyslots": {
+              "0": {
+                "kdf": {
+                  "type": "argon2id",
+                  "time": 15,
+                  "memory": 464370,
+                  "cpus": 4,
+                  "salt": "yudm8xfBOxcWptdtrwGr+vVX3VW5Lz1wg/D5bvPgPrc="
+                },
+                "area": {
+                  "type": "raw",
+                  "offset": "32768",
+                  "size": "258048",
+                  "encryption": "aes-xts-plain64",
+                  "key_size": 64
+                }
+              }
+            },
+            "segments": {
+              "0": {
+                "type": "crypt",
+                "offset": "16777216",
+                "size": "dynamic",
+                "iv_tweak": "0",
+                "encryption": "aes-xts-plain64",
+                "sector_size": 4096
+              }
+            }
+          },
+          "kernel_command_line": "rd.luks.name=65b8e779-9cd1-47c3-8227-f035ad76c494=root root=/dev/mapper/root rootflags=subvol=@ rw"
+        },
+        "root_account": "root L 2026-10-08 -1 -1 -1 -1",
+        "installer_absent": true,
+        "live_account_absent": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,618 @@
+{
+  "before": {
+    "passed": true,
+    "receipts": [
+      {
+        "command": [
+          "distroctl",
+          "confirm-boot",
+          "2147483647"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: transaction does not exist\n",
+        "expected": "transaction does not exist"
+      },
+      {
+        "path": "/var/log/astraeus/private/transactions.sqlite",
+        "mode": "0o600",
+        "uid": 0
+      },
+      {
+        "path": "/var/log/astraeus/private",
+        "mode": "0o700",
+        "uid": 0
+      },
+      {
+        "path": "/var/log/astraeus/transactions.sqlite",
+        "mode": "0o644",
+        "uid": 0
+      },
+      {
+        "path": "/run/astraeus-update.lock",
+        "mode": "0o600",
+        "uid": 0
+      },
+      {
+        "path": "/.snapshots/astraeus/lock",
+        "mode": "0o600",
+        "uid": 0
+      },
+      {
+        "command": [
+          "python3",
+          "-c",
+          "import os,sys; os.open(sys.argv[1],os.O_RDONLY)",
+          "/var/log/astraeus/private/transactions.sqlite"
+        ],
+        "uid": 65534,
+        "code": 1,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,sys; os.open(sys.argv[1],os.O_RDONLY)\n                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: '/var/log/astraeus/private/transactions.sqlite'\n",
+        "expected": "PermissionError"
+      },
+      {
+        "command": [
+          "python3",
+          "-c",
+          "import os,sys; os.open(sys.argv[1],os.O_RDONLY)",
+          "/run/astraeus-update.lock"
+        ],
+        "uid": 65534,
+        "code": 1,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,sys; os.open(sys.argv[1],os.O_RDONLY)\n                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: '/run/astraeus-update.lock'\n",
+        "expected": "PermissionError"
+      },
+      {
+        "command": [
+          "python3",
+          "-c",
+          "import os,sys; os.open(sys.argv[1],os.O_RDONLY)",
+          "/.snapshots/astraeus/lock"
+        ],
+        "uid": 65534,
+        "code": 1,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,sys; os.open(sys.argv[1],os.O_RDONLY)\n                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: '/.snapshots/astraeus/lock'\n",
+        "expected": "PermissionError"
+      },
+      {
+        "command": [
+          "python3",
+          "-c",
+          "import os,sys; os.open(sys.argv[1],os.O_WRONLY)",
+          "/var/log/astraeus/private/transactions.sqlite"
+        ],
+        "uid": 65534,
+        "code": 1,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,sys; os.open(sys.argv[1],os.O_WRONLY)\n                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: '/var/log/astraeus/private/transactions.sqlite'\n",
+        "expected": "PermissionError"
+      },
+      {
+        "command": [
+          "python3",
+          "-c",
+          "import os,sys; os.open(sys.argv[1],os.O_WRONLY)",
+          "/var/log/astraeus/transactions.sqlite"
+        ],
+        "uid": 65534,
+        "code": 1,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,sys; os.open(sys.argv[1],os.O_WRONLY)\n                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: '/var/log/astraeus/transactions.sqlite'\n",
+        "expected": "PermissionError"
+      },
+      {
+        "command": [
+          "python3",
+          "-c",
+          "import os,sys; os.open(sys.argv[1],os.O_WRONLY)",
+          "/run/astraeus-update.lock"
+        ],
+        "uid": 65534,
+        "code": 1,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,sys; os.open(sys.argv[1],os.O_WRONLY)\n                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: '/run/astraeus-update.lock'\n",
+        "expected": "PermissionError"
+      },
+      {
+        "command": [
+          "python3",
+          "-c",
+          "import os,sys; os.open(sys.argv[1],os.O_WRONLY)",
+          "/.snapshots/astraeus/lock"
+        ],
+        "uid": 65534,
+        "code": 1,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,sys; os.open(sys.argv[1],os.O_WRONLY)\n                   ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: '/.snapshots/astraeus/lock'\n",
+        "expected": "PermissionError"
+      },
+      {
+        "command": [
+          "distroctl",
+          "history",
+          "--json"
+        ],
+        "uid": 65534,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "distroctl",
+          "update"
+        ],
+        "uid": 65534,
+        "code": 1,
+        "output": "distroctl: updates require root; use sudo distroctl update (planning/history do not)\n",
+        "expected": "require root"
+      },
+      {
+        "command": [
+          "distroctl",
+          "rollback",
+          "../invalid",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: invalid snapshot ID\n",
+        "expected": "invalid snapshot ID"
+      },
+      {
+        "command": [
+          "distroctl",
+          "update"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: another Astraeus update holds the lock: lock acquisition failed because the operation would block\n",
+        "expected": "another Astraeus update holds the lock"
+      },
+      {
+        "command": [
+          "distroctl",
+          "snapshot",
+          "create",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: snapshot/transaction lock busy: lock acquisition failed because the operation would block\n",
+        "expected": "snapshot/transaction lock busy"
+      },
+      {
+        "command": [
+          "pacman",
+          "-Q"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "gpg",
+          "--homedir",
+          "/tmp/astraeus-signature-negative-4ajwnlb2/untrusted",
+          "--batch",
+          "--import",
+          "/mnt/astraeus-validation/fixtures/repository-key.asc"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "pacman",
+          "--gpgdir",
+          "/tmp/astraeus-signature-negative-4ajwnlb2/untrusted",
+          "-U",
+          "--noconfirm",
+          "/mnt/astraeus-validation/fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "warning: Public keyring not found; have you run 'pacman-key --init'?\nerror: distro: signature from \"Phase 0 disposable package signing\" is unknown trust\nerror: database 'distro' is not valid (invalid or corrupted database (PGP signature))\nerror: '/mnt/astraeus-validation/fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst': invalid or corrupted package (PGP signature)\nloading packages...\n",
+        "expected": "unknown trust"
+      },
+      {
+        "command": [
+          "pacman",
+          "-U",
+          "--noconfirm",
+          "/tmp/astraeus-signature-negative-4ajwnlb2/astraeus-validation-fixture-2-1-any.pkg.tar.zst"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "error: /tmp/astraeus-signature-negative-4ajwnlb2/astraeus-validation-fixture-2-1-any.pkg.tar.zst: signature format error\nerror: GPGME error: No data\nerror: '/tmp/astraeus-signature-negative-4ajwnlb2/astraeus-validation-fixture-2-1-any.pkg.tar.zst': invalid or corrupted package (PGP signature)\nloading packages...\n",
+        "expected": "signature"
+      },
+      {
+        "command": [
+          "pacman",
+          "--config",
+          "/tmp/astraeus-signature-negative-4ajwnlb2/pacman.conf",
+          "--dbpath",
+          "/tmp/astraeus-signature-negative-4ajwnlb2/database",
+          "--cachedir",
+          "/tmp/astraeus-signature-negative-4ajwnlb2/cache",
+          "--logfile",
+          "/tmp/astraeus-signature-negative-4ajwnlb2/pacman.log",
+          "-Sy",
+          "--noconfirm"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": ":: Synchronizing package databases...\n distro downloading...\nerror: GPGME error: No data\nerror: distro: missing required signature\nerror: failed to synchronize all databases (invalid or corrupted database (PGP signature))\n",
+        "expected": "invalid or corrupted database"
+      },
+      {
+        "command": [
+          "pacman",
+          "-Q"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "distroctl",
+          "snapshot",
+          "list",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "pacman",
+          "-Q",
+          "systemd"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "distroctl",
+          "update",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: systemd has conflicts/replacements; this adapter cannot safely enumerate removals\n",
+        "expected": "systemd has conflicts/replacements"
+      },
+      {
+        "command": [
+          "distroctl",
+          "update"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: systemd has conflicts/replacements; this adapter cannot safely enumerate removals\n",
+        "expected": "systemd has conflicts/replacements"
+      },
+      {
+        "command": [
+          "distroctl",
+          "snapshot",
+          "list",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "pacman",
+          "-Q"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      }
+    ]
+  },
+  "after": {
+    "passed": true,
+    "receipts": [
+      {
+        "command": [
+          "distroctl",
+          "history",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "distroctl",
+          "rollback",
+          "1791446738-147298416-1060",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: target is not an eligible transaction pre-update snapshot\n",
+        "expected": "target is not an eligible transaction pre-update snapshot"
+      },
+      {
+        "command": [
+          "distroctl",
+          "snapshot",
+          "create",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: unfinished health change: inspect snapshot metadata.next and recover offline before continuing\n",
+        "expected": "unfinished health change"
+      },
+      {
+        "command": [
+          "distroctl",
+          "rollback",
+          "1791446722-761644413-1060",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: unfinished health change: inspect snapshot metadata.next and recover offline before continuing\n",
+        "expected": "unfinished health change"
+      },
+      {
+        "command": [
+          "mount",
+          "-t",
+          "tmpfs",
+          "-o",
+          "size=1m",
+          "astraeus-security-fixture",
+          "/efi/EFI/Linux"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "distroctl",
+          "snapshot",
+          "create",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: nested mount beneath ESP hides firmware boot artifacts\n",
+        "expected": "nested mount beneath ESP"
+      },
+      {
+        "command": [
+          "distroctl",
+          "rollback",
+          "1791446722-761644413-1060",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: nested mount beneath ESP hides firmware boot artifacts\n",
+        "expected": "nested mount beneath ESP"
+      },
+      {
+        "command": [
+          "umount",
+          "/efi/EFI/Linux"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "mount",
+          "-t",
+          "tmpfs",
+          "-o",
+          "size=1m",
+          "astraeus-security-fixture",
+          "/opt"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "distroctl",
+          "snapshot",
+          "create",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: unsupported nested mount in system/persistent tree\n",
+        "expected": "unsupported nested mount in system/persistent tree"
+      },
+      {
+        "command": [
+          "distroctl",
+          "rollback",
+          "1791446722-761644413-1060",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: unsupported nested mount in system/persistent tree\n",
+        "expected": "unsupported nested mount in system/persistent tree"
+      },
+      {
+        "command": [
+          "umount",
+          "/opt"
+        ],
+        "uid": 0,
+        "code": 0,
+        "expected": null
+      },
+      {
+        "command": [
+          "distroctl",
+          "update"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: previous transaction needs boot confirmation or recovery; inspect distroctl history\n",
+        "expected": "previous transaction needs boot confirmation or recovery"
+      },
+      {
+        "check": "legacy-history-migration",
+        "passed": true
+      },
+      {
+        "command": [
+          "distroctl",
+          "update"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: previous transaction needs boot confirmation or recovery; inspect distroctl history\n",
+        "expected": "previous transaction needs boot confirmation or recovery"
+      },
+      {
+        "check": "old-updater-history-import",
+        "passed": true
+      },
+      {
+        "command": [
+          "/mnt/astraeus-validation/fixtures/legacy-distroctl",
+          "update"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: previous transaction needs boot confirmation or recovery; inspect distroctl history\n",
+        "expected": "previous transaction needs boot confirmation or recovery"
+      },
+      {
+        "command": [
+          "distroctl",
+          "update"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: previous transaction needs boot confirmation or recovery; inspect distroctl history\n",
+        "expected": "previous transaction needs boot confirmation or recovery"
+      },
+      {
+        "check": "actual-historical-updater-write-imported",
+        "binary_sha256": "87bd8c433962989298039fd4b8f4f6940edc944e9bbc3f1fcf324df6ff0bde89",
+        "passed": true
+      },
+      {
+        "command": [
+          "distroctl",
+          "update"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: private and legacy history diverged; preserve both databases for recovery\n",
+        "expected": "private and legacy history diverged"
+      },
+      {
+        "check": "conflicting-history-preserved",
+        "passed": true
+      },
+      {
+        "command": [
+          "distroctl",
+          "rollback",
+          "1791446722-761644413-1060",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: stale transaction cannot be confirmed after a later update\n",
+        "expected": "stale transaction"
+      },
+      {
+        "command": [
+          "distroctl",
+          "rollback",
+          "1791446722-761644413-1060",
+          "--dry-run",
+          "--json"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: missing field `schema_version` at line 1 column 2\n",
+        "expected": "missing field"
+      },
+      {
+        "command": [
+          "distroctl",
+          "update"
+        ],
+        "uid": 0,
+        "code": 1,
+        "output": "distroctl: missing field `schema_version` at line 1 column 2\n",
+        "expected": "missing field"
+      },
+      {
+        "check": "loaders-unchanged",
+        "sha256": {
+          "/efi/EFI/systemd/systemd-bootx64.efi": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1",
+          "/efi/EFI/BOOT/BOOTX64.EFI": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1"
+        }
+      }
+    ]
+  },
+  "archive_extra": {
+    "passed": true,
+    "receipts": [
+      {
+        "case": "date",
+        "refused": true,
+        "diagnostic": "archive lock and manifest disagree"
+      },
+      {
+        "case": "packages",
+        "refused": true,
+        "diagnostic": "archive lock and package list disagree"
+      },
+      {
+        "case": "version",
+        "refused": true,
+        "diagnostic": "version mismatch: fixture"
+      },
+      {
+        "case": "retry-exhaust",
+        "requests": 4,
+        "code": 22,
+        "elapsed": 7.036782497016247,
+        "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (22) The requested URL returned error: 503\nWarning: Problem : HTTP error. Will retry in 1 seconds. 3 retries left.\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (22) The requested URL returned error: 503\nWarning: Problem : HTTP error. Will retry in 2 seconds. 2 retries left.\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (22) The requested URL returned error: 503\nWarning: Problem : HTTP error. Will retry in 4 seconds. 1 retries left.\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (22) The requested URL returned error: 503\n",
+        "integrity_refused": false
+      },
+      {
+        "case": "retry-corrupt",
+        "requests": 2,
+        "code": 0,
+        "elapsed": 1.0203519099741243,
+        "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (22) The requested URL returned error: 503\nWarning: Problem : HTTP error. Will retry in 1 seconds. 3 retries left.\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100    23    0    23    0     0  11898      0 --:--:-- --:--:-- --:--:-- 23000\n",
+        "integrity_refused": true
+      }
+    ]
+  }
+}

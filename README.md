@@ -13,9 +13,10 @@ mutation and recovery from a broken UKI. Two independent builds produced identic
 ISO bytes. The [Phase 2 acceptance record](docs/phase2-integration.md) identifies
 the tested source, image hashes, evidence and remaining limits.
 
-The original Phase 2 runtime passed the recorded acceptance matrix. Subsequent PR
-review fixes passed host checks and review, but fresh installed-system acceptance
-is pending. The report distinguishes them from the validated ISO source.
+The current security-hardened source passed fresh Phase 2 requalification on
+2026-10-08, including both installations, A-G, and installed security regressions.
+The [requalification report](docs/phase2-security-requalification.md) separates
+the tested runtime from historical acceptance and later documentation commits.
 
 This is a development project. The qualified target is **x86-64 UEFI under
 QEMU/KVM**, using disposable disks. Physical hardware, dual boot and enforced

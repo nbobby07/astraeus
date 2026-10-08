@@ -1,0 +1,2501 @@
+[
+  {
+    "run": "A-success-security",
+    "passed": true,
+    "started": "2026-10-08T08:03:52.323863+00:00",
+    "mode": "run",
+    "scenario": "update-success",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T08:07:12.877728+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "observations": {
+      "before": {
+        "root": "version-A",
+        "persistent": "4bc6dee81a354578bd6ea964b722bae2",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [],
+        "snapshots": []
+      },
+      "after-update": {
+        "root": "version-B",
+        "persistent": "4bc6dee81a354578bd6ea964b722bae2",
+        "uki-sha256": "3d153f4c697c1e44943afb7baea2c6c61794ea5f4288d91a2b6c44279c74c396  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "awaiting_boot",
+            "outcome": "awaiting_boot",
+            "snapshot": "1791446722-761644413-1060",
+            "post_snapshot": "1791446738-147298416-1060",
+            "update_boot_id": "1601f723-5bd7-4a8f-a1cf-07485e5dc4cd",
+            "confirmation": null,
+            "failure": null,
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791446718
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791446718
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791446722
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791446722
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791446724
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791446725
+              },
+              {
+                "state": "validating",
+                "timestamp": 1791446726
+              },
+              {
+                "state": "awaiting_boot",
+                "timestamp": 1791446739
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791446722,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791446722-761644413-1060",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "a7c67ad9-c37c-7f43-a6f4-9a63189549b5"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Pre-update boot 1601f723-5bd7-4a8f-a1cf-07485e5dc4cd: root/UKI identity and required system health passed; transaction 1"
+          },
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "3d153f4c697c1e44943afb7baea2c6c61794ea5f4288d91a2b6c44279c74c396"
+            },
+            "created_unix_seconds": 1791446738,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "candidate",
+            "id": "1791446738-147298416-1060",
+            "reason": "post-update",
+            "root": {
+              "id": 263,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "1df63b43-c90f-434d-869b-845eea7a30d8"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Transaction 1 requires a new boot and health confirmation"
+          }
+        ]
+      },
+      "after-reboot": {
+        "root": "version-B",
+        "persistent": "4bc6dee81a354578bd6ea964b722bae2-after-snapshot",
+        "uki-sha256": "3d153f4c697c1e44943afb7baea2c6c61794ea5f4288d91a2b6c44279c74c396  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "succeeded",
+            "outcome": "succeeded",
+            "snapshot": "1791446722-761644413-1060",
+            "post_snapshot": "1791446738-147298416-1060",
+            "update_boot_id": "1601f723-5bd7-4a8f-a1cf-07485e5dc4cd",
+            "confirmation": {
+              "boot_id": "f93217aa-c43c-459b-88f6-f9bea1b1c4a6",
+              "snapshot": "1791446738-147298416-1060",
+              "rollback": false,
+              "checks": [
+                {
+                  "name": "package_database",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "repository_configuration",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "uki",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "boot_loader",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "failed_system_units",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "root_filesystem",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "critical_services",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "display_manager",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "login_service",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "distroctl",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                }
+              ],
+              "error": null
+            },
+            "failure": null,
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791446718
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791446718
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791446722
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791446722
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791446724
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791446725
+              },
+              {
+                "state": "validating",
+                "timestamp": 1791446726
+              },
+              {
+                "state": "awaiting_boot",
+                "timestamp": 1791446739
+              },
+              {
+                "state": "succeeded",
+                "timestamp": 1791446819
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791446722,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791446722-761644413-1060",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "a7c67ad9-c37c-7f43-a6f4-9a63189549b5"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Pre-update boot 1601f723-5bd7-4a8f-a1cf-07485e5dc4cd: root/UKI identity and required system health passed; transaction 1"
+          },
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "3d153f4c697c1e44943afb7baea2c6c61794ea5f4288d91a2b6c44279c74c396"
+            },
+            "created_unix_seconds": 1791446738,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791446738-147298416-1060",
+            "reason": "post-update",
+            "root": {
+              "id": 263,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "1df63b43-c90f-434d-869b-845eea7a30d8"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Transaction 1: verified boot f93217aa-c43c-459b-88f6-f9bea1b1c4a6, root, UKI, package map and required services"
+          }
+        ]
+      }
+    },
+    "boots": {
+      "boot-1": {
+        "shutdown": {
+          "finished": "2026-10-08T08:05:52.483309+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-2": {
+        "reboot": {
+          "previous": "1601f723-5bd7-4a8f-a1cf-07485e5dc4cd",
+          "current": "f93217aa-c43c-459b-88f6-f9bea1b1c4a6"
+        },
+        "shutdown": {
+          "finished": "2026-10-08T08:07:10.747846+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      }
+    }
+  },
+  {
+    "run": "B-package-failure",
+    "passed": true,
+    "started": "2026-10-08T08:09:44.010236+00:00",
+    "mode": "run",
+    "scenario": "update-failure",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T08:18:36.083064+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "observations": {
+      "before": {
+        "root": "version-A",
+        "persistent": "5628b6c9713f4f11ac1503af2456442c",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [],
+        "snapshots": []
+      },
+      "after-update": {
+        "root": "version-A",
+        "persistent": "5628b6c9713f4f11ac1503af2456442c",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "rollback_required",
+            "outcome": "rollback_required",
+            "snapshot": "1791447110-826344587-854",
+            "post_snapshot": null,
+            "update_boot_id": "050bd430-179a-4af5-b5a4-c8e4f0f3c951",
+            "confirmation": null,
+            "failure": {
+              "at": "applying",
+              "message": "package application: /usr/bin/pacman failed: error: command failed to execute correctly\nerror: failed to commit transaction (failed to run transaction hooks)",
+              "interrupted": false
+            },
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791447106
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791447106
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791447110
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791447110
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791447112
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791447113
+              },
+              {
+                "state": "rollback_required",
+                "timestamp": 1791447114
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791447110,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791447110-826344587-854",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "565e5a2e-5e75-4245-a88e-2dad7af3267c"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Pre-update boot 050bd430-179a-4af5-b5a4-c8e4f0f3c951: root/UKI identity and required system health passed; transaction 1"
+          }
+        ]
+      },
+      "after-rollback": {
+        "root": "version-A",
+        "persistent": "5628b6c9713f4f11ac1503af2456442c-after-snapshot",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "rolled_back",
+            "outcome": "rolled_back",
+            "snapshot": "1791447110-826344587-854",
+            "post_snapshot": null,
+            "update_boot_id": "050bd430-179a-4af5-b5a4-c8e4f0f3c951",
+            "confirmation": {
+              "boot_id": "97b354a0-208b-494f-811a-bae6df88c03c",
+              "snapshot": "1791447110-826344587-854",
+              "rollback": true,
+              "checks": [
+                {
+                  "name": "package_database",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "repository_configuration",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "uki",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "boot_loader",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "failed_system_units",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "root_filesystem",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "critical_services",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "display_manager",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "login_service",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "distroctl",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                }
+              ],
+              "error": null
+            },
+            "failure": {
+              "at": "applying",
+              "message": "package application: /usr/bin/pacman failed: error: command failed to execute correctly\nerror: failed to commit transaction (failed to run transaction hooks)",
+              "interrupted": false
+            },
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791447106
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791447106
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791447110
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791447110
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791447112
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791447113
+              },
+              {
+                "state": "rollback_required",
+                "timestamp": 1791447114
+              },
+              {
+                "state": "rolled_back",
+                "timestamp": 1791447503
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791447110,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791447110-826344587-854",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "565e5a2e-5e75-4245-a88e-2dad7af3267c"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "phase2 validation B-package-failure/before.json 5628b6c9713f4f11ac1503af2456442c-after-snapshot"
+          }
+        ]
+      }
+    },
+    "boots": {
+      "boot-1": {
+        "shutdown": {
+          "finished": "2026-10-08T08:12:02.556664+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-2": {
+        "shutdown": {
+          "finished": "2026-10-08T08:17:10.050580+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-3": {
+        "reboot": {
+          "previous": "6bd1c543-bb22-485a-bcb7-616c869790fb",
+          "current": "97b354a0-208b-494f-811a-bae6df88c03c"
+        },
+        "shutdown": {
+          "finished": "2026-10-08T08:18:31.469959+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      }
+    }
+  },
+  {
+    "run": "C-rollback-plain",
+    "passed": true,
+    "started": "2026-10-08T09:21:03.856748+00:00",
+    "mode": "run",
+    "scenario": "rollback",
+    "encryption": "none",
+    "finished": "2026-10-08T09:25:29.254410+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "observations": {
+      "before": {
+        "root": "version-A",
+        "persistent": "63236e19ae654074b64bc062f3cab824",
+        "uki-sha256": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [],
+        "snapshots": []
+      },
+      "after-update": {
+        "root": "version-B",
+        "persistent": "63236e19ae654074b64bc062f3cab824",
+        "uki-sha256": "1da782edd31c217d0ee4fadaa2d32e5c50f6f42fa9bae5a3b1c62fad1dea0a10  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "awaiting_boot",
+            "outcome": "awaiting_boot",
+            "snapshot": "1791451295-400175017-562",
+            "post_snapshot": "1791451311-933628788-562",
+            "update_boot_id": "1234143b-c3f3-4e2f-9a54-bd8a53fc7423",
+            "confirmation": null,
+            "failure": null,
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791451288
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791451288
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791451294
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791451294
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791451297
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791451297
+              },
+              {
+                "state": "validating",
+                "timestamp": 1791451299
+              },
+              {
+                "state": "awaiting_boot",
+                "timestamp": 1791451313
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "A2D4-1119",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24"
+            },
+            "created_unix_seconds": 1791451295,
+            "filesystem_uuid": "f15dfa26-1d54-46f0-9df9-49d5983fe6b8",
+            "health": "known-good",
+            "id": "1791451295-400175017-562",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "765955b1-f099-a643-be27-f9930bca110d",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "17243b3b-5624-a742-9562-615092aee6c9"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "765955b1-f099-a643-be27-f9930bca110d"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Pre-update boot 1234143b-c3f3-4e2f-9a54-bd8a53fc7423: root/UKI identity and required system health passed; transaction 1"
+          },
+          {
+            "boot": {
+              "esp_uuid": "A2D4-1119",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "1da782edd31c217d0ee4fadaa2d32e5c50f6f42fa9bae5a3b1c62fad1dea0a10"
+            },
+            "created_unix_seconds": 1791451311,
+            "filesystem_uuid": "f15dfa26-1d54-46f0-9df9-49d5983fe6b8",
+            "health": "candidate",
+            "id": "1791451311-933628788-562",
+            "reason": "post-update",
+            "root": {
+              "id": 263,
+              "parent_uuid": "765955b1-f099-a643-be27-f9930bca110d",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "ff1dfdbe-6346-2047-98aa-40330b87d833"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "765955b1-f099-a643-be27-f9930bca110d"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Transaction 1 requires a new boot and health confirmation"
+          }
+        ]
+      },
+      "after-rollback": {
+        "root": "version-A",
+        "persistent": "63236e19ae654074b64bc062f3cab824-after-snapshot",
+        "uki-sha256": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "rolled_back",
+            "outcome": "rolled_back",
+            "snapshot": "1791451295-400175017-562",
+            "post_snapshot": "1791451311-933628788-562",
+            "update_boot_id": "1234143b-c3f3-4e2f-9a54-bd8a53fc7423",
+            "confirmation": {
+              "boot_id": "a3143fd7-b056-489f-9519-9e7e91166f57",
+              "snapshot": "1791451295-400175017-562",
+              "rollback": true,
+              "checks": [
+                {
+                  "name": "package_database",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "repository_configuration",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "uki",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "boot_loader",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "failed_system_units",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "root_filesystem",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "critical_services",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "display_manager",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "login_service",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "distroctl",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                }
+              ],
+              "error": null
+            },
+            "failure": null,
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791451288
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791451288
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791451294
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791451294
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791451297
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791451297
+              },
+              {
+                "state": "validating",
+                "timestamp": 1791451299
+              },
+              {
+                "state": "awaiting_boot",
+                "timestamp": 1791451313
+              },
+              {
+                "state": "rollback_required",
+                "timestamp": 1791451513
+              },
+              {
+                "state": "rolled_back",
+                "timestamp": 1791451513
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "A2D4-1119",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24"
+            },
+            "created_unix_seconds": 1791451295,
+            "filesystem_uuid": "f15dfa26-1d54-46f0-9df9-49d5983fe6b8",
+            "health": "known-good",
+            "id": "1791451295-400175017-562",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "765955b1-f099-a643-be27-f9930bca110d",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "17243b3b-5624-a742-9562-615092aee6c9"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "765955b1-f099-a643-be27-f9930bca110d"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "phase2 validation C-rollback-plain/before.json 63236e19ae654074b64bc062f3cab824-after-snapshot"
+          },
+          {
+            "boot": {
+              "esp_uuid": "A2D4-1119",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "1da782edd31c217d0ee4fadaa2d32e5c50f6f42fa9bae5a3b1c62fad1dea0a10"
+            },
+            "created_unix_seconds": 1791451311,
+            "filesystem_uuid": "f15dfa26-1d54-46f0-9df9-49d5983fe6b8",
+            "health": "candidate",
+            "id": "1791451311-933628788-562",
+            "reason": "post-update",
+            "root": {
+              "id": 263,
+              "parent_uuid": "765955b1-f099-a643-be27-f9930bca110d",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "ff1dfdbe-6346-2047-98aa-40330b87d833"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "765955b1-f099-a643-be27-f9930bca110d"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Transaction 1 requires a new boot and health confirmation"
+          }
+        ]
+      }
+    },
+    "boots": {
+      "boot-1": {
+        "shutdown": {
+          "finished": "2026-10-08T09:22:25.314589+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-2": {
+        "shutdown": {
+          "finished": "2026-10-08T09:25:00.709158+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-3": {
+        "reboot": {
+          "previous": "d9c31fb7-c980-4900-828d-25e53720f9cc",
+          "current": "a3143fd7-b056-489f-9519-9e7e91166f57"
+        },
+        "shutdown": {
+          "finished": "2026-10-08T09:25:24.851164+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      }
+    }
+  },
+  {
+    "run": "D-rollback-luks",
+    "passed": true,
+    "started": "2026-10-08T08:19:40.580802+00:00",
+    "mode": "run",
+    "scenario": "rollback",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T08:33:09.566939+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "observations": {
+      "before": {
+        "root": "version-A",
+        "persistent": "4956298897794ff9b948106b1b832ac6",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [],
+        "snapshots": []
+      },
+      "after-update": {
+        "root": "version-B",
+        "persistent": "4956298897794ff9b948106b1b832ac6",
+        "uki-sha256": "477e3e54b4419182f328a2167d73868c766f379cf5b359965267b689f805eab1  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "awaiting_boot",
+            "outcome": "awaiting_boot",
+            "snapshot": "1791448105-557805057-861",
+            "post_snapshot": "1791448121-32024494-861",
+            "update_boot_id": "749f6f8c-b37b-47f9-ac0d-98afae8d2e8e",
+            "confirmation": null,
+            "failure": null,
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791448100
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791448100
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791448105
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791448105
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791448107
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791448107
+              },
+              {
+                "state": "validating",
+                "timestamp": 1791448109
+              },
+              {
+                "state": "awaiting_boot",
+                "timestamp": 1791448122
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791448105,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791448105-557805057-861",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "22fb9b10-6696-2741-a1f7-e836763aafd6"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Pre-update boot 749f6f8c-b37b-47f9-ac0d-98afae8d2e8e: root/UKI identity and required system health passed; transaction 1"
+          },
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "477e3e54b4419182f328a2167d73868c766f379cf5b359965267b689f805eab1"
+            },
+            "created_unix_seconds": 1791448121,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "candidate",
+            "id": "1791448121-32024494-861",
+            "reason": "post-update",
+            "root": {
+              "id": 263,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "595015b1-ab72-d64a-95d4-b5de491ff96f"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Transaction 1 requires a new boot and health confirmation"
+          }
+        ]
+      },
+      "after-rollback": {
+        "root": "version-A",
+        "persistent": "4956298897794ff9b948106b1b832ac6-after-snapshot",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "rolled_back",
+            "outcome": "rolled_back",
+            "snapshot": "1791448105-557805057-861",
+            "post_snapshot": "1791448121-32024494-861",
+            "update_boot_id": "749f6f8c-b37b-47f9-ac0d-98afae8d2e8e",
+            "confirmation": {
+              "boot_id": "22b12ecc-6555-4ae9-9976-e7076ccd2148",
+              "snapshot": "1791448105-557805057-861",
+              "rollback": true,
+              "checks": [
+                {
+                  "name": "package_database",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "repository_configuration",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "uki",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "boot_loader",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "failed_system_units",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "root_filesystem",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "critical_services",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "display_manager",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "login_service",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "distroctl",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                }
+              ],
+              "error": null
+            },
+            "failure": null,
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791448100
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791448100
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791448105
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791448105
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791448107
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791448107
+              },
+              {
+                "state": "validating",
+                "timestamp": 1791448109
+              },
+              {
+                "state": "awaiting_boot",
+                "timestamp": 1791448122
+              },
+              {
+                "state": "rollback_required",
+                "timestamp": 1791448373
+              },
+              {
+                "state": "rolled_back",
+                "timestamp": 1791448373
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791448105,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791448105-557805057-861",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "22fb9b10-6696-2741-a1f7-e836763aafd6"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "phase2 validation D-rollback-luks/before.json 4956298897794ff9b948106b1b832ac6-after-snapshot"
+          },
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "477e3e54b4419182f328a2167d73868c766f379cf5b359965267b689f805eab1"
+            },
+            "created_unix_seconds": 1791448121,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "candidate",
+            "id": "1791448121-32024494-861",
+            "reason": "post-update",
+            "root": {
+              "id": 263,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "595015b1-ab72-d64a-95d4-b5de491ff96f"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Transaction 1 requires a new boot and health confirmation"
+          }
+        ]
+      }
+    },
+    "boots": {
+      "boot-1": {
+        "shutdown": {
+          "finished": "2026-10-08T08:29:02.797291+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-2": {
+        "shutdown": {
+          "finished": "2026-10-08T08:32:05.628492+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-3": {
+        "reboot": {
+          "previous": "a0815f33-e0ff-4c35-a2d1-0c913fe868ea",
+          "current": "22b12ecc-6555-4ae9-9976-e7076ccd2148"
+        },
+        "shutdown": {
+          "finished": "2026-10-08T08:33:05.084792+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      }
+    }
+  },
+  {
+    "run": "E-interruption",
+    "passed": true,
+    "started": "2026-10-08T08:34:00.757591+00:00",
+    "mode": "run",
+    "scenario": "interruption",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T08:40:52.853499+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "observations": {
+      "before": {
+        "root": "version-A",
+        "persistent": "679243a5a9a84e4b9c7e79333e5ca63b",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [],
+        "snapshots": []
+      },
+      "interrupted-before-powercut": {
+        "root": "version-B",
+        "persistent": "679243a5a9a84e4b9c7e79333e5ca63b",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "applying",
+            "outcome": "in_progress",
+            "snapshot": "1791448523-709304135-855",
+            "post_snapshot": null,
+            "update_boot_id": "16457fa4-07a6-4201-a757-8416d079d6b1",
+            "confirmation": null,
+            "failure": null,
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791448519
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791448519
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791448523
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791448523
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791448525
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791448525
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791448523,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791448523-709304135-855",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "5deb6b05-340a-0d45-a803-ac1f4cfda4c5"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Pre-update boot 16457fa4-07a6-4201-a757-8416d079d6b1: root/UKI identity and required system health passed; transaction 1"
+          }
+        ]
+      },
+      "after-interruption": {
+        "root": "version-B",
+        "persistent": "679243a5a9a84e4b9c7e79333e5ca63b",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "rollback_required",
+            "outcome": "rollback_required",
+            "snapshot": "1791448523-709304135-855",
+            "post_snapshot": null,
+            "update_boot_id": "16457fa4-07a6-4201-a757-8416d079d6b1",
+            "confirmation": null,
+            "failure": {
+              "at": "applying",
+              "message": "previous updater stopped before completing this phase; inspect pacman lock/log before recovery",
+              "interrupted": true
+            },
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791448519
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791448519
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791448523
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791448523
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791448525
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791448525
+              },
+              {
+                "state": "rollback_required",
+                "timestamp": 1791448598
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791448523,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791448523-709304135-855",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "5deb6b05-340a-0d45-a803-ac1f4cfda4c5"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Pre-update boot 16457fa4-07a6-4201-a757-8416d079d6b1: root/UKI identity and required system health passed; transaction 1"
+          }
+        ]
+      },
+      "reconciled": {
+        "root": "version-B",
+        "persistent": "679243a5a9a84e4b9c7e79333e5ca63b",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "rollback_required",
+            "outcome": "rollback_required",
+            "snapshot": "1791448523-709304135-855",
+            "post_snapshot": null,
+            "update_boot_id": "16457fa4-07a6-4201-a757-8416d079d6b1",
+            "confirmation": null,
+            "failure": {
+              "at": "applying",
+              "message": "previous updater stopped before completing this phase; inspect pacman lock/log before recovery",
+              "interrupted": true
+            },
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791448519
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791448519
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791448523
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791448523
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791448525
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791448525
+              },
+              {
+                "state": "rollback_required",
+                "timestamp": 1791448598
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791448523,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791448523-709304135-855",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "5deb6b05-340a-0d45-a803-ac1f4cfda4c5"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Pre-update boot 16457fa4-07a6-4201-a757-8416d079d6b1: root/UKI identity and required system health passed; transaction 1"
+          }
+        ]
+      },
+      "after-rollback": {
+        "root": "version-A",
+        "persistent": "679243a5a9a84e4b9c7e79333e5ca63b-after-snapshot",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "rolled_back",
+            "outcome": "rolled_back",
+            "snapshot": "1791448523-709304135-855",
+            "post_snapshot": null,
+            "update_boot_id": "16457fa4-07a6-4201-a757-8416d079d6b1",
+            "confirmation": {
+              "boot_id": "76270b34-6048-482f-b73c-2da886d19a3a",
+              "snapshot": "1791448523-709304135-855",
+              "rollback": true,
+              "checks": [
+                {
+                  "name": "package_database",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "repository_configuration",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "uki",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "boot_loader",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "failed_system_units",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "root_filesystem",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "critical_services",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "display_manager",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "login_service",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "distroctl",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                }
+              ],
+              "error": null
+            },
+            "failure": {
+              "at": "applying",
+              "message": "previous updater stopped before completing this phase; inspect pacman lock/log before recovery",
+              "interrupted": true
+            },
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791448519
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791448519
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791448523
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791448523
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791448525
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791448525
+              },
+              {
+                "state": "rollback_required",
+                "timestamp": 1791448598
+              },
+              {
+                "state": "rolled_back",
+                "timestamp": 1791448840
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791448523,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791448523-709304135-855",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "5deb6b05-340a-0d45-a803-ac1f4cfda4c5"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "phase2 validation E-interruption/before.json 679243a5a9a84e4b9c7e79333e5ca63b-after-snapshot"
+          }
+        ]
+      }
+    },
+    "boots": {
+      "boot-1": {
+        "powercut": {
+          "time": "2026-10-08T08:35:32.212551+00:00",
+          "transaction": 1,
+          "boot_id": "16457fa4-07a6-4201-a757-8416d079d6b1"
+        }
+      },
+      "boot-2": {
+        "shutdown": {
+          "finished": "2026-10-08T08:36:50.908790+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-3": {
+        "shutdown": {
+          "finished": "2026-10-08T08:40:06.393105+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-4": {
+        "reboot": {
+          "previous": "e1e4ce68-65d4-4759-be52-3b6d20501d6b",
+          "current": "76270b34-6048-482f-b73c-2da886d19a3a"
+        },
+        "shutdown": {
+          "finished": "2026-10-08T08:40:49.349506+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      }
+    }
+  },
+  {
+    "run": "F-broken-uki",
+    "passed": true,
+    "started": "2026-10-08T08:41:34.571252+00:00",
+    "mode": "run",
+    "scenario": "boot-recovery",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T08:48:42.077035+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "observations": {
+      "before": {
+        "root": "version-A",
+        "persistent": "34f0546becb649409f44f978b25df079",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [],
+        "snapshots": []
+      },
+      "after-update": {
+        "root": "version-B",
+        "persistent": "34f0546becb649409f44f978b25df079",
+        "uki-sha256": "ab23c44d3e5c821adf966881cece1f759b5b17b9af72972918f71de34a37cce3  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "awaiting_boot",
+            "outcome": "awaiting_boot",
+            "snapshot": "1791448953-804840851-847",
+            "post_snapshot": "1791448968-514453762-847",
+            "update_boot_id": "ccaeb53f-ef28-465b-8166-594036b609e9",
+            "confirmation": null,
+            "failure": null,
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791448949
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791448949
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791448953
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791448953
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791448955
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791448955
+              },
+              {
+                "state": "validating",
+                "timestamp": 1791448957
+              },
+              {
+                "state": "awaiting_boot",
+                "timestamp": 1791448970
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791448953,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791448953-804840851-847",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "56a85b5a-aa63-da4b-bc90-0124db8cc18d"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Pre-update boot ccaeb53f-ef28-465b-8166-594036b609e9: root/UKI identity and required system health passed; transaction 1"
+          },
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "ab23c44d3e5c821adf966881cece1f759b5b17b9af72972918f71de34a37cce3"
+            },
+            "created_unix_seconds": 1791448968,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "candidate",
+            "id": "1791448968-514453762-847",
+            "reason": "post-update",
+            "root": {
+              "id": 263,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "eb0b1651-968f-644e-b2eb-018eb53cf345"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Transaction 1 requires a new boot and health confirmation"
+          }
+        ]
+      },
+      "after-rollback": {
+        "root": "version-A",
+        "persistent": "34f0546becb649409f44f978b25df079-after-snapshot",
+        "uki-sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "rolled_back",
+            "outcome": "rolled_back",
+            "snapshot": "1791448953-804840851-847",
+            "post_snapshot": "1791448968-514453762-847",
+            "update_boot_id": "ccaeb53f-ef28-465b-8166-594036b609e9",
+            "confirmation": {
+              "boot_id": "bab085a1-d915-4ac5-939d-5b029cb515a2",
+              "snapshot": "1791448953-804840851-847",
+              "rollback": true,
+              "checks": [
+                {
+                  "name": "package_database",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "repository_configuration",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "uki",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "boot_loader",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "failed_system_units",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "root_filesystem",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "critical_services",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "display_manager",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "login_service",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                },
+                {
+                  "name": "distroctl",
+                  "status": "pass",
+                  "required": true,
+                  "detail": "check passed"
+                }
+              ],
+              "error": null
+            },
+            "failure": null,
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791448949
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791448949
+              },
+              {
+                "state": "downloaded",
+                "timestamp": 1791448953
+              },
+              {
+                "state": "snapshot_pending",
+                "timestamp": 1791448953
+              },
+              {
+                "state": "snapshot_created",
+                "timestamp": 1791448955
+              },
+              {
+                "state": "applying",
+                "timestamp": 1791448955
+              },
+              {
+                "state": "validating",
+                "timestamp": 1791448957
+              },
+              {
+                "state": "awaiting_boot",
+                "timestamp": 1791448970
+              },
+              {
+                "state": "rollback_required",
+                "timestamp": 1791449306
+              },
+              {
+                "state": "rolled_back",
+                "timestamp": 1791449306
+              }
+            ]
+          }
+        ],
+        "snapshots": [
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "64e6cc48fbf10cea6c2fe81682a4e855cbddbec735d3d4c1a6b5b2929cd6029b"
+            },
+            "created_unix_seconds": 1791448953,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "known-good",
+            "id": "1791448953-804840851-847",
+            "reason": "pre-update",
+            "root": {
+              "id": 262,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "56a85b5a-aa63-da4b-bc90-0124db8cc18d"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "phase2 validation F-broken-uki/before.json 34f0546becb649409f44f978b25df079-after-snapshot"
+          },
+          {
+            "boot": {
+              "esp_uuid": "52B0-E790",
+              "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+              "sha256": "ab23c44d3e5c821adf966881cece1f759b5b17b9af72972918f71de34a37cce3"
+            },
+            "created_unix_seconds": 1791448968,
+            "filesystem_uuid": "59d4b453-debb-4de5-98c0-29b554be3689",
+            "health": "candidate",
+            "id": "1791448968-514453762-847",
+            "reason": "post-update",
+            "root": {
+              "id": 263,
+              "parent_uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4",
+              "read_only": true,
+              "top_level": 258,
+              "uuid": "eb0b1651-968f-644e-b2eb-018eb53cf345"
+            },
+            "schema_version": 1,
+            "source_state": {
+              "id": 256,
+              "parent_uuid": null,
+              "read_only": false,
+              "top_level": 5,
+              "uuid": "afba6d69-1f47-3e4e-a08b-cbdda2caeda4"
+            },
+            "transaction_id": "1",
+            "validation_evidence": "Transaction 1 requires a new boot and health confirmation"
+          }
+        ]
+      }
+    },
+    "boots": {
+      "boot-1": {
+        "shutdown": {
+          "finished": "2026-10-08T08:42:58.575712+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-2": {
+        "expected-boot-failure": {
+          "time": "2026-10-08T08:43:03.850381+00:00",
+          "timeout": 900,
+          "reason": "QEMU exited before acceptance (exit 0)",
+          "qemu_exit": 0
+        }
+      },
+      "boot-3": {
+        "shutdown": {
+          "finished": "2026-10-08T08:47:41.869815+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-4": {
+        "reboot": {
+          "previous": "8014fe51-21a0-444a-a286-5af432e4ea2e",
+          "current": "bab085a1-d915-4ac5-939d-5b029cb515a2"
+        },
+        "shutdown": {
+          "finished": "2026-10-08T08:48:37.573865+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      }
+    }
+  },
+  {
+    "run": "base-luks",
+    "passed": true,
+    "started": "2026-10-08T07:51:19.222226+00:00",
+    "mode": "baseline",
+    "scenario": "update-success",
+    "encryption": "LUKS2",
+    "finished": "2026-10-08T08:02:41.013321+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "baseline_sha256": {
+      "disk.qcow2": "ecd3a271112b76d6f749781be9c7d13d8f20dd8d2a1a27f96bc81f9ff9b6819e",
+      "vars.fd": "3da3d157e48687ce89b78106a7d68d36cb8c3a58bb8901c2b04b1ad5c650816a"
+    },
+    "observations": {},
+    "boots": {
+      "boot-1": {
+        "shutdown": {
+          "finished": "2026-10-08T08:01:08.668551+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-2": {
+        "reboot": {
+          "previous": "bbe1e847-a96a-46e0-b4e4-c23c21865e8c",
+          "current": "47ee78bc-52f7-4569-a224-27191aeb1266"
+        },
+        "shutdown": {
+          "finished": "2026-10-08T08:02:36.697703+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      }
+    }
+  },
+  {
+    "run": "base-plain",
+    "passed": true,
+    "started": "2026-10-08T09:14:05.474817+00:00",
+    "mode": "baseline",
+    "scenario": "update-success",
+    "encryption": "none",
+    "finished": "2026-10-08T09:20:21.405130+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "baseline_sha256": {
+      "disk.qcow2": "677b2676e5b98af30d04149f21ad235969a8391ffcd20ff0f5598fac922e7ca3",
+      "vars.fd": "b47749489b2c211aec87293367fe0a7f5e4ec532fd6dd1d3cd137ee46c7106fe"
+    },
+    "observations": {},
+    "boots": {
+      "boot-1": {
+        "shutdown": {
+          "finished": "2026-10-08T09:19:53.009097+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-2": {
+        "reboot": {
+          "previous": "23e167ae-2381-4435-ac74-a87828a068f0",
+          "current": "15f6becd-2195-44b6-91cb-804d0684ba56"
+        },
+        "shutdown": {
+          "finished": "2026-10-08T09:20:17.093741+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      }
+    }
+  },
+  {
+    "run": "extra-payload-rejection",
+    "passed": true,
+    "started": "2026-10-08T09:26:18.435160+00:00",
+    "mode": "run",
+    "scenario": "rejected-update",
+    "encryption": "none",
+    "finished": "2026-10-08T09:27:25.316541+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "observations": {
+      "before": {
+        "root": "version-A",
+        "persistent": "47baef653ab24711936072ca4631f380",
+        "uki-sha256": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [],
+        "snapshots": []
+      },
+      "after-update": {
+        "root": "version-A",
+        "persistent": "47baef653ab24711936072ca4631f380",
+        "uki-sha256": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "failed",
+            "outcome": "failed",
+            "snapshot": null,
+            "post_snapshot": null,
+            "update_boot_id": "d95f4ad2-8e72-40b6-b3cc-0cd915a8f139",
+            "confirmation": null,
+            "failure": {
+              "at": "preparing",
+              "message": "package download: /usr/bin/pacman failed: error: astraeus-validation-fixture: signature from \"Phase 0 disposable package signing\" is invalid\nerror: failed to commit transaction (invalid or corrupted package (PGP signature))",
+              "interrupted": false
+            },
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791451602
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791451602
+              },
+              {
+                "state": "failed",
+                "timestamp": 1791451605
+              }
+            ]
+          }
+        ],
+        "snapshots": []
+      },
+      "after-rejection": {
+        "root": "version-A",
+        "persistent": "47baef653ab24711936072ca4631f380",
+        "uki-sha256": "4e98179ea5c3c485ac5ea4675077c2bb765c0962108477b3731fa94db3f79b24  /efi/EFI/Linux/astraeus-dev-linux.efi",
+        "failed": "",
+        "transactions": [
+          {
+            "id": 1,
+            "state": "failed",
+            "outcome": "failed",
+            "snapshot": null,
+            "post_snapshot": null,
+            "update_boot_id": "d95f4ad2-8e72-40b6-b3cc-0cd915a8f139",
+            "confirmation": null,
+            "failure": {
+              "at": "preparing",
+              "message": "package download: /usr/bin/pacman failed: error: astraeus-validation-fixture: signature from \"Phase 0 disposable package signing\" is invalid\nerror: failed to commit transaction (invalid or corrupted package (PGP signature))",
+              "interrupted": false
+            },
+            "events": [
+              {
+                "state": "planned",
+                "timestamp": 1791451602
+              },
+              {
+                "state": "preparing",
+                "timestamp": 1791451602
+              },
+              {
+                "state": "failed",
+                "timestamp": 1791451605
+              }
+            ]
+          }
+        ],
+        "snapshots": []
+      }
+    },
+    "boots": {
+      "boot-1": {
+        "shutdown": {
+          "finished": "2026-10-08T09:26:59.616769+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      },
+      "boot-2": {
+        "reboot": {
+          "previous": "d95f4ad2-8e72-40b6-b3cc-0cd915a8f139",
+          "current": "64c4877f-71eb-4e1f-9869-4598d7bcbfdb"
+        },
+        "shutdown": {
+          "finished": "2026-10-08T09:27:22.952748+00:00",
+          "code": 0,
+          "graceful": true
+        }
+      }
+    }
+  },
+  {
+    "run": "install-luks",
+    "passed": false,
+    "started": "2026-10-08T07:16:49.900244+00:00",
+    "mode": "install",
+    "scenario": "update-success",
+    "encryption": "LUKS2",
+    "error": "CalledProcessError: Command '['git', '-C', '/home/ubuntu/p2sec-src', 'rev-parse', 'HEAD']' returned non-zero exit status 128.",
+    "finished": "2026-10-08T07:16:49.914085+00:00",
+    "inputs": {},
+    "observations": {},
+    "boots": {}
+  },
+  {
+    "run": "install-luks-r2",
+    "passed": true,
+    "started": "2026-10-08T07:17:36.974385+00:00",
+    "mode": "install",
+    "scenario": "update-success",
+    "encryption": "LUKS2",
+    "installation_accepted": false,
+    "finished": "2026-10-08T07:32:22.868407+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "observations": {},
+    "boots": {
+      "boot-1": {},
+      "boot1": {},
+      "boot2": {}
+    }
+  },
+  {
+    "run": "install-plain",
+    "passed": true,
+    "started": "2026-10-08T08:48:54.715352+00:00",
+    "mode": "install",
+    "scenario": "update-success",
+    "encryption": "none",
+    "installation_accepted": false,
+    "finished": "2026-10-08T09:00:32.824557+00:00",
+    "inputs": {
+      "source_commits": [
+        "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1"
+      ],
+      "harness_commit": "0f984fcc898439c0a3f7c64ae1b7bd16d034e5e1",
+      "harness_dirty": false,
+      "iso": {
+        "path": "/home/ubuntu/p2sec/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.fd",
+        "sha256": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083"
+      }
+    },
+    "observations": {},
+    "boots": {
+      "boot-1": {},
+      "boot1": {},
+      "boot2": {}
+    }
+  }
+]

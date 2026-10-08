@@ -1,0 +1,39 @@
+{
+  "iso_A": {
+    "path": "D:\\Astraeus-Phase2-Evidence\\security-0f984fc-A.iso",
+    "bytes": 3534505984,
+    "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21",
+    "verified": true
+  },
+  "iso_B": {
+    "path": "D:\\Astraeus-Phase2-Evidence\\security-0f984fc-B.iso",
+    "bytes": 3534505984,
+    "sha256": "065b95c50f8514407f8a32e72687ef372ca1adec896515b9a285b5348c2f0d21",
+    "verified": true
+  },
+  "build_A": {
+    "path": "D:\\Astraeus-Phase2-Evidence\\security-0f984fc-build-A-evidence.tar.xz",
+    "bytes": 50415068,
+    "sha256": "1518462fa8b1ed3697e10cf9f59f30edb6bff50769a2360436e72da94204b2e3",
+    "verified": true
+  },
+  "build_B": {
+    "path": "D:\\Astraeus-Phase2-Evidence\\security-0f984fc-build-B-evidence.tar.xz",
+    "bytes": 50413780,
+    "sha256": "4d0c73c622830c8c5e3ac07bba282c3ffd61c1b8ee601fd42769a7fc64e2e149",
+    "verified": true
+  },
+  "runtime": {
+    "path": "D:\\Astraeus-Phase2-Evidence\\security-0f984fc-runtime-evidence.tar.xz",
+    "bytes": 60039104,
+    "sha256": "35dcf2ac81b09f3b4141bf9bba0d0d284e5145cc7b769a3477dfd41dd8817c37",
+    "verified": true,
+    "member_hashes_verified": 1935
+  },
+  "source": {
+    "path": "D:/Astraeus-Phase2-Evidence/security-0f984fc-source.tar.xz",
+    "bytes": 527728,
+    "sha256": "a745ce45523d3eb7b0290bd0886b6e7f21c6374ff1d84b4c87184f936e200926",
+    "verified": true
+  }
+}

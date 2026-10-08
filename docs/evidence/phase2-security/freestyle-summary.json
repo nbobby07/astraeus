@@ -1,0 +1,17 @@
+{
+  "vm": "astraeus-phase0-validator",
+  "resources": {
+    "cpu": 8,
+    "memory": 16384,
+    "storage": 65536
+  },
+  "initial_total_run_seconds": 57058,
+  "final_total_run_seconds": 70546,
+  "run_seconds": 13488,
+  "final_state": "paused",
+  "account_running_count": 0,
+  "unrelated_vm_state": "paused",
+  "paused_at": "2026-10-08T09:33:33.365530Z",
+  "approximate_compute_usd_before_allowances": 1.9818368,
+  "approximate_storage_usd_during_run": 0.020621653333333333
+}
