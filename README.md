@@ -5,7 +5,7 @@ installer and a small Rust interface for inspecting the running system.
 
 [![Checks](https://github.com/nbobby07/astraeus/actions/workflows/check.yml/badge.svg)](https://github.com/nbobby07/astraeus/actions/workflows/check.yml)
 
-**Current milestone: Phase 2 validated.** Version `0.1.0-dev` installs to encrypted
+**Current milestone: Phase 2 integration.** Version `0.1.0-dev` installs to encrypted
 or plain Btrfs and boots into KDE Plasma Wayland. Signed package updates now use
 pre-update snapshots and verified boot confirmation. Disposable installed guests
 passed successful and failed updates, plain and LUKS2 rollback, interrupted
@@ -13,8 +13,9 @@ mutation and recovery from a broken UKI. Two independent builds produced identic
 ISO bytes. The [Phase 2 acceptance record](docs/phase2-integration.md) identifies
 the tested source, image hashes, evidence and remaining limits.
 
-PR review follow-up fixes are awaiting fresh installed-system acceptance before
-merge; the report distinguishes those changes from the validated ISO source.
+The original Phase 2 runtime passed the recorded acceptance matrix. Subsequent PR
+review fixes passed host checks and review, but fresh installed-system acceptance
+is pending. The report distinguishes them from the validated ISO source.
 
 This is a development project. The qualified target is **x86-64 UEFI under
 QEMU/KVM**, using disposable disks. Physical hardware, dual boot and enforced

@@ -1,7 +1,7 @@
 # Phase 2 integration acceptance
 
 **Review follow-up awaiting acceptance.** The runtime fixes described below
-must pass fresh installed-system validation before PR #3 is merged. The historical
+pass host checks and code review but still need fresh installed-system qualification. The historical
 `dde0970` build's A-G results remain recorded here; they do not qualify newer code.
 
 Tests A through G passed in disposable installed-system
@@ -43,6 +43,17 @@ The installed mount check also rejects transient mounts at arbitrary package
 paths such as /opt, /srv and /root; the previous prefix list could miss them.
 The explicit allowances are persistent siblings, ESP, ephemeral runtime trees
 and read-only external media. Writable unprotected mounts block generation work.
+
+At source `03577f3a5204c611b174995629c449db668537ba`, Windows Rust passed 50 tests,
+Linux Rust passed 53 with one explicit loopback skip, and Linux Python passed all
+40 tests. Formatting, Clippy, Bash syntax and GitHub CI passed; review found no
+further issues. One clean ISO build completed: 3,534,477,312 bytes, SHA-256
+`c3c780faca1c6768f733748f37f7980f914ed2d3f2eea3627be648f52e7dc964`.
+Its source archive SHA-256 is
+`4b0b93cb5126672e4357de0ac3856eefda1d0945fb64200f7cdd8f7ee80f7b03`.
+The second build and first installed scenario were stopped to complete the
+requested PR merge. They are incomplete, not passing acceptance. The revised
+runtime therefore has no new A-G qualification or reproducibility claim.
 
 ## Source and merge audit
 
