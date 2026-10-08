@@ -35,6 +35,15 @@ def database(version="1-1", package=b"fixture"):
 
 
 class BootstrapTests(unittest.TestCase):
+    def test_package_archive_contains_generation_gate_and_recovery_guide(self):
+        with tempfile.TemporaryDirectory() as temp, patch.object(bootstrap, "run"):
+            output = Path(temp) / "package"
+            bootstrap.prepare_package(output)
+            with tarfile.open(output / "platform.tar.xz") as archive:
+                for name in ["distro/installed/astraeus-bless-boot.conf", "docs/boot-generations.md",
+                             "crates/snapshots/src/system/generations.rs"]:
+                    self.assertEqual(archive.extractfile("platform/" + name).read(), (ROOT / name).read_bytes())
+
     def test_templates_and_live_contract(self):
         project = bootstrap.project()
         self.assertEqual(project["identity"]["version"],

@@ -1,4 +1,5 @@
 use super::*;
+mod generations;
 use std::{
     fs::{File, OpenOptions},
     io::Write,
@@ -10,15 +11,28 @@ use std::{
 pub trait Commands {
     fn run(&self, program: &str, args: &[&str]) -> Result<String>;
     fn authorize_mutation(&self, store: &Path, esp: &Path) -> Result<()>;
+    /// Chat 1 supplies the signing/trust implementation. No permissive default.
+    fn boot_artifact(&self, _args: &[&str]) -> Result<String> {
+        Err("boot artifact trust provider unavailable".into())
+    }
 }
 pub struct Native;
 impl Commands for Native {
+    fn boot_artifact(&self, args: &[&str]) -> Result<String> {
+        trusted(Path::new("/usr/bin/astraeus-boot-artifact"))?;
+        self.run("astraeus-boot-artifact", args)
+    }
     fn run(&self, program: &str, args: &[&str]) -> Result<String> {
         require(
             cfg!(target_os = "linux"),
             "snapshot operations require Linux",
         )?;
-        let output = Command::new(format!("/usr/bin/{program}"))
+        let executable = if program == "systemd-bless-boot" {
+            "/usr/lib/systemd/systemd-bless-boot".into()
+        } else {
+            format!("/usr/bin/{program}")
+        };
+        let output = Command::new(executable)
             .args(args)
             .env_clear()
             .env("LC_ALL", "C")
@@ -179,8 +193,23 @@ impl<C: Commands> Manager<C> {
         let base = self.top.as_deref().unwrap_or(Path::new("/"));
         let mount = self.mount(&mounts, base)?;
         require(mount.fstype == "btrfs", "system filesystem is not Btrfs")?;
+        let retained_root = if self.top.is_none() && mount.fsroot != "/@" {
+            self.generation_selection()?
+                .map(|selection| self.generation(&selection.previous))
+                .transpose()?
+                .filter(|g| {
+                    g.root_kind == crate::generations::RootKind::Retained
+                        && mount.fsroot
+                            == format!(
+                                "/@snapshots/astraeus/generations/{}/private/root",
+                                g.id.as_str()
+                            )
+                })
+        } else {
+            None
+        };
         require(
-            mount.fsroot == if self.top.is_some() { "/" } else { "/@" },
+            mount.fsroot == if self.top.is_some() { "/" } else { "/@" } || retained_root.is_some(),
             "unexpected root subvolume (need @ or recovery subvolid=5)",
         )?;
         let fs_uuid = mount.uuid.as_deref().ok_or("Btrfs UUID unavailable")?;
@@ -218,7 +247,12 @@ impl<C: Commands> Manager<C> {
                 let m = self.mount(&mounts, Path::new(point))?;
                 require(
                     m.fstype == "btrfs"
-                        && m.fsroot == format!("/{name}")
+                        && m.fsroot
+                            == if point == "/" {
+                                mount.fsroot.clone()
+                            } else {
+                                format!("/{name}")
+                            }
                         && m.uuid.as_deref() == Some(fs_uuid),
                     "persistent subvolume mount missing or on wrong filesystem",
                 )?;
@@ -264,6 +298,10 @@ impl<C: Commands> Manager<C> {
         Ok((fs_uuid.into(), esp_uuid.into()))
     }
     fn no_pending(&self) -> Result<()> {
+        require(
+            !self.store.join("generations/selection.next").try_exists()?,
+            "unfinished boot selection: recover using retained journal",
+        )?;
         require(!self.store.join("pending.json").try_exists()?, "unfinished operation: inspect astraeus/pending.json and recover offline before continuing")?;
         if self.store.try_exists()? {
             for entry in fs::read_dir(&self.store)? {
@@ -296,7 +334,11 @@ impl<C: Commands> Manager<C> {
                 .file_name()
                 .into_string()
                 .map_err(|_| "non-UTF8 store entry")?;
-            if name == "lock" || name == "pending.json" || name.starts_with("operation-") {
+            if name == "lock"
+                || name == "pending.json"
+                || name == "generations"
+                || name.starts_with("operation-")
+            {
                 continue;
             }
             let snapshot = self.read(&SnapshotId::parse(&name)?)?;
@@ -332,6 +374,12 @@ impl<C: Commands> Manager<C> {
     }
     pub fn plan_create(&self) -> Result<CreationPlan> {
         let (filesystem_uuid, _) = self.layout(false)?;
+        if self.top.is_none() {
+            require(
+                self.mount(&self.mounts()?, Path::new("/"))?.fsroot == "/@",
+                "retained root is a recovery session; restore offline before updating",
+            )?;
+        }
         self.no_pending()?;
         Ok(CreationPlan {
             source: self.root.clone(),
@@ -376,6 +424,15 @@ impl<C: Commands> Manager<C> {
         })
     }
     fn verify_root(&self, root: &Path, fs_uuid: &str, esp_uuid: &str) -> Result<()> {
+        self.verify_root_selection(root, fs_uuid, esp_uuid, None)
+    }
+    fn verify_root_selection(
+        &self,
+        root: &Path,
+        fs_uuid: &str,
+        esp_uuid: &str,
+        subvolid: Option<u64>,
+    ) -> Result<()> {
         let fstab = read_text(root, "etc/fstab")?;
         let entries: Vec<Vec<&str>> = fstab
             .lines()
@@ -402,8 +459,13 @@ impl<C: Commands> Manager<C> {
                 .filter(|s| s.starts_with("rootflags="))
                 .count()
                 == 1
-                && tokens.contains(&"rootflags=subvol=@"),
-            "kernel must select subvol=@ explicitly",
+                && tokens.contains(
+                    &subvolid
+                        .map(|id| format!("rootflags=subvolid={id}"))
+                        .unwrap_or_else(|| "rootflags=subvol=@".into())
+                        .as_str(),
+                ),
+            "kernel root selection differs from generation",
         )?;
         if encrypted {
             let crypttab = read_text(root, "etc/crypttab")?;
@@ -462,12 +524,25 @@ impl<C: Commands> Manager<C> {
                 "fstab filesystem/source mismatch",
             )?;
             let opts: Vec<_> = row[3].split(',').collect();
+            let selection = if point == "/" {
+                subvolid.map(|id| format!("subvolid={id}"))
+            } else {
+                None
+            };
             require(
-                opts.contains(&format!("subvol=/{name}").as_str())
-                    && !opts
+                opts.contains(
+                    &selection
+                        .clone()
+                        .unwrap_or_else(|| format!("subvol=/{name}"))
+                        .as_str(),
+                ) && !opts
+                    .iter()
+                    .any(|o| (selection.is_none() && o.starts_with("subvolid=")) || *o == "noauto")
+                    && opts
                         .iter()
-                        .any(|o| o.starts_with("subvolid=") || *o == "noauto")
-                    && opts.iter().filter(|o| o.starts_with("subvol=")).count() == 1,
+                        .filter(|o| o.starts_with("subvol=") || o.starts_with("subvolid="))
+                        .count()
+                        == 1,
                 "fstab root selection is incoherent",
             )?;
         }
@@ -523,6 +598,9 @@ impl<C: Commands> Manager<C> {
         Ok(())
     }
     fn verify_loader(&self) -> Result<()> {
+        if self.generation_selection()?.is_some() {
+            return self.verify_generation_loader();
+        }
         let config = read_text(&self.esp, "loader/loader.conf")?;
         let defaults: Vec<_> = config
             .lines()
@@ -588,7 +666,7 @@ impl<C: Commands> Manager<C> {
             "package database is locked; snapshot requires a quiescent package transaction",
         )?;
         self.verify_root(&self.root, &plan.filesystem_uuid, &esp_uuid)?;
-        self.verify_uki(&self.root, &self.esp.join(UKI))?;
+        self.verify_uki(&self.root, &self.working_uki()?)?;
         self.verify_loader()?;
         let now = SystemTime::now().duration_since(UNIX_EPOCH)?;
         let id = SnapshotId::parse(&format!(
@@ -607,7 +685,7 @@ impl<C: Commands> Manager<C> {
         fs::create_dir(&private)?;
         set_mode(&private, 0o700)?;
         let image = private.join("boot.efi");
-        copy_new(&self.esp.join(UKI), &image)?;
+        copy_new(&self.working_uki()?, &image)?;
         let root = private.join("root");
         self.commands.run(
             "btrfs",
@@ -623,7 +701,7 @@ impl<C: Commands> Manager<C> {
         self.verify_root(&root, &plan.filesystem_uuid, &esp_uuid)?;
         self.verify_uki(&root, &image)?;
         require(
-            self.digest(&image)? == self.digest(&self.esp.join(UKI))?,
+            self.digest(&image)? == self.digest(&self.working_uki()?)?,
             "UKI changed during snapshot",
         )?;
         let snapshot = Snapshot {
@@ -640,7 +718,12 @@ impl<C: Commands> Manager<C> {
             boot: BootState {
                 esp_uuid,
                 sha256: self.digest(&image)?,
-                relative_path: UKI.into(),
+                relative_path: if self.generation_selection()?.is_some() {
+                    MAINTENANCE_UKI
+                } else {
+                    UKI
+                }
+                .into(),
             },
         };
         snapshot.validate()?;
@@ -720,11 +803,11 @@ impl<C: Commands> Manager<C> {
         )?;
         require(
             esp_uuid == snapshot.boot.esp_uuid
-                && self.digest(&self.esp.join(UKI))? == snapshot.boot.sha256,
+                && self.digest(&self.working_uki()?)? == snapshot.boot.sha256,
             "running ESP does not match saved UKI",
         )?;
         self.verify_root(&self.root, &snapshot.filesystem_uuid, &esp_uuid)?;
-        self.verify_uki(&self.root, &self.esp.join(UKI))?;
+        self.verify_uki(&self.root, &self.working_uki()?)?;
         let bytes = fs::read(self.entry(id)?.join("private/boot.efi"))?;
         let cmdline = std::str::from_utf8(pe_section(&bytes, b".cmdline")?)?.trim_end_matches('\0');
         let running = self.commands.run("cat", &["/proc/cmdline"])?;
@@ -737,6 +820,18 @@ impl<C: Commands> Manager<C> {
             self.commands.run("uname", &["-r"])? == uname,
             "booted kernel differs from intended UKI",
         )?;
+        if self.generation_selection()?.is_some() {
+            let selected = self
+                .selected_generation()?
+                .ok_or("managed boot entry unavailable")?;
+            require(
+                selected.root_kind == crate::generations::RootKind::Current
+                    && selected.uki_sha256 == snapshot.boot.sha256,
+                "maintenance UKI differs from the immutable booted generation",
+            )?;
+            self.verify_generation(&selected.id)?;
+            self.verify_running_generation(&selected)?;
+        }
         Ok(())
     }
     pub fn plan_rollback(&self, id: &SnapshotId) -> Result<RollbackPlan> {
@@ -752,6 +847,7 @@ impl<C: Commands> Manager<C> {
             "rollback ESP UUID mismatch",
         )?;
         self.verify_snapshot(&snapshot)?;
+        self.verify_generation_rollback(id)?;
         let current = self.show(&self.root)?;
         self.verify_loader()?;
         require(
@@ -797,7 +893,7 @@ impl<C: Commands> Manager<C> {
         }
         let private = self.entry(id)?.join("private");
         self.begin(&serde_json::json!({"schema_version":1,"operation":"rollback","id":id,"filesystem_uuid":plan.target.filesystem_uuid,"esp_uuid":plan.target.boot.esp_uuid,"current_state":plan.current_state,"target_state":plan.target.root,"candidate":candidate,"previous":previous,"previous_uki":old_uki,"staged_uki":staged_uki,"target_sha256":plan.target.boot.sha256}))?;
-        copy_new(&self.esp.join(UKI), &old_uki)?;
+        copy_new(&self.working_uki()?, &old_uki)?;
         copy_new(&private.join("boot.efi"), &staged_uki)?;
         require(
             self.digest(&staged_uki)? == plan.target.boot.sha256,
@@ -815,6 +911,9 @@ impl<C: Commands> Manager<C> {
             ],
         )?;
         let restored = self.show(&candidate)?;
+        if self.generation_selection()?.is_some() {
+            self.restore_generation_preset(&candidate)?;
+        }
         require(
             !restored.read_only && restored.parent_uuid.as_deref() == Some(&plan.target.root.uuid),
             "restored root identity mismatch",
@@ -831,6 +930,7 @@ impl<C: Commands> Manager<C> {
             self.show(&self.root)? == plan.current_state,
             "root changed during rollback preparation",
         )?;
+        self.quiesce_generation_candidate(&stamp)?;
         fs::rename(&self.root, &previous)?;
         self.sync(top)?;
         fs::rename(&candidate, &self.root)?;
@@ -842,6 +942,7 @@ impl<C: Commands> Manager<C> {
                 && self.digest(&self.esp.join(UKI))? == plan.target.boot.sha256,
             "rollback final verification failed",
         )?;
+        self.finish_generation_rollback(&stamp)?;
         self.finish(&stamp)?;
         Ok(RollbackResult {
             plan,
@@ -856,6 +957,10 @@ impl<C: Commands> Manager<C> {
         self.layout(true)?;
         let _lock = self.lock()?;
         let snapshot = self.inspect(id)?;
+        require(
+            !self.generations()?.iter().any(|g| g.snapshot == *id),
+            "snapshot is pinned by boot generation",
+        )?;
         require(
             snapshot.health != Health::KnownGood,
             "known-good snapshots are protected from deletion",

@@ -95,6 +95,7 @@ def prepare_package(output):
                  ROOT / "distro/installed/secure-boot/linux.preset",
                  ROOT / "distro/installed/secure-boot/95-astraeus-sign",
                  ROOT / "distro/installed/80-astraeus-secure-boot.hook",
+                 ROOT / "distro/installed/astraeus-bless-boot.conf", ROOT / "docs/boot-generations.md",
                  *sorted((ROOT / "crates").rglob("*"))]:
         if file.is_file():
             destination = source / file.relative_to(ROOT)

@@ -13,6 +13,7 @@ static NEXT: AtomicUsize = AtomicUsize::new(1);
 
 #[derive(Clone)]
 struct Fake {
+    boot: Rc<RefCell<std::collections::BTreeMap<String, String>>>,
     mounts: Rc<RefCell<serde_json::Value>>,
     calls: Rc<RefCell<Calls>>,
     next: Rc<Cell<u64>>,
@@ -21,6 +22,9 @@ struct Fake {
 }
 type Calls = Vec<(String, Vec<String>)>;
 impl Commands for Fake {
+    fn boot_artifact(&self, args: &[&str]) -> Result<String> {
+        self.run("artifact", args)
+    }
     fn authorize_mutation(&self, _: &Path, _: &Path) -> Result<()> {
         Ok(())
     }
@@ -38,6 +42,36 @@ impl Commands for Fake {
             return Err("injected command failure".into());
         }
         match program {
+            "artifact" => match args {
+                ["ready", _] => Ok(serde_json::json!({"schema_version":1,"systemd_version":262,"loader_verified":true,"firmware_trusted":true}).to_string()),
+                ["verify", path] => Ok(serde_json::json!({"schema_version":1,"sha256":self.run("sha256sum", &["--",path])?,"signature_verified":self.boot.borrow().get("untrusted").is_none(),"firmware_trusted":true}).to_string()),
+                ["rebind", original, cmdline, output] => {
+                    let bytes = fs::read(original)?;
+                    fs::write(output, crate::tests::image(pe_section(&bytes,b".linux")?, fs::read_to_string(cmdline)?.trim().as_bytes()))?;
+                    Ok(String::new())
+                },
+                _ => Err("unexpected trust provider call".into()),
+            },
+            "bootctl" => match args {
+                ["--print-stub-path"] => self.boot.borrow().get("stub_path").cloned().ok_or_else(|| "no boot evidence".into()),
+                ["--version"] => Ok("systemd 262".into()),
+                ["--esp-path", _, "set-default" | "set-oneshot" | "set-preferred", ""] => Ok(String::new()),
+                _ => Err("unexpected bootctl call".into()),
+            },
+            "od" => {
+                let name = args.last().unwrap().rsplit('/').next().unwrap().split('-').next().unwrap();
+                let value = self.boot.borrow().get(name).cloned().ok_or("missing EFI variable")?;
+                Ok([7u8,0,0,0].into_iter().chain(value.encode_utf16().chain([0]).flat_map(u16::to_le_bytes)).map(|v| format!("{v:02x}")).collect::<Vec<_>>().join(" "))
+            },
+            "cat" if args == ["/proc/cmdline"] => self.boot.borrow().get("cmdline").cloned().ok_or_else(|| "no cmdline".into()),
+            "uname" => Ok("test-release".into()),
+            "systemd-bless-boot" => {
+                let path = self.boot.borrow().get("LoaderBootCountPath").cloned().ok_or("no counter EFI variable")?;
+                let source = Path::new(args[1]).join(path.trim_start_matches('/'));
+                let name = source.file_name().unwrap().to_str().unwrap();
+                fs::rename(&source, source.with_file_name(format!("{}.conf",name.split('+').next().unwrap())))?;
+                Ok(String::new())
+            },
             "findmnt" => Ok(self.mounts.borrow().to_string()),
             "sync" => Ok(String::new()),
             "sha256sum" => {
@@ -136,6 +170,12 @@ impl Fixture {
         }
         let root = top.join("@");
         fs::create_dir_all(root.join("etc/kernel")).unwrap();
+        fs::create_dir_all(root.join("etc/mkinitcpio.d")).unwrap();
+        fs::write(
+            root.join("etc/mkinitcpio.d/linux.preset"),
+            format!("default_uki=\"/efi/{UKI}\"\n"),
+        )
+        .unwrap();
         fs::create_dir(root.join("boot")).unwrap();
         fs::create_dir_all(root.join("usr/lib/modules/test-release")).unwrap();
         let cmdline = format!("root=UUID={FS} rootflags=subvol=@ rw");
@@ -168,6 +208,7 @@ impl Fixture {
             {"target":esp,"fstype":"vfat","fsroot":"/","uuid":ESP,"options":"rw"}
         ]});
         let fake = Fake {
+            boot: Rc::new(RefCell::new(std::collections::BTreeMap::new())),
             mounts: Rc::new(RefCell::new(mounts)),
             calls: Rc::new(RefCell::new(Vec::new())),
             next: Rc::new(Cell::new(1000)),
@@ -187,6 +228,8 @@ impl Fixture {
             .unwrap()
     }
 }
+
+mod generation_tests;
 impl Drop for Fixture {
     fn drop(&mut self) {
         fs::remove_dir_all(&self.path).unwrap();
@@ -610,7 +653,46 @@ fn disposable_linux_btrfs_roundtrip() {
         directory: PathBuf,
     }
     impl Commands for LoopCommands {
+        fn boot_artifact(&self, args: &[&str]) -> Result<String> {
+            // Synthetic trust is confined to this storage test, never firmware qualification.
+            match args {
+                ["verify", path] => {
+                    require(
+                        Path::new(path).starts_with(&self.directory),
+                        "trust fixture escaped disposable directory",
+                    )?;
+                    let digest = Native.run("sha256sum", &["--", path])?;
+                    Ok(serde_json::json!({"schema_version":1,"sha256":digest.split_whitespace().next().unwrap(),"signature_verified":true,"firmware_trusted":true}).to_string())
+                }
+                ["rebind", original, cmdline, output] => {
+                    for path in [original, cmdline, output] {
+                        require(
+                            Path::new(path).starts_with(&self.directory),
+                            "rebind fixture escaped disposable directory",
+                        )?;
+                    }
+                    let bytes = fs::read(original)?;
+                    write_new(
+                        Path::new(output),
+                        &crate::tests::image(
+                            pe_section(&bytes, b".linux")?,
+                            fs::read_to_string(cmdline)?.trim().as_bytes(),
+                        ),
+                        0o600,
+                    )?;
+                    Ok(String::new())
+                }
+                _ => Err("unexpected storage-test trust call".into()),
+            }
+        }
         fn run(&self, program: &str, args: &[&str]) -> Result<String> {
+            if program == "bootctl" {
+                require(
+                    matches!(args,["--esp-path", path, "set-default" | "set-oneshot" | "set-preferred", ""] if Path::new(path).starts_with(&self.directory)),
+                    "unexpected firmware mutation in storage fixture",
+                )?;
+                return Ok(String::new()); // Never touch host firmware variables.
+            }
             Native.run(program, args)
         }
         fn authorize_mutation(&self, store: &Path, esp: &Path) -> Result<()> {
@@ -764,6 +846,25 @@ fn disposable_linux_btrfs_roundtrip() {
             "storage fixture only, not boot qualification",
         )
         .unwrap();
+    let guard = manager.lock().unwrap();
+    let generation = manager
+        .stage_generation_locked(&guard, &snapshot.id, None)
+        .unwrap();
+    manager
+        .select_generation_locked(
+            &guard,
+            crate::generations::Selection {
+                schema_version: 1,
+                current: None,
+                previous: generation.id.clone(),
+            },
+        )
+        .unwrap();
+    manager.verify_generation(&generation.id).unwrap();
+    assert!(generation.root.top_level > 5);
+    assert!(!esp.join(UKI).exists());
+    assert!(esp.join(MAINTENANCE_UKI).exists());
+    drop(guard);
     fs::write(top.join("@/preserved"), "broken").unwrap();
     manager.rollback(&snapshot.id).unwrap();
     assert_eq!(fs::read_to_string(top.join("@/preserved")).unwrap(), "@");

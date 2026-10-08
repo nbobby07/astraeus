@@ -15,6 +15,12 @@ pub struct CommandOutput {
     pub stderr: String,
 }
 pub trait CommandRunner {
+    fn working_uki(&mut self, configured: &str) -> Result<String> {
+        Ok(configured.into())
+    }
+    fn managed_loader(&mut self) -> Result<bool> {
+        Ok(false)
+    }
     fn prepare_boot(&mut self, _: i64) -> Result<()> {
         Err("boot marker writer unavailable".into())
     }
@@ -26,6 +32,22 @@ pub trait CommandRunner {
 
 pub struct NativeRunner;
 impl CommandRunner for NativeRunner {
+    fn working_uki(&mut self, _: &str) -> Result<String> {
+        distro_snapshots::Manager::online(distro_snapshots::Native)
+            .working_uki()
+            .map(|path| path.to_string_lossy().into_owned())
+            .map_err(|e| e.to_string())
+    }
+    fn managed_loader(&mut self) -> Result<bool> {
+        let manager = distro_snapshots::Manager::online(distro_snapshots::Native);
+        if !manager.generations_enabled().map_err(|e| e.to_string())? {
+            return Ok(false);
+        }
+        manager
+            .generation_prerequisites()
+            .map_err(|e| e.to_string())?;
+        Ok(true)
+    }
     fn prepare_boot(&mut self, transaction_id: i64) -> Result<()> {
         let path = Path::new("/etc/kernel/cmdline");
         let previous = fs::read_to_string(path).map_err(|e| e.to_string())?;
@@ -422,6 +444,9 @@ impl<R: CommandRunner> BootBackend for SystemBoot<R> {
         if plan.boot.regenerate_uki {
             self.runner.prepare_boot(transaction_id)?;
             checked(&mut self.runner, "/usr/bin/mkinitcpio", &["-P"])?;
+            if self.runner.managed_loader()? {
+                return Ok(());
+            }
             // Loader binaries are outside the saved UKI recovery boundary.
             // Reject systemd plans before mutation and only read these copies.
             for installed in [
@@ -449,6 +474,17 @@ pub struct SystemHealth<R = NativeRunner> {
 }
 impl<R: CommandRunner> HealthChecks for SystemHealth<R> {
     fn run(&mut self, _: &ExecutionPlan) -> Vec<HealthCheckResult> {
+        let uki_path = match self.runner.working_uki(&self.uki_path) {
+            Ok(path) => path,
+            Err(detail) => {
+                return vec![HealthCheckResult {
+                    name: "boot_generation_metadata".into(),
+                    required: true,
+                    status: HealthStatus::Unavailable,
+                    detail,
+                }]
+            }
+        };
         let mut checks = vec![];
         for (name, program, args, empty) in [
             (
@@ -463,12 +499,7 @@ impl<R: CommandRunner> HealthChecks for SystemHealth<R> {
                 vec!["--repo-list"],
                 false,
             ),
-            (
-                "uki",
-                "/usr/bin/ukify",
-                vec!["inspect", &self.uki_path],
-                false,
-            ),
+            ("uki", "/usr/bin/ukify", vec!["inspect", &uki_path], false),
             (
                 "boot_loader",
                 "/usr/bin/bootctl",

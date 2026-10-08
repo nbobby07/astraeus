@@ -57,11 +57,12 @@ pub(crate) fn image(kernel: &[u8], cmdline: &[u8]) -> Vec<u8> {
     bytes[0x3c..0x40].copy_from_slice(&128u32.to_le_bytes());
     bytes[128..132].copy_from_slice(b"PE\0\0");
     bytes[132..134].copy_from_slice(&0x8664u16.to_le_bytes());
-    bytes[134..136].copy_from_slice(&4u16.to_le_bytes());
+    bytes[134..136].copy_from_slice(&5u16.to_le_bytes());
     for (n, (name, data)) in [
         (b".linux".as_slice(), kernel),
         (b".cmdline", cmdline),
         (b".initrd", b"test initrd"),
+        (b".osrel", b"ID=astraeus\nPRETTY_NAME=Astraeus\n"),
         (b".uname", b"test-release"),
     ]
     .into_iter()
