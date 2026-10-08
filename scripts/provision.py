@@ -87,6 +87,7 @@ def provision(target, partitions, keyboard=None, username=None):
         raise ValueError("an unencrypted FAT ESP must be mounted at /efi")
     if not Path("/sys/firmware/efi").is_dir():
         raise ValueError("UEFI installation required")
+    run("arch-chroot", root, "/usr/bin/astraeus-secure-boot", "guard-legacy")
     luks = None
     if "luksMapperName" in partition:
         run("cryptsetup", "isLuks", "--type", "luks2", partition["device"])

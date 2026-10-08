@@ -6,11 +6,19 @@ Boot acceptance remains a separate gate in [validation](validation.md).
 
 The ESP is mounted at `/efi`. The one current kernel is the stock Arch `linux`
 package from the pinned snapshot. The preset at `/etc/mkinitcpio.d/linux.preset`
-uses `/boot/vmlinuz-linux`, `/etc/mkinitcpio.conf` and `/etc/kernel/cmdline` to write:
+uses `/boot/vmlinuz-linux`, `/etc/mkinitcpio.conf` and `/etc/kernel/cmdline` to write
+the following path on an unprovisioned, non-enforcing development installation:
 
 ```text
 /efi/EFI/Linux/astraeus-dev-linux.efi
 ```
+
+The Phase 3 helper selects private output when a signing policy, retained signing
+state or firmware SecureBoot=1 requires signing. Its post hook publishes verified
+candidates outside the ESP. Until boot-generation integration is complete,
+provisioned systems reject package transactions before mutation. See the
+[signing contract](secure-boot.md#signing-interface-for-chat-2); the signer does
+not select or activate boot generations.
 
 The product ID comes from the central manifest. `mkinitcpio` with `systemd-ukify`
 packages the kernel, initramfs, OS release, kernel version and embedded command
