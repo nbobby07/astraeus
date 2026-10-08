@@ -354,12 +354,19 @@ impl<C: Commands> Manager<C> {
         no_links(&self.store)?;
         let path = self.store.join("lock");
         no_links(&path)?;
-        let lock = OpenOptions::new()
-            .create(true)
-            .truncate(false)
-            .write(true)
-            .read(true)
-            .open(path)?;
+        let mut options = OpenOptions::new();
+        options.create(true).truncate(false).write(true).read(true);
+        #[cfg(unix)]
+        {
+            use std::os::unix::fs::OpenOptionsExt;
+            options.mode(0o600);
+        }
+        let lock = options.open(path)?;
+        #[cfg(unix)]
+        {
+            use std::os::unix::fs::PermissionsExt;
+            lock.set_permissions(fs::Permissions::from_mode(0o600))?;
+        }
         lock.try_lock()
             .map_err(|e| format!("snapshot/transaction lock busy: {e}"))?;
         self.no_pending()?;

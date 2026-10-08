@@ -516,6 +516,141 @@ fn history_is_read_only_versioned_and_lock_is_exclusive() {
 }
 
 #[test]
+fn published_history_migrates_and_recovers_failed_publication() {
+    let temp = Temp::new();
+    let public = temp.0.join("history.sqlite");
+    let private = temp.0.join("private/history.sqlite");
+    let lock = temp.0.join("update.lock");
+    let mut old = temp.session();
+    let mut record = TransactionRecord::new(plan());
+    old.insert(&mut record).unwrap();
+    drop(old);
+    let mut session = UpdateSession::open_published(&private, &lock, &public).unwrap();
+    assert_eq!(session.records().unwrap(), vec![record.clone()]);
+    assert_eq!(read_history(&public).unwrap(), vec![record.clone()]);
+    fs::remove_file(&public).unwrap();
+    fs::create_dir(&public).unwrap();
+    assert!(session
+        .advance(&mut record, TransactionState::Preparing)
+        .is_err());
+    assert_eq!(session.records().unwrap(), vec![record.clone()]);
+    assert_eq!(record.state, TransactionState::Preparing);
+    drop(session);
+    fs::remove_dir(&public).unwrap();
+    let session = UpdateSession::open_published(&private, &lock, &public).unwrap();
+    assert_eq!(read_history(&public).unwrap(), vec![record]);
+    drop(session);
+    let db = rusqlite::Connection::open(&private).unwrap();
+    db.pragma_update(None, "user_version", 99).unwrap();
+    drop(db);
+    assert!(UpdateSession::open_published(&private, &lock, &public).is_err());
+}
+
+#[cfg(unix)]
+#[test]
+fn public_sqlite_locks_cannot_block_private_commits_or_migration() {
+    use rusqlite::{Connection, OpenFlags};
+    use std::os::unix::fs::PermissionsExt;
+    let temp = Temp::new();
+    let public = temp.0.join("history.sqlite");
+    let private = temp.0.join("private/history.sqlite");
+    let lock = temp.0.join("update.lock");
+    let mut old = temp.session();
+    let mut record = TransactionRecord::new(plan());
+    old.insert(&mut record).unwrap();
+    drop(old);
+    fs::set_permissions(&lock, fs::Permissions::from_mode(0o644)).unwrap();
+    let reader = Connection::open_with_flags(&public, OpenFlags::SQLITE_OPEN_READ_ONLY).unwrap();
+    reader
+        .execute_batch("BEGIN; SELECT * FROM transactions;")
+        .unwrap();
+    // This same reader blocks a DELETE-journal writer before migration.
+    let writer = Connection::open(&public).unwrap();
+    writer.busy_timeout(std::time::Duration::ZERO).unwrap();
+    assert!(writer
+        .execute("UPDATE transactions SET record=record", [])
+        .is_err());
+    drop(writer);
+    let mut session = UpdateSession::open_published(&private, &lock, &public).unwrap();
+    session
+        .advance(&mut record, TransactionState::Preparing)
+        .unwrap();
+    let current_reader =
+        Connection::open_with_flags(&public, OpenFlags::SQLITE_OPEN_READ_ONLY).unwrap();
+    current_reader
+        .execute_batch("BEGIN; SELECT * FROM transactions;")
+        .unwrap();
+    session
+        .advance(&mut record, TransactionState::Failed)
+        .unwrap();
+    assert_eq!(read_history(&public).unwrap(), vec![record.clone()]);
+    assert_eq!(session.records().unwrap(), vec![record]);
+    for (path, mode) in [(&private, 0o600), (&lock, 0o600), (&public, 0o644)] {
+        assert_eq!(
+            fs::metadata(path).unwrap().permissions().mode() & 0o777,
+            mode
+        );
+    }
+    assert_eq!(
+        fs::metadata(private.parent().unwrap())
+            .unwrap()
+            .permissions()
+            .mode()
+            & 0o777,
+        0o700
+    );
+    assert!(UpdateSession::open_published(&private, &lock, &public).is_err());
+}
+
+#[test]
+fn old_updater_writes_survive_root_rollback_and_divergence_is_preserved() {
+    let temp = Temp::new();
+    let public = temp.0.join("history.sqlite");
+    let private = temp.0.join("private/history.sqlite");
+    let lock = temp.0.join("update.lock");
+    let mut session = UpdateSession::open_published(&private, &lock, &public).unwrap();
+    let mut record = TransactionRecord::new(plan());
+    session.insert(&mut record).unwrap();
+    drop(session);
+    // The old schema-1 updater ignores publication metadata and writes to the public path.
+    let mut old = UpdateSession::open(&public, &lock).unwrap();
+    old.advance(&mut record, TransactionState::Preparing)
+        .unwrap();
+    let mut later = TransactionRecord::new(plan());
+    old.insert(&mut later).unwrap();
+    drop(old);
+    let expected = vec![later, record.clone()];
+    assert_eq!(read_recovery_history(&public).unwrap(), expected);
+    let session = UpdateSession::open_published(&private, &lock, &public).unwrap();
+    assert_eq!(session.records().unwrap(), expected);
+    assert_eq!(read_history(&public).unwrap(), expected);
+    drop(session);
+    // A private commit whose publication failed must never be silently overwritten by an old writer.
+    let mut writer = UpdateSession::open(&private, &lock).unwrap();
+    writer
+        .advance(&mut record, TransactionState::Downloaded)
+        .unwrap();
+    drop(writer);
+    assert_eq!(read_recovery_history(&public).unwrap()[1], record);
+    let mut old = UpdateSession::open(&public, &lock).unwrap();
+    let mut old_record = old.records().unwrap()[1].clone();
+    old.advance(&mut old_record, TransactionState::Failed)
+        .unwrap();
+    drop(old);
+    let before_private = fs::read(&private).unwrap();
+    let before_public = fs::read(&public).unwrap();
+    assert!(read_recovery_history(&public)
+        .unwrap_err()
+        .contains("diverged"));
+    assert!(UpdateSession::open_published(&private, &lock, &public)
+        .err()
+        .unwrap()
+        .contains("diverged"));
+    assert_eq!(fs::read(&private).unwrap(), before_private);
+    assert_eq!(fs::read(&public).unwrap(), before_public);
+}
+
+#[test]
 fn disk_checks_reject_shortfall_and_overflow() {
     assert!(check_disk_space(100, 20, 30, 50).is_ok());
     assert!(check_disk_space(99, 20, 30, 50).is_err());

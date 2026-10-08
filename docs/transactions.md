@@ -168,13 +168,24 @@ Successful package application and live checks end at `awaiting_boot`. The integ
 
 ## History database
 
-The default database is `/var/log/astraeus/transactions.sqlite`, inside Phase 1's
-separate `@log` subvolume so root rollback does not erase evidence. The writer uses
-SQLite's full synchronization and DELETE journal mode. Readers therefore do not
-need write access to WAL/shared-memory files. Deployment should keep the directory
-root-owned. The CLI sets directory/database modes to 0755/0644 so ordinary users
-can read history even with a restrictive root umask; records contain no credentials.
-Library callers must provide trusted database and lock paths.
+Public history is `/var/log/astraeus/transactions.sqlite`, inside Phase 1's
+separate `@log` subvolume so root rollback does not erase evidence. The authoritative
+database is `private/transactions.sqlite` beneath the same directory, with modes
+0700/0600. The writer uses SQLite's full synchronization and DELETE journal mode.
+After each commit it publishes a synchronized, atomically replaced 0644 SQLite
+copy. Public readers can retain transactions without blocking the private writer.
+Records contain no credentials. The first privileged session migrates an existing
+public database using SQLite's committed view while holding the update lock.
+Published copies carry a digest of their original records. If root rollback
+restores an older updater that writes to that public copy, its changes are imported
+on the next session only when private history still matches that baseline.
+If both copies changed, commands refuse to overwrite either and require manual
+reconciliation. Transaction-linked rollback checks the same evidence.
+Recovery uses the private database; a failed publication stops the command and the
+next session republishes committed state. Library callers must provide trusted
+database and lock paths. Both update and snapshot lock files use mode 0600,
+including existing files. Previously opened descriptors cannot be revoked by
+chmod; after upgrading, reboot or stop old readers if a legacy lock remains busy.
 
 Schema migration 0 -> 1 creates an integer autoincrement primary key and one JSON
 record per transaction, atomically with `PRAGMA user_version=1`. Unknown versions

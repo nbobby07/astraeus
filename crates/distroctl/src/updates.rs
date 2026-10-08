@@ -87,14 +87,11 @@ fn session() -> Result<UpdateSession> {
         )
         .map_err(|e| e.to_string())?;
     }
-    let session = UpdateSession::open(Path::new(HISTORY_PATH), Path::new(LOCK_PATH))?;
-    #[cfg(unix)]
-    {
-        use std::os::unix::fs::PermissionsExt;
-        fs::set_permissions(HISTORY_PATH, fs::Permissions::from_mode(0o644))
-            .map_err(|e| e.to_string())?;
-    }
-    Ok(session)
+    UpdateSession::open_published(
+        Path::new(PRIVATE_HISTORY_PATH),
+        Path::new(LOCK_PATH),
+        Path::new(HISTORY_PATH),
+    )
 }
 
 pub fn update() -> Result<()> {
