@@ -907,6 +907,18 @@ fn rollback_planning_rejects_targets_that_confirmation_cannot_finalize() {
     );
     later.plan.packages.changes.clear(); // Empty plans do not advance the generation.
     assert!(validate_rollback_target(&[original.clone(), later], Some("1"), "pre-1").is_ok());
+    for interrupted in [
+        TransactionState::Applying,
+        TransactionState::Validating,
+        TransactionState::AwaitingBoot,
+        TransactionState::RollbackRequired,
+    ] {
+        original.state = interrupted;
+        assert!(
+            validate_rollback_target(&[original.clone()], Some("1"), "pre-1").is_ok(),
+            "{interrupted:?}"
+        );
+    }
     original.state = TransactionState::RolledBack;
     assert!(validate_rollback_target(&[original], Some("1"), "pre-1").is_err());
     assert!(validate_rollback_target(&[], None, "manual").is_ok());
