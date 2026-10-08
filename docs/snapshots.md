@@ -196,6 +196,11 @@ snapshots retain their explicit offline workflow.
 Interrupted Applying/Validating transactions remain eligible for offline recovery;
 their intent is reconciled during verified finalization. Both installed and
 recovery layouts reject mounts beneath the ESP, which could hide firmware files.
+Installed layouts reject other transient package-path mounts, including `/opt`,
+`/srv`, `/root` and unrecognized top-level paths. Only the six declared subvolume
+mounts, ESP, ephemeral `/dev`, `/proc`, `/sys`, `/run`, `/tmp` trees and read-only
+media below `/mnt` or `/media` are allowed. Writable external media must be
+unmounted before creating a generation; its files cannot be restored with @.
 There is no full data scrub, backup replication, automatic retention,
 multi-device Btrfs qualification or cross-filesystem atomicity.
 

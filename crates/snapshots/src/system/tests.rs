@@ -301,6 +301,38 @@ fn planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots() {
 }
 
 #[test]
+fn online_layout_rejects_unprotected_package_mounts() {
+    let f = Fixture::new();
+    let mut mounts: Vec<_> = SUBVOLUMES.iter().map(|(s,p)| serde_json::json!({"target":p,"fstype":"btrfs","fsroot":format!("/{s}"),"uuid":FS,"options":"rw"})).collect();
+    mounts.push(
+        serde_json::json!({"target":"/efi","fstype":"vfat","fsroot":"/","uuid":ESP,"options":"rw"}),
+    );
+    let online = Manager {
+        commands: f.fake.clone(),
+        top: None,
+        root: "/".into(),
+        store: f.manager.store.clone(),
+        esp: "/efi".into(),
+    };
+    for (target, options, accepted) in [
+        ("/opt", "rw", false),
+        ("/srv/data", "rw", false),
+        ("/root", "rw", false),
+        ("/custom-package-path", "rw", false),
+        ("/usr", "ro", false),
+        ("/mnt/external", "rw", false),
+        ("/mnt/astraeus-validation", "ro", true),
+        ("/run/user/1000/doc", "rw", true),
+    ] {
+        let mut observed = mounts.clone();
+        observed.push(serde_json::json!({"target":target,"fstype":"tmpfs","fsroot":"/","uuid":null,"options":options}));
+        *f.fake.mounts.borrow_mut() = serde_json::json!({"filesystems":observed});
+        assert_eq!(online.plan_create().is_ok(), accepted, "{target} {options}");
+    }
+    assert!(!online.store.exists());
+}
+
+#[test]
 fn nested_esp_mounts_are_rejected_online_and_offline() {
     for recovery in [true, false] {
         let f = Fixture::new();

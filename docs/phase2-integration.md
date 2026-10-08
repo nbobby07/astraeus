@@ -39,6 +39,10 @@ UKI. Layout validation now rejects all ESP descendants in both installed and
 recovery modes. Rollback eligibility also accepts interrupted Applying/Validating
 records, which finalization already reconciles to recovery-required, so recovery
 does not depend on booting the damaged system first. Regressions cover both cases.
+The installed mount check also rejects transient mounts at arbitrary package
+paths such as /opt, /srv and /root; the previous prefix list could miss them.
+The explicit allowances are persistent siblings, ESP, ephemeral runtime trees
+and read-only external media. Writable unprotected mounts block generation work.
 
 ## Source and merge audit
 

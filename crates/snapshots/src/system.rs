@@ -234,7 +234,8 @@ impl<C: Commands> Manager<C> {
             .as_deref()
             .filter(|s| !s.is_empty())
             .ok_or("ESP UUID unavailable")?;
-        // Refuse unexpected mounts below root, including separate /boot or /usr.
+        // Every persistent package path must remain on @ or a declared sibling.
+        // Runtime filesystems are ephemeral; external read-only media cannot be mutated.
         let allowed: Vec<_> = SUBVOLUMES.iter().map(|(_, p)| Path::new(p)).collect();
         for m in &mounts {
             let p = Path::new(&m.target);
@@ -247,15 +248,15 @@ impl<C: Commands> Manager<C> {
                     p == top || !p.starts_with(top),
                     "nested mount in recovery tree",
                 )?;
-            } else if p.starts_with("/etc")
-                || p.starts_with("/usr")
-                || p.starts_with("/boot")
-                || p.starts_with("/var")
-                || p.starts_with("/.snapshots")
-                || p.starts_with("/home")
-            {
+            } else {
                 require(
-                    allowed.contains(&p),
+                    allowed.contains(&p)
+                        || p == self.esp
+                        || ["/dev", "/proc", "/sys", "/run", "/tmp"]
+                            .iter()
+                            .any(|base| p.starts_with(base))
+                        || (["/mnt", "/media"].iter().any(|base| p.starts_with(base))
+                            && m.options.split(',').any(|option| option == "ro")),
                     "unsupported nested mount in system/persistent tree",
                 )?;
             }
