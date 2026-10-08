@@ -337,6 +337,9 @@ def scenario(vm, args):
             raise TimeoutError('update never reached the controlled package barrier')
         changed = observe(vm, 'interrupted-before-powercut')
         record = transaction(before, changed, ['applying'])
+        require(value(changed, 'root') == 'version-B' and
+                value(changed, 'packages') != value(before, 'packages'),
+                'interruption barrier reached before package state changed')
         vm.qmp_state('powercut')
         vm.child.kill()
         vm.child.wait(timeout=10)

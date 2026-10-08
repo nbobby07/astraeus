@@ -166,7 +166,7 @@ Repeat with the following scenario/fault combinations:
 | `rejected-update --fault payload` | Corrupt only the guest's signed fixture archive and remove its cached copy; download/verification failure; no snapshot or package mutation; unchanged system after reboot |
 | `rejected-update --fault space` | Fill a 16 MiB tmpfs mounted over the guest package cache; explicit insufficient-space refusal; unchanged system after reboot |
 | `rollback` | Complete a good live update, then restore its pre-snapshot offline and verify version A after reboot |
-| `interruption` | A targeted PreTransaction hook writes/syncs a barrier and blocks; observe durable `applying` plus snapshot; kill only the owned QEMU child; boot; capture unreconciled state; reconcile to `rollback_required`; recover offline |
+| `interruption` | A targeted PostTransaction hook writes/syncs a barrier and blocks; require changed package state and version B while the journal remains `applying`, plus the pre-snapshot; kill only the owned QEMU child; boot; capture unreconciled state; reconcile to `rollback_required`; recover offline |
 | `boot-recovery` | Good live update, then overwrite its active UKI only in the overlay; failed boot window; recovery ISO restore; disk-only reboot and original system checks |
 
 The boot-failure window is an expected absence of readiness only after explicit

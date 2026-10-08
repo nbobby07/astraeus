@@ -42,6 +42,32 @@ def transaction_evidence():
 
 
 class ValidationTests(unittest.TestCase):
+    def test_interruption_requires_package_mutation_before_power_cut(self):
+        for sentinel, packages, cut in [('version-A', 'fixture 2-1', False),
+                                        ('version-B', 'fixture 1-1', False),
+                                        ('version-B', 'fixture 2-1', True)]:
+            with self.subTest(sentinel=sentinel, packages=packages), tempfile.TemporaryDirectory() as temp:
+                before, changed = transaction_evidence()
+                before.update(root=dict(code=0, output='version-A'), packages=dict(code=0, output='fixture 1-1'))
+                changed.update(root=dict(code=0, output=sentinel), packages=dict(code=0, output=packages))
+                record = json.loads(changed['history']['output'])[0]
+                record.update(state='applying', outcome='in_progress')
+                record['events'] = record['events'][:-1]
+                changed['history'] = evidence([record])
+                vm = Mock(out=Path(temp), session=Path(temp))
+                vm.command.return_value = dict(code=0, output='')
+                boots = iter(['boot-1', 'boot-2'])
+                vm.start.side_effect = lambda: setattr(vm, 'boot_id', next(boots))
+                args = SimpleNamespace(scenario='interruption', timeout=1, encryption='LUKS2', iso=Path('recovery.iso'))
+                with patch.object(phase2, 'observe', side_effect=[before, changed, RuntimeError('after cut')]), \
+                     patch.object(phase2, 'healthy'), patch.object(phase2, 'adapter'):
+                    with self.assertRaisesRegex(RuntimeError, 'after cut' if cut else 'before package state changed'):
+                        phase2.scenario(vm, args)
+                if cut:
+                    vm.child.kill.assert_called_once()
+                else:
+                    vm.child.kill.assert_not_called()
+
     def test_confirmation_waits_for_service_and_preserves_job_failure(self):
         for action in ['confirm-boot', 'finalize-rollback', 'reconcile']:
             vm = Mock()

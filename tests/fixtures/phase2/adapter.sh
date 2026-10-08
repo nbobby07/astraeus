@@ -33,7 +33,7 @@ assert any(c.get("name")=="astraeus-validation-fixture" and c.get("to")=="2-1" f
         if [[ $fault == interruption ]]; then
             rm -f /var/log/astraeus-validation-barrier
             printf '%s\n' '#!/bin/bash' 'set -eu' 'touch /var/log/astraeus-validation-barrier' 'sync' 'sleep 3600' > "$state/inject.sh"
-            when=PreTransaction
+            when=PostTransaction
         else
             printf '%s\n' '#!/bin/bash' 'set -eu' "python3 $guest fault $fault" > "$state/inject.sh"
             when=PostTransaction
