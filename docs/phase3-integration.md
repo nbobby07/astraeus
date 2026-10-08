@@ -71,6 +71,17 @@ historical repository evidence is unchanged.
 
 ## Required final gates
 
+The `cf8e435` candidate passed two byte-identical builds and most enforcing
+runtime scenarios, but encrypted failed-candidate recovery exposed a remaining
+CLI defect: automatic boot confirmation inferred rollback authorization from a
+restored package map. The actual healthy restored boot was prematurely marked
+`rolled_back`. Its failing acceptance record is retained in `p3i/j-luks`.
+Automatic confirmation now leaves that transaction pending for an explicit
+`finalize-rollback` request. A focused Rust regression checks repeated calls,
+normal candidate selection, unknown packages, unreadable state and ambiguous
+history. Both builds and the affected runtime qualification must be repeated
+against this fix; the earlier candidate is not the final qualified image.
+
 The frozen source, two independent images, integrated A-N results, applicable
 Phase 2 regressions, hashes, final Git state and Freestyle cleanup remain to be
 recorded in this report and [acceptance](phase3-acceptance.md). Root and ESP are

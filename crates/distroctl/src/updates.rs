@@ -133,7 +133,31 @@ pub fn update() -> Result<()> {
     }
 }
 
-pub fn confirm_boot(id: Option<i64>, mut rollback: bool) -> Result<()> {
+fn automatic_confirmation_id(
+    records: &[TransactionRecord],
+    current: impl FnOnce() -> Result<CurrentSystemState>,
+) -> Result<Option<i64>> {
+    let pending: Vec<_> = records
+        .iter()
+        .filter(|r| r.state == TransactionState::AwaitingBoot)
+        .collect();
+    let record = match pending.as_slice() {
+        [] => return Ok(None),
+        [record] => record,
+        _ => return Err("ambiguous pending boot transactions".into()),
+    };
+    if current()? == record.plan.current {
+        // Restored packages cannot authorize rollback finalization.
+        println!(
+            "Restored package state detected; transaction {} remains pending. Run distroctl finalize-rollback {} after recovery.",
+            record.id, record.id
+        );
+        return Ok(None);
+    }
+    Ok(Some(record.id))
+}
+
+pub fn confirm_boot(id: Option<i64>, rollback: bool) -> Result<()> {
     let mut session = session()?;
     session.recover_interrupted()?;
     let manager = distro_snapshots::Manager::online(distro_snapshots::Native);
@@ -165,21 +189,13 @@ pub fn confirm_boot(id: Option<i64>, mut rollback: bool) -> Result<()> {
     let id = match id {
         Some(id) => id,
         None => {
-            let pending: Vec<_> = session
-                .records()?
-                .into_iter()
-                .filter(|r| r.state == TransactionState::AwaitingBoot)
-                .collect();
-            if pending.is_empty() {
+            let Some(id) = automatic_confirmation_id(&session.records()?, || {
+                Pacman::default().current_state()
+            })?
+            else {
                 return Ok(());
-            }
-            if pending.len() != 1 {
-                return Err("ambiguous pending boot transactions".into());
-            }
-            // An offline restore may precede this boot. The full confirmation
-            // still requires the restored root parent and saved UKI to match.
-            rollback = Pacman::default().current_state()? == pending[0].plan.current;
-            pending[0].id
+            };
+            id
         }
     };
     let mut snapshots = integration::BtrfsSnapshots::new(distro_snapshots::Manager::online(
@@ -338,4 +354,57 @@ pub fn boot(action: &str, id: Option<&str>, json: bool) -> Result<()> {
         println!("Recovery: use trusted live media for offline restoration. Firmware Settings is supplied by systemd-boot.");
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod confirmation_tests {
+    use super::*;
+
+    #[test]
+    fn automatic_confirmation_leaves_restoration_pending() {
+        let previous = CurrentSystemState::new([("fixture".into(), "1".into())].into());
+        let mut record = TransactionRecord::new(ExecutionPlan::new(
+            previous.clone(),
+            PackagePlan {
+                changes: vec![PackageChange::Upgrade {
+                    name: "fixture".into(),
+                    from: "1".into(),
+                    to: "2".into(),
+                }],
+                targets: vec![],
+                download_bytes: 0,
+                installed_delta_bytes: Some(0),
+            },
+        ));
+        record.id = 17;
+        record.state = TransactionState::AwaitingBoot;
+        record.outcome = TransactionOutcome::AwaitingBoot;
+        let records = [record.clone()];
+        for _ in 0..2 {
+            assert_eq!(
+                automatic_confirmation_id(&records, || Ok(previous.clone())).unwrap(),
+                None
+            );
+            assert_eq!(records[0], record);
+        }
+        assert_eq!(
+            automatic_confirmation_id(&records, || Ok(record.plan.expected_state())).unwrap(),
+            Some(17)
+        );
+        // Unknown packages still go through full confirmation and its refusal checks.
+        assert_eq!(
+            automatic_confirmation_id(&records, || Ok(CurrentSystemState::new(Default::default())))
+                .unwrap(),
+            Some(17)
+        );
+        assert!(automatic_confirmation_id(&records, || Err("unreadable packages".into())).is_err());
+        assert!(automatic_confirmation_id(&[record.clone(), record], || {
+            panic!("ambiguous history must be rejected first")
+        })
+        .is_err());
+        assert_eq!(
+            automatic_confirmation_id(&[], || panic!("no pending confirmation")).unwrap(),
+            None
+        );
+    }
 }
