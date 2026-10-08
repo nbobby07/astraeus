@@ -1,4 +1,6 @@
 use super::*;
+#[path = "generation_tests.rs"]
+mod generation_tests;
 use crate::pacman::*;
 use std::{
     cell::Cell,
@@ -105,8 +107,24 @@ impl PackageBackend for Packages {
 struct Snapshots {
     created: usize,
     fail_post: bool,
+    fail_activate: bool,
+    fail_baseline: bool,
 }
 impl SnapshotBackend for Snapshots {
+    fn prepare_boot_baseline(&mut self, _: &str) -> Result<()> {
+        if self.fail_baseline {
+            Err("baseline publication interrupted".into())
+        } else {
+            Ok(())
+        }
+    }
+    fn activate_boot(&mut self, _: &str) -> Result<()> {
+        if self.fail_activate {
+            Err("activation interrupted".into())
+        } else {
+            Ok(())
+        }
+    }
     fn boot_id(&mut self) -> Result<String> {
         Ok("boot-before".into())
     }
@@ -934,6 +952,15 @@ fn confirmation_requires_new_boot_matching_generation_and_fresh_health() {
         promoted: usize,
     }
     impl BootEvidence for Evidence {
+        fn boot_count(
+            &mut self,
+            _: &str,
+        ) -> Result<Option<distro_snapshots::generations::BootCount>> {
+            Ok(Some(distro_snapshots::generations::BootCount::Counted {
+                left: 2,
+                done: 1,
+            }))
+        }
         fn boot_id(&mut self) -> Result<String> {
             Ok(self.boot.into())
         }
@@ -994,6 +1021,7 @@ fn confirmation_requires_new_boot_matching_generation_and_fresh_health() {
         let saved = &session.records().unwrap()[0];
         assert_eq!(saved.state, TransactionState::AwaitingBoot);
         assert!(saved.confirmation.is_some());
+        assert!(saved.confirmation.as_ref().unwrap().error.is_some());
         assert_eq!(e.promoted, 0);
     }
     drop(session); // interrupted confirmation resumes from persisted intent/evidence
@@ -1001,6 +1029,10 @@ fn confirmation_requires_new_boot_matching_generation_and_fresh_health() {
     e.bad = "";
     let good = confirm(&mut session, record.id, false, &mut e).unwrap();
     assert_eq!(good.state, TransactionState::Succeeded);
+    assert_eq!(
+        good.confirmation.as_ref().unwrap().boot_count,
+        Some(distro_snapshots::generations::BootCount::Counted { left: 2, done: 1 })
+    );
     assert_eq!(e.promoted, 1);
     assert_eq!(
         confirm(&mut session, record.id, false, &mut e).unwrap(),

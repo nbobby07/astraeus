@@ -315,6 +315,8 @@ pub struct TransactionRecord {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BootConfirmation {
+    #[serde(default)]
+    pub boot_count: Option<distro_snapshots::generations::BootCount>,
     pub boot_id: String,
     pub snapshot: String,
     pub rollback: bool,

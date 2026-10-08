@@ -10,6 +10,10 @@ Usage:
   distroctl hardware [--json]   Discover hardware without changing it
   distroctl validate <path>    Validate a project release TOML file
   distroctl snapshot --help   Snapshot commands and recovery usage
+  distroctl boot list|status [--json]
+  distroctl boot inspect|verify <id> [--json]
+  distroctl boot set-default <id>  Select within the verified current pair (root)
+  distroctl boot enable       Opt in after signing integration (root)
   distroctl rollback <id> --dry-run [--json]
   distroctl update --dry-run [--json]  Plan from existing sync databases
   distroctl update            Apply update with pre/post snapshots
@@ -37,6 +41,17 @@ fn run(args: &[String]) -> Result<(), String> {
     {
         [] | ["--help"] | ["-h"] => println!("{HELP}"),
         ["--version"] => println!("distroctl {}", env!("CARGO_PKG_VERSION")),
+        ["boot", action @ ("list" | "status")]
+        | ["boot", action @ ("list" | "status"), "--json"] => {
+            distroctl::updates::boot(action, None, args.len() == 3)?
+        }
+        ["boot", action @ ("inspect" | "verify"), id]
+        | ["boot", action @ ("inspect" | "verify"), id, "--json"] => {
+            distroctl::updates::boot(action, Some(id), args.len() == 4)?
+        }
+        ["boot", "set-default", id] => distroctl::updates::boot("set-default", Some(id), false)?,
+        ["boot", "enable"] => distroctl::updates::boot("enable", None, false)?,
+        ["boot", "--help"] => println!("{HELP}"),
         ["update", "--dry-run"]
         | ["update", "--dry-run", "--json"]
         | ["update", "--json", "--dry-run"] => {

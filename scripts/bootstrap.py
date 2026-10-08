@@ -90,6 +90,7 @@ def prepare_package(output):
     source.mkdir()
     for file in [ROOT / "Cargo.toml", ROOT / "Cargo.lock", MANIFEST,
                  ROOT / "distro/installed/astraeus-confirm-boot.service", ROOT / "docs/snapshots.md",
+                 ROOT / "distro/installed/astraeus-bless-boot.conf", ROOT / "docs/boot-generations.md",
                  *sorted((ROOT / "crates").rglob("*"))]:
         if file.is_file():
             destination = source / file.relative_to(ROOT)

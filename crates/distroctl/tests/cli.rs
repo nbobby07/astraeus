@@ -59,12 +59,21 @@ fn cli_contract() {
         &["update", "--json"],
         &["update", "--dry-run", "--bad"],
         &["history", "--database"],
+        &["boot", "set-default"],
+        &["boot", "inspect", "../escape"],
+        &["boot", "list", "--execute"],
+        &["boot", "verify", "1", "--json", "--json"],
     ] {
         let output = run(args);
         assert_eq!(output.status.code(), Some(1));
         assert!(!output.stderr.is_empty());
         assert!(output.stdout.is_empty());
     }
+    let help = run(&["boot", "--help"]);
+    assert!(help.status.success());
+    assert!(String::from_utf8(help.stdout)
+        .unwrap()
+        .contains("set-default"));
     for command in ["snapshot", "rollback"] {
         let help = run(&[command, "--help"]);
         assert!(help.status.success());

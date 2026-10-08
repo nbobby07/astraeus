@@ -1,5 +1,8 @@
 # Installed boot
 
+Phase 3 adds opt-in [boot generations and retained-root recovery](boot-generations.md).
+The fixed Type #2 layout below remains the default until that feature is enabled.
+
 The implemented chain is UEFI, systemd-boot, a Type #2 Unified Kernel Image,
 systemd initramfs, optional LUKS2 unlock, Btrfs `@`, systemd, SDDM and Plasma Wayland.
 Boot acceptance remains a separate gate in [validation](validation.md).

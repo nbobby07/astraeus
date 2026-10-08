@@ -1,5 +1,9 @@
 # Phase 2 snapshots and offline rollback
 
+For opt-in Phase 3 systems, also read [boot generations](boot-generations.md).
+Managed rollback quiesces candidate selection and restores the legacy boot layout;
+it requires a Phase 3 recovery binary and the artifact trust provider.
+
 `distro-snapshots` provides the Rust state-management library; `distroctl` owns
 argument parsing and presentation only. Base: `aad4409`, following completed
 Phase 1 installation validation. This branch executes no package updates and

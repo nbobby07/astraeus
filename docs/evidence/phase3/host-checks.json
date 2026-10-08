@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "branch": "phase3/recovery",
+  "base_commit": "6a8fda25d25df74215ed0bbe06b97804e053d950",
+  "rust_version": "1.96.0",
+  "checks": [
+    {
+      "platform": "Windows",
+      "command": "cargo test --workspace --locked",
+      "passed": 69,
+      "failed": 0,
+      "log": "out/phase3/rust-windows.log",
+      "sha256": "a65134c2b42702e5b6c8c4c8663938f36b866159821e8b30c77da58d6dd7bba1"
+    },
+    {
+      "platform": "Windows",
+      "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+      "exit_code": 0,
+      "log": "out/phase3/clippy-windows.log",
+      "sha256": "73b42c1da80b4a39a21aa06bc6a4e54cbf7210814c783d2f99882248ac79881a"
+    },
+    {
+      "platform": "Ubuntu WSL2, root",
+      "commands": ["cargo fmt --all --check", "cargo test --workspace --locked", "cargo clippy --workspace --all-targets --locked -- -D warnings", "python3 -m unittest discover -s tests -v", "12 repository Bash syntax checks"],
+      "exit_code": 0,
+      "rust_passed": 76,
+      "rust_ignored": 1,
+      "python_note": "This combined run predates the source-package input test. The later 45-test Python run is recorded separately below.",
+      "log": "out/phase3/linux-checks.log",
+      "sha256": "522942b854f1734be35af716e10c52e66df9bdee5faa9e74b625837ac112fc86"
+    },
+    {
+      "platform": "Windows",
+      "command": "python -m unittest discover -s tests -v",
+      "passed": 33,
+      "skipped": 12,
+      "failed": 0,
+      "log": "out/phase3/python-windows.log",
+      "sha256": "42c2eb29bdd73b32d1ba295fadfcb73abd3d29114ca247b5e071a972e5568faa"
+    },
+    {
+      "platform": "Ubuntu WSL2, root",
+      "command": "python3 -m unittest discover -s tests -v",
+      "passed": 44,
+      "skipped": 1,
+      "skip_reason": "qemu-img unavailable",
+      "failed": 0,
+      "log": "out/phase3/python-linux.log",
+      "sha256": "93181fd7c691e78e598c0f7657dd9fc974784f1817c9c952f607f119aa608b08"
+    },
+    {
+      "platform": "Ubuntu WSL2, root",
+      "command": "ASTRAEUS_LOOPBACK_TEST=1 cargo test -p distro-snapshots --locked disposable_linux_btrfs_roundtrip -- --ignored --nocapture",
+      "passed": 1,
+      "failed": 0,
+      "log": "out/phase3/loopback-linux.log",
+      "sha256": "78aefd90015e0e3c0761a630c9c999b834a69ab75076ce3901a7103bc5a5d774",
+      "scope": "Disposable file-backed Btrfs/FAT storage with synthetic UKI and fake trust/EFI provider; no host firmware mutation"
+    }
+  ],
+  "iso_built": false,
+  "real_uefi_boot_tested": false,
+  "signing_provider_integrated": false,
+  "automatic_fallback_qualified": false,
+  "root_esp_transition_atomic": false
+}
