@@ -651,8 +651,10 @@ impl<C: Commands> Manager<C> {
             "invalid loader EFI variable",
         )?;
         let words: Vec<_> = bytes[4..]
-            .chunks_exact(2)
-            .map(|v| u16::from_le_bytes([v[0], v[1]]))
+            .as_chunks::<2>()
+            .0
+            .iter()
+            .map(|v| u16::from_le_bytes(*v))
             .collect();
         require(
             words.last() == Some(&0) && !words[..words.len() - 1].contains(&0),
