@@ -110,7 +110,12 @@ pub fn run(args: &[String]) -> Result<()> {
                     || Path::new(distro_transactions::HISTORY_PATH).to_path_buf(),
                     |top| Path::new(top).join("@log/astraeus/transactions.sqlite"),
                 );
-                let records = distro_transactions::read_history(&history)?;
+                // Execution must use authoritative state even if public publication failed.
+                let records = if flags.contains_key("--execute") {
+                    distro_transactions::read_recovery_history(&history)?
+                } else {
+                    distro_transactions::read_history(&history)?
+                };
                 distro_transactions::integration::validate_rollback_target(
                     &records,
                     snapshot.transaction_id.as_deref(),

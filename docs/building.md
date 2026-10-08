@@ -3,7 +3,8 @@
 ## Development checks (Windows or Linux)
 
 Install Rust 1.96 or later and Python 3.11 or later. No Python dependencies are
-required. The tested developer toolchain is 1.96.0; image packages use the compiler
+required. Online archive verification also needs curl 8.4 or later for streaming
+size enforcement. The tested developer toolchain is 1.96.0; image packages use the compiler
 from the pinned Arch snapshot, currently 1.98.1.
 
 ```sh
@@ -33,12 +34,17 @@ verification enabled. From the source root:
 
 ```sh
 ARCHIVE=$(python3 -c 'import tomllib; print(tomllib.load(open("distro/branding/project.toml", "rb"))["build"]["archive_date"])')
-printf 'Server = https://archive.archlinux.org/repos/%s/$repo/os/$arch\n' "$ARCHIVE" | sudo tee /etc/pacman.d/mirrorlist
+sudo python3 scripts/bootstrap.py verify-archive --output /var/tmp/astraeus-archive
+printf 'CacheServer = https://archive.archlinux.org/repos/%s/$repo/os/$arch\nServer = file:///var/tmp/astraeus-archive\n' "$ARCHIVE" | sudo tee /etc/pacman.d/mirrorlist
 sudo pacman -Syyuu --needed base-devel archiso rust python gnupg git qemu-desktop edk2-ovmf
 ```
 
-If Python is not yet available, the locked date is `2026/10/01`; set `ARCHIVE` to
-that value for the mirror change, then install the complete builder set above.
+Install Python and curl from the authenticated baseline before this step. Use a
+fresh root-owned archive directory. Package metadata comes only from the verified
+local files; CacheServer supplies signed packages without supplying databases.
+ISO builds retain their own verified files in `archive/`, check them before both
+package resolvers, and record the hashes in `inputs.json`. Downloads are capped at
+64 MiB per database and 60 seconds, with a 65-second subprocess deadline.
 Do not mix current mirrors with archived mirrors. Reboot if the full snapshot sync
 changed the running kernel or core services. Verify `pacman -Q archiso` reports
 `91-1` and `/usr/bin/rustc --version` reports `1.98.1`. Save `pacman -Q` with build

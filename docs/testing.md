@@ -39,6 +39,13 @@ calling pacman-key. Otherwise pacman-conf rejects the missing path and initializ
 uses the wrong directory. It also checks that bounded archive retries apply only
 to the build configuration and retain required repository signatures.
 
+Archive regressions exercise real curl against oversized and slow loopback
+responses. With Linux pacman installed, the resolver test checks that two isolated
+database roots consume the pinned local bytes even when a remote server offers
+different metadata. Rust tests cover migration, publication failure recovery,
+public reader contention and private lock modes. Running the Linux transaction
+tests as root additionally checks access from UID 65534.
+
 `test_reproducibility.py` uses real `mksquashfs` and `xorriso` binaries to build two
 small images with different auxiliary-cache bytes and source-file timestamps. It
 requires identical output bytes. Install `squashfs-tools` and `xorriso` to run it;

@@ -13,8 +13,8 @@ import shutil
 import subprocess
 import sys
 import tarfile
+import tempfile
 import tomllib
-import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "distro/branding/project.toml"
@@ -22,6 +22,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import installer
 
 CUSTOM_PACKAGES = {"distroctl", "calamares"}
+ARCHIVE_DB_LIMIT = 64 * 1024 * 1024
 
 
 def project():
@@ -115,20 +116,32 @@ def upstream_packages():
             | set(packages("distro/packages/calamares/build-packages.x86_64")) | {"archiso", "rust"}) - CUSTOM_PACKAGES
 
 
-def check_archive():
+def check_archive(destination):
+    version = run("curl", "--version", capture_output=True, text=True).stdout
+    match = re.match(r"curl (\d+)\.(\d+)\.", version)
+    if not match or tuple(map(int, match.groups())) < (8, 4):
+        raise ValueError("archive verification requires curl 8.4 or later for streaming size limits")
     lock = json.loads((ROOT / "distro/repo/archive.lock.json").read_text())
     if lock["archive_date"] != project()["build"]["archive_date"]:
         raise ValueError("archive lock and manifest disagree")
     if set(lock["direct_packages"]) != upstream_packages():
         raise ValueError("archive lock and package list disagree")
     found = {}
+    destination.mkdir(parents=True, exist_ok=False)
     for repo, expected in lock["databases"].items():
         url = f'https://archive.archlinux.org/repos/{lock["archive_date"]}/{repo}/os/x86_64/{repo}.db'
-        with urllib.request.urlopen(url, timeout=60) as response:
-            content = response.read()
-        if hashlib.sha256(content).hexdigest() != expected:
-            raise ValueError(f"archive database changed: {url}")
-        with tarfile.open(fileobj=io.BytesIO(content)) as tar:
+        target = destination / f"{repo}.db"
+        try:
+            run("curl", "--fail", "--location", "--proto", "=https", "--proto-redir", "=https",
+                "--max-filesize", ARCHIVE_DB_LIMIT, "--connect-timeout", "20", "--max-time", "60",
+                "--output", target, url, timeout=65)
+            if target.stat().st_size > ARCHIVE_DB_LIMIT or digest(target) != expected:
+                raise ValueError(f"archive database changed or oversized: {url}")
+        except (OSError, ValueError, subprocess.SubprocessError):
+            target.unlink(missing_ok=True)
+            raise
+        target.chmod(0o444)
+        with tarfile.open(target) as tar:
             for entry in tar:
                 if entry.name.endswith("/desc"):
                     desc = tar.extractfile(entry).read().decode()
@@ -142,6 +155,21 @@ def check_archive():
         if found.get(name) != version:
             raise ValueError(f"version mismatch: {name}")
     print(f"Verified both database hashes and {len(upstream_packages())} upstream package names.")
+    return lock["databases"]
+
+
+def verify_archive_files(directory, hashes):
+    for repo, expected in hashes.items():
+        if digest(directory / f"{repo}.db") != expected:
+            raise ValueError(f"verified archive database changed: {repo}")
+
+
+def pinned_archive_config(config, directory):
+    archive = project()["build"]["archive_date"]
+    server = f"https://archive.archlinux.org/repos/{archive}/$repo/os/$arch"
+    # CacheServer supplies packages only; metadata can only come from verified local files.
+    return config.replace(f"Server = {server}",
+                          f"CacheServer = {server}\nServer = {directory.as_uri()}")
 
 
 def create_profile(out, repo, fingerprint):
@@ -192,6 +220,7 @@ def create_profile(out, repo, fingerprint):
     build_config = profile / "pacman.conf"
     write(build_config, build_config.read_text().replace("[options]\n", "[options]\n"
           "XferCommand = /usr/bin/curl -fL --retry 3 --retry-all-errors --connect-timeout 20 --max-time 300 -o %o %u\n", 1))
+    write(build_config, pinned_archive_config(build_config.read_text(), out / "archive"))
     write(root / "etc/os-release", f'NAME="{values["NAME"]}"\nPRETTY_NAME="{values["NAME"]} (Live installer)"\n'
           f'ID={values["ID"]}\nID_LIKE=arch\nVERSION_ID={values["VERSION"]}\nVARIANT_ID=development\n')
     write(root / "etc/issue", f'{values["NAME"]}: ephemeral live installation environment\n')
@@ -225,19 +254,22 @@ def build_iso(output, repo, fingerprint):
     version = run("pacman", "-Q", "archiso", capture_output=True, text=True).stdout.split()[1]
     if version != data["build"]["archiso_version"]:
         raise ValueError(f"archiso version must be {data['build']['archiso_version']}, got {version}")
-    check_archive()
     out = new_directory(output)
+    archive_hashes = check_archive(out / "archive")
     profile = create_profile(out, repo, fingerprint)
     env = dict(os.environ, SOURCE_DATE_EPOCH=str(data["build"]["source_date_epoch"]), TZ="UTC", LC_ALL="C")
     values = dict(ID=data["identity"]["id"], NAME=data["identity"]["name"], VERSION=data["identity"]["version"],
                   ARCHIVE=data["build"]["archive_date"], EPOCH=data["build"]["source_date_epoch"], FINGERPRINT=fingerprint)
+    verify_archive_files(out / "archive", archive_hashes)
     installer.build_payload(out, profile, values, lambda *a, **kw: run(*a, env=env, **kw), write, render)
+    verify_archive_files(out / "archive", archive_hashes)
     run("mkarchiso", "-v", "-w", out / "work", "-o", out / "iso", profile, env=env)
     with (out / "builder-packages.txt").open("w") as builder_log:
         run("pacman", "-Q", stdout=builder_log)
     with (out / "image-packages.txt").open("w") as image_log:
         run("pacman", "--root", out / "work/x86_64/airootfs", "-Q", stdout=image_log)
     write(out / "inputs.json", json.dumps({"project": data, "repository_key": fingerprint,
+          "archive_databases": archive_hashes,
           "repository": {p.name: digest(p) for p in sorted(repo.iterdir()) if p.is_file()},
           "sources": {p.relative_to(ROOT).as_posix(): digest(p) for folder in ["crates", "distro", "scripts"]
                       for p in sorted((ROOT / folder).rglob("*")) if p.is_file() and "__pycache__" not in p.parts},
@@ -251,7 +283,8 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
     package = sub.add_parser("package", help="vendor locked Cargo sources and prepare a makepkg input")
     package.add_argument("--output", type=Path, required=True)
-    sub.add_parser("verify-archive", help="check snapshot hashes and package availability over HTTPS")
+    verify = sub.add_parser("verify-archive", help="check snapshot hashes and package availability over HTTPS")
+    verify.add_argument("--output", type=Path, help="retain verified databases in a new directory")
     iso = sub.add_parser("iso", help="build on a disposable pinned Arch Linux machine")
     iso.add_argument("--output", type=Path, required=True)
     iso.add_argument("--repo", type=Path, required=True)
@@ -261,10 +294,14 @@ def main():
         if args.command == "package":
             prepare_package(args.output)
         elif args.command == "verify-archive":
-            check_archive()
+            if args.output:
+                check_archive(args.output)
+            else:
+                with tempfile.TemporaryDirectory() as temp:
+                    check_archive(Path(temp) / "archive")
         else:
             build_iso(args.output, args.repo, args.fingerprint)
-    except (ValueError, OSError, KeyError, subprocess.CalledProcessError, tarfile.TarError) as error:
+    except (ValueError, OSError, KeyError, subprocess.SubprocessError, tarfile.TarError) as error:
         parser.exit(1, f"bootstrap: {error}\n")
 
 

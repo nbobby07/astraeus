@@ -300,6 +300,28 @@ fn planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots() {
             .any(|v| matches!(v.as_str(), "snapshot" | "delete"))));
 }
 
+#[cfg(unix)]
+#[test]
+fn snapshot_lock_repairs_legacy_permissions_without_replacing_the_inode() {
+    use std::os::unix::fs::{MetadataExt, PermissionsExt};
+    let f = Fixture::new();
+    drop(f.manager.lock().unwrap());
+    let path = f.manager.store.join("lock");
+    assert_eq!(
+        fs::metadata(&path).unwrap().permissions().mode() & 0o777,
+        0o600
+    );
+    fs::set_permissions(&path, fs::Permissions::from_mode(0o644)).unwrap();
+    let inode = fs::metadata(&path).unwrap().ino();
+    let _guard = f.manager.lock().unwrap();
+    assert_eq!(
+        fs::metadata(&path).unwrap().permissions().mode() & 0o777,
+        0o600
+    );
+    assert_eq!(fs::metadata(&path).unwrap().ino(), inode);
+    assert!(f.manager.lock().is_err());
+}
+
 #[test]
 fn online_layout_rejects_unprotected_package_mounts() {
     let f = Fixture::new();

@@ -2,7 +2,8 @@
 Description=Confirm the pending Astraeus boot using observed health
 After=local-fs.target NetworkManager.service sddm.service systemd-logind.service
 ConditionPathExists=!/run/archiso
-ConditionPathExists=/var/log/astraeus/transactions.sqlite
+ConditionPathExists=|/var/log/astraeus/transactions.sqlite
+ConditionPathExists=|/var/log/astraeus/private/transactions.sqlite
 
 [Service]
 Type=oneshot

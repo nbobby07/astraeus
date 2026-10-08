@@ -20,6 +20,7 @@ sha256sum "$0" > "$evidence/builder-script-sha256.txt"
 tar -xJf "$share/source.tar.xz" -C /build
 cd /build/operating-system
 archive=$(python3 -c 'import tomllib; print(tomllib.load(open("distro/branding/project.toml","rb"))["build"]["archive_date"])')
+python3 scripts/bootstrap.py verify-archive --output /build/archive
 cat > /etc/pacman.conf <<EOF
 [options]
 Architecture = x86_64
@@ -28,9 +29,11 @@ XferCommand = /usr/bin/curl -fL --retry 3 --retry-all-errors --connect-timeout 2
 SigLevel = Required DatabaseOptional
 LocalFileSigLevel = Required
 [core]
-Server = https://archive.archlinux.org/repos/$archive/\$repo/os/\$arch
+CacheServer = https://archive.archlinux.org/repos/$archive/\$repo/os/\$arch
+Server = file:///build/archive
 [extra]
-Server = https://archive.archlinux.org/repos/$archive/\$repo/os/\$arch
+CacheServer = https://archive.archlinux.org/repos/$archive/\$repo/os/\$arch
+Server = file:///build/archive
 EOF
 pacman-key --init
 pacman-key --populate archlinux
