@@ -6,10 +6,12 @@ The clean base passed all 52 Windows Rust tests. Phase 2's hardened acceptance
 is recorded in [its requalification report](phase2-security-requalification.md).
 That evidence does not qualify these Phase 3 changes.
 
-Generation mode is **opt-in and requires Chat 1's trust provider**. This branch
-does not implement signing or enrollment. Without the provider, `boot enable`
-fails before enabling the feature; existing Phase 2 update/recovery remains
-available. No automatic fallback has been qualified in a real UEFI guest.
+Generation mode is **opt-in**. The integration branch ships the owner signing
+provider required by this implementation; see [its contract](secure-boot.md).
+`boot enable` verifies readiness before enabling the feature. Firmware enrollment
+remains an explicit owner operation. The original branch's host evidence below
+does not qualify the integrated image; current results are in
+[Phase 3 acceptance](phase3-acceptance.md).
 
 ## Ownership and binding
 
@@ -53,7 +55,7 @@ keyslots, or unlock keys are stored in generation metadata.
    also require the systemd 262 trust contract and installed blessing gate.
 2. Create and verify the pre-update snapshot. Persist its reference and enter
    the transaction mutation phase before changing generation state.
-3. Journal staging, clone the verified root, rebind its UKI through Chat 1,
+3. Journal staging, clone the verified root, rebind its UKI through the owner provider,
    verify kernel/initrd/release/OS/microcode payload preservation and the new
    root selection, then verify its signature and firmware trust.
 4. Sync the root and metadata. Copy the UKI to a temporary ESP file, check its
@@ -66,8 +68,10 @@ keyslots, or unlock keys are stored in generation metadata.
 6. Apply packages and regenerate the maintenance UKI using existing hooks.
    Preserve the systemd package-update prohibition. Create the post snapshot,
    verify the full expected package map and live health, stage the candidate's
-   trusted immutable UKI, and publish its counted BLS entry.
-7. Persist `awaiting_boot`. A different kernel boot, matching root/kernel/UKI,
+   trusted immutable UKI.
+7. Persist `awaiting_boot` before publishing candidate selection. An interrupted
+   or failed activation remains unconfirmed and requires recovery. A different
+   kernel boot, matching root/kernel/UKI,
    exact expected packages and fresh required health checks are still required.
 
 Generation staging, selection, blessing and rollback use the existing durable
@@ -169,14 +173,17 @@ existing explicit `rollback --execute` workflow. Managed recovery verifies that
 snapshot, quiesces the candidate menu entry, restores `@` and its UKI, restores
 the maintenance preset's legacy output path, and archives selection metadata.
 Only a subsequent verified installed boot can finalize the rollback in history.
-Use a Phase 3 recovery binary with Chat 1's trust provider for managed installs;
+Use the integrated Phase 3 recovery binary and owner provider for managed installs;
 old Phase 2 media does not understand the new boot metadata.
 
-## Chat 1 interface
+## Native signing interface
 
 `Commands::boot_artifact` is the testable boundary. The native implementation
 calls a root-owned, non-writable-by-other-users `/usr/bin/astraeus-boot-artifact`
-with argument arrays and a cleared environment. No provider is shipped here.
+with argument arrays and a cleared environment. The package installs the owner
+provider from `scripts/secure_boot.py`. Offline verification adds
+`--policy-root INSTALLED_ROOT` to use its public policy under enforcing recovery
+firmware; it cannot sign or activate through that option.
 
 | Invocation | Required behavior |
 | --- | --- |
@@ -185,10 +192,10 @@ with argument arrays and a cleared environment. No provider is shipped here.
 | `rebind SOURCE_UKI CMDLINE_FILE NEW_OUTPUT` | Produce a newly sealed/signed UKI at a previously absent private output path. Preserve the source kernel, initrd, release, OS release and optional microcode payload; use exactly the provided embedded command line. Do not modify SOURCE_UKI, enroll keys, or change firmware. |
 
 Provider failure, unknown response fields, wrong schema/hash and negative verdicts
-fail closed. Verification is repeated on the staged ESP copy. Chat 1 must also
-ensure ordinary mkinitcpio regeneration seals the **preset's actual output path**,
-including `EFI/Astraeus/maintenance.efi`. The new generation code never writes a
-signature or enrolls firmware keys. No CLI flag accepts a user-supplied trust
+fail closed. Verification is repeated on the staged ESP copy. The provider
+consumes private mkinitcpio candidates into `EFI/Astraeus/maintenance.efi` only
+under the locked coordinator. The generation code never writes a signature or
+enrolls firmware keys. No CLI flag accepts a user-supplied trust
 verdict. The provider contract must cover the currently booted ESP and reject
 alternate loader/XBOOTLDR configurations outside this layout.
 
@@ -223,7 +230,7 @@ or formats a host block device. Fresh host results, using Rust 1.96.0:
 [Host-check receipts](evidence/phase3/host-checks.json) record commands and log
 hashes. Raw local logs are under ignored `out/phase3/`. No ISO was built.
 
-Chat 3 still needs actual plain and LUKS2 QEMU boots: three failed attempts,
+Integrated acceptance needs actual plain and LUKS2 QEMU boots: three failed attempts,
 last-attempt success, panic/no-userspace, failed service and skipped confirmation,
 missing/corrupt candidate, wrong root, stale references, signed artifact rejection,
 firmware preference overrides, read-only/full ESP, power cuts at each journal

@@ -3,14 +3,15 @@
 Phases 0 through 2 are validated on the recorded x86-64 UEFI/QEMU/KVM target.
 The current version is `0.1.0-dev`. See [Phase 2 acceptance](phase2-integration.md)
 and [historical Phase 1 validation](validation.md) for exact source revisions,
-hashes and installed-guest results. Phase 3 has not started.
+hashes and installed-guest results. Phase 3 is in integration and is not yet
+validated. Phase 4 has not started.
 
 | Phase | State | Deliverable | Evidence needed to close |
 | --- | --- | --- | --- |
 | 0 | Validated | Workspace, signed package repository, Plasma live ISO | Independent ISO byte comparison, UEFI/KVM Wayland boot, interactive desktop and service checks |
 | 1 | Validated | Calamares, Btrfs, optional LUKS2, installed UKI, hardware/status | Fresh encrypted and plain native installations; two ISO-detached boots of each; actual CLI, network, audio and failed-unit checks; repeated ISO comparison |
 | 2 | Validated | Package transactions, snapshots, history, offline rollback | Passed signed update, failed update, plain/LUKS2 rollback, interrupted mutation, unbootable recovery and independent full ISO comparison |
-| 3 | Planned | Secure Boot, signing and fallback | Enforcing OVMF accepts signed generations, rejects tampering and boots a known-good fallback |
+| 3 | Integration, not validated | Secure Boot, signing and fallback | Integrated A-N matrix, Phase 2 regressions and two identical clean ISO builds; see [acceptance](phase3-acceptance.md) |
 | 4 | Planned | Gaming preset and diagnostics | Steam, Vulkan and the 32-bit stack validated across documented GPU families |
 | 5 | Planned | Measured performance policies | Recorded baselines, power/thermal context, safety checks, restoration and repeatable improvements |
 | 6 | Planned | Declarative state | Parse, validate, plan, diff, apply and adopt against resolved package state; safe failure handling |

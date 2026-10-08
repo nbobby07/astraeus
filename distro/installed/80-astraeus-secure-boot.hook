@@ -6,7 +6,7 @@ Type = Package
 Target = *
 
 [Action]
-Description = Guard the Secure Boot generation integration boundary
+Description = Verify the retained signed generation before package mutation
 When = PreTransaction
-Exec = /usr/bin/astraeus-secure-boot guard-legacy
+Exec = /usr/bin/astraeus-secure-boot guard-update
 AbortOnFail

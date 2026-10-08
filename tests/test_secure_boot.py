@@ -146,6 +146,7 @@ class PolicyTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             with patch.object(sb, 'POLICY', root / 'policy.json'), patch.object(sb, 'STATE', root / 'state'), \
+                    patch.object(sb, 'GENERATIONS', root / 'enabled'), \
                     patch.object(sb, 'firmware', return_value={'SecureBoot': None}):
                 self.assertFalse(sb.signing_required())
                 (root / 'state').mkdir()
@@ -156,6 +157,9 @@ class PolicyTests(unittest.TestCase):
                 (root / 'policy.json').write_text('invalid policy')
                 self.assertTrue(sb.signing_required())
                 (root / 'policy.json').unlink()
+                (root / 'enabled').write_text('1\n')
+                self.assertTrue(sb.signing_required())
+                (root / 'enabled').unlink()
                 with patch.object(sb, 'firmware', return_value={'SecureBoot': True}):
                     self.assertTrue(sb.signing_required())
 
@@ -163,6 +167,14 @@ class PolicyTests(unittest.TestCase):
         with patch.object(sb, 'signing_required', return_value=False), patch.object(sb, 'load_policy') as load:
             sb.main(['post-uki', '/boot/vmlinuz-linux', '/boot/initrd', ''])
             sb.main(['guard-legacy'])
+            load.assert_not_called()
+
+    def test_update_hook_requires_coordinator_before_signing_readiness(self):
+        with patch.object(sb, 'signing_required', return_value=True), \
+                patch.object(sb, 'coordinator', side_effect=ValueError('missing locked coordinator')), \
+                patch.object(sb, 'load_policy') as load:
+            with self.assertRaisesRegex(ValueError, 'locked coordinator'):
+                sb.main(['guard-update'])
             load.assert_not_called()
 
     def test_preset_output_never_falls_back_when_signing_is_required(self):
@@ -263,6 +275,209 @@ class NativeSigningTests(unittest.TestCase):
                 self.assertNotIn(b'PRIVATE KEY', file.read_bytes())
             with self.assertRaisesRegex(ValueError, 'candidate or incomplete'):
                 sb.stage(kind, source, self.policy)
+
+    def firmware_fixture(self):
+        efivars = self.state / 'efivars'
+        efivars.mkdir()
+        der = (self.keys / 'db.cer').read_bytes()
+        for name, guid, value in [('SecureBoot', sb.GLOBAL_GUID, b'\1'),
+                                  ('SetupMode', sb.GLOBAL_GUID, b'\0'),
+                                  ('AuditMode', sb.GLOBAL_GUID, b'\0'),
+                                  ('db', sb.DB_GUID, esl(der)), ('dbx', sb.DB_GUID, b'')]:
+            (efivars / (name + '-' + guid)).write_bytes(b'\7\0\0\0' + value)
+        fixture = patch.object(sb, 'EFIVARS', efivars)
+        fixture.start()
+        self.addCleanup(fixture.stop)
+        return efivars
+
+    def test_native_generation_provider_verifies_rebind_and_rejects_unknown_trust(self):
+        efivars = self.firmware_fixture()
+        source = sb.stage('uki', self.uki, self.policy) / 'artifact.efi'
+        original = self.state / 'source.efi'
+        source.parent.rename(self.state / 'source-candidate')
+        shutil.copyfile(self.state / 'source-candidate/artifact.efi', original)
+        before = original.read_bytes()
+        cmdline, output = self.state / 'cmdline', self.state / 'rebound.efi'
+        cmdline.write_text('root=UUID=fixture rootflags=subvolid=900 rw\n')
+        sb.rebind(original, cmdline, output, self.policy)
+        verdict = sb.artifact_verdict(output, self.policy)
+        self.assertTrue(verdict['signature_verified'])
+        self.assertEqual(verdict['sha256'], sb.digest(output))
+        self.assertEqual(original.read_bytes(), before)
+        sections = sb.verify(output, 'uki', self.policy)
+        self.assertEqual(sections['.cmdline']['text'], cmdline.read_text().strip())
+        with self.assertRaisesRegex(ValueError, 'already exists'):
+            sb.rebind(original, cmdline, output, self.policy)
+        (efivars / ('SecureBoot-' + sb.GLOBAL_GUID)).unlink()
+        with self.assertRaisesRegex(ValueError, 'firmware does not report'):
+            sb.artifact_verdict(output, self.policy)
+        self.assertEqual(original.read_bytes(), before)
+
+    def test_rebind_failure_retains_journal_and_cannot_publish(self):
+        self.firmware_fixture()
+        candidate = sb.stage('uki', self.uki, self.policy)
+        candidate.rename(self.state / 'source-candidate')
+        original = self.state / 'source-candidate/artifact.efi'
+        cmdline, output = self.state / 'cmdline', self.state / 'rebound.efi'
+        cmdline.write_text('x' * 4000)
+        with self.assertRaisesRegex(ValueError, 'section capacity'):
+            sb.rebind(original, cmdline, output, self.policy)
+        self.assertFalse(output.exists())
+        self.assertTrue((self.state / 'rebind.pending/input.efi').exists())
+        with self.assertRaisesRegex(ValueError, 'unfinished signing'):
+            sb.clean_signing_state()
+
+    def test_offline_provider_uses_public_installed_policy_without_private_key(self):
+        self.firmware_fixture()
+        source = sb.stage('uki', self.uki, self.policy) / 'artifact.efi'
+        root = self.state / 'offline-root'
+        config = root / 'etc/astraeus/secure-boot/policy.json'
+        config.parent.mkdir(parents=True)
+        public = root / 'etc/astraeus/db.crt'
+        shutil.copyfile(self.keys / 'db.crt', public)
+        config.write_text(json.dumps(dict(self.policy, certificate='/etc/astraeus/db.crt',
+                                          private_key='/root/missing.key')))
+        output = io.StringIO()
+        with patch('sys.stdout', output):
+            sb.provider_main(['--policy-root', str(root), 'verify', str(source)])
+        self.assertTrue(json.loads(output.getvalue())['signature_verified'])
+        self.assertFalse((root / 'root/missing.key').exists())
+        with self.assertRaisesRegex(ValueError, 'read-only'):
+            sb.provider_main(['--policy-root', str(root), 'ready', str(root)])
+
+    def test_native_dbx_hash_revocation_is_checked_without_changing_firmware(self):
+        efivars = self.firmware_fixture()
+        image = sb.stage('uki', self.uki, self.policy) / 'artifact.efi'
+        expected = sb.authenticode_hash(image)
+        self.assertEqual(expected, sb.authenticode_hash(self.uki))
+        self.assertNotEqual(expected, sb.digest(image))
+        dbx = efivars / ('dbx-' + sb.DB_GUID)
+        unrelated = b'\7\0\0\0' + esl(bytes(32), sb.SHA256_GUID)
+        dbx.write_bytes(unrelated)
+        self.assertTrue(sb.artifact_verdict(image, self.policy)['firmware_trusted'])
+        self.assertEqual(dbx.read_bytes(), unrelated)
+        dbx.write_bytes(b'\7\0\0\0' + esl(bytes.fromhex(expected), sb.SHA256_GUID))
+        with self.assertRaisesRegex(ValueError, 'revoked by firmware dbx'):
+            sb.artifact_verdict(image, self.policy)
+        dbx.write_bytes(b'\7\0\0\0' + esl(b'malformed hash', sb.SHA256_GUID))
+        with self.assertRaisesRegex(ValueError, 'dbx policy evaluation'):
+            sb.artifact_verdict(image, self.policy)
+        with patch.object(sb, 'command', return_value=b'Failed to get hash'):
+            with self.assertRaisesRegex(ValueError, 'did not establish'):
+                sb.authenticode_hash(image)
+
+    def test_signed_loader_ready_binds_packaged_bytes_and_running_esp(self):
+        efivars = self.firmware_fixture()
+        info = efivars / 'LoaderInfo-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f'
+        info.write_bytes(b'\7\0\0\0' + 'systemd-boot 262-1-arch\0'.encode('utf-16-le'))
+        esp = self.state / 'esp'
+        installed = [esp / 'EFI/systemd/systemd-bootx64.efi', esp / 'EFI/BOOT/BOOTX64.EFI']
+        candidate = sb.stage('bootloader', self.loader, self.policy)
+        for path in installed:
+            path.parent.mkdir(parents=True)
+            shutil.copyfile(candidate / 'artifact.efi', path)
+        candidate.rename(self.state / 'bootloader.consumed.fixture')
+        call = sb.command
+        def bootctl(program, *args):
+            if program != 'bootctl':
+                return call(program, *args)
+            return {'--version': b'systemd 262 (262-1-arch)', '--print-esp-path': str(esp).encode(),
+                    '--print-boot-path': str(esp).encode(), '--print-loader-path': str(installed[0]).encode()}[args[0]]
+        with patch.object(sb, 'command', side_effect=bootctl):
+            self.assertTrue(sb.ready(esp, self.policy)['loader_verified'])
+            with self.assertRaisesRegex(ValueError, 'running ESP'):
+                sb.ready(self.state, self.policy)
+            installed[1].write_bytes(self.loader.read_bytes())
+            with self.assertRaises(RuntimeError):
+                sb.ready(esp, self.policy)
+
+    def test_signed_candidate_publication_and_interrupted_copy_preserve_prior(self):
+        self.firmware_fixture()
+        esp = self.state / 'esp'
+        target = esp / sb.MAINTENANCE
+        target.parent.mkdir(parents=True)
+        target.write_bytes(b'previous maintenance bytes')
+        prior = target.with_name('retained.efi')
+        prior.write_bytes(b'prior immutable generation')
+        sb.stage('uki', self.uki, self.policy)
+        with patch.object(sb, 'ESP', esp), patch.object(sb, 'coordinator'), \
+                patch.object(sb, 'copy_new', side_effect=OSError('controlled ESP full')):
+            with self.assertRaisesRegex(OSError, 'ESP full'):
+                sb.publish_maintenance(self.policy)
+        self.assertEqual(target.read_bytes(), b'previous maintenance bytes')
+        self.assertEqual(prior.read_bytes(), b'prior immutable generation')
+        self.assertTrue((self.state / 'uki.publish.json').exists())
+        self.assertTrue((self.state / 'uki.ready').exists())
+
+    def test_signed_candidate_publication_consumes_receipt_and_keeps_known_good(self):
+        self.firmware_fixture()
+        target = self.state / 'esp' / sb.MAINTENANCE
+        target.parent.mkdir(parents=True)
+        target.write_bytes(b'old maintenance')
+        prior = target.with_name('retained.efi')
+        prior.write_bytes(b'prior immutable generation')
+        candidate = sb.stage('uki', self.uki, self.policy)
+        expected = sb.digest(candidate / 'artifact.efi')
+        with patch.object(sb, 'ESP', self.state / 'esp'), patch.object(sb, 'coordinator'):
+            sb.publish_maintenance(self.policy)
+        self.assertEqual(sb.artifact_verdict(target, self.policy)['sha256'], expected)
+        self.assertEqual(prior.read_bytes(), b'prior immutable generation')
+        self.assertFalse(candidate.exists())
+        self.assertFalse((self.state / 'uki.publish.json').exists())
+        self.assertEqual(len(list(self.state.glob('uki.consumed.*/publication.json'))), 1)
+        sb.clean_signing_state()
+
+    def test_coordinator_requires_both_parent_locks_and_generation_verification(self):
+        self.check_coordinator_locks(self.state)
+
+    @unittest.skipUnless(os.environ.get('ASTRAEUS_LOOPBACK_TEST') == '1',
+                         'explicit disposable Btrfs loopback test')
+    def test_coordinator_recognizes_locks_on_a_real_btrfs_subvolume(self):
+        disk, mount = self.state / 'btrfs.img', self.state / 'mount'
+        with disk.open('wb') as stream:
+            stream.truncate(256 * 1024 * 1024)
+        mount.mkdir()
+        subprocess.run(['mkfs.btrfs', '-q', str(disk)], check=True)
+        subprocess.run(['mount', '-o', 'loop,nosuid,nodev', str(disk), str(mount)], check=True)
+        try:
+            subvolume = mount / 'snapshots'
+            subprocess.run(['btrfs', 'subvolume', 'create', str(subvolume)], check=True)
+            subvolume.chmod(0o700)
+            self.check_coordinator_locks(subvolume)
+        finally:
+            subprocess.run(['umount', str(mount)], check=True)
+
+    def check_coordinator_locks(self, directory):
+        import fcntl
+        lock = directory / 'update.lock'
+        store = directory / 'store'
+        store.mkdir()
+        (store / 'generations').mkdir()
+        (store / 'generations/selection.json').write_text(json.dumps(
+            {'schema_version': 1, 'current': None, 'previous': '1-2-3'}))
+        enabled = directory / 'enabled'
+        enabled.write_text('1\n')
+        with lock.open('wb') as first, (store / 'lock').open('wb') as second, \
+                patch.object(sb, 'UPDATE_LOCK', lock), patch.object(sb, 'STORE', store), \
+                patch.object(sb, 'GENERATIONS', enabled), \
+                patch.object(sb, 'DISTROCTL', Path(sys.executable).resolve()), patch.object(sb, 'command'):
+            lock.chmod(0o600)
+            (store / 'lock').chmod(0o600)
+            fcntl.flock(first, fcntl.LOCK_EX)
+            for both in (False, True):
+                if both:
+                    fcntl.flock(second, fcntl.LOCK_EX)
+                child = os.fork()
+                if child == 0:
+                    try:
+                        sb.coordinator()
+                    except ValueError:
+                        os._exit(1)
+                    except BaseException:
+                        os._exit(2)
+                    os._exit(0)
+                _, status = os.waitpid(child, 0)
+                self.assertEqual(os.waitstatus_to_exitcode(status), 0 if both else 1)
 
     def test_wrong_pin_revocation_missing_key_and_wrong_private_key(self):
         variations = [dict(self.policy, certificate_sha256='a' * 64),

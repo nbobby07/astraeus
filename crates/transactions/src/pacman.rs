@@ -486,6 +486,35 @@ impl<R: CommandRunner> HealthChecks for SystemHealth<R> {
             }
         };
         let mut checks = vec![];
+        match self.runner.managed_loader() {
+            Ok(false) => {}
+            managed => {
+                let result = managed.and_then(|_| {
+                    let output = checked(
+                        &mut self.runner,
+                        "/usr/bin/astraeus-boot-artifact",
+                        &["verify", &uki_path],
+                    )?;
+                    let verdict: distro_snapshots::generations::TrustVerdict =
+                        serde_json::from_str(&output).map_err(|error| error.to_string())?;
+                    verdict
+                        .require_trusted(&verdict.sha256)
+                        .map_err(|error| error.to_string())
+                });
+                checks.push(HealthCheckResult {
+                    name: "secure_boot".into(),
+                    required: true,
+                    status: if result.is_ok() {
+                        HealthStatus::Pass
+                    } else {
+                        HealthStatus::Fail
+                    },
+                    detail: result.map_or_else(std::convert::identity, |_| {
+                        "Signed loader/UKI and enforced owner trust verified".into()
+                    }),
+                });
+            }
+        }
         for (name, program, args, empty) in [
             (
                 "package_database",

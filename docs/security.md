@@ -40,13 +40,16 @@ Secure Boot are outside this phase's boot acceptance target.
 
 Phase 1 introduces systemd-boot and UKIs for installed systems. Phase 3 now has
 [owner signing, candidate verification and read-only trust inspection](secure-boot.md).
-Activation and enforcing-OVMF acceptance remain integration gates. Firmware
+The native provider is connected to generation activation; enforcing-image
+acceptance remains a separate gate. Firmware
 that cannot enroll keys automatically needs an explicit explained user step.
 There must be no unsigned fallback that silently weakens a promised verified boot
 chain. Distinguish owner-managed keys from compatibility with factory trust stores.
 
-The signing helper never writes firmware or the ESP. Provisioned systems stage
-new UKIs privately and block package updates pending generation integration.
+The signing helper never writes firmware. Provisioned systems stage new UKIs
+privately and publish the unselected maintenance artifact only beneath the locked
+update coordinator, after verifying the retained root/UKI pair. Immutable
+generation paths, metadata and selection remain owned by the Rust manager.
 Unknown firmware state remains unknown; signatures do not authenticate writable
 root contents. See [ADR 0003](adr/0003-owner-secure-boot.md) for the trust boundary.
 

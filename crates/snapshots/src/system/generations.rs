@@ -82,8 +82,13 @@ impl<C: Commands> Manager<C> {
     }
     fn verify_artifact_trust(&self, image: &Path) -> Result<String> {
         let digest = self.digest(image)?;
-        let verdict: TrustVerdict =
-            serde_json::from_str(&self.commands.boot_artifact(&["verify", path_str(image)?])?)?;
+        let image_path = path_str(image)?;
+        let args = if self.top.is_some() {
+            vec!["--policy-root", path_str(&self.root)?, "verify", image_path]
+        } else {
+            vec!["verify", image_path]
+        };
+        let verdict: TrustVerdict = serde_json::from_str(&self.commands.boot_artifact(&args)?)?;
         verdict.require_trusted(&digest)?;
         require(
             self.digest(image)? == digest,
@@ -356,7 +361,7 @@ impl<C: Commands> Manager<C> {
         };
         let image = private.join("boot.efi");
         if retained {
-            // Chat 1 rebuilds/seals the UKI. It may change only cmdline and signing data.
+            // The provider may change only cmdline and signing data.
             self.commands.boot_artifact(&[
                 "rebind",
                 path_str(&original)?,

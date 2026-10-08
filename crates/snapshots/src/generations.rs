@@ -189,7 +189,7 @@ impl BootCount {
     }
 }
 
-/// Returned by Chat 1 on each verification, never accepted from stored metadata.
+/// Returned by the native provider on each verification, never trusted from stored metadata.
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct TrustVerdict {
@@ -202,6 +202,8 @@ impl TrustVerdict {
     pub fn require_trusted(&self, digest: &str) -> Result<()> {
         require(
             self.schema_version == 1
+                && self.sha256.len() == 64
+                && self.sha256.bytes().all(|byte| byte.is_ascii_hexdigit())
                 && self.sha256 == digest
                 && self.signature_verified
                 && self.firmware_trusted,

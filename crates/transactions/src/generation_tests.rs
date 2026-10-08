@@ -107,6 +107,7 @@ fn activation_failure_keeps_both_snapshots_and_requires_recovery() {
         &mut Packages::new(""),
         &mut Snapshots {
             fail_activate: true,
+            activation_history: Some(temp.0.join("history.sqlite")),
             ..Default::default()
         },
         &mut Boot(false),

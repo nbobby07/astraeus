@@ -174,13 +174,15 @@ pub fn execute(
         }
         check_cancel()?;
         // A live health check cannot establish that the new kernel/UKI boots.
+        // Persist boot eligibility before the ESP can make the candidate selectable.
+        session.advance(&mut record, TransactionState::AwaitingBoot)?;
         snapshots.activate_boot(
             record
                 .post_snapshot
                 .as_deref()
                 .ok_or("missing candidate snapshot")?,
         )?;
-        session.advance(&mut record, TransactionState::AwaitingBoot)
+        Ok(())
     })();
     if let Err(message) = result {
         let at = record.state;

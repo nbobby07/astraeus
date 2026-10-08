@@ -1,5 +1,5 @@
 #!/usr/bin/python3 -I
-"""Owner signing and read-only firmware observations. Never activates or enrolls."""
+"""Owner signing and generation artifact trust. Never enrolls firmware keys."""
 import argparse
 from contextlib import contextmanager
 import hashlib
@@ -20,8 +20,16 @@ EFIVARS = Path('/sys/firmware/efi/efivars')
 GLOBAL_GUID = '8be4df61-93ca-11d2-aa0d-00e098032b8c'
 DB_GUID = 'd719b2cb-3d3a-4596-a3bc-dad00e67656f'
 X509_GUID = uuid.UUID('a5c059a1-94e4-4aa7-87b5-ab155c2bf072').bytes_le
+SHA256_GUID = uuid.UUID('c1c41626-504c-4092-aca9-41f936934328').bytes_le
 FINGERPRINT = re.compile(r'[0-9a-f]{64}')
 KINDS = ('uki', 'bootloader')
+ESP = Path('/efi')
+STORE = Path('/.snapshots/astraeus')
+GENERATIONS = Path('/etc/astraeus/boot-generations')
+UPDATE_LOCK = Path('/run/astraeus-update.lock')
+MAINTENANCE = Path('EFI/Astraeus/maintenance.efi')
+LOADER = Path('/usr/lib/systemd/boot/efi/systemd-bootx64.efi')
+DISTROCTL = Path('/usr/bin/distroctl')
 
 
 def unique_object(pairs):
@@ -260,9 +268,9 @@ def verify_candidate(kind, policy):
     return receipt
 
 
-def database_certificates(data):
-    """Read EFI_SIGNATURE_LIST framing, not signature or firmware policy validation."""
-    certificates, other_types = [], False
+def database_entries(data):
+    """Read EFI_SIGNATURE_LIST framing without inferring trust from its presence."""
+    entries = []
     while data:
         if len(data) < 28:
             raise ValueError('truncated EFI signature list')
@@ -273,12 +281,25 @@ def database_certificates(data):
         payload = data[28 + header:size]
         if not payload or len(payload) % entry:
             raise ValueError('invalid EFI signature list entries')
-        if kind == X509_GUID:
-            certificates.extend(payload[offset + 16:offset + entry] for offset in range(0, len(payload), entry))
-        else:
-            other_types = True
+        entries.extend((kind, header, payload[offset + 16:offset + entry])
+                       for offset in range(0, len(payload), entry))
         data = data[size:]
-    return certificates, other_types
+    return entries
+
+
+def database_certificates(data):
+    entries = database_entries(data)
+    return ([value for kind, header, value in entries if kind == X509_GUID and header == 0],
+            any(kind != X509_GUID or header != 0 for kind, header, _ in entries))
+
+
+def authenticode_hash(image):
+    # efitools can exit zero on hashing failure; require its complete success output.
+    output = command('hash-to-efi-sig-list', trusted(image), '/dev/null').decode().strip()
+    match = re.fullmatch(r'HASH IS ([0-9a-f]{64})', output)
+    if not match:
+        raise ValueError('EFI tool did not establish the Authenticode image hash')
+    return match[1]
 
 
 def firmware(certificate=None):
@@ -299,11 +320,17 @@ def firmware(certificate=None):
         raw = read(name, guid)
         info = {'readable': raw is not None, 'contains_signer_certificate': None,
                 'other_signature_types': None, 'empty': None}
+        if name == 'dbx':
+            info['sha256_images'] = None
         if raw is not None:
             try:
                 certs, other = database_certificates(raw)
                 info.update(empty=not raw, contains_signer_certificate=certificate in certs if certificate else None,
                             other_signature_types=other)
+                if name == 'dbx':
+                    entries = database_entries(raw)
+                    if all(kind == SHA256_GUID and header == 0 and len(value) == 32 for kind, header, value in entries):
+                        info['sha256_images'] = [value.hex() for _, _, value in entries]
             except ValueError:
                 info['malformed'] = True
         result[name] = info
@@ -311,23 +338,249 @@ def firmware(certificate=None):
     return result
 
 
-def check_enrollment(policy):
+def check_enrollment(policy, image=None):
     observed = firmware(identity(policy))
     if observed['dbx']['contains_signer_certificate'] is True:
         raise ValueError('configured certificate is present in firmware dbx')
     if observed['db']['contains_signer_certificate'] is not True:
         raise ValueError('configured certificate not observed in firmware db; trust absent or unknown')
-    # ponytail: nonempty dbx needs firmware image/TBS revocation validation before this gate can accept it.
+    # shortcut: certificate/TBS and unknown dbx formats remain refused pending qualification.
     if observed['dbx']['empty'] is not True:
-        raise ValueError('full dbx policy evaluation unavailable; firmware validation required')
+        hashes = observed['dbx']['sha256_images']
+        if image is None or hashes is None:
+            raise ValueError('full dbx policy evaluation unavailable; a supported image revocation check is required')
+        if authenticode_hash(image) in hashes:
+            raise ValueError('image is revoked by firmware dbx')
     if observed['SecureBoot'] is not True or observed['SetupMode'] is not False:
         raise ValueError('firmware does not report SecureBoot enabled with SetupMode disabled')
+    if observed['AuditMode'] is True:
+        raise ValueError('firmware reports non-enforcing audit mode')
     return observed
+
+
+def artifact_verdict(path, policy):
+    before = digest(trusted(path))
+    verify(path, 'uki', policy)
+    check_enrollment(policy, path)
+    if digest(path) != before:
+        raise ValueError('artifact changed during verification')
+    return {'schema_version': 1, 'sha256': before, 'signature_verified': True,
+            'firmware_trusted': True}
+
+
+def loader_payload(path):
+    """Compare all loader bytes except Authenticode's checksum and certificate table."""
+    import pefile
+    data = bytearray(trusted(path).read_bytes())
+    with pefile.PE(data=data, fast_load=True) as pe:
+        security = pe.OPTIONAL_HEADER.DATA_DIRECTORY[pefile.DIRECTORY_ENTRY['IMAGE_DIRECTORY_ENTRY_SECURITY']]
+        if security.VirtualAddress:
+            end = max(s.PointerToRawData + s.SizeOfRawData for s in pe.sections)
+            if security.VirtualAddress < end or security.VirtualAddress + security.Size != len(data):
+                raise ValueError('unsupported loader certificate layout')
+            del data[security.VirtualAddress:]
+        for offset, size in [(pe.OPTIONAL_HEADER.get_field_absolute_offset('CheckSum'), 4),
+                             (security.get_file_offset(), 8)]:
+            data[offset:offset + size] = b'\0' * size
+    return data
+
+
+def clean_signing_state():
+    for name in ('uki.pending', 'uki.ready', 'uki.publish.json', 'rebind.pending',
+                 'bootloader.pending', 'bootloader.ready'):
+        if os.path.lexists(STATE / name):
+            raise ValueError('unfinished signing operation; preserve and inspect its journal')
+
+
+def ready(esp, policy):
+    require_root()
+    trusted(esp, directory=True)
+    trusted(STATE, private=True, directory=True)
+    identity(policy, signing=True)
+    clean_signing_state()
+    version = command('bootctl', '--version').decode().split()
+    if len(version) < 2 or not re.fullmatch(r'262(?:\.\S+)?', version[1]):
+        raise ValueError('boot provider requires systemd 262')
+    if (command('bootctl', '--print-esp-path').decode().strip() != str(esp)
+            or command('bootctl', '--print-boot-path').decode().strip() != str(esp)):
+        raise ValueError('running ESP or XBOOTLDR differs from the managed layout')
+    installed = [esp / 'EFI/systemd/systemd-bootx64.efi', esp / 'EFI/BOOT/BOOTX64.EFI']
+    if command('bootctl', '--print-loader-path').decode().strip() not in map(str, installed):
+        raise ValueError('running loader is not one of the managed ESP copies')
+    info = EFIVARS / 'LoaderInfo-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f'
+    if not re.fullmatch(r'systemd-boot 262(?:[.-]\S+)?', info.read_bytes()[4:].decode('utf-16-le').rstrip('\0')):
+        raise ValueError('running loader version is not systemd-boot 262')
+    inspect_image(LOADER, 'bootloader')
+    expected = loader_payload(LOADER)
+    for path in installed:
+        before = digest(trusted(path))
+        verify(path, 'bootloader', policy)
+        check_enrollment(policy, path)
+        actual = loader_payload(path)
+        if (actual[:len(expected)] != expected or len(actual) - len(expected) not in range(8)
+                or any(actual[len(expected):]) or digest(path) != before):
+            raise ValueError('signed loader differs from packaged loader content')
+    return {'schema_version': 1, 'systemd_version': 262,
+            'loader_verified': True, 'firmware_trusted': True}
+
+
+def rebind(source, cmdline, output, policy):
+    """Change only the embedded selector in an authenticated, private UKI copy."""
+    import pefile
+    with signing_lock():
+        clean_signing_state()
+        identity(policy, signing=True)
+        artifact_verdict(source, policy)
+        before = verify(source, 'uki', policy)
+        text = trusted(cmdline).read_text().strip()
+        if not text or len(text) > 4096 or '\0' in text or '\n' in text or '\r' in text:
+            raise ValueError('invalid embedded command line')
+        trusted(output.parent, private=True, directory=True)
+        if os.path.lexists(output):
+            raise ValueError('rebind output already exists')
+        pending = STATE / 'rebind.pending'
+        pending.mkdir(mode=0o700)
+        sync_directory(STATE)
+        original = pending / 'input.efi'
+        copy_new(source, original)
+        command('sbattach', '--remove', original)
+        with pefile.PE(str(original), fast_load=True) as pe:
+            section, = [s for s in pe.sections if s.Name.rstrip(b'\0') == b'.cmdline']
+            payload = text.encode() + b'\0'
+            # shortcut: refuse selectors exceeding existing PE padding until UKI rebuilding is qualified.
+            if len(payload) > section.SizeOfRawData:
+                raise ValueError('new command line exceeds the existing UKI section capacity')
+            pe.set_bytes_at_offset(section.PointerToRawData, payload.ljust(section.SizeOfRawData, b'\0'))
+            section.Misc_VirtualSize = len(payload)
+            pe.OPTIONAL_HEADER.CheckSum = pe.generate_checksum()
+            unsigned = pending / 'unsigned.efi'
+            write_new(unsigned, pe.write())
+        signed = pending / 'artifact.efi'
+        command('sbsign', '--key', policy['private_key'], '--cert', policy['certificate'],
+                '--output', signed, unsigned)
+        os.chmod(signed, 0o600)
+        with signed.open('rb') as stream:
+            os.fsync(stream.fileno())
+        after = verify(signed, 'uki', policy)
+        if (set(before) != set(after) or after['.cmdline']['text'].rstrip('\0') != text
+                or any(after[name] != value for name, value in before.items() if name != '.cmdline')):
+            raise ValueError('rebind changed protected UKI payload')
+        verdict = artifact_verdict(signed, policy)
+        copy_new(signed, output)
+        if artifact_verdict(output, policy) != verdict:
+            raise ValueError('rebind output changed during publication')
+        sync_directory(output.parent)
+        write_new(pending / 'receipt.json', (json.dumps(verdict, sort_keys=True) + '\n').encode())
+        sync_directory(pending)
+        pending.rename(STATE / ('rebind.consumed.' + str(uuid.uuid4())))
+        sync_directory(STATE)
+
+
+def coordinator():
+    """Hooks must descend from the distroctl process holding BOTH mutation locks."""
+    require_root()
+    ancestors = set()
+    pid = os.getppid()
+    while pid > 1 and pid not in ancestors:
+        ancestors.add(pid)
+        pid = int(Path(f'/proc/{pid}/stat').read_text().rsplit(')', 1)[1].split()[1])
+    executable = trusted(DISTROCTL)
+    paths = [trusted(path, private=True) for path in (UPDATE_LOCK, STORE / 'lock')]
+    owners = []
+    for ancestor in ancestors:
+        proc = Path(f'/proc/{ancestor}')
+        if not os.path.samefile(proc / 'exe', executable):
+            continue
+        held = set()
+        for descriptor in (proc / 'fdinfo').iterdir():
+            try:
+                matches = [path for path in paths if os.path.samefile(proc / 'fd' / descriptor.name, path)]
+                if not matches:
+                    continue
+                # Btrfs st_dev is per subvolume; /proc/locks uses the superblock device.
+                for line in descriptor.read_text().splitlines():
+                    fields = line.split()
+                    if (len(fields) == 9 and fields[:1] == ['lock:']
+                            and fields[2:5] == ['FLOCK', 'ADVISORY', 'WRITE']
+                            and fields[5] == str(ancestor) and fields[-2:] == ['0', 'EOF']):
+                        held.update(matches)
+            except FileNotFoundError:
+                continue
+        if held == set(paths):
+            owners.append(ancestor)
+    if len(owners) != 1:
+        raise ValueError('signed boot writes require the locked Astraeus update coordinator')
+    if trusted(GENERATIONS).read_text() != '1\n':
+        raise ValueError('signed updates require enabled boot generations')
+    selection = json.loads(trusted(STORE / 'generations/selection.json').read_bytes(), object_pairs_hook=unique_object)
+    if (set(selection) != {'schema_version', 'current', 'previous'}
+            or type(selection['schema_version']) is not int or selection['schema_version'] != 1
+            or selection['current'] is not None or not re.fullmatch(r'[0-9]+-[0-9]+-[0-9]+', str(selection['previous']))):
+        raise ValueError('no exclusively selected retained recovery generation')
+    # The Rust owner checks authoritative history, pending journals, root identity and signatures.
+    command('distroctl', 'boot', 'verify', selection['previous'], '--json')
+
+
+def publish_maintenance(policy):
+    with signing_lock():
+        coordinator()
+        receipt = verify_candidate('uki', policy)
+        source = STATE / 'uki.ready/artifact.efi'
+        verdict = artifact_verdict(source, policy)
+        if verdict['sha256'] != receipt['artifact_sha256']:
+            raise ValueError('candidate receipt hash mismatch')
+        target = trusted(ESP / MAINTENANCE)
+        pending = STATE / 'uki.publish.json'
+        write_new(pending, (json.dumps({'schema_version': 1, 'sha256': verdict['sha256'],
+                                       'target': str(target)}, sort_keys=True) + '\n').encode())
+        sync_directory(STATE)
+        temporary = target.with_name('.maintenance.next')
+        copy_new(source, temporary)
+        if artifact_verdict(temporary, policy) != verdict:
+            raise ValueError('staged maintenance artifact changed')
+        sync_directory(target.parent)
+        os.replace(temporary, target)
+        sync_directory(target.parent)
+        if artifact_verdict(target, policy) != verdict:
+            raise ValueError('published maintenance artifact changed')
+        archive = STATE / ('uki.consumed.' + str(uuid.uuid4()))
+        (STATE / 'uki.ready').rename(archive)
+        pending.rename(archive / 'publication.json')
+        sync_directory(archive)
+        sync_directory(STATE)
+
+
+def provider_main(argv=None):
+    parser = argparse.ArgumentParser(description='Astraeus generation trust provider')
+    parser.add_argument('--policy-root', type=absolute_path)
+    sub = parser.add_subparsers(dest='operation', required=True)
+    sub.add_parser('ready').add_argument('esp', type=absolute_path)
+    sub.add_parser('verify').add_argument('image', type=absolute_path)
+    binding = sub.add_parser('rebind')
+    for name in ('source', 'cmdline', 'output'):
+        binding.add_argument(name, type=absolute_path)
+    args = parser.parse_args(argv)
+    require_root()
+    if args.policy_root:
+        if args.operation != 'verify':
+            raise ValueError('offline policy is read-only and supports artifact verification only')
+        root = trusted(args.policy_root, directory=True)
+        path = trusted(root / POLICY.relative_to('/'))
+        policy = parse_policy(json.loads(path.read_bytes(), object_pairs_hook=unique_object))
+        policy = dict(policy, certificate=str(root / Path(policy['certificate']).relative_to('/')))
+    else:
+        policy = load_policy()
+    if args.operation == 'ready':
+        print(json.dumps(ready(args.esp, policy), sort_keys=True))
+    elif args.operation == 'verify':
+        print(json.dumps(artifact_verdict(args.image, policy), sort_keys=True))
+    else:
+        rebind(args.source, args.cmdline, args.output, policy)
 
 
 def signing_required():
     # Retaining state prevents deleting a missing/broken policy from enabling an unsigned fallback.
-    for path in (POLICY, STATE):
+    for path in (POLICY, STATE, GENERATIONS):
         try:
             path.lstat()
             return True
@@ -356,18 +609,29 @@ def status():
         product = json.loads(Path('/usr/share/distro/installer-identity.json').read_bytes())['id']
         if not isinstance(product, str) or not re.fullmatch(r'[a-z][a-z0-9-]*', product):
             raise ValueError('invalid installed product identity')
-        paths = {'uki': Path('/efi/EFI/Linux') / (product + '-linux.efi'),
-                 'bootloader': Path('/efi/EFI/systemd/systemd-bootx64.efi'),
-                 'fallback_bootloader': Path('/efi/EFI/BOOT/BOOTX64.EFI')}
-        for name, path in paths.items():
+        paths = {'uki': ESP / 'EFI/Linux' / (product + '-linux.efi'),
+                 'bootloader': ESP / 'EFI/systemd/systemd-bootx64.efi',
+                 'fallback_bootloader': ESP / 'EFI/BOOT/BOOTX64.EFI'}
+        if (STORE / 'generations/selection.json').exists():
+            paths['uki'] = ESP / MAINTENANCE
             try:
-                verify(path, 'uki' if name == 'uki' else 'bootloader', policy)
-                result['artifacts'][name] = 'valid-for-configured-certificate'
-            except FileNotFoundError:
-                result['artifacts'][name] = 'missing'
+                running = absolute_path(command('bootctl', '--print-stub-path').decode().strip())
+                if running.parent != ESP / 'EFI/Astraeus' or not re.fullmatch(r'[0-9]+-[0-9]+-[0-9]+\.efi', running.name):
+                    raise ValueError('unexpected running UKI path')
+                paths['running_uki'] = running
             except (OSError, ValueError, RuntimeError):
-                result['artifacts'][name] = 'invalid-or-unavailable'
-        if all(v == 'valid-for-configured-certificate' for v in result['artifacts'].values()):
+                result['artifacts']['running_uki'] = {'signature': 'unavailable', 'path': None, 'sha256': None}
+        for name, path in paths.items():
+            artifact = {'path': str(path), 'sha256': None, 'signature': 'unavailable'}
+            result['artifacts'][name] = artifact
+            try:
+                verify(path, 'uki' if name in ('uki', 'running_uki') else 'bootloader', policy)
+                artifact.update(signature='valid-for-configured-certificate', sha256=digest(path))
+            except FileNotFoundError:
+                artifact['signature'] = 'missing'
+            except (OSError, ValueError, RuntimeError):
+                artifact['signature'] = 'invalid-or-unavailable'
+        if all(v['signature'] == 'valid-for-configured-certificate' for v in result['artifacts'].values()):
             result['enrollment_readiness'] = 'manual-firmware-review-required'
     except FileNotFoundError:
         pass
@@ -420,6 +684,7 @@ def main(argv=None):
     commands.add_parser('check-config')
     commands.add_parser('check-enrollment')
     commands.add_parser('guard-legacy')
+    commands.add_parser('guard-update')
     commands.add_parser('uki-output').add_argument('legacy', type=absolute_path)
     signer = commands.add_parser('stage')
     signer.add_argument('kind', choices=KINDS)
@@ -442,6 +707,11 @@ def main(argv=None):
     if args.operation == 'guard-legacy':
         if signing_required():
             raise ValueError('Secure Boot requires boot-generation integration; legacy boot writes refused')
+        return
+    if args.operation == 'guard-update':
+        if signing_required():
+            coordinator()
+            ready(ESP, load_policy())
         return
     if args.operation == 'status':
         print(json.dumps(status(), indent=2, sort_keys=True))
@@ -467,6 +737,9 @@ def main(argv=None):
             if args.uki != UNSIGNED:
                 raise ValueError('Secure Boot post hook requires the private unsigned staging path')
             candidate = stage('uki', args.uki, policy)
+            if GENERATIONS.exists():
+                publish_maintenance(policy)
+                candidate = ESP / MAINTENANCE
         else:
             candidate = stage(args.kind, args.input, policy)
         print(candidate)
@@ -474,7 +747,10 @@ def main(argv=None):
 
 if __name__ == '__main__':
     try:
-        main()
+        if Path(sys.argv[0]).name == 'astraeus-boot-artifact':
+            provider_main()
+        else:
+            main()
     except (OSError, ValueError, RuntimeError, ImportError) as error:
         print(f'astraeus-secure-boot: {error}', file=sys.stderr)
         sys.exit(1)

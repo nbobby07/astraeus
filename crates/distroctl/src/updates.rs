@@ -241,7 +241,12 @@ pub fn boot(action: &str, id: Option<&str>, json: bool) -> Result<()> {
         );
         return Ok(());
     }
-    let records = read_history(Path::new(HISTORY_PATH))?;
+    let records = if action == "verify" {
+        require_root()?;
+        distro_transactions::read_recovery_history(Path::new(HISTORY_PATH))?
+    } else {
+        read_history(Path::new(HISTORY_PATH))?
+    };
     let selection = manager.generation_selection().map_err(err)?;
     let pending = manager.generation_pending().map_err(err)?;
     let mut items = vec![];

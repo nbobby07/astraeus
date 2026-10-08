@@ -11,7 +11,7 @@ use std::{
 pub trait Commands {
     fn run(&self, program: &str, args: &[&str]) -> Result<String>;
     fn authorize_mutation(&self, store: &Path, esp: &Path) -> Result<()>;
-    /// Chat 1 supplies the signing/trust implementation. No permissive default.
+    /// Native owner signing/trust boundary. No permissive default.
     fn boot_artifact(&self, _args: &[&str]) -> Result<String> {
         Err("boot artifact trust provider unavailable".into())
     }

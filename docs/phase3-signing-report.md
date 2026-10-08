@@ -1,5 +1,12 @@
 # Phase 3 Secure Boot signing handoff
 
+Integration note: `phase3/integration` now connects the native provider,
+coordinator guards, maintenance publication, health checks and offline public
+policy reads. SHA-256 image revocations are checked through efitools; unsupported
+dbx formats remain refused. See [integration](phase3-integration.md) and
+[current acceptance](phase3-acceptance.md). The original branch handoff below is
+retained as historical evidence and does not qualify an integrated ISO.
+
 Branch: `phase3/secure-boot`.
 Base: `6a8fda25d25df74215ed0bbe06b97804e053d950`.
 The dedicated `a9e7/operating-system` checkout was confirmed clean at that exact
@@ -90,7 +97,7 @@ ISO inputs. Two complete ISO builds have not been rerun for this branch.
 
 ## Required work by Chat 2
 
-The [integration contract](secure-boot.md#signing-interface-for-chat-2) defines
+The [integration contract](secure-boot.md#signing-and-generation-interface) defines
 fixed candidate paths and versioned receipts. Connect candidate consumption under
 the existing mutation and signing locks, bind kernel/root/transaction semantics,
 reverify the ESP copy before selection, retain the prior root/UKI pair, and include

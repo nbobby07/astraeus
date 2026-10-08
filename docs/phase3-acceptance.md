@@ -1,4 +1,12 @@
-# Phase 3 validation infrastructure acceptance matrix
+# Phase 3 acceptance
+
+Current integration verdict: **PHASE 3 NOT YET VALIDATED**.
+The [integration report](phase3-integration.md) separates current candidate work
+from the historical harness/fixture results below. No historical fixture pass is
+being counted as integrated-image acceptance. The A-N matrix, Phase 2 regression
+suite and independent ISO comparison must pass on the frozen candidate.
+
+## Historical validation infrastructure acceptance
 
 Branch: `phase3/validation`. Confirmed base:
 `6a8fda25d25df74215ed0bbe06b97804e053d950`.

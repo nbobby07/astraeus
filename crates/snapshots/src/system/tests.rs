@@ -44,7 +44,7 @@ impl Commands for Fake {
         match program {
             "artifact" => match args {
                 ["ready", _] => Ok(serde_json::json!({"schema_version":1,"systemd_version":262,"loader_verified":true,"firmware_trusted":true}).to_string()),
-                ["verify", path] => Ok(serde_json::json!({"schema_version":1,"sha256":self.run("sha256sum", &["--",path])?,"signature_verified":self.boot.borrow().get("untrusted").is_none(),"firmware_trusted":true}).to_string()),
+                ["verify", path] | ["--policy-root", _, "verify", path] => Ok(serde_json::json!({"schema_version":1,"sha256":self.run("sha256sum", &["--",path])?,"signature_verified":self.boot.borrow().get("untrusted").is_none(),"firmware_trusted":true}).to_string()),
                 ["rebind", original, cmdline, output] => {
                     let bytes = fs::read(original)?;
                     fs::write(output, crate::tests::image(pe_section(&bytes,b".linux")?, fs::read_to_string(cmdline)?.trim().as_bytes()))?;
@@ -656,7 +656,7 @@ fn disposable_linux_btrfs_roundtrip() {
         fn boot_artifact(&self, args: &[&str]) -> Result<String> {
             // Synthetic trust is confined to this storage test, never firmware qualification.
             match args {
-                ["verify", path] => {
+                ["verify", path] | ["--policy-root", _, "verify", path] => {
                     require(
                         Path::new(path).starts_with(&self.directory),
                         "trust fixture escaped disposable directory",

@@ -109,6 +109,7 @@ struct Snapshots {
     fail_post: bool,
     fail_activate: bool,
     fail_baseline: bool,
+    activation_history: Option<PathBuf>,
 }
 impl SnapshotBackend for Snapshots {
     fn prepare_boot_baseline(&mut self, _: &str) -> Result<()> {
@@ -118,7 +119,14 @@ impl SnapshotBackend for Snapshots {
             Ok(())
         }
     }
-    fn activate_boot(&mut self, _: &str) -> Result<()> {
+    fn activate_boot(&mut self, reference: &str) -> Result<()> {
+        if let Some(path) = &self.activation_history {
+            let record = read_history(path)?.remove(0);
+            assert_eq!(record.state, TransactionState::AwaitingBoot);
+            assert_eq!(record.post_snapshot.as_deref(), Some(reference));
+            assert!(record.snapshot.is_some());
+            assert!(record.confirmation.is_none());
+        }
         if self.fail_activate {
             Err("activation interrupted".into())
         } else {
@@ -860,6 +868,65 @@ fn system_checks_distinguish_missing_tool_and_failed_check() {
     assert!(SystemBoot { runner: Runner }
         .regenerate(&plan(), 1)
         .is_err());
+}
+
+#[test]
+fn managed_health_rejects_unknown_or_failed_artifact_trust() {
+    struct Runner {
+        reply: String,
+    }
+    impl CommandRunner for Runner {
+        fn managed_loader(&mut self) -> Result<bool> {
+            Ok(true)
+        }
+        fn run(&mut self, program: &str, args: &[String]) -> Result<CommandOutput> {
+            if program == "/usr/bin/astraeus-boot-artifact" {
+                assert_eq!(args, ["verify", "/efi/EFI/Astraeus/maintenance.efi"]);
+            }
+            Ok(CommandOutput {
+                success: true,
+                stdout: self.reply.clone(),
+                stderr: String::new(),
+            })
+        }
+    }
+    let good = serde_json::json!({"schema_version":1,"sha256":"a".repeat(64),"signature_verified":true,"firmware_trusted":true});
+    for (reply, expected) in [
+        (good.to_string(), HealthStatus::Pass),
+        ("unknown".into(), HealthStatus::Fail),
+        (
+            serde_json::json!({"signature_verified":true}).to_string(),
+            HealthStatus::Fail,
+        ),
+        (
+            {
+                let mut bad = good.clone();
+                bad["firmware_trusted"] = false.into();
+                bad.to_string()
+            },
+            HealthStatus::Fail,
+        ),
+        (
+            {
+                let mut bad = good.clone();
+                bad["signature_verified"] = false.into();
+                bad.to_string()
+            },
+            HealthStatus::Fail,
+        ),
+    ] {
+        let checks = SystemHealth {
+            runner: Runner { reply },
+            uki_path: "/efi/EFI/Astraeus/maintenance.efi".into(),
+        }
+        .run(&plan());
+        let security = checks
+            .iter()
+            .find(|check| check.name == "secure_boot")
+            .unwrap();
+        assert!(security.required);
+        assert_eq!(security.status, expected);
+    }
 }
 
 #[test]

@@ -18,10 +18,10 @@ the following path on an unprovisioned, non-enforcing development installation:
 
 The Phase 3 helper selects private output when a signing policy, retained signing
 state or firmware SecureBoot=1 requires signing. Its post hook publishes verified
-candidates outside the ESP. Until boot-generation integration is complete,
-provisioned systems reject package transactions before mutation. See the
-[signing contract](secure-boot.md#signing-interface-for-chat-2); the signer does
-not select or activate boot generations.
+candidates outside the ESP. The integrated update hook requires the locked
+coordinator and a verified retained generation before package mutation. See the
+[signing contract](secure-boot.md#signing-and-generation-interface); the signer does
+not select or activate boot generations; it supplies their verified artifacts.
 
 The product ID comes from the central manifest. `mkinitcpio` with `systemd-ukify`
 packages the kernel, initramfs, OS release, kernel version and embedded command

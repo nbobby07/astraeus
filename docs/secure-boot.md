@@ -1,10 +1,10 @@
 # Owner-managed Secure Boot
 
-Phase 3 provides signing, verification, private candidate staging, read-only
-firmware inspection and disposable test-key preparation. It does not activate
-generations or enroll firmware keys. The default installer and Phase 2 boot path
-remain unsigned. Do not enable enforcement on an existing installation until
-the boot-generation integration and enforcing OVMF acceptance below pass.
+Phase 3 integrates owner signing with [boot generations](boot-generations.md),
+private candidate staging, firmware inspection and disposable test keys.
+The default installer remains unsigned; owner provisioning is a separate step.
+No tool enrolls firmware keys. See [integration acceptance](phase3-acceptance.md)
+before relying on this development implementation for recovery.
 
 Decision and upstream references: [ADR 0003](adr/0003-owner-secure-boot.md).
 
@@ -37,19 +37,22 @@ work; do not provision a release key as an online machine key.
 
 ## Policy and dependencies
 
-The package installs `/usr/bin/astraeus-secure-boot`, a mkinitcpio post hook, a private-output preset template
-and documentation. Install Arch `sbsigntools` for signing/verification, and
-`efitools` only for test-key preparation. OpenSSL, Python and systemd-ukify are
-runtime dependencies. Provisioning is separate from ISO construction; builds do
-not generate keys or install an active policy.
+The package installs `/usr/bin/astraeus-secure-boot`, the native
+`astraeus-boot-artifact` provider, a mkinitcpio post hook and documentation.
+OpenSSL, Python, systemd-ukify, sbsigntools and efitools are runtime dependencies.
+Provisioning is separate from ISO construction; builds do not generate keys or
+install an active policy. efitools computes the PE Authenticode SHA-256 used for
+image revocations. This differs from the full-file hash in generation metadata.
 
 The package also carries an AbortOnFail hook in `/usr/share/libalpm/hooks`, so
 existing installations receive the update guard when upgrading distroctl.
-Calamares finalization calls the same `guard-legacy` check before its configuration
-writes or unsigned bootctl installation. On an older installation, generation
-provisioning must replace its legacy preset with the private-output template
-before installing a signing policy. A missing or older helper is not supported
-for provisioning; use the matching package, preset and post hook together.
+Calamares finalization calls `guard-legacy` before configuration writes or
+unsigned bootctl installation. The package hook uses `guard-update`, which
+requires the running distroctl coordinator to hold both mutation locks and have
+a freshly verified retained generation selected. On an older installation,
+provision the matching package, the guarded `linux.preset` rendered by the
+installer, and its post hook together. Keep the guarded preset's legacy argument:
+the generation manager relocates it when the first retained root is selectable.
 
 `/etc/astraeus/secure-boot/policy.json` has exactly these fields:
 
@@ -94,15 +97,52 @@ valid for the configured certificate under local policy; it is not firmware
 authorization. PK/KEK/db/dbx observations include exact certificate membership and
 unrecognized signature types. No raw key/database contents are printed.
 
-`check-enrollment` is deliberately narrow: require an observed signer certificate
-in db, an observed empty dbx, SecureBoot=1 and SetupMode=0. It fails on revoked,
-absent, removed, malformed or unknown trust, and on nonempty dbx requiring full
-image-hash/TBS revocation evaluation. It does not replace an enforcing boot test.
-Real factory dbx databases generally require the firmware validation path; never
-empty dbx to make this check pass. Certificate expiry is a local signing/verification
-policy, not a firmware expiration guarantee.
+The enrollment-only command requires the configured signer in db, an observed
+empty dbx, SecureBoot=1 and SetupMode=0. It cannot authorize a particular image.
+The generation provider additionally accepts SHA-256-only dbx lists after
+checking the exact image's Authenticode hash against every entry. Missing,
+unreadable, malformed, certificate/TBS and unsupported lists still fail closed.
+Revoked signatures and known image hashes cannot pass. Never clear dbx to satisfy
+this policy. Certificate expiry is a local policy; actual enforcing boot and
+refusal remain separate acceptance gates.
 
-## Signing interface for Chat 2
+## Signing and generation interface
+
+The shipped `astraeus-boot-artifact` implements the strict schema-1 ready,
+verify and rebind interface in [boot generations](boot-generations.md).
+Readiness checks both signed loader copies against all packaged loader bytes
+except Authenticode metadata and alignment padding. It checks the running
+systemd-boot 262 identity, ESP and absence of another XBOOTLDR partition.
+Artifact verification checks both full-file integrity and current owner/firmware
+policy. Signing alone does not establish that firmware enforced an earlier boot.
+
+Rebinding verifies the source signature, changes only the embedded command line,
+signs the new image and verifies all other PE sections are unchanged. The new
+selector must fit the original section's allocated padding; larger selectors
+are refused. An interrupted rebind retains `rebind.pending` and blocks reuse.
+Completed rebind receipts remain in `rebind.consumed.*` directories.
+
+The package hook accepts signed updates only when its ancestor is the installed
+distroctl process holding both the update and snapshot locks. It asks Rust to
+verify the selected retained root and its authoritative transaction reference.
+The post hook stages and verifies a private candidate, then journals publication
+to the unselected maintenance path. It verifies the ESP copy before replacement.
+The retained generation remains immutable and selectable throughout. Completed
+candidate receipts move to `uki.consumed.*`; `uki.publish.json` or unfinished
+signing state requires deliberate inspection. Direct pacman and manual
+mkinitcpio cannot use this handoff without the locked coordinator.
+
+Offline recovery passes `--policy-root INSTALLED_ROOT verify IMAGE`. Only public
+policy and certificate reads are allowed in this mode; paths are resolved beneath
+that root with the same ownership and link checks. The currently running recovery
+firmware must trust the installed identity. Recovery never borrows a private key
+from the installed root for verification.
+
+The low-level candidate interface below also supports explicit initial owner
+provisioning. Initial loader/UKI installation must be completed and independently
+booted under enforcing firmware before `distroctl boot enable`. Preserve the
+guarded preset, both signed loader copies, the original UKI and signing receipts.
+Neither a signing command nor `boot enable` enrolls keys or proves boot acceptance.
 
 Create `/var/lib/astraeus/secure-boot` root-owned mode 0700. Under the generation
 coordinator's mutation lock, build unsigned material outside the ESP and call:
@@ -153,14 +193,13 @@ Arch and Astraeus package hooks already call mkinitcpio, as does the Phase 2
 coordinator. Missing policy/key, invalid signatures and incomplete staging fail
 closed. No unsigned fallback is supplied. A ready candidate alone changes no
 bootable generation. Retained signing state prevents a removed policy from
-silently restoring unsigned output. The installed `80-astraeus-secure-boot.hook`
-uses PreTransaction/AbortOnFail to block package mutation whenever signing is
-required. This explicit integration gate stays until Chat 2 connects consumption;
-the Phase 2 updater still expects a fresh active UKI. Unprovisioned, non-enforcing
-systems keep their original output and update behavior. Unknown firmware alone
-does not turn an unprovisioned development installation into a managed signer.
+silently restoring unsigned output. `80-astraeus-secure-boot.hook` uses
+PreTransaction/AbortOnFail to require the verified generation handoff described
+above. Unprovisioned, non-enforcing systems keep their original behavior.
+Unknown firmware alone does not turn an unprovisioned development installation
+into a managed signer.
 
-Chat 2's required integration, before lifting the package-update guard:
+Original integration requirements, now exercised by the provider and coordinator:
 
 1. Hold the existing transaction/snapshot mutation guard; preserve the active
    root/UKI pair before package hooks. Run `check-config` and reject unresolved
@@ -190,7 +229,7 @@ not resumable automatically. Reverification is mandatory even after a rename
 completed. ESP and root switching remain separate operations; this helper makes
 no power-loss guarantee for that handoff.
 
-## Disposable OVMF preparation and Chat 3 acceptance
+## Disposable OVMF preparation and acceptance
 
 Only in a Linux test environment, explicitly request fresh short-lived keys:
 
@@ -204,7 +243,7 @@ policy, and a completion marker. An interrupted destination is retained and
 never reused. No `.auth` enrollment action, efivar write, firmware access or VARS
 modification occurs. Private material must stay outside the repository and ISO.
 
-Chat 3 must use a fresh, explicitly disposable VARS copy with Secure Boot capable
+Validation must use a fresh, explicitly disposable VARS copy with Secure Boot capable
 OVMF firmware. Enroll the test db and KEK, then PK last through that guest's setup
 mechanism, preserving logs and hashes of public inputs and the before/after VARS.
 Never point that automation at host firmware or real-hardware variables. Preserve
@@ -218,7 +257,7 @@ dbx. Record SecureBoot=1 and SetupMode=0 after cold boot, and demonstrate:
 - Signing failure, missing key and interrupted staging leave prior boot material
   intact and cannot select unsigned output.
 - Plain and LUKS2 installs, successful update/confirmation and retained-generation
-  recovery after Chat 2 integration, followed by Phase 2 regression acceptance.
+  recovery on the integrated image, followed by Phase 2 regression acceptance.
 
 Real hardware enrollment requires an explicit operator decision and confirmation
 in firmware, a backup/export of factory PK/KEK/db/dbx, vendor recovery instructions,
