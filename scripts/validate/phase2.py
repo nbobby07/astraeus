@@ -297,6 +297,10 @@ def transaction(before, after, states, transaction_id=None):
 
 
 def adapter(vm, action, *args, check=True):
+    if action in ['confirm-boot', 'finalize-rollback']:
+        # Wait for the actual systemd job, not a sleep or a guessed boot delay.
+        # Failure is evidence: never race its lock or skip a failed service.
+        vm.command('systemctl start astraeus-confirm-boot.service', label='wait-boot-confirmation')
     return vm.command(shlex.join(['bash', '/mnt/astraeus-validation/fixtures/adapter.sh', action, *args]),
                       label=action, check=check)
 

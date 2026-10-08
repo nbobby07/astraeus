@@ -42,6 +42,23 @@ def transaction_evidence():
 
 
 class ValidationTests(unittest.TestCase):
+    def test_confirmation_waits_for_service_and_preserves_job_failure(self):
+        for action in ['confirm-boot', 'finalize-rollback']:
+            vm = Mock()
+            phase2.adapter(vm, action, '7')
+            calls = vm.command.call_args_list
+            self.assertEqual(calls[0].args[0], 'systemctl start astraeus-confirm-boot.service')
+            self.assertIn(action + ' 7', calls[1].args[0])
+            self.assertEqual(len(calls), 2)
+            vm.command.reset_mock()
+            vm.command.side_effect = RuntimeError('boot confirmation service failed')
+            with self.assertRaisesRegex(RuntimeError, 'service failed'):
+                phase2.adapter(vm, action, '7')
+            vm.command.assert_called_once()
+        vm = Mock()
+        phase2.adapter(vm, 'update')
+        vm.command.assert_called_once()
+
     def test_complete_success_and_rollback_scenarios_reject_lost_home_data(self):
         for scenario in ['update-success', 'rollback']:
             for lost_home in [False, True]:
