@@ -28,8 +28,10 @@ def key_codes(text):
     return codes
 
 
-def reply(stream):
+def reply(stream, deadline=None):
     while True:
+        if deadline is not None and time.monotonic() >= deadline:
+            raise TimeoutError("QMP reply timed out")
         line = stream.readline()
         if not line:
             raise ConnectionError("QEMU closed the monitor connection")
@@ -41,6 +43,7 @@ def reply(stream):
 
 
 def execute(path, command):
+    deadline = time.monotonic() + 10
     with socket.socket(socket.AF_UNIX) as client:
         client.settimeout(10)
         client.connect(path)
@@ -49,9 +52,10 @@ def execute(path, command):
             if "QMP" not in greeting:
                 raise ValueError("not a QMP monitor")
             for request in [{"execute": "qmp_capabilities"}, command]:
+                client.settimeout(max(0.01, deadline - time.monotonic()))
                 stream.write(json.dumps(request).encode() + b"\n")
                 stream.flush()
-                result = reply(stream)
+                result = reply(stream, deadline)
     return result
 
 

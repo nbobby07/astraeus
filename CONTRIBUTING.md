@@ -1,7 +1,8 @@
 # Contributing
 
-Astraeus currently has a validated installation foundation and a planned update
-system. Read the [roadmap](docs/roadmap.md) and [architecture](docs/architecture.md)
+Astraeus has validated installation, package updates and offline rollback on its
+recorded QEMU/KVM target. Read the [Phase 2 acceptance](docs/phase2-integration.md),
+[roadmap](docs/roadmap.md) and [architecture](docs/architecture.md)
 before proposing work across those boundaries. Open an issue before starting a
 large feature or changing the storage, boot or privilege model.
 
@@ -68,6 +69,12 @@ Storage, image, account, boot and privilege changes need the relevant tests in
 
 A repaired test installation is diagnostic evidence. Acceptance needs a fresh
 installation of the corrected image.
+
+Transaction or recovery changes also need the relevant installed scenarios in
+[the Phase 2 runner](docs/phase2-validation.md): signed update and boot confirmation,
+failed update, plain and encrypted rollback, interrupted mutation and unbootable
+recovery. Preserve failed attempts as well as passing reruns. Host checks alone
+cannot qualify these paths.
 
 ## Reports and sensitive data
 

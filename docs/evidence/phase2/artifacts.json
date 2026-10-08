@@ -1,0 +1,43 @@
+{
+  "runtime_source": "dde0970118ed3003221770d9004bea3147c030ef",
+  "acceptance_harness": "2bc521943cf616aae1a572858a3ed15007ca8826",
+  "acceptance_report_commit": "31b045018eb21df636d2b623702ef5e195c872f5",
+  "source_archive_sha256": "f736366f8945a4c6d8c955585147441bde659051e416c33b7242e27f8d43aba5",
+  "iso_comparison": {
+    "full_file_cmp_exit": 0,
+    "package_manifests_equal": true,
+    "unsigned_package_hashes_equal": true
+  },
+  "artifacts": [
+    {
+      "file": "phase2-dde0970-A.iso",
+      "bytes": 3534465024,
+      "sha256": "80876324bac1975e5be408deb57bd7d10712f0a203a9148ca1ac96cbdd476b0d"
+    },
+    {
+      "file": "phase2-dde0970-B.iso",
+      "bytes": 3534465024,
+      "sha256": "80876324bac1975e5be408deb57bd7d10712f0a203a9148ca1ac96cbdd476b0d"
+    },
+    {
+      "file": "phase2-encrypted-evidence.tar.xz",
+      "bytes": 50677560,
+      "sha256": "df97f0d52c7a0af0ba92d06591df14bfd30e9cc2e9c8413bfaa198ae6a6b360a"
+    },
+    {
+      "file": "phase2-plain-evidence.tar.xz",
+      "bytes": 2812612,
+      "sha256": "0928413ca279dea00b3d4efbd4e8bb618fdf1ab31a9aeaf7dd8f102b3443a7f7"
+    }
+  ],
+  "freestyle": {
+    "state": "paused",
+    "cpu": 8,
+    "memory_mib": 16384,
+    "disk_mib": 65536,
+    "added_runtime_seconds": 18591,
+    "active_nested_guests": 0
+  },
+  "evidence_location": "D:/Astraeus-Phase2-Evidence",
+  "limitations": "Manual offline recovery; non-atomic root/ESP changes; no general power-loss guarantee."
+}

@@ -122,7 +122,7 @@ def provision(target, partitions, keyboard=None, username=None):
     write(root, "etc/sddm.conf.d/10-astraeus.conf", "[General]\nDisplayServer=wayland\nGreeterEnvironment=QT_WAYLAND_SHELL_INTEGRATION=layer-shell\nInputMethod=\n[Wayland]\nCompositorCommand=kwin_wayland --no-lockscreen --no-global-shortcuts --locale1\n[Autologin]\nSession=plasma.desktop\n")
     write(root, "var/lib/sddm/state.conf", "[Last]\nSession=/usr/share/wayland-sessions/plasma.desktop\n")
     run("arch-chroot", root, "chown", "sddm:sddm", "/var/lib/sddm/state.conf")
-    run("arch-chroot", root, "systemctl", "enable", "NetworkManager.service", "sddm.service", "systemd-timesyncd.service")
+    run("arch-chroot", root, "systemctl", "enable", "NetworkManager.service", "sddm.service", "systemd-timesyncd.service", "astraeus-confirm-boot.service")
     run("arch-chroot", root, "systemctl", "set-default", "graphical.target")
     run("arch-chroot", root, "systemctl", "--global", "enable", "pipewire.socket", "pipewire-pulse.socket", "wireplumber.service")
     run("arch-chroot", root, "bootctl", "--esp-path=/efi", "install")

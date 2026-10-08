@@ -1,0 +1,187 @@
+RUN /home/noel/.cache/astraeus-transactions-cargo/bin/cargo test --workspace --locked
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.76s
+     Running unittests src/lib.rs (/home/noel/.cache/astraeus-transactions-target/debug/deps/distro_config-2f51042acd684736)
+
+running 1 test
+test tests::metadata_rejects_invalid_inputs ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/home/noel/.cache/astraeus-transactions-target/debug/deps/distro_hardware-67801a2224b0eb05)
+
+running 9 tests
+test tests::cpu_parsing_counts_socket_core_pairs_and_partial_topology ... ok
+test tests::memory_parsing_preserves_bytes_and_rejects_overflow_and_wrong_units ... ok
+test tests::firmware_fixture_distinguishes_uefi_legacy_and_unavailable ... ok
+test tests::storage_transports_and_malformed_capacity ... ok
+test tests::vm_fallbacks_do_not_guess_physical_hardware_or_generic_dmi ... ok
+test tests::storage_fixture_follows_partition_parent_without_slaves ... ok
+test tests::missing_empty_malformed_and_io_errors_are_separate ... ok
+test tests::gpu_fixture_identifies_vendors_models_and_keeps_incomplete_devices ... ok
+test tests::real_sysfs_symlinks_link_drm_and_partitions_without_duplicates ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/home/noel/.cache/astraeus-transactions-target/debug/deps/distro_snapshots-1dee1525e857f441)
+
+running 13 tests
+test system::tests::disposable_linux_btrfs_roundtrip ... ignored, requires ASTRAEUS_LOOPBACK_TEST=1, root, loop devices, Btrfs and FAT tools
+test tests::btrfs_identity_parser_fails_closed ... ok
+test tests::boot_identity_allows_only_systemd_detected_console_suffixes ... ok
+test tests::identifiers_and_pe_are_checked_at_the_boundary ... ok
+test system::tests::symlinks_cannot_redirect_store_or_boot_writes ... ok
+test system::tests::online_discovery_and_unprivileged_catalog_do_not_call_btrfs ... ok
+test system::tests::encrypted_roots_bind_mapper_filesystem_and_luks_header ... ok
+test system::tests::wrong_layout_missing_tools_metadata_and_targets_fail_closed ... ok
+test system::tests::interrupted_mutations_leave_a_durable_blocker ... ok
+test system::tests::corruption_fstab_and_mount_conflicts_block_execution ... ok
+test system::tests::planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots ... ok
+test system::tests::full_lifecycle_keeps_persistent_data_and_boot_evidence ... ok
+test system::tests::each_rollback_durability_boundary_preserves_a_root_and_blocks_retry ... ok
+
+test result: ok. 12 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running unittests src/lib.rs (/home/noel/.cache/astraeus-transactions-target/debug/deps/distro_transactions-4f4242c455d378f1)
+
+running 19 tests
+test tests::disk_checks_reject_shortfall_and_overflow ... ok
+test tests::health_distinguishes_failure_warning_and_unavailable ... ok
+test tests::plan_validation_and_removal_state_are_consistent ... ok
+test tests::boot_refresh_accepts_current_loader_only_with_matching_installed_copies ... ok
+test tests::pacman_machine_output_rejects_ambiguity ... ok
+test tests::planner_resolves_real_fields_and_propagates_command_errors ... ok
+test tests::state_machine_rejects_skipped_and_terminal_transitions ... ok
+test tests::system_checks_distinguish_missing_tool_and_failed_check ... ok
+test tests::pacman_keeps_signature_policy_and_native_dependency_reasons ... ok
+test tests::no_op_needs_no_snapshot_or_package_mutation ... ok
+test tests::history_is_read_only_versioned_and_lock_is_exclusive ... ok
+test tests::missing_snapshots_prevents_all_package_work ... ok
+test tests::post_snapshot_failure_retains_pre_snapshot_and_requires_rollback ... ok
+test tests::execution_order_and_boot_confirmation_boundary ... ok
+test tests::stale_confirmation_and_missing_post_snapshot_fail_closed ... ok
+test tests::interrupted_transactions_are_recovered_without_replay ... ok
+test tests::confirmation_requires_new_boot_matching_generation_and_fresh_health ... ok
+test tests::cancellation_at_every_boundary_never_succeeds ... ok
+test tests::failure_matrix_is_durable_and_stops_at_the_failing_phase ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src/lib.rs (/home/noel/.cache/astraeus-transactions-target/debug/deps/distroctl-06f5c4d812f1a0f8)
+
+running 4 tests
+test tests::formatting_and_json_share_normalized_hardware ... ok
+test tests::parse_observations_without_inventing_status ... ok
+test tests::status_resolves_real_partition_and_mapper_symlinks ... ok
+test tests::fixture_detects_encrypted_and_plain_root_and_running_uki ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/home/noel/.cache/astraeus-transactions-target/debug/deps/distroctl-9e7c3e12443759ea)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (/home/noel/.cache/astraeus-transactions-target/debug/deps/cli-4ff9a8dd72a50adb)
+
+running 3 tests
+test history_json_does_not_create_a_database ... ok
+test dry_run_and_history_share_structured_models ... ok
+test cli_contract ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.53s
+
+   Doc-tests distro_config
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_hardware
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_snapshots
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_transactions
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distroctl
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+RUN /home/noel/.cache/astraeus-transactions-cargo/bin/cargo fmt --check
+RUN /home/noel/.cache/astraeus-transactions-cargo/bin/cargo clippy --workspace --all-targets --locked -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.51s
+RUN python3 -m unittest discover -s tests -v
+test_acceleration_is_explicit_and_never_falls_back (test_boot_smoke.AccelerationTests.test_acceleration_is_explicit_and_never_falls_back) ... ok
+test_profile_generation_and_fingerprint_rejection (test_bootstrap.BootstrapTests.test_profile_generation_and_fingerprint_rejection) ... ok
+test_source_archive_is_deterministic_and_refuses_reuse (test_bootstrap.BootstrapTests.test_source_archive_is_deterministic_and_refuses_reuse) ... ok
+test_templates_and_live_contract (test_bootstrap.BootstrapTests.test_templates_and_live_contract) ... ok
+test_interruption_cannot_be_recorded_as_success (test_builder_signals.BuilderSignalTests.test_interruption_cannot_be_recorded_as_success) ... ok
+test_conventional_subject_and_limits (test_commit_subject.CommitSubjectTests.test_conventional_subject_and_limits) ... ok
+test_generated_profile_and_account_boundary (test_installer.InstallerTests.test_generated_profile_and_account_boundary) ... ok
+test_installed_boot_detaches_iso_and_preserves_disk_and_firmware (test_installer.InstallerTests.test_installed_boot_detaches_iso_and_preserves_disk_and_firmware) ... ok
+test_installer_storage_check_cannot_be_silently_disabled (test_installer.InstallerTests.test_installer_storage_check_cannot_be_silently_disabled) ... ok
+test_kernel_parameters_and_uki_inputs (test_installer.InstallerTests.test_kernel_parameters_and_uki_inputs) ... ok
+test_malformed_configuration_rejected (test_installer.InstallerTests.test_malformed_configuration_rejected) ... ok
+test_payload_does_not_clone_live_accounts_or_boot_workarounds (test_installer.InstallerTests.test_payload_does_not_clone_live_accounts_or_boot_workarounds) ... ok
+test_acceptance_requires_an_exact_complete_line (test_phase2_validation.ValidationTests.test_acceptance_requires_an_exact_complete_line) ... ok
+test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset (test_phase2_validation.ValidationTests.test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset) ... ok
+test_clone_uses_backing_disk_and_copies_vars (test_phase2_validation.ValidationTests.test_clone_uses_backing_disk_and_copies_vars) ... ok
+test_complete_success_and_rollback_scenarios_reject_lost_home_data (test_phase2_validation.ValidationTests.test_complete_success_and_rollback_scenarios_reject_lost_home_data) ... Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+ok
+test_confirmation_waits_for_service_and_preserves_job_failure (test_phase2_validation.ValidationTests.test_confirmation_waits_for_service_and_preserves_job_failure) ... ok
+test_corrupt_or_unaccepted_baseline_refused_before_cloning (test_phase2_validation.ValidationTests.test_corrupt_or_unaccepted_baseline_refused_before_cloning) ... ok
+test_failed_probe_cannot_be_used_as_evidence (test_phase2_validation.ValidationTests.test_failed_probe_cannot_be_used_as_evidence) ... ok
+test_guest_exit_timeout_output_limit_and_pipeline_failure (test_phase2_validation.ValidationTests.test_guest_exit_timeout_output_limit_and_pipeline_failure) ... ok
+test_interruption_requires_package_mutation_before_power_cut (test_phase2_validation.ValidationTests.test_interruption_requires_package_mutation_before_power_cut) ... ok
+test_launch_is_foreground_disk_only_and_readonly_share (test_phase2_validation.ValidationTests.test_launch_is_foreground_disk_only_and_readonly_share) ... QMP: /tmp/tmp8gk1qzzv/boot-1/qmp.sock
+ok
+test_observation_keeps_other_artifacts_when_one_command_fails (test_phase2_validation.ValidationTests.test_observation_keeps_other_artifacts_when_one_command_fails) ... ok
+test_package_mismatch_and_outcome_disagreement_fail (test_phase2_validation.ValidationTests.test_package_mismatch_and_outcome_disagreement_fail) ... ok
+test_qmp_events_and_deadline (test_phase2_validation.ValidationTests.test_qmp_events_and_deadline) ... ok
+test_qmp_handshake_and_command_through_real_socket (test_phase2_validation.ValidationTests.test_qmp_handshake_and_command_through_real_socket) ... ok
+test_ready_guest_shutdown_avoids_desktop_power_dialog (test_phase2_validation.ValidationTests.test_ready_guest_shutdown_avoids_desktop_power_dialog) ... ok
+test_ready_timeout_never_passes (test_phase2_validation.ValidationTests.test_ready_timeout_never_passes) ... ok
+test_real_guest_channel_correlates_reply_and_preserves_failure_output (test_phase2_validation.ValidationTests.test_real_guest_channel_correlates_reply_and_preserves_failure_output) ... ok
+test_real_qcow2_overlay_and_baseline_hash (test_phase2_validation.ValidationTests.test_real_qcow2_overlay_and_baseline_hash) ... ok
+test_reboot_requires_new_boot_identity (test_phase2_validation.ValidationTests.test_reboot_requires_new_boot_identity) ... ok
+test_shutdown_timeout_and_cleanup_target_only_owned_process (test_phase2_validation.ValidationTests.test_shutdown_timeout_and_cleanup_target_only_owned_process) ... ok
+test_snapshot_and_transaction_gates_reject_false_success (test_phase2_validation.ValidationTests.test_snapshot_and_transaction_gates_reject_false_success) ... ok
+test_terminal_transaction_requires_actual_uki_and_boot_evidence (test_phase2_validation.ValidationTests.test_terminal_transaction_requires_actual_uki_and_boot_evidence) ... ok
+test_timeout_kills_the_child_group_before_delayed_side_effect (test_phase2_validation.ValidationTests.test_timeout_kills_the_child_group_before_delayed_side_effect) ... ok
+test_events_cannot_be_mistaken_for_command_success (test_qmp.QmpTests.test_events_cannot_be_mistaken_for_command_success) ... ok
+test_stdin_text_is_validated_without_echoing_the_input (test_qmp.QmpTests.test_stdin_text_is_validated_without_echoing_the_input) ... ok
+test_text_is_validated_before_sending_any_keys (test_qmp.QmpTests.test_text_is_validated_before_sending_any_keys) ... ok
+test_cache_and_build_time_do_not_change_image_bytes (test_reproducibility.ImageDeterminismTests.test_cache_and_build_time_do_not_change_image_bytes) ... ok
+test_print_resolution_and_expanded_trust_policy_are_read_only (test_transactions_pacman.PacmanContractTests.test_print_resolution_and_expanded_trust_policy_are_read_only) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 5.560s
+
+OK
+RUN bash -n scripts/publish-repo.sh
+RUN bash -n tests/boot/live-smoke.sh
+RUN bash -n distro/archiso/profiledef.sh.in
+RUN bash -n distro/packages/distroctl/PKGBUILD.in
+RUN bash -n scripts/validate/arch-builder.sh
+RUN bash -n distro/packages/calamares/PKGBUILD
+RUN bash -n distro/installed/linux.preset.in
+RUN bash -n distro/installed/mkinitcpio.conf
+RUN bash -n tests/boot/installed-smoke.sh
+RUN bash -n .githooks/commit-msg
+RUN bash -n tests/fixtures/phase2/adapter.sh
+RUN bash -n tests/fixtures/phase2/PKGBUILD

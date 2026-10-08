@@ -54,4 +54,6 @@ sudo ukify inspect /efi/EFI/Linux/astraeus-dev-linux.efi
 
 There is no enforced Secure Boot in Phase 1. The stable `/EFI/Linux/` output path
 and standard ukify boundary leave signing work separate from installer UI and
-passphrase handling. Multi-generation boot artifacts and rollback are later work.
+passphrase handling. Multi-generation boot menu integration remains later work.
+The Phase 2 [snapshot library](snapshots.md) binds saved UKIs to root snapshots
+and restores the pair through explicit offline recovery.

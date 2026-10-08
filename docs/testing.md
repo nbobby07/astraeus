@@ -1,5 +1,9 @@
 # Verification and acceptance
 
+Phase 2 destructive VM workflows, integration hooks and evidence requirements
+are in [Phase 2 validation infrastructure](phase2-validation.md). Host harness
+tests do not establish installed update or rollback acceptance.
+
 ## Checks that run without an Arch builder
 
 ```sh
@@ -170,7 +174,56 @@ disk. Do not reuse its partial result for acceptance. Neither source inspection,
 unit tests nor a Calamares completion page qualifies Phase 1 without both installed
 systems booting and surviving the second boot. Repeat full ISO A/B comparison.
 
-## Later subsystem tests
+## Phase 2 snapshot checks
+
+The ordinary Rust/Python checks above include command fixtures and temporary
+trees without mutating host root. Linux has an additional ignored test using
+new 512 MiB Btrfs and 64 MiB FAT regular-file images:
+
+```sh
+cargo test -p distro-snapshots --locked --no-run
+sudo env ASTRAEUS_LOOPBACK_TEST=1 cargo test -p distro-snapshots --locked \
+  disposable_linux_btrfs_roundtrip -- --ignored --nocapture
+```
+
+Use the same Rust toolchain for sudo, or run the compiled test executable with
+`ASTRAEUS_LOOPBACK_TEST=1` and the arguments
+`--ignored --exact system::tests::disposable_linux_btrfs_roundtrip`.
+Required tools: `mkfs.btrfs`, `btrfs`, `mkfs.vfat`, `mount`, `umount`, `findmnt`,
+`sha256sum`, `sync`, loop devices and kernel Btrfs support. Formatters receive
+only the test's newly created regular files. Both mounts are released before
+fixture cleanup.
+
+The test executor permits its isolated fixture in WSL/private namespaces;
+production refuses these environments. Its synthetic PE UKI qualifies storage
+and byte handling only. It passed on WSL2 6.6.114.1 with btrfs-progs 6.17.1 and
+dosfstools 4.2. Real UEFI boots, plain/LUKS2 recovery and a verified mutation
+interruption subsequently passed through the existing QEMU runner. See the
+[Phase 2 acceptance record](phase2-integration.md) and
+[snapshot policy and recovery](snapshots.md). ENOSPC, arbitrary power-cut points
+and interrupted root/ESP rollback remain outside that qualification.
+
+## Transaction and boot-confirmation tests
+
+Phase 2 transaction tests run with the same workspace commands above on Windows
+and Linux. They cover typed plans, pacman machine-output parsing, byte arithmetic,
+SQLite schema/persistence/read-only history, locking, legal/illegal transitions,
+missing snapshot integration, cancellation, interrupted restart recovery, package
+and UKI failures, health aggregation, CLI dry-run presentation and history JSON.
+Integration checks cover snapshot failure before package mutation, boot identity,
+required health evidence, idempotent confirmation and rollback finalization.
+Injected package/command backends never mutate the host package database.
+Successful live execution in fixtures ends at `awaiting_boot`; it is not installed
+update or rollback acceptance. The real installed scenarios are recorded in
+[Phase 2 acceptance](phase2-integration.md). See [transactions](transactions.md)
+for the product lifecycle.
+
+`test_transactions_pacman.py` additionally exercises real pacman when available:
+temporary local/sync databases, dependency resolution, epoch versions, exact
+print-format fields, inherited signature policy and before/after file equality.
+It never installs packages or touches the host database. An extracted pacman can
+be selected with `ASTRAEUS_TEST_PACMAN` and `ASTRAEUS_TEST_PACMAN_CONF`; otherwise
+the check skips when those tools are absent.
 
 | Boundary | Required evidence before broadening implementation |
 | --- | --- |

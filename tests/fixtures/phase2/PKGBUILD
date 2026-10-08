@@ -1,0 +1,15 @@
+# TEST ONLY. Build versions 1 and 2 separately; sign with the validation repo key.
+pkgname=astraeus-validation-fixture
+pkgver=1
+pkgrel=1
+pkgdesc='Disposable rollback state sentinel'
+arch=('any')
+license=('0BSD')
+package() {
+    install -d "$pkgdir/etc"
+    case "$pkgver" in
+        1) printf 'version-A\n' > "$pkgdir/etc/astraeus-test-state" ;;
+        2) printf 'version-B\n' > "$pkgdir/etc/astraeus-test-state" ;;
+        *) return 1 ;;
+    esac
+}
