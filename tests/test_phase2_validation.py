@@ -1,4 +1,6 @@
 import copy
+from contextlib import nullcontext
+import errno
 import importlib.util
 import io
 import json
@@ -42,6 +44,45 @@ def transaction_evidence():
 
 
 class ValidationTests(unittest.TestCase):
+    @unittest.skipIf(os.name == 'nt', 'requires POSIX cache symlinks')
+    def test_space_fault_uses_runtime_mount_and_restores_original_cache(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            cache = root / 'var/cache/pacman/pkg'
+            cache.mkdir(parents=True)
+            (cache / 'kept.pkg').write_bytes(b'original cache')
+            original_inode = cache.stat().st_ino
+            (root / 'run').mkdir()
+            (root / 'var/log').mkdir()
+            target = root / 'run/astraeus-validation-space'
+            original_open = Path.open
+            full = Mock()
+            full.write.side_effect = OSError(errno.ENOSPC, 'fixture full')
+
+            def open_fixture(path, *args, **kwargs):
+                if path == target / 'filler':
+                    return nullcontext(full)
+                return original_open(path, *args, **kwargs)
+
+            with patch.object(guest, 'guard') as guard, \
+                 patch.object(guest, 'Path', side_effect=lambda path: root / path.lstrip('/')), \
+                 patch.object(guest.subprocess, 'run') as run, \
+                 patch.object(Path, 'open', open_fixture):
+                guest.fault('space')
+                self.assertEqual(cache.readlink(), target)
+                run.assert_called_once_with(['mount', '-t', 'tmpfs', '-o', 'size=16m', 'tmpfs', str(target)], check=True)
+                full.write.assert_called_once()
+                guest.fault('space-reset')
+                self.assertFalse(cache.is_symlink())
+                self.assertEqual(cache.stat().st_ino, original_inode)
+                self.assertEqual((cache / 'kept.pkg').read_bytes(), b'original cache')
+                self.assertFalse(target.exists())
+                self.assertEqual((root / 'var/log/astraeus-validation-fault').read_text(), 'space\n')
+                run.assert_called_with(['umount', str(target)], check=True)
+                with self.assertRaisesRegex(RuntimeError, 'unexpected space-fault cache layout'):
+                    guest.fault('space-reset')
+                self.assertEqual(guard.call_count, 3)
+
     def test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset(self):
         for code, firmware, allowed in [(None, False, True), (0, True, True),
                                        (0, False, False), (1, True, False), (-9, True, False)]:

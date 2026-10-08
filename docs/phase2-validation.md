@@ -165,7 +165,7 @@ Repeat with the following scenario/fault combinations:
 | `update-failure --fault health` | Targeted PostTransaction hook starts a deliberately failing oneshot unit; structured health must reject it; rollback and clean reboot |
 | `update-failure --fault service` | Targeted PostTransaction hook masks/stops NetworkManager; health must reject it; rollback restores the service configuration |
 | `rejected-update --fault payload` | Corrupt only the guest's signed fixture archive and remove its cached copy; download/verification failure; no snapshot or package mutation; unchanged system after reboot |
-| `rejected-update --fault space` | Fill a 16 MiB tmpfs mounted over the guest package cache; explicit insufficient-space refusal; unchanged system after reboot |
+| `rejected-update --fault space` | Fill a 16 MiB tmpfs under `/run`, temporarily symlink the standard package cache to it; explicit insufficient-space refusal; restore the original cache before reboot; unchanged system after reboot |
 | `rollback` | Complete a good live update, then restore its pre-snapshot offline and verify version A after reboot |
 | `interruption` | A targeted PostTransaction hook writes/syncs a barrier and blocks; require changed package state and version B while the journal remains `applying`, plus the pre-snapshot; kill only the owned QEMU child; boot; capture unreconciled state; reconcile to `rollback_required`; recover offline |
 | `boot-recovery` | Good live update, then overwrite its active UKI only in the overlay; failed boot window; recovery ISO restore; disk-only reboot and original system checks |
@@ -183,6 +183,14 @@ upgrade. No global pacman behavior is changed. Hooks are test setup stored befor
 the snapshot, so they may be present after rollback. The run ends there; discard
 the overlay rather than using it for a second scenario. Runtime fault effects
 are applied after snapshot creation where appropriate.
+
+The space fixture keeps its temporary mount under `/run` because the production
+mount policy rejects nested mounts beneath `/var/cache`. It preserves the original
+cache directory by renaming it beside its original path. Only after the runner
+verifies the explicit space refusal and unchanged packages/snapshots does the
+adapter restore that directory and unmount the temporary filesystem. Cleanup
+failure fails acceptance. This does not weaken the production mount policy or
+qualify root/ESP exhaustion.
 
 Before updating, each run captures system/package state and writes a random marker
 under `/home/astraeus-validation`. After snapshot creation it writes a *different*

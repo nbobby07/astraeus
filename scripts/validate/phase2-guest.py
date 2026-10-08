@@ -118,9 +118,25 @@ ExecStart=/usr/bin/false
         archive.write_bytes(b'not a package\n')
         cache = Path('/var/cache/pacman/pkg') / archive.name
         cache.unlink(missing_ok=True)
-    elif kind == 'space':
-        target = Path('/var/cache/pacman/pkg')
+    elif kind in ['space', 'space-reset']:
+        cache = Path('/var/cache/pacman/pkg')
+        saved = cache.with_name('pkg.astraeus-validation-saved')
+        target = Path('/run/astraeus-validation-space')
+        if kind == 'space-reset':
+            if not cache.is_symlink() or cache.readlink() != target or not saved.is_dir() or saved.is_symlink():
+                raise RuntimeError('unexpected space-fault cache layout')
+            cache.unlink()
+            saved.rename(cache)
+            subprocess.run(['umount', str(target)], check=True)
+            target.rmdir()
+            return
+        if cache.is_symlink() or not cache.is_dir() or saved.exists():
+            raise RuntimeError('space fault requires an ordinary cache directory')
+        target.mkdir(mode=0o700)
         subprocess.run(['mount', '-t', 'tmpfs', '-o', 'size=16m', 'tmpfs', str(target)], check=True)
+        # Keep the fault filesystem in the allowed runtime tree, not a protected package tree.
+        cache.rename(saved)
+        cache.symlink_to(target, target_is_directory=True)
         # ponytail: bounded cache ENOSPC; root/ESP exhaustion needs a separate disk budget.
         with (target / 'filler').open('wb', buffering=0) as stream:
             try:

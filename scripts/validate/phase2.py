@@ -381,6 +381,8 @@ def scenario(vm, args):
             require(value(changed, 'packages') == value(before, 'packages'), 'rejected update changed packages')
             require(value(changed, 'root') == 'version-A', 'rejected update changed root sentinel')
             require(value(changed, 'snapshots', True) == value(before, 'snapshots', True), 'rejection changed snapshots')
+            if args.fault == 'space':
+                adapter(vm, 'disarm', 'space')
             vm.reboot()
             final = observe(vm, 'after-rejection')
             healthy(final, args.encryption)
