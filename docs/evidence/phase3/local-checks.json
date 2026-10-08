@@ -1,0 +1,27 @@
+{
+  "cargo_test": {
+    "exit_code": 0,
+    "passed": 52,
+    "platform": "Windows"
+  },
+  "cargo_fmt": {
+    "exit_code": 0
+  },
+  "cargo_clippy": {
+    "exit_code": 0
+  },
+  "windows_python": {
+    "exit_code": 0,
+    "tests": 55,
+    "skipped": 12
+  },
+  "linux_python": {
+    "exit_code": 0,
+    "tests": 55,
+    "skipped": 2
+  },
+  "shell_syntax": {
+    "exit_code": 0
+  },
+  "integrated_acceptance": false
+}

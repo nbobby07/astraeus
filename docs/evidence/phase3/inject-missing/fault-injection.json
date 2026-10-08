@@ -1,0 +1,9 @@
+{
+  "fault": "missing",
+  "path": "/efi/EFI/Linux/astraeus-dev-linux.efi",
+  "before_sha256": "c9f82468afbb5375f49673e701f7136ac7c0300357ffc6a71a52716a35599a3b",
+  "started": 1791485164.2804549,
+  "expected": "refusal, never timeout-based acceptance",
+  "finished": 1791485164.4163244,
+  "after_sha256": null
+}

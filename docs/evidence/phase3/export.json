@@ -1,0 +1,30 @@
+{
+  "fingerprints.json": {
+    "bytes": 599,
+    "sha256": "cb3ba166ffb800a9732990229764b682615faad48bebea77b43c114f4d6fdac5"
+  },
+  "qemu-cleanup.json": {
+    "bytes": 40,
+    "sha256": "f01dcffc11af8628ec97c15ace87021295cfe321799b702838f50832f1e03037"
+  },
+  "evidence-files.json": {
+    "bytes": 114925,
+    "sha256": "e906c3a348f171143ddf5cb020cad0a309c00ec90f6b9e711806283c14d341e7"
+  },
+  "results.json": {
+    "bytes": 8199,
+    "sha256": "8118ad940240e871279d5f7e0d4309187ecc0da4bda752d036d562b1e05d173b"
+  },
+  "images.tar": {
+    "bytes": 3082792960,
+    "sha256": "2031dd9e74a751a98027d50915de7eddfe7276d05c1c8aad75b4b09f47ce8208"
+  },
+  "image-files.json": {
+    "bytes": 1227,
+    "sha256": "53a743d053ef641eb815db6197d00e0aa20123932f8d54046f6fc430f03fdd18"
+  },
+  "evidence.tar.gz": {
+    "bytes": 379721424,
+    "sha256": "ad591bd87f28e488bf7e6d98b6344c117901e6a279284f271e7b01c595e9e7e5"
+  }
+}
