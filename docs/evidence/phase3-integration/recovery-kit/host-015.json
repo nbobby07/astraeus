@@ -1,0 +1,14 @@
+{
+  "command": [
+    "mcopy",
+    "-i",
+    "/home/ubuntu/p3i/final/recovery-kit/recovery.fat",
+    "/home/ubuntu/p3i/final/recovery-kit/recovery.efi",
+    "::/EFI/Linux/recovery.efi"
+  ],
+  "started": "2026-10-09T00:04:27.941480+00:00",
+  "finished": "2026-10-09T00:04:28.214065+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,31 @@
+{
+  "command": [
+    "objcopy",
+    "-j",
+    ".text",
+    "-j",
+    ".sdata",
+    "-j",
+    ".data",
+    "-j",
+    ".dynamic",
+    "-j",
+    ".dynsym",
+    "-j",
+    ".rel",
+    "-j",
+    ".rela",
+    "-j",
+    ".reloc",
+    "-j",
+    ".p3data",
+    "--target=efi-app-x86_64",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/probe.so",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/public/probe.efi"
+  ],
+  "started": "2026-10-09T00:04:54.910242+00:00",
+  "finished": "2026-10-09T00:04:54.914387+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,38 @@
+{
+  "integrated-baseline.py": {
+    "before": "fd7f414a295758952df1c75ecc0213732d6e2562ce2517d389c42cb2b33817c5",
+    "after": "cfda61e9e5c337e86f3f8113fcadb894412d95ebb13dbb16c2cf404e8ae2a35f"
+  },
+  "integrated-guest.py": {
+    "before": "5c21ee45f1dfd856fbb0fcf24bcc63ee3860cb3e7d47c4ebdeef6ca592052700",
+    "after": "5c21ee45f1dfd856fbb0fcf24bcc63ee3860cb3e7d47c4ebdeef6ca592052700"
+  },
+  "integrated-run.py": {
+    "before": "119cf95026d7baf5f138657dbb5594a7f9a05487e3e3947cb805ecded9c6967b",
+    "after": "25915363c9dac82ea3410e347661ee6e453a8fa1decb13a3ece4afa4e893ff0d"
+  },
+  "integrated-regression.py": {
+    "before": "9a5a04b328110459e7d65b20fce2c94b5004e745478a422ee41ce59184d43174",
+    "after": "237d080863363e5a60a00552acd573d612b616bf5005eac1ea9f3a5ee4d9ddb0"
+  },
+  "integrated-fallback-recovery.py": {
+    "before": "817d5ccf1294ea1e8c100381f37b1dd7af351dcc13dcf53009836047043a86f2",
+    "after": "b53a795cd16bae8d4e95729ce531444bc5e4cda03adca5975635f4347a2ed08f"
+  },
+  "integrated-powercut.py": {
+    "before": "a2c3566cf60c806f1f4b98e03a9d11f002a8b5e19c47eac11b05182129ae05e0",
+    "after": "37d6c758bbfaac81873d75161274aa5c5ab1b2012313226dcf70d33d5049c93e"
+  },
+  "powercut-sync.py": {
+    "before": "d9b44d3ba3365c27606748c153d11c1797dde4c5002790a23c04145c2260a48a",
+    "after": "d9b44d3ba3365c27606748c153d11c1797dde4c5002790a23c04145c2260a48a"
+  },
+  "direct-package-refusal.py": {
+    "before": "b10c44beb34a2b0c0094eafc22394d7e01ba4c315ba5f92ad46ef462c77477f7",
+    "after": "5142c577f5b582af7491f3b64aab4fc9bb35d334ec937bf17760bb9ba1eead6c"
+  },
+  "build-recovery-kit.py": {
+    "before": "9ce9fc302aafa944c4be6dcd2d3b8f638fb5439eba259013e4be40a350461020",
+    "after": "37d205d451821dec67895acb2e8c1157dccab8f5e612096f4091c92373652302"
+  }
+}

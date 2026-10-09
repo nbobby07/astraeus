@@ -1,0 +1,7 @@
+{
+  "path": "/home/ubuntu/p3i/final/install-plain/disk.qcow2",
+  "sha256": "022dccb42fa21d6d1d5f3db730b88e1dfbf8a707386eeb87d01269bb38e01330",
+  "bytes": 2890268672,
+  "verified_export": "D:/Astraeus-Phase3-Integration-Evidence/install-fdb784c-plain.qcow2",
+  "reason": "Stopped installation fully exported and verified. Independent accepted enforcing baseline retained."
+}

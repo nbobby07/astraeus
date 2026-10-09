@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:48.660150+00:00",
+  "finished": "2026-10-09T01:28:48.812082+00:00",
+  "command": "btrfs subvolume list /",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "ID 256 gen 90 top level 5 path @previous-1791509233917400189\nID 257 gen 79 top level 5 path @home\nID 258 gen 97 top level 5 path @snapshots\nID 259 gen 90 top level 5 path @log\nID 260 gen 66 top level 5 path @cache\nID 261 gen 11 top level 5 path @containers\nID 262 gen 52 top level 258 path @snapshots/astraeus/1791508787-978064895-781/private/root\nID 263 gen 90 top level 258 path @snapshots/astraeus/generations/1791508787-978064895-781/private/root\nID 264 gen 68 top level 258 path @snapshots/astraeus/1791508829-745658404-781/private/root\nID 265 gen 96 top level 5 path @\n",
+    "id": "8dc26baed2964795a904a88667b89c7b",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

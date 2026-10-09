@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Verify the retained signed generation before package mutation
+When = PreTransaction
+Exec = /usr/bin/astraeus-secure-boot guard-update
+AbortOnFail

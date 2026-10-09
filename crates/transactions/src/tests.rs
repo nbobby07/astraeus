@@ -1,4 +1,6 @@
 use super::*;
+#[path = "generation_tests.rs"]
+mod generation_tests;
 use crate::pacman::*;
 use std::{
     cell::Cell,
@@ -105,8 +107,32 @@ impl PackageBackend for Packages {
 struct Snapshots {
     created: usize,
     fail_post: bool,
+    fail_activate: bool,
+    fail_baseline: bool,
+    activation_history: Option<PathBuf>,
 }
 impl SnapshotBackend for Snapshots {
+    fn prepare_boot_baseline(&mut self, _: &str) -> Result<()> {
+        if self.fail_baseline {
+            Err("baseline publication interrupted".into())
+        } else {
+            Ok(())
+        }
+    }
+    fn activate_boot(&mut self, reference: &str) -> Result<()> {
+        if let Some(path) = &self.activation_history {
+            let record = read_history(path)?.remove(0);
+            assert_eq!(record.state, TransactionState::AwaitingBoot);
+            assert_eq!(record.post_snapshot.as_deref(), Some(reference));
+            assert!(record.snapshot.is_some());
+            assert!(record.confirmation.is_none());
+        }
+        if self.fail_activate {
+            Err("activation interrupted".into())
+        } else {
+            Ok(())
+        }
+    }
     fn boot_id(&mut self) -> Result<String> {
         Ok("boot-before".into())
     }
@@ -845,6 +871,65 @@ fn system_checks_distinguish_missing_tool_and_failed_check() {
 }
 
 #[test]
+fn managed_health_rejects_unknown_or_failed_artifact_trust() {
+    struct Runner {
+        reply: String,
+    }
+    impl CommandRunner for Runner {
+        fn managed_loader(&mut self) -> Result<bool> {
+            Ok(true)
+        }
+        fn run(&mut self, program: &str, args: &[String]) -> Result<CommandOutput> {
+            if program == "/usr/bin/astraeus-boot-artifact" {
+                assert_eq!(args, ["verify", "/efi/EFI/Astraeus/maintenance.efi"]);
+            }
+            Ok(CommandOutput {
+                success: true,
+                stdout: self.reply.clone(),
+                stderr: String::new(),
+            })
+        }
+    }
+    let good = serde_json::json!({"schema_version":1,"sha256":"a".repeat(64),"signature_verified":true,"firmware_trusted":true});
+    for (reply, expected) in [
+        (good.to_string(), HealthStatus::Pass),
+        ("unknown".into(), HealthStatus::Fail),
+        (
+            serde_json::json!({"signature_verified":true}).to_string(),
+            HealthStatus::Fail,
+        ),
+        (
+            {
+                let mut bad = good.clone();
+                bad["firmware_trusted"] = false.into();
+                bad.to_string()
+            },
+            HealthStatus::Fail,
+        ),
+        (
+            {
+                let mut bad = good.clone();
+                bad["signature_verified"] = false.into();
+                bad.to_string()
+            },
+            HealthStatus::Fail,
+        ),
+    ] {
+        let checks = SystemHealth {
+            runner: Runner { reply },
+            uki_path: "/efi/EFI/Astraeus/maintenance.efi".into(),
+        }
+        .run(&plan());
+        let security = checks
+            .iter()
+            .find(|check| check.name == "secure_boot")
+            .unwrap();
+        assert!(security.required);
+        assert_eq!(security.status, expected);
+    }
+}
+
+#[test]
 fn boot_refresh_only_reads_matching_installed_loader_copies() {
     struct Runner {
         fail_at: usize,
@@ -889,18 +974,22 @@ fn boot_refresh_only_reads_matching_installed_loader_copies() {
 }
 
 #[test]
-fn systemd_or_loader_mutation_rejects_the_entire_plan_before_execution() {
-    let mut systemd = plan();
-    systemd.current = CurrentSystemState::new(BTreeMap::from([("systemd".into(), "1-1".into())]));
-    systemd.packages.changes = vec![PackageChange::Upgrade {
-        name: "systemd".into(),
-        from: "1-1".into(),
-        to: "2-1".into(),
-    }];
-    systemd.packages.targets[0].name = "systemd".into();
+fn coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution() {
     let mut loader = plan();
     loader.boot.update_bootloader = true;
-    for rejected in [systemd, loader] {
+    let mut rejected_plans = vec![loader];
+    for name in ["systemd", "distroctl"] {
+        let mut update = plan();
+        update.current = CurrentSystemState::new(BTreeMap::from([(name.into(), "1-1".into())]));
+        update.packages.changes = vec![PackageChange::Upgrade {
+            name: name.into(),
+            from: "1-1".into(),
+            to: "2-1".into(),
+        }];
+        update.packages.targets[0].name = name.into();
+        rejected_plans.push(update);
+    }
+    for rejected in rejected_plans {
         assert!(rejected
             .validate()
             .unwrap_err()
@@ -934,6 +1023,15 @@ fn confirmation_requires_new_boot_matching_generation_and_fresh_health() {
         promoted: usize,
     }
     impl BootEvidence for Evidence {
+        fn boot_count(
+            &mut self,
+            _: &str,
+        ) -> Result<Option<distro_snapshots::generations::BootCount>> {
+            Ok(Some(distro_snapshots::generations::BootCount::Counted {
+                left: 2,
+                done: 1,
+            }))
+        }
         fn boot_id(&mut self) -> Result<String> {
             Ok(self.boot.into())
         }
@@ -994,6 +1092,7 @@ fn confirmation_requires_new_boot_matching_generation_and_fresh_health() {
         let saved = &session.records().unwrap()[0];
         assert_eq!(saved.state, TransactionState::AwaitingBoot);
         assert!(saved.confirmation.is_some());
+        assert!(saved.confirmation.as_ref().unwrap().error.is_some());
         assert_eq!(e.promoted, 0);
     }
     drop(session); // interrupted confirmation resumes from persisted intent/evidence
@@ -1001,6 +1100,10 @@ fn confirmation_requires_new_boot_matching_generation_and_fresh_health() {
     e.bad = "";
     let good = confirm(&mut session, record.id, false, &mut e).unwrap();
     assert_eq!(good.state, TransactionState::Succeeded);
+    assert_eq!(
+        good.confirmation.as_ref().unwrap().boot_count,
+        Some(distro_snapshots::generations::BootCount::Counted { left: 2, done: 1 })
+    );
     assert_eq!(e.promoted, 1);
     assert_eq!(
         confirm(&mut session, record.id, false, &mut e).unwrap(),

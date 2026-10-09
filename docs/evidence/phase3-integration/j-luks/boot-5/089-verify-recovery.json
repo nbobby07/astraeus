@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:23:10.038889+00:00",
+  "finished": "2026-10-09T01:23:11.245967+00:00",
+  "command": "distroctl boot verify 1791508787-978064895-781 --json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"enabled\": true,\n  \"generations\": [\n    {\n      \"artifact_verified_now\": true,\n      \"assessment\": \"known-good evidence\",\n      \"boot_attempts\": [\n        {\n          \"boot_count\": null,\n          \"boot_id\": \"1baa4004-7d09-47ed-9a71-f140a1785779\",\n          \"checks\": [],\n          \"error\": \"Booted retained known-good recovery root; offline restoration and finalize-rollback still required\",\n          \"rollback\": false,\n          \"snapshot\": \"1791508787-978064895-781\"\n        }\n      ],\n      \"boot_counter\": [\n        \"astraeus-1791508787-978064895-781.conf\",\n        {\n          \"state\": \"uncounted\"\n        }\n      ],\n      \"confirmation\": null,\n      \"counter_error\": null,\n      \"generation\": {\n        \"embedded_cmdline\": \"rd.luks.name=757664ae-11a8-4d5e-a51a-d23de2e88734=root root=/dev/mapper/root rootflags=subvolid=263 rw\",\n        \"esp_uuid\": \"CB2E-4A2B\",\n        \"filesystem_uuid\": \"621e3b56-74f8-4135-9b6d-f668f917de61\",\n        \"id\": \"1791508787-978064895-781\",\n        \"prior_known_good\": null,\n        \"root\": {\n          \"id\": 263,\n          \"parent_uuid\": \"44dc6f98-bbd9-9349-afd9-6be288f214e8\",\n          \"read_only\": false,\n          \"top_level\": 258,\n          \"uuid\": \"b04caad6-7d2a-0247-ad40-8645ac5d87bd\"\n        },\n        \"root_kind\": \"retained\",\n        \"schema_version\": 1,\n        \"snapshot\": \"1791508787-978064895-781\",\n        \"uki_sha256\": \"0f705ef4001cc3bb896f7e90faafa3130f15471628dc20db5e23fb61518c97f2\"\n      },\n      \"health\": \"known-good\",\n      \"ineligible_reason\": null,\n      \"recovery_method\": \"retained-root boot; offline restoration is separate\",\n      \"reference_eligible\": true,\n      \"role\": \"previous-known-good-recovery\",\n      \"transaction_id\": \"1\"\n    }\n  ],\n  \"pending\": false,\n  \"schema_version\": 1,\n  \"selection\": {\n    \"current\": \"1791508829-745658404-781\",\n    \"previous\": \"1791508787-978064895-781\",\n    \"schema_version\": 1\n  }\n}\n",
+    "id": "956c44a1b3854e9b89d4334ff5702dc8",
+    "boot_id": "1baa4004-7d09-47ed-9a71-f140a1785779"
+  }
+}

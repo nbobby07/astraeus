@@ -29,8 +29,19 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends squashfs-tools xorriso qemu-utils
+          sudo apt-get install -y --no-install-recommends squashfs-tools xorriso qemu-utils sbsigntool efitools systemd-ukify systemd-boot-efi
+          # Ubuntu 24.04's ukify 255 does not provide the required JSON inspection format.
+          curl --fail --location --retry 3 https://raw.githubusercontent.com/systemd/systemd/8cc40e0c5e9234bf45084751ac53b1fbfe70b492/src/ukify/ukify.py -o /tmp/astraeus-ukify
+          echo '4ee19937778fdb35a447288fad04307d7606dc2a14eb0524b3dcdcc9cbb397b2  /tmp/astraeus-ukify' | sha256sum --check --strict
+          sed -i -e 's/{{PROJECT_VERSION}}/262/g' -e 's/{{VERSION_TAG}}/v262/g' /tmp/astraeus-ukify
+          sudo install -m755 /tmp/astraeus-ukify /usr/bin/ukify
+          /usr/bin/ukify --version
       - run: python -m unittest discover -s tests -v
+      - name: Native Secure Boot signatures (disposable keys, no firmware writes)
+        if: runner.os == 'Linux'
+        run: |
+          sudo python3 -c "import sys; sys.path.insert(0, 'tests'); import test_secure_boot; assert test_secure_boot.NATIVE, 'native signing tools unavailable'"
+          sudo python3 -m unittest discover -s tests -p test_secure_boot.py -v
       - name: Shell syntax
         if: runner.os == 'Linux'
         run: |
@@ -41,6 +52,8 @@ jobs:
           bash -n scripts/validate/arch-builder.sh
           bash -n distro/packages/calamares/PKGBUILD
           bash -n distro/installed/linux.preset.in
+          bash -n distro/installed/secure-boot/linux.preset
+          bash -n distro/installed/secure-boot/95-astraeus-sign
           bash -n distro/installed/mkinitcpio.conf
           bash -n tests/boot/installed-smoke.sh
           bash -n tests/fixtures/phase2/adapter.sh

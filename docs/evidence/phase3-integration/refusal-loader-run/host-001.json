@@ -1,0 +1,11 @@
+{
+  "command": [
+    "qemu-system-x86_64",
+    "--version"
+  ],
+  "started": "2026-10-09T00:04:56.889997+00:00",
+  "finished": "2026-10-09T00:04:56.935648+00:00",
+  "code": 0,
+  "stdout": "QEMU emulator version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)\nCopyright (c) 2003-2023 Fabrice Bellard and the QEMU Project developers\n",
+  "stderr": ""
+}

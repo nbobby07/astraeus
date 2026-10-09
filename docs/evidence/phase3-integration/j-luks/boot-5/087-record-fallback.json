@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:23:08.161721+00:00",
+  "finished": "2026-10-09T01:23:09.886072+00:00",
+  "command": "systemctl start astraeus-confirm-boot.service",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "Job for astraeus-confirm-boot.service failed because the control process exited with error code.\nSee \"systemctl status astraeus-confirm-boot.service\" and \"journalctl -xeu astraeus-confirm-boot.service\" for details.\n",
+    "id": "c9071dd9d12e4335840aa7bf6c80097f",
+    "boot_id": "1baa4004-7d09-47ed-9a71-f140a1785779"
+  }
+}

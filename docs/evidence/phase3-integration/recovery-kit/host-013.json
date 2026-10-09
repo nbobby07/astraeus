@@ -1,0 +1,16 @@
+{
+  "command": [
+    "mmd",
+    "-i",
+    "/home/ubuntu/p3i/final/recovery-kit/recovery.fat",
+    "::/EFI",
+    "::/EFI/BOOT",
+    "::/EFI/Linux",
+    "::/loader"
+  ],
+  "started": "2026-10-09T00:04:27.931740+00:00",
+  "finished": "2026-10-09T00:04:27.937097+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

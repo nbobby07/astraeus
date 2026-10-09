@@ -1,0 +1,65 @@
+{
+  "security": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"artifacts\": {\n    \"bootloader\": {\n      \"path\": \"/efi/EFI/systemd/systemd-bootx64.efi\",\n      \"sha256\": \"67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"fallback_bootloader\": {\n      \"path\": \"/efi/EFI/BOOT/BOOTX64.EFI\",\n      \"sha256\": \"67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"uki\": {\n      \"path\": \"/efi/EFI/Linux/astraeus-dev-linux.efi\",\n      \"sha256\": \"98477ac9a6a582654452d9d58c9b8899283be152c31fbe934f6026ce1bdf2902\",\n      \"signature\": \"valid-for-configured-certificate\"\n    }\n  },\n  \"certificate_sha256\": \"35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8\",\n  \"enrollment_readiness\": \"manual-firmware-review-required\",\n  \"firmware\": {\n    \"AuditMode\": null,\n    \"DeployedMode\": null,\n    \"KEK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"PK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"SecureBoot\": true,\n    \"SetupMode\": false,\n    \"db\": {\n      \"contains_signer_certificate\": true,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"dbx\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": true,\n      \"readable\": true,\n      \"sha256_images\": [\n        \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n      ]\n    },\n    \"image_authorization\": \"not-evaluated\"\n  },\n  \"identity\": \"valid\",\n  \"policy\": \"configured\",\n  \"schema_version\": 1,\n  \"signing_key_present\": true\n}\n",
+    "id": "a4ca8010d3764fd4b02b3badcdd42683",
+    "boot_id": "594106ae-9ce2-4d25-bbe6-406c626e051d"
+  },
+  "generations": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"enabled\": false,\n  \"generations\": [],\n  \"pending\": false,\n  \"schema_version\": 1,\n  \"selection\": null\n}\n",
+    "id": "f2e356314d964dc7888c09e27f0ff4f6",
+    "boot_id": "594106ae-9ce2-4d25-bbe6-406c626e051d"
+  },
+  "running-uki": {
+    "code": 0,
+    "error": null,
+    "output": "/efi/EFI/Linux/astraeus-dev-linux.efi\n",
+    "id": "a89da9ce8d6a4a63ad567fe63d360a0e",
+    "boot_id": "594106ae-9ce2-4d25-bbe6-406c626e051d"
+  },
+  "kernel": {
+    "code": 0,
+    "error": null,
+    "output": "7.2.7-arch1-1\n",
+    "id": "bc78492d576542d1883c78ed40598920",
+    "boot_id": "594106ae-9ce2-4d25-bbe6-406c626e051d"
+  },
+  "root-identity": {
+    "code": 0,
+    "error": null,
+    "output": "@\n\tName: \t\t\t@\n\tUUID: \t\t\t5c55c5cd-cff8-9d4d-962c-91ed17ffb87a\n\tParent UUID: \t\t-\n\tReceived UUID: \t\t-\n\tCreation time: \t\t2026-10-08 18:00:48 -0700\n\tSubvolume ID: \t\t256\n\tGeneration: \t\t43\n\tGen at creation: \t11\n\tParent ID: \t\t5\n\tTop level ID: \t\t5\n\tFlags: \t\t\t-\n\tSend transid: \t\t0\n\tSend time: \t\t2026-10-08 18:00:48 -0700\n\tReceive transid: \t0\n\tReceive time: \t\t-\n\tSnapshot(s):\n\tQuota group:\t\tn/a\n",
+    "id": "e573dc8f6736408a9876c593a5ce3b18",
+    "boot_id": "594106ae-9ce2-4d25-bbe6-406c626e051d"
+  },
+  "confirm-service": {
+    "code": 0,
+    "error": null,
+    "output": "Result=success\nExecMainStatus=0\n",
+    "id": "b1986d21445d42fd84cb6b5ad7a7aaa1",
+    "boot_id": "594106ae-9ce2-4d25-bbe6-406c626e051d"
+  },
+  "bless-service": {
+    "code": 0,
+    "error": null,
+    "output": "Result=success\nExecMainStatus=0\n",
+    "id": "d85d19bea08a449db248731c5dac65d0",
+    "boot_id": "594106ae-9ce2-4d25-bbe6-406c626e051d"
+  },
+  "esp": {
+    "code": 0,
+    "error": null,
+    "output": "98477ac9a6a582654452d9d58c9b8899283be152c31fbe934f6026ce1bdf2902  /efi/EFI/Linux/astraeus-dev-linux.efi\n67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e  /efi/EFI/systemd/systemd-bootx64.efi\n67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e  /efi/EFI/BOOT/BOOTX64.EFI\n4433f39633e4d53ad83e540dc8fdf3f6fc89584a4c8780384e810eba2a169ff4  /efi/loader/loader.conf\n7f6c51bee893f864aa4d4f34334146a6348da10a1c02e3c96061f4fe14f0a76e  /efi/loader/random-seed\n067fc514414e89fa29898b3d61ce88577bebc2fbcad0ba42c2b769698c8baafc  /efi/loader/entries.srel\n",
+    "id": "53d5d0954ac74805b629e070c4251424",
+    "boot_id": "594106ae-9ce2-4d25-bbe6-406c626e051d"
+  },
+  "generation-files": {
+    "code": 1,
+    "error": null,
+    "output": "find: \u2018/.snapshots/astraeus/generations\u2019: No such file or directory\n",
+    "id": "c8d93c849ebb49eaab81ee4689fcd6e2",
+    "boot_id": "594106ae-9ce2-4d25-bbe6-406c626e051d"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:49.016252+00:00",
+  "finished": "2026-10-09T01:28:49.168356+00:00",
+  "command": "cat /etc/astraeus-test-state",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "version-A\n",
+    "id": "ae6fcaeed82040a184d4c08896b2dc6f",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

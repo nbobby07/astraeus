@@ -1,0 +1,16 @@
+{
+  "baseline-reference.json": "d47b1b2f7cb797c502ffe839f2d29e293ef4c00ab9e584cf3386a58f220d4236",
+  "host-001.json": "0f829ae4d5167e201551f741b4b9bb47f95b24cde46b36694f9b2ee41edeaf88",
+  "host-002.json": "43b754ec77a12faaec74b4fa285b90d11e9bfbe33c90d42b4c0d32708586b738",
+  "firmware-verdict.json": "aae6f373d880482d3399df892b26bfcda35693d81684553abf56a5d2a5ad2c61",
+  "disk.qcow2": "8a4237cd3bb369fd59fbddf8f047d71accf20e23e494122ec8b7aab92339bae4",
+  "vars.fd": "227dfc5fed3a16b0874611b323347bcc396b758e4eb18a52c5bc70d659118f56",
+  "host.json": "0691e7a7afe32ed07efda66a0389b2fc747f058fe47d87d72ed247401f9aa8ae",
+  "result.json": "c3fb59217969729615c2ee547b91d08998bc5feb23de16abd1ec05c9a6a40dc7",
+  "boot-1/shutdown.json": "751898e60339b96cd0034a77fe862bc0769a2189a077dcc761d6a4b9a6a21153",
+  "boot-1/process.json": "ffed9f3e126747c87792740eb92578aa9e9dba31096fee754bf0cfd0083cd406",
+  "boot-1/serial.log": "81a1d59410b6fb9ee686e304764387e97ef4818634e8659756448806ef93ffff",
+  "boot-1/qmp-firmware-complete.json": "f8b54efd45f472c1bf6d9bbe027a29f096c322ae5037dd1ef91777b622c31900",
+  "boot-1/qemu.log": "1e69a682f2c6bb0e23701dbe47dbad47d0826fcd60639984d95b36cded76b5e4",
+  "boot-1/qemu-command.json": "e6ce42962826684f3dd41bf1db42c95ddc45423310391a008063aa2c4ff6dfa5"
+}

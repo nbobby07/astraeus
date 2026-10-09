@@ -1,0 +1,13 @@
+{
+  "command": [
+    "sbverify",
+    "--cert",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/trusted.pem",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/tampered.efi"
+  ],
+  "started": "2026-10-09T00:54:47.778516+00:00",
+  "finished": "2026-10-09T00:54:47.835085+00:00",
+  "code": 1,
+  "stdout": "Signature verification failed\n",
+  "stderr": "Hash doesn't match image\n got:       4a7f55fe75afc6f2d6225b444ad8bf7022e9857c3a731848f201560948994118\n expecting: 39df87be6e618501c0b71639120ad76b4e2941ea7c3802a33c1ba13b408b4339\nImage fails hash check\n"
+}

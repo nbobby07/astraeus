@@ -1,0 +1,46 @@
+{
+  "path": "/home/ubuntu/p3i/final/refusal-loader-run/disk.qcow2",
+  "sha256": "8a4237cd3bb369fd59fbddf8f047d71accf20e23e494122ec8b7aab92339bae4",
+  "bytes": 196616,
+  "image": {
+    "children": [
+      {
+        "name": "file",
+        "info": {
+          "children": [],
+          "virtual-size": 197120,
+          "filename": "/home/ubuntu/p3i/final/refusal-loader-run/disk.qcow2",
+          "format": "file",
+          "actual-size": 200704,
+          "format-specific": {
+            "type": "file",
+            "data": {}
+          },
+          "dirty-flag": false
+        }
+      }
+    ],
+    "backing-filename-format": "qcow2",
+    "virtual-size": 67108864,
+    "filename": "/home/ubuntu/p3i/final/refusal-loader-run/disk.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 200704,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "1.1",
+        "compression-type": "zlib",
+        "lazy-refcounts": false,
+        "refcount-bits": 16,
+        "corrupt": false,
+        "extended-l2": false
+      }
+    },
+    "full-backing-filename": "/home/ubuntu/p3i/final/refusal-loader-inputs/disk.qcow2",
+    "backing-filename": "/home/ubuntu/p3i/final/refusal-loader-inputs/disk.qcow2",
+    "dirty-flag": false
+  },
+  "private_signing_material_may_be_present": true,
+  "included_in_public_archive": false
+}

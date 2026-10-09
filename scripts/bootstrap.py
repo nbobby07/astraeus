@@ -90,6 +90,12 @@ def prepare_package(output):
     source.mkdir()
     for file in [ROOT / "Cargo.toml", ROOT / "Cargo.lock", MANIFEST,
                  ROOT / "distro/installed/astraeus-confirm-boot.service", ROOT / "docs/snapshots.md",
+                 ROOT / "scripts/secure_boot.py", ROOT / "docs/secure-boot.md",
+                 ROOT / "docs/adr/0003-owner-secure-boot.md",
+                 ROOT / "distro/installed/secure-boot/linux.preset",
+                 ROOT / "distro/installed/secure-boot/95-astraeus-sign",
+                 ROOT / "distro/installed/80-astraeus-secure-boot.hook",
+                 ROOT / "distro/installed/astraeus-bless-boot.conf", ROOT / "docs/boot-generations.md",
                  *sorted((ROOT / "crates").rglob("*"))]:
         if file.is_file():
             destination = source / file.relative_to(ROOT)

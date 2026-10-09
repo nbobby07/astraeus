@@ -1,0 +1,43 @@
+{
+  "accepted": true,
+  "kind": "phase3-firmware-fixture",
+  "created": "2026-10-09T00:04:56.670013+00:00",
+  "nonce": "b7bb665730b141df9d0c08a72c169767",
+  "owner_guid": "808f1948-4eed-43ba-a7e4-8322489b1603",
+  "certificate_sha256": {
+    "trusted": "a85d1d89d1e2c4cb3f791be38e80f85a8832f1f246509b7bbea8c4243b20f4bf",
+    "untrusted": "a4398b2bf8bb3ca5aa9ac047d7d50605d31e8d73b32313787527eb57ac7ae824"
+  },
+  "load_only": true,
+  "artifact": {
+    "path": "/home/ubuntu/p3i/final/iso-loader.efi",
+    "role": "loader",
+    "sha256": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1"
+  },
+  "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+  "probe_sha256": "79b0d8b15ba573bf9d9912fb7cd98ac33301e6b47d415d4bf90657f18d4a8e5f",
+  "ovmf_code": {
+    "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+    "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+  },
+  "ovmf_template": {
+    "path": "/usr/share/OVMF/OVMF_VARS_4M.fd",
+    "sha256": "5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e"
+  },
+  "sha256": {
+    "disk.qcow2": "725cadd3f3f825f4e2164d3d4860a1686dc1647e917da68a7bf67c47350e4233",
+    "vars.fd": "e0c7ce48e6b0c1ca8e1462e314ade0d0d325b102441fc2a0e3c4c7ac270d3583"
+  },
+  "public_sha256": {
+    "public/tampered.efi": "334a8555fdbcb6dc4fe4498d78a42763c7173c440777596906990b0c7564d54e",
+    "public/trusted.efi": "be3b10168024f040bd5cf33d1168fe6e6644eb2c18474e301aa9824e0d993506",
+    "public/unsigned.efi": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1",
+    "public/probe.efi": "e3b0e86a432e776abca9c72509ed0d9119ddab445170e4b024e32a017209a1a8",
+    "public/trusted.pem": "d3ba7120bffa4711c6a76eb58bafb1bac37ed1925760c6656fa39c2f91c830be",
+    "public/untrusted.pem": "7d22585e1c05310217609091759293ee2b2d2cd8bfd139f62ce25f9cd568a33d",
+    "public/untrusted.efi": "0231d0ab2a306ba96274d7daee611984aa611faba096717249daf9b3c3083e98",
+    "public/untrusted.der": "a4398b2bf8bb3ca5aa9ac047d7d50605d31e8d73b32313787527eb57ac7ae824",
+    "public/boot.efi": "adfea5f246bff75cf22fdd1e173878329a53a9f8d22fc50a9ccb0f7485173894",
+    "public/trusted.der": "a85d1d89d1e2c4cb3f791be38e80f85a8832f1f246509b7bbea8c4243b20f4bf"
+  }
+}

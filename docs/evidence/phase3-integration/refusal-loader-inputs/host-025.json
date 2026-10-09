@@ -1,0 +1,14 @@
+{
+  "command": [
+    "mcopy",
+    "-i",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/fixture.fat",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/public/unsigned.efi",
+    "::/EFI/tests/unsigned.efi"
+  ],
+  "started": "2026-10-09T00:04:56.646662+00:00",
+  "finished": "2026-10-09T00:04:56.649109+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

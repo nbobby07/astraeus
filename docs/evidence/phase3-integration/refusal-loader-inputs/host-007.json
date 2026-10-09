@@ -1,0 +1,26 @@
+{
+  "command": [
+    "gcc",
+    "-I/usr/include/efi",
+    "-I/usr/include/efi/x86_64",
+    "-DEFI_FUNCTION_WRAPPER",
+    "-DRUN_ID=\"b7bb665730b141df9d0c08a72c169767\"",
+    "-DLOAD_ONLY",
+    "-fpic",
+    "-fshort-wchar",
+    "-mno-red-zone",
+    "-fno-stack-protector",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-c",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/firmware-probe.c",
+    "-o",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/probe.o"
+  ],
+  "started": "2026-10-09T00:04:54.720252+00:00",
+  "finished": "2026-10-09T00:04:54.887223+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,40 @@
+{
+  "vm": {
+    "id": "vm-cc9d56de23154de7a22492f24dfaae27",
+    "slug": "astraeus-phase0-validator",
+    "state": "paused",
+    "resources": {
+      "cpu": 8,
+      "memory": 16384,
+      "storage": 65536
+    },
+    "updatedAt": "2026-10-09T01:36:41.004794Z"
+  },
+  "initial_total_run_seconds": 75318,
+  "final_total_run_seconds": 96468,
+  "integration_run_seconds": 21150,
+  "integration_run_hours": 5.875,
+  "approximate_list_compute_usd": 3.10764,
+  "compute_usd_per_hour": 0.52896,
+  "pricing_source": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+  "cost_scope": "Compute estimate before included allowances/credits; storage and transfer separate. Paused storage remains billable.",
+  "unrelated_unchanged": [
+    {
+      "id": "vm-ebe285ed9bc74592ac42e1e323395efb",
+      "slug": "atm10",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 8192,
+        "storage": 32768
+      },
+      "totalRunSeconds": 25259
+    }
+  ],
+  "nested_cleanup": {
+    "nested_guests": [],
+    "active_final_drivers": [],
+    "all_stopped": true
+  },
+  "plan_billing_or_resize_changes": false
+}

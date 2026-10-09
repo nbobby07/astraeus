@@ -35,9 +35,10 @@ which does not require a partition `slaves` directory. CLI presentation is separ
 from the serializable hardware model. [Hardware/status](hardware.md) documents
 sources, JSON schema version 1, partial observations and privilege assumptions.
 
-Python standard-library scripts handle source packaging and image build glue;
-small Bash files call standard Arch publishing tools and perform guest boot
-assertions. These are build/test tools, not the future runtime platform.
+Python scripts handle source packaging, image build glue and the narrow owner
+signing/trust boundary through OpenSSL, sbsigntools, efitools and ukify. Transaction
+and generation state remains in Rust. Small Bash files call standard Arch
+publishing tools and perform guest boot assertions.
 No empty crates or directories stand in for unimplemented components.
 
 The profile is maintained here rather than copied from whatever releng profile
@@ -132,8 +133,11 @@ Btrfs snapshots are not recursive across subvolumes and are not backups. See the
 The FAT ESP is outside Btrfs and cannot be rolled back by restoring `@`. The
 snapshot manager saves the matching UKI with root metadata before package hooks
 can overwrite the active artifact. Offline recovery restores the root and saved
-UKI together, retaining their predecessors. No automatic fallback entry or Secure
-Boot signing policy is implemented.
+UKI together, retaining their predecessors. Opt-in Phase 3 adds the native owner
+trust provider, immutable signed UKIs and an independently rooted recovery entry.
+See [boot generations](boot-generations.md) and [integration acceptance](phase3-acceptance.md).
+The implementation and preliminary fixture boots do not establish final image
+acceptance or arbitrary power-loss safety.
 
 Durable phases distinguish preparation, downloaded/verified inputs, pre-snapshot,
 package mutation, boot-artifact work, validated candidate and boot-confirmed

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/ubuntu/p3i/final/recovery-kit/ukify",
+    "--version"
+  ],
+  "started": "2026-10-09T00:04:19.053104+00:00",
+  "finished": "2026-10-09T00:04:19.205390+00:00",
+  "code": 0,
+  "stdout": "ukify 262 (262-1-arch)\n",
+  "stderr": ""
+}

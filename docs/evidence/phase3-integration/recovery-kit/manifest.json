@@ -1,0 +1,26 @@
+{
+  "kind": "disposable-trusted-recovery-companion",
+  "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+  "iso_sha256": "520ca25fc9c9b9c3706011780d431f08a2f0c1c6e2848ff73dead21cc0b13905",
+  "disk_sha256": "4b80e501cb213f6028dc2bcdafd5f4059441e47ed56fb421678dd3767d7627a9",
+  "package_inputs": {
+    "systemd-ukify-262-1-x86_64.pkg.tar.zst": "40879a2c4a3096a590b848dc575ce34639f3f5e153806e3e6d70c5b1bdf33d21",
+    "systemd-262-1-x86_64.pkg.tar.zst": "6a66944f081cbd190ed0a63bb7be8dae35d9c246dd7248a40b63e66977695f9d"
+  },
+  "owner_db_sha256": "35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8",
+  "files": {
+    "ukify": "faeaf0656a88d290fba40dc928cac4954286aae094f4d26200f3b5f25a89d918",
+    "linuxx64.efi.stub": "b16c31a0cff3ca1996aaa4d3e101309830c8c186d4230f1607712c0879ebb8e3",
+    "vmlinuz": "8ebc2c71271e000540f0a7545afd8e73504fcb724671f3d38c720b241842b901",
+    "initrd": "47817a2bb64059eb6a78b593826c43ee7cf24f8a16d4d129339a279e9fc3c61f",
+    "loader.efi": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1",
+    "loader-signed.efi": "117857f9a56ff0ca2e29f558ce92ab183bf1863a987742a8fbdc1555ee0c6a6b",
+    "recovery.efi": "f27e969da5bf39752ef5be0fed35a98401c9f453e630fc347a9e567be9dd8dee",
+    "cmdline": "594450a20362f0043266e1a18f3efb74ab08948824b3d96854ca1e95bbcf00c1"
+  },
+  "limitations": [
+    "Companion and ISO are test recovery media, not a release artifact.",
+    "Secure Boot authenticates loader and UKI. The live SquashFS is not covered by that signature."
+  ],
+  "boot_qualified": false
+}

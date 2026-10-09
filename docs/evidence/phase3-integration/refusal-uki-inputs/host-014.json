@@ -1,0 +1,13 @@
+{
+  "command": [
+    "sbverify",
+    "--cert",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/trusted.pem",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/trusted.efi"
+  ],
+  "started": "2026-10-09T00:54:47.390168+00:00",
+  "finished": "2026-10-09T00:54:47.447277+00:00",
+  "code": 0,
+  "stdout": "Signature verification OK\n",
+  "stderr": ""
+}

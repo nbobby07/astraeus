@@ -1,0 +1,12 @@
+{
+  "loader": {
+    "path": "/usr/lib/systemd/boot/efi/systemd-bootx64.efi",
+    "sha256": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1",
+    "bytes": 160256
+  },
+  "uki": {
+    "path": "/var/lib/astraeus/secure-boot/uki.consumed.initial/input.efi",
+    "sha256": "7fd54de9341131ad107a2402eaaeec3c9cd1a71fc3098e842f5ded62df33c9be",
+    "bytes": 38078464
+  }
+}

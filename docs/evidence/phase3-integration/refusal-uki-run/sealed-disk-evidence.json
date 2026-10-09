@@ -1,0 +1,46 @@
+{
+  "path": "/home/ubuntu/p3i/final/refusal-uki-run/disk.qcow2",
+  "sha256": "f4e06e94553704c73d5d909c5a0e1db8b3a33c906e1652758c24af71e95f8a02",
+  "bytes": 196616,
+  "image": {
+    "children": [
+      {
+        "name": "file",
+        "info": {
+          "children": [],
+          "virtual-size": 197120,
+          "filename": "/home/ubuntu/p3i/final/refusal-uki-run/disk.qcow2",
+          "format": "file",
+          "actual-size": 200704,
+          "format-specific": {
+            "type": "file",
+            "data": {}
+          },
+          "dirty-flag": false
+        }
+      }
+    ],
+    "backing-filename-format": "qcow2",
+    "virtual-size": 169098240,
+    "filename": "/home/ubuntu/p3i/final/refusal-uki-run/disk.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 200704,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "1.1",
+        "compression-type": "zlib",
+        "lazy-refcounts": false,
+        "refcount-bits": 16,
+        "corrupt": false,
+        "extended-l2": false
+      }
+    },
+    "full-backing-filename": "/home/ubuntu/p3i/final/refusal-uki-inputs/disk.qcow2",
+    "backing-filename": "/home/ubuntu/p3i/final/refusal-uki-inputs/disk.qcow2",
+    "dirty-flag": false
+  },
+  "private_signing_material_may_be_present": true,
+  "included_in_public_archive": false
+}

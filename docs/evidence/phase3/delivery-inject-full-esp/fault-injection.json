@@ -1,0 +1,12 @@
+{
+  "fault": "full-esp",
+  "path": "/efi/EFI/Linux/astraeus-dev-linux.efi",
+  "before_sha256": "c9f82468afbb5375f49673e701f7136ac7c0300357ffc6a71a52716a35599a3b",
+  "started": 1791485598.0538034,
+  "injected": true,
+  "expected": "refusal, never timeout-based acceptance",
+  "errno": 28,
+  "written": 1033166848,
+  "finished": 1791485607.4737494,
+  "after_sha256": "c9f82468afbb5375f49673e701f7136ac7c0300357ffc6a71a52716a35599a3b"
+}

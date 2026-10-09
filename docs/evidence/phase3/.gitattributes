@@ -1,0 +1,2 @@
+# Preserve raw firmware serial bytes, including CRLF and marker whitespace.
+**/serial.log binary

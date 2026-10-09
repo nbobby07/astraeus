@@ -48,6 +48,8 @@ fn cli_contract() {
         &["validate"],
         &["validate", "missing.toml"],
         &["status", "--bad"],
+        &["security", "status", "--execute"],
+        &["security", "enroll"],
         &["hardware", "--json", "extra"],
         &["snapshot", "create", "--reason", "invalid"],
         &["snapshot", "list", "--execute"],
@@ -59,12 +61,21 @@ fn cli_contract() {
         &["update", "--json"],
         &["update", "--dry-run", "--bad"],
         &["history", "--database"],
+        &["boot", "set-default"],
+        &["boot", "inspect", "../escape"],
+        &["boot", "list", "--execute"],
+        &["boot", "verify", "1", "--json", "--json"],
     ] {
         let output = run(args);
         assert_eq!(output.status.code(), Some(1));
         assert!(!output.stderr.is_empty());
         assert!(output.stdout.is_empty());
     }
+    let help = run(&["boot", "--help"]);
+    assert!(help.status.success());
+    assert!(String::from_utf8(help.stdout)
+        .unwrap()
+        .contains("set-default"));
     for command in ["snapshot", "rollback"] {
         let help = run(&[command, "--help"]);
         assert!(help.status.success());
@@ -72,6 +83,20 @@ fn cli_contract() {
             .unwrap()
             .contains("--top-level"));
     }
+}
+
+#[test]
+fn security_status_does_not_invent_success_without_the_installed_helper() {
+    if std::path::Path::new("/usr/bin/astraeus-secure-boot").exists() {
+        return;
+    }
+    let output = Command::new(env!("CARGO_BIN_EXE_distroctl"))
+        .args(["security", "status", "--json"])
+        .output()
+        .unwrap();
+    assert!(!output.status.success());
+    assert!(output.stdout.is_empty());
+    assert!(String::from_utf8_lossy(&output.stderr).contains("inspection unavailable"));
 }
 
 #[test]

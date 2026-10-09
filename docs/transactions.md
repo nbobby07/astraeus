@@ -148,7 +148,17 @@ plans changing the `systemd` package or requesting a bootloader update are rejec
 in full before package mutation, because snapshots currently preserve only the UKI.
 Both installed systemd-boot EFI copies must match the packaged x86-64 loader
 byte-for-byte after UKI work. Missing or mismatched copies fail the transaction.
-Independently signed loader overrides are not qualified.
+In managed generation mode, the native provider verifies signatures and the
+packaged loader content instead of comparing signature-bearing files byte for
+byte. It also checks current firmware trust and the running loader/ESP identity.
+The systemd/bootloader update refusal still applies.
+
+Plans changing `distroctl` are also rejected in full before package mutation,
+on both signed and unsigned installations. Signed boot hooks authenticate the
+running coordinator against the installed executable; replacing it during an
+update breaks that check after packages have changed. Self-updates remain
+unsupported until coordinator authorization survives executable replacement.
+
 Existing Arch
 and Astraeus hooks remain unchanged; the explicit post-transaction commands may
 repeat their work so failures have a checked exit status. The snapshot backend

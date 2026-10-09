@@ -86,8 +86,9 @@ def clone(base, out):
 
 
 class VM:
-    def __init__(self, out, code, share, timeout):
+    def __init__(self, out, code, share, timeout, secure_boot=False):
         self.out, self.code, self.share, self.timeout = out, code, share, timeout
+        self.secure_boot = secure_boot
         self.child = None
         self.number = 0
         self.session = None
@@ -104,7 +105,8 @@ class VM:
         self.channel = self.session / 'guest.sock'
         require(len(str(self.channel).encode()) < 104, 'output path too long for Unix sockets')
         command = install.qemu_command(self.code, self.out / 'vars.fd', self.out / 'disk.qcow2',
-                                       self.session / 'serial.log', self.monitor, iso, self.share)
+                                       self.session / 'serial.log', self.monitor, iso, self.share,
+                                       **({'secure_boot': True} if self.secure_boot else {}))
         command.remove('-daemonize')
         command += ['-no-reboot', '-device', 'virtio-serial-pci', '-chardev',
                     f'socket,id=validation,path={self.channel},server=on,wait=off',

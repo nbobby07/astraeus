@@ -9,3 +9,8 @@ __pycache__/
 *.qcow2
 *.iso
 *.pkg.tar.*
+# Machine-local signing material must never enter source or image inputs.
+*.key
+*.p12
+*.pfx
+*.auth

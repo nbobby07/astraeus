@@ -1,0 +1,804 @@
+﻿2026-10-08T23:37:09.6506070Z Current runner version: '2.337.0'
+2026-10-08T23:37:09.6522666Z ##[group]Runner Image Provisioner
+2026-10-08T23:37:09.6523208Z Hosted Compute Agent
+2026-10-08T23:37:09.6523610Z Version: 20261002.596
+2026-10-08T23:37:09.6524266Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-08T23:37:09.6524683Z Build Date: 2026-10-02T22:28:27Z
+2026-10-08T23:37:09.6525111Z Worker ID: {c5172df1-90d7-4d09-8e4a-a74f17499778}
+2026-10-08T23:37:09.6525514Z Region: westus2
+2026-10-08T23:37:09.6525825Z Cloud: Azure
+2026-10-08T23:37:09.6526212Z ##[endgroup]
+2026-10-08T23:37:09.6526963Z ##[group]Operating System
+2026-10-08T23:37:09.6527391Z Ubuntu
+2026-10-08T23:37:09.6527697Z 24.04.5
+2026-10-08T23:37:09.6527987Z LTS
+2026-10-08T23:37:09.6528363Z ##[endgroup]
+2026-10-08T23:37:09.6528683Z ##[group]Runner Image
+2026-10-08T23:37:09.6529046Z Image: ubuntu-24.04
+2026-10-08T23:37:09.6529386Z Version: 20261004.327.1
+2026-10-08T23:37:09.6530172Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-08T23:37:09.6531030Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-08T23:37:09.6531589Z ##[endgroup]
+2026-10-08T23:37:09.6532250Z ##[group]GITHUB_TOKEN Permissions
+2026-10-08T23:37:09.6533443Z Contents: read
+2026-10-08T23:37:09.6533970Z Metadata: read
+2026-10-08T23:37:09.6534319Z ##[endgroup]
+2026-10-08T23:37:09.6535617Z Secret source: Actions
+2026-10-08T23:37:09.6536184Z Cache mode: write
+2026-10-08T23:37:09.6536635Z Prepare workflow directory
+2026-10-08T23:37:09.6747896Z Prepare all required actions
+2026-10-08T23:37:09.6779419Z Getting action download info
+2026-10-08T23:37:10.0053622Z Download action repository 'actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+2026-10-08T23:37:10.2630421Z Complete job name: Host checks (ubuntu-24.04)
+2026-10-08T23:37:10.3305219Z ##[group]Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+2026-10-08T23:37:10.3305725Z with:
+2026-10-08T23:37:10.3305980Z   repository: nbobby07/astraeus
+2026-10-08T23:37:10.3308101Z   token: ***
+2026-10-08T23:37:10.3308328Z   ssh-strict: true
+2026-10-08T23:37:10.3308560Z   ssh-user: git
+2026-10-08T23:37:10.3308797Z   persist-credentials: true
+2026-10-08T23:37:10.3309050Z   clean: true
+2026-10-08T23:37:10.3309287Z   sparse-checkout-cone-mode: true
+2026-10-08T23:37:10.3309557Z   fetch-depth: 1
+2026-10-08T23:37:10.3309783Z   fetch-tags: false
+2026-10-08T23:37:10.3310021Z   show-progress: true
+2026-10-08T23:37:10.3310254Z   lfs: false
+2026-10-08T23:37:10.3310474Z   submodules: false
+2026-10-08T23:37:10.3310717Z   set-safe-directory: true
+2026-10-08T23:37:10.3310982Z   allow-unsafe-pr-checkout: false
+2026-10-08T23:37:10.3311323Z ##[endgroup]
+2026-10-08T23:37:10.3948914Z Syncing repository: nbobby07/astraeus
+2026-10-08T23:37:10.3950841Z ##[group]Getting Git version info
+2026-10-08T23:37:10.3951370Z Working directory is '/home/runner/work/astraeus/astraeus'
+2026-10-08T23:37:10.3951963Z [command]/usr/bin/git version
+2026-10-08T23:37:10.4047010Z git version 2.55.0
+2026-10-08T23:37:10.4062042Z ##[endgroup]
+2026-10-08T23:37:10.4073093Z Temporarily overriding HOME='/home/runner/work/_temp/19ff7893-441d-461c-83e6-212afc9bffae' before making global git config changes
+2026-10-08T23:37:10.4077554Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-08T23:37:10.4078123Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/astraeus/astraeus
+2026-10-08T23:37:10.4555675Z Deleting the contents of '/home/runner/work/astraeus/astraeus'
+2026-10-08T23:37:10.4559816Z ##[group]Determining repository object format
+2026-10-08T23:37:10.4561163Z ##[endgroup]
+2026-10-08T23:37:10.4561577Z ##[group]Initializing the repository
+2026-10-08T23:37:10.4565013Z [command]/usr/bin/git init /home/runner/work/astraeus/astraeus
+2026-10-08T23:37:10.5549160Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-08T23:37:10.5550547Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-08T23:37:10.5552005Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-08T23:37:10.5552755Z hint: call:
+2026-10-08T23:37:10.5553194Z hint:
+2026-10-08T23:37:10.5553897Z hint: 	git config --global init.defaultBranch <name>
+2026-10-08T23:37:10.5554561Z hint:
+2026-10-08T23:37:10.5555140Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-08T23:37:10.5556040Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-08T23:37:10.5556774Z hint:
+2026-10-08T23:37:10.5557226Z hint: 	git branch -m <name>
+2026-10-08T23:37:10.5557712Z hint:
+2026-10-08T23:37:10.5558347Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-08T23:37:10.5559500Z Initialized empty Git repository in /home/runner/work/astraeus/astraeus/.git/
+2026-10-08T23:37:10.5561398Z [command]/usr/bin/git remote add origin https://github.com/nbobby07/astraeus
+2026-10-08T23:37:10.5647684Z ##[endgroup]
+2026-10-08T23:37:10.5650221Z ##[group]Disabling automatic garbage collection
+2026-10-08T23:37:10.5650767Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-08T23:37:10.5847077Z ##[endgroup]
+2026-10-08T23:37:10.5847788Z ##[group]Setting up auth
+2026-10-08T23:37:10.5848337Z Removing SSH command configuration
+2026-10-08T23:37:10.5853064Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-08T23:37:10.5885196Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-08T23:37:10.6205801Z Removing HTTP extra header
+2026-10-08T23:37:10.6209630Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-08T23:37:10.6237609Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-08T23:37:10.6406896Z Removing includeIf entries pointing to credentials config files
+2026-10-08T23:37:10.6411785Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-08T23:37:10.6441024Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-08T23:37:10.6611773Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-08T23:37:10.6647768Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/astraeus/astraeus/.git.path /home/runner/work/_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:37:10.6752478Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/astraeus/astraeus/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:37:10.6953156Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:37:10.7048693Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:37:10.7268999Z ##[endgroup]
+2026-10-08T23:37:10.7270813Z ##[group]Fetching the repository
+2026-10-08T23:37:10.7273950Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +dd8d76d1b6bd5fb03128a7ef6e522fa7ab747238:refs/remotes/pull/6/merge
+2026-10-08T23:37:11.2512222Z From https://github.com/nbobby07/astraeus
+2026-10-08T23:37:11.2513531Z  * [new ref]         dd8d76d1b6bd5fb03128a7ef6e522fa7ab747238 -> pull/6/merge
+2026-10-08T23:37:11.2517647Z ##[endgroup]
+2026-10-08T23:37:11.2518976Z ##[group]Determining the checkout info
+2026-10-08T23:37:11.2520247Z ##[endgroup]
+2026-10-08T23:37:11.2521764Z [command]/usr/bin/git sparse-checkout disable
+2026-10-08T23:37:11.2584882Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-08T23:37:11.2672542Z ##[group]Checking out the ref
+2026-10-08T23:37:11.2674027Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/6/merge
+2026-10-08T23:37:11.2869141Z Note: switching to 'refs/remotes/pull/6/merge'.
+2026-10-08T23:37:11.2870372Z 
+2026-10-08T23:37:11.2876198Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-08T23:37:11.2881065Z changes and commit them, and you can discard any commits you make in this
+2026-10-08T23:37:11.2885251Z state without impacting any branches by switching back to a branch.
+2026-10-08T23:37:11.2886381Z 
+2026-10-08T23:37:11.2887379Z If you want to create a new branch to retain commits you create, you may
+2026-10-08T23:37:11.2889114Z do so (now or later) by using -c with the switch command. Example:
+2026-10-08T23:37:11.2890135Z 
+2026-10-08T23:37:11.2890611Z   git switch -c <new-branch-name>
+2026-10-08T23:37:11.2891295Z 
+2026-10-08T23:37:11.2891712Z Or undo this operation with:
+2026-10-08T23:37:11.2892346Z 
+2026-10-08T23:37:11.2892722Z   git switch -
+2026-10-08T23:37:11.2893199Z 
+2026-10-08T23:37:11.2894108Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-08T23:37:11.2895280Z 
+2026-10-08T23:37:11.2896704Z HEAD is now at dd8d76d Merge 6bf49cd6eda785f5665282ca76aa36d2a6319df0 into 6a8fda25d25df74215ed0bbe06b97804e053d950
+2026-10-08T23:37:11.2900614Z ##[endgroup]
+2026-10-08T23:37:11.3393921Z [command]/usr/bin/git log -1 --format=%H
+2026-10-08T23:37:11.3417013Z dd8d76d1b6bd5fb03128a7ef6e522fa7ab747238
+2026-10-08T23:37:11.4094592Z ##[group]Run rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy
+2026-10-08T23:37:11.4095083Z [36;1mrustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy[0m
+2026-10-08T23:37:11.5225288Z shell: /usr/bin/bash -e {0}
+2026-10-08T23:37:11.5225482Z ##[endgroup]
+2026-10-08T23:37:11.6392186Z info: syncing channel updates for 1.96.0-x86_64-unknown-linux-gnu
+2026-10-08T23:37:12.0848517Z info: latest update on 2026-05-28 for version 1.96.0 (ac68faa20 2026-05-25)
+2026-10-08T23:37:12.0849509Z info: downloading 5 components
+2026-10-08T23:37:18.2564754Z 
+2026-10-08T23:37:18.2622364Z   1.96.0-x86_64-unknown-linux-gnu installed - rustc 1.96.0 (ac68faa20 2026-05-25)
+2026-10-08T23:37:18.2622795Z 
+2026-10-08T23:37:18.2767323Z ##[group]Run cargo +1.96.0 fmt --all --check
+2026-10-08T23:37:18.2767564Z [36;1mcargo +1.96.0 fmt --all --check[0m
+2026-10-08T23:37:18.2820147Z shell: /usr/bin/bash -e {0}
+2026-10-08T23:37:18.2820315Z ##[endgroup]
+2026-10-08T23:37:18.3913494Z ##[group]Run cargo +1.96.0 test --workspace --locked
+2026-10-08T23:37:18.3913934Z [36;1mcargo +1.96.0 test --workspace --locked[0m
+2026-10-08T23:37:18.3967346Z shell: /usr/bin/bash -e {0}
+2026-10-08T23:37:18.3967524Z ##[endgroup]
+2026-10-08T23:37:18.4258534Z     Updating crates.io index
+2026-10-08T23:37:18.6092521Z  Downloading crates ...
+2026-10-08T23:37:18.6982021Z   Downloaded block-buffer v0.10.4
+2026-10-08T23:37:18.7010086Z   Downloaded cpufeatures v0.2.17
+2026-10-08T23:37:18.7068032Z   Downloaded cfg-if v1.0.5
+2026-10-08T23:37:18.7078624Z   Downloaded serde_spanned v0.6.9
+2026-10-08T23:37:18.7117305Z   Downloaded toml_write v0.1.2
+2026-10-08T23:37:18.7126601Z   Downloaded cc v1.6.0
+2026-10-08T23:37:18.7152615Z   Downloaded quote v1.0.47
+2026-10-08T23:37:18.7172179Z   Downloaded hashlink v0.11.1
+2026-10-08T23:37:18.7188026Z   Downloaded toml_datetime v0.6.11
+2026-10-08T23:37:18.7196185Z   Downloaded toml v0.8.23
+2026-10-08T23:37:18.7214015Z   Downloaded bitflags v2.13.2
+2026-10-08T23:37:18.7248170Z   Downloaded generic-array v0.14.7
+2026-10-08T23:37:18.7259679Z   Downloaded itoa v1.0.18
+2026-10-08T23:37:18.7278531Z   Downloaded sha2 v0.10.9
+2026-10-08T23:37:18.7299497Z   Downloaded version_check v0.9.5
+2026-10-08T23:37:18.7310712Z   Downloaded pkg-config v0.3.34
+2026-10-08T23:37:18.7321597Z   Downloaded memchr v2.8.3
+2026-10-08T23:37:18.7365689Z   Downloaded fallible-streaming-iterator v0.1.9
+2026-10-08T23:37:18.7372409Z   Downloaded indexmap v2.14.2
+2026-10-08T23:37:18.7404182Z   Downloaded equivalent v1.0.2
+2026-10-08T23:37:18.7411404Z   Downloaded rusqlite v0.38.0
+2026-10-08T23:37:18.7463100Z   Downloaded zmij v1.0.23
+2026-10-08T23:37:18.7478149Z   Downloaded fallible-iterator v0.3.0
+2026-10-08T23:37:18.7486957Z   Downloaded shlex v2.0.1
+2026-10-08T23:37:18.7513566Z   Downloaded hashbrown v0.16.1
+2026-10-08T23:37:18.7550646Z   Downloaded crypto-common v0.1.7
+2026-10-08T23:37:18.7557147Z   Downloaded foldhash v0.2.0
+2026-10-08T23:37:18.7570622Z   Downloaded toml_edit v0.22.27
+2026-10-08T23:37:18.7606299Z   Downloaded unicode-ident v1.0.26
+2026-10-08T23:37:18.7629534Z   Downloaded serde v1.0.229
+2026-10-08T23:37:18.7654994Z   Downloaded typenum v1.20.1
+2026-10-08T23:37:18.7682984Z   Downloaded serde_json v1.0.151
+2026-10-08T23:37:18.7737761Z   Downloaded serde_derive v1.0.229
+2026-10-08T23:37:18.7761039Z   Downloaded vcpkg v0.2.15
+2026-10-08T23:37:18.8159159Z   Downloaded proc-macro2 v1.0.107
+2026-10-08T23:37:18.8180009Z   Downloaded hashbrown v0.17.1
+2026-10-08T23:37:18.8217863Z   Downloaded winnow v0.7.15
+2026-10-08T23:37:18.8289006Z   Downloaded serde_core v1.0.229
+2026-10-08T23:37:18.8308904Z   Downloaded smallvec v1.16.2
+2026-10-08T23:37:18.8318268Z   Downloaded find-msvc-tools v0.1.14
+2026-10-08T23:37:18.8331596Z   Downloaded digest v0.10.7
+2026-10-08T23:37:18.8344847Z   Downloaded syn v3.0.6
+2026-10-08T23:37:18.8523096Z   Downloaded libc v0.2.190
+2026-10-08T23:37:18.9010269Z   Downloaded libsqlite3-sys v0.36.0
+2026-10-08T23:37:18.9686920Z    Compiling proc-macro2 v1.0.107
+2026-10-08T23:37:18.9687171Z    Compiling unicode-ident v1.0.26
+2026-10-08T23:37:18.9693584Z    Compiling quote v1.0.47
+2026-10-08T23:37:18.9701536Z    Compiling serde_core v1.0.229
+2026-10-08T23:37:19.0164069Z    Compiling serde v1.0.229
+2026-10-08T23:37:19.1635082Z    Compiling version_check v0.9.5
+2026-10-08T23:37:19.1814997Z    Compiling zmij v1.0.23
+2026-10-08T23:37:19.3274843Z    Compiling find-msvc-tools v0.1.14
+2026-10-08T23:37:19.3699628Z    Compiling generic-array v0.14.7
+2026-10-08T23:37:19.4444992Z    Compiling serde_json v1.0.151
+2026-10-08T23:37:19.4516570Z    Compiling shlex v2.0.1
+2026-10-08T23:37:19.5335679Z    Compiling typenum v1.20.1
+2026-10-08T23:37:19.6024757Z    Compiling syn v3.0.6
+2026-10-08T23:37:19.6384729Z    Compiling cc v1.6.0
+2026-10-08T23:37:20.4716702Z    Compiling pkg-config v0.3.34
+2026-10-08T23:37:20.5412281Z    Compiling memchr v2.8.3
+2026-10-08T23:37:20.5814253Z    Compiling vcpkg v0.2.15
+2026-10-08T23:37:20.7585045Z    Compiling itoa v1.0.18
+2026-10-08T23:37:20.9345745Z    Compiling libsqlite3-sys v0.36.0
+2026-10-08T23:37:20.9864931Z    Compiling serde_derive v1.0.229
+2026-10-08T23:37:20.9894530Z    Compiling foldhash v0.2.0
+2026-10-08T23:37:21.0600347Z    Compiling hashbrown v0.16.1
+2026-10-08T23:37:21.3980618Z    Compiling block-buffer v0.10.4
+2026-10-08T23:37:21.4444823Z    Compiling crypto-common v0.1.7
+2026-10-08T23:37:21.4924891Z    Compiling equivalent v1.0.2
+2026-10-08T23:37:21.5119966Z    Compiling libc v0.2.190
+2026-10-08T23:37:21.5122391Z    Compiling hashbrown v0.17.1
+2026-10-08T23:37:21.7304977Z    Compiling digest v0.10.7
+2026-10-08T23:37:21.8091357Z    Compiling hashlink v0.11.1
+2026-10-08T23:37:21.8544999Z    Compiling indexmap v2.14.2
+2026-10-08T23:37:21.9658495Z    Compiling cfg-if v1.0.5
+2026-10-08T23:37:21.9846633Z    Compiling bitflags v2.13.2
+2026-10-08T23:37:22.1005952Z    Compiling winnow v0.7.15
+2026-10-08T23:37:22.2565359Z    Compiling fallible-streaming-iterator v0.1.9
+2026-10-08T23:37:22.3074730Z    Compiling toml_write v0.1.2
+2026-10-08T23:37:22.3855157Z    Compiling cpufeatures v0.2.17
+2026-10-08T23:37:22.4034926Z    Compiling smallvec v1.16.2
+2026-10-08T23:37:22.4924781Z    Compiling fallible-iterator v0.3.0
+2026-10-08T23:37:22.6638530Z    Compiling sha2 v0.10.9
+2026-10-08T23:37:23.0365162Z    Compiling toml_datetime v0.6.11
+2026-10-08T23:37:23.1561324Z    Compiling serde_spanned v0.6.9
+2026-10-08T23:37:23.1727345Z    Compiling distro-snapshots v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/snapshots)
+2026-10-08T23:37:23.2056623Z    Compiling toml_edit v0.22.27
+2026-10-08T23:37:23.5184729Z    Compiling distro-hardware v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/hardware)
+2026-10-08T23:37:24.3455165Z    Compiling toml v0.8.23
+2026-10-08T23:37:24.8265165Z    Compiling distro-config v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/config)
+2026-10-08T23:37:27.5550964Z    Compiling rusqlite v0.38.0
+2026-10-08T23:37:27.8589424Z    Compiling distro-transactions v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/transactions)
+2026-10-08T23:37:28.4829551Z    Compiling distroctl v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/distroctl)
+2026-10-08T23:37:30.5767082Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 12.16s
+2026-10-08T23:37:30.5891361Z      Running unittests src/lib.rs (target/debug/deps/distro_config-2f51042acd684736)
+2026-10-08T23:37:30.5903959Z 
+2026-10-08T23:37:30.5904135Z running 1 test
+2026-10-08T23:37:30.5926547Z test tests::metadata_rejects_invalid_inputs ... ok
+2026-10-08T23:37:30.5926894Z 
+2026-10-08T23:37:30.5927113Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:37:30.5927398Z 
+2026-10-08T23:37:30.5927401Z 
+2026-10-08T23:37:30.5927473Z running 9 tests
+2026-10-08T23:37:30.5927907Z      Running unittests src/lib.rs (target/debug/deps/distro_hardware-67801a2224b0eb05)
+2026-10-08T23:37:30.5944760Z test tests::cpu_parsing_counts_socket_core_pairs_and_partial_topology ... ok
+2026-10-08T23:37:30.5945312Z test tests::firmware_fixture_distinguishes_uefi_legacy_and_unavailable ... ok
+2026-10-08T23:37:30.5945845Z test tests::memory_parsing_preserves_bytes_and_rejects_overflow_and_wrong_units ... ok
+2026-10-08T23:37:30.5953106Z test tests::missing_empty_malformed_and_io_errors_are_separate ... ok
+2026-10-08T23:37:30.5953650Z test tests::storage_fixture_follows_partition_parent_without_slaves ... ok
+2026-10-08T23:37:30.5959023Z test tests::storage_transports_and_malformed_capacity ... ok
+2026-10-08T23:37:30.5959442Z test tests::gpu_fixture_identifies_vendors_models_and_keeps_incomplete_devices ... ok
+2026-10-08T23:37:30.5959884Z test tests::vm_fallbacks_do_not_guess_physical_hardware_or_generic_dmi ... ok
+2026-10-08T23:37:30.5981226Z test tests::real_sysfs_symlinks_link_drm_and_partitions_without_duplicates ... ok
+2026-10-08T23:37:30.5981501Z 
+2026-10-08T23:37:30.5981701Z test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+2026-10-08T23:37:30.5982000Z 
+2026-10-08T23:37:30.5983237Z      Running unittests src/lib.rs (target/debug/deps/distro_snapshots-1dee1525e857f441)
+2026-10-08T23:37:30.5990990Z 
+2026-10-08T23:37:30.5991075Z running 30 tests
+2026-10-08T23:37:30.5994426Z test system::tests::disposable_linux_btrfs_roundtrip ... ignored, requires ASTRAEUS_LOOPBACK_TEST=1, root, loop devices, Btrfs and FAT tools
+2026-10-08T23:37:30.5995161Z test generations::tests::preferred_respects_assessment_default_preserves_fallback ... ok
+2026-10-08T23:37:30.5997817Z test generations::tests::upstream_counter_transitions_and_exhaustion ... ok
+2026-10-08T23:37:31.2265514Z test system::tests::encrypted_roots_bind_mapper_filesystem_and_luks_header ... ok
+2026-10-08T23:37:31.6505847Z test system::tests::corruption_fstab_and_mount_conflicts_block_execution ... ok
+2026-10-08T23:37:32.5882154Z test system::tests::full_lifecycle_keeps_persistent_data_and_boot_evidence ... ok
+2026-10-08T23:37:33.2163394Z test system::tests::generation_tests::baseline_cannot_promote_a_maintenance_initrd_that_was_not_booted ... ok
+2026-10-08T23:37:33.8618467Z test system::tests::generation_tests::candidate_and_independent_prior_remain_coherent ... ok
+2026-10-08T23:37:33.9541511Z test system::tests::generation_tests::encrypted_generation_keeps_unlock_mapping_but_changes_root_selection ... ok
+2026-10-08T23:37:33.9711021Z test system::tests::generation_tests::exhausted_candidate_cannot_be_rearmed_but_last_attempt_can_be_blessed ... ok
+2026-10-08T23:37:33.9733664Z test system::tests::each_rollback_durability_boundary_preserves_a_root_and_blocks_retry ... ok
+2026-10-08T23:37:34.1956157Z test system::tests::generation_tests::missing_root_uki_wrong_pair_and_invalid_metadata_fail_closed ... ok
+2026-10-08T23:37:34.2283442Z test system::tests::generation_tests::blessing_refuses_wrong_entry_esp_counter_root_or_cmdline ... ok
+2026-10-08T23:37:34.2798273Z test system::tests::generation_tests::offline_rollback_retires_generation_selection_only_after_restoring_pair ... ok
+2026-10-08T23:37:34.2874138Z test system::tests::generation_tests::retained_boot_is_a_recovery_session_and_never_an_update_root ... ok
+2026-10-08T23:37:34.3074429Z test system::tests::interrupted_mutations_leave_a_durable_blocker ... ok
+2026-10-08T23:37:34.3115856Z test system::tests::nested_esp_mounts_are_rejected_online_and_offline ... ok
+2026-10-08T23:37:34.3195701Z test system::tests::online_discovery_and_unprivileged_catalog_do_not_call_btrfs ... ok
+2026-10-08T23:37:34.3225841Z test system::tests::online_layout_rejects_unprotected_package_mounts ... ok
+2026-10-08T23:37:34.3442392Z test system::tests::planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots ... ok
+2026-10-08T23:37:34.3477719Z test system::tests::snapshot_lock_repairs_legacy_permissions_without_replacing_the_inode ... ok
+2026-10-08T23:37:34.3516348Z test system::tests::symlinks_cannot_redirect_store_or_boot_writes ... ok
+2026-10-08T23:37:34.3585351Z test system::tests::generation_tests::unmanaged_entries_and_unfinished_selection_are_not_accepted ... ok
+2026-10-08T23:37:34.3674811Z test system::tests::unfinished_health_change_blocks_all_mutation_and_rollback_planning ... ok
+2026-10-08T23:37:34.3688578Z test tests::boot_identity_allows_only_systemd_detected_console_suffixes ... ok
+2026-10-08T23:37:34.3690780Z test tests::btrfs_identity_parser_fails_closed ... ok
+2026-10-08T23:37:34.3691357Z test tests::identifiers_and_pe_are_checked_at_the_boundary ... ok
+2026-10-08T23:37:34.3806590Z test system::tests::wrong_layout_missing_tools_metadata_and_targets_fail_closed ... ok
+2026-10-08T23:37:35.5229898Z test system::tests::generation_tests::first_activation_interruption_keeps_original_and_retained_boot_material ... ok
+2026-10-08T23:37:37.4072899Z test system::tests::generation_tests::interruption_at_every_staging_and_activation_command_preserves_prior ... ok
+2026-10-08T23:37:37.4073168Z 
+2026-10-08T23:37:37.4073307Z test result: ok. 29 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 6.81s
+2026-10-08T23:37:37.4073483Z 
+2026-10-08T23:37:37.4076493Z      Running unittests src/lib.rs (target/debug/deps/distro_transactions-4f4242c455d378f1)
+2026-10-08T23:37:37.4087314Z 
+2026-10-08T23:37:37.4087390Z running 29 tests
+2026-10-08T23:37:37.4095207Z test tests::boot_refresh_only_reads_matching_installed_loader_copies ... ok
+2026-10-08T23:37:37.4097108Z test tests::disk_checks_reject_shortfall_and_overflow ... ok
+2026-10-08T23:37:37.4291714Z test tests::execution_order_and_boot_confirmation_boundary ... ok
+2026-10-08T23:37:37.4480143Z test tests::confirmation_requires_new_boot_matching_generation_and_fresh_health ... ok
+2026-10-08T23:37:37.4525025Z test tests::generation_tests::activation_failure_keeps_both_snapshots_and_requires_recovery ... ok
+2026-10-08T23:37:37.4586871Z test tests::generation_tests::fallback_evidence_is_idempotent_and_does_not_claim_restoration_or_success ... ok
+2026-10-08T23:37:37.4589702Z test tests::generation_tests::generation_references_reject_missing_stale_wrong_and_unhealthy_records ... ok
+2026-10-08T23:37:37.4591543Z test tests::health_distinguishes_failure_warning_and_unavailable ... ok
+2026-10-08T23:37:37.4624318Z test tests::generation_tests::baseline_publication_failure_has_durable_recovery_reference_before_packages ... ok
+2026-10-08T23:37:37.4633419Z test tests::history_is_read_only_versioned_and_lock_is_exclusive ... ok
+2026-10-08T23:37:37.4636676Z test tests::managed_health_rejects_unknown_or_failed_artifact_trust ... ok
+2026-10-08T23:37:37.4711267Z test tests::missing_snapshots_prevents_all_package_work ... ok
+2026-10-08T23:37:37.4757210Z test tests::no_op_needs_no_snapshot_or_package_mutation ... ok
+2026-10-08T23:37:37.5100540Z test tests::cancellation_at_every_boundary_never_succeeds ... ok
+2026-10-08T23:37:37.5108103Z test tests::pacman_keeps_signature_policy_and_native_dependency_reasons ... ok
+2026-10-08T23:37:37.5109266Z test tests::pacman_machine_output_rejects_ambiguity ... ok
+2026-10-08T23:37:37.5110781Z test tests::plan_validation_and_removal_state_are_consistent ... ok
+2026-10-08T23:37:37.5113627Z test tests::planner_resolves_real_fields_and_propagates_command_errors ... ok
+2026-10-08T23:37:37.5125174Z test tests::interrupted_transactions_are_recovered_without_replay ... ok
+2026-10-08T23:37:37.5140414Z test tests::old_updater_writes_survive_root_rollback_and_divergence_is_preserved ... ok
+2026-10-08T23:37:37.5278587Z test tests::post_snapshot_failure_retains_pre_snapshot_and_requires_rollback ... ok
+2026-10-08T23:37:37.5279497Z test tests::rollback_planning_rejects_targets_that_confirmation_cannot_finalize ... ok
+2026-10-08T23:37:37.5421668Z test tests::failure_matrix_is_durable_and_stops_at_the_failing_phase ... ok
+2026-10-08T23:37:37.5422560Z test tests::state_machine_rejects_skipped_and_terminal_transitions ... ok
+2026-10-08T23:37:37.5423573Z test tests::system_checks_distinguish_missing_tool_and_failed_check ... ok
+2026-10-08T23:37:37.5475307Z test tests::public_sqlite_locks_cannot_block_private_commits_or_migration ... ok
+2026-10-08T23:37:37.5482385Z test tests::published_history_migrates_and_recovers_failed_publication ... ok
+2026-10-08T23:37:37.5482880Z test tests::systemd_or_loader_mutation_rejects_the_entire_plan_before_execution ... ok
+2026-10-08T23:37:37.5534064Z test tests::stale_confirmation_and_missing_post_snapshot_fail_closed ... ok
+2026-10-08T23:37:37.5534339Z 
+2026-10-08T23:37:37.5534547Z test result: ok. 29 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+2026-10-08T23:37:37.5534770Z 
+2026-10-08T23:37:37.5537795Z      Running tests/permissions.rs (target/debug/deps/permissions-38bd999c1d01cebd)
+2026-10-08T23:37:37.5547892Z 
+2026-10-08T23:37:37.5547980Z running 2 tests
+2026-10-08T23:37:37.9216201Z test migration_recovers_a_legacy_hot_journal ... ok
+2026-10-08T23:37:37.9216601Z test unprivileged_process_cannot_open_private_history_or_update_lock ... ok
+2026-10-08T23:37:37.9216862Z 
+2026-10-08T23:37:37.9217067Z test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.37s
+2026-10-08T23:37:37.9217341Z 
+2026-10-08T23:37:37.9219191Z      Running unittests src/lib.rs (target/debug/deps/distroctl-06f5c4d812f1a0f8)
+2026-10-08T23:37:37.9229333Z 
+2026-10-08T23:37:37.9229528Z running 5 tests
+2026-10-08T23:37:37.9251894Z test tests::formatting_and_json_share_normalized_hardware ... ok
+2026-10-08T23:37:37.9252584Z test updates::confirmation_tests::automatic_confirmation_leaves_restoration_pending ... ok
+2026-10-08T23:37:37.9252880Z test tests::parse_observations_without_inventing_status ... ok
+2026-10-08T23:37:37.9253149Z test tests::fixture_detects_encrypted_and_plain_root_and_running_uki ... ok
+2026-10-08T23:37:37.9254111Z test tests::status_resolves_real_partition_and_mapper_symlinks ... ok
+2026-10-08T23:37:37.9254343Z 
+2026-10-08T23:37:37.9256241Z test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:37:37.9256551Z 
+2026-10-08T23:37:37.9256826Z      Running unittests src/main.rs (target/debug/deps/distroctl-9e7c3e12443759ea)
+2026-10-08T23:37:37.9263698Z 
+2026-10-08T23:37:37.9264094Z running 0 tests
+2026-10-08T23:37:37.9264295Z 
+2026-10-08T23:37:37.9264558Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:37:37.9264872Z 
+2026-10-08T23:37:37.9265542Z      Running tests/cli.rs (target/debug/deps/cli-4ff9a8dd72a50adb)
+2026-10-08T23:37:37.9274615Z 
+2026-10-08T23:37:37.9274786Z running 4 tests
+2026-10-08T23:37:37.9296164Z test history_json_does_not_create_a_database ... ok
+2026-10-08T23:37:37.9296720Z test security_status_does_not_invent_success_without_the_installed_helper ... ok
+2026-10-08T23:37:37.9341092Z test dry_run_and_history_share_structured_models ... ok
+2026-10-08T23:37:37.9900810Z test cli_contract ... ok
+2026-10-08T23:37:37.9900965Z 
+2026-10-08T23:37:37.9901174Z test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+2026-10-08T23:37:37.9901447Z 
+2026-10-08T23:37:37.9903366Z    Doc-tests distro_config
+2026-10-08T23:37:38.0071207Z 
+2026-10-08T23:37:38.0071576Z running 0 tests
+2026-10-08T23:37:38.0071697Z 
+2026-10-08T23:37:38.0071898Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:37:38.0072077Z 
+2026-10-08T23:37:38.0081785Z    Doc-tests distro_hardware
+2026-10-08T23:37:38.0253284Z 
+2026-10-08T23:37:38.0256315Z running 0 tests
+2026-10-08T23:37:38.0256497Z 
+2026-10-08T23:37:38.0256718Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:37:38.0257000Z 
+2026-10-08T23:37:38.0262726Z    Doc-tests distro_snapshots
+2026-10-08T23:37:38.0703410Z 
+2026-10-08T23:37:38.0703916Z running 0 tests
+2026-10-08T23:37:38.0704078Z 
+2026-10-08T23:37:38.0704892Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:37:38.0705175Z 
+2026-10-08T23:37:38.0715324Z    Doc-tests distro_transactions
+2026-10-08T23:37:38.1202904Z 
+2026-10-08T23:37:38.1203290Z running 0 tests
+2026-10-08T23:37:38.1203433Z 
+2026-10-08T23:37:38.1203590Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:37:38.1203885Z 
+2026-10-08T23:37:38.1213436Z    Doc-tests distroctl
+2026-10-08T23:37:38.1422821Z 
+2026-10-08T23:37:38.1423153Z running 0 tests
+2026-10-08T23:37:38.1423275Z 
+2026-10-08T23:37:38.1423434Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:37:38.1423660Z 
+2026-10-08T23:37:38.1496292Z ##[group]Run cargo +1.96.0 clippy --workspace --all-targets --locked -- -D warnings
+2026-10-08T23:37:38.1496612Z [36;1mcargo +1.96.0 clippy --workspace --all-targets --locked -- -D warnings[0m
+2026-10-08T23:37:38.1546689Z shell: /usr/bin/bash -e {0}
+2026-10-08T23:37:38.1546827Z ##[endgroup]
+2026-10-08T23:37:38.2213953Z     Checking serde_core v1.0.229
+2026-10-08T23:37:38.2214279Z     Checking typenum v1.20.1
+2026-10-08T23:37:38.2229720Z     Checking zmij v1.0.23
+2026-10-08T23:37:38.2254419Z     Checking itoa v1.0.18
+2026-10-08T23:37:38.2756505Z     Checking foldhash v0.2.0
+2026-10-08T23:37:38.3154830Z     Checking memchr v2.8.3
+2026-10-08T23:37:38.3434822Z     Checking hashbrown v0.16.1
+2026-10-08T23:37:38.5715269Z     Checking equivalent v1.0.2
+2026-10-08T23:37:38.5914803Z     Checking hashbrown v0.17.1
+2026-10-08T23:37:38.6824722Z     Checking hashlink v0.11.1
+2026-10-08T23:37:38.7074899Z     Checking generic-array v0.14.7
+2026-10-08T23:37:38.8125204Z     Checking libsqlite3-sys v0.36.0
+2026-10-08T23:37:38.8464968Z     Checking indexmap v2.14.2
+2026-10-08T23:37:38.8874841Z     Checking winnow v0.7.15
+2026-10-08T23:37:38.9764702Z     Checking crypto-common v0.1.7
+2026-10-08T23:37:39.0094706Z     Checking block-buffer v0.10.4
+2026-10-08T23:37:39.0465449Z     Checking digest v0.10.7
+2026-10-08T23:37:39.1144979Z     Checking toml_write v0.1.2
+2026-10-08T23:37:39.1684967Z     Checking fallible-streaming-iterator v0.1.9
+2026-10-08T23:37:39.1787866Z     Checking fallible-iterator v0.3.0
+2026-10-08T23:37:39.2165064Z     Checking cpufeatures v0.2.17
+2026-10-08T23:37:39.2314727Z     Checking cfg-if v1.0.5
+2026-10-08T23:37:39.2464653Z     Checking bitflags v2.13.2
+2026-10-08T23:37:39.2954815Z     Checking smallvec v1.16.2
+2026-10-08T23:37:39.3114783Z     Checking sha2 v0.10.9
+2026-10-08T23:37:39.3774393Z     Checking rusqlite v0.38.0
+2026-10-08T23:37:39.3794837Z     Checking serde v1.0.229
+2026-10-08T23:37:39.4314426Z     Checking serde_json v1.0.151
+2026-10-08T23:37:39.6135019Z     Checking serde_spanned v0.6.9
+2026-10-08T23:37:39.6505847Z     Checking toml_datetime v0.6.11
+2026-10-08T23:37:39.7184893Z     Checking libc v0.2.190
+2026-10-08T23:37:39.7564696Z     Checking toml_edit v0.22.27
+2026-10-08T23:37:39.7915299Z     Checking distro-hardware v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/hardware)
+2026-10-08T23:37:39.8099338Z     Checking distro-snapshots v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/snapshots)
+2026-10-08T23:37:40.5454923Z     Checking toml v0.8.23
+2026-10-08T23:37:40.6236577Z     Checking distro-transactions v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/transactions)
+2026-10-08T23:37:40.6867699Z     Checking distro-config v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/config)
+2026-10-08T23:37:41.1675161Z     Checking distroctl v0.1.0-dev (/home/runner/work/astraeus/astraeus/crates/distroctl)
+2026-10-08T23:37:41.4073462Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.22s
+2026-10-08T23:37:41.4473082Z ##[group]Run sudo apt-get update
+2026-10-08T23:37:41.4473271Z [36;1msudo apt-get update[0m
+2026-10-08T23:37:41.4473590Z [36;1msudo apt-get install -y --no-install-recommends squashfs-tools xorriso qemu-utils sbsigntool efitools systemd-ukify systemd-boot-efi[0m
+2026-10-08T23:37:41.4474169Z [36;1m# Ubuntu 24.04's ukify 255 does not provide the required JSON inspection format.[0m
+2026-10-08T23:37:41.4474636Z [36;1mcurl --fail --location --retry 3 https://raw.githubusercontent.com/systemd/systemd/8cc40e0c5e9234bf45084751ac53b1fbfe70b492/src/ukify/ukify.py -o /tmp/astraeus-ukify[0m
+2026-10-08T23:37:41.4475162Z [36;1mecho '4ee19937778fdb35a447288fad04307d7606dc2a14eb0524b3dcdcc9cbb397b2  /tmp/astraeus-ukify' | sha256sum --check --strict[0m
+2026-10-08T23:37:41.4475543Z [36;1msed -i -e 's/{{PROJECT_VERSION}}/262/g' -e 's/{{VERSION_TAG}}/v262/g' /tmp/astraeus-ukify[0m
+2026-10-08T23:37:41.4475801Z [36;1msudo install -m755 /tmp/astraeus-ukify /usr/bin/ukify[0m
+2026-10-08T23:37:41.4476020Z [36;1m/usr/bin/ukify --version[0m
+2026-10-08T23:37:41.4526701Z shell: /usr/bin/bash -e {0}
+2026-10-08T23:37:41.4526837Z ##[endgroup]
+2026-10-08T23:37:41.5067724Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-08T23:37:41.5558667Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-10-08T23:37:41.5646375Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-10-08T23:37:41.5734302Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-10-08T23:37:41.5800877Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-10-08T23:37:41.5826975Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-10-08T23:37:41.6064134Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [474 kB]
+2026-10-08T23:37:41.6184411Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.3 kB]
+2026-10-08T23:37:41.6212289Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main all Packages [640 B]
+2026-10-08T23:37:41.6245501Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [531 kB]
+2026-10-08T23:37:41.6787435Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1375 kB]
+2026-10-08T23:37:41.6939104Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [306 kB]
+2026-10-08T23:37:41.6958954Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1702 kB]
+2026-10-08T23:37:41.7054312Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [342 kB]
+2026-10-08T23:37:41.7078958Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1761 kB]
+2026-10-08T23:37:41.7166678Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [401 kB]
+2026-10-08T23:37:41.7225781Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [55.0 kB]
+2026-10-08T23:37:41.7240309Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [14.3 kB]
+2026-10-08T23:37:41.7699384Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1115 kB]
+2026-10-08T23:37:41.7760063Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [227 kB]
+2026-10-08T23:37:41.8207880Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1218 kB]
+2026-10-08T23:37:41.8266698Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [245 kB]
+2026-10-08T23:37:41.8286909Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1632 kB]
+2026-10-08T23:37:41.8383100Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [376 kB]
+2026-10-08T23:37:41.8414825Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [11.6 kB]
+2026-10-08T23:37:46.3513876Z Fetched 12.2 MB in 1s (13.0 MB/s)
+2026-10-08T23:37:46.8593330Z Reading package lists...
+2026-10-08T23:37:46.8831132Z Reading package lists...
+2026-10-08T23:37:47.0548257Z Building dependency tree...
+2026-10-08T23:37:47.0554167Z Reading state information...
+2026-10-08T23:37:47.1668976Z squashfs-tools is already the newest version (1:4.6.1-1build1).
+2026-10-08T23:37:47.1669451Z squashfs-tools set to manually installed.
+2026-10-08T23:37:47.1669834Z sbsigntool is already the newest version (0.9.4-3.1ubuntu7).
+2026-10-08T23:37:47.1670224Z sbsigntool set to manually installed.
+2026-10-08T23:37:47.1670568Z The following additional packages will be installed:
+2026-10-08T23:37:47.1671590Z   libburn4t64 libisoburn1t64 libisofs6t64 liburing2 python3-pefile
+2026-10-08T23:37:47.1674751Z Suggested packages:
+2026-10-08T23:37:47.1674943Z   xorriso-tcltk jigit cdck
+2026-10-08T23:37:47.1675134Z Recommended packages:
+2026-10-08T23:37:47.1675308Z   qemu-block-extra
+2026-10-08T23:37:47.1815903Z The following NEW packages will be installed:
+2026-10-08T23:37:47.1818280Z   efitools libburn4t64 libisoburn1t64 libisofs6t64 liburing2 python3-pefile
+2026-10-08T23:37:47.1818618Z   qemu-utils systemd-boot-efi systemd-ukify xorriso
+2026-10-08T23:37:47.1940789Z 0 upgraded, 10 newly installed, 0 to remove and 23 not upgraded.
+2026-10-08T23:37:47.1941054Z Need to get 3724 kB of archives.
+2026-10-08T23:37:47.1941238Z After this operation, 15.6 MB of additional disk space will be used.
+2026-10-08T23:37:47.1941459Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-08T23:37:47.4909672Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 efitools amd64 1.9.2-3ubuntu3 [149 kB]
+2026-10-08T23:37:48.1182960Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libburn4t64 amd64 1.5.6-1.1build1 [158 kB]
+2026-10-08T23:37:48.3575304Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libisofs6t64 amd64 1.5.6.pl01-1.1ubuntu2 [220 kB]
+2026-10-08T23:37:48.6058008Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libisoburn1t64 amd64 1:1.5.6-1.1ubuntu3 [405 kB]
+2026-10-08T23:37:48.8977868Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 liburing2 amd64 2.5-1build1 [21.1 kB]
+2026-10-08T23:37:49.0333058Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 qemu-utils amd64 1:8.2.2+ds-0ubuntu1.18 [2221 kB]
+2026-10-08T23:37:49.4840003Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 systemd-boot-efi amd64 255.4-1ubuntu8.17 [156 kB]
+2026-10-08T23:37:49.6252784Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 python3-pefile all 2023.2.7-3 [66.5 kB]
+2026-10-08T23:37:49.7618267Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 systemd-ukify all 255.4-1ubuntu8.17 [29.8 kB]
+2026-10-08T23:37:49.8967178Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xorriso amd64 1:1.5.6-1.1ubuntu3 [297 kB]
+2026-10-08T23:37:50.0750366Z Fetched 3724 kB in 3s (1369 kB/s)
+2026-10-08T23:37:50.0907965Z Selecting previously unselected package efitools.
+2026-10-08T23:37:50.1157534Z (Reading database ... 
+2026-10-08T23:37:50.1157807Z (Reading database ... 5%
+2026-10-08T23:37:50.1157991Z (Reading database ... 10%
+2026-10-08T23:37:50.1158118Z (Reading database ... 15%
+2026-10-08T23:37:50.1158243Z (Reading database ... 20%
+2026-10-08T23:37:50.1158365Z (Reading database ... 25%
+2026-10-08T23:37:50.1158483Z (Reading database ... 30%
+2026-10-08T23:37:50.1158605Z (Reading database ... 35%
+2026-10-08T23:37:50.1158944Z (Reading database ... 40%
+2026-10-08T23:37:50.1159127Z (Reading database ... 45%
+2026-10-08T23:37:50.1159272Z (Reading database ... 50%
+2026-10-08T23:37:50.1208137Z (Reading database ... 55%
+2026-10-08T23:37:50.1858675Z (Reading database ... 60%
+2026-10-08T23:37:50.3299405Z (Reading database ... 65%
+2026-10-08T23:37:50.5319418Z (Reading database ... 70%
+2026-10-08T23:37:50.7303127Z (Reading database ... 75%
+2026-10-08T23:37:50.8356001Z (Reading database ... 80%
+2026-10-08T23:37:50.9828480Z (Reading database ... 85%
+2026-10-08T23:37:51.1263871Z (Reading database ... 90%
+2026-10-08T23:37:51.2781602Z (Reading database ... 95%
+2026-10-08T23:37:51.2781886Z (Reading database ... 100%
+2026-10-08T23:37:51.2782179Z (Reading database ... 203191 files and directories currently installed.)
+2026-10-08T23:37:51.2819416Z Preparing to unpack .../0-efitools_1.9.2-3ubuntu3_amd64.deb ...
+2026-10-08T23:37:51.2836318Z Unpacking efitools (1.9.2-3ubuntu3) ...
+2026-10-08T23:37:51.3099103Z Selecting previously unselected package libburn4t64:amd64.
+2026-10-08T23:37:51.3193221Z Preparing to unpack .../1-libburn4t64_1.5.6-1.1build1_amd64.deb ...
+2026-10-08T23:37:51.3205368Z Unpacking libburn4t64:amd64 (1.5.6-1.1build1) ...
+2026-10-08T23:37:51.3481093Z Selecting previously unselected package libisofs6t64:amd64.
+2026-10-08T23:37:51.3573512Z Preparing to unpack .../2-libisofs6t64_1.5.6.pl01-1.1ubuntu2_amd64.deb ...
+2026-10-08T23:37:51.3580517Z Unpacking libisofs6t64:amd64 (1.5.6.pl01-1.1ubuntu2) ...
+2026-10-08T23:37:51.3771100Z Selecting previously unselected package libisoburn1t64:amd64.
+2026-10-08T23:37:51.3879477Z Preparing to unpack .../3-libisoburn1t64_1%3a1.5.6-1.1ubuntu3_amd64.deb ...
+2026-10-08T23:37:51.3886784Z Unpacking libisoburn1t64:amd64 (1:1.5.6-1.1ubuntu3) ...
+2026-10-08T23:37:51.4091795Z Selecting previously unselected package liburing2:amd64.
+2026-10-08T23:37:51.4185387Z Preparing to unpack .../4-liburing2_2.5-1build1_amd64.deb ...
+2026-10-08T23:37:51.4192096Z Unpacking liburing2:amd64 (2.5-1build1) ...
+2026-10-08T23:37:51.4359715Z Selecting previously unselected package qemu-utils.
+2026-10-08T23:37:51.4453899Z Preparing to unpack .../5-qemu-utils_1%3a8.2.2+ds-0ubuntu1.18_amd64.deb ...
+2026-10-08T23:37:51.4460723Z Unpacking qemu-utils (1:8.2.2+ds-0ubuntu1.18) ...
+2026-10-08T23:37:51.5193045Z Selecting previously unselected package systemd-boot-efi:amd64.
+2026-10-08T23:37:51.5285456Z Preparing to unpack .../6-systemd-boot-efi_255.4-1ubuntu8.17_amd64.deb ...
+2026-10-08T23:37:51.5291267Z Unpacking systemd-boot-efi:amd64 (255.4-1ubuntu8.17) ...
+2026-10-08T23:37:51.5472452Z Selecting previously unselected package python3-pefile.
+2026-10-08T23:37:51.5564848Z Preparing to unpack .../7-python3-pefile_2023.2.7-3_all.deb ...
+2026-10-08T23:37:51.5570057Z Unpacking python3-pefile (2023.2.7-3) ...
+2026-10-08T23:37:51.5743441Z Selecting previously unselected package systemd-ukify.
+2026-10-08T23:37:51.5836091Z Preparing to unpack .../8-systemd-ukify_255.4-1ubuntu8.17_all.deb ...
+2026-10-08T23:37:51.5980970Z Unpacking systemd-ukify (255.4-1ubuntu8.17) ...
+2026-10-08T23:37:51.6165608Z Selecting previously unselected package xorriso.
+2026-10-08T23:37:51.6264005Z Preparing to unpack .../9-xorriso_1%3a1.5.6-1.1ubuntu3_amd64.deb ...
+2026-10-08T23:37:51.6270499Z Unpacking xorriso (1:1.5.6-1.1ubuntu3) ...
+2026-10-08T23:37:51.6645681Z Setting up systemd-boot-efi:amd64 (255.4-1ubuntu8.17) ...
+2026-10-08T23:37:51.6661863Z Setting up python3-pefile (2023.2.7-3) ...
+2026-10-08T23:37:51.7885714Z Setting up libisofs6t64:amd64 (1.5.6.pl01-1.1ubuntu2) ...
+2026-10-08T23:37:51.7899477Z Setting up libburn4t64:amd64 (1.5.6-1.1build1) ...
+2026-10-08T23:37:51.7912877Z Setting up liburing2:amd64 (2.5-1build1) ...
+2026-10-08T23:37:51.7926278Z Setting up libisoburn1t64:amd64 (1:1.5.6-1.1ubuntu3) ...
+2026-10-08T23:37:51.7939893Z Setting up xorriso (1:1.5.6-1.1ubuntu3) ...
+2026-10-08T23:37:51.7953012Z Setting up efitools (1.9.2-3ubuntu3) ...
+2026-10-08T23:37:51.7967196Z Setting up systemd-ukify (255.4-1ubuntu8.17) ...
+2026-10-08T23:37:51.7980839Z Setting up qemu-utils (1:8.2.2+ds-0ubuntu1.18) ...
+2026-10-08T23:37:51.7999599Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-10-08T23:37:52.0306401Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-10-08T23:37:52.0325596Z Not building database; man-db/auto-update is not 'true'.
+2026-10-08T23:37:52.0337311Z Processing triggers for install-info (7.1-3build2) ...
+2026-10-08T23:37:52.5801442Z 
+2026-10-08T23:37:52.5801950Z Running kernel seems to be up-to-date.
+2026-10-08T23:37:52.5802179Z 
+2026-10-08T23:37:52.5802693Z No services need to be restarted.
+2026-10-08T23:37:52.5802807Z 
+2026-10-08T23:37:52.5802869Z No containers need to be restarted.
+2026-10-08T23:37:52.5802971Z 
+2026-10-08T23:37:52.5803044Z No user sessions are running outdated binaries.
+2026-10-08T23:37:52.5803166Z 
+2026-10-08T23:37:52.5803282Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-08T23:37:53.3415266Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-08T23:37:53.3415884Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-08T23:37:53.3416237Z 
+2026-10-08T23:37:53.4455174Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-08T23:37:53.4455540Z 100 97379  100 97379    0     0   914k      0 --:--:-- --:--:-- --:--:--  923k
+2026-10-08T23:37:53.4498312Z /tmp/astraeus-ukify: OK
+2026-10-08T23:37:53.5200376Z ukify 262 (v262)
+2026-10-08T23:37:53.5314924Z ##[group]Run python -m unittest discover -s tests -v
+2026-10-08T23:37:53.5315157Z [36;1mpython -m unittest discover -s tests -v[0m
+2026-10-08T23:37:53.5365931Z shell: /usr/bin/bash -e {0}
+2026-10-08T23:37:53.5366073Z ##[endgroup]
+2026-10-08T23:37:53.6532639Z test_acceleration_is_explicit_and_never_falls_back (test_boot_smoke.AccelerationTests.test_acceleration_is_explicit_and_never_falls_back) ... ok
+2026-10-08T23:37:54.2687121Z test_archive_download_rejects_declared_streamed_and_slow_responses (test_bootstrap.BootstrapTests.test_archive_download_rejects_declared_streamed_and_slow_responses) ... ok
+2026-10-08T23:37:54.2717281Z test_archive_retains_only_verified_bytes_and_checks_consumed_hash (test_bootstrap.BootstrapTests.test_archive_retains_only_verified_bytes_and_checks_consumed_hash) ... ok
+2026-10-08T23:37:54.3756330Z test_package_archive_contains_generation_gate_and_recovery_guide (test_bootstrap.BootstrapTests.test_package_archive_contains_generation_gate_and_recovery_guide) ... ok
+2026-10-08T23:37:54.3757536Z test_pacman_resolves_both_roots_from_verified_local_metadata (test_bootstrap.BootstrapTests.test_pacman_resolves_both_roots_from_verified_local_metadata) ... skipped 'requires Linux pacman as root for isolated database sync'
+2026-10-08T23:37:54.3870847Z test_profile_generation_and_fingerprint_rejection (test_bootstrap.BootstrapTests.test_profile_generation_and_fingerprint_rejection) ... ok
+2026-10-08T23:37:54.3910692Z test_source_archive_is_deterministic_and_refuses_reuse (test_bootstrap.BootstrapTests.test_source_archive_is_deterministic_and_refuses_reuse) ... ok
+2026-10-08T23:37:54.3921431Z test_templates_and_live_contract (test_bootstrap.BootstrapTests.test_templates_and_live_contract) ... ok
+2026-10-08T23:37:54.3950152Z test_interruption_cannot_be_recorded_as_success (test_builder_signals.BuilderSignalTests.test_interruption_cannot_be_recorded_as_success) ... ok
+2026-10-08T23:37:54.3951206Z test_conventional_subject_and_limits (test_commit_subject.CommitSubjectTests.test_conventional_subject_and_limits) ... ok
+2026-10-08T23:37:54.3976293Z test_generated_profile_and_account_boundary (test_installer.InstallerTests.test_generated_profile_and_account_boundary) ... ok
+2026-10-08T23:37:54.3977053Z test_installed_boot_detaches_iso_and_preserves_disk_and_firmware (test_installer.InstallerTests.test_installed_boot_detaches_iso_and_preserves_disk_and_firmware) ... ok
+2026-10-08T23:37:54.3977652Z test_installer_storage_check_cannot_be_silently_disabled (test_installer.InstallerTests.test_installer_storage_check_cannot_be_silently_disabled) ... ok
+2026-10-08T23:37:54.3980519Z test_kernel_parameters_and_uki_inputs (test_installer.InstallerTests.test_kernel_parameters_and_uki_inputs) ... ok
+2026-10-08T23:37:54.4002732Z test_malformed_configuration_rejected (test_installer.InstallerTests.test_malformed_configuration_rejected) ... ok
+2026-10-08T23:37:54.4554935Z test_payload_does_not_clone_live_accounts_or_boot_workarounds (test_installer.InstallerTests.test_payload_does_not_clone_live_accounts_or_boot_workarounds) ... ok
+2026-10-08T23:37:54.4565293Z test_secure_boot_guard_aborts_before_installer_writes (test_installer.InstallerTests.test_secure_boot_guard_aborts_before_installer_writes) ... ok
+2026-10-08T23:37:54.4566179Z test_acceptance_requires_an_exact_complete_line (test_phase2_validation.ValidationTests.test_acceptance_requires_an_exact_complete_line) ... ok
+2026-10-08T23:37:54.4613040Z test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset (test_phase2_validation.ValidationTests.test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset) ... ok
+2026-10-08T23:37:54.4623127Z test_clone_uses_backing_disk_and_copies_vars (test_phase2_validation.ValidationTests.test_clone_uses_backing_disk_and_copies_vars) ... ok
+2026-10-08T23:37:54.4648378Z Verified both database hashes and 1 upstream package names.
+2026-10-08T23:37:54.4648889Z Prepared /tmp/tmphr9b8elc/package. Run makepkg as a non-root user in the pinned Arch builder.
+2026-10-08T23:37:54.4649666Z Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+2026-10-08T23:37:54.4656323Z Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+2026-10-08T23:37:54.4658192Z test_complete_success_and_rollback_scenarios_reject_lost_home_data (test_phase2_validation.ValidationTests.test_complete_success_and_rollback_scenarios_reject_lost_home_data) ... ok
+2026-10-08T23:37:54.4661848Z test_confirmation_waits_for_service_and_preserves_job_failure (test_phase2_validation.ValidationTests.test_confirmation_waits_for_service_and_preserves_job_failure) ... ok
+2026-10-08T23:37:54.4670927Z test_corrupt_or_unaccepted_baseline_refused_before_cloning (test_phase2_validation.ValidationTests.test_corrupt_or_unaccepted_baseline_refused_before_cloning) ... ok
+2026-10-08T23:37:54.4671785Z test_failed_probe_cannot_be_used_as_evidence (test_phase2_validation.ValidationTests.test_failed_probe_cannot_be_used_as_evidence) ... ok
+2026-10-08T23:37:54.7710772Z test_guest_exit_timeout_output_limit_and_pipeline_failure (test_phase2_validation.ValidationTests.test_guest_exit_timeout_output_limit_and_pipeline_failure) ... ok
+2026-10-08T23:37:54.7736436Z test_interruption_requires_package_mutation_before_power_cut (test_phase2_validation.ValidationTests.test_interruption_requires_package_mutation_before_power_cut) ... ok
+2026-10-08T23:37:54.7739950Z QMP: /tmp/tmpqccyoum_/boot-1/qmp.sock
+2026-10-08T23:37:54.7742964Z test_launch_is_foreground_disk_only_and_readonly_share (test_phase2_validation.ValidationTests.test_launch_is_foreground_disk_only_and_readonly_share) ... ok
+2026-10-08T23:37:54.7749355Z test_observation_keeps_other_artifacts_when_one_command_fails (test_phase2_validation.ValidationTests.test_observation_keeps_other_artifacts_when_one_command_fails) ... ok
+2026-10-08T23:37:54.7751343Z test_package_mismatch_and_outcome_disagreement_fail (test_phase2_validation.ValidationTests.test_package_mismatch_and_outcome_disagreement_fail) ... ok
+2026-10-08T23:37:54.7752131Z test_qmp_events_and_deadline (test_phase2_validation.ValidationTests.test_qmp_events_and_deadline) ... ok
+2026-10-08T23:37:54.7758028Z test_qmp_handshake_and_command_through_real_socket (test_phase2_validation.ValidationTests.test_qmp_handshake_and_command_through_real_socket) ... ok
+2026-10-08T23:37:54.7762995Z test_ready_guest_shutdown_avoids_desktop_power_dialog (test_phase2_validation.ValidationTests.test_ready_guest_shutdown_avoids_desktop_power_dialog) ... ok
+2026-10-08T23:37:54.9765795Z test_ready_timeout_never_passes (test_phase2_validation.ValidationTests.test_ready_timeout_never_passes) ... ok
+2026-10-08T23:37:55.0285880Z test_real_guest_channel_correlates_reply_and_preserves_failure_output (test_phase2_validation.ValidationTests.test_real_guest_channel_correlates_reply_and_preserves_failure_output) ... ok
+2026-10-08T23:37:55.0452905Z test_real_qcow2_overlay_and_baseline_hash (test_phase2_validation.ValidationTests.test_real_qcow2_overlay_and_baseline_hash) ... ok
+2026-10-08T23:37:55.0454908Z test_reboot_requires_new_boot_identity (test_phase2_validation.ValidationTests.test_reboot_requires_new_boot_identity) ... ok
+2026-10-08T23:37:55.0461895Z test_shutdown_timeout_and_cleanup_target_only_owned_process (test_phase2_validation.ValidationTests.test_shutdown_timeout_and_cleanup_target_only_owned_process) ... ok
+2026-10-08T23:37:55.0465517Z test_snapshot_and_transaction_gates_reject_false_success (test_phase2_validation.ValidationTests.test_snapshot_and_transaction_gates_reject_false_success) ... ok
+2026-10-08T23:37:55.0478547Z test_space_fault_uses_runtime_mount_and_restores_original_cache (test_phase2_validation.ValidationTests.test_space_fault_uses_runtime_mount_and_restores_original_cache) ... ok
+2026-10-08T23:37:55.0480645Z test_terminal_transaction_requires_actual_uki_and_boot_evidence (test_phase2_validation.ValidationTests.test_terminal_transaction_requires_actual_uki_and_boot_evidence) ... ok
+2026-10-08T23:37:55.5000593Z test_timeout_kills_the_child_group_before_delayed_side_effect (test_phase2_validation.ValidationTests.test_timeout_kills_the_child_group_before_delayed_side_effect) ... ok
+2026-10-08T23:37:55.5041043Z test_changed_baseline_or_firmware_is_refused (test_phase3_validation.Phase3Tests.test_changed_baseline_or_firmware_is_refused) ... ok
+2026-10-08T23:37:55.5043989Z test_disabled_enforcement_wrong_keys_and_replayed_markers_fail (test_phase3_validation.Phase3Tests.test_disabled_enforcement_wrong_keys_and_replayed_markers_fail) ... ok
+2026-10-08T23:37:55.5072733Z test_faults_are_guarded_and_record_exact_artifact_changes (test_phase3_validation.Phase3Tests.test_faults_are_guarded_and_record_exact_artifact_changes) ... ok
+2026-10-08T23:37:55.5074956Z test_guard_refusal_prevents_artifact_access (test_phase3_validation.Phase3Tests.test_guard_refusal_prevents_artifact_access) ... ok
+2026-10-08T23:37:55.5089524Z test_host_command_records_actual_failure_and_timeout (test_phase3_validation.Phase3Tests.test_host_command_records_actual_failure_and_timeout) ... ok
+2026-10-08T23:37:55.5092682Z QMP: /tmp/tmplm119iq3/boot-1/qmp.sock
+2026-10-08T23:37:55.5095586Z test_launch_reuses_harness_and_enforces_smm_and_flash (test_phase3_validation.Phase3Tests.test_launch_reuses_harness_and_enforces_smm_and_flash) ... ok
+2026-10-08T23:37:55.5096765Z test_load_only_probe_cannot_claim_payload_execution (test_phase3_validation.Phase3Tests.test_load_only_probe_cannot_claim_payload_execution) ... ok
+2026-10-08T23:37:55.5105472Z test_power_cut_requires_matching_blocked_product_barrier_and_records_exit (test_phase3_validation.Phase3Tests.test_power_cut_requires_matching_blocked_product_barrier_and_records_exit) ... ok
+2026-10-08T23:37:55.5108420Z test_real_refusal_predicate_requires_status_and_authentication_record (test_phase3_validation.Phase3Tests.test_real_refusal_predicate_requires_status_and_authentication_record) ... ok
+2026-10-08T23:37:55.5109506Z test_signature_list_rejects_extra_trust_and_malformed_lengths (test_phase3_validation.Phase3Tests.test_signature_list_rejects_extra_trust_and_malformed_lengths) ... ok
+2026-10-08T23:37:55.5112235Z test_tampering_changes_section_bytes_and_retains_pe_structure (test_phase3_validation.Phase3Tests.test_tampering_changes_section_bytes_and_retains_pe_structure) ... ok
+2026-10-08T23:37:55.5113297Z test_events_cannot_be_mistaken_for_command_success (test_qmp.QmpTests.test_events_cannot_be_mistaken_for_command_success) ... ok
+2026-10-08T23:37:55.5851466Z test_stdin_text_is_validated_without_echoing_the_input (test_qmp.QmpTests.test_stdin_text_is_validated_without_echoing_the_input) ... ok
+2026-10-08T23:37:55.5852067Z test_text_is_validated_before_sending_any_keys (test_qmp.QmpTests.test_text_is_validated_before_sending_any_keys) ... ok
+2026-10-08T23:37:55.8053011Z test_cache_and_build_time_do_not_change_image_bytes (test_reproducibility.ImageDeterminismTests.test_cache_and_build_time_do_not_change_image_bytes) ... ok
+2026-10-08T23:37:55.8054476Z test_coordinator_recognizes_locks_on_a_real_btrfs_subvolume (test_secure_boot.NativeSigningTests.test_coordinator_recognizes_locks_on_a_real_btrfs_subvolume) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8055469Z test_coordinator_requires_both_parent_locks_and_generation_verification (test_secure_boot.NativeSigningTests.test_coordinator_requires_both_parent_locks_and_generation_verification) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8056275Z test_expired_certificate_is_rejected_by_openssl (test_secure_boot.NativeSigningTests.test_expired_certificate_is_rejected_by_openssl) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8056994Z test_invalid_signer_output_never_becomes_ready (test_secure_boot.NativeSigningTests.test_invalid_signer_output_never_becomes_ready) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8058122Z test_missing_artifact_and_receipt_tampering_cannot_be_consumed (test_secure_boot.NativeSigningTests.test_missing_artifact_and_receipt_tampering_cannot_be_consumed) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8059031Z test_native_dbx_hash_revocation_is_checked_without_changing_firmware (test_secure_boot.NativeSigningTests.test_native_dbx_hash_revocation_is_checked_without_changing_firmware) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8059896Z test_native_generation_provider_verifies_rebind_and_rejects_unknown_trust (test_secure_boot.NativeSigningTests.test_native_generation_provider_verifies_rebind_and_rejects_unknown_trust) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8060686Z test_nonzero_signing_hook_failure_is_retained (test_secure_boot.NativeSigningTests.test_nonzero_signing_hook_failure_is_retained) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8061465Z test_offline_provider_uses_public_installed_policy_without_private_key (test_secure_boot.NativeSigningTests.test_offline_provider_uses_public_installed_policy_without_private_key) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8062307Z test_policy_and_keys_cannot_be_controlled_by_an_unprivileged_user (test_secure_boot.NativeSigningTests.test_policy_and_keys_cannot_be_controlled_by_an_unprivileged_user) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8063113Z test_post_hook_failure_is_nonzero_with_no_unsigned_fallback (test_secure_boot.NativeSigningTests.test_post_hook_failure_is_nonzero_with_no_unsigned_fallback) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8064082Z test_rebind_failure_retains_journal_and_cannot_publish (test_secure_boot.NativeSigningTests.test_rebind_failure_retains_journal_and_cannot_publish) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8065475Z test_receipt_write_failure_leaves_no_eligible_candidate (test_secure_boot.NativeSigningTests.test_receipt_write_failure_leaves_no_eligible_candidate) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8066718Z test_sign_uki_and_bootloader_and_reverify_candidates (test_secure_boot.NativeSigningTests.test_sign_uki_and_bootloader_and_reverify_candidates) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8067520Z test_signed_candidate_publication_and_interrupted_copy_preserve_prior (test_secure_boot.NativeSigningTests.test_signed_candidate_publication_and_interrupted_copy_preserve_prior) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8068401Z test_signed_candidate_publication_consumes_receipt_and_keeps_known_good (test_secure_boot.NativeSigningTests.test_signed_candidate_publication_consumes_receipt_and_keeps_known_good) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8069272Z test_signed_loader_ready_binds_packaged_bytes_and_running_esp (test_secure_boot.NativeSigningTests.test_signed_loader_ready_binds_packaged_bytes_and_running_esp) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8070103Z test_signer_failure_and_interruption_keep_input_and_prior_artifacts (test_secure_boot.NativeSigningTests.test_signer_failure_and_interruption_keep_input_and_prior_artifacts) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8070910Z test_structurally_wrong_images_and_bootloader_wrong_key (test_secure_boot.NativeSigningTests.test_structurally_wrong_images_and_bootloader_wrong_key) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8071812Z test_symlink_hardlink_unsafe_permissions_and_concurrent_signer_refused (test_secure_boot.NativeSigningTests.test_symlink_hardlink_unsafe_permissions_and_concurrent_signer_refused) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8072621Z test_test_keys_are_distinct_private_and_never_enrolled (test_secure_boot.NativeSigningTests.test_test_keys_are_distinct_private_and_never_enrolled) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8073392Z test_unsigned_wrong_signer_and_tampered_images_are_rejected (test_secure_boot.NativeSigningTests.test_unsigned_wrong_signer_and_tampered_images_are_rejected) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8074308Z test_wrong_architecture_or_non_efi_subsystem_cannot_be_signed (test_secure_boot.NativeSigningTests.test_wrong_architecture_or_non_efi_subsystem_cannot_be_signed) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8075100Z test_wrong_pin_revocation_missing_key_and_wrong_private_key (test_secure_boot.NativeSigningTests.test_wrong_pin_revocation_missing_key_and_wrong_private_key) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:37:55.8075806Z test_error_diagnostics_never_echo_tool_output_or_key_contents (test_secure_boot.PolicyTests.test_error_diagnostics_never_echo_tool_output_or_key_contents) ... ok
+2026-10-08T23:37:55.8076372Z test_firmware_framing_rejects_truncation_and_tracks_unknown_types (test_secure_boot.PolicyTests.test_firmware_framing_rejects_truncation_and_tracks_unknown_types) ... ok
+2026-10-08T23:37:55.8076952Z test_legacy_preset_uses_guarded_output_and_secure_preset_cannot_activate (test_secure_boot.PolicyTests.test_legacy_preset_uses_guarded_output_and_secure_preset_cannot_activate) ... ok
+2026-10-08T23:37:55.8395784Z test_package_source_excludes_adjacent_private_keys_and_is_deterministic (test_secure_boot.PolicyTests.test_package_source_excludes_adjacent_private_keys_and_is_deterministic) ... ok
+2026-10-08T23:37:55.8399245Z test_policy_rejects_ambiguity_and_unsafe_key_selection (test_secure_boot.PolicyTests.test_policy_rejects_ambiguity_and_unsafe_key_selection) ... ok
+2026-10-08T23:37:55.8412782Z test_post_hook_rejects_active_esp_input (test_secure_boot.PolicyTests.test_post_hook_rejects_active_esp_input) ... ok
+2026-10-08T23:37:55.8439386Z test_preset_output_never_falls_back_when_signing_is_required (test_secure_boot.PolicyTests.test_preset_output_never_falls_back_when_signing_is_required) ... ok
+2026-10-08T23:37:55.8457168Z test_removed_revoked_and_unknown_firmware_trust_cannot_pass (test_secure_boot.PolicyTests.test_removed_revoked_and_unknown_firmware_trust_cannot_pass) ... ok
+2026-10-08T23:37:55.8470084Z test_signing_expectation_survives_deleted_policy_and_unknown_firmware (test_secure_boot.PolicyTests.test_signing_expectation_survives_deleted_policy_and_unknown_firmware) ... ok
+2026-10-08T23:37:55.8472961Z test_status_is_read_only_when_policy_is_absent (test_secure_boot.PolicyTests.test_status_is_read_only_when_policy_is_absent) ... ok
+2026-10-08T23:37:55.8491116Z test_unconfigured_legacy_post_hook_is_a_noop (test_secure_boot.PolicyTests.test_unconfigured_legacy_post_hook_is_a_noop) ... ok
+2026-10-08T23:37:55.8500768Z test_unknown_firmware_is_not_disabled_or_enforced (test_secure_boot.PolicyTests.test_unknown_firmware_is_not_disabled_or_enforced) ... ok
+2026-10-08T23:37:55.8511091Z test_update_hook_requires_coordinator_before_signing_readiness (test_secure_boot.PolicyTests.test_update_hook_requires_coordinator_before_signing_readiness) ... ok
+2026-10-08T23:37:55.8511925Z test_print_resolution_and_expanded_trust_policy_are_read_only (test_transactions_pacman.PacmanContractTests.test_print_resolution_and_expanded_trust_policy_are_read_only) ... skipped 'requires real pacman and pacman-conf'
+2026-10-08T23:37:55.8512320Z 
+2026-10-08T23:37:55.8512511Z ----------------------------------------------------------------------
+2026-10-08T23:37:55.8512700Z Ran 94 tests in 2.198s
+2026-10-08T23:37:55.8512778Z 
+2026-10-08T23:37:55.8512828Z OK (skipped=26)
+2026-10-08T23:37:55.8670871Z ##[group]Run sudo python3 -c "import sys; sys.path.insert(0, 'tests'); import test_secure_boot; assert test_secure_boot.NATIVE, 'native signing tools unavailable'"
+2026-10-08T23:37:55.8671433Z [36;1msudo python3 -c "import sys; sys.path.insert(0, 'tests'); import test_secure_boot; assert test_secure_boot.NATIVE, 'native signing tools unavailable'"[0m
+2026-10-08T23:37:55.8671821Z [36;1msudo python3 -m unittest discover -s tests -p test_secure_boot.py -v[0m
+2026-10-08T23:37:55.8721550Z shell: /usr/bin/bash -e {0}
+2026-10-08T23:37:55.8721682Z ##[endgroup]
+2026-10-08T23:37:56.3087570Z test_coordinator_recognizes_locks_on_a_real_btrfs_subvolume (test_secure_boot.NativeSigningTests.test_coordinator_recognizes_locks_on_a_real_btrfs_subvolume) ... skipped 'explicit disposable Btrfs loopback test'
+2026-10-08T23:37:56.3147829Z test_coordinator_requires_both_parent_locks_and_generation_verification (test_secure_boot.NativeSigningTests.test_coordinator_requires_both_parent_locks_and_generation_verification) ... ok
+2026-10-08T23:37:56.3309539Z test_expired_certificate_is_rejected_by_openssl (test_secure_boot.NativeSigningTests.test_expired_certificate_is_rejected_by_openssl) ... ok
+2026-10-08T23:37:56.5123097Z test_invalid_signer_output_never_becomes_ready (test_secure_boot.NativeSigningTests.test_invalid_signer_output_never_becomes_ready) ... ok
+2026-10-08T23:37:56.9021370Z test_missing_artifact_and_receipt_tampering_cannot_be_consumed (test_secure_boot.NativeSigningTests.test_missing_artifact_and_receipt_tampering_cannot_be_consumed) ... ok
+2026-10-08T23:37:57.3607573Z test_native_dbx_hash_revocation_is_checked_without_changing_firmware (test_secure_boot.NativeSigningTests.test_native_dbx_hash_revocation_is_checked_without_changing_firmware) ... ok
+2026-10-08T23:37:58.5186449Z test_native_generation_provider_verifies_rebind_and_rejects_unknown_trust (test_secure_boot.NativeSigningTests.test_native_generation_provider_verifies_rebind_and_rejects_unknown_trust) ... ok
+2026-10-08T23:37:58.6211427Z test_nonzero_signing_hook_failure_is_retained (test_secure_boot.NativeSigningTests.test_nonzero_signing_hook_failure_is_retained) ... ok
+2026-10-08T23:37:58.9902561Z test_offline_provider_uses_public_installed_policy_without_private_key (test_secure_boot.NativeSigningTests.test_offline_provider_uses_public_installed_policy_without_private_key) ... ok
+2026-10-08T23:37:59.0088172Z test_policy_and_keys_cannot_be_controlled_by_an_unprivileged_user (test_secure_boot.NativeSigningTests.test_policy_and_keys_cannot_be_controlled_by_an_unprivileged_user) ... ok
+2026-10-08T23:37:59.2377752Z test_post_hook_failure_is_nonzero_with_no_unsigned_fallback (test_secure_boot.NativeSigningTests.test_post_hook_failure_is_nonzero_with_no_unsigned_fallback) ... ok
+2026-10-08T23:37:59.6543105Z test_rebind_failure_retains_journal_and_cannot_publish (test_secure_boot.NativeSigningTests.test_rebind_failure_retains_journal_and_cannot_publish) ... ok
+2026-10-08T23:37:59.8354382Z test_receipt_write_failure_leaves_no_eligible_candidate (test_secure_boot.NativeSigningTests.test_receipt_write_failure_leaves_no_eligible_candidate) ... ok
+2026-10-08T23:38:00.5489763Z test_sign_uki_and_bootloader_and_reverify_candidates (test_secure_boot.NativeSigningTests.test_sign_uki_and_bootloader_and_reverify_candidates) ... ok
+2026-10-08T23:38:00.9914139Z test_signed_candidate_publication_and_interrupted_copy_preserve_prior (test_secure_boot.NativeSigningTests.test_signed_candidate_publication_and_interrupted_copy_preserve_prior) ... ok
+2026-10-08T23:38:01.6982242Z test_signed_candidate_publication_consumes_receipt_and_keeps_known_good (test_secure_boot.NativeSigningTests.test_signed_candidate_publication_consumes_receipt_and_keeps_known_good) ... ok
+2026-10-08T23:38:02.4589896Z test_signed_loader_ready_binds_packaged_bytes_and_running_esp (test_secure_boot.NativeSigningTests.test_signed_loader_ready_binds_packaged_bytes_and_running_esp) ... ok
+2026-10-08T23:38:02.5850863Z test_signer_failure_and_interruption_keep_input_and_prior_artifacts (test_secure_boot.NativeSigningTests.test_signer_failure_and_interruption_keep_input_and_prior_artifacts) ... ok
+2026-10-08T23:38:02.7669124Z test_structurally_wrong_images_and_bootloader_wrong_key (test_secure_boot.NativeSigningTests.test_structurally_wrong_images_and_bootloader_wrong_key) ... ok
+2026-10-08T23:38:02.8687085Z test_symlink_hardlink_unsafe_permissions_and_concurrent_signer_refused (test_secure_boot.NativeSigningTests.test_symlink_hardlink_unsafe_permissions_and_concurrent_signer_refused) ... ok
+2026-10-08T23:38:02.8690231Z test_test_keys_are_distinct_private_and_never_enrolled (test_secure_boot.NativeSigningTests.test_test_keys_are_distinct_private_and_never_enrolled) ... ok
+2026-10-08T23:38:03.3049409Z test_unsigned_wrong_signer_and_tampered_images_are_rejected (test_secure_boot.NativeSigningTests.test_unsigned_wrong_signer_and_tampered_images_are_rejected) ... ok
+2026-10-08T23:38:03.3065329Z test_wrong_architecture_or_non_efi_subsystem_cannot_be_signed (test_secure_boot.NativeSigningTests.test_wrong_architecture_or_non_efi_subsystem_cannot_be_signed) ... ok
+2026-10-08T23:38:03.3751934Z test_wrong_pin_revocation_missing_key_and_wrong_private_key (test_secure_boot.NativeSigningTests.test_wrong_pin_revocation_missing_key_and_wrong_private_key) ... ok
+2026-10-08T23:38:03.3772785Z test_error_diagnostics_never_echo_tool_output_or_key_contents (test_secure_boot.PolicyTests.test_error_diagnostics_never_echo_tool_output_or_key_contents) ... ok
+2026-10-08T23:38:03.3773437Z test_firmware_framing_rejects_truncation_and_tracks_unknown_types (test_secure_boot.PolicyTests.test_firmware_framing_rejects_truncation_and_tracks_unknown_types) ... ok
+2026-10-08T23:38:03.3774991Z test_legacy_preset_uses_guarded_output_and_secure_preset_cannot_activate (test_secure_boot.PolicyTests.test_legacy_preset_uses_guarded_output_and_secure_preset_cannot_activate) ... ok
+2026-10-08T23:38:03.4181774Z test_package_source_excludes_adjacent_private_keys_and_is_deterministic (test_secure_boot.PolicyTests.test_package_source_excludes_adjacent_private_keys_and_is_deterministic) ... ok
+2026-10-08T23:38:03.4185239Z test_policy_rejects_ambiguity_and_unsafe_key_selection (test_secure_boot.PolicyTests.test_policy_rejects_ambiguity_and_unsafe_key_selection) ... ok
+2026-10-08T23:38:03.4203180Z test_post_hook_rejects_active_esp_input (test_secure_boot.PolicyTests.test_post_hook_rejects_active_esp_input) ... ok
+2026-10-08T23:38:03.4228996Z test_preset_output_never_falls_back_when_signing_is_required (test_secure_boot.PolicyTests.test_preset_output_never_falls_back_when_signing_is_required) ... ok
+2026-10-08T23:38:03.4246986Z test_removed_revoked_and_unknown_firmware_trust_cannot_pass (test_secure_boot.PolicyTests.test_removed_revoked_and_unknown_firmware_trust_cannot_pass) ... ok
+2026-10-08T23:38:03.4261064Z test_signing_expectation_survives_deleted_policy_and_unknown_firmware (test_secure_boot.PolicyTests.test_signing_expectation_survives_deleted_policy_and_unknown_firmware) ... ok
+2026-10-08T23:38:03.4263186Z test_status_is_read_only_when_policy_is_absent (test_secure_boot.PolicyTests.test_status_is_read_only_when_policy_is_absent) ... ok
+2026-10-08T23:38:03.4279696Z test_unconfigured_legacy_post_hook_is_a_noop (test_secure_boot.PolicyTests.test_unconfigured_legacy_post_hook_is_a_noop) ... ok
+2026-10-08T23:38:03.4289463Z test_unknown_firmware_is_not_disabled_or_enforced (test_secure_boot.PolicyTests.test_unknown_firmware_is_not_disabled_or_enforced) ... ok
+2026-10-08T23:38:03.4300091Z test_update_hook_requires_coordinator_before_signing_readiness (test_secure_boot.PolicyTests.test_update_hook_requires_coordinator_before_signing_readiness) ... ok
+2026-10-08T23:38:03.4300563Z 
+2026-10-08T23:38:03.4300652Z ----------------------------------------------------------------------
+2026-10-08T23:38:03.4300846Z Ran 37 tests in 7.442s
+2026-10-08T23:38:03.4300928Z 
+2026-10-08T23:38:03.4300976Z OK (skipped=1)
+2026-10-08T23:38:03.4301526Z /root/astraeus-signature-tests-8e7ityf5/tmpqxwb4swy/uki.ready
+2026-10-08T23:38:03.4468799Z ##[group]Run bash -n scripts/publish-repo.sh
+2026-10-08T23:38:03.4469025Z [36;1mbash -n scripts/publish-repo.sh[0m
+2026-10-08T23:38:03.4469182Z [36;1mbash -n tests/boot/live-smoke.sh[0m
+2026-10-08T23:38:03.4469347Z [36;1mbash -n distro/archiso/profiledef.sh.in[0m
+2026-10-08T23:38:03.4469540Z [36;1mbash -n distro/packages/distroctl/PKGBUILD.in[0m
+2026-10-08T23:38:03.4469727Z [36;1mbash -n scripts/validate/arch-builder.sh[0m
+2026-10-08T23:38:03.4469907Z [36;1mbash -n distro/packages/calamares/PKGBUILD[0m
+2026-10-08T23:38:03.4470082Z [36;1mbash -n distro/installed/linux.preset.in[0m
+2026-10-08T23:38:03.4470269Z [36;1mbash -n distro/installed/secure-boot/linux.preset[0m
+2026-10-08T23:38:03.4470477Z [36;1mbash -n distro/installed/secure-boot/95-astraeus-sign[0m
+2026-10-08T23:38:03.4470672Z [36;1mbash -n distro/installed/mkinitcpio.conf[0m
+2026-10-08T23:38:03.4470842Z [36;1mbash -n tests/boot/installed-smoke.sh[0m
+2026-10-08T23:38:03.4471033Z [36;1mbash -n tests/fixtures/phase2/adapter.sh[0m
+2026-10-08T23:38:03.4471210Z [36;1mbash -n tests/fixtures/phase2/PKGBUILD[0m
+2026-10-08T23:38:03.4471372Z [36;1mbash -n .githooks/commit-msg[0m
+2026-10-08T23:38:03.4520359Z shell: /usr/bin/bash -e {0}
+2026-10-08T23:38:03.4520498Z ##[endgroup]
+2026-10-08T23:38:03.4853025Z Post job cleanup.
+2026-10-08T23:38:03.5374702Z [command]/usr/bin/git version
+2026-10-08T23:38:03.5395769Z git version 2.55.0
+2026-10-08T23:38:03.5421023Z Temporarily overriding HOME='/home/runner/work/_temp/d8116c12-5afc-4aa6-a34d-987d68cb1b69' before making global git config changes
+2026-10-08T23:38:03.5421697Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-08T23:38:03.5424991Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/astraeus/astraeus
+2026-10-08T23:38:03.5450797Z Removing SSH command configuration
+2026-10-08T23:38:03.5455494Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-08T23:38:03.5482974Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-08T23:38:03.5665290Z Removing HTTP extra header
+2026-10-08T23:38:03.5670933Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-08T23:38:03.5698442Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-08T23:38:03.5892061Z Removing includeIf entries pointing to credentials config files
+2026-10-08T23:38:03.5905276Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-08T23:38:03.5930834Z includeif.gitdir:/home/runner/work/astraeus/astraeus/.git.path
+2026-10-08T23:38:03.5931137Z includeif.gitdir:/home/runner/work/astraeus/astraeus/.git/worktrees/*.path
+2026-10-08T23:38:03.5931626Z includeif.gitdir:/github/workspace/.git.path
+2026-10-08T23:38:03.5931967Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-08T23:38:03.5939567Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/astraeus/astraeus/.git.path
+2026-10-08T23:38:03.5960902Z /home/runner/work/_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:38:03.5969256Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/astraeus/astraeus/.git.path /home/runner/work/_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:38:03.6000884Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/astraeus/astraeus/.git/worktrees/*.path
+2026-10-08T23:38:03.6021291Z /home/runner/work/_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:38:03.6028545Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/astraeus/astraeus/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:38:03.6058192Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-08T23:38:03.6077992Z /github/runner_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:38:03.6082973Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:38:03.6155943Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-08T23:38:03.6175551Z /github/runner_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:38:03.6181490Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config
+2026-10-08T23:38:03.6247314Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-08T23:38:03.6418637Z Removing credentials config '/home/runner/work/_temp/git-credentials-34a7452a-acb0-4e28-9356-4be1a7e70b4f.config'
+2026-10-08T23:38:03.6567893Z Cleaning up orphan processes

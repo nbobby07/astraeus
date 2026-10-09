@@ -6,6 +6,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+pub mod generations;
 mod system;
 pub use system::{Commands, Manager, MutationGuard, Native};
 
@@ -19,6 +20,7 @@ pub const SUBVOLUMES: [(&str, &str); 6] = [
     ("@containers", "/var/lib/containers"),
 ];
 pub const UKI: &str = "EFI/Linux/astraeus-dev-linux.efi";
+pub const MAINTENANCE_UKI: &str = "EFI/Astraeus/maintenance.efi";
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(transparent)]
@@ -111,7 +113,7 @@ impl Snapshot {
             "snapshot is not a read-only child of source",
         )?;
         require(
-            self.boot.relative_path == UKI
+            matches!(self.boot.relative_path.as_str(), UKI | MAINTENANCE_UKI)
                 && !self.boot.esp_uuid.is_empty()
                 && self.boot.sha256.len() == 64
                 && self.boot.sha256.bytes().all(|c| c.is_ascii_hexdigit()),

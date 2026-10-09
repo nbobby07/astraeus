@@ -1,0 +1,23 @@
+{
+  "vm": "astraeus-phase0-validator",
+  "vm_id": "vm-cc9d56de23154de7a22492f24dfaae27",
+  "resources": {
+    "cpu": 8,
+    "memory": 16384,
+    "storage": 65536
+  },
+  "initial_total_run_seconds": 72784,
+  "final_total_run_seconds": 75318,
+  "run_seconds": 2534,
+  "final_state": "paused",
+  "paused_at": "2026-10-08T19:13:18.379978Z",
+  "account_running_count": 0,
+  "unrelated_vm_unchanged": true,
+  "unrelated_vm_state": "paused",
+  "approximate_compute_usd_before_allowances": 0.37232906666666665,
+  "approximate_64_gib_storage_usd_during_run": 0.003874204444444445,
+  "plan": "existing sponsored Hobby",
+  "plan_or_billing_changes": false,
+  "charges_are_estimates_not_invoice": true,
+  "archive_and_member_hashes_verified": true
+}

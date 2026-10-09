@@ -1,0 +1,46 @@
+{
+  "path": "/home/ubuntu/p3i/final/reg-health/disk.qcow2",
+  "sha256": "bc026be0ba5c202ce7d80c8f4ed1fa7f1f4ce0f7cf2c89b903f5c80869f5ce13",
+  "bytes": 623312896,
+  "image": {
+    "children": [
+      {
+        "name": "file",
+        "info": {
+          "children": [],
+          "virtual-size": 623312896,
+          "filename": "/home/ubuntu/p3i/final/reg-health/disk.qcow2",
+          "format": "file",
+          "actual-size": 623255552,
+          "format-specific": {
+            "type": "file",
+            "data": {}
+          },
+          "dirty-flag": false
+        }
+      }
+    ],
+    "backing-filename-format": "qcow2",
+    "virtual-size": 34359738368,
+    "filename": "/home/ubuntu/p3i/final/reg-health/disk.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 623255552,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "1.1",
+        "compression-type": "zlib",
+        "lazy-refcounts": false,
+        "refcount-bits": 16,
+        "corrupt": false,
+        "extended-l2": false
+      }
+    },
+    "full-backing-filename": "/home/ubuntu/p3i/final/base-plain/disk.qcow2",
+    "backing-filename": "/home/ubuntu/p3i/final/base-plain/disk.qcow2",
+    "dirty-flag": false
+  },
+  "private_signing_material_may_be_present": true,
+  "included_in_public_archive": false
+}

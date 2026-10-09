@@ -1,0 +1,17 @@
+{
+  "command": [
+    "xorriso",
+    "-osirrox",
+    "on",
+    "-indev",
+    "/home/ubuntu/p3i/final/build-r3/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+    "-extract",
+    "/arch/boot/x86_64/initramfs-linux.img",
+    "/home/ubuntu/p3i/final/recovery-kit/initrd"
+  ],
+  "started": "2026-10-09T00:04:19.392975+00:00",
+  "finished": "2026-10-09T00:04:21.847865+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": "xorriso 1.5.6 : RockRidge filesystem manipulator, libburnia project.\n\nCopying of file objects from ISO image to disk filesystem is: Enabled\nxorriso : NOTE : Loading ISO image tree from LBA 0\nxorriso : UPDATE :      24 nodes read in 1 seconds\nlibisofs: NOTE : Found hidden El-Torito image for EFI.\nlibisofs: NOTE : EFI image start and size: 1605307 * 2048 , 0 * 512\nxorriso : NOTE : Detected El-Torito boot information which currently is set to be discarded\nDrive current: -indev '/home/ubuntu/p3i/final/build-r3/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso'\nMedia current: stdio file, overwriteable\nMedia status : is written , is appendable\nBoot record  : El Torito , MBR protective-msdos-label cyl-align-off GPT\nMedia summary: 1 session, 1726155 data blocks, 3371m data, 17.8g free\nVolume id    : 'DISTRO_BOOT'\nxorriso : UPDATE :       0 files restored ( 88192k) in 1 seconds , 65.1xD\nxorriso : UPDATE :       0 files restored ( 161.5m) in 2 seconds , 57.0xD\nxorriso : UPDATE :       1 files restored ( 211.3m) in 2 seconds = 65.5xD\nExtracted from ISO image: file '/arch/boot/x86_64/initramfs-linux.img'='/home/ubuntu/p3i/final/recovery-kit/initrd'\n"
+}

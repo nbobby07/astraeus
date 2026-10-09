@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:04:36.101976+00:00",
+  "finished": "2026-10-09T01:04:36.253675+00:00",
+  "command": "cat /.snapshots/astraeus/pending.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"operation\": \"generation-select\",\n  \"previous_selection\": {\n    \"current\": null,\n    \"previous\": \"1791507801-653955349-568\",\n    \"schema_version\": 1\n  },\n  \"schema_version\": 1,\n  \"selection\": {\n    \"current\": \"1791507846-565428040-568\",\n    \"previous\": \"1791507801-653955349-568\",\n    \"schema_version\": 1\n  }\n}",
+    "id": "3ffc5cd1e5dc4ac8aaaa42793c0c396e",
+    "boot_id": "558664ca-5ae2-4938-95a2-bf74691e8eb8"
+  }
+}

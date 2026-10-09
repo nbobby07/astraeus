@@ -1,0 +1,13 @@
+{
+  "command": [
+    "sbverify",
+    "--cert",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/trusted.pem",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/unsigned.efi"
+  ],
+  "started": "2026-10-09T00:54:47.730972+00:00",
+  "finished": "2026-10-09T00:54:47.778121+00:00",
+  "code": 1,
+  "stdout": "Signature verification failed\n",
+  "stderr": "No signature table present\n"
+}

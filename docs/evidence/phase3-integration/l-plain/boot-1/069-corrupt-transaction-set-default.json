@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:53.995772+00:00",
+  "finished": "2026-10-09T01:01:54.197902+00:00",
+  "command": "distroctl boot set-default 1791507690-379308310-549",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: key must be a string at line 1 column 2\n",
+    "id": "b49c156adf9340d88f71696b17cc2895",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}

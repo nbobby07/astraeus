@@ -1,0 +1,17 @@
+{
+  "command": [
+    "sbsign",
+    "--key",
+    "/root/astraeus-p3i-final-refusal-uki/trusted.key",
+    "--cert",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/trusted.pem",
+    "--output",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/boot.efi",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/probe.efi"
+  ],
+  "started": "2026-10-09T00:54:47.246562+00:00",
+  "finished": "2026-10-09T00:54:47.253873+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": "warning: data remaining[43008 vs 52483]: gaps between PE/COFF sections?\nwarning: data remaining[43008 vs 52488]: gaps between PE/COFF sections?\nSigning Unsigned original image\n"
+}

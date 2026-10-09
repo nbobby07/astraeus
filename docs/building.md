@@ -36,7 +36,7 @@ verification enabled. From the source root:
 ARCHIVE=$(python3 -c 'import tomllib; print(tomllib.load(open("distro/branding/project.toml", "rb"))["build"]["archive_date"])')
 sudo python3 scripts/bootstrap.py verify-archive --output /var/tmp/astraeus-archive
 printf 'CacheServer = https://archive.archlinux.org/repos/%s/$repo/os/$arch\nServer = file:///var/tmp/astraeus-archive\n' "$ARCHIVE" | sudo tee /etc/pacman.d/mirrorlist
-sudo pacman -Syyuu --needed base-devel archiso rust python gnupg git qemu-desktop edk2-ovmf
+sudo pacman -Syyuu --needed base-devel archiso rust python gnupg git qemu-desktop edk2-ovmf systemd-ukify sbsigntools efitools
 ```
 
 Install Python and curl from the authenticated baseline before this step. Use a

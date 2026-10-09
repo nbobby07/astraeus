@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "started": "2026-10-09T00:02:43.229957+00:00",
+  "mode": "install",
+  "scenario": "update-success",
+  "encryption": "none",
+  "installation_accepted": false,
+  "finished": "2026-10-09T00:16:46.952477+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:48.103037+00:00",
+  "finished": "2026-10-09T01:01:48.255898+00:00",
+  "command": "printf %s '{\"schema_version\": 1, \"id\": \"1791507690-379308310-549\", \"snapshot\": \"1791507690-379308310-549\", \"root\": {\"id\": 256, \"uuid\": \"00000000-0000-4000-8000-000000000001\", \"parent_uuid\": null, \"top_level\": 5, \"read_only\": false}, \"root_kind\": \"current\", \"filesystem_uuid\": \"e87a8abf-c824-4b2b-92b6-e340f38469ce\", \"esp_uuid\": \"0EE7-C607\", \"uki_sha256\": \"7a12782d6ecc1099a8b7e2b26f61751eef8bd57dd59972c1ccb24565cefdd8d6\", \"embedded_cmdline\": \"root=UUID=e87a8abf-c824-4b2b-92b6-e340f38469ce rootflags=subvol=@ rw astraeus.transaction=1-ec657715-8ba2-4b59-bb89-5843b45d4219 \\n\", \"prior_known_good\": \"1791507649-857229184-549\"}' > /.snapshots/astraeus/generations/1791507690-379308310-549/metadata.json; sync",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "",
+    "id": "db7ad3e8ca7f4abe8d15d6bf77010fa9",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "mcopy",
+    "-i",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/fixture.fat",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/untrusted.efi",
+    "::/EFI/tests/untrusted.efi"
+  ],
+  "started": "2026-10-09T00:54:49.237618+00:00",
+  "finished": "2026-10-09T00:54:49.297974+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

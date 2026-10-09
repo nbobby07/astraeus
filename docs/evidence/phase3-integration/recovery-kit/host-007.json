@@ -1,0 +1,13 @@
+{
+  "command": [
+    "sbverify",
+    "--cert",
+    "/home/ubuntu/p3i/final/owner-firmware/db.crt",
+    "/home/ubuntu/p3i/final/recovery-kit/loader-signed.efi"
+  ],
+  "started": "2026-10-09T00:04:26.113009+00:00",
+  "finished": "2026-10-09T00:04:26.118946+00:00",
+  "code": 0,
+  "stdout": "Signature verification OK\n",
+  "stderr": ""
+}

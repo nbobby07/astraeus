@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:41.692552+00:00",
+  "finished": "2026-10-09T01:01:42.638950+00:00",
+  "command": "distroctl security status --json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"artifacts\": {\n    \"bootloader\": {\n      \"path\": \"/efi/EFI/systemd/systemd-bootx64.efi\",\n      \"sha256\": \"e47db793494db9fd7aaec578428953a8e11a97c8663c8536ce9f80b9af8c74ca\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"fallback_bootloader\": {\n      \"path\": \"/efi/EFI/BOOT/BOOTX64.EFI\",\n      \"sha256\": \"e47db793494db9fd7aaec578428953a8e11a97c8663c8536ce9f80b9af8c74ca\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"running_uki\": {\n      \"path\": null,\n      \"sha256\": null,\n      \"signature\": \"unavailable\"\n    },\n    \"uki\": {\n      \"path\": \"/efi/EFI/Astraeus/maintenance.efi\",\n      \"sha256\": \"7a12782d6ecc1099a8b7e2b26f61751eef8bd57dd59972c1ccb24565cefdd8d6\",\n      \"signature\": \"valid-for-configured-certificate\"\n    }\n  },\n  \"certificate_sha256\": \"35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8\",\n  \"enrollment_readiness\": \"not-ready\",\n  \"firmware\": {\n    \"AuditMode\": null,\n    \"DeployedMode\": null,\n    \"KEK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"PK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"SecureBoot\": true,\n    \"SetupMode\": false,\n    \"db\": {\n      \"contains_signer_certificate\": true,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"dbx\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": true,\n      \"readable\": true,\n      \"sha256_images\": [\n        \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n      ]\n    },\n    \"image_authorization\": \"not-evaluated\"\n  },\n  \"identity\": \"valid\",\n  \"policy\": \"configured\",\n  \"schema_version\": 1,\n  \"signing_key_present\": true\n}\n",
+    "id": "16a20b0fe3ec45c49fcf0246d6a8fa44",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}

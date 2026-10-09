@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:47.191363+00:00",
+  "finished": "2026-10-09T01:28:47.393715+00:00",
+  "command": "systemctl start astraeus-confirm-boot.service",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "",
+    "id": "76178f62ab504ac6a77734256279db67",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "command": [
+    "objcopy",
+    "-j",
+    ".text",
+    "-j",
+    ".sdata",
+    "-j",
+    ".data",
+    "-j",
+    ".dynamic",
+    "-j",
+    ".dynsym",
+    "-j",
+    ".rel",
+    "-j",
+    ".rela",
+    "-j",
+    ".reloc",
+    "-j",
+    ".p3data",
+    "--target=efi-app-x86_64",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/probe.so",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/probe.efi"
+  ],
+  "started": "2026-10-09T00:54:47.126489+00:00",
+  "finished": "2026-10-09T00:54:47.129786+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

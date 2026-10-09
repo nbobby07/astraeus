@@ -38,11 +38,20 @@ Boot capable. Test using a separate non-enforcing OVMF variable store. Scripts
 never disable Secure Boot, alter host firmware or enroll keys. Machines enforcing
 Secure Boot are outside this phase's boot acceptance target.
 
-Phase 1 introduces systemd-boot and UKIs for installed systems. Phase 3 adds UKI
-and bootloader signing, key handling/enrollment and chain verification. Firmware
+Phase 1 introduces systemd-boot and UKIs for installed systems. Phase 3 now has
+[owner signing, candidate verification and read-only trust inspection](secure-boot.md).
+The native provider is connected to generation activation; enforcing-image
+acceptance remains a separate gate. Firmware
 that cannot enroll keys automatically needs an explicit explained user step.
 There must be no unsigned fallback that silently weakens a promised verified boot
 chain. Distinguish owner-managed keys from compatibility with factory trust stores.
+
+The signing helper never writes firmware. Provisioned systems stage new UKIs
+privately and publish the unselected maintenance artifact only beneath the locked
+update coordinator, after verifying the retained root/UKI pair. Immutable
+generation paths, metadata and selection remain owned by the Rust manager.
+Unknown firmware state remains unknown; signatures do not authenticate writable
+root contents. See [ADR 0003](adr/0003-owner-secure-boot.md) for the trust boundary.
 
 ## Phase 1 installation security
 
@@ -70,6 +79,18 @@ reserved at the standard ukify output boundary. QEMU uses private Unix QMP socke
 and user-mode NAT; no public VNC, noVNC or guest shell is exposed.
 
 ## Recovery constraints
+
+The Phase 3 test recovery companion uses the same disposable owner db identity
+as the installed system. Enforcing OVMF authenticates its systemd-boot and UKI.
+The live SquashFS is not cryptographically covered by that signature. Acceptance
+pins the exact ISO by host SHA-256 and attaches both inputs read-only; this is a
+bounded test setup, not a production recovery-media trust design. Signed UKIs
+also do not authenticate the contents of the writable installed root.
+
+The provider refuses unsupported dbx certificate/TBS formats, bootloader or
+systemd update plans, and command-line rebinding that exceeds the existing PE
+section capacity. An unresolved activation journal blocks further mutation.
+The tested sync/rename power cut does not establish arbitrary power-loss safety.
 
 LUKS2 and Btrfs are installed-system components, not proof that this
 ephemeral ISO is encrypted. Snapshot rollback must coordinate the ESP and root

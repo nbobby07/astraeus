@@ -1,0 +1,17 @@
+{
+  "command": [
+    "openssl",
+    "x509",
+    "-in",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/public/trusted.pem",
+    "-outform",
+    "DER",
+    "-out",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/public/trusted.der"
+  ],
+  "started": "2026-10-09T00:04:54.536406+00:00",
+  "finished": "2026-10-09T00:04:54.557141+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

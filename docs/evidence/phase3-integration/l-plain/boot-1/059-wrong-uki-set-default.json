@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:50.231186+00:00",
+  "finished": "2026-10-09T01:01:51.559231+00:00",
+  "command": "distroctl boot set-default 1791507690-379308310-549",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: generation UKI hash mismatch\n",
+    "id": "e853fd42d6814127acba9a9b2ffe8fdd",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}

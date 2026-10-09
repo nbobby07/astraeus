@@ -21,6 +21,12 @@ pub trait SnapshotBackend {
     fn create_post_transaction_snapshot(&mut self, _: i64, _: &ExecutionPlan) -> Result<String> {
         Err("post-update snapshot backend unavailable".into())
     }
+    fn activate_boot(&mut self, _reference: &str) -> Result<()> {
+        Ok(())
+    }
+    fn prepare_boot_baseline(&mut self, _reference: &str) -> Result<()> {
+        Ok(())
+    }
     /// Called only by an integrated boot-confirmation owner, never by execute().
     fn mark_snapshot_good(&mut self, reference: &str) -> Result<()>;
     /// Acceptance is not proof of a completed rollback.
@@ -131,6 +137,14 @@ pub fn execute(
             return Err("package state or repositories changed since planning".into());
         }
         session.advance(&mut record, TransactionState::Applying)?;
+        // Generation activation can change the root preset. Persist its recovery
+        // reference and mutation phase before publishing any boot metadata.
+        snapshots.prepare_boot_baseline(
+            record
+                .snapshot
+                .as_deref()
+                .ok_or("missing baseline snapshot")?,
+        )?;
         packages
             .apply(&record.plan)
             .map_err(|e| format!("package application: {e}"))?;
@@ -160,7 +174,15 @@ pub fn execute(
         }
         check_cancel()?;
         // A live health check cannot establish that the new kernel/UKI boots.
-        session.advance(&mut record, TransactionState::AwaitingBoot)
+        // Persist boot eligibility before the ESP can make the candidate selectable.
+        session.advance(&mut record, TransactionState::AwaitingBoot)?;
+        snapshots.activate_boot(
+            record
+                .post_snapshot
+                .as_deref()
+                .ok_or("missing candidate snapshot")?,
+        )?;
+        Ok(())
     })();
     if let Err(message) = result {
         let at = record.state;

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "qemu-img",
+    "convert",
+    "-f",
+    "raw",
+    "-O",
+    "qcow2",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/fixture.fat",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/disk.qcow2"
+  ],
+  "started": "2026-10-09T00:54:49.361698+00:00",
+  "finished": "2026-10-09T00:54:49.621100+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

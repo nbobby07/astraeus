@@ -1,0 +1,14 @@
+{
+  "firmware-base-r3": {
+    "trusted": "08a1c08c0cff31f7517fd20a929af454b9139eaa5d05b8843d42846f43a59a74",
+    "untrusted": "976fcbbb37c86cc733077c1319f5e26dd5abd965cd32b615a77c1bb4f068458e"
+  },
+  "uki-firmware-base-r2": {
+    "trusted": "b27adc1207c94bf6b12cbd06ea0dfd5cd9910d35e73c4173ff701680cf2785c2",
+    "untrusted": "be5220171050b063a90e98a54e0da2f0b9b1ab71706d24ec87e9de976fc61799"
+  },
+  "loader-firmware-base": {
+    "trusted": "38e8a36bfa9561b93f2e04dc1575109029dca0eeafad14ff8bd28e2de8336ec1",
+    "untrusted": "90a21a8a5f1addee59c335b502d2fab1822b2bbcbaf5a235cd30dc8b364f2f65"
+  }
+}

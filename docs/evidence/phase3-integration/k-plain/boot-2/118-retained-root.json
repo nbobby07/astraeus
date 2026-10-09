@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:04:37.465763+00:00",
+  "finished": "2026-10-09T01:04:37.617687+00:00",
+  "command": "btrfs subvolume show /; cat /etc/astraeus-test-state",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "@snapshots/astraeus/generations/1791507801-653955349-568/private/root\n\tName: \t\t\troot\n\tUUID: \t\t\t489a2191-5ad7-c846-be9a-0ba2852e7773\n\tParent UUID: \t\t3b8803a4-294b-0e44-a798-098fe0017b13\n\tReceived UUID: \t\t-\n\tCreation time: \t\t2026-10-08 18:03:27 -0700\n\tSubvolume ID: \t\t263\n\tGeneration: \t\t88\n\tGen at creation: \t66\n\tParent ID: \t\t258\n\tTop level ID: \t\t258\n\tFlags: \t\t\t-\n\tSend transid: \t\t0\n\tSend time: \t\t2026-10-08 18:03:27 -0700\n\tReceive transid: \t0\n\tReceive time: \t\t-\n\tSnapshot(s):\n\tQuota group:\t\tn/a\nversion-A\n",
+    "id": "5b451bd467094291929c59f4778e2d53",
+    "boot_id": "558664ca-5ae2-4938-95a2-bf74691e8eb8"
+  }
+}
