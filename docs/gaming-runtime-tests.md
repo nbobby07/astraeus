@@ -10,8 +10,10 @@ as the disposable desktop user. Retain both raw reports and verify matching
 architecture, ICD, device and clear/readback evidence. Software results never
 qualify a physical GPU. All original runtime and security gates below still apply.
 
-This is a handoff to the runtime/Freestyle owner, not executed evidence. Do not run
-these tests against the developer's desktop or modify another worktree. Use an
+The procedure was exercised on the integrated Freestyle candidate at runtime
+`cac8998ad7730e69ae354c3162ef4a0677cfc162`. Results and limitations are in
+[Phase 4 acceptance](phase4-acceptance.md); the procedure itself is not proof.
+Do not run these tests against the developer's desktop or modify another worktree. Use an
 isolated installed Astraeus test system with a suitable GPU and desktop user.
 Retain the Phase 3 trusted boot and snapshot requirements. The gaming planner
 cannot install the fixture's packages; use the integration owner's reviewed build

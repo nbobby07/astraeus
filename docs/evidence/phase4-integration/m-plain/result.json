@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "integrated_acceptance": false,
+  "started": "2026-10-09T07:50:43.275157+00:00",
+  "scenario": "rollback",
+  "fault": "package",
+  "encryption": "none",
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "error": "TimeoutExpired: Command '['qemu-system-x86_64', '-machine', 'q35,accel=kvm,smm=on', '-cpu', 'host', '-m', '4096', '-smp', '4', '-device', 'virtio-vga', '-drive', 'if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE_4M.secboot.fd', '-drive', 'if=pflash,format=raw,file=/home/ubuntu/p4i/r2/m-plain/vars.fd', '-drive', 'if=none,id=osdisk,format=qcow2,file=/home/ubuntu/p4i/r2/m-plain/disk.qcow2', '-device', 'virtio-blk-pci,drive=osdisk,bootindex=1', '-nic', 'user,model=virtio-net-pci', '-display', 'none', '-serial', 'file:/home/ubuntu/p4i/r2/m-plain/boot-1/serial.log', '-monitor', 'none', '-qmp', 'unix:/home/ubuntu/p4i/r2/m-plain/boot-1/qmp.sock,server=on,wait=off', '-device', 'qemu-xhci', '-device', 'usb-tablet', '-global', 'driver=cfi.pflash01,property=secure,value=on', '-virtfs', 'local,path=/home/ubuntu/p4i/r2/m-plain/share,mount_tag=acceptance,security_model=none,readonly=on', '-no-reboot', '-device', 'virtio-serial-pci', '-chardev', 'socket,id=validation,path=/home/ubuntu/p4i/r2/m-plain/boot-1/guest.sock,server=on,wait=off', '-device', 'virtserialport,chardev=validation,name=org.astraeus.validation']' timed out after 60 seconds",
+  "diagnostics_error": "[Errno 2] No such file or directory",
+  "finished": "2026-10-09T07:53:06.993987+00:00"
+}

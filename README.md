@@ -5,22 +5,20 @@ installer and a small Rust interface for inspecting the running system.
 
 [![Checks](https://github.com/nbobby07/astraeus/actions/workflows/check.yml/badge.svg)](https://github.com/nbobby07/astraeus/actions/workflows/check.yml)
 
-**Current milestone: Phase 2 integration.** Version `0.1.0-dev` installs to encrypted
-or plain Btrfs and boots into KDE Plasma Wayland. Signed package updates now use
-pre-update snapshots and verified boot confirmation. Disposable installed guests
-passed successful and failed updates, plain and LUKS2 rollback, interrupted
-mutation and recovery from a broken UKI. Two independent builds produced identical
-ISO bytes. The [Phase 2 acceptance record](docs/phase2-integration.md) identifies
-the tested source, image hashes, evidence and remaining limits.
+**Current milestone: Phase 4 integrated, not yet validated.** Version `0.1.0-dev` connects graphics
+diagnostics, native and 32-bit Vulkan probes, Steam diagnostics and optional gaming
+image selections. Gaming enable/disable remains proposal-only. The
+[Phase 4 acceptance record](docs/phase4-acceptance.md) separates tested behavior
+from incomplete runtime checks and physical hardware qualification.
 
-The current security-hardened source passed fresh Phase 2 requalification on
-2026-10-08, including both installations, A-G, and installed security regressions.
-The [requalification report](docs/phase2-security-requalification.md) separates
-the tested runtime from historical acceptance and later documentation commits.
+The earlier integrated Phase 3 source passed owner-enforced Secure Boot,
+signed generations, plain/LUKS2 recovery, package-update regressions and two
+independent identical ISO builds. The [Phase 3 acceptance record](docs/phase3-acceptance.md)
+identifies that source and its bounded recovery and power-loss guarantees.
 
-This is a development project. The qualified target is **x86-64 UEFI under
-QEMU/KVM**, using disposable disks. Physical hardware, dual boot and enforced
-Secure Boot have not been qualified. There is no supported stable release or
+This is a development project. The recorded acceptance target is **x86-64 UEFI under
+QEMU/KVM**, using disposable disks and test owner firmware keys. Physical hardware
+and dual boot have not been qualified. There is no supported stable release or
 public ISO download yet.
 
 ## What works today
@@ -36,6 +34,8 @@ public ISO download yet.
 - Unprivileged `distroctl status` and `distroctl hardware`, with text and JSON
   output. The probe reports CPU, memory, GPU, storage, firmware and virtualization
   observations; unavailable fields remain unknown.
+- Read-only graphics and gaming reports, with explicit native/32-bit Vulkan
+  probes. Software rendering is reported separately from hardware acceleration.
 - Signed custom packages and repository metadata, locked Arch archive inputs,
   offline Rust package builds and measured ISO reproducibility.
 - Package update plans, durable transaction history, Btrfs snapshots with matching
@@ -120,9 +120,9 @@ UEFI -> systemd-boot -> Unified Kernel Image -> initramfs
                                                       -> SDDM -> Plasma Wayland
 ```
 
-The Rust workspace contains five crates: release metadata in `distro-config`,
-hardware discovery in `distro-hardware`, snapshots and recovery in
-`distro-snapshots`, update coordination in `distro-transactions`, and CLI
+The Rust workspace contains six crates: release metadata in `distro-config`,
+hardware discovery in `distro-hardware`, graphics reports in `distro-graphics`,
+snapshots and recovery in `distro-snapshots`, update coordination in `distro-transactions`, and CLI
 presentation in `distroctl`.
 Python standard-library scripts assemble the image and finalize the installed
 system. Calamares handles partitioning, extraction and account setup through
@@ -149,15 +149,16 @@ have no implementation claim.
 | 0 | Validated | Reproducible, signed-package Plasma live image |
 | 1 | Validated | Real installer, Btrfs/LUKS2, installed UKI and hardware/status |
 | 2 | Validated | Package transactions, snapshot history and boot-tested offline rollback |
-| 3 | Planned | Enforced Secure Boot, signing and known-good fallback |
-| 4 | Planned | Gaming stack and diagnostics across GPU families |
+| 3 | Validated on recorded QEMU target | Owner-enforced Secure Boot, signed generations and deliberate recovery |
+| 4 | Integrated, not validated | Connected diagnostics and explicit image selections; software Vulkan and Steam startup tested, remaining runtime gaps documented |
 | 5 | Planned | Performance policies backed by measurements and restoration tests |
 | 6 | Planned | Declarative state, planning, diff and adoption |
 
 The [full roadmap](docs/roadmap.md) lists exit gates and deferred work. The recorded
 install, update, break, rollback and reboot flow has passed on the qualified VM
-target. Automatic fallback and enforced Secure Boot remain future work. This
-development milestone does not establish a stable release.
+target. Known-good selection retains a trusted recovery pair; restoring the
+canonical root still requires explicit recovery. This development milestone does
+not establish a stable release.
 
 ## Documentation
 
@@ -167,6 +168,8 @@ development milestone does not establish a stable release.
 - [Hardware/status schema](docs/hardware.md) and [configuration](docs/configuration.md)
 - [Tests](docs/testing.md), [Phase 2 acceptance](docs/phase2-integration.md) and
   [historical Phase 1 validation](docs/validation.md)
+- [Phase 3 acceptance](docs/phase3-acceptance.md), [Phase 4 acceptance](docs/phase4-acceptance.md),
+  [graphics](docs/graphics.md) and [gaming](docs/gaming.md)
 - [Transactions](docs/transactions.md), [snapshots and recovery](docs/snapshots.md),
   and [installed-system QEMU runner](docs/phase2-validation.md)
 - [Signing model](docs/security.md) and [reporting vulnerabilities](SECURITY.md)

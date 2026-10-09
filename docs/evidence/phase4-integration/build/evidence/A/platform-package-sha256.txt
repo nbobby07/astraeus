@@ -1,0 +1,4 @@
+c27cbcc0c5f040927efbbd425abb1859bb22e00a81344fce4fadc258747f5d9f  .build/package/calamares-3.4.3-1-x86_64.pkg.tar.zst
+e13d69113998d0b977e6d3e95d9494a3f677c98eeca280b645fce7a0ac693f19  .build/package/calamares-debug-3.4.3-1-x86_64.pkg.tar.zst
+776986ee0c67aa31085ea661c75cf2def1afaae8f0c48cb3ed8f0a1456a78004  .build/package/distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst
+c031ecc5edf3cf3a4bc6c064aa385bdff2d48e64f787431cb17cc588537b5c69  .build/package/distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst

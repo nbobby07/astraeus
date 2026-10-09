@@ -1,0 +1,6 @@
+{
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "bytes": 1033160,
+  "sha256": "779a0065f6469727f237e637c14932542e84bc55cef25b84393a5af787440068",
+  "format": "git archive tar prefix operating-system; Python XZ preset 6"
+}

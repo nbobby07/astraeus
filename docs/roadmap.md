@@ -5,7 +5,11 @@ The current version is `0.1.0-dev`. See [Phase 2 acceptance](phase2-integration.
 and [historical Phase 1 validation](validation.md) for exact source revisions,
 hashes and installed-guest results. [Phase 3 acceptance](phase3-acceptance.md)
 records enforcing owner trust, generation fallback, deliberate recovery and two
-identical clean builds at runtime `fdb784c`. Phase 4 integration is in progress. Runtime acceptance remains open.
+identical clean builds at runtime `fdb784c`. Phase 4 is integrated at runtime
+`cac8998`, with two identical clean ISO builds, native/ELF32 software Vulkan and
+Steam startup evidence. Full acceptance remains open because normal Proton launch
+and parts of the optional-tool/negative matrix did not pass. See the complete
+[Phase 4 report](phase4-acceptance.md), including its supported scope and failures.
 
 | Phase | State | Deliverable | Evidence needed to close |
 | --- | --- | --- | --- |
@@ -13,7 +17,7 @@ identical clean builds at runtime `fdb784c`. Phase 4 integration is in progress.
 | 1 | Validated | Calamares, Btrfs, optional LUKS2, installed UKI, hardware/status | Fresh encrypted and plain native installations; two ISO-detached boots of each; actual CLI, network, audio and failed-unit checks; repeated ISO comparison |
 | 2 | Validated | Package transactions, snapshots, history, offline rollback | Passed signed update, failed update, plain/LUKS2 rollback, interrupted mutation, unbootable recovery and independent full ISO comparison |
 | 3 | Validated on recorded QEMU target | Owner Secure Boot, signed generations and deliberate recovery | Integrated A-N matrix, Phase 2 regressions and two identical clean ISO builds passed; see [acceptance](phase3-acceptance.md) |
-| 4 | Integration in progress, not validated | Connected graphics/gaming reports, pinned multilib image selections, blocked feature proposals | Complete integrated A-P matrix, signed update/recovery regressions and independent ISO bytes; physical families remain separate |
+| 4 | Integrated, not validated | Connected graphics/gaming reports, pinned multilib image selections, blocked feature proposals | Close remaining Proton and optional-tool runtime gaps on an explicitly supported target; retain unsupported transaction and physical qualification boundaries |
 | 5 | Planned | Measured performance policies | Recorded baselines, power/thermal context, safety checks, restoration and repeatable improvements |
 | 6 | Planned | Declarative state | Parse, validate, plan, diff, apply and adopt against resolved package state; safe failure handling |
 

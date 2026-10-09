@@ -1,0 +1,20 @@
+{
+  "evidence_reviewed": true,
+  "time": 1791528683.9197733,
+  "steam": "Observed usable login window, no credentials entered; normal exit 0; real runtime diagnostics and dependencies passed",
+  "overlays": "Vulkan and OpenGL moving workloads with visible FPS/frametime overlays, two frames retained for each",
+  "proton": "runinprefix returned fresh Win32 nonce and exit zero; standard run and standalone UMU run did not return required nonce; retain failures",
+  "gamemode": "Wrapper and restoration passed; second self-test failed because guest has no CPU governor interface",
+  "gamescope": "Default nested launch failed on software/virtual renderer; retain exact diagnostics",
+  "negative_tests": "All nine final controlled production CLI checks passed with package/file state preserved",
+  "additional_files": {
+    "phase2-guest.py": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f",
+    "proton-standalone-diagnostic.py": "cb1e638e0dafa5b0134ef786fb415891b002a0945de8a88798c315dfca9ba5f1",
+    "gaming-session.py": "8625e0fa66a49791ce6ce65b754e8988801122c60f6723ee6e2cdeb16e9c1a2d",
+    "gaming-runtime-setup.py": "3083345a0527ffc9562f294e2134ca167dfc4a425c1613cbc5bdd3213f3e5e51",
+    "proton-prefix-diagnostic.py": "59674f2c9d19714711c1a90133b19532297efdad237067b31d48c48c571b427a",
+    "gaming-negatives.py": "cc6dc7499670de783400aec00bfdc0a26dba28b386a857a0b3753a2ae4fc73ed",
+    "proton-diagnostic.py": "9b0b7c7ce8c2ceee9fe01dd1de8f415637e6a6d310fc334131fff4dd3882ddf5",
+    "phase4_guest.py": "43f21d1245d9fc660e9461075ecaedb83e09142ce65b03618af6fd87297e2783"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "case": "metadata",
+  "scope": "integrated-image",
+  "integrated_acceptance": true,
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "started": "2026-10-09T07:39:42.365140+00:00",
+  "finished": "2026-10-09T07:41:49.030914+00:00"
+}

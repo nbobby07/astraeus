@@ -1,0 +1,42 @@
+{
+  "vm_id": "vm-cc9d56de23154de7a22492f24dfaae27",
+  "slug": "astraeus-phase0-validator",
+  "configuration": {
+    "cpu": 8,
+    "memory": 16384,
+    "storage": 65536
+  },
+  "state": "paused",
+  "runtime_before_seconds": 97410,
+  "runtime_after_seconds": 115097,
+  "added_runtime_seconds": 17687,
+  "added_runtime_human": "4 hours 54 minutes 47 seconds",
+  "paused_at": "2026-10-09T08:46:01.867650Z",
+  "nested_qemu_remaining": 0,
+  "provider_running_vms": 0,
+  "provider_starting_vms": 0,
+  "provider_paused_vms": 2,
+  "other_vm": {
+    "id": "vm-ebe285ed9bc74592ac42e1e323395efb",
+    "state": "paused",
+    "total_run_seconds": 25259,
+    "full_provider_record_unchanged": true,
+    "record_sha256": "83cf356f8d990eada1578b2a73e954bb3f84b8532fe82c65f1cd4c298b8d5f15"
+  },
+  "rates_usd": {
+    "vcpu_hour": 0.04032,
+    "ram_gib_hour": 0.0129,
+    "storage_gib_hour": 8.6e-05,
+    "allocation_compute_hour": 0.52896
+  },
+  "estimated_gross_usd": {
+    "compute": 2.59881,
+    "active_time_storage": 0.027041,
+    "sum": 2.625851
+  },
+  "pricing_source": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+  "cost_scope": "Gross allocation estimate before allowances/credits. Transfer and later paused storage are excluded; this is not an invoice. Paused storage remains allocated.",
+  "idle_timeout_seconds": 3600,
+  "auto_delete_seconds": 86400,
+  "policies_unchanged": true
+}

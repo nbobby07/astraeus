@@ -2,6 +2,16 @@
 
 ## Phase 4 integration
 
+The integrated runtime is `cac8998ad7730e69ae354c3162ef4a0677cfc162`.
+On the recorded Virtio guest, native and ELF32 software Vulkan readback passed,
+Steam reached its usable login window and exited normally, and MangoHud was
+visible on native Vulkan/OpenGL and ELF32 OpenGL. Gamescope aborted on missing virtual-device
+prerequisites. GameMode's wrapper/restoration passed, but its full self-test failed
+because the guest exposes no CPU governor interface. Genuine GE-Proton 11-7
+executed the Win32 fixture through `runinprefix`; the normal `run` attempts did
+not return the required nonce. These are separate outcomes, not broad game
+compatibility. See [the complete acceptance report](phase4-acceptance.md).
+
 The production CLI now supplies `distro_graphics::GraphicsReport` through
 `GraphicsProvider`. Status and doctor expose the unmodified report in the additive
 `graphics` field (schema 1). Mock providers may return null. Hardware identity,

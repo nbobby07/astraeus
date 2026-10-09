@@ -2,6 +2,15 @@
 
 ## Phase 4 integration
 
+The integrated ISO at `cac8998ad7730e69ae354c3162ef4a0677cfc162` executed
+both ELF64 and ELF32 Vulkan clear/readback on llvmpipe (LLVM 23.1.1, 256 bits),
+vendor `0x10005`, CPU device type 4. The actual Virtio GPU remains a virtual
+device. Gaming JSON correctly reports successful software Vulkan operations and
+unsupported hardware acceleration. Native/ELF32 OpenGL and XWayland also passed after the
+test adapter preserved the desktop user's actual XAUTHORITY path. This did not
+change the ISO, authentication policy or cookie. Physical rows remain unqualified;
+see [acceptance](phase4-acceptance.md) for exact evidence and failed attempts.
+
 Gaming consumes this report directly, with no second GPU discovery implementation.
 Use `distroctl gaming doctor --probe --json` for the same raw native/32-bit probe
 results plus Steam diagnostics. Reports keep installed loader, installed ICD,

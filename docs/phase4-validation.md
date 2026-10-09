@@ -16,8 +16,19 @@ setup must state that distinction explicitly. Historical Phase 3 adapters can be
 reused only after their source, paths and artifact identities are rebound to the
 newly installed integrated candidate without weakening their predicates.
 
-Base: `2e4c1725e6ad9d70654ca32158cf524feabfc91f`. Branch: `phase4/validation`.
-This work owns tests and evidence only. Phase 4 is not validated.
+Base: `2e4c1725e6ad9d70654ca32158cf524feabfc91f`. Integrated runtime:
+`cac8998ad7730e69ae354c3162ef4a0677cfc162`. Validation-only correction:
+`493e2229e27456ae9e35c9845cad8fbee3087f54` preserves the actual
+user XAUTHORITY path, checks XWayland through its process and real GLX operation,
+and reads Steam Linux Runtime's `VERSIONS.txt`. It does not change installed ISO
+bytes. Original failures and same-image reruns are retained separately.
+See [acceptance](phase4-acceptance.md) for the complete integrated results.
+
+Validation-only `722f3b97ae67587b895bce68c44608f34e4c6a8a` bounds the guest
+poweroff timer's `AccuracySec` to one second. Systemd's default one-minute timer
+coalescing could consume the unchanged 60-second shutdown deadline. The original
+plain recovery timeout is retained as `m-plain`; its fresh retry is `m-plain-r2`.
+No shutdown timeout, clean-exit, trust, health or recovery predicate was relaxed.
 
 ## Running the harness
 
@@ -78,7 +89,7 @@ The same map may contain `windows-smoke.exe` when accompanied by
 smoke run without installing a compiler in the gaming guest.
 
 `vulkaninfo --summary` and loader debug output preserve actual ICD selection.
-`glxinfo -B`, `xdpyinfo`, `kscreen-doctor -o` and the real Plasma environment
+`glxinfo -B`, the user's XWayland process, `kscreen-doctor -o` and the real Plasma environment
 provide separate OpenGL, XWayland, display and Wayland observations. Software
 devices, Lavapipe and llvmpipe are explicitly marked software. Even a hardware
 renderer name alone cannot qualify a physical vendor.
@@ -129,12 +140,12 @@ Missing hooks stay NOT RUN. Aggregate FAIL takes priority; partial passes never
 hide missing subchecks. The matrix JSON is an evidence adapter, not a product
 readiness API or an integrated Phase 4 acceptance declaration.
 
-Chat 1 must provide the final GPU/readiness observation schema and supported
-test input boundary for no device, unknown vendor, missing lib32 and corrupt
-graphics configuration. Chat 2 must provide real readiness/preset commands,
-expected JSON, stable refusal exits and diagnostics, package feature resolution,
-Proton/runtime policy and supported dependency/transaction fault boundaries.
-Do not invent their command names or modify their implementations.
+The integrated CLI supplies the production report and schema. Controlled missing
+loader/device/package cases run in isolated guest mount namespaces; package
+database overlays must change both the version-bearing directory and metadata,
+and assert the real pacman query sees the fault. Keep PCI and DRM masking paired
+for a genuine no-device fixture. Parent files and package state must remain
+unchanged. Vendor policy fixtures remain separate from physical qualification.
 
 `--hooks /public/guest-hooks.json` accepts keys from the pending K checks and
 `readiness-json`. Each contains `command`, exact `exit_code`, and nonempty
@@ -144,8 +155,9 @@ unless the actual expected exit matches, so integration must use deliberate
 refusal codes, never signal/crash exits. Hooks must inspect actual public CLI
 output and must not print secrets, edit SQLite, or return canned success.
 
-After Chat 1 and Chat 2 merge, build a gaming baseline through signed product
-transactions. Repeat A/L with installed-smoke.sh. Reuse Phase 3
+Build the initial gaming baseline through the signed image pipeline. Targeted
+feature transactions remain unsupported and cannot pass L. Repeat installed
+plain/LUKS2 smoke checks separately. Reuse Phase 3
 `docs/evidence/phase3-integration/integrated-run.py`, `integrated-regression.py`,
 `integrated-fallback-recovery.py`, `integrated-powercut.py`, the direct-package
 refusal adapter and `scripts/validate/phase3.py` firmware probes. Those historical
@@ -162,7 +174,8 @@ ISO builds and complete byte comparison. Historical Phase 3 results establish
 the baseline only; they do not pass new Phase 4 regressions.
 
 Do not disable signing, guards, UKI verification or enforcement to install Steam.
-Do not perform a final integrated ISO run during parallel production work.
+Freeze production source before the integrated ISO run and keep later test-only
+changes identifiable by their own revision and file hashes.
 
 ## Cost and cleanup
 

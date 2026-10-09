@@ -1,0 +1,12 @@
+{
+  "validation_commit": "722f3b97ae67587b895bce68c44608f34e4c6a8a",
+  "runtime_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "original_failure": "m-plain",
+  "retry": "m-plain-r2",
+  "adapter_sha256": {
+    "integrated-regression-r2.py": "a719883705836c1112e3a1cac4107a879a399bf665be543a4ce4e9a58d47f647",
+    "integrated-fallback-recovery-r2.py": "2717dfb0fba7e215787e4ac826b8c09d10567b1a8ce0986634c7206323610e88",
+    "recovery-queue-r2.py": "270bd7d4b5a44932aad49b75414fcd3bf1081b157b562a4a2d28d67aad73efea"
+  },
+  "change": "Same 60-second shutdown deadline and zero-exit requirement; explicitly bound transient timer AccuracySec to one second. Frozen source/ISO and old harness unchanged."
+}

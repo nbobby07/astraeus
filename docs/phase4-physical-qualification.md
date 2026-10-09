@@ -13,6 +13,16 @@ installation, partition table, firmware keys or primary boot configuration are a
 All physical rows are NOT RUN and unqualified. CPU VMs and software Vulkan
 provide no vendor compatibility or performance qualification.
 
+The integrated virtual results at `cac8998ad7730e69ae354c3162ef4a0677cfc162`
+do not change that status. Before qualifying a physical gaming target, repeat
+the normal Proton launch path, Gamescope presentation and full GameMode self-test
+that did not pass on the virtual target. Also supply visible ELF32 presentation
+and overlay evidence, then separate D3D11/D3D12 and real-game results. The
+successful software readback and bounded Proton `runinprefix` fixture cover
+neither those paths nor real game frametimes. Use a recorded game/build, scene,
+resolution, graphics settings and frame-time capture with thermal/power context;
+do not infer a performance improvement from an FPS overlay.
+
 | Target | Required evidence | Current state |
 | --- | --- | --- |
 | NVIDIA RTX 5070, Ryzen 7 7800X3D owner's Windows desktop | PCI IDs, exact driver/kernel/firmware, modules, native/lib32 ICDs, real Vulkan/OpenGL execution, Plasma Wayland/XWayland, signed boot, suspend/reboot | NOT RUN; no disk or firmware changes authorized |

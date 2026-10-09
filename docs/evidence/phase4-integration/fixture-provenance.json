@@ -1,0 +1,7 @@
+{
+  "fixture_source": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+  "source_unchanged": true,
+  "pkgb_hash": "ff32031f110ed1fae4e5d06e307ce51cbb8df8d989584a2a76d2a3ef86d45ceb",
+  "signer": "F906EC2B4A5285323BC5B40F4F8CC48CA5C57760",
+  "setup": "Explicit signed test repository enrolled only before sealing disposable baseline; image repository signer verified separately"
+}
