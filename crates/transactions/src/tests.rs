@@ -974,18 +974,22 @@ fn boot_refresh_only_reads_matching_installed_loader_copies() {
 }
 
 #[test]
-fn systemd_or_loader_mutation_rejects_the_entire_plan_before_execution() {
-    let mut systemd = plan();
-    systemd.current = CurrentSystemState::new(BTreeMap::from([("systemd".into(), "1-1".into())]));
-    systemd.packages.changes = vec![PackageChange::Upgrade {
-        name: "systemd".into(),
-        from: "1-1".into(),
-        to: "2-1".into(),
-    }];
-    systemd.packages.targets[0].name = "systemd".into();
+fn coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution() {
     let mut loader = plan();
     loader.boot.update_bootloader = true;
-    for rejected in [systemd, loader] {
+    let mut rejected_plans = vec![loader];
+    for name in ["systemd", "distroctl"] {
+        let mut update = plan();
+        update.current = CurrentSystemState::new(BTreeMap::from([(name.into(), "1-1".into())]));
+        update.packages.changes = vec![PackageChange::Upgrade {
+            name: name.into(),
+            from: "1-1".into(),
+            to: "2-1".into(),
+        }];
+        update.packages.targets[0].name = name.into();
+        rejected_plans.push(update);
+    }
+    for rejected in rejected_plans {
         assert!(rejected
             .validate()
             .unwrap_err()
