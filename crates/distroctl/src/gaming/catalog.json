@@ -1,0 +1,409 @@
+{
+  "archive_date": "2026/10/01",
+  "databases": {
+    "core": "48984a2b5a339954dc1a7c21bce7ff651b6b0c7747d0545c36ca454bee005a73",
+    "extra": "b2c0d01420d9bc1da17589c622fbf12c49af15d60e54f46cad8f6c307b5497ba",
+    "multilib": "17e1a87e6ecd932e053e6553187a468820c9dbc2e3a0954162f7ca349c4d47cf"
+  },
+  "packages": {
+    "gamemode": {
+      "depends": [
+        "bash",
+        "dbus",
+        "glibc",
+        "libgcc",
+        "libinih",
+        "polkit",
+        "systemd-libs"
+      ],
+      "provides": [
+        "libgamemode.so=0-64",
+        "libgamemodeauto.so=0-64"
+      ],
+      "repository": "extra",
+      "sha256": "d0e66c14895a38512e01445ee1f110f08a5ec8faeae831b7fd295783384fab20",
+      "version": "1.8.2-3"
+    },
+    "gamescope": {
+      "depends": [
+        "glibc",
+        "libstdc++",
+        "libgcc",
+        "lcms2",
+        "libavif",
+        "libcap.so=2-64",
+        "libdecor",
+        "libdrm",
+        "libei",
+        "libinput",
+        "libpipewire-0.3.so=0-64",
+        "libx11",
+        "libxcb",
+        "libxcomposite",
+        "libxcursor",
+        "libxdamage",
+        "libxext",
+        "libxfixes",
+        "libxi",
+        "libxkbcommon.so=0-64",
+        "libxmu",
+        "libxrender",
+        "libxres",
+        "libxtst",
+        "libxxf86vm",
+        "luajit",
+        "pixman",
+        "sdl2",
+        "seatd",
+        "systemd-libs",
+        "vulkan-icd-loader",
+        "wayland",
+        "xcb-util-errors",
+        "xcb-util-wm",
+        "xorg-server-xwayland"
+      ],
+      "provides": [],
+      "repository": "extra",
+      "sha256": "7260334aedafec51869223fd8a613f76adcc244c7ba24d99b96a83cb0ab9cbba",
+      "version": "3.16.31-1"
+    },
+    "lib32-alsa-plugins": {
+      "depends": [
+        "alsa-plugins=1:1.2.12",
+        "lib32-glibc",
+        "lib32-alsa-lib",
+        "libasound.so=2-32"
+      ],
+      "provides": [],
+      "repository": "multilib",
+      "sha256": "bed31e16e7484c3d136448a946ebbddf8c19bd48510b44d68926af89e53197ed",
+      "version": "1.2.12-1"
+    },
+    "lib32-gamemode": {
+      "depends": [
+        "lib32-dbus",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-systemd"
+      ],
+      "provides": [
+        "libgamemode.so=0-32",
+        "libgamemodeauto.so=0-32"
+      ],
+      "repository": "multilib",
+      "sha256": "9f3f9a91a792b1a65428ac3b7bb04c02d44c64e72c119e7c2b152c92a430391e",
+      "version": "1.8.2-1"
+    },
+    "lib32-gcc-libs": {
+      "depends": [
+        "lib32-glibc>=2.27"
+      ],
+      "provides": [
+        "libasan.so=8-32",
+        "libatomic.so=1-32",
+        "libgdruntime.so=7-32",
+        "libgfortran.so=5-32",
+        "libgo.so=25-32",
+        "libgomp.so=1-32",
+        "libgphobos.so=7-32",
+        "libitm.so=1-32",
+        "libobjc.so=4-32",
+        "libquadmath.so=0-32",
+        "libubsan.so=1-32"
+      ],
+      "repository": "core",
+      "sha256": "21fde8d5c5fda174b0277515fb6e49a450763a9c8a05f1956f719779e459465a",
+      "version": "16.2.1+r23+gd564253eb6c8-1"
+    },
+    "lib32-glibc": {
+      "depends": [
+        "glibc=2.44+r50+g1848099f063e"
+      ],
+      "provides": [],
+      "repository": "core",
+      "sha256": "a977f9a6a405ab85e594aa9f1230a0b7dddfc33e3de5f2cb66931c92a48931d8",
+      "version": "2.44+r50+g1848099f063e-1"
+    },
+    "lib32-mangohud": {
+      "depends": [
+        "lib32-dbus",
+        "lib32-gcc-libs",
+        "lib32-glew",
+        "lib32-libx11",
+        "lib32-libxkbcommon",
+        "lib32-vulkan-icd-loader",
+        "lib32-wayland"
+      ],
+      "provides": [],
+      "repository": "multilib",
+      "sha256": "0418b5faf05b7e6aa6cb65251c53380b32717b8a29086eb6d1a811b1910361c1",
+      "version": "0.8.4-1"
+    },
+    "lib32-pipewire": {
+      "depends": [
+        "lib32-libpipewire=1:1.6.9-1",
+        "libpipewire-0.3.so=0-32",
+        "lib32-alsa-lib",
+        "libasound.so=2-32",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-opus",
+        "libopus.so=0-32",
+        "lib32-systemd",
+        "libudev.so=1-32",
+        "pipewire"
+      ],
+      "provides": [],
+      "repository": "multilib",
+      "sha256": "f08f71311d7897e1b44dfaaaee7ee5084ff295b7990a325f0ea242b12b3dfcab",
+      "version": "1:1.6.9-1"
+    },
+    "lutris": {
+      "depends": [
+        "cabextract",
+        "curl",
+        "gdk-pixbuf2",
+        "glib2",
+        "gnome-desktop",
+        "gobject-introspection-runtime",
+        "gtk3",
+        "hicolor-icon-theme",
+        "mesa-utils",
+        "p7zip",
+        "pango",
+        "psmisc",
+        "python",
+        "python-cairo",
+        "python-certifi",
+        "python-dbus",
+        "python-distro",
+        "python-evdev",
+        "python-gobject",
+        "python-lxml",
+        "python-moddb",
+        "python-pillow",
+        "python-requests",
+        "python-urllib3",
+        "python-yaml",
+        "unzip",
+        "webkit2gtk-4.1",
+        "xdg-desktop-portal-impl",
+        "xorg-xrandr"
+      ],
+      "provides": [],
+      "repository": "extra",
+      "sha256": "3f8f1d18f120bd59d181035f620456f956abfe7e83becd8b8ba7aaca65389f3e",
+      "version": "0.5.22-2"
+    },
+    "mangohud": {
+      "depends": [
+        "dbus",
+        "fmt",
+        "glfw",
+        "hicolor-icon-theme",
+        "libglvnd",
+        "libx11",
+        "libxkbcommon",
+        "python",
+        "python-matplotlib",
+        "python-numpy",
+        "vulkan-icd-loader",
+        "wayland"
+      ],
+      "provides": [],
+      "repository": "extra",
+      "sha256": "9ba9cfb057d1ec49a359e818d0068e7caf3b137b384664f3dd47d2cfdd6057be",
+      "version": "0.8.4-1"
+    },
+    "obs-studio": {
+      "depends": [
+        "ffmpeg",
+        "jansson",
+        "libxinerama",
+        "libxkbcommon-x11",
+        "mbedtls3",
+        "rnnoise",
+        "pciutils",
+        "qt6-svg",
+        "curl",
+        "jack",
+        "gtk-update-icon-cache",
+        "pipewire",
+        "libxcomposite",
+        "libdatachannel",
+        "uthash",
+        "simde",
+        "qrcodegencpp-cmake",
+        "python",
+        "luajit"
+      ],
+      "provides": [],
+      "repository": "extra",
+      "sha256": "160a66705327d25c617965bc2abbd92101443072a186ab682ee3f39d6c49746b",
+      "version": "32.2.2-1"
+    },
+    "steam": {
+      "depends": [
+        "bash",
+        "coreutils",
+        "curl",
+        "dbus",
+        "desktop-file-utils",
+        "diffutils",
+        "freetype2",
+        "gdk-pixbuf2",
+        "glibc",
+        "hicolor-icon-theme",
+        "libgcc",
+        "libxcrypt",
+        "libxcrypt-compat",
+        "libxkbcommon-x11",
+        "lsb-release",
+        "lsof",
+        "nss",
+        "python",
+        "ttf-font",
+        "usbutils",
+        "vulkan-driver",
+        "vulkan-icd-loader",
+        "xdg-user-dirs",
+        "xorg-xrandr",
+        "xz",
+        "zenity",
+        "steam-devices",
+        "lib32-alsa-plugins",
+        "lib32-fontconfig",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-libgl",
+        "lib32-libgpg-error",
+        "lib32-libnm",
+        "lib32-libva",
+        "lib32-libx11",
+        "lib32-libxcrypt",
+        "lib32-libxcrypt-compat",
+        "lib32-libxinerama",
+        "lib32-libxss",
+        "lib32-nss",
+        "lib32-pipewire",
+        "lib32-systemd",
+        "lib32-vulkan-driver",
+        "lib32-vulkan-icd-loader"
+      ],
+      "provides": [],
+      "repository": "multilib",
+      "sha256": "3b59b784d238b6087d38bafa30ae38f4c9e656fb4330860575391c1bf37046ea",
+      "version": "1.0.0.87-3"
+    },
+    "steam-devices": {
+      "depends": [
+        "udev"
+      ],
+      "provides": [],
+      "repository": "multilib",
+      "sha256": "7cf62beb007a28cdd0d714cf8b987529d848f22b6b2af06ddf5cc8c8beb11475",
+      "version": "1.0.0.87-3"
+    },
+    "xdg-desktop-portal-kde": {
+      "depends": [
+        "glibc",
+        "kcmutils",
+        "kconfig",
+        "kcoreaddons",
+        "kcrash",
+        "kdeclarative",
+        "kglobalaccel",
+        "kiconthemes",
+        "ki18n",
+        "kio",
+        "kio-fuse",
+        "kirigami",
+        "kirigami-addons",
+        "kitemviews",
+        "knotifications",
+        "kpipewire",
+        "kservice",
+        "kstatusnotifieritem",
+        "kwayland",
+        "kwindowsystem",
+        "libstdc++",
+        "libxkbcommon",
+        "plasma-workspace",
+        "qt6-base",
+        "qt6-declarative",
+        "wayland",
+        "xdg-desktop-portal"
+      ],
+      "provides": [
+        "xdg-desktop-portal-impl"
+      ],
+      "repository": "extra",
+      "sha256": "b4276442dff14d4be2488421bccaef47e52e0d176a23bd0fa779fb556c4f4258",
+      "version": "6.7.5-1"
+    },
+    "xorg-xwayland": {
+      "depends": [
+        "nettle",
+        "libepoxy",
+        "libxfont2",
+        "pixman",
+        "xorg-server-common",
+        "libxcvt",
+        "mesa",
+        "libglvnd",
+        "libxau",
+        "wayland",
+        "libdrm",
+        "libtirpc",
+        "libei",
+        "libxshmfence",
+        "libdecor",
+        "glibc"
+      ],
+      "provides": [
+        "xorg-server-xwayland"
+      ],
+      "repository": "extra",
+      "sha256": "ab05d419318ec1b4e901f45de5c141ef51f6be0541c9dfba6f2917cc0a0fe658",
+      "version": "24.1.13-1"
+    }
+  },
+  "profiles": {
+    "core": [
+      "steam",
+      "steam-devices",
+      "lib32-glibc",
+      "lib32-gcc-libs",
+      "lib32-alsa-plugins",
+      "lib32-pipewire",
+      "xorg-xwayland"
+    ],
+    "gamemode": [
+      "gamemode",
+      "lib32-gamemode"
+    ],
+    "gamescope": [
+      "gamescope"
+    ],
+    "heroic": [],
+    "lutris": [
+      "lutris"
+    ],
+    "mangohud": [
+      "mangohud",
+      "lib32-mangohud"
+    ],
+    "streaming": [
+      "obs-studio",
+      "xdg-desktop-portal-kde"
+    ],
+    "tools": [
+      "gamescope",
+      "mangohud",
+      "lib32-mangohud",
+      "gamemode",
+      "lib32-gamemode"
+    ]
+  },
+  "schema_version": 1
+}
