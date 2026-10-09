@@ -66,7 +66,7 @@ def session(user):
             env = dict(item.decode().split('=', 1) for item in (proc / 'environ').read_bytes().split(b'\0') if b'=' in item)
             if env.get('XDG_SESSION_TYPE') != 'wayland' or 'KDE' not in env.get('XDG_CURRENT_DESKTOP', ''):
                 continue
-            keys = ['DISPLAY', 'WAYLAND_DISPLAY', 'XDG_RUNTIME_DIR', 'DBUS_SESSION_BUS_ADDRESS',
+            keys = ['DISPLAY', 'XAUTHORITY', 'WAYLAND_DISPLAY', 'XDG_RUNTIME_DIR', 'DBUS_SESSION_BUS_ADDRESS',
                     'XDG_SESSION_TYPE', 'XDG_CURRENT_DESKTOP']
             values = {key: env[key] for key in keys if key in env}
             return ['runuser', '-u', user, '--', 'env', *[f'{k}={v}' for k, v in values.items()]], values
@@ -130,7 +130,8 @@ def suite(user, work, proton=None, runtime=None):
     probe('display', ['kscreen-doctor', '-o'], user_session=True)
     probe('kwin-support', ['qdbus6', 'org.kde.KWin', '/KWin', 'supportInformation'], user_session=True)
     probe('opengl', ['glxinfo', '-B'], user_session=True)
-    probe('xwayland', ['xdpyinfo'], user_session=True)
+    # The image already supplies glxinfo; prove a connection to the user's Xwayland.
+    probe('xwayland', ['bash', '-euc', 'pgrep -u "$UID" -x Xwayland; glxinfo -B'], user_session=True)
     probe('vulkan-enumeration', ['vulkaninfo', '--summary'], user_session=True,
           env={**os.environ, 'VK_LOADER_DEBUG': 'driver'})
     icds = []
@@ -239,7 +240,7 @@ def suite(user, work, proton=None, runtime=None):
     checks['steam-runtime'] = dict(status='NOT RUN', code=None,
         output='Inspect downloaded runtime tools and dependency diagnostics in disposable Steam HOME; download presence alone is insufficient')
     if proton and runtime and prefix and proton.is_file() and runtime.is_file():
-        probe('runtime-version', [runtime, '--version'], user_session=True)
+        probe('runtime-version', ['cat', runtime.parent / 'VERSIONS.txt'], user_session=True)
         exe = work / 'windows-smoke.exe'
         prebuilt = FIXTURES / 'windows-smoke.exe'
         if prebuilt.is_file():

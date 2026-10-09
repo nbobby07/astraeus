@@ -6,7 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import MagicMock, Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts/validate'))
@@ -72,6 +72,25 @@ class MatrixTests(unittest.TestCase):
 
 @unittest.skipUnless(sys.platform == 'linux', 'Linux process groups and desktop users')
 class GuestTests(unittest.TestCase):
+    def test_session_preserves_xauthority_without_exporting_other_secrets(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / 'comm').write_text('plasmashell\n')
+            (root / 'environ').write_bytes(b'XDG_SESSION_TYPE=wayland\0XDG_CURRENT_DESKTOP=KDE\0'
+                b'DISPLAY=:0\0XAUTHORITY=/run/user/1000/xauth-test\0UNRELATED_SECRET=private\0')
+            proc = MagicMock()
+            proc.stat.return_value.st_uid = 1000
+            proc.__truediv__.side_effect = lambda name: root / name
+            directory = Mock()
+            directory.glob.return_value = [proc]
+            with patch.object(guest, 'Path', return_value=directory), \
+                    patch.object(guest.pwd, 'getpwnam', return_value=Mock(pw_uid=1000)):
+                command, environment = guest.session('tester')
+            self.assertIn('XAUTHORITY=/run/user/1000/xauth-test', command)
+            self.assertEqual(environment['XAUTHORITY'], '/run/user/1000/xauth-test')
+            self.assertNotIn('UNRELATED_SECRET', environment)
+            self.assertFalse(any('private' in value for value in command))
+
     def test_real_command_timeout_exit_and_output_limit(self):
         self.assertEqual(guest.execute(['bash', '-c', 'exit 7'])['code'], 7)
         self.assertEqual(guest.execute(['bash', '-c', 'sleep 10'], timeout=0.1)['error'], 'timeout')
