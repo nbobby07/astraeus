@@ -10,6 +10,8 @@ import subprocess
 import tarfile
 import tempfile
 import unittest
+import re
+import shlex
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,6 +24,13 @@ spec.loader.exec_module(package_check)
 
 
 class GraphicsPackages(unittest.TestCase):
+    def test_probe_build_inputs_include_both_compiler_runtimes(self):
+        bundles = json.loads((ROOT / "distro/graphics/bundles.json").read_text())
+        self.assertTrue({"gcc", "lib32-glibc", "lib32-gcc-libs", "vulkan-headers"} <= set(bundles["build"]))
+        recipe = (ROOT / "distro/packages/distroctl/PKGBUILD.in").read_text()
+        declared = set(shlex.split(" ".join(re.findall(r"^(?:make)?depends=\((.*)\)$", recipe, re.M))))
+        self.assertTrue(set(bundles["build"]) <= declared)
+
     def test_metadata_check_rejects_changed_dependencies_and_database_bytes(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

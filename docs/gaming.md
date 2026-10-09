@@ -24,7 +24,7 @@ Enable/disable still produce blocked proposals and refuse execution. There is no
 safe feature ownership/removal ledger or complete target-aware resolver yet.
 Heroic/Proton-GE acquisition stays manual and outside image setup.
 
-All 15 gaming package records and 30 graphics records share the exact pinned
+All 15 gaming package records and 31 graphics records share the exact pinned
 core/extra/multilib databases. Optional tools are never implicitly selected by
 Core. The integrated virtual test image explicitly selects Core and tools.
 

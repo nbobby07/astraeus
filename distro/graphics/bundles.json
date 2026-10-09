@@ -9,6 +9,6 @@
     "software": ["vulkan-swrast", "lib32-vulkan-swrast", "mesa-utils", "lib32-mesa-utils"],
     "nvidia-open": ["nvidia-open", "nvidia-utils", "lib32-nvidia-utils", "egl-wayland", "egl-wayland2", "egl-gbm"]
   },
-  "build": ["gcc", "lib32-glibc", "vulkan-headers"],
+  "build": ["gcc", "lib32-glibc", "lib32-gcc-libs", "vulkan-headers"],
   "optional": ["mesa-utils", "lib32-mesa-utils", "nvidia-prime"]
 }

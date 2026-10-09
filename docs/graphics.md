@@ -126,7 +126,7 @@ No live mirror, partial refresh, `pacman -Sy`, signature bypass or AUR is added.
 | virtio | vulkan-virtio, lib32-vulkan-virtio |
 | nvidia-open candidate, refused for activation | nvidia-open, nvidia-utils, lib32-nvidia-utils, egl-wayland, egl-wayland2, egl-gbm |
 | Optional investigation/offload | mesa-utils, lib32-mesa-utils, nvidia-prime |
-| Probe build | gcc, lib32-glibc, vulkan-headers |
+| Probe build | gcc, lib32-glibc, lib32-gcc-libs, vulkan-headers |
 
 Mesa and its Vulkan/32-bit packages are `1:26.2.3-2`. Both Vulkan loaders and
 vulkan-tools are `1.4.357.0-1`; firmware is `20260916-1`. The existing installed
