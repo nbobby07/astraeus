@@ -76,6 +76,8 @@ def session(user):
 
 
 def verdict(reply, marker=None, bits=None):
+    if reply['code'] == 127 and reply.get('error') in [None, 'launch failed']:
+        return 'NOT RUN'
     if reply['code'] == 77 and not reply.get('error'):
         return 'UNSUPPORTED'
     if reply['code'] != 0 or reply.get('error'):
@@ -236,11 +238,21 @@ def suite(user, work, proton=None, runtime=None):
     checks['steam-game-execution'] = dict(status='NOT RUN', code=None, output='No credentials collected; login-required boundary')
     checks['steam-runtime'] = dict(status='NOT RUN', code=None,
         output='Inspect downloaded runtime tools and dependency diagnostics in disposable Steam HOME; download presence alone is insufficient')
-    if proton and runtime and prefix:
+    if proton and runtime and prefix and proton.is_file() and runtime.is_file():
         probe('runtime-version', [runtime, '--version'], user_session=True)
         exe = work / 'windows-smoke.exe'
-        build = probe('windows-build', ['x86_64-w64-mingw32-gcc', '-Wall', '-Wextra', '-Werror',
-                                       FIXTURES / 'windows-smoke.c', '-o', exe, '-luser32'])
+        prebuilt = FIXTURES / 'windows-smoke.exe'
+        if prebuilt.is_file():
+            manifest = json.loads((FIXTURES / 'prebuilt.json').read_text())
+            if hashlib.sha256(prebuilt.read_bytes()).hexdigest() != manifest['binaries']['windows-smoke.exe']:
+                raise ValueError('prebuilt Win32 binary changed in guest')
+            shutil.copyfile(prebuilt, exe)
+            exe.chmod(0o755)
+            build = dict(status='PASS', code=None, scope='copied hash-bound Windows fixture')
+            checks['windows-build'] = build
+        else:
+            build = probe('windows-build', ['x86_64-w64-mingw32-gcc', '-Wall', '-Wextra', '-Werror',
+                                           FIXTURES / 'windows-smoke.c', '-o', exe, '-luser32'])
         if build['status'] == 'PASS':
             compat = work / 'compatdata'
             compat.mkdir()

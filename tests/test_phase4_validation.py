@@ -94,6 +94,8 @@ class GuestTests(unittest.TestCase):
         self.assertEqual(guest.verdict(reply, 'PHASE4_VULKAN_OK pixels=256', 32), 'FAIL')
         self.assertEqual(guest.verdict({**reply, 'error': 'timeout'}), 'FAIL')
         self.assertEqual(guest.verdict({**reply, 'code': 1}), 'FAIL')
+        self.assertEqual(guest.verdict({**reply, 'code': 127}), 'NOT RUN')
+        self.assertEqual(guest.verdict({**reply, 'code': 77}), 'UNSUPPORTED')
         self.assertEqual(guest.verdict({**reply, 'output': ''}, 'PHASE4_VULKAN_OK pixels=256'), 'FAIL')
 
     def test_no_root_desktop(self):

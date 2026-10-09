@@ -99,11 +99,14 @@ def run(args):
         shutil.copytree(MATRIX.parent, share / 'fixtures')
         if args.fixture_binaries:
             binaries = json.loads((args.fixture_binaries / 'manifest.json').read_text())
-            p2.require(set(binaries) == {'source_sha256', 'binaries'}
+            p2.require(set(binaries) <= {'source_sha256', 'windows_source_sha256', 'binaries'}
                        and binaries['source_sha256'] == p2.digest(MATRIX.parent / 'vulkan-workload.c'),
                        'prebuilt Vulkan fixture source changed')
-            p2.require(set(binaries['binaries']) <= {'vulkan64', 'vulkan32'}
+            p2.require(set(binaries['binaries']) <= {'vulkan64', 'vulkan32', 'windows-smoke.exe'}
                        and binaries['binaries'], 'unexpected prebuilt fixture')
+            if 'windows-smoke.exe' in binaries['binaries']:
+                p2.require(binaries.get('windows_source_sha256') == p2.digest(MATRIX.parent / 'windows-smoke.c'),
+                           'prebuilt Win32 fixture source changed')
             for name, expected in binaries['binaries'].items():
                 source = args.fixture_binaries / name
                 p2.require(source.is_file() and not source.is_symlink() and p2.digest(source) == expected,

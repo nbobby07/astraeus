@@ -57,6 +57,9 @@ accepts externally compiled `vulkan64`/`vulkan32` plus `manifest.json` containin
 this tree's fixture. Both host and guest verify binary hashes; the read-only
 share hashes preserve their provenance. Build commands/tool versions belong in
 the evidence. These binaries still link and execute against the guest userspace.
+The same map may contain `windows-smoke.exe` when accompanied by
+`windows_source_sha256` matching this tree's Win32 source. This lets the Proton
+smoke run without installing a compiler in the gaming guest.
 
 `vulkaninfo --summary` and loader debug output preserve actual ICD selection.
 `glxinfo -B`, `xdpyinfo`, `kscreen-doctor -o` and the real Plasma environment
