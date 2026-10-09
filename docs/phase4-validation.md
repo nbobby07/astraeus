@@ -27,6 +27,9 @@ probes. Root-agent readiness alone cannot certify a desktop. A missing user
 session records NOT RUN. Never transmit credentials in argv, recorded commands,
 screenshots or shell history. The command channel is test-only and must never
 ship in an ISO or package. Each retry gets a new output directory.
+`--autologin` can prepare SDDM for the named disposable user in the new overlay
+and waits for real plasmashell startup. This test setup is recorded separately;
+it cannot qualify authentication security and never changes the sealed baseline.
 
 The baseline source revision, requested revision, actual harness commit/dirty
 state, all adapter/fixture hashes, QEMU version, firmware identity and baseline
@@ -48,6 +51,12 @@ memory type is required; its absence returns 77 (UNSUPPORTED). Compile both
 `cc -m64` and `cc -m32` against the installed libraries. A failed fixture build
 leaves runtime NOT RUN. Package/dependency results remain separate. Run `file`
 and `ldd` on each executable, then require the exact bitness and readback marker.
+Installed gaming users do not need a compiler. `--fixture-binaries DIRECTORY`
+accepts externally compiled `vulkan64`/`vulkan32` plus `manifest.json` containing
+`source_sha256` and a `binaries` name-to-SHA256 map. The source hash must match
+this tree's fixture. Both host and guest verify binary hashes; the read-only
+share hashes preserve their provenance. Build commands/tool versions belong in
+the evidence. These binaries still link and execute against the guest userspace.
 
 `vulkaninfo --summary` and loader debug output preserve actual ICD selection.
 `glxinfo -B`, `xdpyinfo`, `kscreen-doctor -o` and the real Plasma environment

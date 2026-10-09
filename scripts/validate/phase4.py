@@ -61,7 +61,8 @@ def hooks(vm, path):
     result = {}
     for name, item in items.items():
         p2.require(set(item) == {'command', 'exit_code', 'marker'} and isinstance(item['command'], str)
-                   and type(item['exit_code']) is int and isinstance(item['marker'], str) and item['marker'],
+                   and type(item['exit_code']) is int and 0 <= item['exit_code'] <= 125
+                   and isinstance(item['marker'], str) and item['marker'],
                    'hook needs command, exact exit_code and diagnostic marker')
         reply = vm.command(item['command'], timeout=30, check=False, label='hook-' + name)
         reply['status'] = 'PASS' if reply['code'] == item['exit_code'] and item['marker'] in reply['output'] else 'FAIL'
@@ -96,6 +97,20 @@ def run(args):
         for name in ['phase2-guest.py', 'phase4_guest.py']:
             shutil.copyfile(p2.HERE / name, share / name)
         shutil.copytree(MATRIX.parent, share / 'fixtures')
+        if args.fixture_binaries:
+            binaries = json.loads((args.fixture_binaries / 'manifest.json').read_text())
+            p2.require(set(binaries) == {'source_sha256', 'binaries'}
+                       and binaries['source_sha256'] == p2.digest(MATRIX.parent / 'vulkan-workload.c'),
+                       'prebuilt Vulkan fixture source changed')
+            p2.require(set(binaries['binaries']) <= {'vulkan64', 'vulkan32'}
+                       and binaries['binaries'], 'unexpected prebuilt fixture')
+            for name, expected in binaries['binaries'].items():
+                source = args.fixture_binaries / name
+                p2.require(source.is_file() and not source.is_symlink() and p2.digest(source) == expected,
+                           'prebuilt fixture hash mismatch')
+                shutil.copyfile(source, share / 'fixtures' / name)
+                (share / 'fixtures' / name).chmod(0o755)
+            shutil.copyfile(args.fixture_binaries / 'manifest.json', share / 'fixtures/prebuilt.json')
         p2.save(args.output / 'inputs.json', dict(source_commit=args.source_commit,
             harness_commit=p2.host(['git', '-C', p2.REPO, 'rev-parse', 'HEAD']).strip(),
             harness_dirty=bool(p2.host(['git', '-C', p2.REPO, 'status', '--porcelain']).strip()),
@@ -104,11 +119,20 @@ def run(args):
             files={str(p.relative_to(p2.REPO)): p2.digest(p) for p in
                    [Path(__file__), p2.HERE / 'phase4_guest.py', p2.HERE / 'phase2.py',
                     p2.HERE / 'qmp.py', p2.HERE.parent / 'install-smoke.py',
-                    *MATRIX.parent.iterdir()] if p.is_file()}))
+                    *MATRIX.parent.iterdir()] if p.is_file()},
+            share_files={str(p.relative_to(share)): p2.digest(p) for p in share.rglob('*') if p.is_file()}))
         # QEMU traverses the share as root; the desktop reads only public fixture files.
         vm = p2.VM(args.output, args.ovmf_code, share, args.timeout, secure_boot=True)
         vm.start()
         vm.ready()
+        if args.autologin:
+            vm.command('test -e /dev/virtio-ports/org.astraeus.validation; '
+                       'mkdir -p /etc/sddm.conf.d; '
+                       f'printf %s {shlex.quote("[Autologin]\nUser=" + args.user + "\nSession=plasma.desktop\n")} '
+                       '> /etc/sddm.conf.d/99-phase4-validation.conf; systemctl restart sddm; '
+                       f'for attempt in $(seq 1 60); do if pgrep -u {args.user} -x plasmashell >/dev/null; '
+                       'then exit 0; fi; sleep 1; done; echo "Plasma startup timed out" >&2; exit 1',
+                       timeout=75, label='disposable-autologin')
         state = p2.observe(vm, 'before')
         p2.healthy(state, manifest['encryption'])
         security = vm.command('distroctl security status --json', label='security')
@@ -169,9 +193,12 @@ def main():
     parser.add_argument('--ovmf-code', type=Path)
     parser.add_argument('--source-commit')
     parser.add_argument('--user', default='tester')
+    parser.add_argument('--autologin', action='store_true',
+                        help='prepare disposable overlay SDDM session; never qualifies login security')
     parser.add_argument('--proton', help='inspected guest Proton script path')
     parser.add_argument('--runtime', help='inspected guest Steam Linux Runtime _v2-entry-point path')
     parser.add_argument('--hooks', type=Path, help='guest-only production CLI negative/readiness hooks')
+    parser.add_argument('--fixture-binaries', type=Path, help='source/hash-bound prebuilt Vulkan binaries and manifest.json')
     parser.add_argument('--timeout', type=int, default=180)
     args = parser.parse_args()
     if args.mode == 'matrix':

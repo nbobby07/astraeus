@@ -54,6 +54,9 @@ class MatrixTests(unittest.TestCase):
             self.assertEqual(phase4.hooks(vm, path)['missing-steam']['status'], 'PASS')
             vm.command.return_value = dict(code=139, output='Steam absent')
             self.assertEqual(phase4.hooks(vm, path)['missing-steam']['status'], 'FAIL')
+            path.write_text(json.dumps({'missing-steam': dict(command='guest-only', exit_code=139, marker='Steam absent')}))
+            with self.assertRaises(RuntimeError):
+                phase4.hooks(vm, path)
             path.write_text(json.dumps({'invented': {}}))
             with self.assertRaises(RuntimeError):
                 phase4.hooks(vm, path)
@@ -81,6 +84,9 @@ class GuestTests(unittest.TestCase):
             self.assertTrue(guest.renderer(text)['software'])
             self.assertFalse(guest.renderer(text)['physical_qualified'])
         self.assertFalse(guest.renderer('renderer=NVIDIA RTX 5070\ndevice_type=2')['physical_qualified'])
+        self.assertEqual(guest.gpu_classification('00:01 VGA compatible controller: Red Hat Virtio GPU')['classification'], 'virtual')
+        self.assertEqual(guest.gpu_classification('00:01 VGA compatible controller: NVIDIA')['classification'], 'unqualified')
+        self.assertEqual(guest.gpu_classification('')['classification'], 'unqualified')
 
     def test_runtime_needs_marker_exit_architecture_and_no_timeout(self):
         reply = dict(code=0, output='PHASE4_VULKAN_OK pixels=256\narchitecture_bits=64', error=None)

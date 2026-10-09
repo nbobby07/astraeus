@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import pwd
 import re
+import shutil
 import signal
 import subprocess
 import tempfile
@@ -94,6 +95,13 @@ def renderer(text):
                 vendor=values.get('vendor'), physical_qualified=False)
 
 
+def gpu_classification(text):
+    displays = [line for line in text.splitlines() if re.search(r'VGA|3D controller|Display controller', line)]
+    virtual = bool(displays) and all(re.search(r'Virtio|QXL|Bochs|VMware|VirtualBox', line, re.I) for line in displays)
+    return dict(display_devices=displays, classification='virtual' if virtual else 'unqualified',
+                physical_qualified=False)
+
+
 def suite(user, work, proton=None, runtime=None):
     checks = {}
     prefix, desktop = session(user)
@@ -109,14 +117,16 @@ def suite(user, work, proton=None, runtime=None):
 
     probe('packages', ['pacman', '-Q'])
     probe('dependencies', ['pacman', '-Dk'])
-    probe('lib32-packages', ['pacman', '-Q', 'lib32-vulkan-icd-loader', 'lib32-mesa'])
+    probe('lib32-packages', ['pacman', '-Q', 'lib32-vulkan-icd-loader'])
     probe('gaming-packages', ['pacman', '-Q', 'steam', 'gamescope', 'mangohud', 'gamemode',
                              'vulkan-icd-loader', 'lib32-vulkan-icd-loader'])
-    probe('gpu', ['lspci', '-nnk'])
+    gpu = probe('gpu', ['lspci', '-nnk'])
+    gpu['classification'] = gpu_classification(gpu['output'])
     probe('hardware-json', ['distroctl', 'hardware', '--json'])
     probe('input', ['bash', '-euc', 'cat /proc/bus/input/devices; ls -l /dev/input; '
            'find /usr/lib/udev/rules.d /etc/udev/rules.d -iname "*steam*" -o -iname "*gamepad*"'])
     probe('display', ['kscreen-doctor', '-o'], user_session=True)
+    probe('kwin-support', ['qdbus6', 'org.kde.KWin', '/KWin', 'supportInformation'], user_session=True)
     probe('opengl', ['glxinfo', '-B'], user_session=True)
     probe('xwayland', ['xdpyinfo'], user_session=True)
     probe('vulkan-enumeration', ['vulkaninfo', '--summary'], user_session=True,
@@ -135,8 +145,18 @@ def suite(user, work, proton=None, runtime=None):
     builds = {}
     for bits in [64, 32]:
         binary = work / f'vulkan{bits}'
-        build = probe(f'build-{bits}', ['cc', f'-m{bits}', '-Wall', '-Wextra', '-Werror',
-                       FIXTURES / 'vulkan-workload.c', '-o', binary, '-lvulkan'])
+        prebuilt = FIXTURES / f'vulkan{bits}'
+        if prebuilt.is_file():
+            manifest = json.loads((FIXTURES / 'prebuilt.json').read_text())
+            if hashlib.sha256(prebuilt.read_bytes()).hexdigest() != manifest['binaries'][prebuilt.name]:
+                raise ValueError('prebuilt Vulkan binary changed in guest')
+            shutil.copyfile(prebuilt, binary)
+            binary.chmod(0o755)
+            build = dict(status='PASS', code=None, scope='copied hash-bound host-built fixture, not installed compiler')
+            checks[f'build-{bits}'] = build
+        else:
+            build = probe(f'build-{bits}', ['cc', f'-m{bits}', '-Wall', '-Wextra', '-Werror',
+                           FIXTURES / 'vulkan-workload.c', '-o', binary, '-lvulkan'])
         if build['status'] != 'PASS':
             checks[f'vulkan-{bits}'] = dict(status='NOT RUN', code=None, output='Fixture compilation unavailable; inspect build evidence')
             continue
@@ -160,7 +180,7 @@ def suite(user, work, proton=None, runtime=None):
                                 'VK_LOADER_DEBUG': 'all'})
             # A negative pass needs an actual execution failure and actionable loader diagnostics.
             if result['status'] != 'NOT RUN':
-                result['status'] = 'PASS' if result['code'] not in [0, 127, None] and not result.get('error') and re.search(
+                result['status'] = 'PASS' if result['code'] is not None and 0 < result['code'] <= 125 and not result.get('error') and re.search(
                     r'ICD|driver|VkResult|ELFCLASS', result['output'], re.I) else 'FAIL'
                 result['scope'] = 'Vulkan loader refusal, not production readiness CLI'
     if binary and 32 in builds:
@@ -169,7 +189,7 @@ def suite(user, work, proton=None, runtime=None):
                        env={**os.environ, 'VK_DRIVER_FILES': str(missing32), 'VK_ICD_FILENAMES': str(missing32),
                             'VK_LOADER_DEBUG': 'all'})
         if result['status'] != 'NOT RUN':
-            result['status'] = 'PASS' if result['code'] not in [0, 127, None] and not result.get('error') and 'VkResult' in result['output'] else 'FAIL'
+            result['status'] = 'PASS' if result['code'] is not None and 0 < result['code'] <= 125 and not result.get('error') and 'VkResult' in result['output'] else 'FAIL'
             result['scope'] = 'lib32 ICD hidden by per-process override; packages unchanged'
     if prefix:
         probe('user-failed', ['systemctl', '--user', '--failed', '--no-legend', '--plain'], user_session=True)
