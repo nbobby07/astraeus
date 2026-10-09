@@ -66,8 +66,23 @@ class GraphicsPackages(unittest.TestCase):
         self.assertNotIn("nvidia-utils", selected)
         for name, metadata in graphics["packages"].items():
             self.assertEqual(archive["direct_packages"][name], metadata["version"])
-        for family in ("intel", "radeon", "nouveau", "virtio"):
+        for family in ("intel", "radeon", "nouveau", "virtio", "swrast"):
             self.assertEqual(graphics["packages"]["vulkan-" + family]["version"], graphics["packages"]["lib32-vulkan-" + family]["version"])
+        self.assertNotIn("vulkan-swrast", installer.graphics_packages(["virtio"]))
+        self.assertIn("lib32-vulkan-swrast", installer.graphics_packages(["software"]))
+
+    def test_gaming_image_selection_preserves_optional_and_mutation_boundaries(self):
+        self.assertEqual(installer.gaming_packages([]), [])
+        core = installer.gaming_packages(["core", "core"])
+        self.assertIn("steam", core)
+        self.assertNotIn("gamescope", core)
+        tools = installer.gaming_packages(["tools"])
+        self.assertNotIn("steam", tools)
+        self.assertIn("lib32-mangohud", tools)
+        self.assertEqual(installer.gaming_packages(["core", "tools"]), sorted(set(core + tools)))
+        for feature in ["heroic", "unknown", "core\nSigLevel=Never"]:
+            with self.assertRaises(ValueError):
+                installer.gaming_packages([feature])
 
     def test_nvidia_activation_and_unknown_bundles_are_refused(self):
         for name in ["nvidia-open", "nvidia", "unknown", "amd\nSigLevel=Never"]:

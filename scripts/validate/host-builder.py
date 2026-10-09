@@ -22,6 +22,8 @@ def main():
     parser.add_argument("--ovmf-code", type=Path, required=True)
     parser.add_argument("--ovmf-vars", type=Path, required=True)
     parser.add_argument("--memory-mib", type=int, choices=[4096, 6144, 8192], default=8192)
+    parser.add_argument("--graphics", nargs="*", default=[], choices=["amd", "intel", "nouveau", "virtio", "software"])
+    parser.add_argument("--gaming", nargs="*", default=[], choices=["core", "tools", "gamescope", "mangohud", "gamemode", "lutris", "streaming"])
     args = parser.parse_args()
     if not Path("/dev/kvm").exists() or os.geteuid() != 0:
         parser.error("run as root on the disposable Linux KVM host")
@@ -43,7 +45,7 @@ runcmd:
   - [mkdir, -p, /mnt/phase0]
   - [mount, -t, 9p, -o, "trans=virtio,version=9p2000.L", phase0, /mnt/phase0]
   - [cp, /mnt/phase0/arch-builder.sh, /run/phase0-builder.sh]
-  - [env, PHASE0_DISPOSABLE=1, bash, /run/phase0-builder.sh, {args.label}]
+  - {json.dumps(["env", "PHASE0_DISPOSABLE=1", "bash", "/run/phase0-builder.sh", args.label, "--graphics", *args.graphics, "--gaming", *args.gaming])}
 power_state:
   mode: poweroff
   delay: now

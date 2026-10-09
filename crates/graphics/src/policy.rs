@@ -2,7 +2,7 @@ use distro_hardware::Gpu;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DriverSelection {
     pub bundle: Option<String>,
     pub kernel_drivers: Vec<String>,

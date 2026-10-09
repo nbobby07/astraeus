@@ -52,7 +52,7 @@ pub struct Cpu {
     pub physical_core_count: Option<usize>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Clone, Serialize, serde::Deserialize)]
 pub struct Gpu {
     pub pci_address: Option<String>,
     pub vendor: Option<String>,

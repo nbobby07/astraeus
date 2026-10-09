@@ -1,5 +1,15 @@
 # Gaming runtime acceptance design
 
+## Integrated candidate procedure
+
+Build the initial installed payload with explicit `--graphics virtio software
+--gaming core tools` for the Freestyle virtual target. This uses the existing
+signed image pipeline; blocked gaming proposals are not installation operations.
+Run `distroctl graphics --probe --json` and `distroctl gaming doctor --probe --json`
+as the disposable desktop user. Retain both raw reports and verify matching
+architecture, ICD, device and clear/readback evidence. Software results never
+qualify a physical GPU. All original runtime and security gates below still apply.
+
 This is a handoff to the runtime/Freestyle owner, not executed evidence. Do not run
 these tests against the developer's desktop or modify another worktree. Use an
 isolated installed Astraeus test system with a suitable GPU and desktop user.

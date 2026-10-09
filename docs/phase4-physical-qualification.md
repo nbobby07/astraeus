@@ -1,5 +1,15 @@
 # Physical graphics qualification
 
+## Integration boundary
+
+The integrated virtual target may execute Vulkan on Lavapipe in both architectures.
+That result does not pass any physical row below. RTX 5070 qualification additionally
+requires its exact PCI ID in the pinned open-module support list, matching module,
+GSP, native/lib32 userspace and kernel ABI, plus independently demonstrated kernel
+module-signature enforcement and trust. Firmware acceptance of the UKI is insufficient.
+Nouveau-to-NVIDIA transitions remain blocked. No changes to the owner's Windows
+installation, partition table, firmware keys or primary boot configuration are authorized.
+
 All physical rows are NOT RUN and unqualified. CPU VMs and software Vulkan
 provide no vendor compatibility or performance qualification.
 

@@ -59,6 +59,10 @@ def check(directory, pacman=None):
             cases["base"] = []
             cases["amd-intel-nouveau"] = sorted({p for b in ["amd", "intel", "nouveau"] for p in bundles["bundles"][b]})
             cases["build"] = bundles["build"]
+            gaming = json.loads((ROOT / "crates/distroctl/src/gaming/catalog.json").read_text())
+            cases.update({"gaming-" + feature: names for feature, names in gaming["profiles"].items() if names})
+            cases["integrated-virtual"] = (bundles["bundles"]["virtio"] + bundles["bundles"]["software"]
+                                           + gaming["profiles"]["core"] + gaming["profiles"]["tools"])
             before = {str(p.relative_to(root)): p.read_bytes() for p in root.rglob("*") if p.is_file()}
             for bundle, packages in cases.items():
                 result = subprocess.run([pacman, "--config", str(config), "--sync", "--print-format", "%n\t%v",

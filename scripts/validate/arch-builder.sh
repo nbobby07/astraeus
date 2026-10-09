@@ -4,6 +4,7 @@ set -Eeuo pipefail
 [[ ${PHASE0_DISPOSABLE:-} == 1 && $EUID == 0 && -f /etc/arch-release ]]
 label=${1:?Usage: PHASE0_DISPOSABLE=1 bash arch-builder.sh A-or-B}
 [[ $label == A || $label == B ]]
+shift
 share=/mnt/phase0
 evidence="$share/evidence/$label"
 mkdir -p "$evidence"
@@ -34,6 +35,9 @@ Server = file:///build/archive
 [extra]
 CacheServer = https://archive.archlinux.org/repos/$archive/\$repo/os/\$arch
 Server = file:///build/archive
+[multilib]
+CacheServer = https://archive.archlinux.org/repos/$archive/\$repo/os/\$arch
+Server = file:///build/archive
 EOF
 pacman-key --init
 pacman-key --populate archlinux
@@ -42,6 +46,7 @@ if [[ -d $share/package-cache ]]; then
     cp -a "$share/package-cache/." /var/cache/pacman/pkg/
 fi
 pacman -Syyuu --noconfirm --needed base-devel archiso rust python git gnupg systemd-ukify sbsigntools efitools
+pacman -S --noconfirm --needed lib32-glibc vulkan-headers
 pacman -S --noconfirm --needed $(cat distro/packages/calamares/build-packages.x86_64)
 git init -b main
 git status --short > "$evidence/git-status.txt"
@@ -78,8 +83,8 @@ fi
 key=$(cat "$share/repository-fingerprint.txt")
 # Both independent images consume identical signed repository bytes.
 repo=/build/operating-system/out/repo
-printf '%s\n' "python3 scripts/bootstrap.py iso --repo $repo --fingerprint $key --output /build/iso-build" > "$evidence/command.txt"
-python3 scripts/bootstrap.py iso --repo "$repo" --fingerprint "$key" --output /build/iso-build
+printf '%q ' python3 scripts/bootstrap.py iso --repo "$repo" --fingerprint "$key" --output /build/iso-build "$@" > "$evidence/command.txt"
+python3 scripts/bootstrap.py iso --repo "$repo" --fingerprint "$key" --output /build/iso-build "$@"
 cp /build/iso-build/{builder-packages.txt,image-packages.txt,inputs.json} "$evidence/"
 cp /build/iso-build/installed-packages.txt "$evidence/"
 cp /build/iso-build/iso/* "$evidence/"

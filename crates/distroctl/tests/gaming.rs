@@ -445,6 +445,7 @@ fn cli_commands_refuse_mutation_and_reject_unsupported_options() {
         assert!(output.status.success());
         let report: Report = serde_json::from_slice(&output.stdout).unwrap();
         assert_eq!(report.schema_version, 1);
+        assert!(report.graphics.is_some());
     }
     assert!(String::from_utf8(run(&["doctor"]).stdout)
         .unwrap()
@@ -471,6 +472,7 @@ fn cli_commands_refuse_mutation_and_reject_unsupported_options() {
     for args in [
         &["status", "--execute"][..],
         &["doctor", "--json", "--json"],
+        &["doctor", "--probe", "--probe"],
         &["enable", "--dry-run", "--dry-run"],
         &["enable", "core", "tools"],
         &["enable", "overclock"],

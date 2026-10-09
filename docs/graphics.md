@@ -1,5 +1,24 @@
 # Graphics foundation
 
+## Phase 4 integration
+
+Gaming consumes this report directly, with no second GPU discovery implementation.
+Use `distroctl gaming doctor --probe --json` for the same raw native/32-bit probe
+results plus Steam diagnostics. Reports keep installed loader, installed ICD,
+enumerated device, successful clear/readback and physical acceleration distinct.
+
+An explicit `--graphics software` image bundle adds pinned `vulkan-swrast` and
+`lib32-vulkan-swrast` (`1:26.2.3-2`), plus the existing native/32-bit Mesa diagnostic
+utilities. It is optional and is never selected automatically for a physical GPU.
+The virtual acceptance image selects `--graphics virtio software`. Lavapipe
+readback is software API evidence only; it does not establish host GPU acceleration.
+The shared transaction guard now also rejects mismatched software ICD versions.
+
+NVIDIA activation and driver/kernel transitions remain refused. Signed UKIs do
+not establish third-party kernel-module trust. AMD/Intel/Nouveau selection and
+existing kernel bindings are unchanged. The original graphics implementation
+record follows; final runtime results belong to [acceptance](phase4-acceptance.md).
+
 This branch provides read-only graphics diagnostics, explicit image bundles and
 transaction preconditions. It does not qualify Phase 4 or physical GPU support.
 

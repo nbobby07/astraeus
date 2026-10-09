@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Verify gaming package records against pinned archive DBs. No install or extraction."""
 import hashlib
+import argparse
 import io
 import json
 from pathlib import Path
@@ -44,19 +45,28 @@ def verify_database(data, repository, catalog):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--databases", type=Path, help="existing pinned repository databases; no network requests")
+    args = parser.parse_args()
     catalog = json.loads(CATALOG.read_text())
     base = json.loads((ROOT / "distro/repo/archive.lock.json").read_text())
     if catalog["archive_date"] != base["archive_date"]:
         raise ValueError("gaming catalog and base snapshot differ")
-    for repo, digest in base["databases"].items():
-        if catalog["databases"].get(repo) != digest:
-            raise ValueError(f"base database differs: {repo}")
+    if catalog["databases"] != base["databases"]:
+        raise ValueError("gaming and base databases differ")
+    for name, record in catalog["packages"].items():
+        if base["direct_packages"].get(name) != record["version"]:
+            raise ValueError(f"gaming version missing from archive lock: {name}")
     for repo in catalog["databases"]:
         url = f'https://archive.archlinux.org/repos/{catalog["archive_date"]}/{repo}/os/x86_64/{repo}.db'
-        with urllib.request.urlopen(url, timeout=60) as response:
-            if not response.url.startswith("https://"):
-                raise ValueError("archive redirected away from HTTPS")
-            data = response.read(LIMIT + 1)
+        if args.databases:
+            with (args.databases / f"{repo}.db").open("rb") as stream:
+                data = stream.read(LIMIT + 1)
+        else:
+            with urllib.request.urlopen(url, timeout=60) as response:
+                if not response.url.startswith("https://"):
+                    raise ValueError("archive redirected away from HTTPS")
+                data = response.read(LIMIT + 1)
         count = verify_database(data, repo, catalog)
         print(f"Verified {repo} database and {count} gaming package records")
     print("Metadata verification only; package signatures, dependency resolution and runtime remain separate gates.")

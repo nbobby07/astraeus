@@ -1,4 +1,5 @@
 //! Gaming observations and feature proposals. This module has no mutation backend.
+mod graphics;
 mod probe;
 mod proton;
 
@@ -9,8 +10,8 @@ pub use probe::{collect, installed_packages};
 pub use proton::{discover_tools, Tool};
 
 pub const HELP: &str = "Gaming setup (no automatic installation yet)
-  distroctl gaming status [--json]
-  distroctl gaming doctor [--json]
+  distroctl gaming status [--probe] [--json]
+  distroctl gaming doctor [--probe] [--json]
   distroctl gaming enable [core|tools|gamescope|mangohud|gamemode|heroic|lutris|streaming] [--dry-run] [--json]
   distroctl gaming disable [same feature] [--dry-run] [--json]
   distroctl gaming mangohud-config
@@ -20,6 +21,7 @@ Start with doctor, then enable --dry-run to inspect requested changes.
 Enable/disable always refuse execution: targeted package transactions are not supported.
 Dry-run prints a blocked proposal, not a complete pacman dependency transaction.
 No packages, repositories, user configuration or boot settings are changed.
+--probe explicitly runs bounded, unprivileged Vulkan clear/readback tests.
 After supported setup, launch Steam from your desktop and select Proton per game.
 Windows game compatibility depends on the game, DRM and anti-cheat support.";
 
@@ -83,6 +85,9 @@ pub struct Graphics {
 
 pub trait GraphicsProvider {
     fn readiness(&self) -> Graphics;
+    fn evidence(&self) -> Option<&distro_graphics::GraphicsReport> {
+        None
+    }
 }
 
 pub struct UnavailableGraphics;
@@ -124,6 +129,8 @@ pub struct Report {
     pub tools: Vec<Tool>,
     pub warnings: Vec<String>,
     pub next_steps: Vec<String>,
+    #[serde(default)]
+    pub graphics: Option<distro_graphics::GraphicsReport>,
 }
 
 fn package(obs: &Observations, name: &str) -> Check {
@@ -208,6 +215,14 @@ pub fn report(obs: &Observations, provider: &impl GraphicsProvider) -> Report {
     };
     checks.insert("session".into(), session);
     let mut warnings = obs.issues.clone();
+    if let Some(evidence) = provider.evidence() {
+        warnings.extend(
+            evidence
+                .issues
+                .iter()
+                .map(|issue| format!("Graphics {}: {}", issue.code, issue.message)),
+        );
+    }
     if !checks["graphics_acceleration"].available()
         || checks["graphics_acceleration"].runtime != Runtime::Passed
     {
@@ -244,6 +259,7 @@ pub fn report(obs: &Observations, provider: &impl GraphicsProvider) -> Report {
         tools: obs.tools.clone(),
         warnings,
         next_steps,
+        graphics: provider.evidence().cloned(),
     }
 }
 
@@ -380,6 +396,16 @@ fn safe(text: &str) -> String {
 
 pub fn format_report(report: &Report, doctor: bool) -> String {
     let mut text = String::from("Gaming Readiness\n\n");
+    if let Some(graphics) = &report.graphics {
+        text.push_str(
+            &distro_graphics::format_report(graphics)
+                .lines()
+                .map(safe)
+                .collect::<Vec<_>>()
+                .join("\n"),
+        );
+        text.push('\n');
+    }
     for (name, check) in &report.checks {
         let state = serde_json::to_value(check.state).unwrap();
         let runtime = serde_json::to_value(check.runtime).unwrap();
@@ -406,9 +432,18 @@ pub fn run(args: &[String]) -> Result<(), String> {
     match words.as_slice() {
         ["--help"] | [] => println!("{HELP}"),
         ["mangohud-config"] => print!("{MANGOHUD_CONFIG}"),
-        [action @ ("status" | "doctor")] | [action @ ("status" | "doctor"), "--json"] => {
-            let report = report(&collect(), &UnavailableGraphics);
-            if words.len() == 2 {
+        [action @ ("status" | "doctor"), rest @ ..] => {
+            let mut json = false;
+            let mut probe = false;
+            for word in rest {
+                match *word {
+                    "--json" if !json => json = true,
+                    "--probe" if !probe => probe = true,
+                    _ => return Err(format!("unsupported gaming arguments\n{HELP}")),
+                }
+            }
+            let report = report(&collect(), &distro_graphics::probe(probe));
+            if json {
                 println!(
                     "{}",
                     serde_json::to_string_pretty(&report).map_err(|e| e.to_string())?
@@ -433,7 +468,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 feature.unwrap_or("core"),
                 *action == "enable",
                 &collect(),
-                &UnavailableGraphics,
+                &distro_graphics::probe(false),
             )?;
             if json {
                 println!(

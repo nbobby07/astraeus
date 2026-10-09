@@ -22,6 +22,7 @@ class GamingCatalogTests(unittest.TestCase):
         self.assertEqual({name for profile in catalog["profiles"].values() for name in profile},
                          catalog["packages"].keys())
         for name, record in catalog["packages"].items():
+            self.assertEqual(base["direct_packages"][name], record["version"])
             self.assertRegex(record["sha256"], r"^[a-f0-9]{64}$")
             self.assertIn(record["repository"], catalog["databases"])
         for optional in ["gamescope", "lutris", "obs-studio", "mangohud", "gamemode"]:

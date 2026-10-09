@@ -1,5 +1,37 @@
 # Phase 4 gaming platform handoff
 
+## Phase 4 integration
+
+The production CLI now supplies `distro_graphics::GraphicsReport` through
+`GraphicsProvider`. Status and doctor expose the unmodified report in the additive
+`graphics` field (schema 1). Mock providers may return null. Hardware identity,
+actual kernel binding, installed loader/ICD inventory, per-architecture device
+enumeration, readback and missing-package issues stay separate.
+
+`gaming status --probe --json` and `gaming doctor --probe --json` explicitly run
+the same bounded unprivileged helpers as `graphics --probe`. Without `--probe`,
+rendering remains untested. A Vulkan check can verify software API execution;
+`graphics_acceleration` requires native and 32-bit successful non-software,
+non-virtual devices matched to the same discovered GPU with a kernel binding.
+Neither implies presentation, Steam compatibility, module trust or game support.
+Failures, unmatched devices, environment overrides and missing dependencies remain
+visible in the raw report and warnings. VRR/HDR stay unknown.
+
+The image builder accepts `--gaming core` separately from `--gaming tools`,
+Gamescope, MangoHud, GameMode, Lutris or streaming. These initial image selections
+use the pinned signed pacstrap path. They do not implement targeted transactions.
+Enable/disable still produce blocked proposals and refuse execution. There is no
+safe feature ownership/removal ledger or complete target-aware resolver yet.
+Heroic/Proton-GE acquisition stays manual and outside image setup.
+
+All 15 gaming package records and 30 graphics records share the exact pinned
+core/extra/multilib databases. Optional tools are never implicitly selected by
+Core. The integrated virtual test image explicitly selects Core and tools.
+
+The remaining sections preserve the original gaming branch handoff. Its statements
+about the disconnected CLI provider and unchanged image-selection path are historical.
+Runtime qualification is recorded in [Phase 4 acceptance](phase4-acceptance.md).
+
 Branch `phase4/gaming` starts at `2e4c1725e6ad9d70654ca32158cf524feabfc91f`.
 This is the gaming planner and diagnostics implementation, not Phase 4 acceptance.
 Work is isolated in the Codex `phase4-gaming/operating-system` worktree. No GPU,

@@ -36,6 +36,19 @@
       "items": {
         "type": "string"
       }
+    },
+    "graphics": {
+      "description": "Unmodified distro-graphics report schema v1, or null for a provider without detailed evidence. See docs/graphics.md.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        }
+      },
+      "additionalProperties": true
     }
   },
   "additionalProperties": true,

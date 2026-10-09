@@ -270,3 +270,20 @@ RAM. Do not add a live desktop guest until one builder has stopped.
 The scripts are validation automation, not an installer. Cloud-init powers off the
 guest after the attempt; the **outer host must still be paused or deleted** after
 exporting evidence. See `docs/validation.md` for which steps have actually passed.
+
+## Explicit gaming development image
+
+The integrated virtual test target uses both a Virtio ICD and explicitly labeled
+software Vulkan, with Steam Core and optional tools deliberately selected:
+
+```sh
+sudo python3 scripts/bootstrap.py iso --repo /absolute/repo --fingerprint FULL_FINGERPRINT \
+  --output /absolute/new-build --graphics virtio software --gaming core tools
+```
+
+`--gaming core` does not select Gamescope, MangoHud, GameMode or other launchers.
+Both selections are recorded in build inputs and installed install-inputs JSON.
+The two clean `host-builder.py` invocations accept the same flags and pass them
+through to the existing pipeline. The Arch builder enables only the three pinned
+upstream repositories, installs the ELF32 probe build prerequisites and verifies
+both catalogs before payload assembly. NVIDIA image activation remains refused.

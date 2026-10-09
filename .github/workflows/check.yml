@@ -29,7 +29,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends squashfs-tools xorriso qemu-utils sbsigntool efitools systemd-ukify systemd-boot-efi
+          sudo apt-get install -y --no-install-recommends squashfs-tools xorriso qemu-utils sbsigntool efitools systemd-ukify systemd-boot-efi libvulkan-dev gcc-multilib
           # Ubuntu 24.04's ukify 255 does not provide the required JSON inspection format.
           curl --fail --location --retry 3 https://raw.githubusercontent.com/systemd/systemd/8cc40e0c5e9234bf45084751ac53b1fbfe70b492/src/ukify/ukify.py -o /tmp/astraeus-ukify
           echo '4ee19937778fdb35a447288fad04307d7606dc2a14eb0524b3dcdcc9cbb397b2  /tmp/astraeus-ukify' | sha256sum --check --strict
@@ -37,6 +37,12 @@ jobs:
           sudo install -m755 /tmp/astraeus-ukify /usr/bin/ukify
           /usr/bin/ukify --version
       - run: python -m unittest discover -s tests -v
+      - name: Compile both Vulkan helper architectures
+        if: runner.os == 'Linux'
+        run: |
+          cc -std=c11 -Wall -Wextra -Werror scripts/graphics-probe.c -ldl -o /tmp/astraeus-probe64
+          cc -m32 -std=c11 -Wall -Wextra -Werror scripts/graphics-probe.c -ldl -o /tmp/astraeus-probe32
+          file /tmp/astraeus-probe64 /tmp/astraeus-probe32
       - name: Native Secure Boot signatures (disposable keys, no firmware writes)
         if: runner.os == 'Linux'
         run: |
@@ -61,7 +67,10 @@ jobs:
           bash -n .githooks/commit-msg
       - name: Verify archived inputs
         if: github.event_name == 'workflow_dispatch' && runner.os == 'Linux'
-        run: python scripts/bootstrap.py verify-archive
+        run: |
+          python scripts/bootstrap.py verify-archive --output out/verified-archive
+          python scripts/check-graphics-packages.py out/verified-archive
+          python scripts/gaming_catalog.py --databases out/verified-archive
   commit-subject:
     name: PR title
     runs-on: ubuntu-24.04

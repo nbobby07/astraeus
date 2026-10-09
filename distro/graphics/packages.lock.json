@@ -263,6 +263,38 @@
       "sha256": "83376507facda1e5cd9c2c9d86e7b51d736f8953677687ae558da913f9a68f30",
       "filename": "lib32-vulkan-radeon-1:26.2.3-2-x86_64.pkg.tar.zst"
     },
+    "lib32-vulkan-swrast": {
+      "repository": "multilib",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "lib32-expat",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-libdisplay-info",
+        "lib32-libdrm",
+        "lib32-libx11",
+        "lib32-libxcb",
+        "lib32-libxshmfence",
+        "lib32-llvm-libs",
+        "lib32-spirv-tools",
+        "lib32-systemd",
+        "lib32-vulkan-icd-loader",
+        "lib32-vulkan-mesa-implicit-layers",
+        "lib32-wayland",
+        "lib32-xcb-util-keysyms",
+        "lib32-zlib",
+        "lib32-zstd",
+        "vulkan-swrast"
+      ],
+      "provides": [
+        "lib32-vulkan-driver"
+      ],
+      "conflicts": [
+        "lib32-vulkan-mesa"
+      ],
+      "sha256": "7678306c07f5939f163d747106c15bb0402aac08a4109dcf34642d2a1ddc5369",
+      "filename": "lib32-vulkan-swrast-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
     "lib32-vulkan-virtio": {
       "repository": "multilib",
       "version": "1:26.2.3-2",
@@ -550,6 +582,38 @@
       "conflicts": [],
       "sha256": "7493b9cfced32d8fbc06ff1c128fbb4573130f0bcbede4200f0517400f7bfda6",
       "filename": "vulkan-radeon-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "vulkan-swrast": {
+      "repository": "extra",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "expat",
+        "glibc",
+        "libdisplay-info",
+        "libdrm",
+        "libgcc",
+        "libstdc++",
+        "libx11",
+        "libxcb",
+        "libxshmfence",
+        "llvm-libs",
+        "spirv-tools",
+        "systemd-libs",
+        "vulkan-icd-loader",
+        "vulkan-mesa-implicit-layers",
+        "wayland",
+        "xcb-util-keysyms",
+        "zlib",
+        "zstd"
+      ],
+      "provides": [
+        "vulkan-driver"
+      ],
+      "conflicts": [
+        "vulkan-mesa"
+      ],
+      "sha256": "8799b990c326318626ca6c7a6cccb505178b045b38db1e29af8a8c8110490e1d",
+      "filename": "vulkan-swrast-1:26.2.3-2-x86_64.pkg.tar.zst"
     },
     "vulkan-tools": {
       "repository": "extra",

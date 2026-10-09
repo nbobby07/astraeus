@@ -1,5 +1,21 @@
 # Phase 4 validation infrastructure
 
+## Integrated candidate
+
+Graphics, gaming and this harness are merged on `phase4/integration`. Build-time
+selection is `--graphics virtio software --gaming core tools` for the explicit
+virtual target. The A-P definitions in `tests/fixtures/phase4/matrix.json` remain
+authoritative. Their letters differ from the integration request's abbreviated
+list; retain the original meanings and report every subcheck.
+
+The production readiness hook is `distroctl gaming doctor --probe --json` under
+the actual unprivileged desktop session. Ordinary status remains read-only file
+inspection and package queries. Enable/disable remain unsupported proposals;
+initial signed image selection does not qualify targeted transactions. Encrypted
+setup must state that distinction explicitly. Historical Phase 3 adapters can be
+reused only after their source, paths and artifact identities are rebound to the
+newly installed integrated candidate without weakening their predicates.
+
 Base: `2e4c1725e6ad9d70654ca32158cf524feabfc91f`. Branch: `phase4/validation`.
 This work owns tests and evidence only. Phase 4 is not validated.
 

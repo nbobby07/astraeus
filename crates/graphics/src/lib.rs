@@ -144,7 +144,7 @@ pub struct Observations {
     pub issues: Vec<Issue>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GraphicsGpu {
     pub hardware: Gpu,
     pub selection: DriverSelection,
@@ -159,7 +159,7 @@ pub struct GraphicsGpu {
     pub rendering: State,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Wayland {
     pub session_type: Option<String>,
     pub active: Option<bool>,
@@ -168,7 +168,7 @@ pub struct Wayland {
     pub hdr: State,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NvidiaModule {
     pub loaded_version: Option<String>,
     pub disk_version: Option<String>,
@@ -179,7 +179,7 @@ pub struct NvidiaModule {
     pub activation: State,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GraphicsReport {
     pub schema_version: u32,
     pub archive_date: String,
@@ -517,6 +517,7 @@ pub fn validate_update(
         ("vulkan-intel", "lib32-vulkan-intel"),
         ("vulkan-nouveau", "lib32-vulkan-nouveau"),
         ("vulkan-virtio", "lib32-vulkan-virtio"),
+        ("vulkan-swrast", "lib32-vulkan-swrast"),
     ] {
         if let Some(compat_version) = candidate.get(compat) {
             if candidate
