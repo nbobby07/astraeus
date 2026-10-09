@@ -15,3 +15,6 @@ Server = https://archive.archlinux.org/repos/@@ARCHIVE@@/$repo/os/$arch
 
 [extra]
 Server = https://archive.archlinux.org/repos/@@ARCHIVE@@/$repo/os/$arch
+
+[multilib]
+Server = https://archive.archlinux.org/repos/@@ARCHIVE@@/$repo/os/$arch

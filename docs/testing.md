@@ -1,5 +1,9 @@
 # Verification and acceptance
 
+Phase 4 graphics/gaming probes, integration hooks and evidence boundaries are in
+[Phase 4 validation](phase4-validation.md). Physical GPU qualification has a
+[separate approval-dependent plan](phase4-physical-qualification.md).
+
 Phase 2 destructive VM workflows, integration hooks and evidence requirements
 are in [Phase 2 validation infrastructure](phase2-validation.md). Host harness
 tests do not establish installed update or rollback acceptance.

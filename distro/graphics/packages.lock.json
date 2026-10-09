@@ -1,0 +1,686 @@
+{
+  "schema_version": 1,
+  "archive_date": "2026/10/01",
+  "packages": {
+    "egl-gbm": {
+      "repository": "extra",
+      "version": "1.1.4-1",
+      "depends": [
+        "eglexternalplatform",
+        "glibc",
+        "mesa",
+        "libdrm"
+      ],
+      "provides": [
+        "libnvidia-egl-gbm.so=1"
+      ],
+      "conflicts": [],
+      "sha256": "a05b572db0397e79e757d8177fd015016e78c7afc7f9c2e3631bc61ca38479e9",
+      "filename": "egl-gbm-1.1.4-1-x86_64.pkg.tar.zst"
+    },
+    "egl-wayland": {
+      "repository": "extra",
+      "version": "4:1.1.22-1",
+      "depends": [
+        "eglexternalplatform",
+        "glibc",
+        "libdrm",
+        "wayland"
+      ],
+      "provides": [
+        "libnvidia-egl-wayland.so=1-64"
+      ],
+      "conflicts": [],
+      "sha256": "2941e4a0290c16c3d831a45a77baf7eea8bf87ee3a86114104dfbed2973de08a",
+      "filename": "egl-wayland-4:1.1.22-1-x86_64.pkg.tar.zst"
+    },
+    "egl-wayland2": {
+      "repository": "extra",
+      "version": "1.0.2-1",
+      "depends": [
+        "eglexternalplatform",
+        "mesa",
+        "glibc",
+        "libdrm",
+        "wayland"
+      ],
+      "provides": [
+        "libnvidia-egl-wayland2.so=1-64"
+      ],
+      "conflicts": [],
+      "sha256": "a891ac3f6c459185a54d463b87fc8924600893fd78d08b6e8bcd4a6b778c8d01",
+      "filename": "egl-wayland2-1.0.2-1-x86_64.pkg.tar.zst"
+    },
+    "gcc": {
+      "repository": "core",
+      "version": "16.2.1+r23+gd564253eb6c8-1",
+      "depends": [
+        "libasan=16.2.1+r23+gd564253eb6c8-1",
+        "libgcc=16.2.1+r23+gd564253eb6c8-1",
+        "libhwasan=16.2.1+r23+gd564253eb6c8-1",
+        "liblsan=16.2.1+r23+gd564253eb6c8-1",
+        "libstdc++=16.2.1+r23+gd564253eb6c8-1",
+        "libtsan=16.2.1+r23+gd564253eb6c8-1",
+        "libubsan=16.2.1+r23+gd564253eb6c8-1",
+        "binutils>=2.28",
+        "glibc>=2.27",
+        "gmp",
+        "libisl.so=23-64",
+        "libmpc",
+        "mpfr",
+        "zlib",
+        "zstd"
+      ],
+      "provides": [
+        "gcc-multilib"
+      ],
+      "conflicts": [],
+      "sha256": "1d79371ccf3138e3c172dd83b51560687b65ab824c1ad7e9cb41b7857ed9c55f",
+      "filename": "gcc-16.2.1+r23+gd564253eb6c8-1-x86_64.pkg.tar.zst"
+    },
+    "lib32-gcc-libs": {
+      "repository": "core",
+      "version": "16.2.1+r23+gd564253eb6c8-1",
+      "depends": [
+        "lib32-glibc>=2.27"
+      ],
+      "provides": [
+        "libasan.so=8-32",
+        "libatomic.so=1-32",
+        "libgdruntime.so=7-32",
+        "libgfortran.so=5-32",
+        "libgo.so=25-32",
+        "libgomp.so=1-32",
+        "libgphobos.so=7-32",
+        "libitm.so=1-32",
+        "libobjc.so=4-32",
+        "libquadmath.so=0-32",
+        "libubsan.so=1-32"
+      ],
+      "conflicts": [],
+      "sha256": "21fde8d5c5fda174b0277515fb6e49a450763a9c8a05f1956f719779e459465a",
+      "filename": "lib32-gcc-libs-16.2.1+r23+gd564253eb6c8-1-x86_64.pkg.tar.zst"
+    },
+    "lib32-glibc": {
+      "repository": "core",
+      "version": "2.44+r50+g1848099f063e-1",
+      "depends": [
+        "glibc=2.44+r50+g1848099f063e"
+      ],
+      "provides": [],
+      "conflicts": [],
+      "sha256": "a977f9a6a405ab85e594aa9f1230a0b7dddfc33e3de5f2cb66931c92a48931d8",
+      "filename": "lib32-glibc-2.44+r50+g1848099f063e-1-x86_64.pkg.tar.zst"
+    },
+    "lib32-mesa": {
+      "repository": "multilib",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "lib32-expat",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-libdrm",
+        "lib32-libelf",
+        "lib32-libglvnd",
+        "lib32-libx11",
+        "lib32-libxcb",
+        "lib32-libxext",
+        "lib32-libxshmfence",
+        "lib32-libxxf86vm",
+        "lib32-llvm-libs",
+        "lib32-lm_sensors",
+        "lib32-spirv-tools",
+        "lib32-wayland",
+        "lib32-zlib",
+        "lib32-zstd",
+        "mesa"
+      ],
+      "provides": [
+        "lib32-libva-mesa-driver=1:26.2.3-2",
+        "lib32-mesa-libgl=1:26.2.3-2",
+        "lib32-libva-driver",
+        "lib32-opengl-driver"
+      ],
+      "conflicts": [
+        "lib32-libva-mesa-driver<1:24.2.7-1",
+        "lib32-mesa-libgl<17.0.1-2"
+      ],
+      "sha256": "48b33d037460493db27d8a1bde162718f21a484ec7006eeaa537785cf2bde10c",
+      "filename": "lib32-mesa-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "lib32-mesa-utils": {
+      "repository": "multilib",
+      "version": "9.0.0-4",
+      "depends": [
+        "lib32-libgl"
+      ],
+      "provides": [
+        "glxinfo32",
+        "glxgears32",
+        "eglinfo32"
+      ],
+      "conflicts": [],
+      "sha256": "0b0457ed2fcf5aef39423838d2217bb8e41b8948d5ddbb7f4686329ce931eb43",
+      "filename": "lib32-mesa-utils-9.0.0-4-x86_64.pkg.tar.zst"
+    },
+    "lib32-nvidia-utils": {
+      "repository": "multilib",
+      "version": "615.71.09-1",
+      "depends": [
+        "lib32-zlib",
+        "lib32-gcc-libs",
+        "lib32-libglvnd",
+        "nvidia-utils=615.71.09"
+      ],
+      "provides": [
+        "lib32-vulkan-driver",
+        "lib32-opengl-driver",
+        "lib32-nvidia-libgl"
+      ],
+      "conflicts": [
+        "lib32-nvidia-libgl"
+      ],
+      "sha256": "a5a64b6b4a3064ba980cfe9ff17cda0370ed530001abc35b299964e75fd2c1de",
+      "filename": "lib32-nvidia-utils-615.71.09-1-x86_64.pkg.tar.zst"
+    },
+    "lib32-vulkan-icd-loader": {
+      "repository": "multilib",
+      "version": "1.4.357.0-1",
+      "depends": [
+        "lib32-glibc"
+      ],
+      "provides": [
+        "libvulkan.so=1-32"
+      ],
+      "conflicts": [],
+      "sha256": "741aa42332b707d0aa7b944f7ce07a6cb4ccc0f7f513d0edb9a432608cda4d5b",
+      "filename": "lib32-vulkan-icd-loader-1.4.357.0-1-x86_64.pkg.tar.zst"
+    },
+    "lib32-vulkan-intel": {
+      "repository": "multilib",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "lib32-expat",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-libdisplay-info",
+        "lib32-libdrm",
+        "lib32-libx11",
+        "lib32-libxcb",
+        "lib32-libxshmfence",
+        "lib32-spirv-tools",
+        "lib32-systemd",
+        "lib32-vulkan-icd-loader",
+        "lib32-vulkan-mesa-implicit-layers",
+        "lib32-wayland",
+        "lib32-xcb-util-keysyms",
+        "lib32-zlib",
+        "lib32-zstd",
+        "vulkan-intel"
+      ],
+      "provides": [
+        "lib32-vulkan-driver"
+      ],
+      "conflicts": [],
+      "sha256": "1c989e353baf9677dc092efd7d469775625a5848679be100c30260d3bcdf11f9",
+      "filename": "lib32-vulkan-intel-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "lib32-vulkan-nouveau": {
+      "repository": "multilib",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "lib32-expat",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-libdisplay-info",
+        "lib32-libdrm",
+        "lib32-libelf",
+        "lib32-libx11",
+        "lib32-libxcb",
+        "lib32-libxshmfence",
+        "lib32-spirv-tools",
+        "lib32-systemd",
+        "lib32-vulkan-icd-loader",
+        "lib32-vulkan-mesa-implicit-layers",
+        "lib32-wayland",
+        "lib32-xcb-util-keysyms",
+        "lib32-zlib",
+        "lib32-zstd",
+        "vulkan-nouveau"
+      ],
+      "provides": [
+        "lib32-vulkan-driver"
+      ],
+      "conflicts": [],
+      "sha256": "6ed7a3470d121179fddde8936abf4825ee3cd4e87f83bf444021cae6fe51087a",
+      "filename": "lib32-vulkan-nouveau-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "lib32-vulkan-radeon": {
+      "repository": "multilib",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "lib32-expat",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-libdisplay-info",
+        "lib32-libdrm",
+        "lib32-libelf",
+        "lib32-libx11",
+        "lib32-libxcb",
+        "lib32-libxshmfence",
+        "lib32-llvm-libs",
+        "lib32-spirv-tools",
+        "lib32-systemd",
+        "lib32-vulkan-icd-loader",
+        "lib32-vulkan-mesa-implicit-layers",
+        "lib32-wayland",
+        "lib32-xcb-util-keysyms",
+        "lib32-zlib",
+        "lib32-zstd",
+        "vulkan-radeon"
+      ],
+      "provides": [
+        "lib32-vulkan-driver"
+      ],
+      "conflicts": [],
+      "sha256": "83376507facda1e5cd9c2c9d86e7b51d736f8953677687ae558da913f9a68f30",
+      "filename": "lib32-vulkan-radeon-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "lib32-vulkan-swrast": {
+      "repository": "multilib",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "lib32-expat",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-libdisplay-info",
+        "lib32-libdrm",
+        "lib32-libx11",
+        "lib32-libxcb",
+        "lib32-libxshmfence",
+        "lib32-llvm-libs",
+        "lib32-spirv-tools",
+        "lib32-systemd",
+        "lib32-vulkan-icd-loader",
+        "lib32-vulkan-mesa-implicit-layers",
+        "lib32-wayland",
+        "lib32-xcb-util-keysyms",
+        "lib32-zlib",
+        "lib32-zstd",
+        "vulkan-swrast"
+      ],
+      "provides": [
+        "lib32-vulkan-driver"
+      ],
+      "conflicts": [
+        "lib32-vulkan-mesa"
+      ],
+      "sha256": "7678306c07f5939f163d747106c15bb0402aac08a4109dcf34642d2a1ddc5369",
+      "filename": "lib32-vulkan-swrast-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "lib32-vulkan-virtio": {
+      "repository": "multilib",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "lib32-expat",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-libdisplay-info",
+        "lib32-libdrm",
+        "lib32-libx11",
+        "lib32-libxcb",
+        "lib32-libxshmfence",
+        "lib32-systemd",
+        "lib32-vulkan-icd-loader",
+        "lib32-vulkan-mesa-implicit-layers",
+        "lib32-wayland",
+        "lib32-xcb-util-keysyms",
+        "lib32-zlib",
+        "lib32-zstd",
+        "vulkan-virtio"
+      ],
+      "provides": [
+        "lib32-vulkan-driver"
+      ],
+      "conflicts": [],
+      "sha256": "b00a693012345bd9111aec18f8f0b26bbb4a99a2cfc74b328cad16cfa6a1bbb4",
+      "filename": "lib32-vulkan-virtio-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "linux-firmware-amdgpu": {
+      "repository": "core",
+      "version": "20260916-1",
+      "depends": [
+        "linux-firmware-whence"
+      ],
+      "provides": [],
+      "conflicts": [],
+      "sha256": "b46584dd0ff792f80a84135e4a8e19e1980fde858ffc56e8f00292ca1a21dabb",
+      "filename": "linux-firmware-amdgpu-20260916-1-any.pkg.tar.zst"
+    },
+    "linux-firmware-intel": {
+      "repository": "core",
+      "version": "20260916-1",
+      "depends": [
+        "linux-firmware-whence"
+      ],
+      "provides": [],
+      "conflicts": [],
+      "sha256": "23d158e5b1a906e06a1d9a26e636a556d32de5a22185eddf5746dfbdad49fc13",
+      "filename": "linux-firmware-intel-20260916-1-any.pkg.tar.zst"
+    },
+    "linux-firmware-nvidia": {
+      "repository": "core",
+      "version": "20260916-1",
+      "depends": [
+        "linux-firmware-whence"
+      ],
+      "provides": [],
+      "conflicts": [],
+      "sha256": "578bb880be4a0ed1fb6c30ef6199fa8557ee4e056e4343a48861901d725f6a34",
+      "filename": "linux-firmware-nvidia-20260916-1-any.pkg.tar.zst"
+    },
+    "mesa": {
+      "repository": "extra",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "expat",
+        "glibc",
+        "libdrm",
+        "libelf",
+        "libgcc",
+        "libglvnd",
+        "libstdc++",
+        "libx11",
+        "libxcb",
+        "libxext",
+        "libxshmfence",
+        "libxxf86vm",
+        "llvm-libs",
+        "lm_sensors",
+        "spirv-tools",
+        "wayland",
+        "zlib",
+        "zstd"
+      ],
+      "provides": [
+        "libva-mesa-driver=1:26.2.3-2",
+        "mesa-libgl=1:26.2.3-2",
+        "libva-driver",
+        "opengl-driver"
+      ],
+      "conflicts": [
+        "libva-mesa-driver<1:24.2.7-1",
+        "mesa-libgl<17.0.1-2"
+      ],
+      "sha256": "30612ba3f88cc002566b687bc95c9a5b98aee499f5cbae708d4de519d578d296",
+      "filename": "mesa-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "mesa-utils": {
+      "repository": "extra",
+      "version": "9.0.0-7",
+      "depends": [
+        "libgl",
+        "libdecor",
+        "libxkbcommon-x11",
+        "vulkan-icd-loader",
+        "libxcb",
+        "wayland",
+        "libdrm",
+        "libx11",
+        "libxkbcommon",
+        "glibc"
+      ],
+      "provides": [
+        "glxinfo",
+        "glxgears",
+        "eglinfo",
+        "eglgears",
+        "es2info",
+        "es2gears"
+      ],
+      "conflicts": [],
+      "sha256": "2433deec3f9b3c166c1976ea0cecf1de9466a5b55525df9b6a0cf273b4747fc1",
+      "filename": "mesa-utils-9.0.0-7-x86_64.pkg.tar.zst"
+    },
+    "nvidia-open": {
+      "repository": "extra",
+      "version": "615.71.09-4",
+      "depends": [
+        "linux",
+        "nvidia-utils=615.71.09",
+        "libglvnd"
+      ],
+      "provides": [
+        "NVIDIA-MODULE"
+      ],
+      "conflicts": [
+        "nvidia"
+      ],
+      "sha256": "3e6cac6bb7c24cea068d1a987e7c40b68a094529c19720b3eb2db6008d281c97",
+      "filename": "nvidia-open-615.71.09-4-x86_64.pkg.tar.zst"
+    },
+    "nvidia-prime": {
+      "repository": "extra",
+      "version": "1.0-6",
+      "depends": [
+        "bash",
+        "nvidia-utils"
+      ],
+      "provides": [],
+      "conflicts": [],
+      "sha256": "6ebe2fc37854b7fe202edd2d362515116d7969b0ea9f6f6bcdfa301f24eba932",
+      "filename": "nvidia-prime-1.0-6-any.pkg.tar.zst"
+    },
+    "nvidia-utils": {
+      "repository": "extra",
+      "version": "615.71.09-1",
+      "depends": [
+        "libglvnd",
+        "egl-wayland",
+        "egl-wayland2",
+        "egl-gbm",
+        "egl-x11"
+      ],
+      "provides": [
+        "vulkan-driver",
+        "opengl-driver",
+        "nvidia-libgl"
+      ],
+      "conflicts": [
+        "nvidia-libgl"
+      ],
+      "sha256": "0e32f81f52ac7b9516faa5eeef79c277212f6c65df545eeb54d64257963352a5",
+      "filename": "nvidia-utils-615.71.09-1-x86_64.pkg.tar.zst"
+    },
+    "vulkan-headers": {
+      "repository": "extra",
+      "version": "1:1.4.357.0-1",
+      "depends": [],
+      "provides": [
+        "vulkan-hpp=1.4.357.0"
+      ],
+      "conflicts": [],
+      "sha256": "2f6c34cc829c4b63c0cf08cf147841c8ded023b746324540fb02322d9c415c07",
+      "filename": "vulkan-headers-1:1.4.357.0-1-any.pkg.tar.zst"
+    },
+    "vulkan-icd-loader": {
+      "repository": "extra",
+      "version": "1.4.357.0-1",
+      "depends": [
+        "glibc"
+      ],
+      "provides": [
+        "libvulkan.so=1-64"
+      ],
+      "conflicts": [],
+      "sha256": "9ed4c22afb7ec3204dc13e8714d8144d43926b8c6d0d8299e6b95215569cd499",
+      "filename": "vulkan-icd-loader-1.4.357.0-1-x86_64.pkg.tar.zst"
+    },
+    "vulkan-intel": {
+      "repository": "extra",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "expat",
+        "glibc",
+        "libdisplay-info",
+        "libdrm",
+        "libgcc",
+        "libstdc++",
+        "libx11",
+        "libxcb",
+        "libxshmfence",
+        "spirv-tools",
+        "systemd-libs",
+        "vulkan-icd-loader",
+        "vulkan-mesa-implicit-layers",
+        "wayland",
+        "xcb-util-keysyms",
+        "zlib",
+        "zstd"
+      ],
+      "provides": [
+        "vulkan-driver"
+      ],
+      "conflicts": [],
+      "sha256": "08466b28cfe6bfb8fbff0717b5cfadfc08f77f3a613b45e9a50570d96eb4ea16",
+      "filename": "vulkan-intel-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "vulkan-nouveau": {
+      "repository": "extra",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "expat",
+        "glibc",
+        "libdisplay-info",
+        "libdrm",
+        "libelf",
+        "libgcc",
+        "libstdc++",
+        "libx11",
+        "libxcb",
+        "libxshmfence",
+        "spirv-tools",
+        "systemd-libs",
+        "vulkan-icd-loader",
+        "vulkan-mesa-implicit-layers",
+        "wayland",
+        "xcb-util-keysyms",
+        "zlib",
+        "zstd"
+      ],
+      "provides": [
+        "vulkan-driver"
+      ],
+      "conflicts": [],
+      "sha256": "b9cce449e68bd9fe697275edf23ba34bcc20a10abf79848b7a71d9b22cfe3b6e",
+      "filename": "vulkan-nouveau-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "vulkan-radeon": {
+      "repository": "extra",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "expat",
+        "glibc",
+        "libdisplay-info",
+        "libdrm",
+        "libelf",
+        "libgcc",
+        "libstdc++",
+        "libx11",
+        "libxcb",
+        "libxshmfence",
+        "llvm-libs",
+        "spirv-tools",
+        "systemd-libs",
+        "vulkan-icd-loader",
+        "vulkan-mesa-implicit-layers",
+        "wayland",
+        "xcb-util-keysyms",
+        "zlib",
+        "zstd"
+      ],
+      "provides": [
+        "vulkan-driver"
+      ],
+      "conflicts": [],
+      "sha256": "7493b9cfced32d8fbc06ff1c128fbb4573130f0bcbede4200f0517400f7bfda6",
+      "filename": "vulkan-radeon-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "vulkan-swrast": {
+      "repository": "extra",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "expat",
+        "glibc",
+        "libdisplay-info",
+        "libdrm",
+        "libgcc",
+        "libstdc++",
+        "libx11",
+        "libxcb",
+        "libxshmfence",
+        "llvm-libs",
+        "spirv-tools",
+        "systemd-libs",
+        "vulkan-icd-loader",
+        "vulkan-mesa-implicit-layers",
+        "wayland",
+        "xcb-util-keysyms",
+        "zlib",
+        "zstd"
+      ],
+      "provides": [
+        "vulkan-driver"
+      ],
+      "conflicts": [
+        "vulkan-mesa"
+      ],
+      "sha256": "8799b990c326318626ca6c7a6cccb505178b045b38db1e29af8a8c8110490e1d",
+      "filename": "vulkan-swrast-1:26.2.3-2-x86_64.pkg.tar.zst"
+    },
+    "vulkan-tools": {
+      "repository": "extra",
+      "version": "1.4.357.0-1",
+      "depends": [
+        "glibc",
+        "libgcc",
+        "libstdc++",
+        "libx11",
+        "libxcb",
+        "vulkan-icd-loader",
+        "wayland"
+      ],
+      "provides": [],
+      "conflicts": [],
+      "sha256": "0ecd82c140687ec7ca35fed672b56cd3b66bdc6e13c361690f3fe7e24dc93d54",
+      "filename": "vulkan-tools-1.4.357.0-1-x86_64.pkg.tar.zst"
+    },
+    "vulkan-virtio": {
+      "repository": "extra",
+      "version": "1:26.2.3-2",
+      "depends": [
+        "expat",
+        "glibc",
+        "libdisplay-info",
+        "libdrm",
+        "libgcc",
+        "libx11",
+        "libxcb",
+        "libxshmfence",
+        "systemd-libs",
+        "vulkan-icd-loader",
+        "vulkan-mesa-implicit-layers",
+        "wayland",
+        "xcb-util-keysyms",
+        "zlib",
+        "zstd"
+      ],
+      "provides": [
+        "vulkan-driver"
+      ],
+      "conflicts": [],
+      "sha256": "c978f32991644a55746618b348bac319bb9626130ecf0de650f2b72c6d283a33",
+      "filename": "vulkan-virtio-1:26.2.3-2-x86_64.pkg.tar.zst"
+    }
+  }
+}

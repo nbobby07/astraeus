@@ -1,0 +1,29 @@
+{
+  "kind": "phase3-integrated",
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "encryption": "none",
+  "signer_sha256": "35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8",
+  "installed_binaries": {
+    "/usr/bin/distroctl": "19f5474c80db3a7a50c2d92cf50d725f562a39bd7d772139e9462219da12af73",
+    "/usr/bin/astraeus-secure-boot": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+    "/usr/bin/astraeus-boot-artifact": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+    "/usr/lib/distroctl/graphics-probe64": "51e61a9c710d2b6f2745aae96cdfa1dd025e6a8eae478a229819ecaeea977099",
+    "/usr/lib/distroctl/graphics-probe32": "f2731cf93ab406518c76eb674cef06ded5c2e57865d1e4c8c921475edbb7cd07"
+  },
+  "iso": {
+    "path": "/home/ubuntu/p4i/r2/build/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+    "sha256": "bbc3a397dbd34672994e97405e70a5d441b206820b905cfa4f6b4bd36e69905f"
+  },
+  "accepted": true,
+  "created": "2026-10-09T06:15:17.910420+00:00",
+  "sha256": {
+    "disk.qcow2": "eafebca45776fca62b848c77dfbb40dd3189b616727fe0bc9b8c9cb03eaa67a9",
+    "vars.fd": "ea6d7892aa8d2416a1314975eab29547c0d56454ae3cc6949c1b24b8a0947620"
+  },
+  "inputs": {
+    "ovmf_code": {
+      "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+      "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+    }
+  }
+}

@@ -8,6 +8,7 @@ publish.workspace = true
 [dependencies]
 distro-config = { path = "../config" }
 distro-hardware = { path = "../hardware" }
+distro-graphics = { path = "../graphics" }
 distro-snapshots = { path = "../snapshots" }
 distro-transactions = { path = "../transactions" }
 serde.workspace = true

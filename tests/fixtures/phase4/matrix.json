@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "scenarios": [
+    {"id":"A", "name":"Base install and boot", "expected_behavior":"Fresh integrated ISO installs plain/LUKS2 Btrfs, then two UEFI disk-only boots and installed-smoke.sh pass"},
+    {"id":"B", "name":"Gaming packages", "expected_behavior":"Signed package resolution succeeds, pacman -Dk is coherent; package presence alone establishes no runtime result"},
+    {"id":"C", "name":"Native Vulkan loader and ICD", "expected_behavior":"Valid ICD manifests, architecture-compatible loader libraries and real vulkaninfo enumeration with exact device/driver observations"},
+    {"id":"D", "name":"Vulkan execution", "expected_behavior":"64-bit queue submission clears an image, fence completes and 256 pixels match; record renderer/ICD, software status and separately qualify WSI"},
+    {"id":"E", "name":"32-bit Vulkan", "expected_behavior":"lib32 dependency checks plus ELF32 loader/ICD execution and verified readback; missing runtime remains UNVERIFIED even if packages pass"},
+    {"id":"F", "name":"Steam runtime and session", "expected_behavior":"Dependencies and runtime diagnosed, unprivileged Wayland/XWayland launch inspected, process lifetime/exit/logs captured; stop at login boundary"},
+    {"id":"G", "name":"Proton Win32 smoke", "expected_behavior":"Explicit Steam Linux Runtime starts inspected Proton; checksum-pinned own Win32 fixture creates a window and returns a fresh nonce with exit zero"},
+    {"id":"H", "name":"Gamescope nested launch", "expected_behavior":"Nested gamescope starts bounded vkcube presentation or documents unsupported virtual-device prerequisites and exact launch diagnostics"},
+    {"id":"I", "name":"MangoHud and GameMode", "expected_behavior":"Wrapper workloads run, visible overlay is independently inspected, daemon readiness/test/invocation and restoration pass; no FPS benefit claim"},
+    {"id":"J", "name":"Gaming readiness CLI JSON", "expected_behavior":"Real production interface returns parseable JSON matching actual driver/runtime limitations, without claiming physical GPU qualification"},
+    {"id":"K", "name":"Controlled negatives", "expected_behavior":"Missing/corrupt ICD, wrong ELF architecture, missing lib32 ICD, no device, unknown vendor, absent Steam/Proton, unsupported gamescope, dependency mismatch, transaction refusal and invalid preset yield actionable diagnostics without crashes or false readiness"},
+    {"id":"L", "name":"Encrypted gaming setup", "expected_behavior":"Signed feature setup through authorized product transaction in disposable LUKS2 installation, user-session smoke and disk-only reboot preserve encryption"},
+    {"id":"M", "name":"Signed update and rollback", "expected_behavior":"Existing Phase 3 H/I/J/K/M plus Phase 2 payload/space/package/health/service/interruption regressions pass after gaming integration; known-good pairs, histories, snapshots, recovery and direct-package guard preserved"},
+    {"id":"N", "name":"Enforcing Secure Boot", "expected_behavior":"Existing trusted boot and unsigned/untrusted/tampered loader/UKI tests refuse exact integrated bytes with authentication evidence; native UKI signing retained"},
+    {"id":"O", "name":"Independent ISO bytes", "expected_behavior":"Only after production merges, two clean signed builds have identical complete ISO bytes, package manifests and hashes"},
+    {"id":"P", "name":"Physical GPU qualification", "expected_behavior":"Actual NVIDIA/AMD/Intel/hybrid hardware supplies driver, Vulkan64/32, display, controller and recovery evidence; virtual/software runs cannot pass"}
+  ]
+}

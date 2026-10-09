@@ -1,0 +1,9 @@
+{
+  "scope": "Disposable LUKS2 baseline setup, before owner provisioning and accepted enforcing boots",
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "event": "The host sent Enter before a QMP typing command finished. The incomplete shell command and its trailing input caused failed sudo attempts and the normal account failure counter.",
+  "diagnosis": "The private generated password matched the installer's stored password hash. The unprivileged faillock command showed three failed attempts. The root account was locked by the installer, so su was refused as expected.",
+  "correction": "Cancelled the incomplete command chain, cleared only this disposable user's failure counter using faillock --reset, authenticated sudo -v with the unchanged generated password, then sent the entire setup command before Enter.",
+  "result": "Original installed-smoke.sh and setup completed. Both later accepted enforcing boots used normal LUKS unlock and SDDM login. No password, PAM policy, Secure Boot policy or production code was changed.",
+  "operator_rule": "Always wait for the QMP typing process to complete before sending the next key. A yielded host command is still running."
+}

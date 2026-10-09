@@ -1,0 +1,10 @@
+{
+  "command": "python3 /mnt/astraeus-validation/proton-standalone-diagnostic.py\n",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"scope\": \"Diagnostic through genuine Proton run in standalone UMU mode; no Steam game acceptance\", \"nonce\": \"02ed149f44aa456fa62c59af3e145427\", \"reply\": {\"command\": [\"runuser\", \"-u\", \"tester\", \"--\", \"env\", \"DISPLAY=:0\", \"XAUTHORITY=/run/user/1000/xauth_frvJIB\", \"WAYLAND_DISPLAY=wayland-0\", \"XDG_RUNTIME_DIR=/run/user/1000\", \"DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus\", \"XDG_SESSION_TYPE=wayland\", \"XDG_CURRENT_DESKTOP=KDE\", \"env\", \"STEAM_COMPAT_DATA_PATH=/var/tmp/phase4-proton-r2-45vcq118/compatdata\", \"STEAM_COMPAT_INSTALL_PATH=/var/tmp/phase4-proton-r2-45vcq118\", \"STEAM_COMPAT_CLIENT_INSTALL_PATH=/home/tester/phase4-session/steam-home/.local/share/Steam\", \"SteamAppId=0\", \"SteamGameId=0\", \"PROTON_LOG=0\", \"UMU_ID=umu-0\", \"/home/tester/phase4-runtimes/SteamLinuxRuntime_4/_v2-entry-point\", \"--verb=waitforexitandrun\", \"--\", \"/home/tester/.local/share/Steam/compatibilitytools.d/GE-Proton11-7-x86_64/proton\", \"run\", \"/var/tmp/phase4-proton-r2-45vcq118/windows-smoke.exe\", \"02ed149f44aa456fa62c59af3e145427\"], \"code\": 0, \"output\": \"pressure-vessel-wrap[8230]: W: Unable to share \\\"/\\\" with container: Path \\\"/.flatpak-info\\\" is reserved by the container framework\\nProtonFixes[8325] WARN: Skipping fix execution. We are probably running a unit test.\\nProtonFixes[8325] WARN: Skipping fix execution. We are probably running a unit test.\\nProton: /var/tmp/phase4-proton-r2-45vcq118/windows-smoke.exe\\nProton: Executable is a unix path, launching with 'umu.exe'.\\nfsync: up and running.\\n\", \"error\": null, \"seconds\": 6.033}, \"marker_observed\": false}\n",
+    "id": "961f5e13cf5f4a08b1f2fbbdc0b06d89",
+    "boot_id": "a46e5c3d-4126-4f78-b621-f49071b9c097"
+  }
+}

@@ -3,8 +3,8 @@ pkgver=@@VERSION@@
 pkgrel=1
 pkgdesc='Distribution status, transactions, snapshots and recovery tools'
 arch=('x86_64')
-depends=('gcc-libs' 'glibc' 'btrfs-progs' 'util-linux' 'coreutils' 'systemd' 'cryptsetup' 'pacman' 'libarchive' 'mkinitcpio' 'systemd-ukify' 'python' 'openssl' 'sbsigntools' 'efitools')
-makedepends=('rust')
+depends=('gcc-libs' 'glibc' 'lib32-glibc' 'btrfs-progs' 'util-linux' 'coreutils' 'systemd' 'cryptsetup' 'pacman' 'libarchive' 'mkinitcpio' 'systemd-ukify' 'python' 'openssl' 'sbsigntools' 'efitools')
+makedepends=('rust' 'gcc' 'lib32-glibc' 'lib32-gcc-libs' 'vulkan-headers')
 source=('platform.tar.xz')
 sha256sums=('@@SHA256@@')
 options=('!lto')
@@ -21,6 +21,8 @@ build() {
   export RUSTC=/usr/bin/rustc
   export CARGO_HOME="$srcdir/cargo-home"
   /usr/bin/cargo build --frozen --release -p distroctl
+  /usr/bin/cc -std=c11 -O2 -Wall -Wextra -Werror scripts/graphics-probe.c -ldl -o target/graphics-probe64
+  /usr/bin/cc -m32 -std=c11 -O2 -Wall -Wextra -Werror scripts/graphics-probe.c -ldl -o target/graphics-probe32
 }
 
 check() {
@@ -33,6 +35,9 @@ check() {
 package() {
   cd "$srcdir/platform"
   install -Dm755 target/release/distroctl "$pkgdir/usr/bin/distroctl"
+  install -Dm755 target/graphics-probe64 "$pkgdir/usr/lib/distroctl/graphics-probe64"
+  install -Dm755 target/graphics-probe32 "$pkgdir/usr/lib/distroctl/graphics-probe32"
+  install -Dm644 docs/graphics.md "$pkgdir/usr/share/doc/distroctl/graphics.md"
   install -Dm644 distro/branding/project.toml "$pkgdir/usr/share/distro/project.toml"
   install -Dm644 distro/installed/astraeus-confirm-boot.service "$pkgdir/usr/lib/systemd/system/astraeus-confirm-boot.service"
   install -Dm644 distro/installed/astraeus-bless-boot.conf "$pkgdir/usr/lib/systemd/system/systemd-bless-boot.service.d/astraeus.conf"

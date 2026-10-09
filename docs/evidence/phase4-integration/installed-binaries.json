@@ -1,0 +1,7 @@
+{
+  "/usr/bin/distroctl": "19f5474c80db3a7a50c2d92cf50d725f562a39bd7d772139e9462219da12af73",
+  "/usr/bin/astraeus-secure-boot": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+  "/usr/bin/astraeus-boot-artifact": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+  "/usr/lib/distroctl/graphics-probe64": "51e61a9c710d2b6f2745aae96cdfa1dd025e6a8eae478a229819ecaeea977099",
+  "/usr/lib/distroctl/graphics-probe32": "f2731cf93ab406518c76eb674cef06ded5c2e57865d1e4c8c921475edbb7cd07"
+}

@@ -1,0 +1,71 @@
+{
+  "vms": [
+    {
+      "id": "vm-cc9d56de23154de7a22492f24dfaae27",
+      "state": "paused",
+      "slug": "astraeus-phase0-validator",
+      "displayName": null,
+      "resources": {
+        "cpu": 8,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "image": null,
+      "snapshotId": "sh-ffe8873ae9ac4b91b60ef539c3aa59c0",
+      "sourceSnapshotSlugAtCreate": "freestyle/ubuntu-lg",
+      "sourceSnapshotSlug": "ubuntu-lg",
+      "sourceSnapshotDisplayName": "Ubuntu 24.04 LTS (8 vCPU · 16 GiB · 64 GB)",
+      "idleTimeoutSeconds": 3600,
+      "autoDeleteSeconds": 86400,
+      "totalRunSeconds": 97410,
+      "automaticRestart": true,
+      "ipMode": "dualStack",
+      "publicIpv6": "2602:f470:40:0:b3f0:ba7e:5db8:bcd4",
+      "egressIpv4": "208.72.218.134",
+      "egressIpv6": "2602:f470:40:0:b3f0:ba7e:5db8:bcd4",
+      "metadata": {},
+      "cpuTimeSeconds": null,
+      "lastNetworkActivity": "2026-10-09T03:22:21.879344Z",
+      "vpcs": [],
+      "networks": [],
+      "createdAt": "2026-10-06T23:24:55.543326Z",
+      "updatedAt": "2026-10-09T03:22:33.312604Z"
+    },
+    {
+      "id": "vm-ebe285ed9bc74592ac42e1e323395efb",
+      "state": "paused",
+      "slug": "atm10",
+      "displayName": null,
+      "resources": {
+        "cpu": 4,
+        "memory": 8192,
+        "storage": 32768
+      },
+      "image": null,
+      "snapshotId": "sh-8f2d189267a14dfca1242998641190c9",
+      "sourceSnapshotSlugAtCreate": "freestyle/ubuntu",
+      "sourceSnapshotSlug": null,
+      "sourceSnapshotDisplayName": "Ubuntu 24.04 LTS (4 vCPU · 8 GiB · 32 GB)",
+      "idleTimeoutSeconds": 600,
+      "totalRunSeconds": 25259,
+      "automaticRestart": true,
+      "ipMode": "dualStack",
+      "publicIpv6": "2602:f470:40:1:3963:113d:7240:af9d",
+      "egressIpv4": "208.72.218.134",
+      "egressIpv6": "2602:f470:40:1:3963:113d:7240:af9d",
+      "metadata": {},
+      "cpuTimeSeconds": null,
+      "lastNetworkActivity": "2026-10-07T06:51:29.564365Z",
+      "vpcs": [],
+      "networks": [],
+      "createdAt": "2026-10-04T21:07:38.970044Z",
+      "updatedAt": "2026-10-07T17:47:25.334201Z"
+    }
+  ],
+  "totalCount": 2,
+  "runningCount": 0,
+  "startingCount": 0,
+  "pausingCount": 0,
+  "pausedCount": 2,
+  "stoppedCount": 0
+}

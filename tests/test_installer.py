@@ -86,7 +86,12 @@ class InstallerTests(unittest.TestCase):
                     bootstrap.write(root / "boot/initramfs-linux.img", "temporary build initramfs\n")
                     bootstrap.write(root / "var/cache/pacman/pkg/example.pkg.tar.zst", "cache\n")
                     bootstrap.write(root / "var/lib/pacman/local/example/desc", "%INSTALLDATE%\n123456\n")
-            installer.build_payload(out, profile, values, run, bootstrap.write, bootstrap.render)
+            installer.build_payload(out, profile, values, run, bootstrap.write, bootstrap.render, ["virtio", "software"], ["core"])
+            pacstrap = next(call for call in calls if call[0] == "pacstrap")
+            self.assertIn("steam", pacstrap)
+            self.assertIn("lib32-vulkan-swrast", pacstrap)
+            self.assertNotIn("gamescope", pacstrap)
+            self.assertEqual(json.loads((out / "installed-root/usr/share/distro/install-inputs/gaming.json").read_text())["features"], ["core"])
             root = out / "installed-root"
             self.assertNotIn("live:", (root / "etc/shadow").read_text())
             self.assertIn("20727", (root / "etc/shadow").read_text())

@@ -1,0 +1,40 @@
+test_acceptance_requires_an_exact_complete_line (test_phase2_validation.ValidationTests.test_acceptance_requires_an_exact_complete_line) ... ok
+test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset (test_phase2_validation.ValidationTests.test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset) ... ok
+test_clone_uses_backing_disk_and_copies_vars (test_phase2_validation.ValidationTests.test_clone_uses_backing_disk_and_copies_vars) ... ok
+Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+test_complete_success_and_rollback_scenarios_reject_lost_home_data (test_phase2_validation.ValidationTests.test_complete_success_and_rollback_scenarios_reject_lost_home_data) ... ok
+test_confirmation_waits_for_service_and_preserves_job_failure (test_phase2_validation.ValidationTests.test_confirmation_waits_for_service_and_preserves_job_failure) ... ok
+test_corrupt_or_unaccepted_baseline_refused_before_cloning (test_phase2_validation.ValidationTests.test_corrupt_or_unaccepted_baseline_refused_before_cloning) ... ok
+test_failed_probe_cannot_be_used_as_evidence (test_phase2_validation.ValidationTests.test_failed_probe_cannot_be_used_as_evidence) ... ok
+test_guest_exit_timeout_output_limit_and_pipeline_failure (test_phase2_validation.ValidationTests.test_guest_exit_timeout_output_limit_and_pipeline_failure) ... skipped 'guest execution requires Linux process groups and Bash'
+test_interruption_requires_package_mutation_before_power_cut (test_phase2_validation.ValidationTests.test_interruption_requires_package_mutation_before_power_cut) ... ok
+QMP: C:\Users\Noel\AppData\Local\Temp\tmpi5h63ltb\boot-1\qmp.sock
+test_launch_is_foreground_disk_only_and_readonly_share (test_phase2_validation.ValidationTests.test_launch_is_foreground_disk_only_and_readonly_share) ... ok
+test_observation_keeps_other_artifacts_when_one_command_fails (test_phase2_validation.ValidationTests.test_observation_keeps_other_artifacts_when_one_command_fails) ... ok
+test_package_mismatch_and_outcome_disagreement_fail (test_phase2_validation.ValidationTests.test_package_mismatch_and_outcome_disagreement_fail) ... ok
+test_qmp_events_and_deadline (test_phase2_validation.ValidationTests.test_qmp_events_and_deadline) ... ok
+test_qmp_handshake_and_command_through_real_socket (test_phase2_validation.ValidationTests.test_qmp_handshake_and_command_through_real_socket) ... skipped 'Unix socket integration runs on Linux'
+test_ready_guest_shutdown_bounds_timer_delay_and_avoids_desktop_dialog (test_phase2_validation.ValidationTests.test_ready_guest_shutdown_bounds_timer_delay_and_avoids_desktop_dialog) ... FAIL
+test_ready_timeout_never_passes (test_phase2_validation.ValidationTests.test_ready_timeout_never_passes) ... ok
+test_real_guest_channel_correlates_reply_and_preserves_failure_output (test_phase2_validation.ValidationTests.test_real_guest_channel_correlates_reply_and_preserves_failure_output) ... skipped 'Unix socket integration runs on Linux'
+test_real_qcow2_overlay_and_baseline_hash (test_phase2_validation.ValidationTests.test_real_qcow2_overlay_and_baseline_hash) ... skipped 'optional real qcow2 test needs qemu-img'
+test_reboot_requires_new_boot_identity (test_phase2_validation.ValidationTests.test_reboot_requires_new_boot_identity) ... ok
+test_shutdown_timeout_and_cleanup_target_only_owned_process (test_phase2_validation.ValidationTests.test_shutdown_timeout_and_cleanup_target_only_owned_process) ... ok
+test_snapshot_and_transaction_gates_reject_false_success (test_phase2_validation.ValidationTests.test_snapshot_and_transaction_gates_reject_false_success) ... ok
+test_space_fault_uses_runtime_mount_and_restores_original_cache (test_phase2_validation.ValidationTests.test_space_fault_uses_runtime_mount_and_restores_original_cache) ... skipped 'requires POSIX cache symlinks'
+test_terminal_transaction_requires_actual_uki_and_boot_evidence (test_phase2_validation.ValidationTests.test_terminal_transaction_requires_actual_uki_and_boot_evidence) ... ok
+test_timeout_kills_the_child_group_before_delayed_side_effect (test_phase2_validation.ValidationTests.test_timeout_kills_the_child_group_before_delayed_side_effect) ... skipped 'guest process cleanup uses Linux process groups'
+
+======================================================================
+FAIL: test_ready_guest_shutdown_bounds_timer_delay_and_avoids_desktop_dialog (test_phase2_validation.ValidationTests.test_ready_guest_shutdown_bounds_timer_delay_and_avoids_desktop_dialog)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Noel\.codex\worktrees\phase4-integration\operating-system\tests\test_phase2_validation.py", line 344, in test_ready_guest_shutdown_bounds_timer_delay_and_avoids_desktop_dialog
+    self.assertIn('--timer-property=AccuracySec=1s', vm.command.call_args.args[0])
+AssertionError: '--timer-property=AccuracySec=1s' not found in 'systemd-run --unit=astraeus-validation-poweroff --on-active=1s /usr/bin/systemctl poweroff'
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.261s
+
+FAILED (failures=1, skipped=6)

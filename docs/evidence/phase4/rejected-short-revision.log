@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/p4/src/scripts/validate/phase4.py", line 219, in <module>
+    main()
+  File "/home/ubuntu/p4/src/scripts/validate/phase4.py", line 211, in main
+    run(args)
+  File "/home/ubuntu/p4/src/scripts/validate/phase4.py", line 80, in run
+    p2.require(re.fullmatch('[0-9a-f]{40}', args.source_commit), 'full source Git SHA required')
+  File "/home/ubuntu/p4/src/scripts/validate/phase2.py", line 36, in require
+    raise RuntimeError(message)
+RuntimeError: full source Git SHA required

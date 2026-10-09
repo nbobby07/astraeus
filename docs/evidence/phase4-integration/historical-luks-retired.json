@@ -1,0 +1,12 @@
+{
+  "target": "/home/ubuntu/p3i/final/base-luks/disk.qcow2",
+  "export": {
+    "sha256": "98f535cd09849e5a99f779d715a5e84673fbb0860eaf22b4d3104166dbbaaa05",
+    "bytes": 3001679872,
+    "path": "D:\\Astraeus-Phase4-Integration-Evidence\\private\\phase3-base-luks.qcow2"
+  },
+  "sha256": "98f535cd09849e5a99f779d715a5e84673fbb0860eaf22b4d3104166dbbaaa05",
+  "verified_unused": true,
+  "restore": "Copy the verified private local phase3-base-luks.qcow2 back to this exact path before restoring dependent archived guests; original VARS/manifest remain in place.",
+  "time": 1791525237.931226
+}

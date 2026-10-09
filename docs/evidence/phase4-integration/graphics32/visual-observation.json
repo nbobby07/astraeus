@@ -1,0 +1,19 @@
+{
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "elf32_opengl_presentation": "PASS",
+  "visible_mangohud": "PASS",
+  "operator_observation": "Two actual rendered gears frames with changing FPS, frame time and graph. Closed the focused window through Alt+F4 after both captures.",
+  "exit_code": 143,
+  "exit_scope": "Window-manager close yielded Terminated/143; no zero-exit or game compatibility claim.",
+  "frames_sha256": {
+    "frame-1.png": "078050eac66a8d66c59206cc79216d8bd8f5cfa754d27401a8c5d43ccddd57a8",
+    "frame-2.png": "453d840a74816221434a2cf31a6a7c4c5cbb424ab5f1295d63f16597abfc11a5",
+    "closed.png": "04ac8ee2617b0ce1349b5d684e6c0d458e658099f5460151956822069ee4fe77"
+  },
+  "binary_sha256": "fd6e7aaede0feed58268306e44ba5e22eb45d74ad33a183928e4673472d9fc30",
+  "limitations": [
+    "Software llvmpipe only",
+    "32-bit Vulkan WSI remains NOT RUN",
+    "MangoHud cannot collect this virtual GPU telemetry or CPU temperature"
+  ]
+}

@@ -7,11 +7,12 @@ mutation APIs. ArchISO 91 provides image assembly and UEFI systemd-boot support.
 Pacman installs conventional signed Arch packages. The custom `distro` repository
 comes first and initially supplies only `distroctl`.
 
-The workspace now has five crates:
+The workspace now has six crates:
 
 ```text
 distroctl -> distro-config -> serde / TOML
           -> distro-hardware -> serde
+          -> distro-graphics -> distro-hardware / serde / serde_json
           -> distro-snapshots -> serde / serde_json
           -> distro-transactions -> distro-snapshots / serde / SQLite / SHA-256
 ```
@@ -19,6 +20,9 @@ distroctl -> distro-config -> serde / TOML
 `distro-config` owns release metadata and validation. Parsing produces a typed
 value; semantic validation is a separate method. `distroctl` handles arguments,
 file I/O and presentation. Metadata and status commands remain read-only.
+The [graphics foundation](graphics.md) separates GPU discovery, driver candidates,
+package requirements and native/32-bit runtime evidence. Its update preconditions
+are called by the existing transaction planner; it has no mutation executor.
 The read-only CLI exposes `info`, `validate`, `hardware`, `status`, help and version.
 Phase 2 adds `snapshot` and `rollback` through `distro-snapshots`; privileged
 mutation belongs to that library. See [snapshots and recovery](snapshots.md).
