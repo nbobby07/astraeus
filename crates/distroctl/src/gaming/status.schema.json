@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Astraeus gaming status v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "checks",
+    "tools",
+    "warnings",
+    "next_steps"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/check"
+      }
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/tool"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "check": {
+      "type": "object",
+      "required": [
+        "state",
+        "runtime",
+        "detail"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_installed",
+            "installed",
+            "configured",
+            "runtime_verified",
+            "unsupported",
+            "unknown"
+          ]
+        },
+        "runtime": {
+          "enum": [
+            "untested",
+            "passed",
+            "failed"
+          ]
+        },
+        "detail": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "tool": {
+      "type": "object",
+      "required": [
+        "kind",
+        "name",
+        "path",
+        "version",
+        "provenance"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "steam",
+            "ge",
+            "custom"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provenance": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}
