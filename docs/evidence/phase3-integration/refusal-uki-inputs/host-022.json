@@ -1,0 +1,15 @@
+{
+  "command": [
+    "mmd",
+    "-i",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/fixture.fat",
+    "::/EFI",
+    "::/EFI/BOOT",
+    "::/EFI/tests"
+  ],
+  "started": "2026-10-09T00:54:49.128415+00:00",
+  "finished": "2026-10-09T00:54:49.130836+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

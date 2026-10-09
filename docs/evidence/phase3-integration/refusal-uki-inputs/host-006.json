@@ -1,0 +1,17 @@
+{
+  "command": [
+    "openssl",
+    "x509",
+    "-in",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/untrusted.pem",
+    "-outform",
+    "DER",
+    "-out",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/untrusted.der"
+  ],
+  "started": "2026-10-09T00:54:47.026119+00:00",
+  "finished": "2026-10-09T00:54:47.051465+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

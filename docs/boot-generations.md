@@ -13,6 +13,13 @@ remains an explicit owner operation. The original branch's host evidence below
 does not qualify the integrated image; current results are in
 [Phase 3 acceptance](phase3-acceptance.md).
 
+Automatic confirmation does not authorize a rollback from a matching old package
+map. After offline restoration, a healthy boot can remain pending until the owner
+runs `distroctl finalize-rollback <transaction-id>`. That command verifies the
+restored root, UKI, package map and health before finalizing; repeating a completed
+finalization is idempotent. Booting a retained generation is a recovery session,
+not restoration of the canonical `@` root.
+
 ## Ownership and binding
 
 `distro-snapshots::generations` defines `GenerationId`, `Generation`, `RootKind`,

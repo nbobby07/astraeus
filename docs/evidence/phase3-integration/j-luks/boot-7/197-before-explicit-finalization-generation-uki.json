@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:50.607229+00:00",
+  "finished": "2026-10-09T01:28:50.852274+00:00",
+  "command": "p=$(bootctl --print-stub-path); if test ! -f \"$p\"; then p=/efi/EFI/Astraeus/maintenance.efi; fi; sha256sum \"$p\"",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "98477ac9a6a582654452d9d58c9b8899283be152c31fbe934f6026ce1bdf2902  /efi/EFI/Linux/astraeus-dev-linux.efi\n",
+    "id": "3562592aaf5e47088ff58e98083adb36",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

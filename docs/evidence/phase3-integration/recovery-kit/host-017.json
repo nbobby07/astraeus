@@ -1,0 +1,17 @@
+{
+  "command": [
+    "qemu-img",
+    "convert",
+    "-f",
+    "raw",
+    "-O",
+    "qcow2",
+    "/home/ubuntu/p3i/final/recovery-kit/recovery.fat",
+    "/home/ubuntu/p3i/final/recovery-kit/disk.qcow2"
+  ],
+  "started": "2026-10-09T00:04:28.217770+00:00",
+  "finished": "2026-10-09T00:04:29.021072+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

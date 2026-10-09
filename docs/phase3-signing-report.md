@@ -7,6 +7,20 @@ dbx formats remain refused. See [integration](phase3-integration.md) and
 [current acceptance](phase3-acceptance.md). The original branch handoff below is
 retained as historical evidence and does not qualify an integrated ISO.
 
+The final integrated runtime is `fdb784c8539fb7679f7ab6e350583f523a80728d`.
+Independent ISOs have identical bytes; the image audit found the expected native
+provider and CLI in both live and installed payloads, without test identities or
+private signing material. Disposable PK, KEK and db certificates are separate;
+only their public fingerprints and enrollment evidence belong in the review
+bundle. The machine-owner private db key exists only in private test state.
+
+Firmware refusal controls use the actual final ISO loader and the UKI exported
+from its fresh installed system. A trusted EFI probe records successful
+`LoadImage` for the trusted control and `800000000000000f` plus a matching denied
+authentication record for unsigned, untrusted and tampered variants of each.
+These are direct firmware refusal tests. Actual installed execution, root/UKI
+binding and recovery are separate gates in the current acceptance report.
+
 Branch: `phase3/secure-boot`.
 Base: `6a8fda25d25df74215ed0bbe06b97804e053d950`.
 The dedicated `a9e7/operating-system` checkout was confirmed clean at that exact

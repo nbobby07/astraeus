@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "failures": [
+    {
+      "attempt": 1,
+      "error": "QEMU exited before acceptance (exit 0)",
+      "serial_sha256": "31fc6a04da54d9dac3c15ce27e324714d18e907943594eb125196b68247bcbb0"
+    },
+    {
+      "attempt": 2,
+      "error": "QEMU exited before acceptance (exit 0)",
+      "serial_sha256": "31fc6a04da54d9dac3c15ce27e324714d18e907943594eb125196b68247bcbb0"
+    },
+    {
+      "attempt": 3,
+      "error": "QEMU exited before acceptance (exit 0)",
+      "serial_sha256": "31fc6a04da54d9dac3c15ce27e324714d18e907943594eb125196b68247bcbb0"
+    }
+  ],
+  "count": {
+    "done": 3,
+    "left": 0,
+    "state": "counted"
+  },
+  "selection": "systemd-boot retained root",
+  "restoration": "not performed"
+}

@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:51.560330+00:00",
+  "finished": "2026-10-09T01:01:51.712745+00:00",
+  "command": "sha256sum /efi/loader/loader.conf",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "336cc05d8895a5f4c1d09d7987afc7847c4b16ac080a2805d5d4430a37929bac  /efi/loader/loader.conf\n",
+    "id": "02e18ae80a6546a89c6dc7067c612f63",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}

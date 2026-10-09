@@ -1,0 +1,5 @@
+{
+  "/usr/bin/distroctl": "8002422e28d4de96a7efde1444c32040088c7fa9f98a55003c6e49517db97ea0",
+  "/usr/bin/astraeus-secure-boot": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+  "/usr/bin/astraeus-boot-artifact": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483"
+}

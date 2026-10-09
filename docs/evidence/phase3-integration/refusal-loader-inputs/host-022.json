@@ -1,0 +1,15 @@
+{
+  "command": [
+    "mmd",
+    "-i",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/fixture.fat",
+    "::/EFI",
+    "::/EFI/BOOT",
+    "::/EFI/tests"
+  ],
+  "started": "2026-10-09T00:04:56.638201+00:00",
+  "finished": "2026-10-09T00:04:56.640473+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

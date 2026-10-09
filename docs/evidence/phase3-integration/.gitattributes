@@ -1,0 +1,2 @@
+# Evidence bytes are hashed; retain their original whitespace and line endings.
+* -text -whitespace

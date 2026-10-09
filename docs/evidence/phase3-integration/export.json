@@ -1,0 +1,10 @@
+{
+  "archive": "D:\\Astraeus-Phase3-Integration-Evidence\\fdb784c-integrated-acceptance.tar.gz",
+  "archive_sha256": "ca2773613602401e878fed1447005c961a5b09305219e10ff727071051dcfa86",
+  "index": "D:\\Astraeus-Phase3-Integration-Evidence\\fdb784c-integrated-acceptance-index.json",
+  "index_sha256": "d226a108a9fd2a1ee3a6aa7d420737c6952dbe3d2639d4fa03a9be30b9e8e71a",
+  "verified_members": 2876,
+  "review_files": 399,
+  "raw_owner_bearing_disks": "Private on paused Freestyle validator, identities in sealed-disk-evidence.json",
+  "runtime": "fdb784c8539fb7679f7ab6e350583f523a80728d"
+}

@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:04:36.406930+00:00",
+  "finished": "2026-10-09T01:04:37.465190+00:00",
+  "command": "astraeus-boot-artifact verify /efi/EFI/Astraeus/1791507801-653955349-568.efi",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"firmware_trusted\": true, \"schema_version\": 1, \"sha256\": \"5e7102ee462c1ca2ee3282e491d997871a2d3e91f9e3e7655118b0ab104171b0\", \"signature_verified\": true}\n",
+    "id": "090760edf43d44fe8068af9bee05e58c",
+    "boot_id": "558664ca-5ae2-4938-95a2-bf74691e8eb8"
+  }
+}

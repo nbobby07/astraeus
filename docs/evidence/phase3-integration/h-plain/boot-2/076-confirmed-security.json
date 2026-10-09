@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T00:56:53.760414+00:00",
+  "finished": "2026-10-09T00:56:54.910861+00:00",
+  "command": "distroctl security status --json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"artifacts\": {\n    \"bootloader\": {\n      \"path\": \"/efi/EFI/systemd/systemd-bootx64.efi\",\n      \"sha256\": \"e47db793494db9fd7aaec578428953a8e11a97c8663c8536ce9f80b9af8c74ca\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"fallback_bootloader\": {\n      \"path\": \"/efi/EFI/BOOT/BOOTX64.EFI\",\n      \"sha256\": \"e47db793494db9fd7aaec578428953a8e11a97c8663c8536ce9f80b9af8c74ca\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"running_uki\": {\n      \"path\": \"/efi/EFI/Astraeus/1791507337-211805379-548.efi\",\n      \"sha256\": \"aa58aaddcf052d3702e7b5aa91e74602615ae75850429f25b746e7468d47425c\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"uki\": {\n      \"path\": \"/efi/EFI/Astraeus/maintenance.efi\",\n      \"sha256\": \"aa58aaddcf052d3702e7b5aa91e74602615ae75850429f25b746e7468d47425c\",\n      \"signature\": \"valid-for-configured-certificate\"\n    }\n  },\n  \"certificate_sha256\": \"35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8\",\n  \"enrollment_readiness\": \"manual-firmware-review-required\",\n  \"firmware\": {\n    \"AuditMode\": null,\n    \"DeployedMode\": null,\n    \"KEK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"PK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"SecureBoot\": true,\n    \"SetupMode\": false,\n    \"db\": {\n      \"contains_signer_certificate\": true,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"dbx\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": true,\n      \"readable\": true,\n      \"sha256_images\": [\n        \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n      ]\n    },\n    \"image_authorization\": \"not-evaluated\"\n  },\n  \"identity\": \"valid\",\n  \"policy\": \"configured\",\n  \"schema_version\": 1,\n  \"signing_key_present\": true\n}\n",
+    "id": "c1bb1975d2c64c2b8af0bcb83e505e78",
+    "boot_id": "05ffd39d-c1f7-4f9c-868c-6a8a314fe410"
+  }
+}

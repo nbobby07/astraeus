@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:49.631441+00:00",
+  "finished": "2026-10-09T01:28:49.831825+00:00",
+  "command": "sha256sum /efi/EFI/Linux/astraeus-dev-linux.efi",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "98477ac9a6a582654452d9d58c9b8899283be152c31fbe934f6026ce1bdf2902  /efi/EFI/Linux/astraeus-dev-linux.efi\n",
+    "id": "f0930e88e31d40299b422d4609b7b6a1",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

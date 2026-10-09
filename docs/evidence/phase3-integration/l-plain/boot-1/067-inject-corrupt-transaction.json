@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:53.640954+00:00",
+  "finished": "2026-10-09T01:01:53.843374+00:00",
+  "command": "python3 - <<'PY'\nimport json,sqlite3\nfrom pathlib import Path\np=Path('/var/log/astraeus/private/transactions.sqlite')\ndb=sqlite3.connect(p)\nrows=db.execute('SELECT id,record FROM transactions').fetchall()\nassert len(rows)==1\nident,text=rows[0]\nPath('/var/lib/astraeus-validation/transaction-original.json').write_text(text)\nrecord=json.loads(text)\nrecord['post_snapshot']=None\nreplacement=json.dumps(record) if 'corrupt-transaction'=='stale-transaction-reference' else '{invalid-json'\ndb.execute('UPDATE transactions SET record=? WHERE id=?',(replacement,ident)); db.commit()\nPY",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "",
+    "id": "4c8d3d99f49447739b62f60333f9e3a1",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}

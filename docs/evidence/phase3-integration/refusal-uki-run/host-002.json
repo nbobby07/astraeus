@@ -1,0 +1,15 @@
+{
+  "command": [
+    "dpkg-query",
+    "-W",
+    "ovmf",
+    "python3-virt-firmware",
+    "sbsigntool",
+    "gnu-efi"
+  ],
+  "started": "2026-10-09T00:54:50.615485+00:00",
+  "finished": "2026-10-09T00:54:50.623114+00:00",
+  "code": 0,
+  "stdout": "gnu-efi\t3.0.15-1build1\novmf\t2024.02-2ubuntu0.10\npython3-virt-firmware\t24.1.1-2\nsbsigntool\t0.9.4-3.1ubuntu7\n",
+  "stderr": ""
+}

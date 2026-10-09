@@ -1,0 +1,24 @@
+{
+  "command": [
+    "virt-fw-vars",
+    "--input",
+    "/usr/share/OVMF/OVMF_VARS_4M.fd",
+    "--output",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/vars.fd",
+    "--set-pk",
+    "808f1948-4eed-43ba-a7e4-8322489b1603",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/public/trusted.pem",
+    "--add-kek",
+    "808f1948-4eed-43ba-a7e4-8322489b1603",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/public/trusted.pem",
+    "--add-db",
+    "808f1948-4eed-43ba-a7e4-8322489b1603",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/public/trusted.pem",
+    "--secure-boot"
+  ],
+  "started": "2026-10-09T00:04:54.980218+00:00",
+  "finished": "2026-10-09T00:04:56.462025+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": "INFO: reading raw edk2 varstore from /usr/share/OVMF/OVMF_VARS_4M.fd\nINFO: var store range: 0x64 -> 0x40000\nINFO: create variable PK\nINFO: clear PK sigdb\nINFO: add PK cert /home/ubuntu/p3i/final/refusal-loader-inputs/public/trusted.pem\nINFO: create variable KEK\nINFO: add KEK cert /home/ubuntu/p3i/final/refusal-loader-inputs/public/trusted.pem\nINFO: create variable db\nINFO: add db cert /home/ubuntu/p3i/final/refusal-loader-inputs/public/trusted.pem\nINFO: add dummy dbx entry\nINFO: create variable dbx\nINFO: create variable SecureBootEnable\nINFO: set variable SecureBootEnable: True\nINFO: create variable CustomMode\nINFO: set variable CustomMode: False\nINFO: writing raw edk2 varstore to /home/ubuntu/p3i/final/refusal-loader-inputs/vars.fd\n"
+}

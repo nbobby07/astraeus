@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "case": "update",
+  "scope": "integrated-image",
+  "integrated_acceptance": false,
+  "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+  "started": "2026-10-09T00:33:55.304490+00:00",
+  "error": "TimeoutError: guest readiness timed out; unlock LUKS/start the test agent through private QMP",
+  "finished": "2026-10-09T00:44:07.292744+00:00"
+}

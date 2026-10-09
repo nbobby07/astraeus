@@ -1,0 +1,27 @@
+{
+  "kind": "phase3-integrated",
+  "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+  "encryption": "LUKS2",
+  "signer_sha256": "35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8",
+  "installed_binaries": {
+    "/usr/bin/distroctl": "8002422e28d4de96a7efde1444c32040088c7fa9f98a55003c6e49517db97ea0",
+    "/usr/bin/astraeus-secure-boot": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+    "/usr/bin/astraeus-boot-artifact": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483"
+  },
+  "iso": {
+    "path": "/home/ubuntu/p3i/build-r3/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+    "sha256": "520ca25fc9c9b9c3706011780d431f08a2f0c1c6e2848ff73dead21cc0b13905"
+  },
+  "accepted": true,
+  "created": "2026-10-09T01:17:36.076378+00:00",
+  "sha256": {
+    "disk.qcow2": "98f535cd09849e5a99f779d715a5e84673fbb0860eaf22b4d3104166dbbaaa05",
+    "vars.fd": "ce3c66cc539956ef646dd96154e2da6100d9e3ab0cad4e859aec969b59a991de"
+  },
+  "inputs": {
+    "ovmf_code": {
+      "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+      "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+    }
+  }
+}

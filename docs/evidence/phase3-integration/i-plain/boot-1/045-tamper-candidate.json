@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T00:58:38.814239+00:00",
+  "finished": "2026-10-09T00:58:39.517594+00:00",
+  "command": "python3 /mnt/astraeus-validation/integrated-guest.py fault --kind tampered --uki /efi/EFI/Astraeus/1791507502-529516391-548.efi",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"fault\": \"tampered\", \"path\": \"/efi/EFI/Astraeus/1791507502-529516391-548.efi\", \"before_sha256\": \"fd442051311aab5341e903193feb8b6511bfc690f932b5b2dd7e10523469b11e\", \"started\": 1791507519.0920758, \"injected\": true, \"expected\": \"refusal, never timeout-based acceptance\", \"finished\": 1791507519.371098, \"after_sha256\": \"b4938d76ea8cdebb464ee15814ed8e55802586cf90910006ce4ad82ff4e32109\"}\n",
+    "id": "3e20174ce28141399c4831f8758c2bc0",
+    "boot_id": "e7ca1f93-cf8f-42a3-b036-390f2f769c8d"
+  }
+}

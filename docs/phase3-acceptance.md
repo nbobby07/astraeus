@@ -1,10 +1,110 @@
 # Phase 3 acceptance
 
-Current integration verdict: **PHASE 3 NOT YET VALIDATED**.
-The [integration report](phase3-integration.md) separates current candidate work
-from the historical harness/fixture results below. No historical fixture pass is
-being counted as integrated-image acceptance. The A-N matrix, Phase 2 regression
-suite and independent ISO comparison must pass on the frozen candidate.
+Current integration verdict: **PHASE 3 VALIDATED** on the recorded x86-64 QEMU/KVM target.
+Tested runtime: `fdb784c8539fb7679f7ab6e350583f523a80728d`.
+The [integration report](phase3-integration.md) records merges, fixes, checks,
+source identity and build inputs. Historical fixture passes below do not count
+as integrated-image acceptance.
+
+## Integrated image acceptance
+
+The final tests use fresh Calamares installations from the frozen ISO, its actual
+packaged CLI/provider, native signed updates and the original Phase 2/3 harness.
+The external adapters and compact evidence are under
+[`docs/evidence/phase3-integration`](evidence/phase3-integration).
+The complete public evidence archive and independent build archives are exported
+to `D:/Astraeus-Phase3-Integration-Evidence`. Private owner-bearing test disks stay
+on the validator; they are excluded from Git and the public evidence archive.
+
+| Gate | Result | Evidence and scope |
+| --- | --- | --- |
+| A: enforced trusted boot | PASS | `base-plain`, `base-luks`: two cold enforcing boots each, exact PK/KEK/db, native binary hashes, correct roots, actual Plasma Wayland and required services |
+| B: unsigned loader | PASS | `refusal-loader-run`: firmware refuses actual final loader bytes without a signature |
+| C: untrusted loader | PASS | Same probe, independently untrusted signer |
+| D: tampered loader | PASS | Same probe, changed signed payload |
+| E: unsigned UKI | PASS | `refusal-uki-run`: firmware refuses actual fresh installed UKI bytes without a signature |
+| F: untrusted UKI | PASS | Same probe, independently untrusted signer |
+| G: tampered UKI | PASS | Same probe, changed signed payload |
+| H: signed update | PASS | `h-plain`: retained A, signed and verified B, valid root/UKI pairing, enforced new boot, health checks and known-good blessing |
+| I: failed candidate | PASS | `i-plain`: three consumed attempts, no promotion, trusted retained root and UKI, persistent data preserved |
+| J: encrypted recovery | PASS | `j-luks`: failed candidate, trusted retained root, signed live restoration, normal LUKS2 unlock, healthy canonical root, packages and data preserved, explicit and idempotent finalization |
+| K: interrupted activation | PASS | `k-plain`: SIGKILL after completed sync before loader configuration rename; exact pending journal, trusted prior root, no false success and unsafe continuation refused |
+| L: corrupt metadata | PASS | `l-plain`: unknown field, wrong root UUID, wrong UKI hash, stale private transaction state and corrupt SQLite refused |
+| M: recovery trust | PASS | `m-plain`: enforcing signed recovery loader/UKI, exact identities and ISO input, native offline restoration and healthy plain rollback |
+| N: reproducibility | PASS | `reproducibility.json`: two clean builds, manifests and rebuilt packages equal, full ISO `cmp` exit 0 |
+
+B-G use a trusted EFI probe's `LoadImage` call. The trusted control returns zero;
+each invalid variant returns `800000000000000f` with a matching denied-image
+authentication record. Those results prove firmware refusal before execution.
+A supplies the separate proof of real installed execution. The original probe's
+`integrated_acceptance=false` is preserved; artifact provenance binds its security
+results to the fresh integrated image instead of relabeling the harness output.
+
+H uses the locally signed validation package upgrade from `1-1` to `2-1`, with
+native transaction, snapshot, UKI generation, signing and activation. It does not
+qualify arbitrary upstream kernel upgrades. I demonstrates automatic entry
+selection after separate boot attempts, not automatic Btrfs rollback. K covers
+one specific native sync/rename boundary; its journal remains unreconciled and
+further unsafe mutation is blocked.
+
+The signed recovery companion authenticates systemd-boot and its UKI. Its live
+SquashFS is not cryptographically covered. Tests attach the exact host-hashed ISO
+and companion read-only and verify their identities in the guest. This is a
+bounded recovery qualification, not production recovery-media signing.
+
+## Integrated regression and reproducibility
+
+`reg-payload`, `reg-space`, `reg-package`, `reg-interruption`, `reg-health`,
+`reg-service` and `security-direct-package` pass. They cover signed input refusal,
+capacity preflight, package/service/health failure, interrupted mutation, trusted
+offline restoration, root/UKI and package-map checks, persistent data, snapshots,
+transaction history and direct-pacman guard refusal. H and M cover successful
+update and plain rollback. J completes the encrypted counterpart, including broken-candidate recovery.
+
+Locked Rust tests, formatting and warning-free Clippy pass on Windows and Linux.
+Python discovery runs 94 tests: Windows skips 36 unavailable native cases; Linux
+skips two. Native signature tests and real Btrfs lock/snapshot checks pass.
+All 14 shell syntax checks pass. Both pinned Arch builders run their native gates.
+Linux and Windows GitHub checks pass at `6bf49cd`; final delivery checks are
+recorded with the evidence.
+
+Both `astraeus-fdb784c-A.iso` and `astraeus-fdb784c-B.iso` are 3,535,165,440 bytes:
+
+```text
+SHA-256 520ca25fc9c9b9c3706011780d431f08a2f0c1c6e2848ff73dead21cc0b13905
+```
+
+The source archive is 639,632 bytes, SHA-256
+`7987aec5d982f30d469fa11b98492ff1f037eb8f47755b2d87ffccc06e46e2b2`.
+Both source archives generated independently match. Builds use the pinned
+2026/10/01 Arch snapshot, epoch `1790812800`, Rust 1.98.1, Archiso 91-1,
+Calamares 3.4.3-1, Linux 7.2.7-arch1-1 and systemd 262. The Arch base image hash,
+verified signing identity, signed repository inputs and full manifests accompany
+the build evidence. The final repository signer fingerprint is
+`F906EC2B4A5285323BC5B40F4F8CC48CA5C57760`.
+
+## Retained failures and boundaries
+
+The earlier `cf8e435` encrypted recovery failed because automatic confirmation
+finalized restored packages without an explicit request. That failure is retained;
+`fdb784c` fixes the shared CLI path and adds focused regression coverage. Earlier
+images and passes do not substitute for final runtime qualification.
+
+The first final H boot stalled before Linux, with QEMU still in firmware. The
+unchanged retry passed after the second builder finished. Its original serial,
+QMP/register and screenshot evidence remains in `h-plain-firmware-stall`; no
+confirmed root cause or general cold-boot reliability claim is made. A symlink
+launch failure before guest creation and earlier harness expectation/serial-length
+mistakes are also retained, separate from product failures.
+
+Installation and initial owner provisioning use compatibility setup. All A-M
+acceptance boots enforce Secure Boot. No physical firmware or Windows Secure Boot
+setting was changed. Generation mode remains opt-in, systemd/loader upgrades are
+refused, unsupported dbx formats are refused, and rebinding cannot exceed the
+existing PE command-line section. Root, ESP, SQLite and firmware state are not
+atomic. Physical hardware, dual boot, real firmware enrollment, TPM unlock,
+arbitrary power loss, whole-disk-full behavior, key recovery/rotation, production
+release signing and GPU/audio hardware remain unqualified. Phase 4 has not begun.
 
 ## Historical validation infrastructure acceptance
 

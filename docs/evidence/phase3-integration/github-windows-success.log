@@ -1,0 +1,563 @@
+﻿2026-10-08T23:37:10.1220839Z Current runner version: '2.337.0'
+2026-10-08T23:37:10.1239211Z ##[group]Runner Image Provisioner
+2026-10-08T23:37:10.1239747Z Hosted Compute Agent
+2026-10-08T23:37:10.1240097Z Version: 20260901.588
+2026-10-08T23:37:10.1240433Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-08T23:37:10.1240883Z Build Date: 2026-09-01T19:56:44Z
+2026-10-08T23:37:10.1241249Z Worker ID: {7b4ce21a-8684-475f-a902-34663c925039}
+2026-10-08T23:37:10.1241630Z Azure Region: centralus
+2026-10-08T23:37:10.1241977Z ##[endgroup]
+2026-10-08T23:37:10.1242752Z ##[group]Operating System
+2026-10-08T23:37:10.1243098Z Microsoft Windows Server 2025
+2026-10-08T23:37:10.1243424Z 10.0.26100
+2026-10-08T23:37:10.1243696Z Datacenter
+2026-10-08T23:37:10.1243995Z ##[endgroup]
+2026-10-08T23:37:10.1244288Z ##[group]Runner Image
+2026-10-08T23:37:10.1244603Z Image: windows-2025-vs2026
+2026-10-08T23:37:10.1244969Z Version: 20260925.250.1
+2026-10-08T23:37:10.1245905Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260925.250/images/windows/Windows2025-VS2026-Readme.md
+2026-10-08T23:37:10.1247064Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260925.250
+2026-10-08T23:37:10.1247617Z ##[endgroup]
+2026-10-08T23:37:10.1248285Z ##[group]GITHUB_TOKEN Permissions
+2026-10-08T23:37:10.1249493Z Contents: read
+2026-10-08T23:37:10.1249843Z Metadata: read
+2026-10-08T23:37:10.1250132Z ##[endgroup]
+2026-10-08T23:37:10.1251628Z Secret source: Actions
+2026-10-08T23:37:10.1252090Z Cache mode: write
+2026-10-08T23:37:10.1252500Z Prepare workflow directory
+2026-10-08T23:37:10.1513182Z Prepare all required actions
+2026-10-08T23:37:10.1545837Z Getting action download info
+2026-10-08T23:37:10.3778842Z Download action repository 'actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+2026-10-08T23:37:10.6100762Z Complete job name: Host checks (windows-2025)
+2026-10-08T23:37:10.7628996Z ##[group]Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+2026-10-08T23:37:10.7630137Z with:
+2026-10-08T23:37:10.7630364Z   repository: nbobby07/astraeus
+2026-10-08T23:37:10.7632475Z   token: ***
+2026-10-08T23:37:10.7632687Z   ssh-strict: true
+2026-10-08T23:37:10.7632906Z   ssh-user: git
+2026-10-08T23:37:10.7633128Z   persist-credentials: true
+2026-10-08T23:37:10.7633369Z   clean: true
+2026-10-08T23:37:10.7633593Z   sparse-checkout-cone-mode: true
+2026-10-08T23:37:10.7633857Z   fetch-depth: 1
+2026-10-08T23:37:10.7634073Z   fetch-tags: false
+2026-10-08T23:37:10.7634300Z   show-progress: true
+2026-10-08T23:37:10.7634521Z   lfs: false
+2026-10-08T23:37:10.7634725Z   submodules: false
+2026-10-08T23:37:10.7634951Z   set-safe-directory: true
+2026-10-08T23:37:10.7635207Z   allow-unsafe-pr-checkout: false
+2026-10-08T23:37:10.7635585Z ##[endgroup]
+2026-10-08T23:37:10.8613758Z Syncing repository: nbobby07/astraeus
+2026-10-08T23:37:10.8614884Z ##[group]Getting Git version info
+2026-10-08T23:37:10.8615201Z Working directory is 'D:\a\astraeus\astraeus'
+2026-10-08T23:37:10.9148518Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-08T23:37:11.3189491Z git version 2.55.0.windows.5
+2026-10-08T23:37:11.3228708Z ##[endgroup]
+2026-10-08T23:37:11.3242701Z Temporarily overriding HOME='D:\a\_temp\1636e791-d32f-4951-b544-8bbd9034193e' before making global git config changes
+2026-10-08T23:37:11.3243491Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-08T23:37:11.3249726Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\astraeus\astraeus
+2026-10-08T23:37:11.4014634Z Deleting the contents of 'D:\a\astraeus\astraeus'
+2026-10-08T23:37:11.4019698Z ##[group]Determining repository object format
+2026-10-08T23:37:11.4021821Z ##[endgroup]
+2026-10-08T23:37:11.4022469Z ##[group]Initializing the repository
+2026-10-08T23:37:11.4028704Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\astraeus\astraeus
+2026-10-08T23:37:11.5040705Z Initialized empty Git repository in D:/a/astraeus/astraeus/.git/
+2026-10-08T23:37:11.5084226Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/nbobby07/astraeus
+2026-10-08T23:37:11.6021404Z ##[endgroup]
+2026-10-08T23:37:11.6022469Z ##[group]Disabling automatic garbage collection
+2026-10-08T23:37:11.6026988Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-08T23:37:11.6260929Z ##[endgroup]
+2026-10-08T23:37:11.6261914Z ##[group]Setting up auth
+2026-10-08T23:37:11.6262670Z Removing SSH command configuration
+2026-10-08T23:37:11.6270759Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-08T23:37:11.6509754Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-08T23:37:13.3522807Z Removing HTTP extra header
+2026-10-08T23:37:13.3530887Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-08T23:37:13.3750521Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-08T23:37:13.7765378Z Removing includeIf entries pointing to credentials config files
+2026-10-08T23:37:13.7774438Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-08T23:37:13.8013619Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-08T23:37:14.1999702Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-52923727-0222-4127-be56-bb428e50c333.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-08T23:37:14.2219690Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/astraeus/astraeus/.git.path D:\a\_temp\git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:37:14.2450929Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/astraeus/astraeus/.git/worktrees/*.path D:\a\_temp\git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:37:14.2743043Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:37:14.2983767Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:37:14.3214227Z ##[endgroup]
+2026-10-08T23:37:14.3214728Z ##[group]Fetching the repository
+2026-10-08T23:37:14.3227228Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +dd8d76d1b6bd5fb03128a7ef6e522fa7ab747238:refs/remotes/pull/6/merge
+2026-10-08T23:37:15.5695624Z From https://github.com/nbobby07/astraeus
+2026-10-08T23:37:15.5696175Z  * [new ref]         dd8d76d1b6bd5fb03128a7ef6e522fa7ab747238 -> pull/6/merge
+2026-10-08T23:37:15.5739490Z ##[endgroup]
+2026-10-08T23:37:15.5739781Z ##[group]Determining the checkout info
+2026-10-08T23:37:15.5740694Z ##[endgroup]
+2026-10-08T23:37:15.5750081Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-08T23:37:15.6317838Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-08T23:37:15.6538846Z ##[group]Checking out the ref
+2026-10-08T23:37:15.6546441Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/6/merge
+2026-10-08T23:37:15.7423067Z Note: switching to 'refs/remotes/pull/6/merge'.
+2026-10-08T23:37:15.7424617Z 
+2026-10-08T23:37:15.7424746Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-08T23:37:15.7425038Z changes and commit them, and you can discard any commits you make in this
+2026-10-08T23:37:15.7425298Z state without impacting any branches by switching back to a branch.
+2026-10-08T23:37:15.7425445Z 
+2026-10-08T23:37:15.7425554Z If you want to create a new branch to retain commits you create, you may
+2026-10-08T23:37:15.7425804Z do so (now or later) by using -c with the switch command. Example:
+2026-10-08T23:37:15.7425942Z 
+2026-10-08T23:37:15.7426063Z   git switch -c <new-branch-name>
+2026-10-08T23:37:15.7426165Z 
+2026-10-08T23:37:15.7426221Z Or undo this operation with:
+2026-10-08T23:37:15.7426311Z 
+2026-10-08T23:37:15.7426354Z   git switch -
+2026-10-08T23:37:15.7426422Z 
+2026-10-08T23:37:15.7426553Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-08T23:37:15.7426723Z 
+2026-10-08T23:37:15.7426997Z HEAD is now at dd8d76d Merge 6bf49cd6eda785f5665282ca76aa36d2a6319df0 into 6a8fda25d25df74215ed0bbe06b97804e053d950
+2026-10-08T23:37:15.7541721Z ##[endgroup]
+2026-10-08T23:37:15.7897700Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-08T23:37:15.8101822Z dd8d76d1b6bd5fb03128a7ef6e522fa7ab747238
+2026-10-08T23:37:15.8447846Z ##[group]Run rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy
+2026-10-08T23:37:15.8448379Z [36;1mrustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy[0m
+2026-10-08T23:37:15.9133983Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-08T23:37:15.9134260Z ##[endgroup]
+2026-10-08T23:37:17.0547367Z info: syncing channel updates for 1.96.0-x86_64-pc-windows-msvc
+2026-10-08T23:37:17.9083758Z info: latest update on 2026-05-28 for version 1.96.0 (ac68faa20 2026-05-25)
+2026-10-08T23:37:17.9201354Z info: downloading 5 components
+2026-10-08T23:37:26.5034552Z 
+2026-10-08T23:37:26.6631090Z   1.96.0-x86_64-pc-windows-msvc installed - rustc 1.96.0 (ac68faa20 2026-05-25)
+2026-10-08T23:37:26.6631327Z 
+2026-10-08T23:37:26.7976363Z ##[group]Run cargo +1.96.0 fmt --all --check
+2026-10-08T23:37:26.7976739Z [36;1mcargo +1.96.0 fmt --all --check[0m
+2026-10-08T23:37:26.8042494Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-08T23:37:26.8042721Z ##[endgroup]
+2026-10-08T23:37:30.6109155Z ##[group]Run cargo +1.96.0 test --workspace --locked
+2026-10-08T23:37:30.6109431Z [36;1mcargo +1.96.0 test --workspace --locked[0m
+2026-10-08T23:37:30.6155787Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-08T23:37:30.6155993Z ##[endgroup]
+2026-10-08T23:37:30.8821032Z     Updating crates.io index
+2026-10-08T23:37:31.5393084Z  Downloading crates ...
+2026-10-08T23:37:31.7451214Z   Downloaded bitflags v2.13.2
+2026-10-08T23:37:31.8654108Z   Downloaded serde_spanned v0.6.9
+2026-10-08T23:37:31.8721738Z   Downloaded generic-array v0.14.7
+2026-10-08T23:37:31.8868487Z   Downloaded version_check v0.9.5
+2026-10-08T23:37:31.8955823Z   Downloaded zmij v1.0.23
+2026-10-08T23:37:31.9095990Z   Downloaded toml v0.8.23
+2026-10-08T23:37:31.9304692Z   Downloaded unicode-ident v1.0.26
+2026-10-08T23:37:31.9613697Z   Downloaded toml_edit v0.22.27
+2026-10-08T23:37:31.9953129Z   Downloaded serde v1.0.229
+2026-10-08T23:37:32.0190581Z   Downloaded memchr v2.8.3
+2026-10-08T23:37:32.0529931Z   Downloaded typenum v1.20.1
+2026-10-08T23:37:32.0689522Z   Downloaded serde_json v1.0.151
+2026-10-08T23:37:32.1298760Z   Downloaded hashbrown v0.17.1
+2026-10-08T23:37:32.1809664Z   Downloaded winnow v0.7.15
+2026-10-08T23:37:32.2625946Z   Downloaded rusqlite v0.38.0
+2026-10-08T23:37:32.3364937Z   Downloaded indexmap v2.14.2
+2026-10-08T23:37:32.3636329Z   Downloaded cc v1.6.0
+2026-10-08T23:37:32.3924495Z   Downloaded vcpkg v0.2.15
+2026-10-08T23:37:32.8814566Z   Downloaded serde_derive v1.0.229
+2026-10-08T23:37:32.9402050Z   Downloaded serde_core v1.0.229
+2026-10-08T23:37:32.9602577Z   Downloaded syn v3.0.6
+2026-10-08T23:37:33.3471993Z   Downloaded hashbrown v0.16.1
+2026-10-08T23:37:33.3751530Z   Downloaded proc-macro2 v1.0.107
+2026-10-08T23:37:33.4022121Z   Downloaded smallvec v1.16.2
+2026-10-08T23:37:33.4097450Z   Downloaded hashlink v0.11.1
+2026-10-08T23:37:33.9494156Z   Downloaded foldhash v0.2.0
+2026-10-08T23:37:33.9599581Z   Downloaded find-msvc-tools v0.1.14
+2026-10-08T23:37:33.9707661Z   Downloaded fallible-iterator v0.3.0
+2026-10-08T23:37:33.9783811Z   Downloaded digest v0.10.7
+2026-10-08T23:37:33.9938771Z   Downloaded cpufeatures v0.2.17
+2026-10-08T23:37:34.0088880Z   Downloaded toml_datetime v0.6.11
+2026-10-08T23:37:34.0150731Z   Downloaded shlex v2.0.1
+2026-10-08T23:37:34.0260729Z   Downloaded sha2 v0.10.9
+2026-10-08T23:37:34.0475790Z   Downloaded quote v1.0.47
+2026-10-08T23:37:34.0706998Z   Downloaded pkg-config v0.3.34
+2026-10-08T23:37:34.1198673Z   Downloaded itoa v1.0.18
+2026-10-08T23:37:34.1326643Z   Downloaded toml_write v0.1.2
+2026-10-08T23:37:34.1405782Z   Downloaded fallible-streaming-iterator v0.1.9
+2026-10-08T23:37:34.1477657Z   Downloaded equivalent v1.0.2
+2026-10-08T23:37:34.1555328Z   Downloaded crypto-common v0.1.7
+2026-10-08T23:37:34.1620401Z   Downloaded cfg-if v1.0.5
+2026-10-08T23:37:34.1737531Z   Downloaded block-buffer v0.10.4
+2026-10-08T23:37:34.1976913Z   Downloaded libsqlite3-sys v0.36.0
+2026-10-08T23:37:34.3622755Z    Compiling proc-macro2 v1.0.107
+2026-10-08T23:37:34.3623125Z    Compiling quote v1.0.47
+2026-10-08T23:37:34.3623334Z    Compiling unicode-ident v1.0.26
+2026-10-08T23:37:34.3623563Z    Compiling serde_core v1.0.229
+2026-10-08T23:37:34.4542758Z    Compiling serde v1.0.229
+2026-10-08T23:37:36.8944963Z    Compiling version_check v0.9.5
+2026-10-08T23:37:36.8963914Z    Compiling zmij v1.0.23
+2026-10-08T23:37:37.1573648Z    Compiling find-msvc-tools v0.1.14
+2026-10-08T23:37:37.2040910Z    Compiling generic-array v0.14.7
+2026-10-08T23:37:37.4106404Z    Compiling shlex v2.0.1
+2026-10-08T23:37:37.8052096Z    Compiling syn v3.0.6
+2026-10-08T23:37:37.8698640Z    Compiling typenum v1.20.1
+2026-10-08T23:37:38.1211517Z    Compiling serde_json v1.0.151
+2026-10-08T23:37:38.3140730Z    Compiling cc v1.6.0
+2026-10-08T23:37:39.4990834Z    Compiling vcpkg v0.2.15
+2026-10-08T23:37:39.7711652Z    Compiling pkg-config v0.3.34
+2026-10-08T23:37:40.1613952Z    Compiling memchr v2.8.3
+2026-10-08T23:37:40.2251756Z    Compiling itoa v1.0.18
+2026-10-08T23:37:40.3069626Z    Compiling libsqlite3-sys v0.36.0
+2026-10-08T23:37:40.3867165Z    Compiling foldhash v0.2.0
+2026-10-08T23:37:40.4332243Z    Compiling serde_derive v1.0.229
+2026-10-08T23:37:40.5336664Z    Compiling hashbrown v0.16.1
+2026-10-08T23:37:41.1348321Z    Compiling crypto-common v0.1.7
+2026-10-08T23:37:41.2083798Z    Compiling block-buffer v0.10.4
+2026-10-08T23:37:41.3013022Z    Compiling hashbrown v0.17.1
+2026-10-08T23:37:41.8433837Z    Compiling equivalent v1.0.2
+2026-10-08T23:37:41.8908756Z    Compiling indexmap v2.14.2
+2026-10-08T23:37:42.1147201Z    Compiling digest v0.10.7
+2026-10-08T23:37:42.2552502Z    Compiling hashlink v0.11.1
+2026-10-08T23:37:42.4860073Z    Compiling winnow v0.7.15
+2026-10-08T23:37:42.5084974Z    Compiling fallible-streaming-iterator v0.1.9
+2026-10-08T23:37:42.6035389Z    Compiling smallvec v1.16.2
+2026-10-08T23:37:42.7695626Z    Compiling cpufeatures v0.2.17
+2026-10-08T23:37:42.8571686Z    Compiling cfg-if v1.0.5
+2026-10-08T23:37:42.8964980Z    Compiling bitflags v2.13.2
+2026-10-08T23:37:43.0785428Z    Compiling fallible-iterator v0.3.0
+2026-10-08T23:37:43.3639522Z    Compiling toml_write v0.1.2
+2026-10-08T23:37:43.4944633Z    Compiling sha2 v0.10.9
+2026-10-08T23:37:44.0850447Z    Compiling serde_spanned v0.6.9
+2026-10-08T23:37:44.1389367Z    Compiling distro-snapshots v0.1.0-dev (D:\a\astraeus\astraeus\crates\snapshots)
+2026-10-08T23:37:44.1490628Z    Compiling toml_datetime v0.6.11
+2026-10-08T23:37:44.1804714Z    Compiling distro-hardware v0.1.0-dev (D:\a\astraeus\astraeus\crates\hardware)
+2026-10-08T23:37:44.3853223Z    Compiling toml_edit v0.22.27
+2026-10-08T23:37:47.6803487Z    Compiling toml v0.8.23
+2026-10-08T23:37:48.0622119Z    Compiling rusqlite v0.38.0
+2026-10-08T23:37:48.5804926Z    Compiling distro-config v0.1.0-dev (D:\a\astraeus\astraeus\crates\config)
+2026-10-08T23:37:49.3004626Z    Compiling distro-transactions v0.1.0-dev (D:\a\astraeus\astraeus\crates\transactions)
+2026-10-08T23:37:50.8306543Z    Compiling distroctl v0.1.0-dev (D:\a\astraeus\astraeus\crates\distroctl)
+2026-10-08T23:37:55.8503285Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 25.01s
+2026-10-08T23:37:55.8640093Z      Running unittests src\lib.rs (target\debug\deps\distro_config-2fcabd7c45c60cd9.exe)
+2026-10-08T23:37:55.8720978Z 
+2026-10-08T23:37:55.8721386Z running 1 test
+2026-10-08T23:37:55.8741775Z test tests::metadata_rejects_invalid_inputs ... ok
+2026-10-08T23:37:55.8741940Z 
+2026-10-08T23:37:55.8742089Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:37:55.8742394Z 
+2026-10-08T23:37:55.8757288Z      Running unittests src\lib.rs (target\debug\deps\distro_hardware-da5473bf2219f876.exe)
+2026-10-08T23:37:55.8832814Z 
+2026-10-08T23:37:55.8833047Z running 8 tests
+2026-10-08T23:37:55.8838336Z test tests::memory_parsing_preserves_bytes_and_rejects_overflow_and_wrong_units ... ok
+2026-10-08T23:37:55.8839796Z test tests::cpu_parsing_counts_socket_core_pairs_and_partial_topology ... ok
+2026-10-08T23:37:55.8914221Z test tests::firmware_fixture_distinguishes_uefi_legacy_and_unavailable ... ok
+2026-10-08T23:37:55.8917543Z test tests::storage_transports_and_malformed_capacity ... ok
+2026-10-08T23:37:55.8947295Z test tests::missing_empty_malformed_and_io_errors_are_separate ... ok
+2026-10-08T23:37:55.8956743Z test tests::storage_fixture_follows_partition_parent_without_slaves ... ok
+2026-10-08T23:37:55.8961777Z test tests::vm_fallbacks_do_not_guess_physical_hardware_or_generic_dmi ... ok
+2026-10-08T23:37:55.9039914Z test tests::gpu_fixture_identifies_vendors_models_and_keeps_incomplete_devices ... ok
+2026-10-08T23:37:55.9040158Z 
+2026-10-08T23:37:55.9040308Z test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+2026-10-08T23:37:55.9040495Z 
+2026-10-08T23:37:55.9057069Z      Running unittests src\lib.rs (target\debug\deps\distro_snapshots-d02991558da331e3.exe)
+2026-10-08T23:37:55.9130408Z 
+2026-10-08T23:37:55.9131733Z running 27 tests
+2026-10-08T23:37:55.9136713Z test generations::tests::preferred_respects_assessment_default_preserves_fallback ... ok
+2026-10-08T23:37:55.9137947Z test generations::tests::upstream_counter_transitions_and_exhaustion ... ok
+2026-10-08T23:37:56.7039477Z test system::tests::encrypted_roots_bind_mapper_filesystem_and_luks_header ... ok
+2026-10-08T23:37:58.1215832Z test system::tests::corruption_fstab_and_mount_conflicts_block_execution ... ok
+2026-10-08T23:37:58.1462529Z test system::tests::full_lifecycle_keeps_persistent_data_and_boot_evidence ... ok
+2026-10-08T23:37:59.6592536Z test system::tests::generation_tests::baseline_cannot_promote_a_maintenance_initrd_that_was_not_booted ... ok
+2026-10-08T23:37:59.6596136Z test system::tests::generation_tests::candidate_and_independent_prior_remain_coherent ... ok
+2026-10-08T23:38:01.0617397Z test system::tests::generation_tests::encrypted_generation_keeps_unlock_mapping_but_changes_root_selection ... ok
+2026-10-08T23:38:01.1128204Z test system::tests::generation_tests::exhausted_candidate_cannot_be_rearmed_but_last_attempt_can_be_blessed ... ok
+2026-10-08T23:38:02.1026332Z test system::tests::each_rollback_durability_boundary_preserves_a_root_and_blocks_retry ... ok
+2026-10-08T23:38:08.6408849Z test system::tests::generation_tests::blessing_refuses_wrong_entry_esp_counter_root_or_cmdline ... ok
+2026-10-08T23:38:09.4042574Z test system::tests::generation_tests::missing_root_uki_wrong_pair_and_invalid_metadata_fail_closed ... ok
+2026-10-08T23:38:10.3676587Z test system::tests::generation_tests::offline_rollback_retires_generation_selection_only_after_restoring_pair ... ok
+2026-10-08T23:38:10.7377828Z test system::tests::generation_tests::retained_boot_is_a_recovery_session_and_never_an_update_root ... ok
+2026-10-08T23:38:11.8097653Z test system::tests::interrupted_mutations_leave_a_durable_blocker ... ok
+2026-10-08T23:38:12.0406559Z test system::tests::nested_esp_mounts_are_rejected_online_and_offline ... ok
+2026-10-08T23:38:12.2855124Z test system::tests::online_discovery_and_unprivileged_catalog_do_not_call_btrfs ... ok
+2026-10-08T23:38:12.3298853Z test system::tests::online_layout_rejects_unprotected_package_mounts ... ok
+2026-10-08T23:38:13.0710486Z test system::tests::planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots ... ok
+2026-10-08T23:38:13.0783879Z test system::tests::generation_tests::unmanaged_entries_and_unfinished_selection_are_not_accepted ... ok
+2026-10-08T23:38:13.3033295Z test system::tests::wrong_layout_missing_tools_metadata_and_targets_fail_closed ... ok
+2026-10-08T23:38:13.3036015Z test tests::boot_identity_allows_only_systemd_detected_console_suffixes ... ok
+2026-10-08T23:38:13.3037768Z test tests::btrfs_identity_parser_fails_closed ... ok
+2026-10-08T23:38:13.3042401Z test tests::identifiers_and_pe_are_checked_at_the_boundary ... ok
+2026-10-08T23:38:13.3276855Z test system::tests::unfinished_health_change_blocks_all_mutation_and_rollback_planning ... ok
+2026-10-08T23:38:32.9368990Z test system::tests::generation_tests::first_activation_interruption_keeps_original_and_retained_boot_material ... ok
+2026-10-08T23:38:56.2864956Z test system::tests::generation_tests::interruption_at_every_staging_and_activation_command_preserves_prior ... ok
+2026-10-08T23:38:56.2865261Z 
+2026-10-08T23:38:56.2865418Z test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 60.37s
+2026-10-08T23:38:56.2865614Z 
+2026-10-08T23:38:56.2883750Z      Running unittests src\lib.rs (target\debug\deps\distro_transactions-48f667fa8f5213f4.exe)
+2026-10-08T23:38:56.2959699Z 
+2026-10-08T23:38:56.2959925Z running 28 tests
+2026-10-08T23:38:56.2965086Z test tests::disk_checks_reject_shortfall_and_overflow ... ok
+2026-10-08T23:38:56.2972298Z test tests::boot_refresh_only_reads_matching_installed_loader_copies ... ok
+2026-10-08T23:38:58.5073522Z test tests::execution_order_and_boot_confirmation_boundary ... ok
+2026-10-08T23:38:59.9036825Z test tests::confirmation_requires_new_boot_matching_generation_and_fresh_health ... ok
+2026-10-08T23:39:00.7072892Z test tests::generation_tests::activation_failure_keeps_both_snapshots_and_requires_recovery ... ok
+2026-10-08T23:39:01.1762505Z test tests::generation_tests::fallback_evidence_is_idempotent_and_does_not_claim_restoration_or_success ... ok
+2026-10-08T23:39:01.1766220Z test tests::generation_tests::generation_references_reject_missing_stale_wrong_and_unhealthy_records ... ok
+2026-10-08T23:39:01.1767603Z test tests::health_distinguishes_failure_warning_and_unavailable ... ok
+2026-10-08T23:39:01.2436179Z test tests::generation_tests::baseline_publication_failure_has_durable_recovery_reference_before_packages ... ok
+2026-10-08T23:39:01.5779763Z test tests::history_is_read_only_versioned_and_lock_is_exclusive ... ok
+2026-10-08T23:39:01.5786027Z test tests::managed_health_rejects_unknown_or_failed_artifact_trust ... ok
+2026-10-08T23:39:02.1110548Z test tests::missing_snapshots_prevents_all_package_work ... ok
+2026-10-08T23:39:02.7018093Z test tests::no_op_needs_no_snapshot_or_package_mutation ... ok
+2026-10-08T23:39:04.9685043Z test tests::interrupted_transactions_are_recovered_without_replay ... ok
+2026-10-08T23:39:04.9695385Z test tests::pacman_keeps_signature_policy_and_native_dependency_reasons ... ok
+2026-10-08T23:39:04.9697349Z test tests::pacman_machine_output_rejects_ambiguity ... ok
+2026-10-08T23:39:04.9700158Z test tests::plan_validation_and_removal_state_are_consistent ... ok
+2026-10-08T23:39:04.9703218Z test tests::planner_resolves_real_fields_and_propagates_command_errors ... ok
+2026-10-08T23:39:05.2532142Z test tests::cancellation_at_every_boundary_never_succeeds ... ok
+2026-10-08T23:39:05.2970738Z test tests::old_updater_writes_survive_root_rollback_and_divergence_is_preserved ... ok
+2026-10-08T23:39:05.2973789Z test tests::rollback_planning_rejects_targets_that_confirmation_cannot_finalize ... ok
+2026-10-08T23:39:06.4888105Z test tests::post_snapshot_failure_retains_pre_snapshot_and_requires_rollback ... ok
+2026-10-08T23:39:06.4890306Z test tests::state_machine_rejects_skipped_and_terminal_transitions ... ok
+2026-10-08T23:39:06.4892985Z test tests::system_checks_distinguish_missing_tool_and_failed_check ... ok
+2026-10-08T23:39:06.8686880Z test tests::systemd_or_loader_mutation_rejects_the_entire_plan_before_execution ... ok
+2026-10-08T23:39:07.5135928Z test tests::stale_confirmation_and_missing_post_snapshot_fail_closed ... ok
+2026-10-08T23:39:07.5809110Z test tests::published_history_migrates_and_recovers_failed_publication ... ok
+2026-10-08T23:39:07.5815105Z test tests::failure_matrix_is_durable_and_stops_at_the_failing_phase ... ok
+2026-10-08T23:39:07.5815647Z 
+2026-10-08T23:39:07.5815943Z test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 11.29s
+2026-10-08T23:39:07.5816263Z 
+2026-10-08T23:39:07.5838364Z      Running tests\permissions.rs (target\debug\deps\permissions-8c30ecd0f14c2ee5.exe)
+2026-10-08T23:39:07.5912918Z 
+2026-10-08T23:39:07.5913175Z running 0 tests
+2026-10-08T23:39:07.5913385Z 
+2026-10-08T23:39:07.5913867Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:39:07.5914168Z 
+2026-10-08T23:39:07.5926019Z      Running unittests src\lib.rs (target\debug\deps\distroctl-eef260649ad0bcbe.exe)
+2026-10-08T23:39:07.5992113Z 
+2026-10-08T23:39:07.5992232Z running 4 tests
+2026-10-08T23:39:07.6000755Z test updates::confirmation_tests::automatic_confirmation_leaves_restoration_pending ... ok
+2026-10-08T23:39:07.6004120Z test tests::parse_observations_without_inventing_status ... ok
+2026-10-08T23:39:07.6004857Z test tests::formatting_and_json_share_normalized_hardware ... ok
+2026-10-08T23:39:07.6101544Z test tests::fixture_detects_encrypted_and_plain_root_and_running_uki ... ok
+2026-10-08T23:39:07.6101855Z 
+2026-10-08T23:39:07.6102011Z test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+2026-10-08T23:39:07.6102203Z 
+2026-10-08T23:39:07.6115816Z      Running unittests src\main.rs (target\debug\deps\distroctl-2400256cba8297b5.exe)
+2026-10-08T23:39:07.6180325Z 
+2026-10-08T23:39:07.6180654Z running 0 tests
+2026-10-08T23:39:07.6180811Z 
+2026-10-08T23:39:07.6181167Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:39:07.6181370Z 
+2026-10-08T23:39:07.6192171Z      Running tests\cli.rs (target\debug\deps\cli-9f5656c7ffb18818.exe)
+2026-10-08T23:39:07.6255923Z 
+2026-10-08T23:39:07.6256060Z running 4 tests
+2026-10-08T23:39:07.6367220Z test history_json_does_not_create_a_database ... ok
+2026-10-08T23:39:07.6379580Z test security_status_does_not_invent_success_without_the_installed_helper ... ok
+2026-10-08T23:39:07.6905534Z test dry_run_and_history_share_structured_models ... ok
+2026-10-08T23:39:07.7689455Z test cli_contract ... ok
+2026-10-08T23:39:07.7689626Z 
+2026-10-08T23:39:07.7689790Z test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+2026-10-08T23:39:07.7689990Z 
+2026-10-08T23:39:07.7703640Z    Doc-tests distro_config
+2026-10-08T23:39:07.8100780Z 
+2026-10-08T23:39:07.8101261Z running 0 tests
+2026-10-08T23:39:07.8101511Z 
+2026-10-08T23:39:07.8102012Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:39:07.8102321Z 
+2026-10-08T23:39:07.8163897Z    Doc-tests distro_hardware
+2026-10-08T23:39:07.8524610Z 
+2026-10-08T23:39:07.8525020Z running 0 tests
+2026-10-08T23:39:07.8525301Z 
+2026-10-08T23:39:07.8525651Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:39:07.8526277Z 
+2026-10-08T23:39:07.8587811Z    Doc-tests distro_snapshots
+2026-10-08T23:39:07.9410062Z 
+2026-10-08T23:39:07.9410367Z running 0 tests
+2026-10-08T23:39:07.9410506Z 
+2026-10-08T23:39:07.9410886Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:39:07.9411086Z 
+2026-10-08T23:39:07.9486331Z    Doc-tests distro_transactions
+2026-10-08T23:39:08.0367099Z 
+2026-10-08T23:39:08.0367583Z running 0 tests
+2026-10-08T23:39:08.0370003Z 
+2026-10-08T23:39:08.0370912Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:39:08.0371268Z 
+2026-10-08T23:39:08.0443273Z    Doc-tests distroctl
+2026-10-08T23:39:08.0880410Z 
+2026-10-08T23:39:08.0880930Z running 0 tests
+2026-10-08T23:39:08.0881091Z 
+2026-10-08T23:39:08.0881345Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-10-08T23:39:08.0881653Z 
+2026-10-08T23:39:08.1775335Z ##[group]Run cargo +1.96.0 clippy --workspace --all-targets --locked -- -D warnings
+2026-10-08T23:39:08.1775731Z [36;1mcargo +1.96.0 clippy --workspace --all-targets --locked -- -D warnings[0m
+2026-10-08T23:39:08.1833068Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-08T23:39:08.1833411Z ##[endgroup]
+2026-10-08T23:39:09.2313172Z     Checking serde_core v1.0.229
+2026-10-08T23:39:09.2317369Z     Checking typenum v1.20.1
+2026-10-08T23:39:09.2321643Z     Checking zmij v1.0.23
+2026-10-08T23:39:09.2322616Z     Checking foldhash v0.2.0
+2026-10-08T23:39:09.3410421Z     Checking memchr v2.8.3
+2026-10-08T23:39:09.4279941Z     Checking itoa v1.0.18
+2026-10-08T23:39:09.5159972Z     Checking hashbrown v0.16.1
+2026-10-08T23:39:09.6860288Z     Checking hashbrown v0.17.1
+2026-10-08T23:39:09.9504330Z     Checking equivalent v1.0.2
+2026-10-08T23:39:09.9992793Z     Checking hashlink v0.11.1
+2026-10-08T23:39:10.0365130Z     Checking generic-array v0.14.7
+2026-10-08T23:39:10.1405146Z     Checking indexmap v2.14.2
+2026-10-08T23:39:10.2112961Z     Checking libsqlite3-sys v0.36.0
+2026-10-08T23:39:10.3388550Z     Checking cfg-if v1.0.5
+2026-10-08T23:39:10.3862790Z     Checking winnow v0.7.15
+2026-10-08T23:39:10.4911663Z     Checking block-buffer v0.10.4
+2026-10-08T23:39:10.5693764Z     Checking crypto-common v0.1.7
+2026-10-08T23:39:10.6359008Z     Checking digest v0.10.7
+2026-10-08T23:39:10.6549197Z     Checking cpufeatures v0.2.17
+2026-10-08T23:39:10.7129829Z     Checking bitflags v2.13.2
+2026-10-08T23:39:10.7805066Z     Checking toml_write v0.1.2
+2026-10-08T23:39:10.8178075Z     Checking fallible-streaming-iterator v0.1.9
+2026-10-08T23:39:10.8883698Z     Checking fallible-iterator v0.3.0
+2026-10-08T23:39:10.9028265Z     Checking smallvec v1.16.2
+2026-10-08T23:39:10.9928276Z     Checking serde v1.0.229
+2026-10-08T23:39:11.0721916Z     Checking serde_json v1.0.151
+2026-10-08T23:39:11.1266236Z     Checking rusqlite v0.38.0
+2026-10-08T23:39:11.3854076Z     Checking toml_datetime v0.6.11
+2026-10-08T23:39:11.5244162Z     Checking serde_spanned v0.6.9
+2026-10-08T23:39:11.5975530Z     Checking sha2 v0.10.9
+2026-10-08T23:39:11.6983690Z     Checking distro-snapshots v0.1.0-dev (D:\a\astraeus\astraeus\crates\snapshots)
+2026-10-08T23:39:11.7642438Z     Checking toml_edit v0.22.27
+2026-10-08T23:39:11.8099631Z     Checking distro-hardware v0.1.0-dev (D:\a\astraeus\astraeus\crates\hardware)
+2026-10-08T23:39:12.7763390Z     Checking distro-transactions v0.1.0-dev (D:\a\astraeus\astraeus\crates\transactions)
+2026-10-08T23:39:13.0113229Z     Checking toml v0.8.23
+2026-10-08T23:39:13.2725137Z     Checking distro-config v0.1.0-dev (D:\a\astraeus\astraeus\crates\config)
+2026-10-08T23:39:13.6085204Z     Checking distroctl v0.1.0-dev (D:\a\astraeus\astraeus\crates\distroctl)
+2026-10-08T23:39:13.9666605Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.83s
+2026-10-08T23:39:14.0908225Z ##[group]Run python -m unittest discover -s tests -v
+2026-10-08T23:39:14.0908484Z [36;1mpython -m unittest discover -s tests -v[0m
+2026-10-08T23:39:14.0956262Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-08T23:39:14.0956464Z ##[endgroup]
+2026-10-08T23:39:16.9889847Z test_acceleration_is_explicit_and_never_falls_back (test_boot_smoke.AccelerationTests.test_acceleration_is_explicit_and_never_falls_back) ... ok
+2026-10-08T23:39:17.8060643Z test_archive_download_rejects_declared_streamed_and_slow_responses (test_bootstrap.BootstrapTests.test_archive_download_rejects_declared_streamed_and_slow_responses) ... ok
+2026-10-08T23:39:17.8210249Z test_archive_retains_only_verified_bytes_and_checks_consumed_hash (test_bootstrap.BootstrapTests.test_archive_retains_only_verified_bytes_and_checks_consumed_hash) ... ok
+2026-10-08T23:39:17.9733440Z test_package_archive_contains_generation_gate_and_recovery_guide (test_bootstrap.BootstrapTests.test_package_archive_contains_generation_gate_and_recovery_guide) ... ok
+2026-10-08T23:39:17.9734613Z test_pacman_resolves_both_roots_from_verified_local_metadata (test_bootstrap.BootstrapTests.test_pacman_resolves_both_roots_from_verified_local_metadata) ... skipped 'requires Linux pacman as root for isolated database sync'
+2026-10-08T23:39:17.9735813Z test_profile_generation_and_fingerprint_rejection (test_bootstrap.BootstrapTests.test_profile_generation_and_fingerprint_rejection) ... skipped 'profile staging needs Linux symlinks'
+2026-10-08T23:39:18.0050986Z test_source_archive_is_deterministic_and_refuses_reuse (test_bootstrap.BootstrapTests.test_source_archive_is_deterministic_and_refuses_reuse) ... ok
+2026-10-08T23:39:18.0075924Z test_templates_and_live_contract (test_bootstrap.BootstrapTests.test_templates_and_live_contract) ... ok
+2026-10-08T23:39:18.0076746Z test_interruption_cannot_be_recorded_as_success (test_builder_signals.BuilderSignalTests.test_interruption_cannot_be_recorded_as_success) ... skipped 'requires Bash signal handling'
+2026-10-08T23:39:18.0077927Z test_conventional_subject_and_limits (test_commit_subject.CommitSubjectTests.test_conventional_subject_and_limits) ... ok
+2026-10-08T23:39:18.0239884Z test_generated_profile_and_account_boundary (test_installer.InstallerTests.test_generated_profile_and_account_boundary) ... ok
+2026-10-08T23:39:18.0240817Z test_installed_boot_detaches_iso_and_preserves_disk_and_firmware (test_installer.InstallerTests.test_installed_boot_detaches_iso_and_preserves_disk_and_firmware) ... ok
+2026-10-08T23:39:18.0243197Z test_installer_storage_check_cannot_be_silently_disabled (test_installer.InstallerTests.test_installer_storage_check_cannot_be_silently_disabled) ... ok
+2026-10-08T23:39:18.0247408Z test_kernel_parameters_and_uki_inputs (test_installer.InstallerTests.test_kernel_parameters_and_uki_inputs) ... ok
+2026-10-08T23:39:18.0274788Z test_malformed_configuration_rejected (test_installer.InstallerTests.test_malformed_configuration_rejected) ... ok
+2026-10-08T23:39:18.0275882Z test_payload_does_not_clone_live_accounts_or_boot_workarounds (test_installer.InstallerTests.test_payload_does_not_clone_live_accounts_or_boot_workarounds) ... skipped 'payload staging needs Unix symlinks'
+2026-10-08T23:39:18.0291861Z test_secure_boot_guard_aborts_before_installer_writes (test_installer.InstallerTests.test_secure_boot_guard_aborts_before_installer_writes) ... ok
+2026-10-08T23:39:18.0293227Z test_acceptance_requires_an_exact_complete_line (test_phase2_validation.ValidationTests.test_acceptance_requires_an_exact_complete_line) ... ok
+2026-10-08T23:39:18.0419660Z test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset (test_phase2_validation.ValidationTests.test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset) ... ok
+2026-10-08T23:39:18.0442372Z test_clone_uses_backing_disk_and_copies_vars (test_phase2_validation.ValidationTests.test_clone_uses_backing_disk_and_copies_vars) ... ok
+2026-10-08T23:39:18.0472371Z Verified both database hashes and 1 upstream package names.
+2026-10-08T23:39:18.0472997Z Prepared C:\Users\runneradmin\AppData\Local\Temp\tmpeoec92cq\package. Run makepkg as a non-root user in the pinned Arch builder.
+2026-10-08T23:39:18.0473878Z Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+2026-10-08T23:39:18.0481815Z Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+2026-10-08T23:39:18.0484383Z test_complete_success_and_rollback_scenarios_reject_lost_home_data (test_phase2_validation.ValidationTests.test_complete_success_and_rollback_scenarios_reject_lost_home_data) ... ok
+2026-10-08T23:39:18.0488183Z test_confirmation_waits_for_service_and_preserves_job_failure (test_phase2_validation.ValidationTests.test_confirmation_waits_for_service_and_preserves_job_failure) ... ok
+2026-10-08T23:39:18.0508667Z test_corrupt_or_unaccepted_baseline_refused_before_cloning (test_phase2_validation.ValidationTests.test_corrupt_or_unaccepted_baseline_refused_before_cloning) ... ok
+2026-10-08T23:39:18.0509514Z test_failed_probe_cannot_be_used_as_evidence (test_phase2_validation.ValidationTests.test_failed_probe_cannot_be_used_as_evidence) ... ok
+2026-10-08T23:39:18.0510299Z test_guest_exit_timeout_output_limit_and_pipeline_failure (test_phase2_validation.ValidationTests.test_guest_exit_timeout_output_limit_and_pipeline_failure) ... skipped 'guest execution requires Linux process groups and Bash'
+2026-10-08T23:39:18.0552072Z test_interruption_requires_package_mutation_before_power_cut (test_phase2_validation.ValidationTests.test_interruption_requires_package_mutation_before_power_cut) ... ok
+2026-10-08T23:39:18.0560115Z QMP: C:\Users\RUNNER~1\AppData\Local\Temp\tmpl1hki1t4\boot-1\qmp.sock
+2026-10-08T23:39:18.0570845Z test_launch_is_foreground_disk_only_and_readonly_share (test_phase2_validation.ValidationTests.test_launch_is_foreground_disk_only_and_readonly_share) ... ok
+2026-10-08T23:39:18.0583779Z test_observation_keeps_other_artifacts_when_one_command_fails (test_phase2_validation.ValidationTests.test_observation_keeps_other_artifacts_when_one_command_fails) ... ok
+2026-10-08T23:39:18.0585785Z test_package_mismatch_and_outcome_disagreement_fail (test_phase2_validation.ValidationTests.test_package_mismatch_and_outcome_disagreement_fail) ... ok
+2026-10-08T23:39:18.0587137Z test_qmp_events_and_deadline (test_phase2_validation.ValidationTests.test_qmp_events_and_deadline) ... ok
+2026-10-08T23:39:18.0588126Z test_qmp_handshake_and_command_through_real_socket (test_phase2_validation.ValidationTests.test_qmp_handshake_and_command_through_real_socket) ... skipped 'Unix socket integration runs on Linux'
+2026-10-08T23:39:18.0598330Z test_ready_guest_shutdown_avoids_desktop_power_dialog (test_phase2_validation.ValidationTests.test_ready_guest_shutdown_avoids_desktop_power_dialog) ... ok
+2026-10-08T23:39:18.2602905Z test_ready_timeout_never_passes (test_phase2_validation.ValidationTests.test_ready_timeout_never_passes) ... ok
+2026-10-08T23:39:18.2603643Z test_real_guest_channel_correlates_reply_and_preserves_failure_output (test_phase2_validation.ValidationTests.test_real_guest_channel_correlates_reply_and_preserves_failure_output) ... skipped 'Unix socket integration runs on Linux'
+2026-10-08T23:39:18.2605472Z test_real_qcow2_overlay_and_baseline_hash (test_phase2_validation.ValidationTests.test_real_qcow2_overlay_and_baseline_hash) ... skipped 'optional real qcow2 test needs qemu-img'
+2026-10-08T23:39:18.2606023Z test_reboot_requires_new_boot_identity (test_phase2_validation.ValidationTests.test_reboot_requires_new_boot_identity) ... ok
+2026-10-08T23:39:18.2623178Z test_shutdown_timeout_and_cleanup_target_only_owned_process (test_phase2_validation.ValidationTests.test_shutdown_timeout_and_cleanup_target_only_owned_process) ... ok
+2026-10-08T23:39:18.2629267Z test_snapshot_and_transaction_gates_reject_false_success (test_phase2_validation.ValidationTests.test_snapshot_and_transaction_gates_reject_false_success) ... ok
+2026-10-08T23:39:18.2631113Z test_space_fault_uses_runtime_mount_and_restores_original_cache (test_phase2_validation.ValidationTests.test_space_fault_uses_runtime_mount_and_restores_original_cache) ... skipped 'requires POSIX cache symlinks'
+2026-10-08T23:39:18.2632433Z test_terminal_transaction_requires_actual_uki_and_boot_evidence (test_phase2_validation.ValidationTests.test_terminal_transaction_requires_actual_uki_and_boot_evidence) ... ok
+2026-10-08T23:39:18.2633253Z test_timeout_kills_the_child_group_before_delayed_side_effect (test_phase2_validation.ValidationTests.test_timeout_kills_the_child_group_before_delayed_side_effect) ... skipped 'guest process cleanup uses Linux process groups'
+2026-10-08T23:39:18.2679432Z test_changed_baseline_or_firmware_is_refused (test_phase3_validation.Phase3Tests.test_changed_baseline_or_firmware_is_refused) ... ok
+2026-10-08T23:39:18.2682321Z test_disabled_enforcement_wrong_keys_and_replayed_markers_fail (test_phase3_validation.Phase3Tests.test_disabled_enforcement_wrong_keys_and_replayed_markers_fail) ... ok
+2026-10-08T23:39:18.2735989Z test_faults_are_guarded_and_record_exact_artifact_changes (test_phase3_validation.Phase3Tests.test_faults_are_guarded_and_record_exact_artifact_changes) ... ok
+2026-10-08T23:39:18.2738000Z test_guard_refusal_prevents_artifact_access (test_phase3_validation.Phase3Tests.test_guard_refusal_prevents_artifact_access) ... ok
+2026-10-08T23:39:18.2756054Z test_host_command_records_actual_failure_and_timeout (test_phase3_validation.Phase3Tests.test_host_command_records_actual_failure_and_timeout) ... ok
+2026-10-08T23:39:18.2763969Z QMP: C:\Users\RUNNER~1\AppData\Local\Temp\tmpcvhtxvec\boot-1\qmp.sock
+2026-10-08T23:39:18.2773777Z test_launch_reuses_harness_and_enforces_smm_and_flash (test_phase3_validation.Phase3Tests.test_launch_reuses_harness_and_enforces_smm_and_flash) ... ok
+2026-10-08T23:39:18.2775286Z test_load_only_probe_cannot_claim_payload_execution (test_phase3_validation.Phase3Tests.test_load_only_probe_cannot_claim_payload_execution) ... ok
+2026-10-08T23:39:18.2792945Z test_power_cut_requires_matching_blocked_product_barrier_and_records_exit (test_phase3_validation.Phase3Tests.test_power_cut_requires_matching_blocked_product_barrier_and_records_exit) ... ok
+2026-10-08T23:39:18.2796159Z test_real_refusal_predicate_requires_status_and_authentication_record (test_phase3_validation.Phase3Tests.test_real_refusal_predicate_requires_status_and_authentication_record) ... ok
+2026-10-08T23:39:18.2797217Z test_signature_list_rejects_extra_trust_and_malformed_lengths (test_phase3_validation.Phase3Tests.test_signature_list_rejects_extra_trust_and_malformed_lengths) ... ok
+2026-10-08T23:39:18.2802300Z test_tampering_changes_section_bytes_and_retains_pe_structure (test_phase3_validation.Phase3Tests.test_tampering_changes_section_bytes_and_retains_pe_structure) ... ok
+2026-10-08T23:39:18.2803458Z test_events_cannot_be_mistaken_for_command_success (test_qmp.QmpTests.test_events_cannot_be_mistaken_for_command_success) ... ok
+2026-10-08T23:39:18.3210169Z test_stdin_text_is_validated_without_echoing_the_input (test_qmp.QmpTests.test_stdin_text_is_validated_without_echoing_the_input) ... ok
+2026-10-08T23:39:18.3211199Z test_text_is_validated_before_sending_any_keys (test_qmp.QmpTests.test_text_is_validated_before_sending_any_keys) ... ok
+2026-10-08T23:39:18.3212296Z test_cache_and_build_time_do_not_change_image_bytes (test_reproducibility.ImageDeterminismTests.test_cache_and_build_time_do_not_change_image_bytes) ... skipped 'requires Linux image tools'
+2026-10-08T23:39:18.3213764Z test_coordinator_recognizes_locks_on_a_real_btrfs_subvolume (test_secure_boot.NativeSigningTests.test_coordinator_recognizes_locks_on_a_real_btrfs_subvolume) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3215425Z test_coordinator_requires_both_parent_locks_and_generation_verification (test_secure_boot.NativeSigningTests.test_coordinator_requires_both_parent_locks_and_generation_verification) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3217209Z test_expired_certificate_is_rejected_by_openssl (test_secure_boot.NativeSigningTests.test_expired_certificate_is_rejected_by_openssl) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3218726Z test_invalid_signer_output_never_becomes_ready (test_secure_boot.NativeSigningTests.test_invalid_signer_output_never_becomes_ready) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3220135Z test_missing_artifact_and_receipt_tampering_cannot_be_consumed (test_secure_boot.NativeSigningTests.test_missing_artifact_and_receipt_tampering_cannot_be_consumed) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3221716Z test_native_dbx_hash_revocation_is_checked_without_changing_firmware (test_secure_boot.NativeSigningTests.test_native_dbx_hash_revocation_is_checked_without_changing_firmware) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3223403Z test_native_generation_provider_verifies_rebind_and_rejects_unknown_trust (test_secure_boot.NativeSigningTests.test_native_generation_provider_verifies_rebind_and_rejects_unknown_trust) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3224885Z test_nonzero_signing_hook_failure_is_retained (test_secure_boot.NativeSigningTests.test_nonzero_signing_hook_failure_is_retained) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3226304Z test_offline_provider_uses_public_installed_policy_without_private_key (test_secure_boot.NativeSigningTests.test_offline_provider_uses_public_installed_policy_without_private_key) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3227843Z test_policy_and_keys_cannot_be_controlled_by_an_unprivileged_user (test_secure_boot.NativeSigningTests.test_policy_and_keys_cannot_be_controlled_by_an_unprivileged_user) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3229561Z test_post_hook_failure_is_nonzero_with_no_unsigned_fallback (test_secure_boot.NativeSigningTests.test_post_hook_failure_is_nonzero_with_no_unsigned_fallback) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3231017Z test_rebind_failure_retains_journal_and_cannot_publish (test_secure_boot.NativeSigningTests.test_rebind_failure_retains_journal_and_cannot_publish) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3232459Z test_receipt_write_failure_leaves_no_eligible_candidate (test_secure_boot.NativeSigningTests.test_receipt_write_failure_leaves_no_eligible_candidate) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3233881Z test_sign_uki_and_bootloader_and_reverify_candidates (test_secure_boot.NativeSigningTests.test_sign_uki_and_bootloader_and_reverify_candidates) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3235443Z test_signed_candidate_publication_and_interrupted_copy_preserve_prior (test_secure_boot.NativeSigningTests.test_signed_candidate_publication_and_interrupted_copy_preserve_prior) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3237101Z test_signed_candidate_publication_consumes_receipt_and_keeps_known_good (test_secure_boot.NativeSigningTests.test_signed_candidate_publication_consumes_receipt_and_keeps_known_good) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3238888Z test_signed_loader_ready_binds_packaged_bytes_and_running_esp (test_secure_boot.NativeSigningTests.test_signed_loader_ready_binds_packaged_bytes_and_running_esp) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3240427Z test_signer_failure_and_interruption_keep_input_and_prior_artifacts (test_secure_boot.NativeSigningTests.test_signer_failure_and_interruption_keep_input_and_prior_artifacts) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3242201Z test_structurally_wrong_images_and_bootloader_wrong_key (test_secure_boot.NativeSigningTests.test_structurally_wrong_images_and_bootloader_wrong_key) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3243770Z test_symlink_hardlink_unsafe_permissions_and_concurrent_signer_refused (test_secure_boot.NativeSigningTests.test_symlink_hardlink_unsafe_permissions_and_concurrent_signer_refused) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3245332Z test_test_keys_are_distinct_private_and_never_enrolled (test_secure_boot.NativeSigningTests.test_test_keys_are_distinct_private_and_never_enrolled) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3246913Z test_unsigned_wrong_signer_and_tampered_images_are_rejected (test_secure_boot.NativeSigningTests.test_unsigned_wrong_signer_and_tampered_images_are_rejected) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3248470Z test_wrong_architecture_or_non_efi_subsystem_cannot_be_signed (test_secure_boot.NativeSigningTests.test_wrong_architecture_or_non_efi_subsystem_cannot_be_signed) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3250171Z test_wrong_pin_revocation_missing_key_and_wrong_private_key (test_secure_boot.NativeSigningTests.test_wrong_pin_revocation_missing_key_and_wrong_private_key) ... skipped 'requires Linux root, sbsigntools, efitools, ukify and systemd EFI images'
+2026-10-08T23:39:18.3251433Z test_error_diagnostics_never_echo_tool_output_or_key_contents (test_secure_boot.PolicyTests.test_error_diagnostics_never_echo_tool_output_or_key_contents) ... ok
+2026-10-08T23:39:18.3252472Z test_firmware_framing_rejects_truncation_and_tracks_unknown_types (test_secure_boot.PolicyTests.test_firmware_framing_rejects_truncation_and_tracks_unknown_types) ... ok
+2026-10-08T23:39:18.3253550Z test_legacy_preset_uses_guarded_output_and_secure_preset_cannot_activate (test_secure_boot.PolicyTests.test_legacy_preset_uses_guarded_output_and_secure_preset_cannot_activate) ... ok
+2026-10-08T23:39:18.4019568Z test_package_source_excludes_adjacent_private_keys_and_is_deterministic (test_secure_boot.PolicyTests.test_package_source_excludes_adjacent_private_keys_and_is_deterministic) ... ok
+2026-10-08T23:39:18.4023040Z test_policy_rejects_ambiguity_and_unsafe_key_selection (test_secure_boot.PolicyTests.test_policy_rejects_ambiguity_and_unsafe_key_selection) ... ok
+2026-10-08T23:39:18.4036671Z test_post_hook_rejects_active_esp_input (test_secure_boot.PolicyTests.test_post_hook_rejects_active_esp_input) ... ok
+2026-10-08T23:39:18.4059488Z test_preset_output_never_falls_back_when_signing_is_required (test_secure_boot.PolicyTests.test_preset_output_never_falls_back_when_signing_is_required) ... ok
+2026-10-08T23:39:18.4153277Z test_removed_revoked_and_unknown_firmware_trust_cannot_pass (test_secure_boot.PolicyTests.test_removed_revoked_and_unknown_firmware_trust_cannot_pass) ... ok
+2026-10-08T23:39:18.4175747Z test_signing_expectation_survives_deleted_policy_and_unknown_firmware (test_secure_boot.PolicyTests.test_signing_expectation_survives_deleted_policy_and_unknown_firmware) ... ok
+2026-10-08T23:39:18.4184112Z test_status_is_read_only_when_policy_is_absent (test_secure_boot.PolicyTests.test_status_is_read_only_when_policy_is_absent) ... ok
+2026-10-08T23:39:18.4197969Z test_unconfigured_legacy_post_hook_is_a_noop (test_secure_boot.PolicyTests.test_unconfigured_legacy_post_hook_is_a_noop) ... ok
+2026-10-08T23:39:18.4266187Z test_unknown_firmware_is_not_disabled_or_enforced (test_secure_boot.PolicyTests.test_unknown_firmware_is_not_disabled_or_enforced) ... ok
+2026-10-08T23:39:18.4274756Z test_update_hook_requires_coordinator_before_signing_readiness (test_secure_boot.PolicyTests.test_update_hook_requires_coordinator_before_signing_readiness) ... ok
+2026-10-08T23:39:18.4276161Z test_print_resolution_and_expanded_trust_policy_are_read_only (test_transactions_pacman.PacmanContractTests.test_print_resolution_and_expanded_trust_policy_are_read_only) ... skipped 'requires real pacman and pacman-conf'
+2026-10-08T23:39:18.4277021Z 
+2026-10-08T23:39:18.4277183Z ----------------------------------------------------------------------
+2026-10-08T23:39:18.4277561Z Ran 94 tests in 1.453s
+2026-10-08T23:39:18.4277733Z 
+2026-10-08T23:39:18.4277801Z OK (skipped=36)
+2026-10-08T23:39:18.5375390Z Post job cleanup.
+2026-10-08T23:39:18.6480412Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-08T23:39:18.6671807Z git version 2.55.0.windows.5
+2026-10-08T23:39:18.6718335Z Temporarily overriding HOME='D:\a\_temp\2a2df6c9-a84f-40da-b64d-da3f93545067' before making global git config changes
+2026-10-08T23:39:18.6718944Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-08T23:39:18.6724509Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\astraeus\astraeus
+2026-10-08T23:39:18.6921881Z Removing SSH command configuration
+2026-10-08T23:39:18.6928934Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-08T23:39:18.7134714Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-08T23:39:19.1024065Z Removing HTTP extra header
+2026-10-08T23:39:19.1032057Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-08T23:39:19.1263588Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-08T23:39:19.5275217Z Removing includeIf entries pointing to credentials config files
+2026-10-08T23:39:19.5285243Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-08T23:39:19.5463448Z includeif.gitdir:D:/a/astraeus/astraeus/.git.path
+2026-10-08T23:39:19.5463930Z includeif.gitdir:D:/a/astraeus/astraeus/.git/worktrees/*.path
+2026-10-08T23:39:19.5464304Z includeif.gitdir:/github/workspace/.git.path
+2026-10-08T23:39:19.5464537Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-08T23:39:19.5496438Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/astraeus/astraeus/.git.path
+2026-10-08T23:39:19.5673497Z D:\a\_temp\git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:39:19.5711541Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/astraeus/astraeus/.git.path D:\a\_temp\git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:39:19.5940326Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/astraeus/astraeus/.git/worktrees/*.path
+2026-10-08T23:39:19.6117175Z D:\a\_temp\git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:39:19.6150084Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/astraeus/astraeus/.git/worktrees/*.path D:\a\_temp\git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:39:19.6361296Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-08T23:39:19.6533729Z /github/runner_temp/git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:39:19.6563583Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:39:19.6763422Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-08T23:39:19.6939342Z /github/runner_temp/git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:39:19.6971539Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-52923727-0222-4127-be56-bb428e50c333.config
+2026-10-08T23:39:19.7206601Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-08T23:39:20.1015218Z Removing credentials config 'D:\a\_temp\git-credentials-52923727-0222-4127-be56-bb428e50c333.config'
+2026-10-08T23:39:20.1176627Z Cleaning up orphan processes
+2026-10-08T23:39:20.1565598Z Terminate orphan process: pid (1248) (vctip)

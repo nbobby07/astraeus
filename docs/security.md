@@ -80,6 +80,18 @@ and user-mode NAT; no public VNC, noVNC or guest shell is exposed.
 
 ## Recovery constraints
 
+The Phase 3 test recovery companion uses the same disposable owner db identity
+as the installed system. Enforcing OVMF authenticates its systemd-boot and UKI.
+The live SquashFS is not cryptographically covered by that signature. Acceptance
+pins the exact ISO by host SHA-256 and attaches both inputs read-only; this is a
+bounded test setup, not a production recovery-media trust design. Signed UKIs
+also do not authenticate the contents of the writable installed root.
+
+The provider refuses unsupported dbx certificate/TBS formats, bootloader or
+systemd update plans, and command-line rebinding that exceeds the existing PE
+section capacity. An unresolved activation journal blocks further mutation.
+The tested sync/rename power cut does not establish arbitrary power-loss safety.
+
 LUKS2 and Btrfs are installed-system components, not proof that this
 ephemeral ISO is encrypted. Snapshot rollback must coordinate the ESP and root
 generation and keep a boot-confirmed fallback. Snapshots do not protect against

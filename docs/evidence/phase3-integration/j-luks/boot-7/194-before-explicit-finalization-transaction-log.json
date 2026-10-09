@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:50.137758+00:00",
+  "finished": "2026-10-09T01:28:50.289557+00:00",
+  "command": "tail -c 1048576 /var/log/astraeus-validation-update.log",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "tail: cannot open '/var/log/astraeus-validation-update.log' for reading: No such file or directory\n",
+    "id": "e9418dfc37354759b8e87f33523cae9f",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

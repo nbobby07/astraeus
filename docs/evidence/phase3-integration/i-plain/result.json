@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "case": "fallback",
+  "scope": "integrated-image",
+  "integrated_acceptance": true,
+  "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+  "started": "2026-10-09T00:57:23.509742+00:00",
+  "finished": "2026-10-09T01:00:20.034601+00:00"
+}

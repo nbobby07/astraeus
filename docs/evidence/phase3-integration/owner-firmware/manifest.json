@@ -1,0 +1,29 @@
+{
+  "source_commit": "7e77e062ae0cd4bec5e18c3121b7e02886b215df",
+  "public_fingerprints": {
+    "PK": "18b5f3379cdc44713925652c9d25e839d447acde983da87a1419051b99b80ea8",
+    "KEK": "f21ac614e148e567ed74f9c2c437744d95710df5fb6b3ada3c6fed2304d87971",
+    "db": "35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8"
+  },
+  "command": [
+    "virt-fw-vars",
+    "--input",
+    "/usr/share/OVMF/OVMF_VARS_4M.fd",
+    "--output",
+    "/home/ubuntu/p3i/owner-firmware/vars.fd",
+    "--set-pk",
+    "40d2162b-01b8-4f4d-8fa9-0c7b530e1fce",
+    "/home/ubuntu/p3i/owner-firmware/PK.crt",
+    "--add-kek",
+    "b619cee6-4972-4af4-8649-376bb6b5468b",
+    "/home/ubuntu/p3i/owner-firmware/KEK.crt",
+    "--add-db",
+    "4ade1e68-7b90-4dc6-839c-b38760c2272d",
+    "/home/ubuntu/p3i/owner-firmware/db.crt",
+    "--secure-boot"
+  ],
+  "code_sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d",
+  "vars_sha256": "6ce6b19cfc0f7c5bcae1d5e82dbc28d1dded2ff9de76254c214ed548f3704f65",
+  "purpose": "disposable-ovmf",
+  "physical_firmware_modified": false
+}

@@ -1,0 +1,43 @@
+{
+  "path": "/home/ubuntu/p3i/final/install-luks/disk.qcow2",
+  "sha256": "d3d1fa5c8e1aeb948d03d5d5a4b47c3de3204a911ab5f8f260507ddf27dc4039",
+  "bytes": 2886402048,
+  "image": {
+    "children": [
+      {
+        "name": "file",
+        "info": {
+          "children": [],
+          "virtual-size": 2886402048,
+          "filename": "/home/ubuntu/p3i/final/install-luks/disk.qcow2",
+          "format": "file",
+          "actual-size": 2886488064,
+          "format-specific": {
+            "type": "file",
+            "data": {}
+          },
+          "dirty-flag": false
+        }
+      }
+    ],
+    "virtual-size": 34359738368,
+    "filename": "/home/ubuntu/p3i/final/install-luks/disk.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 2886488064,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "1.1",
+        "compression-type": "zlib",
+        "lazy-refcounts": false,
+        "refcount-bits": 16,
+        "corrupt": false,
+        "extended-l2": false
+      }
+    },
+    "dirty-flag": false
+  },
+  "private_signing_material_may_be_present": true,
+  "included_in_public_archive": false
+}

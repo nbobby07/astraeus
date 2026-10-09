@@ -1,0 +1,16 @@
+{
+  "command": [
+    "virt-fw-vars",
+    "--input",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/vars.fd",
+    "--print",
+    "--verbose",
+    "--output-json",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/enrollment.json"
+  ],
+  "started": "2026-10-09T00:54:48.941304+00:00",
+  "finished": "2026-10-09T00:54:49.122805+00:00",
+  "code": 0,
+  "stdout": "name=CustomMode guid=guid:EfiCustomModeEnable size=1\n  bool: off\n\nname=KEK guid=guid:EfiGlobalVariable size=927 time=2026-10-09 00:54:46\n  siglist type=guid:EfiCertX509 count=1\n    subject CN=Astraeus disposable trusted dadc76e2d0a24af8b0937d0b98e9fcd9\n    issuer CN=Astraeus disposable trusted dadc76e2d0a24af8b0937d0b98e9fcd9\n\nname=PK guid=guid:EfiGlobalVariable size=927 time=2026-10-09 00:54:46\n  siglist type=guid:EfiCertX509 count=1\n    subject CN=Astraeus disposable trusted dadc76e2d0a24af8b0937d0b98e9fcd9\n    issuer CN=Astraeus disposable trusted dadc76e2d0a24af8b0937d0b98e9fcd9\n\nname=SecureBootEnable guid=guid:EfiSecureBootEnableDisable size=1\n  bool: ON\n\nname=db guid=guid:EfiImageSecurityDatabase size=927 time=2026-10-09 00:54:46\n  siglist type=guid:EfiCertX509 count=1\n    subject CN=Astraeus disposable trusted dadc76e2d0a24af8b0937d0b98e9fcd9\n    issuer CN=Astraeus disposable trusted dadc76e2d0a24af8b0937d0b98e9fcd9\n\nname=dbx guid=guid:EfiImageSecurityDatabase size=76 time=2010-01-01 00:00:00\n  siglist type=guid:EfiCertSha256 count=1\n    e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\n\n",
+  "stderr": "INFO: reading raw edk2 varstore from /home/ubuntu/p3i/final/refusal-uki-inputs/vars.fd\nINFO: var store range: 0x64 -> 0x40000\nINFO: writing json varstore to /home/ubuntu/p3i/final/refusal-uki-inputs/enrollment.json\n"
+}

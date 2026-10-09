@@ -1,0 +1,230 @@
+{
+  "source": {
+    "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+    "source_archive_sha256": "7987aec5d982f30d469fa11b98492ff1f037eb8f47755b2d87ffccc06e46e2b2",
+    "source_archive_bytes": 639632,
+    "deterministic_archive": true
+  },
+  "matrix": {
+    "A": {
+      "status": "PASS",
+      "evidence": [
+        "base-plain",
+        "base-luks"
+      ],
+      "scope": "Two cold enforced boots and actual Plasma Wayland acceptance for each installation."
+    },
+    "B": {
+      "status": "PASS",
+      "evidence": [
+        "refusal-loader-inputs",
+        "refusal-loader-run",
+        "base-plain/public-artifacts/provenance.json"
+      ],
+      "scope": "Actual integrated loader bytes; trusted EFI probe observes firmware LoadImage rejection before execution."
+    },
+    "C": {
+      "status": "PASS",
+      "evidence": [
+        "refusal-loader-inputs",
+        "refusal-loader-run",
+        "base-plain/public-artifacts/provenance.json"
+      ],
+      "scope": "Actual integrated loader bytes; trusted EFI probe observes firmware LoadImage rejection before execution."
+    },
+    "D": {
+      "status": "PASS",
+      "evidence": [
+        "refusal-loader-inputs",
+        "refusal-loader-run",
+        "base-plain/public-artifacts/provenance.json"
+      ],
+      "scope": "Actual integrated loader bytes; trusted EFI probe observes firmware LoadImage rejection before execution."
+    },
+    "E": {
+      "status": "PASS",
+      "evidence": [
+        "refusal-uki-inputs",
+        "refusal-uki-run",
+        "base-plain/public-artifacts/provenance.json"
+      ],
+      "scope": "Actual integrated uki bytes; trusted EFI probe observes firmware LoadImage rejection before execution."
+    },
+    "F": {
+      "status": "PASS",
+      "evidence": [
+        "refusal-uki-inputs",
+        "refusal-uki-run",
+        "base-plain/public-artifacts/provenance.json"
+      ],
+      "scope": "Actual integrated uki bytes; trusted EFI probe observes firmware LoadImage rejection before execution."
+    },
+    "G": {
+      "status": "PASS",
+      "evidence": [
+        "refusal-uki-inputs",
+        "refusal-uki-run",
+        "base-plain/public-artifacts/provenance.json"
+      ],
+      "scope": "Actual integrated uki bytes; trusted EFI probe observes firmware LoadImage rejection before execution."
+    },
+    "H": {
+      "status": "PASS",
+      "evidence": [
+        "h-plain"
+      ]
+    },
+    "I": {
+      "status": "PASS",
+      "evidence": [
+        "i-plain"
+      ]
+    },
+    "J": {
+      "status": "PASS",
+      "evidence": [
+        "j-luks"
+      ]
+    },
+    "K": {
+      "status": "PASS",
+      "evidence": [
+        "k-plain"
+      ]
+    },
+    "L": {
+      "status": "PASS",
+      "evidence": [
+        "l-plain"
+      ]
+    },
+    "M": {
+      "status": "PASS",
+      "evidence": [
+        "m-plain"
+      ]
+    },
+    "N": {
+      "status": "PASS",
+      "evidence": [
+        "reproducibility.json"
+      ],
+      "images": {
+        "A": {
+          "path": "/home/ubuntu/p3i/build-r3/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+          "bytes": 3535165440,
+          "sha256": "520ca25fc9c9b9c3706011780d431f08a2f0c1c6e2848ff73dead21cc0b13905"
+        },
+        "B": {
+          "path": "/home/ubuntu/p3i/build-r3/evidence/B/astraeus-dev-0.1.0-dev-x86_64.iso",
+          "bytes": 3535165440,
+          "sha256": "520ca25fc9c9b9c3706011780d431f08a2f0c1c6e2848ff73dead21cc0b13905"
+        }
+      }
+    }
+  },
+  "regressions": {
+    "reg-payload": {
+      "passed": true,
+      "integrated_acceptance": true,
+      "started": "2026-10-09T00:59:23.165801+00:00",
+      "scenario": "rejected-update",
+      "fault": "payload",
+      "encryption": "none",
+      "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+      "finished": "2026-10-09T01:00:34.623640+00:00"
+    },
+    "reg-space": {
+      "passed": true,
+      "integrated_acceptance": true,
+      "started": "2026-10-09T01:00:40.219099+00:00",
+      "scenario": "rejected-update",
+      "fault": "space",
+      "encryption": "none",
+      "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+      "finished": "2026-10-09T01:02:00.933062+00:00"
+    },
+    "reg-package": {
+      "passed": true,
+      "integrated_acceptance": true,
+      "started": "2026-10-09T01:02:07.715849+00:00",
+      "scenario": "update-failure",
+      "fault": "package",
+      "encryption": "none",
+      "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+      "finished": "2026-10-09T01:08:09.825087+00:00"
+    },
+    "reg-interruption": {
+      "passed": true,
+      "integrated_acceptance": true,
+      "started": "2026-10-09T01:08:16.489308+00:00",
+      "scenario": "interruption",
+      "fault": "package",
+      "encryption": "none",
+      "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+      "finished": "2026-10-09T01:14:26.526133+00:00"
+    },
+    "reg-health": {
+      "passed": true,
+      "integrated_acceptance": true,
+      "started": "2026-10-09T01:14:32.002345+00:00",
+      "scenario": "update-failure",
+      "fault": "health",
+      "encryption": "none",
+      "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+      "finished": "2026-10-09T01:19:14.893911+00:00"
+    },
+    "reg-service": {
+      "passed": true,
+      "integrated_acceptance": true,
+      "started": "2026-10-09T01:19:20.552798+00:00",
+      "scenario": "update-failure",
+      "fault": "service",
+      "encryption": "none",
+      "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+      "finished": "2026-10-09T01:25:22.040421+00:00"
+    },
+    "security-direct-package": {
+      "passed": true,
+      "integrated_acceptance": true,
+      "started": "2026-10-09T01:05:19.947935+00:00",
+      "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+      "finished": "2026-10-09T01:05:59.976464+00:00"
+    }
+  },
+  "evidence_sha256": {
+    "base-plain/result.json": "d37ff279f9a71032ad4b2d959e7cbc4ffe5b906d2e47cf3c782e58fa9487ae43",
+    "base-plain/baseline.json": "feec3f2b8f3390ab9ea76ee6765f40ccfdc81a30f7dfad515fe6e736e1d45f55",
+    "base-luks/result.json": "4e0838da8f7f7637228ec01a118964c4ed0c8a4a2e4788fbc3ffbe559006be4e",
+    "base-luks/baseline.json": "bf2e863421fc4368f9685d5157c9e93102aacb88d146f812e1672b09148da4d1",
+    "base-plain/public-artifacts/provenance.json": "295d714bc5fddbc5d364f44408d3d39b5f35227349d15b35f3d80737e76a3b40",
+    "refusal-loader-inputs/baseline.json": "70427a92ac22e43c8281536a2370d0df45aaffd7b9f6e3a062d0121d20c709fb",
+    "refusal-loader-run/result.json": "c3fb59217969729615c2ee547b91d08998bc5feb23de16abd1ec05c9a6a40dc7",
+    "refusal-loader-run/firmware-verdict.json": "aae6f373d880482d3399df892b26bfcda35693d81684553abf56a5d2a5ad2c61",
+    "refusal-uki-inputs/baseline.json": "6ca82d0d90b5ba83c9422baf880d3834cac16884de83a27d4599b22738621c0a",
+    "refusal-uki-run/result.json": "10f55f42f8dfdd620ccb89f7e776f3ce8e20d5f44c7148c59108e374fc2709af",
+    "refusal-uki-run/firmware-verdict.json": "575fa7a428d865c80b79dbe0bca544c047345e14d585b9f4db61989e7b587915",
+    "h-plain/result.json": "8850084bc15b7233490c59ac2db36ed6d94a76aef353b0caa5b4c428597a600b",
+    "i-plain/result.json": "34c3c564ed14bcc92b5a47f31da4a12d81edf9525dd76db6e9c22ab834bbb9eb",
+    "j-luks/result.json": "28ec65e6cdb5f8aeac51f4616c52a63db91040dc5b86becc410c00f61c2ffd57",
+    "k-plain/result.json": "e77a097cbbafa87402eaba0f540658ddfda134d896ac1effe48632158992cd04",
+    "l-plain/result.json": "fc16bff5c4988edd8627e4c1962b4ed4dcb36d9edffdb73b897523fc7e7c517d",
+    "m-plain/result.json": "0b78b6f2c83c6e8b0d869ad81e551c08f2de86dddff53db6fde0bc4a44f51c6b",
+    "reproducibility.json": "4fc64bb2846a72beffc76b3bb78d43df13aabf2f075695a1da81e76eb0030e33",
+    "reg-payload/result.json": "785e1ab1671c12785cf6e513dc32bc2b12f04dccd6b136d580f54f249f5ed36c",
+    "reg-space/result.json": "69e2c695b0f86cb7ff91a6e17e3b989414acbeaf33dec7dbcfc19bba1f9ed7e4",
+    "reg-package/result.json": "b677ab96939698afd1806995fcfeba60c38b1081e1931baabce41ce0dfe6989b",
+    "reg-interruption/result.json": "2754ed8a38c1d8a610690f2b352ac81c2ba587290d51e5fd9f7bbeaf3ac2c8bd",
+    "reg-health/result.json": "59f2f9432e74d669201632a6f8ac5909a8f464b7c8be30cf344dc1caca015001",
+    "reg-service/result.json": "cf0d9caf28757fee910d9405146f3dbc90cda8c2f8d78696e83f4a7faa0115d3",
+    "security-direct-package/result.json": "34230ee9c7183f87941583bfa1420156c9c7bec05f325da001093a1af64edbb3",
+    "iso-audit/result.json": "f8e73986e36f70c7665efb04126aeef32fe8c362800e2cb0115e226321ed7c6e"
+  },
+  "verdict": "PHASE 3 VALIDATED",
+  "limits": [
+    "Initial installation and owner provisioning use compatibility setup; acceptance boots enforce Secure Boot.",
+    "Recovery companion signs loader and UKI; live SquashFS is not cryptographically covered.",
+    "K covers one bounded sync/rename interruption; its retained journal is not automatically reconciled.",
+    "No physical hardware, dual boot, real firmware enrollment, TPM unlock, arbitrary power-loss, whole-disk-full, key rotation/recovery or release signing qualification."
+  ]
+}

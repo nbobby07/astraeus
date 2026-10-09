@@ -1,0 +1,58 @@
+{
+  "iso": {
+    "path": "/home/ubuntu/p3i/build-r3/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+    "bytes": 3535165440,
+    "sha256": "520ca25fc9c9b9c3706011780d431f08a2f0c1c6e2848ff73dead21cc0b13905"
+  },
+  "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+  "payloads": {
+    "live": {
+      "sha256": "7534a9684e52c9cd5bc43f68b7e7b6836b586740fb99624f9c8470094d327ca3",
+      "bytes": 3048382464,
+      "files_sha256": "3511e061c54af01cac3c33b0f2a61afa7f3dd0a0e0b9023602771e139bc6cbb8",
+      "binaries": {
+        "/usr/bin/distroctl": "8002422e28d4de96a7efde1444c32040088c7fa9f98a55003c6e49517db97ea0",
+        "/usr/bin/astraeus-secure-boot": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+        "/usr/bin/astraeus-boot-artifact": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483"
+      },
+      "absent_paths": [
+        "var/lib/astraeus/keys",
+        "var/lib/astraeus/secure-boot",
+        "etc/astraeus/secure-boot/policy.json",
+        "var/lib/astraeus-validation",
+        "mnt/astraeus-validation",
+        "private-keys-v1.d",
+        "db.key",
+        "PK.key",
+        "KEK.key",
+        "phase2-guest.py",
+        "integrated-guest.py"
+      ]
+    },
+    "installed": {
+      "sha256": "98b56f62be0948a36bfb934b8e1f7ec7cb9fe7ccfe703e1aff8c6abccbd339b7",
+      "bytes": 1526403072,
+      "files_sha256": "752d5087739d2b1a2706aab00c1d3f34a9cbc6c4698794a0b03c20099f07f3a0",
+      "binaries": {
+        "/usr/bin/distroctl": "8002422e28d4de96a7efde1444c32040088c7fa9f98a55003c6e49517db97ea0",
+        "/usr/bin/astraeus-secure-boot": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+        "/usr/bin/astraeus-boot-artifact": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483"
+      },
+      "absent_paths": [
+        "var/lib/astraeus/keys",
+        "var/lib/astraeus/secure-boot",
+        "etc/astraeus/secure-boot/policy.json",
+        "var/lib/astraeus-validation",
+        "mnt/astraeus-validation",
+        "private-keys-v1.d",
+        "db.key",
+        "PK.key",
+        "KEK.key",
+        "phase2-guest.py",
+        "integrated-guest.py"
+      ]
+    }
+  },
+  "passed": true,
+  "installed_test_accounts_absent": true
+}

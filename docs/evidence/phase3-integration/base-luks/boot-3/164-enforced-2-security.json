@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:16:53.841386+00:00",
+  "finished": "2026-10-09T01:16:54.827365+00:00",
+  "command": "distroctl security status --json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"artifacts\": {\n    \"bootloader\": {\n      \"path\": \"/efi/EFI/systemd/systemd-bootx64.efi\",\n      \"sha256\": \"67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"fallback_bootloader\": {\n      \"path\": \"/efi/EFI/BOOT/BOOTX64.EFI\",\n      \"sha256\": \"67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"uki\": {\n      \"path\": \"/efi/EFI/Linux/astraeus-dev-linux.efi\",\n      \"sha256\": \"98477ac9a6a582654452d9d58c9b8899283be152c31fbe934f6026ce1bdf2902\",\n      \"signature\": \"valid-for-configured-certificate\"\n    }\n  },\n  \"certificate_sha256\": \"35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8\",\n  \"enrollment_readiness\": \"manual-firmware-review-required\",\n  \"firmware\": {\n    \"AuditMode\": null,\n    \"DeployedMode\": null,\n    \"KEK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"PK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"SecureBoot\": true,\n    \"SetupMode\": false,\n    \"db\": {\n      \"contains_signer_certificate\": true,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"dbx\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": true,\n      \"readable\": true,\n      \"sha256_images\": [\n        \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n      ]\n    },\n    \"image_authorization\": \"not-evaluated\"\n  },\n  \"identity\": \"valid\",\n  \"policy\": \"configured\",\n  \"schema_version\": 1,\n  \"signing_key_present\": true\n}\n",
+    "id": "6c05ea43866b4a33972d2e33cf426f5f",
+    "boot_id": "8df43e9a-f169-4951-ae50-074bb9568b90"
+  }
+}

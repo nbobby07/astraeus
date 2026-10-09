@@ -3,6 +3,18 @@
 Phase 3 adds opt-in [boot generations and retained-root recovery](boot-generations.md).
 The fixed Type #2 layout below remains the default until that feature is enabled.
 
+Provisioning an owner signing policy and enrolling its public identity are
+separate from installing the development ISO. The Phase 3 acceptance setup signs
+the installed loader and initial UKI with disposable owner keys, then uses
+enforcing firmware for installed-generation and recovery tests. The ISO is not
+an out-of-box signed release. See [current acceptance](phase3-acceptance.md).
+
+In generation mode, immutable UKIs bind their expected root identities and
+embedded command lines. systemd-boot counts candidate attempts; a successful
+health-verified boot is blessed. Exhausted attempts can select the retained root
+and its signed UKI. This fallback is a recovery session: restoring `@` and
+finalizing rollback still require deliberate recovery steps.
+
 The implemented chain is UEFI, systemd-boot, a Type #2 Unified Kernel Image,
 systemd initramfs, optional LUKS2 unlock, Btrfs `@`, systemd, SDDM and Plasma Wayland.
 Boot acceptance remains a separate gate in [validation](validation.md).

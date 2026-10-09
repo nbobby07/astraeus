@@ -1,0 +1,17 @@
+{
+  "command": [
+    "sbsign",
+    "--key",
+    "/root/astraeus-p3i-keys/db.key",
+    "--cert",
+    "/home/ubuntu/p3i/final/owner-firmware/db.crt",
+    "--output",
+    "/home/ubuntu/p3i/final/recovery-kit/loader-signed.efi",
+    "/home/ubuntu/p3i/final/recovery-kit/loader.efi"
+  ],
+  "started": "2026-10-09T00:04:26.097607+00:00",
+  "finished": "2026-10-09T00:04:26.112502+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": "Signing Unsigned original image\n"
+}

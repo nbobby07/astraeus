@@ -1,0 +1,17 @@
+{
+  "command": [
+    "sbsign",
+    "--key",
+    "/root/astraeus-p3i-final-refusal-uki/trusted.key",
+    "--cert",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/trusted.pem",
+    "--output",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/trusted.efi",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/unsigned.efi"
+  ],
+  "started": "2026-10-09T00:54:47.258315+00:00",
+  "finished": "2026-10-09T00:54:47.389733+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": "Signing Unsigned original image\n"
+}

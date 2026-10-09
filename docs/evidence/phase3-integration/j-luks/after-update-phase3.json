@@ -1,0 +1,65 @@
+{
+  "security": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"artifacts\": {\n    \"bootloader\": {\n      \"path\": \"/efi/EFI/systemd/systemd-bootx64.efi\",\n      \"sha256\": \"67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"fallback_bootloader\": {\n      \"path\": \"/efi/EFI/BOOT/BOOTX64.EFI\",\n      \"sha256\": \"67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"running_uki\": {\n      \"path\": null,\n      \"sha256\": null,\n      \"signature\": \"unavailable\"\n    },\n    \"uki\": {\n      \"path\": \"/efi/EFI/Astraeus/maintenance.efi\",\n      \"sha256\": \"b0956897d42795d8b77729554a661e4cdafec45308df67de2af34c557e360711\",\n      \"signature\": \"valid-for-configured-certificate\"\n    }\n  },\n  \"certificate_sha256\": \"35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8\",\n  \"enrollment_readiness\": \"not-ready\",\n  \"firmware\": {\n    \"AuditMode\": null,\n    \"DeployedMode\": null,\n    \"KEK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"PK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"SecureBoot\": true,\n    \"SetupMode\": false,\n    \"db\": {\n      \"contains_signer_certificate\": true,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"dbx\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": true,\n      \"readable\": true,\n      \"sha256_images\": [\n        \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n      ]\n    },\n    \"image_authorization\": \"not-evaluated\"\n  },\n  \"identity\": \"valid\",\n  \"policy\": \"configured\",\n  \"schema_version\": 1,\n  \"signing_key_present\": true\n}\n",
+    "id": "d1fa947d2ffe4930a55515dec07d9a23",
+    "boot_id": "9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5"
+  },
+  "generations": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"enabled\": true,\n  \"generations\": [\n    {\n      \"artifact_verified_now\": false,\n      \"assessment\": \"known-good evidence\",\n      \"boot_attempts\": [],\n      \"boot_counter\": [\n        \"astraeus-1791508787-978064895-781.conf\",\n        {\n          \"state\": \"uncounted\"\n        }\n      ],\n      \"confirmation\": null,\n      \"counter_error\": null,\n      \"generation\": {\n        \"embedded_cmdline\": \"rd.luks.name=757664ae-11a8-4d5e-a51a-d23de2e88734=root root=/dev/mapper/root rootflags=subvolid=263 rw\",\n        \"esp_uuid\": \"CB2E-4A2B\",\n        \"filesystem_uuid\": \"621e3b56-74f8-4135-9b6d-f668f917de61\",\n        \"id\": \"1791508787-978064895-781\",\n        \"prior_known_good\": null,\n        \"root\": {\n          \"id\": 263,\n          \"parent_uuid\": \"44dc6f98-bbd9-9349-afd9-6be288f214e8\",\n          \"read_only\": false,\n          \"top_level\": 258,\n          \"uuid\": \"b04caad6-7d2a-0247-ad40-8645ac5d87bd\"\n        },\n        \"root_kind\": \"retained\",\n        \"schema_version\": 1,\n        \"snapshot\": \"1791508787-978064895-781\",\n        \"uki_sha256\": \"0f705ef4001cc3bb896f7e90faafa3130f15471628dc20db5e23fb61518c97f2\"\n      },\n      \"health\": \"known-good\",\n      \"ineligible_reason\": null,\n      \"recovery_method\": \"retained-root boot; offline restoration is separate\",\n      \"reference_eligible\": true,\n      \"role\": \"previous-known-good-recovery\",\n      \"transaction_id\": \"1\"\n    },\n    {\n      \"artifact_verified_now\": false,\n      \"assessment\": \"awaiting confirmation\",\n      \"boot_attempts\": [],\n      \"boot_counter\": [\n        \"astraeus-1791508829-745658404-781+3.conf\",\n        {\n          \"done\": 0,\n          \"left\": 3,\n          \"state\": \"counted\"\n        }\n      ],\n      \"confirmation\": null,\n      \"counter_error\": null,\n      \"generation\": {\n        \"embedded_cmdline\": \"rd.luks.name=757664ae-11a8-4d5e-a51a-d23de2e88734=root root=/dev/mapper/root rootflags=subvol=@ rw astraeus.transaction=1-9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5 \\n\",\n        \"esp_uuid\": \"CB2E-4A2B\",\n        \"filesystem_uuid\": \"621e3b56-74f8-4135-9b6d-f668f917de61\",\n        \"id\": \"1791508829-745658404-781\",\n        \"prior_known_good\": \"1791508787-978064895-781\",\n        \"root\": {\n          \"id\": 256,\n          \"parent_uuid\": null,\n          \"read_only\": false,\n          \"top_level\": 5,\n          \"uuid\": \"5c55c5cd-cff8-9d4d-962c-91ed17ffb87a\"\n        },\n        \"root_kind\": \"current\",\n        \"schema_version\": 1,\n        \"snapshot\": \"1791508829-745658404-781\",\n        \"uki_sha256\": \"b0956897d42795d8b77729554a661e4cdafec45308df67de2af34c557e360711\"\n      },\n      \"health\": \"candidate\",\n      \"ineligible_reason\": null,\n      \"recovery_method\": \"retained-root boot; offline restoration is separate\",\n      \"reference_eligible\": true,\n      \"role\": \"current\",\n      \"transaction_id\": \"1\"\n    }\n  ],\n  \"pending\": false,\n  \"schema_version\": 1,\n  \"selection\": {\n    \"current\": \"1791508829-745658404-781\",\n    \"previous\": \"1791508787-978064895-781\",\n    \"schema_version\": 1\n  }\n}\n",
+    "id": "e24b33d5d3214ecfb34cb0460f3d6e97",
+    "boot_id": "9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5"
+  },
+  "running-uki": {
+    "code": 0,
+    "error": null,
+    "output": "/efi/EFI/Linux/astraeus-dev-linux.efi\n",
+    "id": "036aa1257cb04888911fefeb1008df2b",
+    "boot_id": "9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5"
+  },
+  "kernel": {
+    "code": 0,
+    "error": null,
+    "output": "7.2.7-arch1-1\n",
+    "id": "8fb9e1418d364162a8875bb85f11d658",
+    "boot_id": "9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5"
+  },
+  "root-identity": {
+    "code": 0,
+    "error": null,
+    "output": "@\n\tName: \t\t\t@\n\tUUID: \t\t\t5c55c5cd-cff8-9d4d-962c-91ed17ffb87a\n\tParent UUID: \t\t-\n\tReceived UUID: \t\t-\n\tCreation time: \t\t2026-10-08 18:00:48 -0700\n\tSubvolume ID: \t\t256\n\tGeneration: \t\t72\n\tGen at creation: \t11\n\tParent ID: \t\t5\n\tTop level ID: \t\t5\n\tFlags: \t\t\t-\n\tSend transid: \t\t0\n\tSend time: \t\t2026-10-08 18:00:48 -0700\n\tReceive transid: \t0\n\tReceive time: \t\t-\n\tSnapshot(s):\n\t\t\t\t@snapshots/astraeus/1791508787-978064895-781/private/root\n\t\t\t\t@snapshots/astraeus/1791508829-745658404-781/private/root\n\tQuota group:\t\tn/a\n",
+    "id": "291876adc08947b5912541d5c381a846",
+    "boot_id": "9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5"
+  },
+  "confirm-service": {
+    "code": 0,
+    "error": null,
+    "output": "Result=success\nExecMainStatus=0\n",
+    "id": "ae272e73864a487986c6dd8f651358d8",
+    "boot_id": "9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5"
+  },
+  "bless-service": {
+    "code": 0,
+    "error": null,
+    "output": "Result=success\nExecMainStatus=0\n",
+    "id": "46d4fc5399334277a9cda7aa82db56cb",
+    "boot_id": "9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5"
+  },
+  "esp": {
+    "code": 0,
+    "error": null,
+    "output": "67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e  /efi/EFI/systemd/systemd-bootx64.efi\n67c4b7212a1d6f4ec1fd70733179f04859612d8647a3af3b141dd0c2d3099b9e  /efi/EFI/BOOT/BOOTX64.EFI\nb0956897d42795d8b77729554a661e4cdafec45308df67de2af34c557e360711  /efi/EFI/Astraeus/maintenance.efi\n0f705ef4001cc3bb896f7e90faafa3130f15471628dc20db5e23fb61518c97f2  /efi/EFI/Astraeus/1791508787-978064895-781.efi\nb0956897d42795d8b77729554a661e4cdafec45308df67de2af34c557e360711  /efi/EFI/Astraeus/1791508829-745658404-781.efi\n42e3a7a2e2aae18fc3a746cbe428f280f2248bfec2b0e0ee201f5c6dba6c5968  /efi/loader/loader.conf\na152b70b91283c525453475ee39bc9a2824752961d00427c8cbd222492206c18  /efi/loader/entries/astraeus-1791508787-978064895-781.conf\nd1a1825853478d8ff3ccb393664b581df744dd903fee79435db008a62f940d14  /efi/loader/entries/astraeus-1791508829-745658404-781+3.conf\nc24eb5b2dfbd0c1d7cc20599593d5d4a84fec5dfafc69ee6aa8b3653e7a9ea51  /efi/loader/random-seed\n067fc514414e89fa29898b3d61ce88577bebc2fbcad0ba42c2b769698c8baafc  /efi/loader/entries.srel\n",
+    "id": "4f5f7c3b4ddc49dfbaf5bba3d34dfefc",
+    "boot_id": "9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5"
+  },
+  "generation-files": {
+    "code": 0,
+    "error": null,
+    "output": "/.snapshots/astraeus/generations/1791508787-978064895-781/metadata.json\n/.snapshots/astraeus/generations/1791508829-745658404-781/metadata.json\n/.snapshots/astraeus/generations/selection.json\n",
+    "id": "727ceca3abc84239b399cbcb1fdabcac",
+    "boot_id": "9b3b59f5-5bf2-4505-98b6-e0af8c68e1e5"
+  }
+}

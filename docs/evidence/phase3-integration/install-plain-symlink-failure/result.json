@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "started": "2026-10-09T00:01:11.658876+00:00",
+  "mode": "install",
+  "scenario": "update-success",
+  "encryption": "none",
+  "error": "ValueError: '/home/ubuntu/p3i/final/candidate-r3/scripts/validate/phase2.py' is not in the subpath of '/home/ubuntu/p3i/candidate-r3'",
+  "finished": "2026-10-09T00:01:11.719310+00:00"
+}

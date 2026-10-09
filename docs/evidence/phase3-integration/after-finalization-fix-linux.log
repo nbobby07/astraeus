@@ -1,0 +1,269 @@
+   Compiling distroctl v0.1.0-dev (/mnt/c/Users/Noel/.codex/worktrees/phase3-integration/operating-system/crates/distroctl)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.80s
+     Running unittests src/lib.rs (out/integration/target-linux/debug/deps/distro_config-2f51042acd684736)
+
+running 1 test
+test tests::metadata_rejects_invalid_inputs ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/lib.rs (out/integration/target-linux/debug/deps/distro_hardware-67801a2224b0eb05)
+
+running 9 tests
+test tests::memory_parsing_preserves_bytes_and_rejects_overflow_and_wrong_units ... ok
+test tests::storage_transports_and_malformed_capacity ... ok
+test tests::vm_fallbacks_do_not_guess_physical_hardware_or_generic_dmi ... ok
+test tests::missing_empty_malformed_and_io_errors_are_separate ... ok
+test tests::storage_fixture_follows_partition_parent_without_slaves ... ok
+test tests::real_sysfs_symlinks_link_drm_and_partitions_without_duplicates ... ok
+test tests::cpu_parsing_counts_socket_core_pairs_and_partial_topology ... ok
+test tests::firmware_fixture_distinguishes_uefi_legacy_and_unavailable ... ok
+test tests::gpu_fixture_identifies_vendors_models_and_keeps_incomplete_devices ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (out/integration/target-linux/debug/deps/distro_snapshots-1dee1525e857f441)
+
+running 30 tests
+test system::tests::disposable_linux_btrfs_roundtrip ... ignored, requires ASTRAEUS_LOOPBACK_TEST=1, root, loop devices, Btrfs and FAT tools
+test generations::tests::preferred_respects_assessment_default_preserves_fallback ... ok
+test generations::tests::upstream_counter_transitions_and_exhaustion ... ok
+test system::tests::encrypted_roots_bind_mapper_filesystem_and_luks_header ... ok
+test system::tests::interrupted_mutations_leave_a_durable_blocker ... ok
+test system::tests::nested_esp_mounts_are_rejected_online_and_offline ... ok
+test system::tests::corruption_fstab_and_mount_conflicts_block_execution ... ok
+test system::tests::online_discovery_and_unprivileged_catalog_do_not_call_btrfs ... ok
+test system::tests::online_layout_rejects_unprotected_package_mounts ... ok
+test system::tests::snapshot_lock_repairs_legacy_permissions_without_replacing_the_inode ... ok
+test system::tests::symlinks_cannot_redirect_store_or_boot_writes ... ok
+test system::tests::planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots ... ok
+test system::tests::full_lifecycle_keeps_persistent_data_and_boot_evidence ... ok
+test system::tests::unfinished_health_change_blocks_all_mutation_and_rollback_planning ... ok
+test system::tests::generation_tests::encrypted_generation_keeps_unlock_mapping_but_changes_root_selection ... ok
+test tests::btrfs_identity_parser_fails_closed ... ok
+test tests::boot_identity_allows_only_systemd_detected_console_suffixes ... ok
+test tests::identifiers_and_pe_are_checked_at_the_boundary ... ok
+test system::tests::wrong_layout_missing_tools_metadata_and_targets_fail_closed ... ok
+test system::tests::generation_tests::offline_rollback_retires_generation_selection_only_after_restoring_pair ... ok
+test system::tests::generation_tests::retained_boot_is_a_recovery_session_and_never_an_update_root ... ok
+test system::tests::generation_tests::candidate_and_independent_prior_remain_coherent ... ok
+test system::tests::generation_tests::baseline_cannot_promote_a_maintenance_initrd_that_was_not_booted ... ok
+test system::tests::generation_tests::exhausted_candidate_cannot_be_rearmed_but_last_attempt_can_be_blessed ... ok
+test system::tests::generation_tests::unmanaged_entries_and_unfinished_selection_are_not_accepted ... ok
+test system::tests::each_rollback_durability_boundary_preserves_a_root_and_blocks_retry ... ok
+test system::tests::generation_tests::missing_root_uki_wrong_pair_and_invalid_metadata_fail_closed ... ok
+test system::tests::generation_tests::blessing_refuses_wrong_entry_esp_counter_root_or_cmdline ... ok
+test system::tests::generation_tests::first_activation_interruption_keeps_original_and_retained_boot_material ... ok
+test system::tests::generation_tests::interruption_at_every_staging_and_activation_command_preserves_prior ... ok
+
+test result: ok. 29 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 1.98s
+
+     Running unittests src/lib.rs (out/integration/target-linux/debug/deps/distro_transactions-4f4242c455d378f1)
+
+running 29 tests
+test tests::health_distinguishes_failure_warning_and_unavailable ... ok
+test tests::disk_checks_reject_shortfall_and_overflow ... ok
+test tests::generation_tests::generation_references_reject_missing_stale_wrong_and_unhealthy_records ... ok
+test tests::pacman_machine_output_rejects_ambiguity ... ok
+test tests::boot_refresh_only_reads_matching_installed_loader_copies ... ok
+test tests::plan_validation_and_removal_state_are_consistent ... ok
+test tests::managed_health_rejects_unknown_or_failed_artifact_trust ... ok
+test tests::planner_resolves_real_fields_and_propagates_command_errors ... ok
+test tests::pacman_keeps_signature_policy_and_native_dependency_reasons ... ok
+test tests::rollback_planning_rejects_targets_that_confirmation_cannot_finalize ... ok
+test tests::history_is_read_only_versioned_and_lock_is_exclusive ... ok
+test tests::state_machine_rejects_skipped_and_terminal_transitions ... ok
+test tests::no_op_needs_no_snapshot_or_package_mutation ... ok
+test tests::system_checks_distinguish_missing_tool_and_failed_check ... ok
+test tests::missing_snapshots_prevents_all_package_work ... ok
+test tests::generation_tests::fallback_evidence_is_idempotent_and_does_not_claim_restoration_or_success ... ok
+test tests::post_snapshot_failure_retains_pre_snapshot_and_requires_rollback ... ok
+test tests::generation_tests::baseline_publication_failure_has_durable_recovery_reference_before_packages ... ok
+test tests::generation_tests::activation_failure_keeps_both_snapshots_and_requires_recovery ... ok
+test tests::execution_order_and_boot_confirmation_boundary ... ok
+test tests::stale_confirmation_and_missing_post_snapshot_fail_closed ... ok
+test tests::systemd_or_loader_mutation_rejects_the_entire_plan_before_execution ... ok
+test tests::public_sqlite_locks_cannot_block_private_commits_or_migration ... ok
+test tests::confirmation_requires_new_boot_matching_generation_and_fresh_health ... ok
+test tests::interrupted_transactions_are_recovered_without_replay ... ok
+test tests::published_history_migrates_and_recovers_failed_publication ... ok
+test tests::cancellation_at_every_boundary_never_succeeds ... ok
+test tests::old_updater_writes_survive_root_rollback_and_divergence_is_preserved ... ok
+test tests::failure_matrix_is_durable_and_stops_at_the_failing_phase ... ok
+
+test result: ok. 29 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/permissions.rs (out/integration/target-linux/debug/deps/permissions-38bd999c1d01cebd)
+
+running 2 tests
+test migration_recovers_a_legacy_hot_journal ... ok
+test unprivileged_process_cannot_open_private_history_or_update_lock ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+     Running unittests src/lib.rs (out/integration/target-linux/debug/deps/distroctl-06f5c4d812f1a0f8)
+
+running 5 tests
+test updates::confirmation_tests::automatic_confirmation_leaves_restoration_pending ... ok
+test tests::formatting_and_json_share_normalized_hardware ... ok
+test tests::parse_observations_without_inventing_status ... ok
+test tests::status_resolves_real_partition_and_mapper_symlinks ... ok
+test tests::fixture_detects_encrypted_and_plain_root_and_running_uki ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (out/integration/target-linux/debug/deps/distroctl-9e7c3e12443759ea)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (out/integration/target-linux/debug/deps/cli-4ff9a8dd72a50adb)
+
+running 4 tests
+test security_status_does_not_invent_success_without_the_installed_helper ... ok
+test history_json_does_not_create_a_database ... ok
+test dry_run_and_history_share_structured_models ... ok
+test cli_contract ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.89s
+
+   Doc-tests distro_config
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_hardware
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_snapshots
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_transactions
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distroctl
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Checking distroctl v0.1.0-dev (/mnt/c/Users/Noel/.codex/worktrees/phase3-integration/operating-system/crates/distroctl)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.35s
+test_acceleration_is_explicit_and_never_falls_back (test_boot_smoke.AccelerationTests.test_acceleration_is_explicit_and_never_falls_back) ... ok
+test_archive_download_rejects_declared_streamed_and_slow_responses (test_bootstrap.BootstrapTests.test_archive_download_rejects_declared_streamed_and_slow_responses) ... ok
+test_archive_retains_only_verified_bytes_and_checks_consumed_hash (test_bootstrap.BootstrapTests.test_archive_retains_only_verified_bytes_and_checks_consumed_hash) ... ok
+test_package_archive_contains_generation_gate_and_recovery_guide (test_bootstrap.BootstrapTests.test_package_archive_contains_generation_gate_and_recovery_guide) ... ok
+test_pacman_resolves_both_roots_from_verified_local_metadata (test_bootstrap.BootstrapTests.test_pacman_resolves_both_roots_from_verified_local_metadata) ... ok
+test_profile_generation_and_fingerprint_rejection (test_bootstrap.BootstrapTests.test_profile_generation_and_fingerprint_rejection) ... ok
+test_source_archive_is_deterministic_and_refuses_reuse (test_bootstrap.BootstrapTests.test_source_archive_is_deterministic_and_refuses_reuse) ... ok
+test_templates_and_live_contract (test_bootstrap.BootstrapTests.test_templates_and_live_contract) ... ok
+test_interruption_cannot_be_recorded_as_success (test_builder_signals.BuilderSignalTests.test_interruption_cannot_be_recorded_as_success) ... ok
+test_conventional_subject_and_limits (test_commit_subject.CommitSubjectTests.test_conventional_subject_and_limits) ... ok
+test_generated_profile_and_account_boundary (test_installer.InstallerTests.test_generated_profile_and_account_boundary) ... ok
+test_installed_boot_detaches_iso_and_preserves_disk_and_firmware (test_installer.InstallerTests.test_installed_boot_detaches_iso_and_preserves_disk_and_firmware) ... ok
+test_installer_storage_check_cannot_be_silently_disabled (test_installer.InstallerTests.test_installer_storage_check_cannot_be_silently_disabled) ... ok
+test_kernel_parameters_and_uki_inputs (test_installer.InstallerTests.test_kernel_parameters_and_uki_inputs) ... ok
+test_malformed_configuration_rejected (test_installer.InstallerTests.test_malformed_configuration_rejected) ... ok
+test_payload_does_not_clone_live_accounts_or_boot_workarounds (test_installer.InstallerTests.test_payload_does_not_clone_live_accounts_or_boot_workarounds) ... ok
+test_secure_boot_guard_aborts_before_installer_writes (test_installer.InstallerTests.test_secure_boot_guard_aborts_before_installer_writes) ... ok
+test_acceptance_requires_an_exact_complete_line (test_phase2_validation.ValidationTests.test_acceptance_requires_an_exact_complete_line) ... ok
+test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset (test_phase2_validation.ValidationTests.test_broken_boot_allows_only_timeout_or_evidenced_clean_firmware_reset) ... ok
+test_clone_uses_backing_disk_and_copies_vars (test_phase2_validation.ValidationTests.test_clone_uses_backing_disk_and_copies_vars) ... ok
+Verified both database hashes and 1 upstream package names.
+Prepared /tmp/tmp0g710cst/package. Run makepkg as a non-root user in the pinned Arch builder.
+Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+test_complete_success_and_rollback_scenarios_reject_lost_home_data (test_phase2_validation.ValidationTests.test_complete_success_and_rollback_scenarios_reject_lost_home_data) ... ok
+test_confirmation_waits_for_service_and_preserves_job_failure (test_phase2_validation.ValidationTests.test_confirmation_waits_for_service_and_preserves_job_failure) ... ok
+test_corrupt_or_unaccepted_baseline_refused_before_cloning (test_phase2_validation.ValidationTests.test_corrupt_or_unaccepted_baseline_refused_before_cloning) ... ok
+test_failed_probe_cannot_be_used_as_evidence (test_phase2_validation.ValidationTests.test_failed_probe_cannot_be_used_as_evidence) ... ok
+test_guest_exit_timeout_output_limit_and_pipeline_failure (test_phase2_validation.ValidationTests.test_guest_exit_timeout_output_limit_and_pipeline_failure) ... ok
+test_interruption_requires_package_mutation_before_power_cut (test_phase2_validation.ValidationTests.test_interruption_requires_package_mutation_before_power_cut) ... ok
+QMP: /tmp/tmp0zvrjduv/boot-1/qmp.sock
+test_launch_is_foreground_disk_only_and_readonly_share (test_phase2_validation.ValidationTests.test_launch_is_foreground_disk_only_and_readonly_share) ... ok
+test_observation_keeps_other_artifacts_when_one_command_fails (test_phase2_validation.ValidationTests.test_observation_keeps_other_artifacts_when_one_command_fails) ... ok
+test_package_mismatch_and_outcome_disagreement_fail (test_phase2_validation.ValidationTests.test_package_mismatch_and_outcome_disagreement_fail) ... ok
+test_qmp_events_and_deadline (test_phase2_validation.ValidationTests.test_qmp_events_and_deadline) ... ok
+test_qmp_handshake_and_command_through_real_socket (test_phase2_validation.ValidationTests.test_qmp_handshake_and_command_through_real_socket) ... ok
+test_ready_guest_shutdown_avoids_desktop_power_dialog (test_phase2_validation.ValidationTests.test_ready_guest_shutdown_avoids_desktop_power_dialog) ... ok
+test_ready_timeout_never_passes (test_phase2_validation.ValidationTests.test_ready_timeout_never_passes) ... ok
+test_real_guest_channel_correlates_reply_and_preserves_failure_output (test_phase2_validation.ValidationTests.test_real_guest_channel_correlates_reply_and_preserves_failure_output) ... ok
+test_real_qcow2_overlay_and_baseline_hash (test_phase2_validation.ValidationTests.test_real_qcow2_overlay_and_baseline_hash) ... skipped 'optional real qcow2 test needs qemu-img'
+test_reboot_requires_new_boot_identity (test_phase2_validation.ValidationTests.test_reboot_requires_new_boot_identity) ... ok
+test_shutdown_timeout_and_cleanup_target_only_owned_process (test_phase2_validation.ValidationTests.test_shutdown_timeout_and_cleanup_target_only_owned_process) ... ok
+test_snapshot_and_transaction_gates_reject_false_success (test_phase2_validation.ValidationTests.test_snapshot_and_transaction_gates_reject_false_success) ... ok
+test_space_fault_uses_runtime_mount_and_restores_original_cache (test_phase2_validation.ValidationTests.test_space_fault_uses_runtime_mount_and_restores_original_cache) ... ok
+test_terminal_transaction_requires_actual_uki_and_boot_evidence (test_phase2_validation.ValidationTests.test_terminal_transaction_requires_actual_uki_and_boot_evidence) ... ok
+test_timeout_kills_the_child_group_before_delayed_side_effect (test_phase2_validation.ValidationTests.test_timeout_kills_the_child_group_before_delayed_side_effect) ... ok
+test_changed_baseline_or_firmware_is_refused (test_phase3_validation.Phase3Tests.test_changed_baseline_or_firmware_is_refused) ... ok
+test_disabled_enforcement_wrong_keys_and_replayed_markers_fail (test_phase3_validation.Phase3Tests.test_disabled_enforcement_wrong_keys_and_replayed_markers_fail) ... ok
+test_faults_are_guarded_and_record_exact_artifact_changes (test_phase3_validation.Phase3Tests.test_faults_are_guarded_and_record_exact_artifact_changes) ... ok
+test_guard_refusal_prevents_artifact_access (test_phase3_validation.Phase3Tests.test_guard_refusal_prevents_artifact_access) ... ok
+test_host_command_records_actual_failure_and_timeout (test_phase3_validation.Phase3Tests.test_host_command_records_actual_failure_and_timeout) ... ok
+QMP: /tmp/tmpomw6d1bu/boot-1/qmp.sock
+test_launch_reuses_harness_and_enforces_smm_and_flash (test_phase3_validation.Phase3Tests.test_launch_reuses_harness_and_enforces_smm_and_flash) ... ok
+test_load_only_probe_cannot_claim_payload_execution (test_phase3_validation.Phase3Tests.test_load_only_probe_cannot_claim_payload_execution) ... ok
+test_power_cut_requires_matching_blocked_product_barrier_and_records_exit (test_phase3_validation.Phase3Tests.test_power_cut_requires_matching_blocked_product_barrier_and_records_exit) ... ok
+test_real_refusal_predicate_requires_status_and_authentication_record (test_phase3_validation.Phase3Tests.test_real_refusal_predicate_requires_status_and_authentication_record) ... ok
+test_signature_list_rejects_extra_trust_and_malformed_lengths (test_phase3_validation.Phase3Tests.test_signature_list_rejects_extra_trust_and_malformed_lengths) ... ok
+test_tampering_changes_section_bytes_and_retains_pe_structure (test_phase3_validation.Phase3Tests.test_tampering_changes_section_bytes_and_retains_pe_structure) ... ok
+test_events_cannot_be_mistaken_for_command_success (test_qmp.QmpTests.test_events_cannot_be_mistaken_for_command_success) ... ok
+test_stdin_text_is_validated_without_echoing_the_input (test_qmp.QmpTests.test_stdin_text_is_validated_without_echoing_the_input) ... ok
+test_text_is_validated_before_sending_any_keys (test_qmp.QmpTests.test_text_is_validated_before_sending_any_keys) ... ok
+test_cache_and_build_time_do_not_change_image_bytes (test_reproducibility.ImageDeterminismTests.test_cache_and_build_time_do_not_change_image_bytes) ... ok
+test_coordinator_recognizes_locks_on_a_real_btrfs_subvolume (test_secure_boot.NativeSigningTests.test_coordinator_recognizes_locks_on_a_real_btrfs_subvolume) ... skipped 'explicit disposable Btrfs loopback test'
+test_coordinator_requires_both_parent_locks_and_generation_verification (test_secure_boot.NativeSigningTests.test_coordinator_requires_both_parent_locks_and_generation_verification) ... ok
+test_expired_certificate_is_rejected_by_openssl (test_secure_boot.NativeSigningTests.test_expired_certificate_is_rejected_by_openssl) ... ok
+test_invalid_signer_output_never_becomes_ready (test_secure_boot.NativeSigningTests.test_invalid_signer_output_never_becomes_ready) ... ok
+test_missing_artifact_and_receipt_tampering_cannot_be_consumed (test_secure_boot.NativeSigningTests.test_missing_artifact_and_receipt_tampering_cannot_be_consumed) ... ok
+test_native_dbx_hash_revocation_is_checked_without_changing_firmware (test_secure_boot.NativeSigningTests.test_native_dbx_hash_revocation_is_checked_without_changing_firmware) ... ok
+test_native_generation_provider_verifies_rebind_and_rejects_unknown_trust (test_secure_boot.NativeSigningTests.test_native_generation_provider_verifies_rebind_and_rejects_unknown_trust) ... ok
+test_nonzero_signing_hook_failure_is_retained (test_secure_boot.NativeSigningTests.test_nonzero_signing_hook_failure_is_retained) ... ok
+test_offline_provider_uses_public_installed_policy_without_private_key (test_secure_boot.NativeSigningTests.test_offline_provider_uses_public_installed_policy_without_private_key) ... ok
+test_policy_and_keys_cannot_be_controlled_by_an_unprivileged_user (test_secure_boot.NativeSigningTests.test_policy_and_keys_cannot_be_controlled_by_an_unprivileged_user) ... ok
+test_post_hook_failure_is_nonzero_with_no_unsigned_fallback (test_secure_boot.NativeSigningTests.test_post_hook_failure_is_nonzero_with_no_unsigned_fallback) ... ok
+test_rebind_failure_retains_journal_and_cannot_publish (test_secure_boot.NativeSigningTests.test_rebind_failure_retains_journal_and_cannot_publish) ... ok
+test_receipt_write_failure_leaves_no_eligible_candidate (test_secure_boot.NativeSigningTests.test_receipt_write_failure_leaves_no_eligible_candidate) ... ok
+test_sign_uki_and_bootloader_and_reverify_candidates (test_secure_boot.NativeSigningTests.test_sign_uki_and_bootloader_and_reverify_candidates) ... ok
+test_signed_candidate_publication_and_interrupted_copy_preserve_prior (test_secure_boot.NativeSigningTests.test_signed_candidate_publication_and_interrupted_copy_preserve_prior) ... ok
+test_signed_candidate_publication_consumes_receipt_and_keeps_known_good (test_secure_boot.NativeSigningTests.test_signed_candidate_publication_consumes_receipt_and_keeps_known_good) ... ok
+test_signed_loader_ready_binds_packaged_bytes_and_running_esp (test_secure_boot.NativeSigningTests.test_signed_loader_ready_binds_packaged_bytes_and_running_esp) ... ok
+test_signer_failure_and_interruption_keep_input_and_prior_artifacts (test_secure_boot.NativeSigningTests.test_signer_failure_and_interruption_keep_input_and_prior_artifacts) ... ok
+test_structurally_wrong_images_and_bootloader_wrong_key (test_secure_boot.NativeSigningTests.test_structurally_wrong_images_and_bootloader_wrong_key) ... ok
+test_symlink_hardlink_unsafe_permissions_and_concurrent_signer_refused (test_secure_boot.NativeSigningTests.test_symlink_hardlink_unsafe_permissions_and_concurrent_signer_refused) ... ok
+test_test_keys_are_distinct_private_and_never_enrolled (test_secure_boot.NativeSigningTests.test_test_keys_are_distinct_private_and_never_enrolled) ... ok
+test_unsigned_wrong_signer_and_tampered_images_are_rejected (test_secure_boot.NativeSigningTests.test_unsigned_wrong_signer_and_tampered_images_are_rejected) ... ok
+test_wrong_architecture_or_non_efi_subsystem_cannot_be_signed (test_secure_boot.NativeSigningTests.test_wrong_architecture_or_non_efi_subsystem_cannot_be_signed) ... ok
+test_wrong_pin_revocation_missing_key_and_wrong_private_key (test_secure_boot.NativeSigningTests.test_wrong_pin_revocation_missing_key_and_wrong_private_key) ... ok
+test_error_diagnostics_never_echo_tool_output_or_key_contents (test_secure_boot.PolicyTests.test_error_diagnostics_never_echo_tool_output_or_key_contents) ... ok
+test_firmware_framing_rejects_truncation_and_tracks_unknown_types (test_secure_boot.PolicyTests.test_firmware_framing_rejects_truncation_and_tracks_unknown_types) ... ok
+test_legacy_preset_uses_guarded_output_and_secure_preset_cannot_activate (test_secure_boot.PolicyTests.test_legacy_preset_uses_guarded_output_and_secure_preset_cannot_activate) ... ok
+test_package_source_excludes_adjacent_private_keys_and_is_deterministic (test_secure_boot.PolicyTests.test_package_source_excludes_adjacent_private_keys_and_is_deterministic) ... ok
+test_policy_rejects_ambiguity_and_unsafe_key_selection (test_secure_boot.PolicyTests.test_policy_rejects_ambiguity_and_unsafe_key_selection) ... ok
+test_post_hook_rejects_active_esp_input (test_secure_boot.PolicyTests.test_post_hook_rejects_active_esp_input) ... ok
+test_preset_output_never_falls_back_when_signing_is_required (test_secure_boot.PolicyTests.test_preset_output_never_falls_back_when_signing_is_required) ... ok
+test_removed_revoked_and_unknown_firmware_trust_cannot_pass (test_secure_boot.PolicyTests.test_removed_revoked_and_unknown_firmware_trust_cannot_pass) ... ok
+test_signing_expectation_survives_deleted_policy_and_unknown_firmware (test_secure_boot.PolicyTests.test_signing_expectation_survives_deleted_policy_and_unknown_firmware) ... ok
+test_status_is_read_only_when_policy_is_absent (test_secure_boot.PolicyTests.test_status_is_read_only_when_policy_is_absent) ... ok
+test_unconfigured_legacy_post_hook_is_a_noop (test_secure_boot.PolicyTests.test_unconfigured_legacy_post_hook_is_a_noop) ... ok
+test_unknown_firmware_is_not_disabled_or_enforced (test_secure_boot.PolicyTests.test_unknown_firmware_is_not_disabled_or_enforced) ... ok
+test_update_hook_requires_coordinator_before_signing_readiness (test_secure_boot.PolicyTests.test_update_hook_requires_coordinator_before_signing_readiness) ... ok
+test_print_resolution_and_expanded_trust_policy_are_read_only (test_transactions_pacman.PacmanContractTests.test_print_resolution_and_expanded_trust_policy_are_read_only) ... ok
+
+----------------------------------------------------------------------
+Ran 94 tests in 15.879s
+
+OK (skipped=2)
+/root/astraeus-signature-tests-5ooeklbz/tmpml0fi9wh/uki.ready
+All 14 shell syntax checks passed.

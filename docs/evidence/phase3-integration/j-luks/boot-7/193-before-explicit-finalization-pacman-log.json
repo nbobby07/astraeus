@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:49.984526+00:00",
+  "finished": "2026-10-09T01:28:50.137276+00:00",
+  "command": "tail -c 1048576 /var/log/pacman.log",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "[2026-10-08T18:13:08-0700] [PACMAN] Running 'pacman -U --noconfirm /mnt/astraeus-validation/fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst'\n[2026-10-08T18:13:08-0700] [ALPM] running '80-astraeus-secure-boot.hook'...\n[2026-10-08T18:13:08-0700] [ALPM] transaction started\n[2026-10-08T18:13:08-0700] [ALPM] installed astraeus-validation-fixture (1-1)\n[2026-10-08T18:13:08-0700] [ALPM] transaction completed\n[2026-10-08T18:13:08-0700] [PACMAN] Running 'pacman -Sy --noconfirm'\n[2026-10-08T18:13:08-0700] [PACMAN] synchronizing package lists\n[2026-10-08T18:19:44-0700] [PACMAN] Running '/usr/bin/pacman --sync --sysupgrade --noconfirm --downloadonly'\n[2026-10-08T18:19:44-0700] [PACMAN] starting full system upgrade\n[2026-10-08T18:19:46-0700] [PACMAN] Running '/usr/bin/pacman --sync --sysupgrade --noconfirm --downloadonly'\n[2026-10-08T18:19:46-0700] [PACMAN] starting full system upgrade\n[2026-10-08T18:20:08-0700] [PACMAN] Running '/usr/bin/pacman --sync --sysupgrade --noconfirm'\n[2026-10-08T18:20:08-0700] [PACMAN] starting full system upgrade\n[2026-10-08T18:20:08-0700] [ALPM] running '80-astraeus-secure-boot.hook'...\n[2026-10-08T18:20:11-0700] [ALPM] transaction started\n[2026-10-08T18:20:11-0700] [ALPM] upgraded astraeus-validation-fixture (1-1 -> 2-1)\n[2026-10-08T18:20:11-0700] [ALPM] transaction completed\n",
+    "id": "cc12ac803fa14374aa0426e5aa6b8c52",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

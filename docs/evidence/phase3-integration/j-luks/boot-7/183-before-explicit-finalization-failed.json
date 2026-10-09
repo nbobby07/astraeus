@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:48.354385+00:00",
+  "finished": "2026-10-09T01:28:48.506661+00:00",
+  "command": "systemctl --failed --no-legend --plain",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "",
+    "id": "ac0c6cb3e7604aec9ed39b8fa60b525d",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

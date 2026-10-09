@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/ubuntu/p3i/final/recovery-kit/ukify",
+    "--config=/dev/null",
+    "--json=short",
+    "--all",
+    "inspect",
+    "/home/ubuntu/p3i/final/recovery-kit/recovery.efi"
+  ],
+  "started": "2026-10-09T00:04:27.314121+00:00",
+  "finished": "2026-10-09T00:04:27.808818+00:00",
+  "code": 0,
+  "stdout": "{\".text\": {\"size\": 97102, \"sha256\": \"ae98d18d7aa1250308eacf54c53a6adc38f52b6b0fd3680c0416b73431240b68\"}, \".rodata\": {\"size\": 28648, \"sha256\": \"fa6567596f9d4e867496b94feaf4b7ef61951ae3987e451741bffa2ca03f6a71\"}, \".data\": {\"size\": 184, \"sha256\": \"1f2f5161e1275c1b8c47c980e0c4fb51d30d956e75b735cb5b40149b3ff3c4d9\"}, \".sbat\": {\"size\": 323, \"sha256\": \"96aa509b6862fec4f7b6f81a64d69b9f0f5e8df6dc47224037b2a510769948ba\", \"text\": \"sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md\\nsystemd-stub,1,The systemd Developers,systemd,262,https://systemd.io/\\nsystemd-stub.arch,1,Arch Linux,systemd,262,https://archlinux.org/packages/core/x86_64/systemd/\\nuki,1,UKI,uki,1,https://uapi-group.org/specifications/specs/unified_kernel_image/\\n\"}, \".sdmagic\": {\"size\": 45, \"sha256\": \"a03b6164999e16f4b7fdab937d91d09cf5c6a5a7a8d523e40d0505fb3e2222ee\"}, \".reloc\": {\"size\": 180, \"sha256\": \"12b560435d270d445424463d74f11278096fceb3c86becf021e221995463ec2b\"}, \".osrel\": {\"size\": 96, \"sha256\": \"f37f8fd24789d0a6281bda66f965d3ee45c40c6823d9d757832b6e7ed037729f\", \"text\": \"ID=astraeus-recovery-test\\nPRETTY_NAME=\\\"Astraeus disposable trusted recovery\\\"\\nVERSION_ID=fdb784c\\n\"}, \".cmdline\": {\"size\": 191, \"sha256\": \"594450a20362f0043266e1a18f3efb74ab08948824b3d96854ca1e95bbcf00c1\", \"text\": \"archisobasedir=arch archisosearchuuid=2026-10-01-00-00-00-00 console=tty0 console=ttyS0,115200n8 astraeus.recovery_iso_sha256=520ca25fc9c9b9c3706011780d431f08a2f0c1c6e2848ff73dead21cc0b13905\\n\"}, \".uname\": {\"size\": 13, \"sha256\": \"660323d77f4dc9f2c2c9e5978835d3b8945775302d5aa16df2d8bf86f7d111a2\", \"text\": \"7.2.7-arch1-1\"}, \".linux\": {\"size\": 17224192, \"sha256\": \"8ebc2c71271e000540f0a7545afd8e73504fcb724671f3d38c720b241842b901\"}, \".initrd\": {\"size\": 221513624, \"sha256\": \"47817a2bb64059eb6a78b593826c43ee7cf24f8a16d4d129339a279e9fc3c61f\"}}",
+  "stderr": "Using config file: /dev/null\n"
+}

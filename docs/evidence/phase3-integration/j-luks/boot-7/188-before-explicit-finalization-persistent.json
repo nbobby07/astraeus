@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:49.168854+00:00",
+  "finished": "2026-10-09T01:28:49.320641+00:00",
+  "command": "cat /home/astraeus-validation/persistent-marker",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "46526f6883a74eab87778fc6738bb742-after-snapshot",
+    "id": "77f481d7a3bb436e9aa6203024ec64d6",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "query-status": {
+    "status": "running",
+    "singlestep": false,
+    "running": true
+  },
+  "query-kvm": {
+    "enabled": true,
+    "present": true
+  },
+  "query-block": [
+    {
+      "device": "pflash0",
+      "locked": false,
+      "removable": false,
+      "inserted": {
+        "iops_rd": 0,
+        "detect_zeroes": "off",
+        "image": {
+          "virtual-size": 3653632,
+          "filename": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+          "format": "raw",
+          "actual-size": 3653632,
+          "dirty-flag": false
+        },
+        "iops_wr": 0,
+        "ro": true,
+        "node-name": "#block192",
+        "backing_file_depth": 0,
+        "drv": "raw",
+        "iops": 0,
+        "bps_wr": 0,
+        "write_threshold": 0,
+        "encrypted": false,
+        "bps": 0,
+        "bps_rd": 0,
+        "cache": {
+          "no-flush": false,
+          "direct": false,
+          "writeback": true
+        },
+        "file": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd"
+      },
+      "qdev": "/machine/system.flash0",
+      "type": "unknown"
+    },
+    {
+      "device": "pflash1",
+      "locked": false,
+      "removable": false,
+      "inserted": {
+        "iops_rd": 0,
+        "detect_zeroes": "off",
+        "image": {
+          "virtual-size": 540672,
+          "filename": "/home/ubuntu/p3i/final/h-plain/vars.fd",
+          "format": "raw",
+          "actual-size": 540672,
+          "dirty-flag": false
+        },
+        "iops_wr": 0,
+        "ro": false,
+        "node-name": "#block321",
+        "backing_file_depth": 0,
+        "drv": "raw",
+        "iops": 0,
+        "bps_wr": 0,
+        "write_threshold": 0,
+        "encrypted": false,
+        "bps": 0,
+        "bps_rd": 0,
+        "cache": {
+          "no-flush": false,
+          "direct": false,
+          "writeback": true
+        },
+        "file": "/home/ubuntu/p3i/final/h-plain/vars.fd"
+      },
+      "qdev": "/machine/system.flash1",
+      "type": "unknown"
+    },
+    {
+      "io-status": "ok",
+      "device": "osdisk",
+      "locked": false,
+      "removable": false,
+      "inserted": {
+        "iops_rd": 0,
+        "detect_zeroes": "off",
+        "image": {
+          "backing-image": {
+            "virtual-size": 34359738368,
+            "filename": "/home/ubuntu/p3i/final/base-plain/disk.qcow2",
+            "cluster-size": 65536,
+            "format": "qcow2",
+            "actual-size": 3005767680,
+            "format-specific": {
+              "type": "qcow2",
+              "data": {
+                "compat": "1.1",
+                "compression-type": "zlib",
+                "lazy-refcounts": false,
+                "refcount-bits": 16,
+                "corrupt": false,
+                "extended-l2": false
+              }
+            },
+            "dirty-flag": false
+          },
+          "backing-filename-format": "qcow2",
+          "virtual-size": 34359738368,
+          "filename": "/home/ubuntu/p3i/final/h-plain/disk.qcow2",
+          "cluster-size": 65536,
+          "format": "qcow2",
+          "actual-size": 200704,
+          "format-specific": {
+            "type": "qcow2",
+            "data": {
+              "compat": "1.1",
+              "compression-type": "zlib",
+              "lazy-refcounts": false,
+              "refcount-bits": 16,
+              "corrupt": false,
+              "extended-l2": false
+            }
+          },
+          "full-backing-filename": "/home/ubuntu/p3i/final/base-plain/disk.qcow2",
+          "backing-filename": "/home/ubuntu/p3i/final/base-plain/disk.qcow2",
+          "dirty-flag": false
+        },
+        "iops_wr": 0,
+        "ro": false,
+        "node-name": "#block509",
+        "backing_file_depth": 1,
+        "drv": "qcow2",
+        "iops": 0,
+        "bps_wr": 0,
+        "write_threshold": 0,
+        "backing_file": "/home/ubuntu/p3i/final/base-plain/disk.qcow2",
+        "encrypted": false,
+        "bps": 0,
+        "bps_rd": 0,
+        "cache": {
+          "no-flush": false,
+          "direct": false,
+          "writeback": true
+        },
+        "file": "/home/ubuntu/p3i/final/h-plain/disk.qcow2"
+      },
+      "qdev": "/machine/peripheral-anon/device[1]/virtio-backend",
+      "type": "unknown"
+    },
+    {
+      "io-status": "ok",
+      "device": "ide2-cd0",
+      "locked": false,
+      "removable": true,
+      "qdev": "/machine/unattached/device[21]",
+      "tray_open": false,
+      "type": "unknown"
+    },
+    {
+      "device": "sd0",
+      "locked": false,
+      "removable": true,
+      "type": "unknown"
+    }
+  ],
+  "query-cpus-fast": [
+    {
+      "thread-id": 338205,
+      "props": {
+        "core-id": 0,
+        "thread-id": 0,
+        "socket-id": 0
+      },
+      "qom-path": "/machine/unattached/device[0]",
+      "cpu-index": 0,
+      "target": "x86_64"
+    },
+    {
+      "thread-id": 338206,
+      "props": {
+        "core-id": 1,
+        "thread-id": 0,
+        "socket-id": 0
+      },
+      "qom-path": "/machine/unattached/device[2]",
+      "cpu-index": 1,
+      "target": "x86_64"
+    },
+    {
+      "thread-id": 338208,
+      "props": {
+        "core-id": 2,
+        "thread-id": 0,
+        "socket-id": 0
+      },
+      "qom-path": "/machine/unattached/device[3]",
+      "cpu-index": 2,
+      "target": "x86_64"
+    },
+    {
+      "thread-id": 338210,
+      "props": {
+        "core-id": 3,
+        "thread-id": 0,
+        "socket-id": 0
+      },
+      "qom-path": "/machine/unattached/device[4]",
+      "cpu-index": 3,
+      "target": "x86_64"
+    }
+  ],
+  "registers": "\r\nCPU#0\r\nRAX=0000000050415453 RBX=0000000000087000 RCX=0000000000000003 RDX=0000000050415453\r\nRSI=00000000fee00300 RDI=000000007e3d000c RBP=000000007eee58e0 RSP=000000007eee5888\r\nR8 =000000007eee585c R9 =000000007eee5858 R10=00000000ffffffff R11=0000000000000000\r\nR12=0000000000087001 R13=0000000000000000 R14=000000007e3d10f0 R15=0000000000000001\r\nRIP=000000007e3d4c02 RFL=00000206 [-----P-] CPL=0 II=0 A20=1 SMM=0 HLT=0\r\nES =0030 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]\r\nCS =0038 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]\r\nSS =0030 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]\r\nDS =0030 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]\r\nFS =0030 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]\r\nGS =0030 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]\r\nLDT=0000 0000000000000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 0000000000000000 0000ffff 00008b00 DPL=0 TSS64-busy\r\nGDT=     000000007e9e1000 00000047\r\nIDT=     000000007e3fe018 00000fff\r\nCR0=80010033 CR2=0000000000000000 CR3=000000007ec01000 CR4=00000668\r\nDR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 \r\nDR6=00000000ffff0ff0 DR7=0000000000000400\r\nEFER=0000000000000d00\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=8000000000000000 4006\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\nXMM08=0000000000000000 0000000000000000 XMM09=0000000000000000 0000000000000000\r\nXMM10=0000000000000000 0000000000000000 XMM11=0000000000000000 0000000000000000\r\nXMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000\r\nXMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000\r\n"
+}

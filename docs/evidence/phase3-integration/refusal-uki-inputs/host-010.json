@@ -1,0 +1,12 @@
+{
+  "command": [
+    "sbverify",
+    "--list",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/public/unsigned.efi"
+  ],
+  "started": "2026-10-09T00:54:47.203566+00:00",
+  "finished": "2026-10-09T00:54:47.246178+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": "No signature table present\n"
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "started": "2026-10-09T00:33:49.754469+00:00",
+  "mode": "install",
+  "scenario": "update-success",
+  "encryption": "LUKS2",
+  "installation_accepted": false,
+  "finished": "2026-10-09T01:07:28.456890+00:00"
+}

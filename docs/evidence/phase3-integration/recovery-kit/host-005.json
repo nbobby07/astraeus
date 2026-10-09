@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/ubuntu/p3i/final/recovery-kit/ukify",
+    "--config=/dev/null",
+    "--stub",
+    "/home/ubuntu/p3i/final/recovery-kit/linuxx64.efi.stub",
+    "--linux",
+    "/home/ubuntu/p3i/final/recovery-kit/vmlinuz",
+    "--initrd",
+    "/home/ubuntu/p3i/final/recovery-kit/initrd",
+    "--cmdline",
+    "@/home/ubuntu/p3i/final/recovery-kit/cmdline",
+    "--os-release",
+    "@/home/ubuntu/p3i/final/recovery-kit/os-release",
+    "--uname",
+    "7.2.7-arch1-1",
+    "--output",
+    "/home/ubuntu/p3i/final/recovery-kit/recovery-unsigned.efi",
+    "build"
+  ],
+  "started": "2026-10-09T00:04:21.862676+00:00",
+  "finished": "2026-10-09T00:04:26.096837+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": "Using config file: /dev/null\nWrote unsigned /home/ubuntu/p3i/final/recovery-kit/recovery-unsigned.efi\n"
+}

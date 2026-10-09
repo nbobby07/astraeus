@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:04:37.820799+00:00",
+  "finished": "2026-10-09T01:04:38.023705+00:00",
+  "command": "distroctl boot set-default 1791507846-565428040-568",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: unfinished operation: inspect astraeus/pending.json and recover offline before continuing\n",
+    "id": "cb266e181d07482092b2ff5fa97077bb",
+    "boot_id": "558664ca-5ae2-4938-95a2-bf74691e8eb8"
+  }
+}

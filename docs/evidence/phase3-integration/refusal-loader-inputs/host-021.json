@@ -1,0 +1,11 @@
+{
+  "command": [
+    "mkfs.vfat",
+    "/home/ubuntu/p3i/final/refusal-loader-inputs/fixture.fat"
+  ],
+  "started": "2026-10-09T00:04:56.633400+00:00",
+  "finished": "2026-10-09T00:04:56.637807+00:00",
+  "code": 0,
+  "stdout": "mkfs.fat 4.2 (2021-01-31)\n",
+  "stderr": ""
+}

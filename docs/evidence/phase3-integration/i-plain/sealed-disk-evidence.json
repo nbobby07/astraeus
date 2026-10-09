@@ -1,0 +1,46 @@
+{
+  "path": "/home/ubuntu/p3i/final/i-plain/disk.qcow2",
+  "sha256": "a4cc2880023b9972b30c8e1729f11e0e42a1ec8376562b1e766ab393fd0ceb78",
+  "bytes": 627048448,
+  "image": {
+    "children": [
+      {
+        "name": "file",
+        "info": {
+          "children": [],
+          "virtual-size": 627048448,
+          "filename": "/home/ubuntu/p3i/final/i-plain/disk.qcow2",
+          "format": "file",
+          "actual-size": 626991104,
+          "format-specific": {
+            "type": "file",
+            "data": {}
+          },
+          "dirty-flag": false
+        }
+      }
+    ],
+    "backing-filename-format": "qcow2",
+    "virtual-size": 34359738368,
+    "filename": "/home/ubuntu/p3i/final/i-plain/disk.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 626991104,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "1.1",
+        "compression-type": "zlib",
+        "lazy-refcounts": false,
+        "refcount-bits": 16,
+        "corrupt": false,
+        "extended-l2": false
+      }
+    },
+    "full-backing-filename": "/home/ubuntu/p3i/final/base-plain/disk.qcow2",
+    "backing-filename": "/home/ubuntu/p3i/final/base-plain/disk.qcow2",
+    "dirty-flag": false
+  },
+  "private_signing_material_may_be_present": true,
+  "included_in_public_archive": false
+}

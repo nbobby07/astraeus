@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:04:37.618234+00:00",
+  "finished": "2026-10-09T01:04:37.820239+00:00",
+  "command": "distroctl update",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: previous transaction needs boot confirmation or recovery; inspect distroctl history\n",
+    "id": "8f8dbc88e5ec4bc9a3df427bcc6fe96e",
+    "boot_id": "558664ca-5ae2-4938-95a2-bf74691e8eb8"
+  }
+}

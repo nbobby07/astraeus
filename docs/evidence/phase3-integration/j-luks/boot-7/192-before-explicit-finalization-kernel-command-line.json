@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:28:49.832240+00:00",
+  "finished": "2026-10-09T01:28:49.984014+00:00",
+  "command": "cat /proc/cmdline",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "rd.luks.name=757664ae-11a8-4d5e-a51a-d23de2e88734=root root=/dev/mapper/root rootflags=subvol=@ rw console=uart,io,0x3f8 console=hvc0 console=tty0\n",
+    "id": "b53307f981494a5492f7105403f11e30",
+    "boot_id": "6817a6c8-8515-4dcf-9217-68bec0b84435"
+  }
+}

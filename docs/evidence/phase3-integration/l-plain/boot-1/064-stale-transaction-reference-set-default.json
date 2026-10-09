@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:52.173292+00:00",
+  "finished": "2026-10-09T01:01:53.382546+00:00",
+  "command": "distroctl boot set-default 1791507690-379308310-549",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: generation is not the transaction's recorded snapshot\n",
+    "id": "29c66da59bc74cb2b9023e1f420fb9d9",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}

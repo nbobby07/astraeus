@@ -1,0 +1,41 @@
+{
+  "SecureBoot": {
+    "attributes": "00000006",
+    "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+  },
+  "SetupMode": {
+    "attributes": "00000006",
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+  },
+  "PK": {
+    "attributes": "00000027",
+    "sha256": "5ca23d114f2ae2eaf24738c031e164bc9b93318b184fcd32bb588bc495581992"
+  },
+  "KEK": {
+    "attributes": "00000027",
+    "sha256": "5ca23d114f2ae2eaf24738c031e164bc9b93318b184fcd32bb588bc495581992"
+  },
+  "db": {
+    "attributes": "00000027",
+    "sha256": "5ca23d114f2ae2eaf24738c031e164bc9b93318b184fcd32bb588bc495581992"
+  },
+  "trusted": {
+    "load_status": "0000000000000000",
+    "executed": false
+  },
+  "unsigned": {
+    "load_status": "800000000000000f",
+    "executed": false,
+    "authentication_record": "DENIED_IMAGE 00000000 PciRoot(0x0)/Pci(0x3,0x0)/\\EFI\\tests\\unsigned.efi"
+  },
+  "untrusted": {
+    "load_status": "800000000000000f",
+    "executed": false,
+    "authentication_record": "DENIED_IMAGE 00000003 PciRoot(0x0)/Pci(0x3,0x0)/\\EFI\\tests\\untrusted.efi"
+  },
+  "tampered": {
+    "load_status": "800000000000000f",
+    "executed": false,
+    "authentication_record": "DENIED_IMAGE 00000003 PciRoot(0x0)/Pci(0x3,0x0)/\\EFI\\tests\\tampered.efi"
+  }
+}

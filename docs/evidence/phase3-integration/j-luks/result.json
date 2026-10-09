@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "integrated_acceptance": true,
+  "encryption": "LUKS2",
+  "started": "2026-10-09T01:18:44.969097+00:00",
+  "source_commit": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+  "fallback": "retained-root recovery",
+  "restoration": "trusted live recovery then explicit finalize-rollback",
+  "finished": "2026-10-09T01:29:22.159237+00:00"
+}

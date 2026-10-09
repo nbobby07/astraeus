@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:48.509513+00:00",
+  "finished": "2026-10-09T01:01:48.713994+00:00",
+  "command": "distroctl boot set-default 1791507690-379308310-549",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: generation root missing or replaced\n",
+    "id": "ede7829798804ab18f48418e94267656",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}

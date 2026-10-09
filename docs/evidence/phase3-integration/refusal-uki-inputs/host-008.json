@@ -1,0 +1,23 @@
+{
+  "command": [
+    "ld",
+    "-nostdlib",
+    "-znocombreloc",
+    "-T",
+    "/usr/lib/elf_x86_64_efi.lds",
+    "-shared",
+    "-Bsymbolic",
+    "/usr/lib/crt0-efi-x86_64.o",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/probe.o",
+    "-L/usr/lib",
+    "-lefi",
+    "-lgnuefi",
+    "-o",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/probe.so"
+  ],
+  "started": "2026-10-09T00:54:47.118700+00:00",
+  "finished": "2026-10-09T00:54:47.126211+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

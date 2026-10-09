@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:52.021121+00:00",
+  "finished": "2026-10-09T01:01:52.172775+00:00",
+  "command": "distroctl boot verify 1791507690-379308310-549 --json",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: generation is not the transaction's recorded snapshot\n",
+    "id": "fa5d2677f7704feaa5d20fc19d98b8c2",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}

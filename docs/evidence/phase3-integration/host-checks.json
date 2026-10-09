@@ -1,0 +1,49 @@
+{
+  "runtime": "fdb784c8539fb7679f7ab6e350583f523a80728d",
+  "ci_revision": "6bf49cd6eda785f5665282ca76aa36d2a6319df0",
+  "final_fix_host_checks": "Full locked Rust, fmt, Clippy and Python discovery passed on Windows and WSL Linux; 14 shell syntax checks passed.",
+  "native_checks_scope": "Native signing/Btrfs checks exercise provider and snapshot code unchanged by the final CLI-only fix. Both final Arch builds also ran native gates.",
+  "python": {
+    "tests": 94,
+    "windows_skipped": 36,
+    "linux_skipped": 2
+  },
+  "logs": {
+    "after-finalization-fix-windows.log": {
+      "bytes": 8722,
+      "sha256": "c34b5396f44f1763e6b3fd69f10865af6fdd2bc9560267278aac9a21b04ce9b0"
+    },
+    "after-finalization-fix-linux.log": {
+      "bytes": 25128,
+      "sha256": "7a9e83d3e3b0e6d5e6ffa2d269c5659dd337f5431196615a865f89f7a988b403"
+    },
+    "after-finalization-fix-python-windows.log": {
+      "bytes": 17943,
+      "sha256": "2ab97a1044dac62e044f61a3ce615c93fb54327a45c8eb0e81d30387791222a7"
+    },
+    "native-signing.log": {
+      "bytes": 6050,
+      "sha256": "e310be334ddfce4ae242e84025db554746cd726fecbe944a207db775b1889e91"
+    },
+    "signing-btrfs-loopback.log": {
+      "bytes": 6302,
+      "sha256": "3e9f152bc62d7c5d311be2d4be21162cff45817d78b4479f537a3f64dd316b1b"
+    },
+    "rust-btrfs-loopback.log": {
+      "bytes": 356,
+      "sha256": "aa24f187891f748175a04afb81269661f40a61d201dc4f78b7f172832e17b6d6"
+    },
+    "github-linux-pinned-success.log": {
+      "bytes": 81271,
+      "sha256": "44994c7a57e8ab2737a9927a1f6aa3f18cb25b115a5e922a7e350f8ef6e14a67"
+    },
+    "github-windows-success.log": {
+      "bytes": 58428,
+      "sha256": "ed5c2f98cbf81c327f5ce68d456351b82eaaf95a87276c23338184df95f8df0b"
+    },
+    "github-checks-6bf49cd.json": {
+      "bytes": 830,
+      "sha256": "bb117b11b19e256cdb64629547cb2f814d2fc427e64330afe7e0dbe2d0581fe6"
+    }
+  }
+}

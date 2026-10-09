@@ -1,0 +1,26 @@
+{
+  "command": [
+    "gcc",
+    "-I/usr/include/efi",
+    "-I/usr/include/efi/x86_64",
+    "-DEFI_FUNCTION_WRAPPER",
+    "-DRUN_ID=\"dadc76e2d0a24af8b0937d0b98e9fcd9\"",
+    "-DLOAD_ONLY",
+    "-fpic",
+    "-fshort-wchar",
+    "-mno-red-zone",
+    "-fno-stack-protector",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-c",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/firmware-probe.c",
+    "-o",
+    "/home/ubuntu/p3i/final/refusal-uki-inputs/probe.o"
+  ],
+  "started": "2026-10-09T00:54:47.052227+00:00",
+  "finished": "2026-10-09T00:54:47.118327+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

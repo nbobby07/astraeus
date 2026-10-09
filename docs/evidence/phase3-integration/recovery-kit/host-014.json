@@ -1,0 +1,14 @@
+{
+  "command": [
+    "mcopy",
+    "-i",
+    "/home/ubuntu/p3i/final/recovery-kit/recovery.fat",
+    "/home/ubuntu/p3i/final/recovery-kit/loader-signed.efi",
+    "::/EFI/BOOT/BOOTX64.EFI"
+  ],
+  "started": "2026-10-09T00:04:27.938085+00:00",
+  "finished": "2026-10-09T00:04:27.940890+00:00",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

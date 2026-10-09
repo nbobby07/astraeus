@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-09T01:01:49.173468+00:00",
+  "finished": "2026-10-09T01:01:50.230535+00:00",
+  "command": "distroctl boot verify 1791507690-379308310-549 --json",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: generation UKI hash mismatch\n",
+    "id": "e05cb9e79bf24b7fa2f28ec629083eb8",
+    "boot_id": "ec657715-8ba2-4b59-bb89-5843b45d4219"
+  }
+}
