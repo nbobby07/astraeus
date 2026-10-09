@@ -126,9 +126,10 @@ def run(args):
         vm.start()
         vm.ready()
         if args.autologin:
+            autologin = shlex.quote('[Autologin]\nUser=' + args.user + '\nSession=plasma.desktop\n')
             vm.command('test -e /dev/virtio-ports/org.astraeus.validation; '
                        'mkdir -p /etc/sddm.conf.d; '
-                       f'printf %s {shlex.quote("[Autologin]\nUser=" + args.user + "\nSession=plasma.desktop\n")} '
+                       f'printf %s {autologin} '
                        '> /etc/sddm.conf.d/99-phase4-validation.conf; systemctl restart sddm; '
                        f'for attempt in $(seq 1 60); do if pgrep -u {args.user} -x plasmashell >/dev/null; '
                        'then exit 0; fi; sleep 1; done; echo "Plasma startup timed out" >&2; exit 1',

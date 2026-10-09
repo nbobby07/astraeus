@@ -169,9 +169,16 @@ def suite(user, work, proton=None, runtime=None):
         result['binary_sha256'] = hashlib.sha256(binary.read_bytes()).hexdigest()
     binary = builds.get(64)
     if binary:
-        for name, contents in [('missing-icd', None), ('corrupt-icd', '{broken'),
-                               ('wrong-architecture', json.dumps(dict(file_format_version='1.0.0',
-                                ICD=dict(library_path='/usr/lib32/libvulkan_lvp.so', api_version='1.0.0'))))]:
+        cases = [('missing-icd', None), ('corrupt-icd', '{broken')]
+        elf32 = next((p for p in Path('/usr/lib32').glob('libvulkan*.so*')
+                      if p.is_file() and p.read_bytes()[:5] == b'\x7fELF\x01'), None)
+        if elf32:
+            cases.append(('wrong-architecture', json.dumps(dict(file_format_version='1.0.0',
+                          ICD=dict(library_path=str(elf32), api_version='1.0.0')))))
+        else:
+            checks['wrong-architecture'] = dict(status='NOT RUN', code=None,
+                output='No real ELF32 Vulkan library available; a missing path cannot prove ELFCLASS32 refusal')
+        for name, contents in cases:
             path = work / f'{name}.json'
             if contents is not None:
                 path.write_text(contents)
@@ -183,6 +190,8 @@ def suite(user, work, proton=None, runtime=None):
                 result['status'] = 'PASS' if result['code'] is not None and 0 < result['code'] <= 125 and not result.get('error') and re.search(
                     r'ICD|driver|VkResult|ELFCLASS', result['output'], re.I) else 'FAIL'
                 result['scope'] = 'Vulkan loader refusal, not production readiness CLI'
+                if name == 'wrong-architecture' and 'ELFCLASS32' not in result['output']:
+                    result['status'] = 'FAIL'
     if binary and 32 in builds:
         missing32 = work / 'absent32.json'
         result = probe('missing-lib32-icd', [builds[32]], user_session=True,
@@ -199,11 +208,14 @@ def suite(user, work, proton=None, runtime=None):
             before = probe('gamemode-before', ['gamemoded', '-s'], user_session=True)
             probe('gamemode-invoke', ['gamemoderun', binary], 'PHASE4_VULKAN_OK pixels=256', 64, user_session=True)
             after = probe('gamemode-after', ['gamemoded', '-s'], user_session=True)
-            checks['gamemode-restoration'] = dict(status='PASS' if before['status'] == after['status'] == 'PASS'
+            checks['gamemode-restoration'] = dict(status='PASS' if before['code'] in [0, 1]
+                and before['code'] == after['code'] and not before.get('error') and not after.get('error')
                 and before['output'] == after['output'] else 'FAIL', code=None,
                 scope='daemon status restored; gamemoded -t separately checks its configured optimizations')
-            probe('mangohud-invoke', ['mangohud', binary], 'PHASE4_VULKAN_OK pixels=256', 64, user_session=True)
-        probe('mangohud-wsi', ['mangohud', 'vkcube', '--c', '60'], user_session=True, timeout=30)
+            probe('mangohud-invoke', ['mangohud', binary], 'PHASE4_VULKAN_OK pixels=256', 64, user_session=True,
+                  env={**os.environ, 'MANGOHUD_CONFIG': 'fps,frametime'})
+        probe('mangohud-wsi', ['mangohud', 'vkcube', '--c', '60'], user_session=True, timeout=30,
+              env={**os.environ, 'MANGOHUD_CONFIG': 'fps,frametime'})
         probe('gamescope-launch', ['gamescope', '--', 'vkcube', '--c', '60'], user_session=True, timeout=30)
     checks['overlay-visible'] = dict(status='NOT RUN', code=None,
         output='Invocation is separate from visible overlay acceptance; retain private QMP screenshot and manual inspection')
@@ -236,7 +248,7 @@ def suite(user, work, proton=None, runtime=None):
             nonce = uuid.uuid4().hex
             result = probe('proton-execution', ['env', f'STEAM_COMPAT_DATA_PATH={compat}',
                 f'STEAM_COMPAT_CLIENT_INSTALL_PATH={steamhome}', 'SteamAppId=0', 'PROTON_LOG=1',
-                f'PROTON_LOG_DIR={work}', runtime, '--', proton, 'run', exe, nonce],
+                f'PROTON_LOG_DIR={work}', runtime, '--verb=waitforexitandrun', '--', proton, 'run', exe, nonce],
                 f'PHASE4_WINDOWS_OK {nonce}', user_session=True, timeout=60)
             result['fixture_sha256'] = hashlib.sha256(exe.read_bytes()).hexdigest()
             result['proton_sha256'] = hashlib.sha256(proton.read_bytes()).hexdigest()
@@ -247,6 +259,7 @@ def suite(user, work, proton=None, runtime=None):
         checks['proton-execution'] = dict(status='NOT RUN', code=None,
             output='Provide inspected Proton script and Steam Linux Runtime _v2-entry-point; no raw Wine substitution')
     probe('proton-logs', ['bash', '-c', 'find "$1" -maxdepth 1 -name "steam-*.log" -exec tail -c 131072 {} ";"', 'logs', work])
+    checks['vulkan-32']['runtime_verification'] = 'VERIFIED' if checks['vulkan-32']['status'] == 'PASS' else 'UNVERIFIED'
     return dict(schema_version=1, desktop=desktop, checks=checks, physical_gpu_qualified=False,
                 gaming_validated=False, work=str(work))
 
