@@ -328,7 +328,7 @@ class ValidationTests(unittest.TestCase):
             self.assertFalse(any('installiso' in arg for arg in command))
             self.assertIn('local,path=test-share,mount_tag=acceptance,security_model=none,readonly=on', command)
 
-    def test_ready_guest_shutdown_avoids_desktop_power_dialog(self):
+    def test_ready_guest_shutdown_bounds_timer_delay_and_avoids_desktop_dialog(self):
         with tempfile.TemporaryDirectory() as temp:
             vm = phase2.VM(Path(temp), None, None, 10)
             vm.session, vm.boot_id = Path(temp), 'boot-1'
@@ -340,6 +340,8 @@ class ValidationTests(unittest.TestCase):
                 vm.shutdown()
                 acpi.assert_not_called()
             self.assertIn('systemctl poweroff', vm.command.call_args.args[0])
+            self.assertIn('--on-active=1s', vm.command.call_args.args[0])
+            self.assertIn('--timer-property=AccuracySec=1s', vm.command.call_args.args[0])
             vm.child.wait.assert_called_once_with(timeout=60)
             self.assertTrue(json.loads((Path(temp) / 'shutdown.json').read_text())['graceful'])
 
