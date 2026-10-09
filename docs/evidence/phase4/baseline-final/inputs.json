@@ -1,0 +1,30 @@
+{
+  "source_commit": "f4ce16a54337413603fe802754785015ef1464a1",
+  "harness_commit": "f4ce16a54337413603fe802754785015ef1464a1",
+  "harness_dirty": false,
+  "firmware": {
+    "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+    "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+  },
+  "qemu": "QEMU emulator version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)\nCopyright (c) 2003-2023 Fabrice Bellard and the QEMU Project developers\n",
+  "files": {
+    "scripts/validate/phase4.py": "d8321533cd274bf1c105cbc2da803ea46e28bb78b010196e40c29c7b04c763d1",
+    "scripts/validate/phase4_guest.py": "d28788a8dae7187986328248adce4d5d7e1289cac100fd57499f0db02d75e22f",
+    "scripts/validate/phase2.py": "26750f762be81665c9da24abbfaffe6539baf02d86f4a199532a504c44d48160",
+    "scripts/validate/qmp.py": "79c9edb5d6d3ece66d77b224eadc40c140c0dec0b33b530a10d513a98e2eb5d0",
+    "scripts/install-smoke.py": "bfbec9bdf95091f2e67cd05745b83cddfd2d7c96c06a17b408ed3e9e851a8729",
+    "tests/fixtures/phase4/windows-smoke.c": "5ef05abfc2a10d7e4f5b573d9fd8c0b5aadb94dfcd9388751c5f6c33045f6208",
+    "tests/fixtures/phase4/vulkan-workload.c": "0d2a52cc0e532ae95f74a4a7a3c4ea17cfd808fb74b3d0b76d3aa34ad7524c51",
+    "tests/fixtures/phase4/matrix.json": "9ada0714daba274219fd6e9c4dcf1433a080f8f7ae47c3d71938cf5ac07c2b31"
+  },
+  "share_files": {
+    "phase2-guest.py": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f",
+    "phase4_guest.py": "d28788a8dae7187986328248adce4d5d7e1289cac100fd57499f0db02d75e22f",
+    "fixtures/vulkan64": "bfdf19e4d3f44bd16819b76be1c789df00d00ca9f970ef7f76e91d171b4b17d4",
+    "fixtures/prebuilt.json": "23dd9260b7a9b63b31f50e6f3c9f4d93d96ccae4382b4cac8e1d5121aaab6bb3",
+    "fixtures/windows-smoke.exe": "5cee03d79ce1a46be0fb9e731d2ab5ce10cba1a46de86430e6afa6553c6e1347",
+    "fixtures/windows-smoke.c": "5ef05abfc2a10d7e4f5b573d9fd8c0b5aadb94dfcd9388751c5f6c33045f6208",
+    "fixtures/vulkan-workload.c": "0d2a52cc0e532ae95f74a4a7a3c4ea17cfd808fb74b3d0b76d3aa34ad7524c51",
+    "fixtures/matrix.json": "9ada0714daba274219fd6e9c4dcf1433a080f8f7ae47c3d71938cf5ac07c2b31"
+  }
+}
