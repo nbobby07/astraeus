@@ -59,12 +59,25 @@ def stage(live, values, write):
     write(live / "usr/share/applications/astraeus-install.desktop", desktop)
 
 
-def build_payload(out, profile, values, run, write, render):
+def graphics_packages(bundles):
+    manifest = json.loads((ROOT / "distro/graphics/bundles.json").read_text())
+    selected = set(manifest["base"])
+    for bundle in bundles:
+        if bundle not in {"amd", "intel", "nouveau", "virtio"}:
+            raise ValueError("unsupported graphics bundle; NVIDIA activation needs module trust and transaction integration")
+        selected.update(manifest["bundles"][bundle])
+    return sorted(selected)
+
+
+def build_payload(out, profile, values, run, write, render, graphics=()):
+    graphics_names = graphics_packages(graphics)
     root = out / "installed-root"
     root.mkdir()
-    names = (ROOT / "distro/installed/packages.x86_64").read_text().split()
+    names = sorted(set((ROOT / "distro/installed/packages.x86_64").read_text().split()) | set(graphics_names))
     run("pacstrap", "-C", profile / "pacman.conf", "-c", "-G", "-M", root, *names)
     shutil.copytree(ROOT / "distro/installed", root / "usr/share/distro/install-inputs")
+    write(root / "usr/share/distro/install-inputs/graphics.json", json.dumps({"schema_version": 1,
+          "bundles": sorted(set(graphics)), "packages": graphics_names}, indent=2) + "\n")
     write(root / "etc/mkinitcpio.conf", (ROOT / "distro/installed/mkinitcpio.conf").read_text())
     write(root / "etc/mkinitcpio.d/linux.preset", render((ROOT / "distro/installed/linux.preset.in").read_text(), values))
     for hook in (ROOT / "distro/installed").glob("*.hook"):

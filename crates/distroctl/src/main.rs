@@ -9,6 +9,7 @@ Usage:
   distroctl status [--json]     Show observed system status
   distroctl security status [--json]  Inspect Secure Boot policy and signatures
   distroctl hardware [--json]   Discover hardware without changing it
+  distroctl graphics [--probe] [--json]  Inspect graphics; --probe tests both Vulkan architectures
   distroctl validate <path>    Validate a project release TOML file
   distroctl snapshot --help   Snapshot commands and recovery usage
   distroctl boot list|status [--json]
@@ -132,6 +133,21 @@ fn run(args: &[String]) -> Result<(), String> {
                 );
             } else {
                 print!("{}", distroctl::format_status(&s));
+            }
+        }
+        ["graphics"]
+        | ["graphics", "--json"]
+        | ["graphics", "--probe"]
+        | ["graphics", "--probe", "--json"]
+        | ["graphics", "--json", "--probe"] => {
+            let report = distro_graphics::probe(args.iter().any(|a| a == "--probe"));
+            if args.iter().any(|a| a == "--json") {
+                println!(
+                    "{}",
+                    serde_json::to_string_pretty(&report).map_err(|e| e.to_string())?
+                );
+            } else {
+                print!("{}", distro_graphics::format_report(&report));
             }
         }
         ["hardware"] | ["hardware", "--json"] => {

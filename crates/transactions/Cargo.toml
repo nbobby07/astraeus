@@ -7,6 +7,7 @@ publish.workspace = true
 
 [dependencies]
 distro-snapshots = { path = "../snapshots" }
+distro-graphics = { path = "../graphics" }
 serde.workspace = true
 serde_json.workspace = true
 rusqlite = { version = "0.38", features = ["bundled"] }
