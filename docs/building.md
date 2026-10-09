@@ -28,7 +28,7 @@ a network share. The image build needs root, chroot, mount and loop-device suppo
 
 Start with an authenticated Arch installation and a current trusted Arch keyring.
 Clone/copy this repository to the VM. In this **disposable builder only**, configure
-the normal `core` and `extra` repositories to use the pinned archive. Disable any
+the normal `core`, `extra` and `multilib` repositories to use the pinned archive. Disable any
 other enabled repositories in the builder's pacman configuration. Keep signature
 verification enabled. From the source root:
 
@@ -123,13 +123,17 @@ sudo python3 scripts/bootstrap.py iso \
   --output "$(pwd)/out/build-a"
 ```
 
-The script verifies both archive database hashes, stages the profile, verifies the
+The script verifies all three archive database hashes, stages the profile, verifies the
 repository public-key fingerprint, initializes an isolated build keyring and runs
 mkarchiso with a fixed `SOURCE_DATE_EPOCH`. Pacman verifies package signatures and
 the custom database before installation. The live ISO includes the signed custom
 repository so its pacman configuration never refers to the build host.
 
 Successful output includes `iso/*.iso`, `iso/SHA256SUMS`, `inputs.json`,
+and the selected [graphics bundles](graphics.md#image-selection). Add `--graphics`
+with the intended vendor names for native and 32-bit Vulkan in the installed image.
+The default payload includes Mesa and loaders but no vendor Vulkan ICD.
+Other build outputs include
 `builder-packages.txt`, `image-packages.txt`, `installed-packages.txt`, the generated `profile/`, `keyring/`
 and `work/`. The isolated keyring contains locally generated trust material and
 is not a release artifact. Do not distribute it. Retain the package/repository

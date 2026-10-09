@@ -96,6 +96,7 @@ pub struct ExecutionPlan {
 
 impl ExecutionPlan {
     pub fn validate(&self) -> Result<()> {
+        distro_graphics::validate_update(&self.current.packages, &self.expected_state().packages)?;
         if self.boot.update_bootloader
             || self.packages.changes.iter().any(|c| c.name() == "systemd")
         {

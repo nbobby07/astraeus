@@ -96,6 +96,8 @@ def prepare_package(output):
                  ROOT / "distro/installed/secure-boot/95-astraeus-sign",
                  ROOT / "distro/installed/80-astraeus-secure-boot.hook",
                  ROOT / "distro/installed/astraeus-bless-boot.conf", ROOT / "docs/boot-generations.md",
+                 ROOT / "scripts/graphics-probe.c", ROOT / "docs/graphics.md",
+                 *sorted((ROOT / "distro/graphics").glob("*.json")),
                  *sorted((ROOT / "crates").rglob("*"))]:
         if file.is_file():
             destination = source / file.relative_to(ROOT)
@@ -118,8 +120,9 @@ def packages(path="distro/archiso/packages.x86_64"):
 
 
 def upstream_packages():
+    graphics = json.loads((ROOT / "distro/graphics/packages.lock.json").read_text())["packages"]
     return (set(packages()) | set(packages("distro/installed/packages.x86_64"))
-            | set(packages("distro/packages/calamares/build-packages.x86_64")) | {"archiso", "rust"}) - CUSTOM_PACKAGES
+            | set(packages("distro/packages/calamares/build-packages.x86_64")) | set(graphics) | {"archiso", "rust"}) - CUSTOM_PACKAGES
 
 
 def check_archive(destination):
@@ -160,7 +163,7 @@ def check_archive(destination):
     for name, version in lock["direct_packages"].items():
         if found.get(name) != version:
             raise ValueError(f"version mismatch: {name}")
-    print(f"Verified both database hashes and {len(upstream_packages())} upstream package names.")
+    print(f"Verified {len(lock['databases'])} database hashes and {len(upstream_packages())} upstream package names.")
     return lock["databases"]
 
 
@@ -248,7 +251,8 @@ def create_profile(out, repo, fingerprint):
     return profile
 
 
-def build_iso(output, repo, fingerprint):
+def build_iso(output, repo, fingerprint, graphics=()):
+    installer.graphics_packages(graphics)  # Validate selection before any build side effects.
     data = project()
     if sys.platform != "linux" or platform.machine() != "x86_64":
         raise ValueError("ISO builds require an x86_64 Arch Linux builder; see docs/building.md")
@@ -267,7 +271,7 @@ def build_iso(output, repo, fingerprint):
     values = dict(ID=data["identity"]["id"], NAME=data["identity"]["name"], VERSION=data["identity"]["version"],
                   ARCHIVE=data["build"]["archive_date"], EPOCH=data["build"]["source_date_epoch"], FINGERPRINT=fingerprint)
     verify_archive_files(out / "archive", archive_hashes)
-    installer.build_payload(out, profile, values, lambda *a, **kw: run(*a, env=env, **kw), write, render)
+    installer.build_payload(out, profile, values, lambda *a, **kw: run(*a, env=env, **kw), write, render, graphics)
     verify_archive_files(out / "archive", archive_hashes)
     run("mkarchiso", "-v", "-w", out / "work", "-o", out / "iso", profile, env=env)
     with (out / "builder-packages.txt").open("w") as builder_log:
@@ -275,7 +279,7 @@ def build_iso(output, repo, fingerprint):
     with (out / "image-packages.txt").open("w") as image_log:
         run("pacman", "--root", out / "work/x86_64/airootfs", "-Q", stdout=image_log)
     write(out / "inputs.json", json.dumps({"project": data, "repository_key": fingerprint,
-          "archive_databases": archive_hashes,
+          "archive_databases": archive_hashes, "graphics_bundles": sorted(set(graphics)),
           "repository": {p.name: digest(p) for p in sorted(repo.iterdir()) if p.is_file()},
           "sources": {p.relative_to(ROOT).as_posix(): digest(p) for folder in ["crates", "distro", "scripts"]
                       for p in sorted((ROOT / folder).rglob("*")) if p.is_file() and "__pycache__" not in p.parts},
@@ -295,6 +299,8 @@ def main():
     iso.add_argument("--output", type=Path, required=True)
     iso.add_argument("--repo", type=Path, required=True)
     iso.add_argument("--fingerprint", required=True)
+    iso.add_argument("--graphics", nargs="*", default=[], choices=["amd", "intel", "nouveau", "virtio"],
+                     help="explicit installed-image graphics bundles, including their 32-bit ICDs")
     args = parser.parse_args()
     try:
         if args.command == "package":
@@ -306,7 +312,7 @@ def main():
                 with tempfile.TemporaryDirectory() as temp:
                     check_archive(Path(temp) / "archive")
         else:
-            build_iso(args.output, args.repo, args.fingerprint)
+            build_iso(args.output, args.repo, args.fingerprint, args.graphics)
     except (ValueError, OSError, KeyError, subprocess.SubprocessError, tarfile.TarError) as error:
         parser.exit(1, f"bootstrap: {error}\n")
 

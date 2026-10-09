@@ -41,6 +41,9 @@ class BootstrapTests(unittest.TestCase):
             bootstrap.prepare_package(output)
             with tarfile.open(output / "platform.tar.xz") as archive:
                 for name in ["distro/installed/astraeus-bless-boot.conf", "docs/boot-generations.md",
+                             "scripts/graphics-probe.c", "docs/graphics.md", "crates/graphics/src/lib.rs",
+                             "distro/graphics/bundles.json", "distro/graphics/packages.lock.json",
+                             "distro/graphics/nvidia-open.json",
                              "crates/snapshots/src/system/generations.rs"]:
                     self.assertEqual(archive.extractfile("platform/" + name).read(), (ROOT / name).read_bytes())
 

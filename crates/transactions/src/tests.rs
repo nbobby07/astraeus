@@ -978,7 +978,13 @@ fn coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution() {
     let mut loader = plan();
     loader.boot.update_bootloader = true;
     let mut rejected_plans = vec![loader];
-    for name in ["systemd", "distroctl"] {
+    for name in [
+        "systemd",
+        "distroctl",
+        "nvidia-open",
+        "nvidia-utils",
+        "lib32-nvidia-utils",
+    ] {
         let mut update = plan();
         update.current = CurrentSystemState::new(BTreeMap::from([(name.into(), "1-1".into())]));
         update.packages.changes = vec![PackageChange::Upgrade {
