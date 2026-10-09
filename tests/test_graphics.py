@@ -27,6 +27,8 @@ class GraphicsPackages(unittest.TestCase):
     def test_probe_build_inputs_include_both_compiler_runtimes(self):
         bundles = json.loads((ROOT / "distro/graphics/bundles.json").read_text())
         self.assertTrue({"gcc", "lib32-glibc", "lib32-gcc-libs", "vulkan-headers"} <= set(bundles["build"]))
+        locked = json.loads((ROOT / "distro/graphics/packages.lock.json").read_text())["packages"]
+        self.assertTrue(set(bundles["build"]) <= locked.keys())
         recipe = (ROOT / "distro/packages/distroctl/PKGBUILD.in").read_text()
         declared = set(shlex.split(" ".join(re.findall(r"^(?:make)?depends=\((.*)\)$", recipe, re.M))))
         self.assertTrue(set(bundles["build"]) <= declared)

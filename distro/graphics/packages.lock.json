@@ -78,6 +78,29 @@
       "sha256": "1d79371ccf3138e3c172dd83b51560687b65ab824c1ad7e9cb41b7857ed9c55f",
       "filename": "gcc-16.2.1+r23+gd564253eb6c8-1-x86_64.pkg.tar.zst"
     },
+    "lib32-gcc-libs": {
+      "repository": "core",
+      "version": "16.2.1+r23+gd564253eb6c8-1",
+      "depends": [
+        "lib32-glibc>=2.27"
+      ],
+      "provides": [
+        "libasan.so=8-32",
+        "libatomic.so=1-32",
+        "libgdruntime.so=7-32",
+        "libgfortran.so=5-32",
+        "libgo.so=25-32",
+        "libgomp.so=1-32",
+        "libgphobos.so=7-32",
+        "libitm.so=1-32",
+        "libobjc.so=4-32",
+        "libquadmath.so=0-32",
+        "libubsan.so=1-32"
+      ],
+      "conflicts": [],
+      "sha256": "21fde8d5c5fda174b0277515fb6e49a450763a9c8a05f1956f719779e459465a",
+      "filename": "lib32-gcc-libs-16.2.1+r23+gd564253eb6c8-1-x86_64.pkg.tar.zst"
+    },
     "lib32-glibc": {
       "repository": "core",
       "version": "2.44+r50+g1848099f063e-1",
