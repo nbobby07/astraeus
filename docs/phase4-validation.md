@@ -1,5 +1,10 @@
 # Phase 4 validation infrastructure
 
+Phase 4.1 changes only validation tooling. See
+[runtime remediation](phase4-runtime-remediation.md) for new results and remaining
+guest-test prerequisites. The original integration matrix and failed evidence
+remain unchanged.
+
 ## Integrated candidate
 
 Graphics, gaming and this harness are merged on `phase4/integration`. Build-time
@@ -117,12 +122,30 @@ absence remains NOT RUN. Preserve runtime version, dependency logs and Proton
 logs. This does not qualify DXVK, VKD3D or a game. Fixture source and executable
 hashes are mandatory evidence; no third-party executable download is needed.
 
+The Proton test invokes the unchanged PE through Proton's own Windows `cmd.exe`
+and captures stdout/stderr into fresh files. A console PE launched by Unix path
+through GE's Steam/UMU helper gets a separate console, so its stdout need not reach
+the parent log. Require a fresh exact nonce, the fixture's traced process exit,
+and creation/destruction of the same window handle. A second normal `run` omits
+the required fixture argument and must propagate exit 2. Both cases retain full
+bounded Proton logs. Neither authenticates Steam or qualifies games.
+
 Gamescope and MangoHud run a bounded `vkcube --c 60`. A timeout is not success.
+Before Gamescope, `phase4_gamescope.py` runs the installed `vulkaninfo` in structured
+`--vkconfig_output` mode and checks every device for `VK_EXT_physical_device_drm`
+and a render node. A known missing prerequisite returns JSON and exit 77 without
+starting Gamescope. Mixed capabilities, missing optional tools and unsupported
+adapter backends are explicit refusals. Malformed or failed capability queries
+remain failures. Passing the preflight never proves presentation. This adapter
+only covers nested Wayland; it is not an installed gaming launcher.
 The offscreen wrapper test is distinct from presentation. Visible MangoHud
 requires a private QMP screenshot and manual confirmation. Its absence remains
 NOT RUN. GameMode runs its own `gamemoded -t`, wrapper workload and before/after
 daemon status comparison. Preserve power/governor observations when qualifying
 physical hardware. No FPS gain is claimed.
+The adapter also compares governor/EPP/split-lock values and configuration hashes
+before and after GameMode. Missing cpufreq is reported separately; the upstream
+`gamemoded -t` exit and failed feature checks are never rewritten as passes.
 
 Controller evidence enumerates actual Linux input devices and Steam udev rules.
 It does not certify Steam Input behavior. To test a virtual controller later,
@@ -146,6 +169,14 @@ database overlays must change both the version-bearing directory and metadata,
 and assert the real pacman query sees the fault. Keep PCI and DRM masking paired
 for a genuine no-device fixture. Parent files and package state must remain
 unchanged. Vendor policy fixtures remain separate from physical qualification.
+
+`phase4_negatives.py` promotes the recorded integration namespace adapter into
+reusable test tooling and adds actual exit assertions for a missing optional tool,
+unsupported Gamescope capabilities/configuration and malformed UTF-8 MangoHud
+configuration. The latter must yield an unknown, untested configuration diagnostic
+with doctor exit 0; collecting that report does not validate the configuration.
+Invoke it only through the disposable root test channel, with desktop user
+`tester`. Preserve original attempts and use a fresh evidence directory per run.
 
 `--hooks /public/guest-hooks.json` accepts keys from the pending K checks and
 `readiness-json`. Each contains `command`, exact `exit_code`, and nonempty

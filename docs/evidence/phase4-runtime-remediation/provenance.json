@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-10T17:56:04.415771+00:00",
+  "base": "ccb33fc0324bbd139a94e0237d4395680f5a2559",
+  "validation_source": "600319505033eac4540c2ac74e6a0a265e1a3f60",
+  "production_source": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "production_files_changed": [],
+  "inputs": {
+    "GE-Proton11-7-x86_64.tar.gz": {
+      "bytes": 563784602,
+      "sha256": "c5448b76a230384e2d7bc6beb5ccb97bafb7e2c3b6c527cb03a1a546bbcb00a0"
+    },
+    "SteamLinuxRuntime_4.tar.xz": {
+      "bytes": 164895128,
+      "sha256": "3226d8234e7c0542ee767837832bfb1dad5e5e2dc944ec97eb221b437f6b9349"
+    },
+    "windows-smoke.exe": {
+      "bytes": 62453,
+      "sha256": "5cee03d79ce1a46be0fb9e731d2ab5ce10cba1a46de86430e6afa6553c6e1347",
+      "source_sha256": "5ef05abfc2a10d7e4f5b573d9fd8c0b5aadb94dfcd9388751c5f6c33045f6208",
+      "license": "CC0-1.0",
+      "source": "unchanged tests/fixtures/phase4/windows-smoke.c",
+      "original_provenance": "original-prebuilt-manifest.json"
+    }
+  },
+  "upstream_sources": {
+    "proton": {
+      "url": "https://raw.githubusercontent.com/GloriousEggroll/proton-ge-custom/GE-Proton11-7/proton",
+      "sha256": "c0fe398829c78c82b26d39c20fbeb6b28d1e46941723962d794d7e5f67d402be"
+    },
+    "steam.cpp": {
+      "url": "https://raw.githubusercontent.com/GloriousEggroll/proton-ge-custom/GE-Proton11-7/steam_helper/steam.cpp",
+      "sha256": "b25cc1b45e00eb148ae0e26ec37040f8b449b2946f82286ad38ae6257ac4cdcd"
+    },
+    "umu.c": {
+      "url": "https://raw.githubusercontent.com/GloriousEggroll/proton-ge-custom/GE-Proton11-7/umu_helper/umu.c",
+      "sha256": "9da7dbc17a6aad1b13bd33043fa293f25252eac7a403c6449bfee9d56258e671"
+    },
+    "ge-readme.md": {
+      "url": "https://raw.githubusercontent.com/GloriousEggroll/proton-ge-custom/GE-Proton11-7/README.md",
+      "sha256": "74c363c939e1c9c8cc47dbffdd0e6e176d920084b5e1edc4a6893958f07658ee"
+    },
+    "rendervulkan.cpp": {
+      "url": "https://raw.githubusercontent.com/ValveSoftware/gamescope/3.16.31/src/rendervulkan.cpp",
+      "sha256": "a348dd59c6fe82940ba0a00c805439f6d52bb4e55f8532ef71cfd2772b15c33c"
+    },
+    "gamescope-main.cpp": {
+      "url": "https://raw.githubusercontent.com/ValveSoftware/gamescope/3.16.31/src/main.cpp",
+      "sha256": "618bc9de81ab1b724b07985cdee14e6a9369fb4fc03057a896efbeac1c42e9cd"
+    },
+    "gamemode-tests.c": {
+      "url": "https://raw.githubusercontent.com/FeralInteractive/gamemode/1.8.2/daemon/gamemode-tests.c",
+      "sha256": "ca54f37fa584f96a66a117895825e514f96ed530941af282e38550d3eacc49e7"
+    },
+    "vulkaninfo.cpp": {
+      "url": "https://raw.githubusercontent.com/KhronosGroup/Vulkan-Tools/vulkan-sdk-1.4.321.0/vulkaninfo/vulkaninfo.cpp",
+      "sha256": "52979e45a2d0834f98c5b6ad12048c0c990827bc03e64e3edd9bb07bbfc00592"
+    }
+  },
+  "freestyle": {
+    "validator": "vm-cc9d56de23154de7a22492f24dfaae27",
+    "lookup": "NOT_FOUND",
+    "snapshots": {
+      "snapshots": [],
+      "totalCount": 0
+    },
+    "new_runtime_seconds": 0,
+    "new_cost_usd": 0,
+    "replacement_approved": false
+  },
+  "original_evidence_changed": false,
+  "iso_rebuilt": false,
+  "guest_rerun": "NOT RUN",
+  "physical_gpu_qualified": false,
+  "gaming_validated": false,
+  "verdict": "PHASE 4 RUNTIME BLOCKERS REMAIN",
+  "orchestration_failure": {
+    "check": "first Linux Clippy driver",
+    "exit_code": 1,
+    "diagnostic": "out/remediation/check-linux.sh: line 7: 1\\r: ambiguous redirect",
+    "clippy_executed": false,
+    "corrected_check": "clippy-linux.log"
+  },
+  "harness_files": {
+    "scripts\\validate\\phase4.py": "7672c492835198f6eff5babed2d6e64c63da0d610d7f508d22e0a100fa4d7c3e",
+    "scripts\\validate\\phase4_gamescope.py": "884a616e709bbe2bb332097b430db785cfb10ccd73a1210fa510b6d0c894e131",
+    "scripts\\validate\\phase4_guest.py": "3918e029935eb25d9e053ba390c3a6cd53b2404110880c8e249c896a0a22d399",
+    "scripts\\validate\\phase4_negatives.py": "047030d542b1ac1d3172c9181ce324d9153cc2a8d423a496d1893de5eaac87d0",
+    "scripts\\validate\\phase4_proton.py": "389cc7b91dce57d15bead3ed1eb705208afa2a7fdcdb1339c5b6dfa0fcb12d71",
+    "tests\\test_phase4_validation.py": "9028d1cbf904576d278bfb8f2a564aa1a47841c4a6f51820e20e3aafecfc5007"
+  }
+}

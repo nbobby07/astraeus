@@ -1,5 +1,8 @@
 # Gaming runtime acceptance design
 
+The [Phase 4.1 remediation record](phase4-runtime-remediation.md) distinguishes
+the original installed runtime from corrections to these validation tools.
+
 ## Integrated candidate procedure
 
 Build the initial installed payload with explicit `--graphics virtio software
@@ -112,6 +115,14 @@ behavior, not only prefix files or process creation. A Notepad/GDI test proves
 basic Windows execution only. Add a licensed D3D11/D3D12 test application to qualify
 DXVK/VKD3D and record the Vulkan renderer; add a real 32-bit PE test separately.
 GE is optional and must be tested under its documented runtime path independently.
+
+For GE-Proton 11-7, the supported external launch path is umu-launcher; setting
+`UMU_ID` alone is not that launcher. The direct diagnostic above cannot certify
+upstream support or authenticated Steam integration. The validation fixture uses
+Proton `run` with its Windows `cmd.exe` solely to redirect the original console
+PE's output to fresh files and propagate its exit. Keep the executable hash
+unchanged, trace its window and child completion, and verify the no-argument
+exit-2 control. Do not substitute `runinprefix` for the normal-path result.
 
 ## Optional tools
 

@@ -3,3 +3,4 @@
 *.iso binary
 docs/evidence/phase4/** -text whitespace=-trailing-space,cr-at-eol
 docs/evidence/phase4-integration/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase4-runtime-remediation/** -text whitespace=-trailing-space,cr-at-eol
