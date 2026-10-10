@@ -57,6 +57,8 @@ def run_case(prefix, proton, runtime, exe, compat, steam_root, work, negative=Fa
     batch.write_bytes(('@echo off\r\n"' + windows_path(exe) + '"' + arguments +
                       ' 1>"' + windows_path(stdout) + '" 2>"' + windows_path(stderr) +
                       '"\r\nexit /b %errorlevel%\r\n').encode('ascii'))
+    os.chown(batch, owner.st_uid, owner.st_gid)
+    batch.chmod(0o600)
     command = prefix + ['env', f'STEAM_COMPAT_DATA_PATH={compat}',
         f'STEAM_COMPAT_CLIENT_INSTALL_PATH={steam_root}', f'STEAM_COMPAT_INSTALL_PATH={work}',
         'SteamAppId=0', 'SteamGameId=0', 'PROTON_LOG=1', f'PROTON_LOG_DIR={case}',
