@@ -20,14 +20,15 @@ GROUPS = {
     'D': ['vulkan-64'],
     'E': ['lib32-packages', 'link-32', 'vulkan-32'],
     'F': ['steam-runtime', 'steam-launch', 'xwayland'],
-    'G': ['proton-execution'],
+    'G': ['proton-execution', 'proton-exit-control'],
     'H': ['gamescope-launch'],
     'I': ['mangohud-invoke', 'mangohud-wsi', 'overlay-visible', 'gamemode-test',
-          'gamemode-invoke', 'gamemode-restoration'],
+          'gamemode-invoke', 'gamemode-restoration', 'gamemode-settings-restoration'],
     'J': ['readiness-json'],
     'K': ['missing-icd', 'corrupt-icd', 'wrong-architecture', 'missing-lib32-icd',
           'no-device', 'unknown-vendor', 'missing-steam', 'missing-proton', 'gamescope-unsupported',
-          'dependency-mismatch', 'transaction-refusal', 'invalid-preset'],
+          'dependency-mismatch', 'transaction-refusal', 'invalid-preset', 'missing-loader64',
+          'missing-loader32', 'missing-optional-tool', 'malformed-gaming-config', 'gamescope-invalid-config'],
 }
 
 
@@ -65,7 +66,7 @@ def hooks(vm, path):
                    and isinstance(item['marker'], str) and item['marker'],
                    'hook needs command, exact exit_code and diagnostic marker')
         reply = vm.command(item['command'], timeout=30, check=False, label='hook-' + name)
-        reply['status'] = 'PASS' if reply['code'] == item['exit_code'] and item['marker'] in reply['output'] else 'FAIL'
+        reply['status'] = 'PASS' if reply['code'] == item['exit_code'] and not reply.get('error') and item['marker'] in reply['output'] else 'FAIL'
         if name == 'readiness-json':
             try:
                 json.loads(reply['output'])
@@ -94,7 +95,7 @@ def run(args):
         p2.clone(args.base, args.output)
         share = args.output / 'share'
         share.mkdir(mode=0o755)
-        for name in ['phase2-guest.py', 'phase4_guest.py']:
+        for name in ['phase2-guest.py', 'phase4_guest.py', 'phase4_gamescope.py', 'phase4_proton.py', 'phase4_negatives.py']:
             shutil.copyfile(p2.HERE / name, share / name)
         shutil.copytree(MATRIX.parent, share / 'fixtures')
         if args.fixture_binaries:
@@ -120,7 +121,8 @@ def run(args):
             firmware=dict(path=str(args.ovmf_code), sha256=p2.digest(args.ovmf_code)),
             qemu=p2.host(['qemu-system-x86_64', '--version']),
             files={str(p.relative_to(p2.REPO)): p2.digest(p) for p in
-                   [Path(__file__), p2.HERE / 'phase4_guest.py', p2.HERE / 'phase2.py',
+                   [Path(__file__), p2.HERE / 'phase4_guest.py', p2.HERE / 'phase4_gamescope.py',
+                    p2.HERE / 'phase4_proton.py', p2.HERE / 'phase4_negatives.py', p2.HERE / 'phase2.py',
                     p2.HERE / 'qmp.py', p2.HERE.parent / 'install-smoke.py',
                     *MATRIX.parent.iterdir()] if p.is_file()},
             share_files={str(p.relative_to(share)): p2.digest(p) for p in share.rglob('*') if p.is_file()}))

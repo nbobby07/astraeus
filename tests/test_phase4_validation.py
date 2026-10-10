@@ -14,6 +14,8 @@ import phase4
 
 if sys.platform == 'linux':
     import phase4_guest as guest
+    import phase4_gamescope as gamescope
+    import phase4_proton as proton
 
 
 class MatrixTests(unittest.TestCase):
@@ -52,6 +54,8 @@ class MatrixTests(unittest.TestCase):
             path.write_text(json.dumps({'missing-steam': dict(command='guest-only', exit_code=2, marker='Steam absent')}))
             vm.command.return_value = dict(code=2, output='Steam absent')
             self.assertEqual(phase4.hooks(vm, path)['missing-steam']['status'], 'PASS')
+            vm.command.return_value = dict(code=2, output='Steam absent', error='timeout')
+            self.assertEqual(phase4.hooks(vm, path)['missing-steam']['status'], 'FAIL')
             vm.command.return_value = dict(code=139, output='Steam absent')
             self.assertEqual(phase4.hooks(vm, path)['missing-steam']['status'], 'FAIL')
             path.write_text(json.dumps({'missing-steam': dict(command='guest-only', exit_code=139, marker='Steam absent')}))
@@ -72,6 +76,95 @@ class MatrixTests(unittest.TestCase):
 
 @unittest.skipUnless(sys.platform == 'linux', 'Linux process groups and desktop users')
 class GuestTests(unittest.TestCase):
+    def test_gamemode_observation_is_read_only_and_keeps_missing_capability_explicit(self):
+        user = guest.pwd.getpwuid(os.getuid()).pw_name
+        before = guest.gamemode_settings(user)
+        after = guest.gamemode_settings(user)
+        self.assertEqual(before, after)
+        self.assertEqual(before['cpu_governor'], 'PRESENT' if before['governor_paths'] else 'UNSUPPORTED')
+        self.assertFalse(before['errors'])
+
+    def test_proton_requires_the_fixture_child_exit_and_exact_window_lifecycle(self):
+        log = ('1:0020:0024:trace:process:NtCreateUserProcess L"Z:\\windows-smoke.exe" pid 0040 tid 0044 handles 0x1/0x2\n'
+               '2:0040:0044:trace:win:NtUserCreateWindowEx ex_style 0, window_name L"Astraeus Proton smoke"\n'
+               '3:0040:0044:trace:win:NtUserCreateWindowEx hwnd 0x10 cs 0,0 320x160\n'
+               '4:0040:0044:trace:win:NtUserCreateWindowEx created window 0x10\n'
+               '5:0040:0044:trace:win:destroy_window 0x10\n'
+               '6:0040:0044:trace:process:NtTerminateProcess handle 0xffffffffffffffff, exit_code 0, process_exiting 1.\n')
+        self.assertTrue(proton.completion(log, 0)['verified'])
+        self.assertFalse(proton.completion(log, 2)['verified'])
+        self.assertFalse(proton.completion(log.replace('6:0040:', '6:0080:'), 0)['verified'])
+        self.assertFalse(proton.completion(log + log, 0)['verified'])
+        self.assertTrue(proton.window_lifecycle(log, '0040')['verified'])
+        self.assertFalse(proton.window_lifecycle(log.replace('destroy_window 0x10', 'destroy_window 0x20'), '0040')['verified'])
+        self.assertFalse(proton.window_lifecycle(log.replace('destroy_window 0x10', 'destroy_window 0x100'), '0040')['verified'])
+        self.assertFalse(proton.window_lifecycle(log, '0080')['verified'])
+        for path in ['/tmp/test&whoami', '/tmp/%PATH%', '/tmp/test name']:
+            with self.assertRaises(ValueError):
+                proton.windows_path(path)
+
+    @unittest.skipIf(hasattr(os, 'geteuid') and os.geteuid() == 0, 'probe must run unprivileged')
+    def test_gamescope_cli_refusal_exits_and_never_starts_unsupported_device(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            document = {'Device Properties and Extensions': {'GPU0': {
+                'VkPhysicalDeviceProperties': {'deviceName': 'controlled fixture'}, 'Device Extensions': {}}}}
+            query = root / 'vulkaninfo'
+            query.write_text('#!' + sys.executable + '\nimport pathlib,sys\n'
+                             'pathlib.Path(sys.argv[2], "vulkaninfo.json").write_text(' + repr(json.dumps(document)) + ')\n')
+            sentinel = root / 'launched'
+            for name in ['gamescope', 'vkcube']:
+                tool = root / name
+                tool.write_text('#!' + sys.executable + '\nimport pathlib\npathlib.Path(' + repr(str(sentinel)) + ').touch()\n')
+                tool.chmod(0o755)
+            query.chmod(0o755)
+            env = {**os.environ, 'PATH': str(root), 'WAYLAND_DISPLAY': 'controlled-fixture'}
+            command = [sys.executable, str(ROOT / 'scripts/validate/phase4_gamescope.py')]
+            for options, expected in [([], 77), (['--backend', 'drm'], 77), (['--bad-option'], 2)]:
+                reply = subprocess.run(command + options, env=env, text=True, capture_output=True, timeout=10)
+                self.assertEqual(reply.returncode, expected, reply.stderr)
+                self.assertFalse(json.loads(reply.stdout)['launched'])
+                self.assertFalse(sentinel.exists())
+            (root / 'gamescope').unlink()
+            reply = subprocess.run(command, env=env, text=True, capture_output=True, timeout=10)
+            self.assertEqual(reply.returncode, 77)
+            self.assertIn('Missing optional tool', json.loads(reply.stdout)['reason'])
+
+    def test_gamescope_capabilities_do_not_invent_device_support(self):
+        software = {'VkPhysicalDeviceProperties': {'deviceName': 'llvmpipe'}, 'Device Extensions': {}}
+        hardware = {'VkPhysicalDeviceProperties': {'deviceName': 'test GPU'},
+                    'Device Extensions': {'VK_EXT_physical_device_drm': {}},
+                    'VkPhysicalDeviceDrmPropertiesEXT': {'hasRender': True}}
+        def check(devices):
+            return gamescope.capabilities({'Device Properties and Extensions': devices})
+        self.assertEqual(check({'GPU0': software})['code'], 77)
+        self.assertEqual(check({'GPU0': hardware})['code'], 0)
+        self.assertEqual(check({'GPU0': software, 'GPU1': hardware})['code'], 77)
+        hardware['VkPhysicalDeviceDrmPropertiesEXT']['hasRender'] = False
+        self.assertEqual(check({'GPU0': hardware})['code'], 77)
+        hardware['VkPhysicalDeviceDrmPropertiesEXT']['hasRender'] = 'false'
+        with self.assertRaises(ValueError):
+            check({'GPU0': hardware})
+        with self.assertRaises(ValueError):
+            check({})
+
+    def test_gamescope_refuses_before_launch_and_keeps_query_crashes_failed(self):
+        with patch.dict(os.environ, {'WAYLAND_DISPLAY': 'wayland-test'}), \
+                patch.object(gamescope.shutil, 'which', return_value=None), \
+                patch.object(gamescope, 'execute') as execute:
+            result = gamescope.smoke()
+            self.assertEqual(result['code'], 77)
+            self.assertIn('Missing optional tool', result['reason'])
+            execute.assert_not_called()
+            self.assertEqual(gamescope.smoke('drm')['code'], 77)
+        with patch.dict(os.environ, {'WAYLAND_DISPLAY': 'wayland-test'}), \
+                patch.object(gamescope.shutil, 'which', return_value='/test/tool'), \
+                patch.object(gamescope, 'execute', return_value=dict(code=134, error=None, output='aborted')):
+            result = gamescope.smoke()
+            self.assertEqual(result['status'], 'FAIL')
+            self.assertEqual(result['query']['code'], 134)
+            self.assertFalse(result['launched'])
+
     def test_session_preserves_xauthority_without_exporting_other_secrets(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

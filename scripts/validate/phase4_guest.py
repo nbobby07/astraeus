@@ -13,7 +13,6 @@ import signal
 import subprocess
 import tempfile
 import time
-import uuid
 
 HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location('p2guest', HERE / 'phase2-guest.py')
@@ -102,6 +101,33 @@ def gpu_classification(text):
     virtual = bool(displays) and all(re.search(r'Virtio|QXL|Bochs|VMware|VirtualBox', line, re.I) for line in displays)
     return dict(display_devices=displays, classification='virtual' if virtual else 'unqualified',
                 physical_qualified=False)
+
+
+def gamemode_settings(user):
+    """Record readable tuning state and configuration hashes without modifying either."""
+    cpu = Path('/sys/devices/system/cpu')
+    paths = set(cpu.glob('cpu[0-9]*/cpufreq/scaling_governor'))
+    governors = sorted(str(p) for p in paths)
+    paths.update(cpu.glob('cpu[0-9]*/cpufreq/energy_performance_preference'))
+    split = Path('/proc/sys/kernel/split_lock_mitigate')
+    if split.exists():
+        paths.add(split)
+    values, errors = {}, {}
+    for path in sorted(paths):
+        try:
+            values[str(path)] = path.read_text().strip()
+        except OSError as error:
+            errors[str(path)] = str(error)
+    home = Path(pwd.getpwnam(user).pw_dir)
+    configs = {}
+    for path in [Path('/usr/share/gamemode/gamemode.ini'), Path('/etc/gamemode.ini'),
+                 home / '.config/gamemode.ini', home / 'gamemode.ini', Path.cwd() / 'gamemode.ini']:
+        try:
+            configs[str(path)] = hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
+        except OSError as error:
+            errors[str(path)] = str(error)
+    return dict(cpu_governor='PRESENT' if governors else 'UNSUPPORTED', governor_paths=governors,
+                values=values, configuration_hashes=configs, errors=errors)
 
 
 def suite(user, work, proton=None, runtime=None):
@@ -204,6 +230,7 @@ def suite(user, work, proton=None, runtime=None):
             result['status'] = 'PASS' if result['code'] is not None and 0 < result['code'] <= 125 and not result.get('error') and 'VkResult' in result['output'] else 'FAIL'
             result['scope'] = 'lib32 ICD hidden by per-process override; packages unchanged'
     if prefix:
+        settings_before = gamemode_settings(user)
         probe('user-failed', ['systemctl', '--user', '--failed', '--no-legend', '--plain'], user_session=True)
         probe('gamemode-readiness', ['systemctl', '--user', 'status', 'gamemoded.service', '--no-pager'], user_session=True)
         probe('gamemode-test', ['gamemoded', '-t'], user_session=True, timeout=45)
@@ -217,9 +244,20 @@ def suite(user, work, proton=None, runtime=None):
                 scope='daemon status restored; gamemoded -t separately checks its configured optimizations')
             probe('mangohud-invoke', ['mangohud', binary], 'PHASE4_VULKAN_OK pixels=256', 64, user_session=True,
                   env={**os.environ, 'MANGOHUD_CONFIG': 'fps,frametime'})
+        settings_after = gamemode_settings(user)
+        checks['gamemode-settings-restoration'] = dict(status='PASS' if settings_before == settings_after
+            and not settings_before['errors'] else 'FAIL', code=None,
+            before=settings_before, after=settings_after,
+            scope='Observed governors, EPP, split-lock mitigation and configuration; full self-test result remains separate')
         probe('mangohud-wsi', ['mangohud', 'vkcube', '--c', '60'], user_session=True, timeout=30,
               env={**os.environ, 'MANGOHUD_CONFIG': 'fps,frametime'})
-        probe('gamescope-launch', ['gamescope', '--', 'vkcube', '--c', '60'], user_session=True, timeout=30)
+        result = probe('gamescope-launch', ['python3', HERE / 'phase4_gamescope.py'],
+                       user_session=True, timeout=65)
+        if result['code'] == 77 and not result.get('error'):
+            refusal = json.loads(result['output'])
+            checks['gamescope-unsupported'] = dict(status='PASS' if refusal['launched'] is False
+                and refusal['status'] == 'UNSUPPORTED' and refusal['reason'] else 'FAIL',
+                code=result['code'], output=result['output'], scope='Clean capability refusal only; no Gamescope presentation')
     checks['overlay-visible'] = dict(status='NOT RUN', code=None,
         output='Invocation is separate from visible overlay acceptance; retain private QMP screenshot and manual inspection')
     checks['vrr-hdr-physical'] = dict(status='UNSUPPORTED', code=None,
@@ -258,14 +296,12 @@ def suite(user, work, proton=None, runtime=None):
             compat = work / 'compatdata'
             compat.mkdir()
             os.chown(compat, account.pw_uid, account.pw_gid)
-            nonce = uuid.uuid4().hex
-            result = probe('proton-execution', ['env', f'STEAM_COMPAT_DATA_PATH={compat}',
-                f'STEAM_COMPAT_CLIENT_INSTALL_PATH={steamhome}', 'SteamAppId=0', 'PROTON_LOG=1',
-                f'PROTON_LOG_DIR={work}', runtime, '--verb=waitforexitandrun', '--', proton, 'run', exe, nonce],
-                f'PHASE4_WINDOWS_OK {nonce}', user_session=True, timeout=60)
-            result['fixture_sha256'] = hashlib.sha256(exe.read_bytes()).hexdigest()
-            result['proton_sha256'] = hashlib.sha256(proton.read_bytes()).hexdigest()
-            result['scope'] = 'Win32 window/exit smoke only; DirectX and games unqualified'
+            from phase4_proton import run_case
+            for name, negative in [('proton-execution', False), ('proton-exit-control', True)]:
+                checks[name] = run_case(prefix, proton, runtime, exe, compat,
+                    steamhome / '.local/share/Steam', work, negative)
+            if checks['proton-exit-control']['status'] != 'PASS':
+                checks['proton-execution']['status'] = 'FAIL'
         else:
             checks['proton-execution'] = dict(status='NOT RUN', code=None, output='Win32 compiler unavailable')
     else:
