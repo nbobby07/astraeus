@@ -5,6 +5,12 @@ Phase 4.1 changes only validation tooling. See
 guest-test prerequisites. The original integration matrix and failed evidence
 remain unchanged.
 
+[Focused guest requalification](phase4-runtime-requalification.md) records the
+actual restored Astraeus results. Package-query stderr is retained inside the
+negative collector's JSON. An expired repository signature must not be mistaken
+for the intended graphics dependency-mismatch refusal; no trust or clock bypass
+is an acceptable fixture repair.
+
 ## Integrated candidate
 
 Graphics, gaming and this harness are merged on `phase4/integration`. Build-time

@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-11T04:16:59.673340+00:00",
+  "finished": "2026-10-11T04:16:59.826066+00:00",
+  "command": "test ! -e /run/archiso; cat /etc/os-release; uname -a; cat /proc/cmdline",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "NAME=\"Project Astraeus\"\nPRETTY_NAME=\"Project Astraeus\"\nID=astraeus-dev\nID_LIKE=arch\nVERSION_ID=0.1.0-dev\nVARIANT_ID=development\nLinux phase4plain 7.2.7-arch1-1 #1 SMP PREEMPT_DYNAMIC Mon, 21 Sep 2026 18:51:14 +0000 x86_64 GNU/Linux\nroot=UUID=3432f418-6ebc-4466-8014-c719fef115ef rootflags=subvol=@ rw console=uart,io,0x3f8 console=hvc0 console=tty0\n",
+    "id": "c3f79ac7c4d14fd7818d6721cfda384e",
+    "boot_id": "4305638a-760e-447a-b8c0-9e1a10424402"
+  }
+}

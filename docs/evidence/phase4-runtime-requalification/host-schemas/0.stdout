@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "checks": {
+    "controllers": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "steam-devices supplies udev policy when installed; controller/uinput access and Steam Input require a user-session device test"
+    },
+    "gamemode": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "gamescope": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "graphics_acceleration": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "No same physical GPU has verified 64-bit and 32-bit readback with an observed kernel binding. Use gaming doctor --probe; installed packages do not prove acceleration."
+    },
+    "hdr": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "HDR requires actual compositor and physical display qualification"
+    },
+    "lib32-alsa-plugins": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-fontconfig": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-gamemode": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-gcc-libs": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-glibc": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-libgpg-error": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-libnm": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-libva": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-libx11": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-libxcrypt": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-libxcrypt-compat": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-libxinerama": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-libxss": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-mangohud": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-nss": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-pipewire": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lib32-systemd": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "lutris": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "mangohud": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "mangohud_config": {
+      "state": "not_installed",
+      "runtime": "untested",
+      "detail": "No user MangoHud config; upstream defaults apply. gaming mangohud-config prints a minimal optional template"
+    },
+    "obs-studio": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "proton": {
+      "state": "not_installed",
+      "runtime": "untested",
+      "detail": "No matching tool observed in inspected locations; extra libraries and Flatpak installations may need separate inspection"
+    },
+    "proton_custom": {
+      "state": "not_installed",
+      "runtime": "untested",
+      "detail": "No matching tool observed in inspected locations; extra libraries and Flatpak installations may need separate inspection"
+    },
+    "proton_ge": {
+      "state": "not_installed",
+      "runtime": "untested",
+      "detail": "No matching tool observed in inspected locations; extra libraries and Flatpak installations may need separate inspection"
+    },
+    "session": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Incomplete session environment; Wayland Steam needs XWayland, DISPLAY and a user session bus"
+    },
+    "steam": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "steam-devices": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    },
+    "steam_launcher": {
+      "state": "not_installed",
+      "runtime": "untested",
+      "detail": "/usr/bin/steam missing or not executable; an installed package alone cannot launch Steam"
+    },
+    "steam_runtime": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Steam downloads/updates its runtime on first launch; package presence does not verify client startup or pressure-vessel"
+    },
+    "vrr": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "VRR requires actual compositor and physical display qualification"
+    },
+    "vulkan32": {
+      "state": "not_installed",
+      "runtime": "untested",
+      "detail": "32-bit: installed loader Absent; 0 usable system ICDs; enumeration Untested; devices []. Per-device offscreen smoke only; presentation and game compatibility are untested."
+    },
+    "vulkan64": {
+      "state": "not_installed",
+      "runtime": "untested",
+      "detail": "64-bit: installed loader Absent; 0 usable system ICDs; enumeration Untested; devices []. Per-device offscreen smoke only; presentation and game compatibility are untested."
+    },
+    "xorg-xwayland": {
+      "state": "unknown",
+      "runtime": "untested",
+      "detail": "Package database unavailable"
+    }
+  },
+  "tools": [],
+  "warnings": [
+    "Installed package query failed; state remains unknown",
+    "Graphics package_database_unavailable: No such file or directory (os error 2)",
+    "Graphics missing_loader: 64-bit Vulkan loader is absent",
+    "Graphics missing_loader: 32-bit Vulkan loader is absent",
+    "Graphics driver_selection: Display-only/virtual GPU: Vulkan hardware support is unknown; software fallback is not acceleration",
+    "Graphics wrong_driver: Observed kernel binding does not match the selected candidate stack",
+    "Graphics driver_selection: Display-only/virtual GPU: Vulkan hardware support is unknown; software fallback is not acceleration",
+    "Graphics wrong_driver: Observed kernel binding does not match the selected candidate stack",
+    "Physical GPU rendering has not been validated by this report.",
+    "Installed/configured does not mean runtime verified. No games or services are launched by status/doctor.",
+    "HDR and VRR depend on GPU, driver, compositor, display and game; Gamescope installation proves neither."
+  ],
+  "next_steps": [
+    "Resolve graphics_acceleration with the graphics provider before launching games.",
+    "Resolve vulkan32 with the graphics provider before launching games.",
+    "Resolve vulkan64 with the graphics provider before launching games.",
+    "Inspect distroctl gaming enable core --dry-run; package execution is currently blocked.",
+    "Some 32-bit runtime packages are absent or unknown. Inspect core --dry-run and have the transaction resolver include Steam's complete dependencies; graphics libraries/providers belong to the graphics adapter.",
+    "In a working desktop session, open Steam, allow its runtime setup, then use Settings > Compatibility and each game's Properties > Compatibility to select a Steam-managed Proton version.",
+    "Optional per-game launch options: mangohud %command%, gamemoderun %command%, or gamescope -w 1280 -h 720 -r 60 -- %command%. Test each separately; remove the option to revert."
+  ],
+  "graphics": {
+    "schema_version": 1,
+    "archive_date": "2026/10/01",
+    "gpus": [
+      {
+        "hardware": {
+          "pci_address": "e5d5:00:00.0",
+          "vendor": "Microsoft",
+          "vendor_id": "0x1414",
+          "device_id": "0x008e",
+          "model": "Basic Render Driver",
+          "driver": "dxgkrnl",
+          "drm_nodes": [],
+          "boot_vga": null
+        },
+        "selection": {
+          "bundle": null,
+          "kernel_drivers": [
+            "bochs-drm",
+            "vmwgfx",
+            "hyperv_drm",
+            "qxl"
+          ],
+          "userspace": "Mesa virtual display",
+          "icd_library": null,
+          "reason": "Display-only/virtual GPU: Vulkan hardware support is unknown; software fallback is not acceleration",
+          "alternative": null
+        },
+        "required_packages": [
+          "lib32-mesa",
+          "lib32-vulkan-icd-loader",
+          "mesa",
+          "vulkan-icd-loader",
+          "vulkan-tools"
+        ],
+        "missing_packages": null,
+        "firmware_package": "unknown",
+        "firmware_loaded": "unknown",
+        "native_devices": [],
+        "compat32_devices": [],
+        "form_factor": null,
+        "wayland": "unknown",
+        "rendering": "untested"
+      },
+      {
+        "hardware": {
+          "pci_address": "fcd5:00:00.0",
+          "vendor": "Microsoft",
+          "vendor_id": "0x1414",
+          "device_id": "0x008e",
+          "model": "Basic Render Driver",
+          "driver": "dxgkrnl",
+          "drm_nodes": [],
+          "boot_vga": null
+        },
+        "selection": {
+          "bundle": null,
+          "kernel_drivers": [
+            "bochs-drm",
+            "vmwgfx",
+            "hyperv_drm",
+            "qxl"
+          ],
+          "userspace": "Mesa virtual display",
+          "icd_library": null,
+          "reason": "Display-only/virtual GPU: Vulkan hardware support is unknown; software fallback is not acceleration",
+          "alternative": null
+        },
+        "required_packages": [
+          "lib32-mesa",
+          "lib32-vulkan-icd-loader",
+          "mesa",
+          "vulkan-icd-loader",
+          "vulkan-tools"
+        ],
+        "missing_packages": null,
+        "firmware_package": "unknown",
+        "firmware_loaded": "unknown",
+        "native_devices": [],
+        "compat32_devices": [],
+        "form_factor": null,
+        "wayland": "unknown",
+        "rendering": "untested"
+      }
+    ],
+    "boot_gpu": null,
+    "multi_gpu": true,
+    "native": {
+      "bits": 64,
+      "loader": "absent",
+      "icds": [
+        {
+          "manifest": "usr/share/vulkan/icd.d/asahi_icd.json",
+          "library": "libvulkan_asahi.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/gfxstream_vk_icd.json",
+          "library": "libvulkan_gfxstream.so",
+          "api_version": "1.1.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/intel_hasvk_icd.json",
+          "library": "libvulkan_intel_hasvk.so",
+          "api_version": "1.3.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/intel_icd.json",
+          "library": "libvulkan_intel.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/lvp_icd.json",
+          "library": "libvulkan_lvp.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/nouveau_icd.json",
+          "library": "libvulkan_nouveau.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/radeon_icd.json",
+          "library": "libvulkan_radeon.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/virtio_icd.json",
+          "library": "libvulkan_virtio.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        }
+      ],
+      "enumeration": "untested",
+      "loader_version": null,
+      "devices": []
+    },
+    "compat32": {
+      "bits": 32,
+      "loader": "absent",
+      "icds": [
+        {
+          "manifest": "usr/share/vulkan/icd.d/asahi_icd.json",
+          "library": "libvulkan_asahi.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/gfxstream_vk_icd.json",
+          "library": "libvulkan_gfxstream.so",
+          "api_version": "1.1.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/intel_hasvk_icd.json",
+          "library": "libvulkan_intel_hasvk.so",
+          "api_version": "1.3.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/intel_icd.json",
+          "library": "libvulkan_intel.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/lvp_icd.json",
+          "library": "libvulkan_lvp.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/nouveau_icd.json",
+          "library": "libvulkan_nouveau.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/radeon_icd.json",
+          "library": "libvulkan_radeon.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        },
+        {
+          "manifest": "usr/share/vulkan/icd.d/virtio_icd.json",
+          "library": "libvulkan_virtio.so",
+          "api_version": "1.4.335",
+          "architecture": null,
+          "state": "absent"
+        }
+      ],
+      "enumeration": "untested",
+      "loader_version": null,
+      "devices": []
+    },
+    "wayland": {
+      "session_type": null,
+      "active": null,
+      "compositor_gpu": null,
+      "vrr": "unknown",
+      "hdr": "unknown"
+    },
+    "opengl_renderer": null,
+    "nvidia_module": {
+      "loaded_version": null,
+      "disk_version": null,
+      "vermagic": null,
+      "modeset": null,
+      "signer": null,
+      "trusted": "unknown",
+      "activation": "unsupported"
+    },
+    "packages": null,
+    "required_packages": [
+      "lib32-mesa",
+      "lib32-vulkan-icd-loader",
+      "mesa",
+      "vulkan-icd-loader",
+      "vulkan-tools"
+    ],
+    "environment_overrides": [],
+    "activation": "unsupported",
+    "activation_reason": "Read-only requirements. The current transaction adapter accepts system upgrades only, not install targets or driver-family changes. Use explicitly selected image bundles for initial installation; never run a separate pacman transaction.",
+    "issues": [
+      {
+        "code": "package_database_unavailable",
+        "gpu": null,
+        "message": "No such file or directory (os error 2)"
+      },
+      {
+        "code": "missing_loader",
+        "gpu": null,
+        "message": "64-bit Vulkan loader is absent"
+      },
+      {
+        "code": "missing_loader",
+        "gpu": null,
+        "message": "32-bit Vulkan loader is absent"
+      },
+      {
+        "code": "driver_selection",
+        "gpu": 0,
+        "message": "Display-only/virtual GPU: Vulkan hardware support is unknown; software fallback is not acceleration"
+      },
+      {
+        "code": "wrong_driver",
+        "gpu": 0,
+        "message": "Observed kernel binding does not match the selected candidate stack"
+      },
+      {
+        "code": "driver_selection",
+        "gpu": 1,
+        "message": "Display-only/virtual GPU: Vulkan hardware support is unknown; software fallback is not acceleration"
+      },
+      {
+        "code": "wrong_driver",
+        "gpu": 1,
+        "message": "Observed kernel binding does not match the selected candidate stack"
+      }
+    ]
+  }
+}

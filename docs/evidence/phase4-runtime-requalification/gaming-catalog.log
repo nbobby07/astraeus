@@ -1,0 +1,4 @@
+Verified core database and 2 gaming package records
+Verified extra database and 7 gaming package records
+Verified multilib database and 6 gaming package records
+Metadata verification only; package signatures, dependency resolution and runtime remain separate gates.

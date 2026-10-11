@@ -1,0 +1,13 @@
+{
+  "max_compute_usd": 5,
+  "max_active_seconds": 7200,
+  "planned_cpu": 4,
+  "planned_memory_mib": 16384,
+  "planned_storage_mib": 65536,
+  "compute_usd_per_hour": 0.36768,
+  "storage_usd_per_hour": 0.005504,
+  "transfer_usd_per_gb": 0.02,
+  "price_source": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+  "allowances_applied": false,
+  "stop_target_seconds": 6600
+}

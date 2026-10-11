@@ -1,0 +1,10 @@
+WAITING_FOR_BASELINE_PARTS 2026-10-11T04:06:31.725256+00:00
+RESTORED_BASELINE_VERIFIED
+STARTING_INSTALLED_ASTRAEUS 2026-10-11T04:16:38.448132+00:00
+QMP: /home/ubuntu/p41/guest-r1/boot-1/qmp.sock
+steam-start: command exit 0
+proton: command exit 0
+core: command exit 0
+gamemode: command exit 0
+negatives: command exit 0
+FOCUSED_INSPECTION_READY

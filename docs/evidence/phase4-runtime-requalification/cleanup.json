@@ -1,0 +1,15 @@
+{
+  "time": "2026-10-11T04:38:54.225155+00:00",
+  "qemu_processes": [],
+  "guest_result": {
+    "started": "2026-10-11T04:16:43.568458+00:00",
+    "validation_source": "09b8e9e0beaa433b27a74c5b01ec84c695a3d899",
+    "production_source": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+    "completed": true,
+    "physical_gpu_qualified": false,
+    "gaming_validated": false,
+    "finished": "2026-10-11T04:36:02.065253+00:00",
+    "qemu_returncode": 0,
+    "baseline_unchanged": true
+  }
+}

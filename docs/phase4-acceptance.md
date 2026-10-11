@@ -1,5 +1,11 @@
 # Phase 4 integrated acceptance
 
+The original integration record below is preserved. The later
+[Phase 4.1 guest requalification](phase4-runtime-requalification.md) passes the
+normal Proton fixture and clean Gamescope refusal, while retaining the GameMode
+capability failure and an expired-repository prerequisite failure in K. It does
+not validate the complete Phase 4 milestone.
+
 Verdict: **PHASE 4 NOT YET VALIDATED**. The integrated development ISO is
 reproducible and boots plain and encrypted installations with enforcing Secure
 Boot. Native and ELF32 software Vulkan, Steam startup and visible MangoHud overlays

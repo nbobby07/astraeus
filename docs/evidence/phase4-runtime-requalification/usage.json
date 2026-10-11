@@ -1,0 +1,22 @@
+{
+  "vm_id": "vm-9350aa5ae5534cc0a68551e6e040bcf2",
+  "state": "paused",
+  "active_seconds": 3340,
+  "resources": {
+    "cpu": 4,
+    "memory": 16384,
+    "storage": 65536
+  },
+  "compute_usd_upper_bound": 0.34112533333333334,
+  "active_storage_usd_upper_bound": 0.005106488888888889,
+  "paused_storage_usd_per_hour": 0.005504,
+  "transfer_usd_per_gb": 0.02,
+  "transfer_total_not_metered": true,
+  "before_allowances": true,
+  "compute_budget_usd": 5,
+  "active_budget_seconds": 7200,
+  "price_source": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+  "unrelated_vm_unchanged": true,
+  "automatic_restart": false,
+  "auto_delete_seconds": "not returned by API"
+}
