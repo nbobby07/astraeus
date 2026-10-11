@@ -13,6 +13,7 @@ def invoke(argv):
 def case(name):
     assert Path('/proc/self/ns/mnt').readlink()!=Path('/proc/1/ns/mnt').readlink()
     prefix,_=guest.session('tester');assert prefix,'desktop session unavailable'
+    package_query=None
     with tempfile.TemporaryDirectory(prefix='phase4-negative-') as temporary, ExitStack() as mounts:
         work=Path(temporary);work.chmod(0o755)
         def overlay(target):
@@ -55,7 +56,8 @@ def case(name):
             shutil.copytree(original,replacement);shutil.rmtree(original)
             path=replacement/'desc';text=path.read_text();version=text.split('%VERSION%\n')[1].splitlines()[0]
             path.write_text(text.replace('%VERSION%\n'+version+'\n','%VERSION%\n999:999-1\n'))
-            assert '999:999-1' in subprocess.check_output(['pacman','-Q','lib32-mesa'],text=True)
+            package_query=invoke(['pacman','-Q','lib32-mesa'])
+            assert package_query['code']==0 and '999:999-1' in package_query['output']
             reply=invoke(prefix+['distroctl','update','--dry-run','--json'])
             assert reply['code']==1 and 'inconsistent graphics package state' in reply['output'],reply
         elif name in ['enable-refusal','disable-refusal']:
@@ -93,12 +95,12 @@ def case(name):
             else:
                 assert '--backend wayland' in report['reason']
         else:raise ValueError(name)
-        print(json.dumps(dict(status='PASS',scope='actual production CLI under isolated test mount/environment; no physical qualification',reply=reply)))
+        print(json.dumps(dict(status='PASS',scope='actual production CLI under isolated test mount/environment; no physical qualification',reply=reply,package_query=package_query)))
 
 if len(sys.argv)==3 and sys.argv[1]=='--case':
     case(sys.argv[2])
 else:
-    before=subprocess.check_output(['pacman','-Q'])
+    before=invoke(['pacman','-Q']);assert before['code']==0
     files=[Path('/usr/bin/steam'),Path('/usr/bin/gamescope'),Path('/usr/lib/libvulkan.so.1'),Path('/usr/lib32/libvulkan.so.1')]
     hashes={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
     result={}
@@ -107,6 +109,6 @@ else:
                  'gamescope-invalid-config','gamescope-unsupported']:
         reply=invoke(['unshare','--mount','--propagation','private',sys.executable,__file__,'--case',name])
         result[name]=dict(status='FAIL',reply=reply) if reply['code'] else json.loads(reply['output'])
-    assert subprocess.check_output(['pacman','-Q'])==before
+    after=invoke(['pacman','-Q']);assert after['code']==0 and after['output']==before['output']
     assert {str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}==hashes
-    print(json.dumps(dict(checks=result,package_and_file_state_preserved=True)))
+    print(json.dumps(dict(checks=result,package_and_file_state_preserved=True,package_query_before=before,package_query_after=after)))
