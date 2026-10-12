@@ -1,0 +1,46 @@
+{
+  "gate": "K",
+  "historical_result": "FAIL",
+  "previous_requalification_result": "FAIL: 16/17 passed; expired signature blocked dependency-mismatch",
+  "current_result": "PASS",
+  "scope": "Cumulative evidence: 16 prior passing cases retained; only the blocked dependency-mismatch case rerun now",
+  "previous_matrix": "../phase4-runtime-requalification/matrix.json",
+  "new_evidence": "fixture-result.json",
+  "new_case_command": [
+    "runuser",
+    "-u",
+    "tester",
+    "--",
+    "env",
+    "DISPLAY=:0",
+    "XAUTHORITY=/run/user/1000/xauth_dlWQze",
+    "WAYLAND_DISPLAY=wayland-0",
+    "XDG_RUNTIME_DIR=/run/user/1000",
+    "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+    "XDG_SESSION_TYPE=wayland",
+    "XDG_CURRENT_DESKTOP=KDE",
+    "distroctl",
+    "update",
+    "--dry-run",
+    "--json"
+  ],
+  "new_case_exit": 1,
+  "expected_diagnostic": "inconsistent graphics package state",
+  "namespace_collector_exit": 0,
+  "signature_controls": {
+    "expired-original": 1,
+    "untrusted-signer": 1,
+    "signed-database-accepted": 0,
+    "tampered-database": 1,
+    "restored-signed-database": 0
+  },
+  "other_gates": {
+    "G": "PASS, previous evidence",
+    "H": "UNSUPPORTED presentation",
+    "I": "FAIL: unchanged upstream self-test 255; governor unsupported",
+    "L": "UNSUPPORTED targeted transactions",
+    "P": "NOT RUN physical GPU"
+  },
+  "phase4_fully_validated": false,
+  "phase41_verdict": "PHASE 4.1 GUEST REQUALIFICATION INCOMPLETE"
+}

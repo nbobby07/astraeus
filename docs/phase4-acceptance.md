@@ -1,5 +1,9 @@
 # Phase 4 integrated acceptance
 
+The later [signed fixture refresh](phase4-signed-fixture-refresh.md) closes K's
+expired-signature prerequisite and records a passing dependency-mismatch guard.
+This does not change the historical results or the remaining Phase 4 gates.
+
 The original integration record below is preserved. The later
 [Phase 4.1 guest requalification](phase4-runtime-requalification.md) passes the
 normal Proton fixture and clean Gamescope refusal, while retaining the GameMode

@@ -1,0 +1,10 @@
+QMP: /home/ubuntu/p41/fixture-refresh/boot-1/qmp.sock
+trust-before: 0
+binaries-before: 0
+autologin: 0
+state-before: 0
+signed-fixture-test: 0
+state-after: 0
+restore-autologin: 0
+binaries-after: 0
+trust-after: 0

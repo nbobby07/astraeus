@@ -1,0 +1,134 @@
+{
+  "adapters/export-refresh.py": {
+    "bytes": 1701,
+    "sha256": "d0e12ed2155226653ed3a44626a265cd1d452c73bef9ecbae8073fdef46a234f"
+  },
+  "adapters/guest-refresh.py": {
+    "bytes": 6469,
+    "sha256": "853d2e97ae9bc74ce3af3ba482dadfb3498fdd5cbba1b3d520285ef52d86efdf"
+  },
+  "adapters/guest-state.py": {
+    "bytes": 867,
+    "sha256": "6bfe49601938e13334d3b62118d7400ab54ea894b273e043b57b416b1d5aa24d"
+  },
+  "adapters/phase4_negatives.py": {
+    "bytes": 7883,
+    "sha256": "96dfb6e7abbaa24ec351edd14b32243fc9f5156bc1a5070307fdc7cdf9efeba5"
+  },
+  "adapters/run-refresh.py": {
+    "bytes": 4344,
+    "sha256": "708584ce37c2ada05119704609f7176ae86459f430bab422d2657c0f451a22ec"
+  },
+  "after-summary.json": {
+    "bytes": 34635,
+    "sha256": "395a8c642f0faab3fde40a995900d72a6ce30897cc1e527685b9f1fa79cd13e0"
+  },
+  "baseline-reference.json": {
+    "bytes": 1498,
+    "sha256": "b4ee5a70f61723fcf2b8fe734dd6154a240cb02810b4a6832bab2000f8c52a82"
+  },
+  "before-summary.json": {
+    "bytes": 34934,
+    "sha256": "be90340006057a986619a4b981717068e7e8b2fbb0d1b7f7a86bef0dccd72432"
+  },
+  "binaries-after.json": {
+    "bytes": 634,
+    "sha256": "7f0d6121eda1af8cc37dc4cfa4161eb1d6c26b9456ba1fad2d03e3047b6eb266"
+  },
+  "binaries-before.json": {
+    "bytes": 634,
+    "sha256": "a4919b65585c5b404fb36ee01f4d9ad4a0180524a45e334e092f9c5783fd3a5f"
+  },
+  "cleanup.json": {
+    "bytes": 496,
+    "sha256": "7dd8b90867331c5e49ef6ba9abff9545f9ba0383c0bc0332a9d08ae31861587f"
+  },
+  "export-receipt.json": {
+    "bytes": 252,
+    "sha256": "59fa56f57c5c5f879531919a08ca7268d78919f8f419b3647ed56bdaf6655589"
+  },
+  "fixture-result.json": {
+    "bytes": 15029,
+    "sha256": "f0bf392276ac3907639a7d3781e4ab8603557d8285f928323c068471b4658c88"
+  },
+  "independent-signature-verification.json": {
+    "bytes": 2330,
+    "sha256": "b2ff7b8f39a2d518c0af9a4759826ca9559de2a5ce6f7579d017bde49dae849f"
+  },
+  "matrix.json": {
+    "bytes": 1520,
+    "sha256": "5db51b91906bde8751da839cb4f696728a84a87e0a2f7bb22885bf5c7261d9e2"
+  },
+  "process.json": {
+    "bytes": 82,
+    "sha256": "85a6a206952207d28d04229df6cd9ec853dcc8df6e330d6c6ef274bbc9f51d28"
+  },
+  "python-windows.log": {
+    "bytes": 22389,
+    "sha256": "271261a976ec9800dede5023d44245bb5ebfa101a6e26b253f907b76b8566fe0"
+  },
+  "qemu-command.json": {
+    "bytes": 1225,
+    "sha256": "f2511b74ca8792a7580f619f687ff80e7515be774278f96d30e5fb57a5443a2e"
+  },
+  "resource-after.json": {
+    "bytes": 1050,
+    "sha256": "579707373d7f5a9612d3f3634e5a46e8655f963bae172851c0d613df6dbb9ac9"
+  },
+  "resource-before.json": {
+    "bytes": 1050,
+    "sha256": "fbe624205936e29adfeb7600b0e1f0780b63f05984cc61c0d18a63c58c543a76"
+  },
+  "resource-previous-pause.json": {
+    "bytes": 1050,
+    "sha256": "70bcf919c17953d01facbf00a3a00f54c1136d33c19e91c2b4b4b665e4fcd096"
+  },
+  "result.json": {
+    "bytes": 388,
+    "sha256": "afc0f017101ae257586469f2da30460b9b7fdf0234cbd8302db83fb4165b71c8"
+  },
+  "run.log": {
+    "bytes": 210,
+    "sha256": "75bc558c27f730b2e89e468dc7072da9ab4ff78d00011c4a65f48d4608951e5c"
+  },
+  "shutdown.json": {
+    "bytes": 86,
+    "sha256": "593b99822f0e772e7639fa3bf35145f0bb8c3709f243954044484d4a7e8b843d"
+  },
+  "signed-database/distro.db": {
+    "bytes": 550,
+    "sha256": "7f3515f1cdc3453ed606340f2ac0715faf0e327898e9b51de1f7ec5d975d6dca"
+  },
+  "signed-database/distro.db.sig": {
+    "bytes": 119,
+    "sha256": "06c10c15983135ec7c830c403ae12a71dcd64fbbfc0de290352d8008c174391c"
+  },
+  "signed-database/provenance.json": {
+    "bytes": 619,
+    "sha256": "9b6d4bbfb5d08a9576c1e3e1836f84c8400c5a68d6a3cebc63c2b0042e008a97"
+  },
+  "signed-database/repository-key.asc": {
+    "bytes": 449,
+    "sha256": "14544fcfa0a8a1ad4722d0470eaaec99d8c5132bdacf33920dc8ea886c821487"
+  },
+  "state-after.json": {
+    "bytes": 952,
+    "sha256": "12fab13626e23cca91e8c5289b7b44ce82fc63c713b56c25bfb4555aa65f707f"
+  },
+  "state-before.json": {
+    "bytes": 952,
+    "sha256": "6f41ef945c770e5ac803d94376eb721cc06092aba37e6cda1983e2b24b24f65c"
+  },
+  "trust-after.json": {
+    "bytes": 2110,
+    "sha256": "7a9d23374f0ffaa45a58bc20a94bb8d3d2bbc4cf6bd6ea6fcc1a6096e8bc2f6d"
+  },
+  "trust-before.json": {
+    "bytes": 2110,
+    "sha256": "6a69049a62210bc3b273cadc5d34af24c2fd60b7fc3fb707e1eb3654f047b51f"
+  },
+  "usage.json": {
+    "bytes": 734,
+    "sha256": "c441104ea35e0d51b820ef4c466643fdbb387136d29c7ebcadf6ab59bc5e3dad"
+  }
+}

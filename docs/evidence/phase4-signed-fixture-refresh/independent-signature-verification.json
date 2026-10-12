@@ -1,0 +1,34 @@
+{
+  "import": {
+    "command": [
+      "gpg",
+      "--homedir",
+      "/tmp/astraeus-fixture-verify-sfzluj58",
+      "--batch",
+      "--no-auto-key-retrieve",
+      "--import",
+      "/mnt/c/Users/Noel/.codex/worktrees/phase4-runtime-requalification/operating-system/docs/evidence/phase4-signed-fixture-refresh/signed-database/repository-key.asc"
+    ],
+    "code": 0,
+    "stdout": "",
+    "stderr": "gpg: keybox '/tmp/astraeus-fixture-verify-sfzluj58/pubring.kbx' created\ngpg: /tmp/astraeus-fixture-verify-sfzluj58/trustdb.gpg: trustdb created\ngpg: key 9E8A79CE8852B557: public key \"Astraeus Phase 4.1 disposable K-gate database fixture 2026-10-11\" imported\ngpg: Total number processed: 1\ngpg:               imported: 1\n"
+  },
+  "verify": {
+    "command": [
+      "gpg",
+      "--homedir",
+      "/tmp/astraeus-fixture-verify-sfzluj58",
+      "--batch",
+      "--no-auto-key-retrieve",
+      "--status-fd",
+      "1",
+      "--verify",
+      "/mnt/c/Users/Noel/.codex/worktrees/phase4-runtime-requalification/operating-system/docs/evidence/phase4-signed-fixture-refresh/signed-database/distro.db.sig",
+      "/mnt/c/Users/Noel/.codex/worktrees/phase4-runtime-requalification/operating-system/docs/evidence/phase4-signed-fixture-refresh/signed-database/distro.db"
+    ],
+    "code": 0,
+    "stdout": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED 266918787E6570FD0B4B6E889E8A79CE8852B557 0\n[GNUPG:] SIG_ID PIRyKlpSsgRasznJN5GIh13hmDQ 2026-10-12 1791770663\n[GNUPG:] GOODSIG 9E8A79CE8852B557 Astraeus Phase 4.1 disposable K-gate database fixture 2026-10-11\n[GNUPG:] VALIDSIG 266918787E6570FD0B4B6E889E8A79CE8852B557 2026-10-12 1791770663 0 4 0 22 10 00 266918787E6570FD0B4B6E889E8A79CE8852B557\n[GNUPG:] TRUST_UNDEFINED 0 pgp\n",
+    "stderr": "gpg: Signature made Sun Oct 11 19:04:23 2026 PDT\ngpg:                using EDDSA key 266918787E6570FD0B4B6E889E8A79CE8852B557\ngpg: Good signature from \"Astraeus Phase 4.1 disposable K-gate database fixture 2026-10-11\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: 2669 1878 7E65 70FD 0B4B  6E88 9E8A 79CE 8852 B557\n"
+  },
+  "scope": "Independent exported signature verification; temporary local public keyring, no system trust changes"
+}

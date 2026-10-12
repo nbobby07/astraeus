@@ -1,5 +1,9 @@
 # Phase 4 validation infrastructure
 
+The [signed fixture refresh](phase4-signed-fixture-refresh.md) records the resolved
+K dependency-mismatch case and its signature controls. Fresh fixture trust was
+confined to a private test namespace; the installed trust store stayed unchanged.
+
 Phase 4.1 changes only validation tooling. See
 [runtime remediation](phase4-runtime-remediation.md) for new results and remaining
 guest-test prerequisites. The original integration matrix and failed evidence

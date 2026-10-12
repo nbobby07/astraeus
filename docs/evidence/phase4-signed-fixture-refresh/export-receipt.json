@@ -1,0 +1,8 @@
+{
+  "path": "/home/ubuntu/p41/fixture-refresh-raw.tar.gz",
+  "bytes": 192869,
+  "sha256": "f8271b7c6f4aa8c546233085086fd1647a216d98100cbdb9bd1cbcddef22784a",
+  "payload_members": 84,
+  "private": true,
+  "private_signing_key_exported": false
+}

@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-12T02:03:57.352162+00:00",
+  "completed": true,
+  "production_source": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "validation_source": "3163c86f75c8cd226456dd6b30b1c5b683f830cc",
+  "parent_state_unchanged": true,
+  "test_status": "PASS",
+  "test_exit": 0,
+  "finished": "2026-10-12T02:04:40.983668+00:00",
+  "qemu_returncode": 0,
+  "baseline_unchanged": true
+}

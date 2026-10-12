@@ -1,5 +1,9 @@
 # Phase 4.1 focused guest requalification
 
+Follow-up: the [signed fixture refresh](phase4-signed-fixture-refresh.md) closes
+the blocked K case. This original run and its failures remain preserved below;
+the full GameMode self-test failure still prevents an overall pass.
+
 **PHASE 4.1 GUEST REQUALIFICATION INCOMPLETE**
 
 Tested October 10, 2026, Pacific time. Raw records use UTC. Normal Proton execution
