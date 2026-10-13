@@ -24,3 +24,16 @@ Attach it as a separate **read-only** QEMU drive, bootindex 1. Keep the UUID-bou
 The fault runner must observe the serial marker `ASTRAEUS_SECURE_LIVE_OK: SecureBoot=1 SetupMode=0 rootfs=verified-in-RAM`, the packaged live desktop marker, real firmware state and the exact live CLI hash before mounting the installed root. It must separately exercise unsigned/tampered UKI, altered SquashFS and disabled Secure Boot refusal. Authentication failure powers off without an escape shell.
 
 Pure checks: `python3 -m unittest discover -s tests -p test_phase42_recovery.py -v`. They do not open disks, mount filesystems or boot a VM. No build or runtime test has been performed yet.
+
+Run real media gates sequentially for the newly built image, using separate output directories for `trusted`, `untrusted`, `unsigned`, `tampered`, `root-tampered` and `disabled`:
+
+```sh
+python3 scripts/validate/phase42-recovery-check.py trusted \
+  --build /home/ubuntu/p42/recovery-plain --baseline /home/ubuntu/p42/base-plain \
+  --output /home/ubuntu/p42/recovery-check-plain/trusted \
+  --ovmf-code /usr/share/OVMF/OVMF_CODE_4M.secboot.fd \
+  --pristine-vars /usr/share/OVMF/OVMF_VARS_4M.fd \
+  --source-commit FULL_CANDIDATE_COMMIT --iso-sha256 CANDIDATE_SHA256
+```
+
+These checks attach no installed OS disk. They use copied baseline VARS, except the deliberately disabled and different-owner cases, which create separate test VARS from the exact pristine template digest recorded by the baseline. A trusted boot waits for the live command channel described in `attention.json`, then verifies the firmware db certificate, live CLI, verified RAM copy and ephemeral root. Refusal cases require actual firmware rejection or a guard refusal followed by poweroff. Timeout never passes. Screenshots, serial logs, commands and mutation hashes remain; successful disposable mutation copies are removed to conserve validation storage. SIGTERM follows the owned-QEMU cleanup path. Each result covers only its named case and candidate.

@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 import re
 import secrets
+import signal
 import shutil
 import subprocess
 import sys
@@ -462,6 +463,9 @@ def main():
     elif args.action == 'guest-desktop':
         guest_desktop(args.initial)
     else:
+        def interrupted(_signal, _frame):
+            raise InterruptedError('fresh baseline validation interrupted')
+        signal.signal(signal.SIGTERM, interrupted)
         host_run(args)
 
 

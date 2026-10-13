@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -12,6 +13,10 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('build_recovery', ROOT / 'scripts/validate/phase42-recovery.py')
 builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
+sys.path.insert(0, str(ROOT / 'scripts/validate'))
+checks_spec = importlib.util.spec_from_file_location('recovery_check', ROOT / 'scripts/validate/phase42-recovery-check.py')
+checks = importlib.util.module_from_spec(checks_spec)
+checks_spec.loader.exec_module(checks)
 ANCHOR = '    img_loopdev="$(losetup --find --show --read-only -- "${img}")"'
 
 
@@ -23,6 +28,30 @@ def baseline():
 
 
 class RecoveryBuilder(unittest.TestCase):
+    def test_runtime_verdict_requires_actual_positive_or_refusal_evidence(self):
+        for mode in checks.MODES:
+            self.assertFalse(checks.observed_verdict(mode, 'timeout; firmware still running'))
+        self.assertTrue(checks.observed_verdict('trusted', checks.VERIFIED + '\n' + checks.DESKTOP))
+        self.assertFalse(checks.observed_verdict('trusted', checks.DESKTOP))
+        self.assertFalse(checks.observed_verdict('trusted', checks.VERIFIED + checks.DESKTOP + checks.REFUSED))
+        for mode in ['root-tampered', 'disabled']:
+            self.assertTrue(checks.observed_verdict(mode, checks.REFUSED))
+            self.assertFalse(checks.observed_verdict(mode, checks.REFUSED + checks.VERIFIED))
+        for mode in ['unsigned', 'tampered', 'untrusted']:
+            self.assertTrue(checks.observed_verdict(mode, 'BdsDxe: loading Boot0001: Access Denied'))
+            self.assertFalse(checks.observed_verdict(mode, 'Access Denied\nLinux version 6.17'))
+            self.assertFalse(checks.observed_verdict(mode, 'Security Violation\n' + checks.DESKTOP))
+
+    def test_media_gate_attaches_no_installed_disk_and_only_readonly_raw_usb(self):
+        command = checks.media_command(checks.p2.install.qemu_command, Path('/checked/recovery.img'), 8,
+                    Path('/firmware/code'), Path('/private/vars'), Path('/never/open/disk.qcow2'),
+                    Path('/out/serial.log'), Path('/out/qmp.sock'), secure_boot=True)
+        self.assertFalse(any('qcow2' in item or '/never/open' in item for item in command))
+        self.assertIn('if=none,id=osdisk,format=raw,readonly=on,file=' + str(Path('/checked/recovery.img')), command)
+        self.assertIn('q35,accel=kvm,smm=on', command)
+        self.assertLess(command.index('qemu-xhci'), command.index('usb-storage,drive=osdisk,bootindex=1'))
+        self.assertEqual(command[command.index('-m') + 1], '8192')
+
     def test_requires_exact_accepted_candidate_and_baseline_signer(self):
         self.assertEqual(builder.baseline_identity(baseline(), 'a' * 40, 'b' * 64), ('c' * 64, 'd' * 64))
         for key, value in [('schema_version', 2), ('schema_version', True), ('accepted', False),
