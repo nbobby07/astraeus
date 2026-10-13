@@ -63,6 +63,8 @@ fn json_cli_parses_user_configuration_and_never_accepts_unreviewed_mutation() {
     assert!(!failed.status.success() && failed.stdout.is_empty());
 }
 
+// Installed-state export reads the trusted Linux root. distro-config covers portable TOML round trips.
+#[cfg(target_os = "linux")]
 #[test]
 fn plain_export_is_importable_toml_and_matches_json_export() {
     let plain = run(&["export"], b"");
