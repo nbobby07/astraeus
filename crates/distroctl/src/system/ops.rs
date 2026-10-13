@@ -9,6 +9,7 @@ use std::path::{Path, PathBuf};
 const ROOT: &str = "/run/astraeus";
 const RECEIPTS: &str = "/var/log/astraeus/operations";
 const RECEIPT_LIMIT: u64 = 16 * 1024;
+const STARTUP_GRACE_SECONDS: u64 = 30;
 
 pub fn valid_id(id: &str) -> bool {
     id.len() == 32
@@ -172,10 +173,151 @@ pub fn operation(id: &str) -> Result<Operation> {
     if let Some(record) = matching_record(&records, id)? {
         return from_record(record);
     }
-    receipt_operation(
-        read_receipt(id)?,
-        &distro_transactions::integration::boot_id()?,
-    )
+    let receipt = read_receipt(id)?;
+    let boot = distro_transactions::integration::boot_id()?;
+    let now = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map_err(|error| error.to_string())?
+        .as_secs();
+    let unit = if queued_past_startup_grace(&receipt, &boot, now) {
+        worker_unit(id).ok()
+    } else {
+        None
+    };
+    receipt_operation(project_orphaned_queue(receipt, &boot, now, unit), &boot)
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum WorkerUnit {
+    Inactive,
+    #[cfg(any(test, all(target_os = "linux", feature = "native-alpm")))]
+    Busy,
+}
+
+fn queued_past_startup_grace(receipt: &Receipt, boot: &str, now: u64) -> bool {
+    matches!(receipt.state, ReceiptState::Queued)
+        && receipt.transaction_id.is_none()
+        && receipt.boot_id == boot
+        && now
+            .checked_sub(receipt.created_unix_seconds)
+            .is_some_and(|elapsed| elapsed >= STARTUP_GRACE_SECONDS)
+}
+
+fn project_orphaned_queue(
+    mut receipt: Receipt,
+    boot: &str,
+    now: u64,
+    unit: Option<WorkerUnit>,
+) -> Receipt {
+    if queued_past_startup_grace(&receipt, boot, now) && unit == Some(WorkerUnit::Inactive) {
+        receipt.state = ReceiptState::Failed;
+        receipt.error = Some("Submission stopped before the worker started. The request will not be replayed; review the current state before submitting again.".into());
+    }
+    receipt
+}
+
+#[cfg(any(test, all(target_os = "linux", feature = "native-alpm")))]
+fn parse_worker_unit(text: &str) -> Result<WorkerUnit> {
+    let mut values = std::collections::BTreeMap::new();
+    for line in text.lines() {
+        let (key, value) = line.split_once('=').ok_or("invalid worker unit response")?;
+        if !["LoadState", "ActiveState", "Job"].contains(&key)
+            || values.insert(key, value).is_some()
+        {
+            return Err("unexpected worker unit response".into());
+        }
+    }
+    let [Some(load), Some(active), Some(job)] = [
+        values.get("LoadState"),
+        values.get("ActiveState"),
+        values.get("Job"),
+    ] else {
+        return Err("incomplete worker unit response".into());
+    };
+    if ["loaded", "not-found"].contains(load) && *active == "inactive" && ["", "0"].contains(job) {
+        Ok(WorkerUnit::Inactive)
+    } else {
+        // Unknown states never authorize classifying a submission as abandoned.
+        Ok(WorkerUnit::Busy)
+    }
+}
+
+#[cfg(all(target_os = "linux", feature = "native-alpm"))]
+fn worker_unit(id: &str) -> Result<WorkerUnit> {
+    use std::{
+        io::Read,
+        os::unix::process::CommandExt,
+        process::{Command, Stdio},
+        sync::mpsc,
+        thread,
+        time::{Duration, Instant},
+    };
+    check_id(id)?;
+    let mut child = Command::new("/usr/bin/systemctl")
+        .args([
+            "show",
+            "--no-pager",
+            "--all",
+            "--property=LoadState,ActiveState,Job",
+            &format!("astraeus-apply@{id}.service"),
+        ])
+        .env_clear()
+        .env("PATH", "/usr/bin:/bin")
+        .env("LC_ALL", "C")
+        .stdin(Stdio::null())
+        .stdout(Stdio::piped())
+        .stderr(Stdio::null())
+        .process_group(0)
+        .spawn()
+        .map_err(|error| error.to_string())?;
+    let reader = child
+        .stdout
+        .take()
+        .ok_or("worker unit stdout unavailable")?;
+    let (sender, receiver) = mpsc::channel();
+    thread::spawn(move || {
+        let mut bytes = vec![];
+        let result = reader
+            .take(16 * 1024 + 1)
+            .read_to_end(&mut bytes)
+            .map(|_| bytes);
+        let _ = sender.send(result);
+    });
+    let deadline = Instant::now() + Duration::from_secs(3);
+    let result = (|| -> Result<WorkerUnit> {
+        let bytes = receiver
+            .recv_timeout(deadline.saturating_duration_since(Instant::now()))
+            .map_err(|_| "worker unit query timed out")?
+            .map_err(|error| error.to_string())?;
+        if bytes.len() > 16 * 1024 {
+            return Err("worker unit response exceeded its size limit".into());
+        }
+        loop {
+            if let Some(status) = child.try_wait().map_err(|error| error.to_string())? {
+                if !status.success() {
+                    return Err("worker unit query failed".into());
+                }
+                break;
+            }
+            if Instant::now() >= deadline {
+                return Err("worker unit query timed out".into());
+            }
+            thread::sleep(Duration::from_millis(10));
+        }
+        parse_worker_unit(std::str::from_utf8(&bytes).map_err(|error| error.to_string())?)
+    })();
+    if result.is_err() && child.try_wait().is_ok_and(|status| status.is_none()) {
+        // SAFETY: only the isolated read-only query's process group is stopped.
+        unsafe { libc::kill(-(child.id() as i32), libc::SIGKILL) };
+        let _ = child.kill();
+        let _ = child.wait();
+    }
+    result
+}
+
+#[cfg(not(all(target_os = "linux", feature = "native-alpm")))]
+fn worker_unit(_: &str) -> Result<WorkerUnit> {
+    Err(super::NATIVE_REQUIRED.into())
 }
 
 fn receipt_operation(receipt: Receipt, current_boot: &str) -> Result<Operation> {
@@ -717,5 +859,98 @@ mod tests {
                 .as_deref(),
             Some("original refusal")
         );
+    }
+
+    #[test]
+    fn only_old_queued_receipts_with_confirmed_idle_units_are_orphans() {
+        let receipt = Receipt {
+            schema_version: 1,
+            operation_id: "a".repeat(32),
+            boot_id: "current-boot".into(),
+            created_unix_seconds: 100,
+            state: ReceiptState::Queued,
+            transaction_id: None,
+            error: None,
+        };
+        for now in [99, 100, 129] {
+            let fresh = project_orphaned_queue(
+                receipt.clone(),
+                "current-boot",
+                now,
+                Some(WorkerUnit::Inactive),
+            );
+            assert!(matches!(fresh.state, ReceiptState::Queued));
+        }
+        for unit in [None, Some(WorkerUnit::Busy)] {
+            let uncertain = project_orphaned_queue(receipt.clone(), "current-boot", 500, unit);
+            assert!(matches!(uncertain.state, ReceiptState::Queued));
+        }
+        let orphan = project_orphaned_queue(
+            receipt.clone(),
+            "current-boot",
+            130,
+            Some(WorkerUnit::Inactive),
+        );
+        assert!(matches!(orphan.state, ReceiptState::Failed));
+        let operation = receipt_operation(orphan, "current-boot").unwrap();
+        assert!(!operation.in_progress());
+        assert!(operation.error.unwrap().contains("will not be replayed"));
+        for state in [
+            ReceiptState::Running,
+            ReceiptState::Linked,
+            ReceiptState::Failed,
+        ] {
+            let mut other = receipt.clone();
+            other.state = state.clone();
+            let projected =
+                project_orphaned_queue(other, "current-boot", 500, Some(WorkerUnit::Inactive));
+            assert_eq!(
+                serde_json::to_value(projected.state).unwrap(),
+                serde_json::to_value(state).unwrap()
+            );
+        }
+        let mut linked = receipt.clone();
+        linked.transaction_id = Some(1);
+        assert!(matches!(
+            project_orphaned_queue(linked, "current-boot", 500, Some(WorkerUnit::Inactive)).state,
+            ReceiptState::Queued
+        ));
+        assert!(matches!(
+            project_orphaned_queue(receipt, "another-boot", 500, Some(WorkerUnit::Inactive)).state,
+            ReceiptState::Queued
+        ));
+    }
+
+    #[test]
+    fn unit_projection_requires_complete_inactive_state_without_a_start_job() {
+        for load in ["loaded", "not-found"] {
+            for job in ["", "0"] {
+                assert_eq!(
+                    parse_worker_unit(&format!(
+                        "LoadState={load}\nActiveState=inactive\nJob={job}\n"
+                    ))
+                    .unwrap(),
+                    WorkerUnit::Inactive
+                );
+            }
+        }
+        for properties in [
+            "LoadState=loaded\nActiveState=activating\nJob=\n",
+            "LoadState=loaded\nActiveState=active\nJob=\n",
+            "LoadState=loaded\nActiveState=deactivating\nJob=\n",
+            "LoadState=loaded\nActiveState=failed\nJob=\n",
+            "LoadState=loaded\nActiveState=inactive\nJob=127 start\n",
+            "LoadState=unknown\nActiveState=inactive\nJob=\n",
+        ] {
+            assert_eq!(parse_worker_unit(properties).unwrap(), WorkerUnit::Busy);
+        }
+        for properties in [
+            "",
+            "LoadState=not-found\nActiveState=inactive\n",
+            "LoadState=loaded\nActiveState=inactive\nJob=\nJob=1\n",
+            "failed to connect to system bus",
+        ] {
+            assert!(parse_worker_unit(properties).is_err());
+        }
     }
 }
