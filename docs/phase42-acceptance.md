@@ -4,9 +4,9 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The current runtime candidate is `30e29916bb9786e70a9230d7f48f2e8b973a8317`.
-Its clean-build source archive is 4,982,356 bytes with SHA256
-`04ba913187b70b9dc9faaf57d708b3d23cba02b0c87340469520b9155685fe9c`.
+The current runtime candidate is `620d1d3edf9ba596d22e762591c296267951a81f`.
+Its clean-build source archive is 4,982,528 bytes with SHA256
+`00b4bcc311aacb96787289bab0be428f6f1d06b446870f3b2e01cb793701e030`.
 Earlier stopped build attempts remain preliminary evidence and do not qualify this
 candidate. Later validation-only commits are recorded separately from runtime.
 
@@ -49,6 +49,14 @@ its strict warning check caught the missing Sonnet spelling backend in the
 minimal builder. No package or ISO is accepted from this attempt. Its thin
 archive is `failed-30e2991-r1-A-evidence.tar.gz` (91,804 bytes), SHA256
 `526ed122ca51d9a5e496543990ceeabb3f9fee8905c899871c917717962c0000`.
+
+Candidate `620d1d3` copies the controller fixture into the test build directory
+and declares pinned Hunspell 1.7.4-1 as the KDE spelling backend, without adding
+a dictionary. The fixture failure was reproduced locally with Arch-style
+debug-path remapping: the old controller run passed 3 checks and failed 18; the
+corrected extracted archive passed all 21. Its 12 QML checks and 155 native Rust
+tests also passed. Archive verification checks 118 package names against the
+same three pinned repository database hashes. The clean Arch build is pending.
 
 The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
 exported as a 358,400-byte archive with SHA256
