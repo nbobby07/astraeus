@@ -17,6 +17,15 @@ logs remain evidence, not a passing package gate. Host native checks below ran
 on `85ad8f6`; this packaging fix has three passing focused tests, with clean
 candidate package and image builds still required.
 
+Candidate `9b0fb7a`, attempt A/r1, was interrupted by an outer-validator reset at
+2026-10-13 22:30:39 UTC during native compilation. Its boot identity changed and
+the filesystem reported an unclean restart; no normal compiler/build exit, OOM
+event or graceful host shutdown was recorded. Source and base hashes, package
+manager checks, qcow2 consistency and KVM checks passed afterward. This attempt
+does not count as a completed build. Its thin evidence archive is
+`interrupted-9b0fb7a-r1-A-evidence.tar.gz` (102,533 bytes), SHA256
+`cc03796ed7bfe27270241c9e86f3cdffe53ecdc7ff27b4fa2e09ee166926a9da`.
+
 The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
 exported as a 358,400-byte archive with SHA256
 `41e8c3db8dce243939e07c11678c022c10a6dedc119b701e60b5e90528892c46`.
