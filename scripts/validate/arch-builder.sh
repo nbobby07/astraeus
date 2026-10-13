@@ -48,6 +48,7 @@ fi
 pacman -Syyuu --noconfirm --needed base-devel archiso rust python git gnupg systemd-ukify sbsigntools efitools
 pacman -S --noconfirm --needed lib32-glibc lib32-gcc-libs vulkan-headers
 pacman -S --noconfirm --needed $(cat distro/packages/calamares/build-packages.x86_64)
+pacman -S --noconfirm --needed $(cat distro/packages/distroctl/build-packages.x86_64)
 git init -b main
 git status --short > "$evidence/git-status.txt"
 git rev-parse HEAD > "$evidence/git-head.txt" 2>&1 || true

@@ -49,6 +49,7 @@ man-db
 usbutils
 pciutils
 distroctl
+astraeus-control-center
 calamares
 arch-install-scripts
 rsync

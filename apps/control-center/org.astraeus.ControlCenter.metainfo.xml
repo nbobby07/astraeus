@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.astraeus.ControlCenter</id>
+  <name>Astraeus Control Center</name>
+  <summary>Manage software and saved system configuration</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <description><p>Review software changes, apply approved packages with recovery snapshots, and inspect verified transaction history.</p></description>
+  <launchable type="desktop-id">org.astraeus.ControlCenter.desktop</launchable>
+  <categories><category>System</category></categories>
+</component>

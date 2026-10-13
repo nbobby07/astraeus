@@ -1,0 +1,6 @@
+cmake
+ninja
+qt6-base
+qt6-declarative
+kirigami
+polkit

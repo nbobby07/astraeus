@@ -1,0 +1,111 @@
+{
+  "blockers": [
+    "A previous transaction is awaiting boot confirmation."
+  ],
+  "executable": false,
+  "plan": {
+    "boot": {
+      "regenerate_uki": true,
+      "update_bootloader": false
+    },
+    "current": {
+      "id": "sha256:982f28c9e7edda2437013dba151112da1c6457627b151ae55a93db5a77f4c060",
+      "packages": {
+        "nano": "9.2-1"
+      }
+    },
+    "desired": "managed_system",
+    "management": {
+      "after": {
+        "applied": {
+          "gaming": [],
+          "packages": [
+            "kate",
+            "nano"
+          ],
+          "providers": {},
+          "schema_version": 1
+        },
+        "packages": {
+          "kate": {
+            "owners": [
+              "package:kate"
+            ],
+            "reason": "explicit",
+            "version": "26.08.1-1"
+          }
+        },
+        "protected": [
+          "nano"
+        ],
+        "repositories": {
+          "extra": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "resolution": {},
+        "resolved_providers": {},
+        "schema_version": 1
+      },
+      "after_digest": "sha256:c3dc0f2270b358f8c4121518ee98d51015495c65d55360a1251a0df1a653f007",
+      "before": {
+        "applied": {
+          "gaming": [],
+          "packages": [
+            "nano"
+          ],
+          "providers": {},
+          "schema_version": 1
+        },
+        "packages": {},
+        "protected": [
+          "nano"
+        ],
+        "repositories": {
+          "extra": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "resolution": {},
+        "resolved_providers": {},
+        "schema_version": 1
+      },
+      "before_digest": "sha256:ccded24f7a473ab1581916d48f309b12734e942ab7a905a72da477ecead41ae2",
+      "reasons_after": {
+        "kate": "explicit",
+        "nano": "explicit"
+      },
+      "reasons_before": {
+        "nano": "explicit"
+      }
+    },
+    "notes": [
+      "Uses existing sync databases; does not refresh repositories.",
+      "Boot regeneration is conservative for every nonempty update.",
+      "Loader binaries are not updated; plans changing systemd are rejected.",
+      "Plans changing distroctl are rejected until coordinator self-updates are supported."
+    ],
+    "packages": {
+      "changes": [
+        {
+          "kind": "install",
+          "name": "kate",
+          "version": "26.08.1-1"
+        }
+      ],
+      "download_bytes": 3145728,
+      "installed_delta_bytes": 6291456,
+      "targets": [
+        {
+          "archive_bytes": 3145728,
+          "installed_bytes": 6291456,
+          "name": "kate",
+          "repository": "extra",
+          "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "version": "26.08.1-1"
+        }
+      ]
+    },
+    "schema_version": 2,
+    "snapshot_required": true
+  },
+  "plan_id": "sha256:1723b1d693d15768d221eabcf4f75c0adc71a125c04950732ac4475e94b6bba4",
+  "schema_version": 1,
+  "warnings": []
+}

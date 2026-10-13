@@ -21,7 +21,7 @@ MANIFEST = ROOT / "distro/branding/project.toml"
 sys.path.insert(0, str(ROOT / "scripts"))
 import installer
 
-CUSTOM_PACKAGES = {"distroctl", "calamares"}
+CUSTOM_PACKAGES = {"distroctl", "calamares", "astraeus-control-center"}
 ARCHIVE_DB_LIMIT = 64 * 1024 * 1024
 
 
@@ -97,6 +97,9 @@ def prepare_package(output):
                  ROOT / "distro/installed/80-astraeus-secure-boot.hook",
                  ROOT / "distro/installed/astraeus-bless-boot.conf", ROOT / "docs/boot-generations.md",
                  ROOT / "scripts/graphics-probe.c", ROOT / "docs/graphics.md",
+                 ROOT / "distro/installed/astraeus-apply@.service",
+                 ROOT / "distro/installed/org.astraeus.system.policy", ROOT / "docs/control-center.md",
+                 *sorted((ROOT / "apps/control-center").rglob("*")),
                  *sorted((ROOT / "distro/graphics").glob("*.json")),
                  *sorted((ROOT / "crates").rglob("*"))]:
         if file.is_file():
@@ -123,7 +126,8 @@ def upstream_packages():
     graphics = json.loads((ROOT / "distro/graphics/packages.lock.json").read_text())["packages"]
     gaming = json.loads((ROOT / "crates/distroctl/src/gaming/catalog.json").read_text())["packages"]
     return (set(packages()) | set(packages("distro/installed/packages.x86_64"))
-            | set(packages("distro/packages/calamares/build-packages.x86_64")) | set(graphics) | set(gaming) | {"archiso", "rust"}) - CUSTOM_PACKAGES
+            | set(packages("distro/packages/calamares/build-packages.x86_64"))
+            | set(packages("distro/packages/distroctl/build-packages.x86_64")) | set(graphics) | set(gaming) | {"archiso", "rust"}) - CUSTOM_PACKAGES
 
 
 def check_archive(destination):
@@ -285,7 +289,7 @@ def build_iso(output, repo, fingerprint, graphics=(), gaming=()):
     write(out / "inputs.json", json.dumps({"project": data, "repository_key": fingerprint,
           "archive_databases": archive_hashes, "graphics_bundles": sorted(set(graphics)), "gaming_features": sorted(set(gaming)),
           "repository": {p.name: digest(p) for p in sorted(repo.iterdir()) if p.is_file()},
-          "sources": {p.relative_to(ROOT).as_posix(): digest(p) for folder in ["crates", "distro", "scripts"]
+          "sources": {p.relative_to(ROOT).as_posix(): digest(p) for folder in ["crates", "distro", "scripts", "apps"]
                       for p in sorted((ROOT / folder).rglob("*")) if p.is_file() and "__pycache__" not in p.parts},
           "cargo_lock_sha256": digest(ROOT / "Cargo.lock")}, indent=2) + "\n")
     write(out / "iso/SHA256SUMS", "".join(f"{digest(p)}  {p.name}\n" for p in sorted((out / "iso").glob("*.iso"))))
