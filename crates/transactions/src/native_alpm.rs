@@ -20,6 +20,54 @@ mod tests;
 fn err(error: impl std::fmt::Display) -> String {
     error.to_string()
 }
+
+fn conflict_description(conflict: &alpm::Conflict) -> String {
+    format!(
+        "Package conflict: {} conflicts with {} ({}). Change the requested packages; automatic conflict removals are refused",
+        conflict.package1().name(), conflict.package2().name(), conflict.reason()
+    )
+}
+
+fn prepare_error(error: &alpm::PrepareError<'_>, questions: &[String]) -> String {
+    let mut details = questions.to_vec();
+    // Verified against libalpm 16's alpm_depmissing_t and alpm_conflict_t.
+    // alpm 5.0.2 miscasts PkgInvalidArch as Package pointers: never inspect that
+    // data or format PrepareError with Debug. Commit FileConflict is also untouched.
+    match error.error() {
+        alpm::Error::UnsatisfiedDeps => {
+            if let Some(alpm::PrepareData::UnsatisfiedDeps(missing)) = error.data() {
+                for item in missing {
+                    let cause = item
+                        .causing_pkg()
+                        .map(|name| format!(" (caused by {name})"))
+                        .unwrap_or_default();
+                    details.push(format!(
+                        "Missing dependency: {} requires {}{cause}",
+                        item.target(),
+                        item.depend()
+                    ));
+                }
+            }
+        }
+        alpm::Error::ConflictingDeps => {
+            if let Some(alpm::PrepareData::ConflictingDeps(conflicts)) = error.data() {
+                for conflict in conflicts {
+                    let description = conflict_description(conflict);
+                    if !details.contains(&description) {
+                        details.push(description);
+                    }
+                }
+            }
+        }
+        _ => {}
+    }
+    let mut message = format!("dependency resolution: {}", error.error());
+    if !details.is_empty() {
+        message.push_str(": ");
+        message.push_str(&details.join("; "));
+    }
+    message
+}
 fn pattern_matches(pattern: &str, value: &str) -> bool {
     let (Ok(pattern), Ok(value)) = (
         std::ffi::CString::new(pattern),
@@ -690,8 +738,23 @@ impl NativePackages {
                             q.set_index(0);
                         }
                     }
-                    other => errors.borrow_mut().push(format!(
-                        "Package operation requires an unsupported decision: {other:?}"
+                    Question::Conflict(q) => errors.borrow_mut().push(conflict_description(q.conflict())),
+                    Question::Replace(q) => errors.borrow_mut().push(format!(
+                        "Unsupported replacement: {} would be replaced by {} from {}. Change the requested packages",
+                        q.oldpkg().name(), q.newpkg().name(), q.newdb().name()
+                    )),
+                    Question::InstallIgnorepkg(q) => errors.borrow_mut().push(format!(
+                        "Held package {} cannot be installed", q.pkg().name()
+                    )),
+                    Question::RemovePkgs(q) => errors.borrow_mut().push(format!(
+                        "Unresolved requested packages cannot be skipped: {}",
+                        q.packages().iter().map(|package| package.name()).collect::<Vec<_>>().join(", ")
+                    )),
+                    Question::Corrupted(q) => errors.borrow_mut().push(format!(
+                        "Invalid package archive {}: {}; automatic deletion is refused", q.filepath(), q.reason()
+                    )),
+                    Question::ImportKey(q) => errors.borrow_mut().push(format!(
+                        "Untrusted package signing key {} ({}); automatic key import is refused", q.fingerprint(), q.uid()
                     )),
                 }
             },
@@ -757,7 +820,7 @@ impl NativePackages {
         prepared
             .handle
             .trans_prepare()
-            .map_err(|e| format!("dependency resolution: {e}"))?;
+            .map_err(|e| prepare_error(&e, &questions.borrow()))?;
         if !questions.borrow().is_empty() {
             return Err(questions.borrow().join("; "));
         }

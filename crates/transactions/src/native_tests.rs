@@ -277,10 +277,44 @@ fn signed_native_backend() {
         .resolve()
         .unwrap_err()
         .contains("does not provide"));
-    assert!(NativePackages::new(config(&["test-conflict"]))
+    let conflict = NativePackages::new(config(&["test-conflict"]))
         .unwrap()
         .resolve()
-        .is_err());
+        .unwrap_err();
+    assert!(
+        conflict.contains("test-conflict")
+            && conflict.contains("test-app2")
+            && conflict.contains("Package conflict")
+            && conflict.contains("(test-app2)"),
+        "{conflict}"
+    );
+    let missing = NativePackages::new(config(&["test-missing"]))
+        .unwrap()
+        .resolve()
+        .unwrap_err();
+    assert!(
+        missing.contains("test-missing requires test-absent>=2")
+            && missing.contains("cannot be skipped"),
+        "{missing}"
+    );
+    let ambiguous_conflict = NativePackages::new(config(&["test-choice-client"]))
+        .unwrap()
+        .resolve()
+        .unwrap_err();
+    for detail in [
+        "dependency resolution",
+        "Choose provider for test-choice-virtual",
+        "test-choice-a",
+        "test-choice-b",
+        "configuration.providers",
+        "manual-app",
+        "Package conflict",
+    ] {
+        assert!(
+            ambiguous_conflict.contains(detail),
+            "{detail}: {ambiguous_conflict}"
+        );
+    }
 
     for name in ["test-unsigned", "test-corrupt"] {
         let mut backend = NativePackages::new(config(&[name])).unwrap();
