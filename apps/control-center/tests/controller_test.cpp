@@ -32,7 +32,7 @@ result = dict(schema_version=1)
 if args[0] == 'history': result = []
 elif args[1] == 'status': result.update(configuration=config, drift=[], active_operation=dict(operation_id='b'*32,state='awaiting_boot') if mode=='reconnect' else None, reboot_required=mode=='reconnect', live=mode=='live')
 elif args[1] == 'features': result.update(features=[dict(id='core', title='Steam Core', packages=['steam'], supported=True)])
-elif args[1] == 'packages': result.update(packages=[dict(name='nano', version='1', description='Editor', repository='extra', installed_version='1', protected=False)])
+elif args[1] == 'packages': result.update(packages=[dict(name='nano', version='1', description='Editor', repository='extra', installed_version='1', protected=True, system_package=False, selectable=True)])
 elif args[1] in ('adopt', 'export'): result.update(configuration=config, toml='schema_version = 1\npackages = ["nano"]\ngaming = []\n[providers]\n')
 elif args[1] == 'parse':
     text=sys.stdin.read()
@@ -111,6 +111,16 @@ private slots:
         controller.discard();
         QVERIFY(!controller.dirty());
         QCOMPARE(controller.draft().value("packages").toStringList(), QStringList{"nano"});
+    }
+    void packageSelectionDoesNotDiscardRemovalProtection() {
+        fixture();
+        Controller controller(executable, executable);
+        controller.installed();
+        QTRY_COMPARE(controller.packages().size(), 1);
+        const auto package = controller.packages().first().toMap();
+        QVERIFY(package.value("protected").toBool());
+        QVERIFY(package.value("selectable").toBool());
+        QVERIFY(!calls().contains("submit"));
     }
     void malformedAndUnknownSchemaAreRejected_data() {
         QTest::addColumn<QString>("mode");

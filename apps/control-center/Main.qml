@@ -179,6 +179,7 @@ ApplicationWindow {
                     Label { Layout.fillWidth: true; wrapMode: Text.WordWrap; text: qsTr("Selections build a draft. Nothing is installed or removed until you review and apply it.") }
                     TabBar {
                         id: softwareTabs
+                        objectName: "softwareTabs"
                         Layout.fillWidth: true
                         TabButton { text: qsTr("Feature bundles") }
                         TabButton { text: qsTr("Packages"); onClicked: if (!window.backend.packages.length) window.backend.installed() }
@@ -222,6 +223,7 @@ ApplicationWindow {
                             }
                             Label { text: qsTr("Checked packages are explicit choices in your draft. Required dependencies are resolved during review."); wrapMode: Text.WordWrap; Layout.fillWidth: true }
                             ListView {
+                                objectName: "packageList"
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
                                 clip: true
@@ -233,11 +235,13 @@ ApplicationWindow {
                                     width: ListView.view.width
                                     contentItem: ColumnLayout {
                                         CheckBox {
+                                            objectName: "packageChoice-" + modelData.name
                                             text: modelData.name + (modelData.protected ? qsTr(" (protected)") : "")
                                             checked: State.contains(window.backend.draft.packages, modelData.name)
-                                            enabled: window.editing && !modelData.protected
+                                            enabled: window.editing && modelData.selectable === true
                                             onClicked: window.backend.setPackage(modelData.name, checked)
                                         }
+                                        Label { visible: modelData.protected === true; Layout.fillWidth: true; wrapMode: Text.WordWrap; text: modelData.selectable === true ? qsTr("Existing app retained when its choice is removed.") : qsTr("Protected system or unmanaged package. It cannot be selected here."); textFormat: Text.PlainText }
                                         Label { Layout.fillWidth: true; wrapMode: Text.WordWrap; text: modelData.description || qsTr("No description available"); textFormat: Text.PlainText }
                                         Label { Layout.fillWidth: true; wrapMode: Text.WordWrap; text: (modelData.repository || qsTr("Unknown repository")) + " · " + (modelData.version || qsTr("Unknown version")) + " · " + (modelData.installed_version ? qsTr("Installed: ") + modelData.installed_version : qsTr("Not installed")); textFormat: Text.PlainText; opacity: 0.8 }
                                     }
@@ -395,6 +399,7 @@ ApplicationWindow {
                         }
                         Button { id: detailsToggle; checkable: true; text: checked ? qsTr("Hide complete plan") : qsTr("Show complete plan and provenance") }
                         GroupBox {
+                            implicitWidth: 0
                             Layout.fillWidth: true
                             visible: detailsToggle.checked
                             title: qsTr("Plan details and provenance")

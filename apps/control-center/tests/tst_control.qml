@@ -26,6 +26,8 @@ TestCase {
         property bool active: false
         property int reviews: 0
         property int applications: 0
+        property string lastPackage: ""
+        property bool lastSelected: false
         signal planReady()
         signal submitted()
         function refresh() {}
@@ -34,6 +36,7 @@ TestCase {
         function review() { ++reviews; planReady(); }
         function apply() { ++applications; }
         function discard() { dirty = false; }
+        function setPackage(name, selected) { lastPackage = name; lastSelected = selected; }
     }
     function initTestCase() {
         const component = Qt.createComponent("../Main.qml");
@@ -48,6 +51,9 @@ TestCase {
         fake.busy = false; fake.active = false; fake.dirty = false;
         fake.plan = installPlanFixture; fake.planValid = true;
         fake.reviews = 0; fake.applications = 0;
+        fake.lastPackage = ""; fake.lastSelected = false;
+        fake.packages = [];
+        findChild(app, "softwareTabs").currentIndex = 0;
     }
     function test_applyRequiresInstalledIdleReviewedSystem() {
         app.section = 4;
@@ -93,10 +99,32 @@ TestCase {
         verify(!State.canApply({}, fake.plan, false, false, true));
         compare(State.bytes(-2048), "-2.0 KiB");
     }
+    function test_existingAppsCanBeSelectedWithoutRemovingProtection() {
+        app.section = 1;
+        findChild(app, "softwareTabs").currentIndex = 1;
+        fake.packages = [
+            {name: "nano", protected: true, system_package: false, selectable: true},
+            {name: "glibc", protected: true, system_package: true, selectable: false},
+            {name: "foreign-app", protected: true, system_package: false, selectable: false}
+        ];
+        const list = findChild(app, "packageList");
+        tryVerify(() => list.itemAtIndex(0) !== null);
+        const manual = findChild(list.itemAtIndex(0), "packageChoice-nano");
+        verify(manual);
+        tryCompare(manual, "enabled", true);
+        tryCompare(findChild(list.itemAtIndex(1), "packageChoice-glibc"), "enabled", false);
+        tryCompare(findChild(list.itemAtIndex(2), "packageChoice-foreign-app"), "enabled", false);
+        manual.forceActiveFocus();
+        keyClick(Qt.Key_Space);
+        tryCompare(fake, "lastPackage", "nano");
+        compare(fake.lastSelected, true);
+        fake.busy = true;
+        tryCompare(manual, "enabled", false);
+    }
     function test_populatedPagesRender() {
         fake.status = {schema_version: 1, live: false, reboot_required: false, drift: [], configuration: {packages: ["kate", "nano"]}, health: {state: "passed", required_services: "running"}, security: {secure_boot: true, policy: "owner keys"}};
         fake.features = [{id: "core", title: "Steam Core", supported: true, packages: ["steam", "steam-devices"]}, {id: "heroic", title: "Heroic", supported: false, packages: []}];
-        fake.packages = [{name: "kate", version: "26.08.1-1", repository: "extra", installed_version: "26.08.1-1", description: "Advanced text editor", protected: false}];
+        fake.packages = [{name: "kate", version: "26.08.1-1", repository: "extra", installed_version: "26.08.1-1", description: "Advanced text editor", protected: false, system_package: false, selectable: true}];
         fake.history = [{id: 7, state: "awaiting_boot"}];
         fake.plan = installPlanFixture;
         for (let section = 0; section < 5; ++section) {
