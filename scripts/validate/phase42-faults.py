@@ -524,6 +524,19 @@ def candidate_guard(args, manifest, firmware_sha256):
     require(re.fullmatch('[0-9a-f]{64}', manifest.get('signer_sha256', '')), 'baseline signer pin missing')
     require(manifest.get('public_fingerprints', {}).get('db') == manifest['signer_sha256'], 'baseline signer pins disagree')
     require(len(set(manifest.get('boot_ids', []))) >= 2, 'baseline lacks two accepted boots')
+    firmware_provenance(manifest)
+
+
+def firmware_provenance(manifest):
+    installation = manifest.get('installation_firmware', {})
+    management = manifest.get('management_firmware_required', {})
+    require(isinstance(installation, dict) and installation.get('observed') is True
+            and installation.get('source') == 'efivarfs-before-partition-write'
+            and installation.get('SecureBoot') is False and installation.get('SetupMode') is True,
+            'baseline lacks observed SetupMode installation provenance')
+    require(isinstance(management, dict) and management.get('SecureBoot') is True
+            and management.get('SetupMode') is False, 'baseline lacks enforcing management policy')
+    return {'installation_firmware': dict(installation), 'management_firmware_required': dict(management)}
 
 
 def recovery_guard(args, manifest, recovery):
@@ -984,6 +997,7 @@ def run(args):
               'physical_hardware_qualified': False, 'source_commit': args.source_commit,
               'image_sha256': args.image_sha256, 'started': p2.now(), 'scenarios': [],
               'recovery_manifest': recovery, 'harness_sha256': digest(__file__), 'harness_commit': args.harness_commit}
+    report.update(firmware_provenance(baseline))
     p2.save(args.output / 'inputs.json', {'baseline': baseline, 'configuration': config,
             'recovery_manifest_sha256': digest(args.recovery_manifest),
             'harness_sha256': {Path(__file__).name: digest(__file__), 'phase42.py': digest(Path(phase42.__file__)),

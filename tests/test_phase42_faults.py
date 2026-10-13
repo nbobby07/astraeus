@@ -23,6 +23,9 @@ def baseline():
     return {'accepted': True, 'kind': 'phase42-fresh-candidate-payload', 'source_commit': 'a' * 40,
             'encryption': 'none', 'signer_sha256': 'd' * 64, 'public_fingerprints': {'db': 'd' * 64},
             'boot_ids': ['first', 'second'],
+            'installation_firmware': {'SecureBoot': False, 'SetupMode': True, 'observed': True,
+                                      'source': 'efivarfs-before-partition-write'},
+            'management_firmware_required': {'SecureBoot': True, 'SetupMode': False},
             'installed_binaries': {'distroctl': 'e' * 64, 'astraeus-control-center': 'f' * 64},
             'inputs': {'source_commits': ['a' * 40], 'iso': {'sha256': 'b' * 64},
                        'ovmf_code': {'sha256': 'c' * 64}}}
@@ -55,6 +58,26 @@ class Phase42FaultsTests(unittest.TestCase):
                 faults.candidate_guard(arguments(), changed, 'c' * 64)
         with self.assertRaises(RuntimeError):
             faults.candidate_guard(arguments(), manifest, '9' * 64)
+
+    def test_report_preserves_observed_bootstrap_scope_and_enforcing_workload_policy(self):
+        manifest = baseline()
+        provenance = faults.firmware_provenance(manifest)
+        self.assertEqual(provenance['installation_firmware'], manifest['installation_firmware'])
+        self.assertEqual(provenance['management_firmware_required'], {'SecureBoot': True, 'SetupMode': False})
+        provenance['installation_firmware']['SecureBoot'] = True
+        self.assertIs(manifest['installation_firmware']['SecureBoot'], False)
+        for section in ['installation_firmware', 'management_firmware_required']:
+            for value in [None, {}, False, {'SecureBoot': False, 'SetupMode': True}]:
+                changed = copy.deepcopy(manifest)
+                changed[section] = value
+                with self.subTest(section=section, value=value), self.assertRaises(RuntimeError):
+                    faults.candidate_guard(arguments(), changed, 'c' * 64)
+        for field, value in [('observed', False), ('SecureBoot', True), ('SecureBoot', 0),
+                             ('SetupMode', False), ('SetupMode', 1), ('source', 'assumed-from-host-flags')]:
+            changed = copy.deepcopy(manifest)
+            changed['installation_firmware'][field] = value
+            with self.subTest(field=field, value=value), self.assertRaises(RuntimeError):
+                faults.firmware_provenance(changed)
 
     def test_recovery_medium_binds_origin_actual_bytes_coordinator_and_owner(self):
         with tempfile.TemporaryDirectory() as directory:

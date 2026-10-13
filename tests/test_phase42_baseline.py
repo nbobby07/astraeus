@@ -88,6 +88,51 @@ class FreshCandidateBaseline(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             baseline.enforced(status, 'f' * 64)
 
+    def test_initial_firmware_is_read_from_real_variable_bytes_and_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory, patch.object(baseline, 'EFIVARS', Path(directory)):
+            paths = {name: Path(directory) / (name + '-' + baseline.EFI_GLOBAL_GUID)
+                     for name in ('SecureBoot', 'SetupMode')}
+            values = {'SecureBoot': b'\x07\0\0\0\0', 'SetupMode': b'\x07\0\0\0\x01'}
+            for name, value in values.items():
+                paths[name].write_bytes(value)
+            observed = baseline.installation_firmware()
+            self.assertEqual(observed, {'SecureBoot': False, 'SetupMode': True, 'observed': True,
+                                        'source': 'efivarfs-before-partition-write'})
+            self.assertEqual(baseline.MANAGEMENT_FIRMWARE, {'SecureBoot': True, 'SetupMode': False})
+            for name in paths:
+                for invalid in (b'', b'\x01', b'\x07\0\0\0\x02', values[name] + b'\0',
+                                values[name][:4] + bytes([1 - values[name][4]])):
+                    paths[name].write_bytes(invalid)
+                    with self.subTest(name=name, invalid=invalid), self.assertRaises(RuntimeError):
+                        baseline.installation_firmware()
+                paths[name].unlink()
+                with self.assertRaises(FileNotFoundError):
+                    baseline.installation_firmware()
+                paths[name].write_bytes(values[name])
+
+    def test_firmware_refusal_precedes_every_partition_or_installation_write(self):
+        commands = []
+        serial = config()['serial']
+
+        def observed(*args, **_kwargs):
+            commands.append(args)
+            if args[0] == 'blockdev':
+                return '0'
+            if args[0] == 'lsblk':
+                return json.dumps({'blockdevices': [dict(path='/dev/vda', type='disk',
+                                  size=baseline.DISK_BYTES, serial=serial, mountpoints=[None])]})
+            if args[0] == 'wipefs':
+                return '{"signatures":[]}'
+            self.fail('mutation reached before firmware validation: ' + repr(args))
+
+        with patch.object(baseline, 'guest_guard', return_value=config()), \
+                patch.object(baseline, 'run', side_effect=observed), \
+                patch.object(baseline, 'installation_firmware', side_effect=RuntimeError('firmware unavailable')) as firmware:
+            with self.assertRaisesRegex(RuntimeError, 'firmware unavailable'):
+                baseline.guest_install()
+        firmware.assert_called_once_with()
+        self.assertEqual([command[0] for command in commands], ['blockdev', 'lsblk', 'wipefs'])
+
     def test_credentials_only_travel_in_stdin(self):
         with patch.object(baseline.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, b'', b'')) as call:
             credential = b'a' * 48

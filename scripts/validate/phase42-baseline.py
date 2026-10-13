@@ -27,6 +27,9 @@ DISK_BYTES = 32 * 1024 ** 3
 SUBVOLUMES = [('/', '/@'), ('/home', '/@home'), ('/.snapshots', '/@snapshots'),
               ('/var/log', '/@log'), ('/var/cache', '/@cache'), ('/var/lib/containers', '/@containers')]
 LIVE_MARKER = 'DISTRO_BOOT_OK: uefi plasma wayland pipewire networkmanager distroctl'
+EFIVARS = Path('/sys/firmware/efi/efivars')
+EFI_GLOBAL_GUID = '8be4df61-93ca-11d2-aa0d-00e098032b8c'
+MANAGEMENT_FIRMWARE = {'SecureBoot': True, 'SetupMode': False}
 
 
 def require(condition, message):
@@ -102,6 +105,18 @@ def secret(name):
     return value
 
 
+def installation_firmware():
+    """Observe this bootstrap's real firmware before permitting a partition write."""
+    observed = {'observed': True, 'source': 'efivarfs-before-partition-write'}
+    for name in ('SecureBoot', 'SetupMode'):
+        value = (EFIVARS / (name + '-' + EFI_GLOBAL_GUID)).read_bytes()
+        require(len(value) == 5 and value[4] in (0, 1), 'invalid firmware Boolean: ' + name)
+        observed[name] = bool(value[4])
+    require(observed['SecureBoot'] is False and observed['SetupMode'] is True,
+            'initial bootstrap requires observed SetupMode; enforcing installation is not this adapter\'s scope')
+    return observed
+
+
 def initial_signing(root, config):
     certificate = SHARE / 'db.crt'
     der = subprocess.check_output(['openssl', 'x509', '-in', str(certificate), '-outform', 'DER'])
@@ -143,6 +158,7 @@ def guest_install():
     require(run('blockdev', '--getro', '/dev/vda') == '0', 'validation disk is read-only')
     inventory = json.loads(run('lsblk', '--json', '--bytes', '--output', 'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS', '/dev/vda'))
     blank_disk(inventory, json.loads(run('wipefs', '--no-act', '--json', '/dev/vda')), config['serial'])
+    firmware = installation_firmware()
     require(not TARGET.exists(), 'installation target already exists; retries require a new blank VM')
     payload = Path('/opt/distro/install-root.sfs')
     require(payload.is_file() and not payload.is_symlink(), 'candidate ISO payload missing')
@@ -234,7 +250,8 @@ WantedBy=multi-user.target
         require(exported.get('schema_version') == 1 and exported.get('configuration'), 'seeded configuration unreadable')
         result = {'schema_version': 1, 'method': 'candidate-payload-and-production-provision', 'calamares_ui': False,
                   'payload_sha256': sha256(payload), 'provision_sha256': sha256(installer / 'provision.py'),
-                  'configuration': exported['configuration'], 'signing': receipts, 'disk_serial': config['serial']}
+                  'configuration': exported['configuration'], 'signing': receipts, 'disk_serial': config['serial'],
+                  'installation_firmware': firmware, 'management_firmware_required': MANAGEMENT_FIRMWARE}
         write(TARGET / 'var/log/installer/phase42-adapter.json', json.dumps(result, indent=2) + '\n')
         os.sync()
         print(json.dumps(result))
@@ -332,7 +349,8 @@ def host_run(args):
     out.mkdir(mode=0o700, parents=True, exist_ok=False)
     private.mkdir(mode=0o700, parents=True, exist_ok=False)
     os.chmod(private, 0o700)
-    result = dict(schema_version=1, accepted=False, calamares_ui=False, started=p2.now())
+    result = dict(schema_version=1, accepted=False, calamares_ui=False, started=p2.now(),
+                  installation_firmware=None, management_firmware_required=MANAGEMENT_FIRMWARE)
     vm = None
     share = private / 'share'
     share.mkdir(mode=0o700)
@@ -385,11 +403,18 @@ def host_run(args):
                 command='sudo mkdir -p /mnt/astraeus-validation; sudo mount -t 9p -o trans=virtio,ro acceptance /mnt/astraeus-validation; sudo systemd-run --unit=astraeus-live-validation python3 /mnt/astraeus-validation/phase2-guest.py serve'))
         print('Start the test command channel from the actual live desktop; see attention.json and private QMP.', flush=True)
         vm.ready()
+        observed = vm.command('python3 /mnt/astraeus-validation/phase42-baseline.py guest-firmware',
+                              label='installation-firmware-before-writes')
+        result['installation_firmware'] = json.loads(observed['output'])
+        p2.save(out / 'result.json', result)
         reply = vm.command('python3 /mnt/astraeus-validation/phase42-baseline.py guest-install',
                            timeout=3600, label='fresh-payload-install')
         installed = json.loads(reply['output'].splitlines()[-1])
         require(installed.get('method') == 'candidate-payload-and-production-provision'
                 and installed.get('disk_serial') == config['serial'], 'fresh installation receipt differs')
+        require(installed.get('installation_firmware') == result['installation_firmware']
+                and installed.get('management_firmware_required') == MANAGEMENT_FIRMWARE,
+                'installation firmware observations differ')
         p2.save(out / 'fresh-installation.json', installed)
         vm.shutdown()
         # Remove guest-accessible copies. Originals remain outside the evidence tree.
@@ -425,6 +450,8 @@ def host_run(args):
                         method=installed['method'], calamares_ui=False, encryption=args.encryption,
                         source_commit=args.source_commit, inputs=inputs, signer_sha256=pins['db'],
                         public_fingerprints=pins, boot_ids=boots, created=p2.now(),
+                        installation_firmware=installed['installation_firmware'],
+                        management_firmware_required=MANAGEMENT_FIRMWARE,
                         installed_binaries={'distroctl': args.distroctl_sha256, 'astraeus-control-center': args.desktop_sha256},
                         sha256={name: sha256(out / name) for name in ['disk.qcow2', 'vars.fd']})
         p2.save(out / 'baseline.json', manifest)
@@ -448,6 +475,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='action', required=True)
     commands.add_parser('guest-install')
+    commands.add_parser('guest-firmware')
     commands.add_parser('guest-desktop').add_argument('--initial', action='store_true')
     host = commands.add_parser('run')
     for name in ['output', 'private-directory', 'iso', 'ovmf-code', 'setup-ovmf-code', 'ovmf-vars']:
@@ -460,6 +488,9 @@ def main():
     args = parser.parse_args()
     if args.action == 'guest-install':
         guest_install()
+    elif args.action == 'guest-firmware':
+        guest_guard(live=True)
+        print(json.dumps(installation_firmware()))
     elif args.action == 'guest-desktop':
         guest_desktop(args.initial)
     else:

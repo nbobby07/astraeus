@@ -5,6 +5,14 @@ separate disposable KVM overlays. It requires a sealed fresh Phase 4.2 baseline,
 the exact runtime candidate source and binary hashes, and a signed RAM-verified
 recovery image made for that baseline by `phase42-recovery.py`.
 
+Initial VM installation uses the existing SetupMode bootstrap. The baseline records
+actual `SecureBoot` and `SetupMode` EFI variables before the first partition write
+as `installation_firmware`; this is not an enforcing installer acceptance claim.
+The fault report carries that observation separately from
+`management_firmware_required` (`SecureBoot=true`, `SetupMode=false`). Both accepted
+installed baseline boots and every management/recovery scenario require enforcement.
+Missing or contradictory baseline provenance is refused.
+
 The runner never uses a host block device, changes firmware trust, removes a live
 package lock, or replays a failed package transaction. The installed disk and
 firmware variables are copies or overlays; the recovery disk is attached read-only
