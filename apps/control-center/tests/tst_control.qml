@@ -53,6 +53,7 @@ TestCase {
         fake.reviews = 0; fake.applications = 0;
         fake.lastPackage = ""; fake.lastSelected = false;
         fake.packages = [];
+        app.editorDirty = false;
         findChild(app, "softwareTabs").currentIndex = 0;
     }
     function test_applyRequiresInstalledIdleReviewedSystem() {
@@ -90,6 +91,23 @@ TestCase {
         button.forceActiveFocus();
         keyClick(Qt.Key_Space);
         tryCompare(fake, "reviews", 1);
+        compare(app.section, 4);
+    }
+    function test_overviewReviewsUpdatesWithoutDiscardingDrafts() {
+        app.section = 0;
+        const button = findChild(app, "reviewUpdatesButton");
+        verify(button);
+        tryCompare(button, "enabled", true);
+        fake.dirty = true;
+        tryCompare(button, "enabled", false);
+        fake.dirty = false; app.editorDirty = true;
+        tryCompare(button, "enabled", false);
+        app.editorDirty = false;
+        tryCompare(button, "enabled", true);
+        button.forceActiveFocus();
+        keyClick(Qt.Key_Space);
+        tryCompare(fake, "reviews", 1);
+        compare(fake.applications, 0);
         compare(app.section, 4);
     }
     function test_labelsPreservePendingAndUnknownStates() {

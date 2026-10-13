@@ -144,6 +144,14 @@ ApplicationWindow {
                         spacing: Kirigami.Units.largeSpacing
                         Kirigami.Heading { text: qsTr("Your system"); level: 1 }
                         Label { Layout.fillWidth: true; wrapMode: Text.WordWrap; text: qsTr("Manage software and saved configuration with recovery snapshots and verified boot checks.") }
+                        Button {
+                            objectName: "reviewUpdatesButton"
+                            text: qsTr("Review updates")
+                            icon.name: "system-software-update"
+                            enabled: window.editing && !window.backend.dirty && !window.editorDirty
+                            onClicked: window.backend.review()
+                        }
+                        Label { visible: window.backend.dirty || window.editorDirty; Layout.fillWidth: true; wrapMode: Text.WordWrap; text: qsTr("Finish or discard your draft before reviewing updates.") }
                         GroupBox {
                             title: qsTr("Current state")
                             Layout.fillWidth: true
