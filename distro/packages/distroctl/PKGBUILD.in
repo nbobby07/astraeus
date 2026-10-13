@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc='Distribution status, transactions, snapshots and recovery tools'
 arch=('x86_64')
 depends=('gcc-libs' 'glibc' 'lib32-glibc' 'btrfs-progs' 'util-linux' 'coreutils' 'systemd' 'cryptsetup' 'pacman' 'libarchive' 'mkinitcpio' 'systemd-ukify' 'python' 'openssl' 'sbsigntools' 'efitools')
-makedepends=('rust' 'gcc' 'lib32-glibc' 'lib32-gcc-libs' 'vulkan-headers' 'cmake' 'ninja' 'qt6-base' 'qt6-declarative' 'kirigami' 'polkit' 'qqc2-desktop-style' 'breeze')
+makedepends=('rust' 'gcc' 'lib32-glibc' 'lib32-gcc-libs' 'vulkan-headers' 'cmake' 'ninja' 'qt6-base' 'qt6-declarative' 'kirigami' 'polkit' 'qqc2-desktop-style' 'breeze' 'hunspell')
 source=('platform.tar.xz')
 sha256sums=('@@SHA256@@')
 options=('!lto')
@@ -60,7 +60,7 @@ package_distroctl() {
 
 package_astraeus-control-center() {
   pkgdesc='Native Astraeus software and system configuration manager'
-  depends=("distroctl=$pkgver-$pkgrel" 'qt6-base' 'qt6-declarative' 'kirigami' 'polkit' 'polkit-kde-agent' 'qqc2-desktop-style' 'breeze')
+  depends=("distroctl=$pkgver-$pkgrel" 'qt6-base' 'qt6-declarative' 'kirigami' 'polkit' 'polkit-kde-agent' 'qqc2-desktop-style' 'breeze' 'hunspell')
   cd "$srcdir/platform"
   DESTDIR="$pkgdir" /usr/bin/cmake --install target/control-center
   install -Dm644 docs/control-center.md "$pkgdir/usr/share/doc/astraeus-control-center/README.md"
