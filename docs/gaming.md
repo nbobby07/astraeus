@@ -1,5 +1,21 @@
 # Phase 4 gaming platform handoff
 
+## Current Phase 4.2 implementation
+
+Native builds route gaming enable/disable through `distroctl system`, with a
+resolved plan, ownership checks, authenticated background application, snapshots
+and required boot confirmation. Portable builds retain diagnostics but cannot
+apply packages. Installation safety does not depend on hardware acceleration;
+a safe Steam installation in a software-rendered VM does not qualify gaming
+hardware. See [Control Center](control-center.md) and the
+[Phase 4.2 acceptance report](phase42-acceptance.md).
+
+[Phase 4.1 requalification](phase4-runtime-requalification.md) passed the normal
+Proton diagnostic and its recorded negative tests. GameMode's full self-test and
+physical gaming qualification are still incomplete. The following handoff and
+failed runtime attempts are historical evidence, including its former
+proposal-only package behavior.
+
 ## Phase 4 integration
 
 The integrated runtime is `cac8998ad7730e69ae354c3162ef4a0677cfc162`.

@@ -13,6 +13,14 @@ baseline. The existing installed-smoke and Phase 2 baseline procedure must run
 before sealing those inputs. Encrypted boots use the existing private QMP unlock
 workflow; test credentials must not appear in process arguments or exported logs.
 
+`scripts/validate/phase42-baseline.py` provides the automated fresh-install route.
+It creates a blank disk, unpacks this candidate's installer payload and calls its
+shipped provisioning code. It requires exact candidate identities, a separate
+private directory, fresh firmware variables, and two enforcing boots with an
+authenticated SDDM Wayland session before sealing the baseline. See its `--help`
+for the firmware and private QMP inputs. Its receipt explicitly records
+`calamares_ui: false`; it does not claim a new Calamares UI test.
+
 ```sh
 python3 scripts/validate/phase42.py run \
   --base /private/candidate-plain --output /private/p42-plain-run1 \

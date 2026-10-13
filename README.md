@@ -5,11 +5,17 @@ installer and a small Rust interface for inspecting the running system.
 
 [![Checks](https://github.com/nbobby07/astraeus/actions/workflows/check.yml/badge.svg)](https://github.com/nbobby07/astraeus/actions/workflows/check.yml)
 
-**Current milestone: Phase 4 integrated, not yet validated.** Version `0.1.0-dev` connects graphics
-diagnostics, native and 32-bit Vulkan probes, Steam diagnostics and optional gaming
-image selections. Gaming enable/disable remains proposal-only. The
-[Phase 4 acceptance record](docs/phase4-acceptance.md) separates tested behavior
-from incomplete runtime checks and physical hardware qualification.
+**Current work: Phase 4.2 system management, acceptance pending.** Version
+`0.1.0-dev` now includes the native libalpm management backend and
+[Astraeus Control Center](docs/control-center.md). Configuration, ownership,
+package changes and boot confirmation share the existing snapshot coordinator.
+The [Phase 4.2 report](docs/phase42-acceptance.md) distinguishes implementation
+checks from installed-VM acceptance.
+
+[Phase 4.1 guest requalification](docs/phase4-runtime-requalification.md) passed
+the normal Proton diagnostic and its recorded negative tests. GameMode's full
+self-test and physical gaming qualification remain incomplete. Earlier failures
+remain in the [Phase 4 acceptance record](docs/phase4-acceptance.md).
 
 The earlier integrated Phase 3 source passed owner-enforced Secure Boot,
 signed generations, plain/LUKS2 recovery, package-update regressions and two

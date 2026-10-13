@@ -1,0 +1,82 @@
+# Phase 4.2 implementation and acceptance
+
+Status: **in progress, not qualified for release**. A required gate that fails or
+has not run leaves this milestone incomplete. This report will be updated with
+candidate identities and exported evidence after the integrated acceptance run.
+
+The branch starts at `b1d16953ce5918b23c772e3ce99a35c7d37ac6b5`.
+Work is isolated on `codex/phase4-system-management`; PR #7, the original
+development branches and the signed USB artifacts are separate.
+
+## Implementation boundary
+
+`SystemConfig` manages selected named packages and gaming features. Omission does
+not make an installed package unwanted. Pre-existing applications remain
+protected; adoption creates a draft without changing installation reasons or
+ownership. The build records the actual protected base/graphics closure before
+installing optional gaming requests.
+
+Removal also requires complete installed-file verification against the package's
+MTREE SHA256 records. Locally changed or unverifiable packages are retained and
+their removal ownership is relinquished. The review digest includes that evidence;
+the locked worker checks it again immediately before committing.
+
+The Linux-only native feature pins `alpm` 5.0.2 with its libalpm 16 ABI check.
+Prepared native transactions provide the dependency closure. Adding applications
+includes the synchronized upgrade set from the approved existing databases.
+Preview does not refresh metadata. Every apply rechecks the reviewed digest under
+the coordinator locks. Ambiguous providers require a selection; replacement,
+driver-family, kernel, loader and coordinator transitions remain restricted.
+
+Applied configuration lives at `/etc/astraeus/system.toml`. Ownership and
+`system.lock` live under `/var/lib/astraeus/management` in the snapshotted root.
+The lock records resolution provenance; it does not make the machine hermetic.
+Configuration-only mutations require snapshots, signing and a new verified boot.
+The v2 history format reads and transactionally migrates v1 history without
+rewriting its historical records. Old snapshots remain inspectable; incompatible
+recovery coordinators cannot restore the new management state routinely.
+
+The unprivileged Qt/Kirigami app uses versioned JSON from the same backend as the
+CLI. After review, pkexec authenticates a bounded submission. An operation ID
+connects the app to the non-enabled systemd worker and durable history. The worker
+has no automatic restart or boot replay. Sleep and normal shutdown are inhibited
+while it applies. Live sessions permit inspection and planning only.
+
+## Checks so far
+
+| Gate | Current evidence |
+| --- | --- |
+| Host Rust checks | Windows workspace 133 passed, followed by focused configuration/transaction checks; final native Linux workspace 149 passed with 4 separately invoked fixture/privileged tests ignored by the normal run. Clippy passed on both platforms |
+| Python, shell and signing | Host regression suites, shell syntax, native signing and focused removal-integrity/seed tests passed; raw counts and platform skips remain in the host evidence |
+| Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
+| Native libalpm compilation | Passed on Linux with libalpm 16; shipped Arch package build pending |
+| Signed native package fixtures | Attempt 11 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents |
+| Native desktop build and tests | 20 Qt controller and 7 QML tests passed with Rust-generated contract fixtures; packaged backend acceptance pending |
+| Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
+| Two byte-identical candidate images | Not built yet |
+| Physical PC and USB boot | Deferred by request |
+
+The native fixture runner is `scripts/validate/native-alpm.py`. It creates a new
+root, small signed packages and its own test keyring, then executes the production
+backend from a native Rust test binary inside that chroot. It never replaces the
+host package database. Earlier failed fixture attempts are retained separately.
+These tests do not establish installed-VM boot, authorization or recovery behavior.
+
+Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
+full self-test and physical gaming qualification remain incomplete. Software
+rendering is never evidence of physical GPU support.
+
+## Validator budget
+
+Additional compute and active storage are capped at $10. Published rates were
+checked before starting: $0.04032/vCPU-hour, $0.0129/GiB-memory-hour and
+$0.000086/GiB-storage-hour. The existing 4-vCPU, 16-GiB, 64-GiB validator costs
+$0.373184/hour at these rates. A temporary replacement ran for 58 seconds at
+4-vCPU, 8-GiB, 32-GiB before it was paused when the original became available.
+No billing plan was changed. Final usage and exported evidence are pending.
+
+Before candidate builds, the original validator was paused at 4,759 total runtime
+seconds, up from 3,486. Combined additional compute and active storage for both
+validators was below $0.14 at that checkpoint.
+
+Source: [Freestyle VM pricing](https://www.freestyle.sh/docs/vms/pricing-and-limits).
