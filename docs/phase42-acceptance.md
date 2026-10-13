@@ -26,6 +26,14 @@ does not count as a completed build. Its thin evidence archive is
 `interrupted-9b0fb7a-r1-A-evidence.tar.gz` (102,533 bytes), SHA256
 `cc03796ed7bfe27270241c9e86f3cdffe53ecdc7ff27b4fa2e09ee166926a9da`.
 
+Attempt A/r2 completed native CLI and Qt compilation, then failed its package
+check because the generated source archive omitted the installer helpers used by
+the Rust image-seeding test. The transaction suite recorded 52 passes, one failure
+and one ignored fixture. The builder exited 4 and shut down normally; no package
+or ISO is accepted from this attempt. Its thin archive is
+`failed-9b0fb7a-r2-A-evidence.tar.gz` (83,821 bytes), SHA256
+`eda0b7cc5f558196bb86094c687c7080837386f90d9c423d528554ac0203cbed`.
+
 The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
 exported as a 358,400-byte archive with SHA256
 `41e8c3db8dce243939e07c11678c022c10a6dedc119b701e60b5e90528892c46`.
