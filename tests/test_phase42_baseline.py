@@ -1,0 +1,126 @@
+"""Fresh-install adapter boundary tests; these are not VM acceptance evidence."""
+import copy
+import importlib.util
+import json
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts/validate'))
+spec = importlib.util.spec_from_file_location('phase42_baseline', ROOT / 'scripts/validate/phase42-baseline.py')
+baseline = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(baseline)
+import phase42
+
+
+def config():
+    return dict(schema_version=1, source_commit='a' * 40, image_sha256='b' * 64,
+                distroctl_sha256='c' * 64, desktop_sha256='d' * 64,
+                certificate_sha256='e' * 64, serial='AS42' + 'f' * 16, encryption='LUKS2', user='tester')
+
+
+class FreshCandidateBaseline(unittest.TestCase):
+    def test_install_intent_rejects_ambiguous_or_unsafe_identity(self):
+        baseline.configuration(config())
+        for field, value in [('schema_version', True), ('schema_version', 2), ('source_commit', 'a' * 12),
+                             ('image_sha256', None), ('serial', 'vda'), ('serial', 'AS42' + 'f' * 17),
+                             ('encryption', 'luks1'), ('user', 'root'), ('user', 'live'), ('user', 'name;id')]:
+            invalid = config()
+            invalid[field] = value
+            with self.subTest(field=field, value=value), self.assertRaises(RuntimeError):
+                baseline.configuration(invalid)
+        invalid = config()
+        invalid['disk'] = '/dev/nvme0n1'
+        with self.assertRaises(RuntimeError):
+            baseline.configuration(invalid)
+
+    def test_only_exact_blank_serial_pinned_disk_can_be_partitioned(self):
+        serial = config()['serial']
+        disk = dict(path='/dev/vda', type='disk', size=baseline.DISK_BYTES, serial=serial, mountpoints=[None])
+        baseline.blank_disk({'blockdevices': [disk]}, {'signatures': []}, serial)
+        for field, value in [('path', '/dev/sda'), ('type', 'part'), ('size', baseline.DISK_BYTES - 1),
+                             ('serial', 'AS42' + '0' * 16), ('mountpoints', ['/']), ('mountpoints', None),
+                             ('children', [{'path': '/dev/vda1'}])]:
+            invalid = dict(disk, **{field: value})
+            with self.subTest(field=field), self.assertRaises(RuntimeError):
+                baseline.blank_disk({'blockdevices': [invalid]}, {'signatures': []}, serial)
+        for signatures in [{}, {'signatures': [{'type': 'gpt'}]}, {'signatures': None}]:
+            with self.assertRaises(RuntimeError):
+                baseline.blank_disk({'blockdevices': [disk]}, signatures, serial)
+        for disks in [[], [disk, disk]]:
+            with self.assertRaises(RuntimeError):
+                baseline.blank_disk({'blockdevices': disks}, {'signatures': []}, serial)
+
+    def test_disk_guard_failure_precedes_every_mutating_command(self):
+        commands = []
+
+        def observed(*args, **_kwargs):
+            commands.append(args)
+            if args[0] == 'blockdev':
+                return '0'
+            if args[0] == 'lsblk':
+                return json.dumps({'blockdevices': [{'path': '/dev/sda'}]})
+            if args[0] == 'wipefs':
+                return '{"signatures":[]}'
+            self.fail('mutation reached before disk validation: ' + repr(args))
+
+        with patch.object(baseline, 'guest_guard', return_value=config()), patch.object(baseline, 'run', side_effect=observed):
+            with self.assertRaises(RuntimeError):
+                baseline.guest_install()
+        self.assertEqual([command[0] for command in commands], ['blockdev', 'lsblk', 'wipefs'])
+
+    def test_secure_boot_requires_observed_enforcement_and_matching_enrollment(self):
+        status = {'certificate_sha256': 'e' * 64, 'firmware': {'SecureBoot': True, 'SetupMode': False,
+                  'AuditMode': False, 'db': {'contains_signer_certificate': True},
+                  'dbx': {'contains_signer_certificate': False}}}
+        baseline.enforced(status, 'e' * 64)
+        for field, value in [('SecureBoot', False), ('SecureBoot', None), ('SetupMode', True),
+                             ('SetupMode', None), ('AuditMode', True), ('db', {}),
+                             ('dbx', {'contains_signer_certificate': True}), ('dbx', {})]:
+            invalid = copy.deepcopy(status)
+            invalid['firmware'][field] = value
+            with self.subTest(field=field, value=value), self.assertRaises(RuntimeError):
+                baseline.enforced(invalid, 'e' * 64)
+        with self.assertRaises(RuntimeError):
+            baseline.enforced(status, 'f' * 64)
+
+    def test_credentials_only_travel_in_stdin(self):
+        with patch.object(baseline.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, b'', b'')) as call:
+            credential = b'a' * 48
+            baseline.run('cryptsetup', 'open', '--key-file', '-', '/dev/vda2', 'root', data=credential)
+            self.assertNotIn(credential.decode(), ' '.join(call.call_args.args[0]))
+            self.assertEqual(call.call_args.kwargs['input'], credential)
+        with tempfile.TemporaryDirectory() as directory, patch.object(baseline, 'SHARE', Path(directory)):
+            password = Path(directory) / 'login-password'
+            password.write_bytes(b'a' * 48)
+            self.assertEqual(baseline.secret('login-password'), b'a' * 48)
+            for invalid in [b'', b'a' * 100, b'a' * 48 + b'\n', b'a' * 47 + b';']:
+                password.write_bytes(invalid)
+                with self.assertRaises(RuntimeError):
+                    baseline.secret('login-password')
+
+    def test_fresh_manifest_contract_is_consumable_without_claiming_calamares(self):
+        manifest = {'accepted': True, 'kind': 'phase42-fresh-candidate-payload', 'calamares_ui': False,
+                    'encryption': 'LUKS2', 'inputs': {'source_commits': ['a' * 40],
+                    'iso': {'sha256': 'b' * 64}, 'ovmf_code': {'sha256': 'c' * 64}}}
+        phase42.candidate_matches(manifest, 'a' * 40, 'b' * 64, 'c' * 64, 'LUKS2')
+        self.assertFalse(manifest['calamares_ui'])
+        manifest['accepted'] = False
+        with self.assertRaises(RuntimeError):
+            phase42.candidate_matches(manifest, 'a' * 40, 'b' * 64, 'c' * 64, 'LUKS2')
+
+    def test_host_has_no_existing_disk_or_baseline_argument(self):
+        help_text = subprocess.check_output([sys.executable, str(ROOT / 'scripts/validate/phase42-baseline.py'),
+                                             'run', '--help'], text=True)
+        for forbidden in ['--base ', '--disk ', '--installed-disk']:
+            self.assertNotIn(forbidden, help_text)
+        for required in ['--image-sha256', '--private-directory', '--source-commit', '--encryption']:
+            self.assertIn(required, help_text)
+
+
+if __name__ == '__main__':
+    unittest.main()
