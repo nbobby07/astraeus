@@ -4,6 +4,12 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
+The current runtime candidate is `85ad8f66e0a02dfefa6d4c71f672aa11e83d2148`.
+Its clean-build source archive is 4,977,112 bytes with SHA256
+`1a7a2f03ab0ddf5a3af67a7d323f8b50da2d247ae92beaab41fdf3230234dce4`.
+Earlier stopped build attempts remain preliminary evidence and do not qualify this
+candidate. Later validation-only commits are recorded separately from runtime.
+
 The branch starts at `b1d16953ce5918b23c772e3ce99a35c7d37ac6b5`.
 Work is isolated on `codex/phase4-system-management`; PR #7, the original
 development branches and the signed USB artifacts are separate.
@@ -46,12 +52,13 @@ while it applies. Live sessions permit inspection and planning only.
 
 | Gate | Current evidence |
 | --- | --- |
-| Host Rust checks | Windows workspace 133 passed, followed by focused configuration/transaction checks; final native Linux workspace 149 passed with 4 separately invoked fixture/privileged tests ignored by the normal run. Clippy passed on both platforms |
+| Host Rust checks | Windows workspace 133 passed, followed by focused portable checks; current native Linux workspace 155 passed with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy passed on the current revision; earlier Windows Clippy evidence is retained |
 | Python, shell and signing | Host regression suites, shell syntax, native signing and focused removal-integrity/seed tests passed; raw counts and platform skips remain in the host evidence |
 | Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
 | Native libalpm compilation | Passed on Linux with libalpm 16; shipped Arch package build pending |
-| Signed native package fixtures | Attempt 11 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents |
-| Native desktop build and tests | 20 Qt controller and 7 QML tests passed with Rust-generated contract fixtures; packaged backend acceptance pending |
+| Signed native package fixtures | Attempt 13 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies and provider choices retained when preparation fails |
+| Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
+| Native desktop build and tests | 21 Qt controller and 12 QML tests passed with Rust-generated contracts and the KDE/Breeze style. Production startup also loaded the KDE desktop style; packaged backend acceptance pending |
 | Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
 | Two byte-identical candidate images | Not built yet |
 | Physical PC and USB boot | Deferred by request |
@@ -61,6 +68,13 @@ root, small signed packages and its own test keyring, then executes the producti
 backend from a native Rust test binary inside that chroot. It never replaces the
 host package database. Earlier failed fixture attempts are retained separately.
 These tests do not establish installed-VM boot, authorization or recovery behavior.
+
+The approved VM setup uses the existing installer in SetupMode, then enrolls the
+disposable owner and verifies enforcing installed boots. All management and
+recovery acceptance runs must keep Secure Boot enforcing. Live inspection must
+use the signed, RAM-verified recovery medium. The initial setup-mode ISO does not
+qualify live management, and this milestone does not add an installer path that
+runs with Secure Boot already enforcing.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software
@@ -78,5 +92,10 @@ No billing plan was changed. Final usage and exported evidence are pending.
 Before candidate builds, the original validator was paused at 4,759 total runtime
 seconds, up from 3,486. Combined additional compute and active storage for both
 validators was below $0.14 at that checkpoint.
+
+A later stopped checkpoint recorded 7,421 total runtime seconds on the original
+validator. Including the temporary replacement, the conservative additional
+compute and active-storage estimate was about $0.42. Building resumed afterward;
+final usage remains pending.
 
 Source: [Freestyle VM pricing](https://www.freestyle.sh/docs/vms/pricing-and-limits).
