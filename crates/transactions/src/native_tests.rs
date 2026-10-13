@@ -25,6 +25,121 @@ fn apply(config: SystemConfig) -> ExecutionPlan {
     plan
 }
 
+fn seed_receipt() -> serde_json::Value {
+    serde_json::json!({"schema_version":1,"graphics_bundles":["virtio"],"gaming_features":[],
+        "protected_baseline":{"base-library":{"version":"1-1","reason":"dependency"}},
+        "final_packages":{"base-library":{"version":"1-1","reason":"dependency"},
+            "optional-app":{"version":"2-1","reason":"explicit"}},
+        "management_sha256":format!("sha256:{}", "a".repeat(64))})
+}
+
+#[test]
+fn installer_base_closure_is_distinct_from_optional_packages() {
+    let packages = parse_system_baseline(&seed_receipt().to_string()).unwrap();
+    assert!(packages.contains("base-library"));
+    assert!(!packages.contains("optional-app"));
+    let mut system = protected(None);
+    system.extend(packages);
+    for family in [
+        "amd",
+        "intel",
+        "nouveau",
+        "nvidia-open",
+        "virtio",
+        "software",
+    ] {
+        system.extend(distro_graphics::bundle_packages(Some(family)));
+    }
+    for name in [
+        "base-library",
+        "linux-lts",
+        "linux-zen-headers",
+        "systemd-ukify",
+        "nvidia-open-dkms",
+        "lib32-nvidia-utils",
+        "vulkan-virtio",
+        "lib32-mesa",
+        "grub",
+        "dracut",
+    ] {
+        assert!(is_system_package(name, &system), "{name}");
+    }
+    assert!(!is_system_package("optional-app", &system));
+    assert!(!is_system_package("manual-app", &system));
+}
+
+#[test]
+fn installer_receipt_rejects_unknown_schema_invalid_names_and_inconsistent_closure() {
+    for (field, value) in [
+        ("schema_version", serde_json::json!(2)),
+        ("management_sha256", serde_json::json!("unverified")),
+        ("graphics_bundles", serde_json::json!(["future-gpu"])),
+        ("gaming_features", serde_json::json!(["heroic"])),
+        (
+            "protected_baseline",
+            serde_json::json!({"base-library":{"version":"2-1","reason":"dependency"}}),
+        ),
+        (
+            "final_packages",
+            serde_json::json!({"../escape":{"version":"1-1","reason":"explicit"}}),
+        ),
+        (
+            "final_packages",
+            serde_json::json!({"base-library":{"version":"1-1","reason":"unknown"}}),
+        ),
+        (
+            "final_packages",
+            serde_json::json!({"base-library":{"version":"1 1","reason":"dependency"}}),
+        ),
+        ("unknown", serde_json::json!(true)),
+    ] {
+        let mut invalid = seed_receipt();
+        invalid[field] = value;
+        assert!(
+            parse_system_baseline(&invalid.to_string()).is_err(),
+            "{field}"
+        );
+    }
+}
+
+#[test]
+fn installer_receipt_missing_falls_back_but_untrusted_or_oversized_files_fail() {
+    use std::os::unix::fs::{symlink, PermissionsExt};
+    let root = std::env::temp_dir().join(format!(
+        "astraeus-base-receipt-{}-{}",
+        std::process::id(),
+        std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos()
+    ));
+    fs::create_dir(&root).unwrap();
+    let missing = system_packages(&root).unwrap();
+    assert!(is_system_package("systemd", &missing) && !is_system_package("manual-app", &missing));
+    let receipt = root.join(INSTALLER_MANAGEMENT_RECEIPT);
+    fs::create_dir_all(receipt.parent().unwrap()).unwrap();
+    fs::write(&receipt, seed_receipt().to_string()).unwrap();
+    assert!(system_packages(&root).unwrap().contains("base-library"));
+    fs::set_permissions(&receipt, fs::Permissions::from_mode(0o666)).unwrap();
+    assert!(system_packages(&root).is_err());
+    fs::set_permissions(&receipt, fs::Permissions::from_mode(0o644)).unwrap();
+    fs::OpenOptions::new()
+        .write(true)
+        .open(&receipt)
+        .unwrap()
+        .set_len(INSTALLER_RECEIPT_LIMIT + 1)
+        .unwrap();
+    assert!(system_packages(&root).is_err());
+    fs::remove_file(&receipt).unwrap();
+    symlink("missing-file", &receipt).unwrap();
+    assert!(system_packages(&root).is_err());
+    fs::remove_file(&receipt).unwrap();
+    fs::remove_dir(receipt.parent().unwrap()).unwrap();
+    symlink("missing-directory", receipt.parent().unwrap()).unwrap();
+    assert!(system_packages(&root).is_err());
+    fs::remove_dir_all(root).unwrap();
+}
+
 #[test]
 #[ignore = "run only through scripts/validate/native-alpm.py in its isolated chroot"]
 fn signed_native_backend() {
@@ -37,6 +152,12 @@ fn signed_native_backend() {
         "refuse a real OS root"
     );
     assert_eq!(unsafe { libc::geteuid() }, 0);
+
+    let manual = NativePackages::query("details", "manual-app")
+        .unwrap()
+        .pop()
+        .unwrap();
+    assert!(manual.selectable && !manual.system_package);
 
     let desired = config(&["test-app"]);
     let mut backend = NativePackages::new(desired.clone()).unwrap();
@@ -67,6 +188,12 @@ fn signed_native_backend() {
         .after
         .packages
         .contains_key("manual-app"));
+    let manual = NativePackages::query("installed", "")
+        .unwrap()
+        .into_iter()
+        .find(|package| package.name == "manual-app")
+        .unwrap();
+    assert!(manual.protected && manual.selectable && !manual.system_package);
     assert!(!NativePackages::new(desired.clone())
         .unwrap()
         .resolve()
@@ -75,6 +202,14 @@ fn signed_native_backend() {
     let metadata = apply(config(&["test-app", "manual-app"]));
     assert!(metadata.packages.changes.is_empty());
     assert!(metadata.has_mutation());
+    let managed = metadata.management.as_ref().unwrap();
+    assert!(managed.after.protected.contains("manual-app"));
+    assert!(!managed.after.packages.contains_key("manual-app"));
+    assert_eq!(
+        managed.reasons_before["manual-app"],
+        managed.reasons_after["manual-app"]
+    );
+    assert!(NativePackages::query("details", "manual-app").unwrap()[0].selectable);
     let both = config(&["test-app", "test-app2"]);
     apply(both);
     let removed = apply(config(&["test-app2"]));

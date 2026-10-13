@@ -443,10 +443,7 @@ fn adopt() -> Result<SystemConfig> {
             .map(|package| package.name.clone())
             .collect();
         for package in &installed {
-            if package.repository.is_some()
-                && !package.protected
-                && reasons.get(&package.name) == Some(&InstallReason::Explicit)
-            {
+            if package.selectable && reasons.get(&package.name) == Some(&InstallReason::Explicit) {
                 config.packages.insert(package.name.clone());
             }
         }

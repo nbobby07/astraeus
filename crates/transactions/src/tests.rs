@@ -1003,8 +1003,9 @@ fn coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution() {
         let temp = Temp::new();
         let mut packages = Packages::new("");
         let mut snapshots = Snapshots::default();
+        let mut session = temp.session();
         assert!(execute(
-            &mut temp.session(),
+            &mut session,
             rejected,
             &mut packages,
             &mut snapshots,
@@ -1015,7 +1016,7 @@ fn coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution() {
         .is_err());
         assert!(packages.calls.is_empty());
         assert_eq!(snapshots.created, 0);
-        assert!(temp.session().records().unwrap().is_empty());
+        assert!(session.records().unwrap().is_empty());
     }
 }
 

@@ -2,7 +2,7 @@
 use crate::{management_store as store, *};
 use alpm::{Alpm, Package, PackageReason, Question, SigLevel, TransFlag};
 use distro_config::SystemConfig;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::{
     cell::RefCell,
@@ -394,6 +394,158 @@ fn protected(before: Option<&ManagementState>) -> BTreeSet<String> {
         result.extend(state.protected.iter().cloned());
     }
     result
+}
+
+const INSTALLER_MANAGEMENT_RECEIPT: &str = "usr/share/distro/install-inputs/management.json";
+const INSTALLER_RECEIPT_LIMIT: u64 = 8 * 1024 * 1024;
+
+#[derive(Deserialize, PartialEq, Eq)]
+#[serde(deny_unknown_fields)]
+struct InstalledPackageReceipt {
+    version: String,
+    reason: InstallReason,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct InstallerManagementReceipt {
+    schema_version: u32,
+    graphics_bundles: Vec<String>,
+    gaming_features: Vec<String>,
+    protected_baseline: BTreeMap<String, InstalledPackageReceipt>,
+    final_packages: BTreeMap<String, InstalledPackageReceipt>,
+    management_sha256: String,
+}
+
+fn parse_system_baseline(text: &str) -> Result<BTreeSet<String>> {
+    let receipt: InstallerManagementReceipt =
+        serde_json::from_str(text).map_err(|e| format!("installer management receipt: {e}"))?;
+    if receipt.schema_version != 1 {
+        return Err("unsupported installer management receipt schema".into());
+    }
+    let pin = receipt
+        .management_sha256
+        .strip_prefix("sha256:")
+        .unwrap_or("");
+    if pin.len() != 64
+        || !pin
+            .bytes()
+            .all(|b| b.is_ascii_hexdigit() && !b.is_ascii_uppercase())
+        || receipt
+            .graphics_bundles
+            .iter()
+            .collect::<BTreeSet<_>>()
+            .len()
+            != receipt.graphics_bundles.len()
+        || receipt.graphics_bundles.iter().any(|bundle| {
+            ![
+                "amd",
+                "intel",
+                "nouveau",
+                "nvidia-open",
+                "virtio",
+                "software",
+            ]
+            .contains(&bundle.as_str())
+        })
+        || receipt
+            .gaming_features
+            .iter()
+            .collect::<BTreeSet<_>>()
+            .len()
+            != receipt.gaming_features.len()
+        || receipt
+            .gaming_features
+            .iter()
+            .any(|feature| distro_config::gaming_feature_packages(feature).is_err())
+    {
+        return Err("invalid installer management receipt identity".into());
+    }
+    for (name, package) in receipt
+        .final_packages
+        .iter()
+        .chain(&receipt.protected_baseline)
+    {
+        if !distro_config::valid_package_name(name)
+            || package.version.is_empty()
+            || package.version.len() > 256
+            || package
+                .version
+                .chars()
+                .any(|c| c.is_control() || c.is_whitespace())
+        {
+            return Err("invalid installer package receipt".into());
+        }
+    }
+    if receipt
+        .protected_baseline
+        .iter()
+        .any(|(name, package)| receipt.final_packages.get(name) != Some(package))
+    {
+        return Err("installer base closure differs from its final package receipt".into());
+    }
+    Ok(receipt.protected_baseline.into_keys().collect())
+}
+
+fn system_packages(root: &Path) -> Result<BTreeSet<String>> {
+    // Removal protection grows as externally owned packages are observed. The
+    // immutable installer baseline separately identifies system components.
+    let mut result = protected(None);
+    for family in [
+        "amd",
+        "intel",
+        "nouveau",
+        "nvidia-open",
+        "virtio",
+        "software",
+    ] {
+        result.extend(distro_graphics::bundle_packages(Some(family)));
+    }
+    let path = root.join(INSTALLER_MANAGEMENT_RECEIPT);
+    // Missing receipts on older installations are allowed. Broken links or
+    // writable ancestors are not equivalent to a missing receipt.
+    for parent in path.parent().ok_or("missing receipt parent")?.ancestors() {
+        match fs::symlink_metadata(parent) {
+            Ok(_) => {
+                store::trusted_directory(parent)?;
+                break;
+            }
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
+            Err(e) => return Err(e.to_string()),
+        }
+    }
+    match fs::symlink_metadata(&path) {
+        Ok(_) => result.extend(parse_system_baseline(&store::read_text(
+            &path,
+            INSTALLER_RECEIPT_LIMIT,
+        )?)?),
+        Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
+        Err(e) => return Err(e.to_string()),
+    }
+    Ok(result)
+}
+
+fn is_system_package(name: &str, system: &BTreeSet<String>) -> bool {
+    system.contains(name)
+        || ["linux", "systemd", "nvidia", "mkinitcpio", "shim"]
+            .iter()
+            .any(|family| {
+                name == *family
+                    || name
+                        .strip_prefix(family)
+                        .is_some_and(|suffix| suffix.starts_with('-'))
+            })
+        || name.starts_with("lib32-nvidia-")
+        || [
+            "grub",
+            "refind",
+            "limine",
+            "dracut",
+            "sbctl",
+            "efitools",
+            "sbsigntools",
+        ]
+        .contains(&name)
 }
 
 struct Prepared {
@@ -826,6 +978,7 @@ impl NativePackages {
         let handle = config.handle()?;
         let before = store::read_state(Path::new("/"))?;
         let protect = protected(before.as_ref());
+        let system = system_packages(Path::new("/"))?;
         let installed = current(&handle);
         let mut found = BTreeMap::new();
         for db in handle.syncdbs() {
@@ -852,6 +1005,8 @@ impl NativePackages {
                             repository: Some(db.name().into()),
                             installed_version: installed.packages.get(p.name()).cloned(),
                             protected: protect.contains(p.name()),
+                            system_package: is_system_package(p.name(), &system),
+                            selectable: !is_system_package(p.name(), &system),
                         });
                 }
             }
@@ -865,6 +1020,8 @@ impl NativePackages {
                     repository: None,
                     installed_version: Some(p.version().to_string()),
                     protected: true,
+                    system_package: is_system_package(p.name(), &system),
+                    selectable: false,
                 });
             }
         }
@@ -883,6 +1040,8 @@ pub struct PackageInfo {
     pub repository: Option<String>,
     pub installed_version: Option<String>,
     pub protected: bool,
+    pub system_package: bool,
+    pub selectable: bool,
 }
 
 impl PackageBackend for NativePackages {
