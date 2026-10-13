@@ -1,0 +1,19 @@
+[Unit]
+Description=Apply reviewed Astraeus system configuration %i
+After=local-fs.target
+ConditionPathExists=!/run/archiso
+CollectMode=inactive-or-failed
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/systemd-inhibit --what=shutdown:sleep --mode=block --who=Astraeus --why=Applying-reviewed-system-changes /usr/bin/distroctl system worker %i
+ExecStopPost=/usr/bin/distroctl system worker-finished %i
+User=root
+Restart=no
+TimeoutStopSec=infinity
+UMask=0022
+Environment=PATH=/usr/bin:/bin
+Environment=LC_ALL=C
+StandardInput=null
+StandardOutput=journal
+StandardError=journal

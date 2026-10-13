@@ -452,11 +452,12 @@ fn cli_commands_refuse_mutation_and_reject_unsupported_options() {
         .contains("Next:"));
     assert!(String::from_utf8(run(&["--help"]).stdout)
         .unwrap()
-        .contains("no automatic installation"));
+        .contains("reviewed system changes"));
     assert_eq!(
         String::from_utf8(run(&["mangohud-config"]).stdout).unwrap(),
         MANGOHUD_CONFIG
     );
+    #[cfg(not(all(target_os = "linux", feature = "native-alpm")))]
     for action in ["enable", "disable"] {
         let dry = run(&[action, "--dry-run", "--json"]);
         assert!(dry.status.success());
@@ -466,7 +467,7 @@ fn cli_commands_refuse_mutation_and_reject_unsupported_options() {
         assert_eq!(blocked.status.code(), Some(1));
         assert!(String::from_utf8(blocked.stderr)
             .unwrap()
-            .contains("only supports synchronized upgrades"));
+            .contains("does not include the native-alpm"));
         let _: Proposal = serde_json::from_slice(&blocked.stdout).unwrap();
     }
     for args in [

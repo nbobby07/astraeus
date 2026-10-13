@@ -1,0 +1,78 @@
+use std::{
+    io::Write,
+    process::{Command, Output, Stdio},
+};
+
+fn run(args: &[&str], input: &[u8]) -> Output {
+    let mut child = Command::new(env!("CARGO_BIN_EXE_distroctl"))
+        .arg("system")
+        .args(args)
+        .stdin(Stdio::piped())
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped())
+        .spawn()
+        .unwrap();
+    let _ = child.stdin.take().unwrap().write_all(input);
+    child.wait_with_output().unwrap()
+}
+
+#[test]
+fn json_cli_parses_user_configuration_and_never_accepts_unreviewed_mutation() {
+    let parsed = run(
+        &["parse", "--stdin", "--json"],
+        b"schema_version=1\npackages=['steam']\n",
+    );
+    assert!(
+        parsed.status.success(),
+        "{}",
+        String::from_utf8_lossy(&parsed.stderr)
+    );
+    let response: serde_json::Value = serde_json::from_slice(&parsed.stdout).unwrap();
+    assert_eq!(response["schema_version"], 1);
+    assert_eq!(
+        response["configuration"]["packages"],
+        serde_json::json!(["steam"])
+    );
+    let planned = run(
+        &["plan", "--stdin", "--json"],
+        &serde_json::to_vec(&response["configuration"]).unwrap(),
+    );
+    assert!(
+        planned.status.success(),
+        "{}",
+        String::from_utf8_lossy(&planned.stderr)
+    );
+    let plan: serde_json::Value = serde_json::from_slice(&planned.stdout).unwrap();
+    assert_eq!(plan["schema_version"], 1);
+    assert!(plan["blockers"].is_array() && plan["warnings"].is_array());
+    for args in [
+        vec!["apply", "anything.toml"],
+        vec!["apply", "anything.toml", "--yes"],
+        vec!["worker", "../../escape"],
+        vec!["worker-finished", "--help"],
+        vec!["operation", "../requests", "--json"],
+        vec!["packages", "details", "--execute", "--json"],
+    ] {
+        let failed = run(&args, b"");
+        assert!(!failed.status.success(), "{args:?}");
+        assert!(failed.stdout.is_empty(), "{args:?}");
+    }
+    let failed=run(&["submit","--json"],br#"{"schema_version":1,"config":{"schema_version":1,"packages":[],"gaming":[],"providers":{}},"expected_plan":"not-reviewed","command":"touch /x"}"#);
+    assert!(!failed.status.success() && failed.stdout.is_empty());
+}
+
+#[test]
+fn cli_bounds_toml_and_rejects_future_configuration() {
+    for input in [
+        b"schema_version=2\n".to_vec(),
+        vec![b' '; distro_config::MAX_SYSTEM_CONFIG_BYTES + 1],
+        vec![0xff],
+    ] {
+        let output = run(&["parse", "--stdin", "--json"], &input);
+        assert!(!output.status.success() && output.stdout.is_empty());
+    }
+    let output = run(&["features", "--json"], b"");
+    assert!(output.status.success());
+    let catalog: serde_json::Value = serde_json::from_slice(&output.stdout).unwrap();
+    assert_eq!(catalog["features"].as_array().unwrap().len(), 7);
+}

@@ -1,4 +1,4 @@
-//! Gaming observations and feature proposals. This module has no mutation backend.
+//! Gaming observations and feature selection through the shared system coordinator.
 mod graphics;
 mod probe;
 mod proton;
@@ -9,24 +9,25 @@ use std::collections::{BTreeMap, BTreeSet};
 pub use probe::{collect, installed_packages};
 pub use proton::{discover_tools, Tool};
 
-pub const HELP: &str = "Gaming setup (no automatic installation yet)
+pub const HELP: &str = "Gaming setup and reviewed system changes
   distroctl gaming status [--probe] [--json]
   distroctl gaming doctor [--probe] [--json]
   distroctl gaming enable [core|tools|gamescope|mangohud|gamemode|heroic|lutris|streaming] [--dry-run] [--json]
   distroctl gaming disable [same feature] [--dry-run] [--json]
   distroctl gaming mangohud-config
 
-Core proposes Steam and its runtime prerequisites. Tools and launchers are optional.
-Start with doctor, then enable --dry-run to inspect requested changes.
-Enable/disable always refuse execution: targeted package transactions are not supported.
-Dry-run prints a blocked proposal, not a complete pacman dependency transaction.
-No packages, repositories, user configuration or boot settings are changed.
+Core selects Steam and its runtime prerequisites. Tools and launchers are optional.
+Start with doctor, then enable --dry-run to review requested changes.
+Native-alpm builds submit enabled features through the shared snapshot/boot coordinator.
+Authentication is required to apply; completion still needs verified boot confirmation.
+Other builds expose read-only feature proposals and refuse execution.
+Heroic/Flatpak and driver-family changes remain unsupported. User game data is preserved.
 --probe explicitly runs bounded, unprivileged Vulkan clear/readback tests.
 After supported setup, launch Steam from your desktop and select Proton per game.
 Windows game compatibility depends on the game, DRM and anti-cheat support.";
 
 pub const MANGOHUD_CONFIG: &str = "fps\nframetime\ngpu_stats\ncpu_stats\nposition=top-left\n";
-pub const TRANSACTION_BLOCK: &str = "The transaction backend only supports synchronized upgrades. Targeted install/remove needs dependency resolution, install-reason tracking, snapshot/boot preservation and rollback integration. No changes were made.";
+pub const TRANSACTION_BLOCK: &str = "This build does not include the native-alpm transaction backend. Use the shipped Astraeus Linux build for reviewed feature changes. No changes were made.";
 
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -371,7 +372,7 @@ pub fn plan(
             }
         }
     } else {
-        blockers.push("No feature ownership ledger exists. Shared packages, manual installs, dependents and user game data must be preserved; this is not an approved removal set.".into());
+        blockers.push("This proposal does not inspect feature ownership. The native system planner must preserve shared packages, manual installs, dependents and user game data before approving removals.".into());
     }
     let flatpak_requests = if feature == "heroic" {
         blockers.push("Heroic requires a reviewed Flathub remote with signature verification, application ID/origin/commit and permission review; no Flatpak operation is performed.".into());
@@ -379,7 +380,7 @@ pub fn plan(
     } else {
         vec![]
     };
-    Ok(Proposal { schema_version: 1, feature: feature.into(), operation: if enable { "enable" } else { "disable" }.into(), archive_date: catalog.archive_date, executable: false, dependency_resolution: "unresolved; direct feature requests only; use the future transaction resolver for full dependencies, conflicts, providers and sizes".into(), requests, graphics_requirements, flatpak_requests, blockers })
+    Ok(Proposal { schema_version: 1, feature: feature.into(), operation: if enable { "enable" } else { "disable" }.into(), archive_date: catalog.archive_date, executable: false, dependency_resolution: "unresolved; direct feature requests only; use a native system plan for full dependencies, conflicts, providers and sizes".into(), requests, graphics_requirements, flatpak_requests, blockers })
 }
 
 fn safe(text: &str) -> String {
@@ -464,46 +465,56 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     _ => return Err(format!("unsupported gaming arguments\n{HELP}")),
                 }
             }
-            let proposal = plan(
+            #[cfg(all(target_os = "linux", feature = "native-alpm"))]
+            return crate::system::gaming(
                 feature.unwrap_or("core"),
                 *action == "enable",
-                &collect(),
-                &distro_graphics::probe(false),
-            )?;
-            if json {
-                println!(
-                    "{}",
-                    serde_json::to_string_pretty(&proposal).map_err(|e| e.to_string())?
-                );
-            } else {
-                println!(
-                    "Gaming {} {}: BLOCKED\n{}",
-                    proposal.operation, proposal.feature, proposal.dependency_resolution
-                );
-                for request in &proposal.requests {
+                dry_run,
+                json,
+            );
+            #[cfg(not(all(target_os = "linux", feature = "native-alpm")))]
+            {
+                let proposal = plan(
+                    feature.unwrap_or("core"),
+                    *action == "enable",
+                    &collect(),
+                    &distro_graphics::probe(false),
+                )?;
+                if json {
                     println!(
-                        "  {}: {} (archive {}/{}, installed {})",
-                        request.name,
-                        request.action,
-                        request.pinned.repository,
-                        request.pinned.version,
-                        safe(
-                            request
-                                .installed_version
-                                .as_deref()
-                                .unwrap_or("absent or unknown")
-                        )
+                        "{}",
+                        serde_json::to_string_pretty(&proposal).map_err(|e| e.to_string())?
                     );
+                } else {
+                    println!(
+                        "Gaming {} {}: BLOCKED\n{}",
+                        proposal.operation, proposal.feature, proposal.dependency_resolution
+                    );
+                    for request in &proposal.requests {
+                        println!(
+                            "  {}: {} (archive {}/{}, installed {})",
+                            request.name,
+                            request.action,
+                            request.pinned.repository,
+                            request.pinned.version,
+                            safe(
+                                request
+                                    .installed_version
+                                    .as_deref()
+                                    .unwrap_or("absent or unknown")
+                            )
+                        );
+                    }
+                    for app in &proposal.flatpak_requests {
+                        println!("  Optional user Flatpak request: {app}");
+                    }
+                    for blocker in &proposal.blockers {
+                        println!("Blocked: {blocker}");
+                    }
                 }
-                for app in &proposal.flatpak_requests {
-                    println!("  Optional user Flatpak request: {app}");
+                if !dry_run {
+                    return Err(TRANSACTION_BLOCK.into());
                 }
-                for blocker in &proposal.blockers {
-                    println!("Blocked: {blocker}");
-                }
-            }
-            if !dry_run {
-                return Err(TRANSACTION_BLOCK.into());
             }
         }
         _ => return Err(format!("unsupported gaming arguments\n{HELP}")),

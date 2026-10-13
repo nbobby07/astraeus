@@ -1,5 +1,6 @@
 //! Reusable read-only status model for the CLI and future UI.
 pub mod gaming;
+pub mod system;
 pub mod updates;
 use distro_hardware::{discover, normalize, partition_parent, Hardware, StorageKind, Transport};
 use serde::Serialize;
