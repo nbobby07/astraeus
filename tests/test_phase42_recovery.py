@@ -28,6 +28,23 @@ def baseline():
 
 
 class RecoveryBuilder(unittest.TestCase):
+    def test_live_gui_receipt_requires_exact_observed_candidate_and_all_refusal_checks(self):
+        manifest = {'distroctl_sha256': 'a' * 64, 'desktop_sha256': 'b' * 64}
+        receipt = {'schema_version': 1, 'source_commit': 'c' * 40, 'live': True,
+                   **manifest, 'firmware': {'SecureBoot': True, 'SetupMode': False},
+                   'checks': {'inspection_visible': True, 'live_warning_visible': True,
+                              'review_blocked': True, 'apply_disabled': True},
+                   'evidence': [{'path': 'gui/overview.png', 'sha256': 'd' * 64}]}
+        checks.validate_gui_receipt(receipt, manifest, 'c' * 40)
+        for name, value in [('source_commit', 'e' * 40), ('schema_version', True), ('live', False),
+                            ('desktop_sha256', 'e' * 64), ('firmware', {'SecureBoot': False, 'SetupMode': True}),
+                            ('checks', {'inspection_visible': True}), ('evidence', []),
+                            ('evidence', [{'path': '../private/password', 'sha256': 'd' * 64}])]:
+            invalid = copy.deepcopy(receipt)
+            invalid[name] = value
+            with self.subTest(name=name), self.assertRaises(RuntimeError):
+                checks.validate_gui_receipt(invalid, manifest, 'c' * 40)
+
     def test_runtime_verdict_requires_actual_positive_or_refusal_evidence(self):
         for mode in checks.MODES:
             self.assertFalse(checks.observed_verdict(mode, 'timeout; firmware still running'))

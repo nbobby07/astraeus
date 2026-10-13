@@ -28,7 +28,7 @@ Pure checks: `python3 -m unittest discover -s tests -p test_phase42_recovery.py 
 Run real media gates sequentially for the newly built image, using separate output directories for `trusted`, `untrusted`, `unsigned`, `tampered`, `root-tampered` and `disabled`:
 
 ```sh
-python3 scripts/validate/phase42-recovery-check.py trusted \
+python3 scripts/validate/phase42-recovery-check.py trusted --gui-handoff \
   --build /home/ubuntu/p42/recovery-plain --baseline /home/ubuntu/p42/base-plain \
   --output /home/ubuntu/p42/recovery-check-plain/trusted \
   --ovmf-code /usr/share/OVMF/OVMF_CODE_4M.secboot.fd \
@@ -37,3 +37,22 @@ python3 scripts/validate/phase42-recovery-check.py trusted \
 ```
 
 These checks attach no installed OS disk. They use copied baseline VARS, except the deliberately disabled and different-owner cases, which create separate test VARS from the exact pristine template digest recorded by the baseline. A trusted boot waits for the live command channel described in `attention.json`, then verifies the firmware db certificate, live CLI, verified RAM copy and ephemeral root. Refusal cases require actual firmware rejection or a guard refusal followed by poweroff. Timeout never passes. Screenshots, serial logs, commands and mutation hashes remain; successful disposable mutation copies are removed to conserve validation storage. SIGTERM follows the owned-QEMU cleanup path. Each result covers only its named case and candidate.
+
+The trusted case also verifies the exact packaged Control Center hash and runs real ordinary-user CLI status, feature/package inspection and blocked planning, plus an explicitly refused privileged live submission. Package versions, reasons, configuration, history and operation files must remain unchanged. None of these live-management results come from the unsigned setup ISO.
+
+With `--gui-handoff`, the runner then stops using the command channel and publishes `attention.json` stage `trusted-recovery-gui`. The root validation controller may use that socket to drive the actual visible, packaged Control Center as the live desktop user. It must capture evidence of readable inspection, the live warning, blocked review and disabled Apply. Only after those observations should it atomically publish `gui-complete.json` in the case output directory:
+
+```json
+{
+  "schema_version": 1,
+  "source_commit": "FULL_RUNTIME_COMMIT",
+  "distroctl_sha256": "EXACT_CANDIDATE_CLI_SHA256",
+  "desktop_sha256": "EXACT_CANDIDATE_GUI_SHA256",
+  "live": true,
+  "firmware": {"SecureBoot": true, "SetupMode": false},
+  "checks": {"inspection_visible": true, "live_warning_visible": true, "review_blocked": true, "apply_disabled": true},
+  "evidence": [{"path": "gui/overview.png", "sha256": "ACTUAL_SCREENSHOT_SHA256"}]
+}
+```
+
+The controller must supply actual observations and file hashes, never a synthesized pass receipt. Evidence paths must remain inside the case directory. The runner rechecks unchanged managed system state before shutting down. Without this flag, GUI acceptance is explicitly `NOT RUN` even when media and CLI checks pass.

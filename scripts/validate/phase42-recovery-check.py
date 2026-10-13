@@ -13,6 +13,7 @@ import time
 import uuid
 
 import phase2 as p2
+import phase42
 from phase3 import signature_certificates
 from phase3_guest import section_offset
 
@@ -102,11 +103,101 @@ PY''', label='actual-recovery-firmware')['output'])
     p2.require(firmware['SecureBoot'] == '01' and firmware['SetupMode'] == '00', 'actual recovery firmware is not enforcing')
     p2.require(signature_certificates(bytes.fromhex(firmware['db'])) == [certificate], 'actual firmware db is not the baseline owner')
     for path, expected in [('/usr/bin/distroctl', manifest['distroctl_sha256']),
+                           ('/usr/bin/astraeus-control-center', manifest['desktop_sha256']),
                            ('/run/archiso/copytoram/airootfs.sfs', manifest['rootfs_sha256'])]:
         value = vm.command('sha256sum ' + path, timeout=180, label='actual-' + Path(path).name)['output'].split()
         p2.require(len(value) == 2 and value[0] == expected, 'booted recovery identity differs: ' + path)
     vm.command('test -d /run/archiso; test "$(findmnt -rn -M / -o FSTYPE)" = overlay', label='ephemeral-live-root')
     return firmware
+
+
+def management_fingerprint(vm, label):
+    observed = phase42.observed_state(vm, label)
+    observed['files'] = json.loads(vm.command('''python3 - <<'PY'
+import hashlib,json,pathlib
+result={}
+for name in ['/etc/astraeus/system.toml','/var/lib/astraeus/management','/var/log/astraeus',
+             '/run/astraeus','/run/astraeus-update.lock','/var/lib/pacman/db.lck']:
+    root=pathlib.Path(name)
+    candidates=[root,*root.rglob('*')] if root.is_dir() else [root]
+    for path in candidates:
+        if path.is_symlink(): result[str(path)]={'link':str(path.readlink())}
+        elif path.is_file():
+            with path.open('rb') as stream: result[str(path)]={'sha256':hashlib.file_digest(stream,'sha256').hexdigest()}
+        elif path.is_dir(): result[str(path)]={'directory':True}
+        else: result[str(path)]=None
+print(json.dumps(result,sort_keys=True))
+PY''', label=label + '-files')['output'])
+    return observed
+
+
+def live_cli(vm):
+    before = management_fingerprint(vm, 'live-before')
+    _, status = phase42.json_command(vm, ['system', 'status', '--json'], user='live', label='live-user-status')
+    p2.require(status.get('live') is True and status.get('supported') is True, 'native live inspection is unavailable')
+    _, features = phase42.json_command(vm, ['system', 'features', '--json'], user='live', label='live-user-features')
+    _, packages = phase42.json_command(vm, ['system', 'packages', 'installed', '--json'], user='live', label='live-user-packages')
+    p2.require(features.get('features') and packages.get('packages'), 'live inspection returned no feature/package catalog')
+    config = {'schema_version': 1, 'packages': [], 'gaming': [], 'providers': {}}
+    _, plan = phase42.json_command(vm, ['system', 'plan', '--stdin', '--json'], config, 'live', label='live-user-plan')
+    p2.require(plan.get('executable') is False and any('live' in blocker.lower() for blocker in plan.get('blockers', [])),
+               'live plan did not expose its mutation blocker')
+    # A syntactically valid root request must still stop at the live guard. The
+    # fallback digest never grants review approval when planning has no plan ID.
+    expected_plan = plan.get('plan_id') or 'sha256:' + '0' * 64
+    reply, _ = phase42.json_command(vm, ['system', 'submit', '--json'],
+             {'schema_version': 1, 'config': config, 'expected_plan': expected_plan},
+             label='live-root-submit-refusal', check=False)
+    p2.require(reply['code'] != 0 and 'live sessions cannot apply' in reply['output'],
+               'privileged live request was not refused by the explicit live guard')
+    after = management_fingerprint(vm, 'live-after')
+    p2.require(after == before, 'live CLI inspection/refusal changed package, management, history or operation state')
+    return {'passed': True, 'status': status, 'plan': plan, 'before': before, 'after': after}
+
+
+def validate_gui_receipt(receipt, manifest, source):
+    p2.require(isinstance(receipt, dict) and type(receipt.get('schema_version')) is int and receipt.get('schema_version') == 1
+               and receipt.get('source_commit') == source and receipt.get('live') is True
+               and receipt.get('distroctl_sha256') == manifest['distroctl_sha256']
+               and receipt.get('desktop_sha256') == manifest['desktop_sha256']
+               and receipt.get('firmware') == {'SecureBoot': True, 'SetupMode': False},
+               'GUI evidence does not belong to this enforcing candidate live session')
+    checks = receipt.get('checks', {})
+    p2.require(all(checks.get(name) is True for name in
+               ['inspection_visible', 'live_warning_visible', 'review_blocked', 'apply_disabled']),
+               'visible Control Center inspection/refusal checks did not pass')
+    evidence = receipt.get('evidence')
+    p2.require(isinstance(evidence, list) and evidence, 'GUI receipt needs actual screenshot/observation evidence')
+    for item in evidence:
+        p2.require(isinstance(item, dict) and isinstance(item.get('path'), str)
+                   and not Path(item['path']).is_absolute() and '..' not in Path(item['path']).parts,
+                   'GUI evidence must stay inside this test output')
+        builder.identity(item.get('sha256'))
+
+
+def wait_for_gui(vm, args, manifest):
+    complete = args.output / 'gui-complete.json'
+    before = management_fingerprint(vm, 'gui-before')
+    p2.save(args.output / 'attention.json', dict(stage='trusted-recovery-gui', qmp=str(vm.monitor),
+            channel=str(vm.channel), complete_file=str(complete), source_commit=args.source_commit,
+            distroctl_sha256=manifest['distroctl_sha256'], desktop_sha256=manifest['desktop_sha256']))
+    print('Trusted live identity/CLI checks passed. Waiting for visible Control Center evidence in gui-complete.json.', flush=True)
+    deadline = time.monotonic() + args.timeout
+    while not complete.exists():
+        vm.alive()
+        p2.require(time.monotonic() < deadline, 'visible live GUI evidence was not supplied; no GUI acceptance claimed')
+        time.sleep(1)
+    builder.regular(complete)
+    p2.require(complete.stat().st_uid == 0 and complete.stat().st_size <= 256 * 1024,
+               'GUI completion receipt must be bounded and written by the root validation controller')
+    receipt = json.loads(complete.read_text())
+    validate_gui_receipt(receipt, manifest, args.source_commit)
+    for item in receipt['evidence']:
+        path = (args.output / item['path']).resolve(strict=True)
+        p2.require(path.is_relative_to(args.output) and path.is_file() and not path.is_symlink()
+                   and p2.digest(path) == item['sha256'], 'GUI evidence file changed or escaped the output')
+    p2.require(management_fingerprint(vm, 'gui-after') == before, 'live GUI inspection/refusal changed managed system state')
+    return receipt
 
 
 def run(args):
@@ -120,6 +211,7 @@ def run(args):
     p2.require(manifest.get('schema_version') == 1 and manifest.get('kind') == 'phase42-ram-verified-recovery'
                and manifest.get('source_commit') == args.source_commit and manifest.get('iso_sha256') == args.iso_sha256
                and manifest.get('certificate_sha256') == pin and manifest.get('distroctl_sha256') == cli
+               and manifest.get('desktop_sha256') == baseline['installed_binaries']['astraeus-control-center']
                and manifest.get('baseline_manifest_sha256') == p2.digest(args.baseline / 'baseline.json')
                and manifest.get('image') == 'recovery.img', 'recovery medium is not bound to this candidate baseline')
     p2.require(manifest['image_sha256'] == p2.digest(args.build / 'recovery.img'), 'recovery media changed')
@@ -183,6 +275,8 @@ def run(args):
             print('Start the command channel from the real recovery desktop through private QMP; see attention.json.', flush=True)
             vm.ready()
             result['firmware'] = runtime_identity(vm, manifest, certificate)
+            result['live_cli'] = live_cli(vm)
+            result['live_gui'] = wait_for_gui(vm, args, manifest) if args.gui_handoff else {'status': 'NOT RUN'}
             vm.shutdown()
         elif args.mode in ['root-tampered', 'disabled']:
             p2.require(vm.child.wait(timeout=30) == 0, 'verification refusal did not power off the guest cleanly')
@@ -219,7 +313,10 @@ def main():
     for name in ['source-commit', 'iso-sha256']:
         parser.add_argument('--' + name, required=True)
     parser.add_argument('--timeout', type=int, default=600)
-    run(parser.parse_args())
+    parser.add_argument('--gui-handoff', action='store_true', help='trusted case: wait for actual visible Control Center evidence before shutdown')
+    args = parser.parse_args()
+    p2.require(not args.gui_handoff or args.mode == 'trusted', 'GUI handoff requires the trusted enforcing live case')
+    run(args)
 
 
 if __name__ == '__main__':

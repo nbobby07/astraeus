@@ -148,6 +148,7 @@ def main():
     require(manifest_path.stat().st_size <= 1024 * 1024, 'oversized baseline manifest')
     manifest = json.loads(manifest_path.read_text())
     pin, cli_sha256 = baseline_identity(manifest, args.source_commit, args.iso_sha256)
+    desktop_sha256 = identity(manifest.get('installed_binaries', {}).get('astraeus-control-center'))
     certificate = regular(baseline / 'public-owner/db.crt')
     der = subprocess.check_output(['openssl', 'x509', '-in', str(certificate), '-outform', 'DER'])
     require(hashlib.sha256(der).hexdigest() == pin, 'public certificate is not this baseline owner')
@@ -168,12 +169,15 @@ def main():
     for member, name in [("usr/bin/ukify", "ukify"),
                          ("usr/lib/systemd/boot/efi/linuxx64.efi.stub", "stub.efi"),
                          ("usr/lib/initcpio/hooks/archiso", "archiso-original"),
-                         ("usr/lib/os-release", "os-release"), ("usr/bin/distroctl", "distroctl")]:
+                         ("usr/lib/os-release", "os-release"), ("usr/bin/distroctl", "distroctl"),
+                         ("usr/bin/astraeus-control-center", "astraeus-control-center")]:
         with (out / name).open("wb") as stream:
             run("unsquashfs", "-cat", sfs, member, stdout=stream)
         extracted[member] = digest(out / name)
     require(extracted['usr/bin/distroctl'] == cli_sha256,
             'live coordinator binary differs from the accepted installed candidate')
+    require(extracted['usr/bin/astraeus-control-center'] == desktop_sha256,
+            'live desktop binary differs from the accepted installed candidate')
     root_hash = digest(sfs)
     overlay = out / "overlay"
     (overlay / "hooks").mkdir(parents=True)
@@ -217,6 +221,7 @@ def main():
                     image_sha256=digest(image), image_bytes=size, rootfs_sha256=root_hash, rootfs_bytes=sfs.stat().st_size,
                     certificate_sha256=pin, uki_sha256=digest(out / "BOOTX64.EFI"),
                     unsigned_uki_sha256=digest(out / "live-unsigned.efi"), distroctl_sha256=cli_sha256,
+                    desktop_sha256=desktop_sha256,
                     extracted=extracted, command_line=cmdline, builder_sha256=digest(__file__),
                     guard_origin_sha256=GUARD_ORIGIN_SHA256, baseline_manifest_sha256=digest(manifest_path),
                     qualified=False, qualification="Pending candidate enforcing-firmware boot and refusal tests",
