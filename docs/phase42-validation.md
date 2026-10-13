@@ -20,11 +20,13 @@ private directory, fresh firmware variables, and two enforcing boots with an
 authenticated SDDM Wayland session before sealing the baseline. See its `--help`
 for the firmware and private QMP inputs. Its receipt explicitly records
 `calamares_ui: false`; it does not claim a new Calamares UI test.
+Initial provisioning uses the existing SetupMode path. The recorded enrollment
+step precedes every management and recovery acceptance test.
 
 ```sh
 python3 scripts/validate/phase42.py run \
   --base /private/candidate-plain --output /private/p42-plain-run1 \
-  --ovmf-code /usr/share/OVMF/OVMF_CODE_4M.fd \
+  --ovmf-code /usr/share/OVMF/OVMF_CODE_4M.secboot.fd --secure-boot \
   --source-commit FULL_CANDIDATE_COMMIT --image-sha256 CANDIDATE_ISO_SHA256 \
   --distroctl-sha256 PACKAGED_DISTROCTL_SHA256 --desktop-sha256 PACKAGED_DESKTOP_SHA256 \
   --encryption none --package hello --user YOUR_DISPOSABLE_INSTALLED_USER
@@ -32,9 +34,9 @@ python3 scripts/validate/phase42.py run \
 
 Choose a small, available, initially absent, unprotected package from the approved
 pinned repositories. `hello` is an example, not an assertion that it exists in the
-active snapshot. The runner verifies availability before any operation. For a
-properly enrolled enforcing baseline add `--secure-boot`, using that baseline's
-recorded Secure Boot firmware CODE. The runner never enrolls or replaces keys.
+active snapshot. The runner verifies availability before any operation. Phase 4.2
+acceptance requires `--secure-boot` with the enrolled baseline's recorded Secure
+Boot firmware CODE. The runner never enrolls or replaces keys.
 
 The implemented path records ordinary-user observations, rejected configurations,
 direct unprivileged submission refusal, stale-plan rejection, complete install
