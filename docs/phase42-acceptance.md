@@ -4,9 +4,9 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The current runtime candidate is `9b0fb7a0d815d36a6140e423f60165992800cdec`.
-Its clean-build source archive is 4,981,736 bytes with SHA256
-`eeefc83e4f62f9567c40bf51833691f429e2cda3b382f8f8bbb152220b1ca906`.
+The current runtime candidate is `30e29916bb9786e70a9230d7f48f2e8b973a8317`.
+Its clean-build source archive is 4,982,356 bytes with SHA256
+`04ba913187b70b9dc9faaf57d708b3d23cba02b0c87340469520b9155685fe9c`.
 Earlier stopped build attempts remain preliminary evidence and do not qualify this
 candidate. Later validation-only commits are recorded separately from runtime.
 
@@ -33,6 +33,14 @@ and one ignored fixture. The builder exited 4 and shut down normally; no package
 or ISO is accepted from this attempt. Its thin archive is
 `failed-9b0fb7a-r2-A-evidence.tar.gz` (83,821 bytes), SHA256
 `eda0b7cc5f558196bb86094c687c7080837386f90d9c423d528554ac0203cbed`.
+
+Candidate `30e2991` includes both helper scripts. Before starting another cloud
+build, its real vendored package source archive was extracted and tested locally:
+the native Rust workspace passed 155 tests with five ignored fixtures, and the
+native desktop passed 21 controller and 12 QML tests with KDE/Breeze. The new
+isolated archive regression reproduced the missing-module failure before the fix
+and passed afterward. These are host checks; the pinned cloud package checks and
+two independent image builds remain required.
 
 The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
 exported as a 358,400-byte archive with SHA256
