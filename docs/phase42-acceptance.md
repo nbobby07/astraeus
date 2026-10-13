@@ -42,6 +42,14 @@ isolated archive regression reproduced the missing-module failure before the fix
 and passed afterward. These are host checks; the pinned cloud package checks and
 two independent image builds remain required.
 
+The clean Arch build of `30e2991` passed the native Rust workspace, then failed
+both Qt test groups. Arch's debug-path remapping prevented the controller tests
+from finding source-relative fixtures. The QML group passed 11 of 12 checks;
+its strict warning check caught the missing Sonnet spelling backend in the
+minimal builder. No package or ISO is accepted from this attempt. Its thin
+archive is `failed-30e2991-r1-A-evidence.tar.gz` (91,804 bytes), SHA256
+`526ed122ca51d9a5e496543990ceeabb3f9fee8905c899871c917717962c0000`.
+
 The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
 exported as a 358,400-byte archive with SHA256
 `41e8c3db8dce243939e07c11678c022c10a6dedc119b701e60b5e90528892c46`.
