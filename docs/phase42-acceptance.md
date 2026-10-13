@@ -4,11 +4,22 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The current runtime candidate is `85ad8f66e0a02dfefa6d4c71f672aa11e83d2148`.
-Its clean-build source archive is 4,977,112 bytes with SHA256
-`1a7a2f03ab0ddf5a3af67a7d323f8b50da2d247ae92beaab41fdf3230234dce4`.
+The current runtime candidate is `9b0fb7a0d815d36a6140e423f60165992800cdec`.
+Its clean-build source archive is 4,981,736 bytes with SHA256
+`eeefc83e4f62f9567c40bf51833691f429e2cda3b382f8f8bbb152220b1ca906`.
 Earlier stopped build attempts remain preliminary evidence and do not qualify this
 candidate. Later validation-only commits are recorded separately from runtime.
+
+The `85ad8f6` package build failed because its generated source archive omitted
+two native policy inputs. Candidate `9b0fb7a` includes those files and adds an
+archive regression covering literal Rust file inclusions. The failed build's
+logs remain evidence, not a passing package gate. Host native checks below ran
+on `85ad8f6`; this packaging fix has three passing focused tests, with clean
+candidate package and image builds still required.
+
+The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
+exported as a 358,400-byte archive with SHA256
+`41e8c3db8dce243939e07c11678c022c10a6dedc119b701e60b5e90528892c46`.
 
 The branch starts at `b1d16953ce5918b23c772e3ce99a35c7d37ac6b5`.
 Work is isolated on `codex/phase4-system-management`; PR #7, the original
