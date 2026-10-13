@@ -291,7 +291,10 @@ def guest_desktop(initial):
     prefix = ['runuser', '-u', config['user'], '--', 'env', *[key + '=' + value for key, value in env.items()]]
     # `boot enable` records opt-in; the first later transaction creates the first
     # managed generation. Both baseline cold boots still use the installed UKI.
-    output = run(*prefix, 'bash', SHARE / 'installed-smoke.sh', config['encryption'])
+    # The read-only share stays root-private because it also served setup secrets.
+    # Run the original script as the desktop user without granting share access.
+    output = run(*prefix, 'bash', '-s', '--', config['encryption'],
+                 data=(SHARE / 'installed-smoke.sh').read_bytes())
     marker = f'DISTRO_INSTALL_OK: uefi uki {config["encryption"]} btrfs sddm plasma wayland network audio status'
     require(marker in output.splitlines(), 'original installed smoke did not pass')
     log = 'installed-acceptance.log' if initial else 'installed-second-acceptance.log'

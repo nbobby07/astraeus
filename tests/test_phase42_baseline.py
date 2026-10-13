@@ -148,6 +148,25 @@ class FreshCandidateBaseline(unittest.TestCase):
                 with self.assertRaises(RuntimeError):
                     baseline.secret('login-password')
 
+    def test_desktop_smoke_keeps_private_share_inaccessible_to_user(self):
+        source = (ROOT / 'tests/boot/installed-smoke.sh').read_bytes()
+        marker = 'DISTRO_INSTALL_OK: uefi uki LUKS2 btrfs sddm plasma wayland network audio status'
+        status = json.dumps({'configuration_available': True, 'drift': [],
+                             'recovery_required': False, 'live': False})
+        with tempfile.TemporaryDirectory() as directory, patch.object(baseline, 'SHARE', Path(directory)):
+            (Path(directory) / 'installed-smoke.sh').write_bytes(source)
+            with patch.object(baseline, 'guest_guard', return_value=config()), \
+                    patch.object(baseline, 'desktop_environment', return_value={'USER': 'tester'}), \
+                    patch.object(baseline, 'run', side_effect=[marker, status]) as command, \
+                    patch.object(baseline, 'sha256', side_effect=['c' * 64, 'd' * 64]), \
+                    patch.object(baseline, 'write'), patch('builtins.print'):
+                baseline.guest_desktop(initial=True)
+            smoke = command.call_args_list[0]
+            self.assertEqual(smoke.args, ('runuser', '-u', 'tester', '--', 'env', 'USER=tester',
+                                          'bash', '-s', '--', 'LUKS2'))
+            self.assertEqual(smoke.kwargs['data'], source)
+            self.assertNotIn(directory, ' '.join(smoke.args))
+
     def test_fresh_manifest_contract_is_consumable_without_claiming_calamares(self):
         manifest = {'accepted': True, 'kind': 'phase42-fresh-candidate-payload', 'calamares_ui': False,
                     'encryption': 'LUKS2', 'inputs': {'source_commits': ['a' * 40],
