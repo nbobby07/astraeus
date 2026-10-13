@@ -47,6 +47,54 @@ feature in shipped Linux packages. GUI tests use a private mock executable passe
 only through the C++ test constructor; production exposes no executable override.
 The image pipeline includes the GUI in both installed and live package lists.
 
+## Desktop protocol
+
+The desktop-facing `system ... --json` commands return objects with
+`schema_version: 1`. Machine
+output is on stdout; process failures use a nonzero exit code and stderr. A
+successful preview can still be blocked: consumers must inspect `executable`
+and `blockers`, not infer permission to apply from the process exit code.
+
+| Command | Response fields used by the desktop |
+| --- | --- |
+| `system status --json` | `configuration`, `configuration_available`, `drift`, `live`, `active_operation`, `reboot_required`, `recovery_required`, `health`, `security` |
+| `system features --json` | `features`, with each feature's ID, title, packages and supported flag |
+| `system packages search/details/installed ... --json` | `packages`, containing name, version, description, repository, installed version, protection and selection flags |
+| `system export/adopt --json` | `configuration` and its serialized `toml` |
+| `system parse --stdin --json` | The same configuration response, after validating TOML from stdin |
+| `system plan/diff --stdin --json` | `plan_id`, `executable`, `plan`, `blockers`, `warnings`, after resolving a JSON configuration from stdin |
+| `system submit --json` | `operation_id`, `state`, nullable `transaction` and `error` |
+| `system operation <id> --json` | The same operation shape, including the durable transaction once linked |
+
+Package details appear inline in the Software results. Exact-name `details`
+queries and search results use the same `PackageInfo` fields; there is no separate
+set of hidden details. Configuration schema 1 accepts `packages`, `gaming` and
+`providers`, with omitted collections defaulting to empty. Unknown fields,
+duplicate requests and unsupported versions are rejected. Both the configuration
+and submission input are limited to 256 KiB.
+
+The reviewed `plan_id` is an opaque `sha256:` digest. A submission contains only
+`schema_version`, `config` and `expected_plan`. It cannot supply commands,
+repository URLs, package-file paths or privileged output paths. The worker
+re-resolves under the authoritative locks and rejects a changed plan. An otherwise
+eligible no-op preview has `executable: false`, an intact plan and no blockers; the GUI disables
+Apply, while a repeated CLI apply can return success without creating a mutation.
+
+The existing `history --json` command retains its array format for compatibility.
+Its transaction records carry their own `schema_version`; new records and managed
+execution plans use version 2, and the history reader accepts existing version 1
+records. An empty history is `[]`, not a new response envelope. Management state
+and `SystemConfig` use schema 1 independently of the snapshot management protocol
+version 2. These version numbers describe different formats and must not be
+substituted for one another.
+
+Operation IDs contain 32 lowercase hexadecimal characters. `awaiting_boot` means
+the transaction has reached its boot check, not verified success. The worker can
+still be finishing its final bookkeeping; callers must let the service exit.
+Only `succeeded` becomes **Verified complete**; `rollback_required` requires the
+offline recovery procedure. Clients must not retry a submission automatically or
+replay it after reboot.
+
 Unit tests cover read-only startup, draft invalidation, malformed and future JSON,
 live-session refusal, authentication cancellation and denial, apply/result flow,
 configuration import/export, keyboard review, and pending-versus-confirmed state.

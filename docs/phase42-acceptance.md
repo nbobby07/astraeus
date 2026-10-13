@@ -56,7 +56,10 @@ a dictionary. The fixture failure was reproduced locally with Arch-style
 debug-path remapping: the old controller run passed 3 checks and failed 18; the
 corrected extracted archive passed all 21. Its 12 QML checks and 155 native Rust
 tests also passed. Archive verification checks 118 package names against the
-same three pinned repository database hashes. The clean Arch build is pending.
+same three pinned repository database hashes. The clean Arch package build has
+now passed the same 155 native Rust tests and both Qt groups (21 controller and
+12 QML checks). The split packages and Calamares were built and their repository
+signatures verified. ISO assembly and installed-VM acceptance are still pending.
 
 The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
 exported as a 358,400-byte archive with SHA256
@@ -104,13 +107,13 @@ while it applies. Live sessions permit inspection and planning only.
 
 | Gate | Current evidence |
 | --- | --- |
-| Host Rust checks | Windows workspace 133 passed, followed by focused portable checks; current native Linux workspace 155 passed with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy passed on the current revision; earlier Windows Clippy evidence is retained |
-| Python, shell and signing | Host regression suites, shell syntax, native signing and focused removal-integrity/seed tests passed; raw counts and platform skips remain in the host evidence |
+| Host Rust checks | Windows workspace 140 passed; native Linux workspace 155 passed with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy passed; earlier Windows Clippy evidence is retained |
+| Python, shell and signing | Full Python suites passed: Windows 121 passed/58 skipped, Linux root 175 passed/4 skipped. The 11 Linux file-integrity fixtures also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
 | Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
-| Native libalpm compilation | Passed on Linux with libalpm 16; shipped Arch package build pending |
+| Native libalpm compilation | Passed with libalpm 16 in both the Linux development environment and the pinned Arch package build |
 | Signed native package fixtures | Attempt 13 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies and provider choices retained when preparation fails |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
-| Native desktop build and tests | 21 Qt controller and 12 QML tests passed with Rust-generated contracts and the KDE/Breeze style. Production startup also loaded the KDE desktop style; packaged backend acceptance pending |
+| Native desktop build and tests | 21 Qt controller and 12 QML tests passed with Rust-generated contracts in both the development environment and the pinned Arch package build. Production startup loaded the KDE desktop style; installed-VM backend acceptance pending |
 | Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
 | Two byte-identical candidate images | Not built yet |
 | Physical PC and USB boot | Deferred by request |
