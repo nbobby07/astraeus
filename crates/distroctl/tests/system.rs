@@ -51,7 +51,9 @@ fn json_cli_parses_user_configuration_and_never_accepts_unreviewed_mutation() {
         vec!["worker", "../../escape"],
         vec!["worker-finished", "--help"],
         vec!["operation", "../requests", "--json"],
+        vec!["operation", "../requests"],
         vec!["packages", "details", "--execute", "--json"],
+        vec!["packages", "details", "--execute"],
     ] {
         let failed = run(&args, b"");
         assert!(!failed.status.success(), "{args:?}");
@@ -59,6 +61,34 @@ fn json_cli_parses_user_configuration_and_never_accepts_unreviewed_mutation() {
     }
     let failed=run(&["submit","--json"],br#"{"schema_version":1,"config":{"schema_version":1,"packages":[],"gaming":[],"providers":{}},"expected_plan":"not-reviewed","command":"touch /x"}"#);
     assert!(!failed.status.success() && failed.stdout.is_empty());
+}
+
+#[test]
+fn plain_export_is_importable_toml_and_matches_json_export() {
+    let plain = run(&["export"], b"");
+    assert!(
+        plain.status.success(),
+        "{}",
+        String::from_utf8_lossy(&plain.stderr)
+    );
+    let config =
+        distro_config::parse_system_toml(std::str::from_utf8(&plain.stdout).unwrap()).unwrap();
+    let json = run(&["export", "--json"], b"");
+    assert!(
+        json.status.success(),
+        "{}",
+        String::from_utf8_lossy(&json.stderr)
+    );
+    let response: serde_json::Value = serde_json::from_slice(&json.stdout).unwrap();
+    assert_eq!(response["schema_version"], 1);
+    assert_eq!(
+        response["configuration"],
+        serde_json::to_value(config).unwrap()
+    );
+    assert_eq!(
+        response["toml"],
+        std::str::from_utf8(&plain.stdout).unwrap()
+    );
 }
 
 #[test]

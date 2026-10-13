@@ -10,6 +10,8 @@ draft. Review shows package changes, dependency resolution, provenance, download
 size, warnings, and blockers. Authentication happens only when applying that
 reviewed plan. Export saves the currently accepted system configuration, not the
 unapplied draft. Configuration imports are bounded to 256 KiB and read as the user.
+In a terminal, `distroctl system export > system.toml` writes importable TOML;
+`system adopt` prints a TOML draft. Add `--json` for the versioned desktop contract.
 
 `pkexec` authenticates the narrow `distroctl system submit` command. Its policy
 requires administrator authentication on every invocation from an active session.

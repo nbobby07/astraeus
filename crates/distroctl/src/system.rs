@@ -9,14 +9,15 @@ use serde::{Deserialize, Serialize};
 use std::{io::Read, path::Path};
 
 pub const HELP: &str = "System management
-  distroctl system status|features|adopt|export --json
-  distroctl system packages search <text>|details <name>|installed --json
+  distroctl system status|features [--json]
+  distroctl system adopt|export [--json]         Print TOML, or versioned JSON
+  distroctl system packages search <text>|details <name>|installed [--json]
   distroctl system parse --stdin --json           Validate TOML from stdin
   distroctl system plan|diff --stdin --json       Review a JSON SystemConfig
   distroctl system plan <config.toml> [--json]    Review a saved configuration
   distroctl system apply <config.toml> --expect-plan <sha256:...> [--json]
-  distroctl system submit --json                 Submit a reviewed request (root)
-  distroctl system operation <32-hex-id> --json   Inspect durable progress
+  distroctl system submit [--json]               Submit a reviewed request (root)
+  distroctl system operation <32-hex-id> [--json] Inspect durable progress
 
 Submit reads {schema_version:1,config:SystemConfig,expected_plan:sha256} from stdin.
 Only approved native packages are supported. Existing applications remain protected.
@@ -542,10 +543,16 @@ pub fn run(args: &[String]) -> Result<()> {
         }
         ["status", "--json"] | ["status"] => emit(&status()?),
         ["features", "--json"] | ["features"] => emit(&features()?),
-        ["export", "--json"] | ["export"] => {
-            emit(&configuration_response(installed_configuration()?)?)
+        ["export"] => {
+            print!("{}", installed_configuration()?.to_toml()?);
+            Ok(())
         }
-        ["adopt", "--json"] | ["adopt"] => emit(&configuration_response(adopt()?)?),
+        ["adopt"] => {
+            print!("{}", adopt()?.to_toml()?);
+            Ok(())
+        }
+        ["export", "--json"] => emit(&configuration_response(installed_configuration()?)?),
+        ["adopt", "--json"] => emit(&configuration_response(adopt()?)?),
         ["parse", "--stdin", "--json"] => emit(&configuration_response(parse_system_toml(
             &read_bounded(std::io::stdin().lock())?,
         )?)?),
@@ -563,14 +570,17 @@ pub fn run(args: &[String]) -> Result<()> {
                 expected_plan: (*digest).into(),
             })?)
         }
-        ["submit", "--json"] => emit(&ops::submit(parse_submission(&read_bounded(
+        ["submit"] | ["submit", "--json"] => emit(&ops::submit(parse_submission(&read_bounded(
             std::io::stdin().lock(),
         )?)?)?),
         ["worker", id] => ops::worker(id),
         ["worker-finished", id] => ops::worker_finished(id),
-        ["operation", id, "--json"] => emit(&ops::operation(id)?),
-        ["packages", "installed", "--json"] => emit(&packages("installed", "")?),
-        ["packages", mode @ ("search" | "details"), query, "--json"] => {
+        ["operation", id] | ["operation", id, "--json"] => emit(&ops::operation(id)?),
+        ["packages", "installed"] | ["packages", "installed", "--json"] => {
+            emit(&packages("installed", "")?)
+        }
+        ["packages", mode @ ("search" | "details"), query]
+        | ["packages", mode @ ("search" | "details"), query, "--json"] => {
             emit(&packages(mode, query)?)
         }
         _ => Err(format!("unsupported system arguments\n{HELP}")),
