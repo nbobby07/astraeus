@@ -1,6 +1,7 @@
 """Desktop distribution and authorization boundaries; never starts a root worker."""
 import importlib.util
 from pathlib import Path
+import re
 import tarfile
 import tempfile
 import unittest
@@ -25,6 +26,12 @@ class ControlCenterPackaging(unittest.TestCase):
                                  "distro/installed/astraeus-apply@.service", "distro/installed/org.astraeus.system.policy",
                                  "docs/control-center.md"]:
                     self.assertEqual(archive.extractfile("platform/" + relative).read(), (ROOT / relative).read_bytes())
+                for rust in (ROOT / "crates").rglob("*.rs"):
+                    for embedded in re.findall(r'include_(?:str|bytes)!\(\s*"([^"\n]+)"\s*\)', rust.read_text()):
+                        path = (rust.parent / embedded).resolve()
+                        relative = path.relative_to(ROOT).as_posix()
+                        with self.subTest(rust=rust.relative_to(ROOT), embedded=relative):
+                            self.assertEqual(archive.extractfile("platform/" + relative).read(), path.read_bytes())
             recipe = (output / "PKGBUILD").read_text()
             self.assertIn("package_astraeus-control-center()", recipe)
             self.assertIn("--features native-alpm", recipe)

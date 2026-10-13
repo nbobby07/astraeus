@@ -89,6 +89,7 @@ def prepare_package(output):
     source = out / "source"
     source.mkdir()
     for file in [ROOT / "Cargo.toml", ROOT / "Cargo.lock", MANIFEST,
+                 ROOT / "distro/repo/archive.lock.json", ROOT / "distro/installed/packages.x86_64",
                  ROOT / "distro/installed/astraeus-confirm-boot.service", ROOT / "docs/snapshots.md",
                  ROOT / "scripts/secure_boot.py", ROOT / "docs/secure-boot.md",
                  ROOT / "docs/adr/0003-owner-secure-boot.md",
