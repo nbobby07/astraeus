@@ -3,6 +3,25 @@
 version = 4
 
 [[package]]
+name = "alpm"
+version = "5.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4c7b56a77dc29bbe3c1d2b2a073200b7a09ed0a5d0b421315e915abdee4e1f2b"
+dependencies = [
+ "alpm-sys",
+ "bitflags",
+]
+
+[[package]]
+name = "alpm-sys"
+version = "5.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2802ef5d74e47cceda08d0d583c69be2595a5d25e2d6eef349b5e5b5ed4560e9"
+dependencies = [
+ "pkg-config",
+]
+
+[[package]]
 name = "bitflags"
 version = "2.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -73,6 +92,7 @@ name = "distro-config"
 version = "0.1.0-dev"
 dependencies = [
  "serde",
+ "serde_json",
  "toml",
 ]
 
@@ -104,6 +124,8 @@ dependencies = [
 name = "distro-transactions"
 version = "0.1.0-dev"
 dependencies = [
+ "alpm",
+ "distro-config",
  "distro-graphics",
  "distro-snapshots",
  "libc",
@@ -122,6 +144,7 @@ dependencies = [
  "distro-hardware",
  "distro-snapshots",
  "distro-transactions",
+ "libc",
  "serde",
  "serde_json",
 ]

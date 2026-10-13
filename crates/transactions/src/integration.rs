@@ -1,7 +1,9 @@
 //! Coordination with the existing Btrfs manager. One guard covers the entire update.
 use crate::{pacman::*, *};
 use distro_snapshots::generations::{Generation, RootKind, Selection};
-use distro_snapshots::{Commands, Health, Manager, MutationGuard, Native, Reason, SnapshotId};
+use distro_snapshots::{
+    Commands, Health, Manager, MutationGuard, Native, OwnedPackageLock, Reason, SnapshotId,
+};
 
 fn error(e: impl std::fmt::Display) -> String {
     e.to_string()
@@ -34,11 +36,16 @@ pub fn system_health() -> SystemHealth {
 pub struct BtrfsSnapshots<C: Commands = Native> {
     pub manager: Manager<C>,
     guard: MutationGuard,
+    package_lock: Option<OwnedPackageLock>,
 }
 impl<C: Commands> BtrfsSnapshots<C> {
     pub fn new(manager: Manager<C>) -> Result<Self> {
         let guard = manager.lock().map_err(error)?;
-        Ok(Self { manager, guard })
+        Ok(Self {
+            manager,
+            guard,
+            package_lock: None,
+        })
     }
     fn create(&self, id: i64, reason: Reason) -> Result<String> {
         // Idempotent only for a completed, unique correlated snapshot. Incomplete
@@ -54,16 +61,29 @@ impl<C: Commands> BtrfsSnapshots<C> {
             return Err("ambiguous transaction snapshot".into());
         }
         let snapshot = match matches.into_iter().next() {
-            Some(s) => s,
-            None => self
-                .manager
-                .create_locked(&self.guard, reason, Some(id.to_string()))
-                .map_err(error)?,
+            Some(s) if s.schema_version == 2 => s,
+            Some(_) => return Err("transaction snapshot requires recovery protocol 2".into()),
+            None => match &self.package_lock {
+                Some(lock) => self.manager.create_transaction_locked(
+                    &self.guard,
+                    reason,
+                    id.to_string(),
+                    lock,
+                ),
+                None => self
+                    .manager
+                    .create_locked(&self.guard, reason, Some(id.to_string())),
+            }
+            .map_err(error)?,
         };
         Ok(snapshot.id.as_str().into())
     }
 }
 impl SnapshotBackend for BtrfsSnapshots {
+    fn set_package_lock(&mut self, lock: Option<&OwnedPackageLock>) -> Result<()> {
+        self.package_lock = lock.cloned();
+        Ok(())
+    }
     fn prerequisites(&mut self, plan: &ExecutionPlan) -> Result<()> {
         self.manager.plan_create().map_err(error)?;
         if self.manager.generations_enabled().map_err(error)? {
@@ -182,6 +202,13 @@ pub trait BootEvidence {
     fn boot_id(&mut self) -> Result<String>;
     fn verify(&mut self, snapshot: &str, transaction_id: i64, rollback: bool) -> Result<()>;
     fn current_state(&mut self) -> Result<CurrentSystemState>;
+    fn verify_management(&mut self, plan: &ExecutionPlan, _rollback: bool) -> Result<()> {
+        if plan.management.is_some() {
+            Err("boot management-state verification unavailable".into())
+        } else {
+            Ok(())
+        }
+    }
     fn health(&mut self, plan: &ExecutionPlan) -> Vec<HealthCheckResult>;
     fn promote(&mut self, snapshot: &str, evidence: &str) -> Result<()>;
 }
@@ -254,6 +281,18 @@ impl BootEvidence for BtrfsSnapshots {
     fn current_state(&mut self) -> Result<CurrentSystemState> {
         Pacman::default().current_state()
     }
+    fn verify_management(&mut self, plan: &ExecutionPlan, rollback: bool) -> Result<()> {
+        if plan.management.is_none() {
+            return Ok(());
+        }
+        let root = std::path::Path::new("/");
+        verify_management_state(
+            plan,
+            rollback,
+            &management_store::read_state(root)?,
+            &management_store::read_reasons(root)?,
+        )
+    }
     fn health(&mut self, plan: &ExecutionPlan) -> Vec<HealthCheckResult> {
         system_health().run(plan)
     }
@@ -274,11 +313,39 @@ impl BootEvidence for BtrfsSnapshots {
 }
 
 fn ensure_not_stale(records: &[TransactionRecord], id: i64) -> Result<()> {
-    if records
-        .iter()
-        .any(|r| r.id > id && !r.plan.packages.changes.is_empty())
-    {
+    if records.iter().any(|r| r.id > id && r.plan.has_mutation()) {
         return Err("stale transaction cannot be confirmed after a later update".into());
+    }
+    Ok(())
+}
+
+pub(crate) fn verify_management_state(
+    plan: &ExecutionPlan,
+    rollback: bool,
+    observed: &Option<ManagementState>,
+    reasons: &std::collections::BTreeMap<String, InstallReason>,
+) -> Result<()> {
+    let Some(management) = &plan.management else {
+        return Ok(());
+    };
+    let (expected, expected_digest, expected_reasons) = if rollback {
+        (
+            management.before.as_ref(),
+            &management.before_digest,
+            &management.reasons_before,
+        )
+    } else {
+        (
+            Some(&management.after),
+            &management.after_digest,
+            &management.reasons_after,
+        )
+    };
+    if observed.as_ref() != expected
+        || management_digest(observed.as_ref()) != *expected_digest
+        || reasons != expected_reasons
+    {
+        return Err("booted applied configuration, ownership or package reasons differ from intended generation".into());
     }
     Ok(())
 }
@@ -406,6 +473,7 @@ pub fn confirm(
     } else {
         TransactionState::Succeeded
     };
+    ensure_not_stale(&records, id)?;
     if record.state == terminal
         && record
             .confirmation
@@ -414,7 +482,6 @@ pub fn confirm(
     {
         return Ok(record); // Idempotent retry after durable completion, not new health evidence.
     }
-    ensure_not_stale(&records, id)?;
     if !matches!(
         (rollback, record.state),
         (false, TransactionState::AwaitingBoot)
@@ -461,6 +528,7 @@ pub fn confirm(
         if evidence.current_state()? != expected {
             return Err("booted package state differs from intended generation".into());
         }
+        evidence.verify_management(&record.plan, rollback)?;
         observation.checks = evidence.health(&record.plan);
         if !health_acceptable(&observation.checks) {
             return Err("post-boot health checks did not pass".into());

@@ -1,5 +1,9 @@
 use crate::*;
 
+#[cfg(test)]
+#[path = "managed_tests.rs"]
+mod managed_tests;
+
 pub trait PackageBackend {
     fn resolve(&mut self) -> Result<ExecutionPlan>;
     fn prerequisites(&mut self, plan: &ExecutionPlan) -> Result<()>;
@@ -7,11 +11,44 @@ pub trait PackageBackend {
     fn verify(&mut self, plan: &ExecutionPlan) -> Result<()>;
     fn apply(&mut self, plan: &ExecutionPlan) -> Result<()>;
     fn current_state(&mut self) -> Result<CurrentSystemState>;
+    fn operation_id(&self) -> Option<String> {
+        None
+    }
+    fn prepare_locked(&mut self, plan: &ExecutionPlan) -> Result<()> {
+        if plan.management.is_some() {
+            return Err("managed transactions require the native locked package backend".into());
+        }
+        Ok(())
+    }
+    fn owned_package_lock(&self) -> Option<&distro_snapshots::OwnedPackageLock> {
+        None
+    }
+    fn apply_management(&mut self, plan: &ExecutionPlan) -> Result<()> {
+        if plan.management.is_some() {
+            return Err("management persistence backend unavailable".into());
+        }
+        Ok(())
+    }
+    fn verify_management(&mut self, plan: &ExecutionPlan) -> Result<()> {
+        if plan.management.is_some() {
+            return Err("management verification backend unavailable".into());
+        }
+        Ok(())
+    }
 }
 
 /// Must protect both the root/package DB and the current ESP boot artifacts before apply.
 /// No filesystem operation or boot entry implementation belongs to this crate.
 pub trait SnapshotBackend {
+    fn set_package_lock(
+        &mut self,
+        lock: Option<&distro_snapshots::OwnedPackageLock>,
+    ) -> Result<()> {
+        if lock.is_some() {
+            return Err("snapshot backend cannot preserve an owned package lock".into());
+        }
+        Ok(())
+    }
     fn prerequisites(&mut self, plan: &ExecutionPlan) -> Result<()>;
     /// Must be idempotent by transaction ID, including recovery after snapshot_pending.
     fn create_pre_transaction_snapshot(&mut self, id: i64, plan: &ExecutionPlan) -> Result<String>;
@@ -85,6 +122,15 @@ pub fn execute(
     plan.validate()?;
     session.ensure_ready()?;
     let mut record = TransactionRecord::new(plan);
+    record.operation_id = packages.operation_id();
+    if record.operation_id.as_ref().is_some_and(|id| {
+        id.len() != 32
+            || !id
+                .bytes()
+                .all(|byte| byte.is_ascii_hexdigit() && !byte.is_ascii_uppercase())
+    }) {
+        return Err("operation ID must contain 32 lowercase hexadecimal characters".into());
+    }
     session.insert(&mut record)?;
     let check_cancel = || -> Result<()> {
         if canceled() {
@@ -95,7 +141,9 @@ pub fn execute(
     };
     let result = (|| -> Result<()> {
         check_cancel()?;
-        if record.plan.packages.changes.is_empty() {
+        if !record.plan.has_mutation() {
+            // A package writer can invalidate an empty preview before execution too.
+            packages.prepare_locked(&record.plan)?;
             record.resulting_system_state = Some(record.previous_system_state.clone());
             return session.advance(&mut record, TransactionState::Succeeded);
         }
@@ -118,6 +166,8 @@ pub fn execute(
             .map_err(|e| format!("package verification: {e}"))?;
         session.advance(&mut record, TransactionState::Downloaded)?;
         check_cancel()?;
+        packages.prepare_locked(&record.plan)?;
+        snapshots.set_package_lock(packages.owned_package_lock())?;
         session.advance(&mut record, TransactionState::SnapshotPending)?;
         let reference = snapshots
             .create_pre_transaction_snapshot(record.id, &record.plan)
@@ -148,6 +198,12 @@ pub fn execute(
         packages
             .apply(&record.plan)
             .map_err(|e| format!("package application: {e}"))?;
+        packages
+            .apply_management(&record.plan)
+            .map_err(|e| format!("management persistence: {e}"))?;
+        packages
+            .verify_management(&record.plan)
+            .map_err(|e| format!("management verification: {e}"))?;
         check_cancel()?;
         session.advance(&mut record, TransactionState::Validating)?;
         boot.regenerate(&record.plan, record.id)

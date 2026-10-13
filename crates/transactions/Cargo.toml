@@ -6,6 +6,7 @@ rust-version.workspace = true
 publish.workspace = true
 
 [dependencies]
+distro-config = { path = "../config" }
 distro-snapshots = { path = "../snapshots" }
 distro-graphics = { path = "../graphics" }
 serde.workspace = true
@@ -15,3 +16,7 @@ sha2 = "0.10"
 
 [target.'cfg(target_os = "linux")'.dependencies]
 libc = "0.2"
+alpm = { version = "=5.0.2", optional = true }
+
+[features]
+native-alpm = ["dep:alpm"]

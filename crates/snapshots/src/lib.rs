@@ -8,7 +8,7 @@ use std::{
 
 pub mod generations;
 mod system;
-pub use system::{Commands, Manager, MutationGuard, Native};
+pub use system::{Commands, Manager, MutationGuard, Native, OwnedPackageLock};
 
 pub type Result<T> = std::result::Result<T, Box<dyn std::error::Error + Send + Sync>>;
 pub const SUBVOLUMES: [(&str, &str); 6] = [
@@ -21,6 +21,7 @@ pub const SUBVOLUMES: [(&str, &str); 6] = [
 ];
 pub const UKI: &str = "EFI/Linux/astraeus-dev-linux.efi";
 pub const MAINTENANCE_UKI: &str = "EFI/Astraeus/maintenance.efi";
+pub const RECOVERY_PROTOCOL: u32 = 2;
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(transparent)]
@@ -76,6 +77,13 @@ pub struct BootState {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
+pub struct CoordinatorIdentity {
+    pub recovery_protocol: u32,
+    pub sha256: String,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Snapshot {
     pub schema_version: u32,
     pub id: SnapshotId,
@@ -88,11 +96,28 @@ pub struct Snapshot {
     pub health: Health,
     pub validation_evidence: Option<String>,
     pub boot: BootState,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub coordinator: Option<CoordinatorIdentity>,
 }
 impl Snapshot {
     pub fn validate(&self) -> Result<()> {
         SnapshotId::parse(self.id.as_str())?;
-        require(self.schema_version == 1, "unsupported snapshot schema")?;
+        require(
+            matches!(self.schema_version, 1 | 2),
+            "unsupported snapshot schema",
+        )?;
+        require(
+            match (self.schema_version, &self.coordinator) {
+                (1, None) => true,
+                (2, Some(identity)) => {
+                    identity.recovery_protocol == RECOVERY_PROTOCOL
+                        && identity.sha256.len() == 64
+                        && identity.sha256.bytes().all(|c| c.is_ascii_hexdigit())
+                }
+                _ => false,
+            },
+            "unsupported snapshot recovery protocol or coordinator identity",
+        )?;
         require(
             uuid(&self.filesystem_uuid) && uuid(&self.root.uuid) && uuid(&self.source_state.uuid),
             "invalid filesystem/subvolume UUID",

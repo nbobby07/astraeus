@@ -149,3 +149,259 @@ fn baseline_publication_failure_has_durable_recovery_reference_before_packages()
     assert!(!packages.calls.contains(&"apply"));
     assert_eq!(session.records().unwrap()[0], record);
 }
+
+fn metadata_plan() -> ExecutionPlan {
+    let current = CurrentSystemState::new(BTreeMap::from([("fixture".into(), "1-1".into())]));
+    let before = ManagementState {
+        packages: [(
+            "fixture".into(),
+            ManagedPackage {
+                version: "1-1".into(),
+                reason: InstallReason::Dependency,
+                owners: Default::default(),
+            },
+        )]
+        .into(),
+        ..Default::default()
+    };
+    let mut after = before.clone();
+    after.applied.packages.insert("fixture".into());
+    let owners = after.applied.request_owners().unwrap();
+    let package = after.packages.get_mut("fixture").unwrap();
+    package.owners = owners["fixture"].clone();
+    package.reason = InstallReason::Explicit;
+    let management = ManagementPlan {
+        before_digest: before.digest(),
+        before: Some(before),
+        after_digest: after.digest(),
+        after,
+        reasons_before: [("fixture".into(), InstallReason::Dependency)].into(),
+        reasons_after: [("fixture".into(), InstallReason::Explicit)].into(),
+        removal_integrity: None,
+    };
+    ExecutionPlan::new(
+        current,
+        PackagePlan {
+            changes: vec![],
+            targets: vec![],
+            download_bytes: 0,
+            installed_delta_bytes: Some(0),
+        },
+    )
+    .with_management(management)
+}
+
+#[test]
+fn metadata_only_confirmation_requires_boot_identity_ownership_and_full_reason_map() {
+    use integration::{confirm, verify_management_state, BootEvidence};
+    struct Evidence {
+        plan: ExecutionPlan,
+        state: Option<ManagementState>,
+        reasons: BTreeMap<String, InstallReason>,
+        wrong_identity: bool,
+        promoted: usize,
+    }
+    impl BootEvidence for Evidence {
+        fn boot_id(&mut self) -> Result<String> {
+            Ok("boot-after".into())
+        }
+        fn verify(&mut self, _: &str, _: i64, _: bool) -> Result<()> {
+            if self.wrong_identity {
+                Err("wrong root or UKI transaction marker".into())
+            } else {
+                Ok(())
+            }
+        }
+        fn current_state(&mut self) -> Result<CurrentSystemState> {
+            Ok(self.plan.current.clone())
+        }
+        fn verify_management(&mut self, plan: &ExecutionPlan, rollback: bool) -> Result<()> {
+            verify_management_state(plan, rollback, &self.state, &self.reasons)
+        }
+        fn health(&mut self, plan: &ExecutionPlan) -> Vec<HealthCheckResult> {
+            Health(HealthStatus::Pass).run(plan)
+        }
+        fn promote(&mut self, _: &str, _: &str) -> Result<()> {
+            self.promoted += 1;
+            Ok(())
+        }
+    }
+    let plan = metadata_plan();
+    plan.validate().unwrap();
+    assert_eq!(plan.current, plan.expected_state());
+    let change = plan.management.as_ref().unwrap().clone();
+    let temp = Temp::new();
+    let mut session = temp.session();
+    let mut record = TransactionRecord::new(plan.clone());
+    record.state = TransactionState::AwaitingBoot;
+    record.outcome = TransactionOutcome::AwaitingBoot;
+    record.snapshot = Some("1".into());
+    record.post_snapshot = Some("2".into());
+    record.update_boot_id = Some("boot-before".into());
+    session.insert(&mut record).unwrap();
+    let mut evidence = Evidence {
+        plan,
+        state: change.before.clone(),
+        reasons: change.reasons_before.clone(),
+        wrong_identity: false,
+        promoted: 0,
+    };
+    assert!(confirm(&mut session, record.id, false, &mut evidence)
+        .unwrap_err()
+        .contains("ownership"));
+    evidence.state = Some(change.after.clone());
+    assert!(confirm(&mut session, record.id, false, &mut evidence).is_err());
+    evidence.reasons = change.reasons_after.clone();
+    evidence
+        .reasons
+        .insert("unexpected-package".into(), InstallReason::Dependency);
+    assert!(confirm(&mut session, record.id, false, &mut evidence).is_err());
+    evidence.reasons = change.reasons_after.clone();
+    evidence.wrong_identity = true;
+    assert!(confirm(&mut session, record.id, false, &mut evidence)
+        .unwrap_err()
+        .contains("marker"));
+    assert_eq!(evidence.promoted, 0);
+    evidence.wrong_identity = false;
+    assert_eq!(
+        confirm(&mut session, record.id, false, &mut evidence)
+            .unwrap()
+            .state,
+        TransactionState::Succeeded
+    );
+    assert_eq!(evidence.promoted, 1);
+    assert!(confirm(&mut session, record.id, true, &mut evidence).is_err());
+    evidence.state = change.before;
+    evidence.reasons = change.reasons_before;
+    assert_eq!(
+        confirm(&mut session, record.id, true, &mut evidence)
+            .unwrap()
+            .state,
+        TransactionState::RolledBack
+    );
+    assert_eq!(evidence.promoted, 1);
+}
+
+#[test]
+fn later_metadata_mutation_makes_previous_generation_and_rollback_stale() {
+    let (generation, snapshot) = bindings();
+    let mut old = TransactionRecord::new(plan());
+    old.id = 1;
+    old.snapshot = Some("1".into());
+    old.state = TransactionState::Succeeded;
+    let mut later = TransactionRecord::new(metadata_plan());
+    later.id = 2;
+    later.state = TransactionState::Failed;
+    assert!(later.plan.packages.changes.is_empty());
+    assert!(later.plan.has_mutation());
+    let records = [old, later];
+    assert!(
+        integration::validate_generation_reference(&records, &generation, &snapshot)
+            .unwrap_err()
+            .contains("stale")
+    );
+    assert!(
+        integration::validate_rollback_target(&records, Some("1"), "1")
+            .unwrap_err()
+            .contains("stale")
+    );
+}
+
+#[test]
+fn installed_image_seed_is_accepted_by_the_actual_rust_management_reader() {
+    let temp = Temp::new();
+    let script = r#"
+import sys
+from pathlib import Path
+sys.path.insert(0, sys.argv[1])
+import installer, bootstrap
+root = Path(sys.argv[2])
+def package(name, reason):
+    bootstrap.write(root / 'var/lib/pacman/local' / name / 'desc',
+        f'%NAME%\n{name}\n\n%VERSION%\n1-1\n\n%REASON%\n{reason}\n')
+package('mesa', '0')
+package('gamemode', '1')
+before = installer.installed_state(root)
+for name in set(installer.gaming_packages(['tools', 'mangohud'])) - before.keys():
+    package(name, '0')
+package('tool-library', '1')
+def resolution(root, packages):
+    return {'extra':'sha256:' + 'a'*64}, {name:{'version':p['version'], 'repository':'extra', 'sha256':'b'*64} for name,p in packages.items()}
+installer.locked_packages = resolution
+installer.seed_management(root, before, ['software'], ['tools','mangohud'], bootstrap.write, 'fixture config\n')
+"#;
+    let scripts = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../scripts");
+    let output = std::process::Command::new(if cfg!(windows) { "python" } else { "python3" })
+        .arg("-c")
+        .arg(script)
+        .arg(scripts)
+        .arg(&temp.0)
+        .output()
+        .unwrap();
+    assert!(
+        output.status.success(),
+        "{}",
+        String::from_utf8_lossy(&output.stderr)
+    );
+    let state = management_store::read_state(&temp.0).unwrap().unwrap();
+    assert!(state.protected.contains("gamemode"));
+    assert!(!state.packages.contains_key("gamemode"));
+    assert_eq!(
+        state.packages["mangohud"].owners,
+        ["gaming:mangohud".into(), "gaming:tools".into()].into()
+    );
+    assert_eq!(
+        state.packages["tool-library"].reason,
+        InstallReason::Dependency
+    );
+    assert_eq!(state.resolution["tool-library"].sha256, "b".repeat(64));
+    let current = CurrentSystemState::new(
+        state
+            .resolution
+            .iter()
+            .map(|(name, package)| (name.clone(), package.version.clone()))
+            .collect(),
+    );
+    let reasons = management_store::read_reasons(&temp.0).unwrap();
+    let reconciled = management::reconcile(
+        Some(&state),
+        &current,
+        &reasons,
+        &current,
+        &reasons,
+        &state.applied,
+        &state.protected,
+        &state.repositories,
+    )
+    .unwrap();
+    assert!(
+        !reconciled.has_mutation(),
+        "unchanged installed-image receipt must reconcile to a no-op"
+    );
+}
+
+#[test]
+fn recorded_provider_validation_rejects_invalid_names_and_missing_packages() {
+    for (dependency, provider) in [("virtual", "absent"), ("virtual>=2", "fixture")] {
+        let mut plan = metadata_plan();
+        let change = plan.management.as_mut().unwrap();
+        change
+            .after
+            .resolved_providers
+            .insert(dependency.into(), provider.into());
+        change.after_digest = change.after.digest();
+        assert!(plan.validate().is_err());
+    }
+}
+
+#[test]
+fn removal_integrity_is_validated_and_bound_to_the_reviewed_plan() {
+    let mut plan = metadata_plan();
+    let prior = plan.fingerprint();
+    plan.management.as_mut().unwrap().removal_integrity =
+        Some(format!("sha256:{}", "a".repeat(64)));
+    assert_ne!(prior, plan.fingerprint());
+    assert!(plan.validate().is_ok());
+    plan.management.as_mut().unwrap().removal_integrity = Some("sha256:unverified".into());
+    assert!(plan.validate().is_err());
+}

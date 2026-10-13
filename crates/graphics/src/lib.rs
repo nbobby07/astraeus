@@ -485,7 +485,7 @@ pub fn diagnose(hardware: Hardware, mut raw: Observations) -> GraphicsReport {
         opengl_renderer: None,
         packages: raw.packages, required_packages: required.into_iter().collect(), environment_overrides: raw.overrides,
         activation: State::Unsupported,
-        activation_reason: "Read-only requirements. The current transaction adapter accepts system upgrades only, not install targets or driver-family changes. Use explicitly selected image bundles for initial installation; never run a separate pacman transaction.".into(), issues }
+        activation_reason: "Read-only graphics requirements. Native system management supports approved applications and gaming features, but driver-family changes and NVIDIA activation remain unsupported. Select graphics bundles when building the image; software rendering does not qualify physical GPU support.".into(), issues }
 }
 
 fn upstream_version(version: &str) -> &str {

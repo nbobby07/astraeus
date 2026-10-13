@@ -4,6 +4,7 @@ use std::{
     fs::{File, OpenOptions},
     io::Write,
     process::Command,
+    sync::Arc,
     time::{SystemTime, UNIX_EPOCH},
 };
 
@@ -11,6 +12,10 @@ use std::{
 pub trait Commands {
     fn run(&self, program: &str, args: &[&str]) -> Result<String>;
     fn authorize_mutation(&self, store: &Path, esp: &Path) -> Result<()>;
+    /// A protocol-2 snapshot may only restore the coordinator which is creating it.
+    fn authorize_coordinator(&self, _root: &Path) -> Result<()> {
+        Err("coordinator identity provider unavailable".into())
+    }
     /// Native owner signing/trust boundary. No permissive default.
     fn boot_artifact(&self, _args: &[&str]) -> Result<String> {
         Err("boot artifact trust provider unavailable".into())
@@ -18,6 +23,24 @@ pub trait Commands {
 }
 pub struct Native;
 impl Commands for Native {
+    fn authorize_coordinator(&self, root: &Path) -> Result<()> {
+        let saved = root.join("usr/bin/distroctl");
+        trusted(&saved)?;
+        let running = fs::canonicalize(std::env::current_exe()?)?;
+        trusted(&running)?;
+        let digest = |path: &Path| -> Result<String> {
+            Ok(self
+                .run("sha256sum", &["--", path_str(path)?])?
+                .split_whitespace()
+                .next()
+                .ok_or("missing coordinator hash")?
+                .into())
+        };
+        require(
+            digest(&saved)? == digest(&running)?,
+            "installed coordinator differs from protocol-2 recovery coordinator",
+        )
+    }
     fn boot_artifact(&self, args: &[&str]) -> Result<String> {
         trusted(Path::new("/usr/bin/astraeus-boot-artifact"))?;
         self.run("astraeus-boot-artifact", args)
@@ -87,6 +110,154 @@ impl Commands for Native {
 pub struct MutationGuard {
     _file: File,
     store: PathBuf,
+}
+
+/// Observation of libalpm's lock owned by this process. Only libalpm releases it.
+#[derive(Clone)]
+pub struct OwnedPackageLock {
+    file: Arc<File>,
+    path: PathBuf,
+    writer_fd: Option<u32>,
+    process: u32,
+}
+
+impl OwnedPackageLock {
+    pub fn observe(path: &Path) -> Result<Self> {
+        Self::observe_inner(path, false)
+    }
+
+    /// Bind libalpm's empty lock to its already-open writable kernel descriptor.
+    ///
+    /// # Safety
+    /// The caller must own a successfully initialized, locked libalpm transaction
+    /// for this path and retain that transaction for every use of the proof.
+    pub unsafe fn from_active_transaction(path: &Path) -> Result<Self> {
+        Self::observe_inner(path, true)
+    }
+
+    fn observe_inner(path: &Path, native_transaction: bool) -> Result<Self> {
+        require(
+            cfg!(target_os = "linux"),
+            "owned package locks require Linux",
+        )?;
+        no_links(path)?;
+        require(
+            fs::symlink_metadata(path)?.is_file(),
+            "package lock must be a regular file",
+        )?;
+        // Inspect descriptors before opening our own read-only observation handle.
+        let writer_fd = if native_transaction {
+            let mut found = None;
+            for entry in fs::read_dir("/proc/self/fd")? {
+                let entry = entry?;
+                if let Some(fd) = entry
+                    .file_name()
+                    .to_str()
+                    .and_then(|name| name.parse().ok())
+                {
+                    if Self::writer_matches(fd, &fs::metadata(path)?)? {
+                        found = Some(fd);
+                        break;
+                    }
+                }
+            }
+            Some(found.ok_or(
+                "libalpm package lock has no retained writable descriptor in this process",
+            )?)
+        } else {
+            None
+        };
+        let proof = Self {
+            file: Arc::new(File::open(path)?),
+            path: path.to_path_buf(),
+            writer_fd,
+            process: std::process::id(),
+        };
+        proof.verify(path)?;
+        Ok(proof)
+    }
+
+    pub fn verify(&self, path: &Path) -> Result<()> {
+        require(
+            self.process == std::process::id(),
+            "package lock proof belongs to another process",
+        )?;
+        require(
+            path == self.path,
+            "package lock belongs to another database",
+        )?;
+        no_links(path)?;
+        require(
+            self.file.metadata()?.is_file(),
+            "package lock handle is not a regular file",
+        )?;
+        #[cfg(unix)]
+        {
+            use std::os::unix::fs::{FileExt, MetadataExt};
+            let opened = self.file.metadata()?;
+            let current = fs::metadata(path)?;
+            require(
+                opened.is_file()
+                    && opened.uid() == 0
+                    && opened.nlink() == 1
+                    && opened.dev() == current.dev()
+                    && opened.ino() == current.ino()
+                    && opened.len() <= 32
+                    && opened.mode() & 0o022 == 0,
+                "owned package lock identity or ownership changed",
+            )?;
+            if let Some(fd) = self.writer_fd {
+                require(
+                    opened.len() == 0 && Self::writer_matches(fd, &opened)?,
+                    "libalpm package lock ownership was released or changed",
+                )?;
+            } else {
+                let mut bytes = [0u8; 33];
+                let count = self.file.read_at(&mut bytes, 0)?;
+                let pid = std::str::from_utf8(&bytes[..count])?.trim();
+                require(
+                    pid == std::process::id().to_string(),
+                    "package lock is not owned by the current process",
+                )?;
+            }
+            Ok(())
+        }
+        #[cfg(not(unix))]
+        {
+            let _ = self.writer_fd;
+            Err("owned package locks require Linux".into())
+        }
+    }
+
+    fn writer_matches(fd: u32, expected: &fs::Metadata) -> Result<bool> {
+        #[cfg(target_os = "linux")]
+        {
+            use std::os::unix::fs::MetadataExt;
+            let actual = match fs::metadata(format!("/proc/self/fd/{fd}")) {
+                Ok(metadata) => metadata,
+                Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(false),
+                Err(e) => return Err(e.into()),
+            };
+            if actual.dev() != expected.dev() || actual.ino() != expected.ino() {
+                return Ok(false);
+            }
+            let info = match fs::read_to_string(format!("/proc/self/fdinfo/{fd}")) {
+                Ok(info) => info,
+                Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(false),
+                Err(e) => return Err(e.into()),
+            };
+            let flags = info
+                .lines()
+                .find_map(|line| line.strip_prefix("flags:"))
+                .ok_or("missing descriptor access flags")?;
+            Ok(matches!(u32::from_str_radix(flags.trim(), 8)? & 3, 1 | 2))
+        }
+        #[cfg(not(target_os = "linux"))]
+        {
+            let _ = (fd, expected);
+            Err("native package lock descriptors require Linux".into())
+        }
+    }
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -646,6 +817,30 @@ impl<C: Commands> Manager<C> {
         reason: Reason,
         transaction_id: Option<String>,
     ) -> Result<Snapshot> {
+        self.create_inner(guard, reason, transaction_id, None)
+    }
+
+    pub fn create_transaction_locked(
+        &self,
+        guard: &MutationGuard,
+        reason: Reason,
+        transaction_id: String,
+        package_lock: &OwnedPackageLock,
+    ) -> Result<Snapshot> {
+        require(
+            matches!(reason, Reason::PreUpdate | Reason::PostUpdate),
+            "owned package locks are only valid for coordinator snapshots",
+        )?;
+        self.create_inner(guard, reason, Some(transaction_id), Some(package_lock))
+    }
+
+    fn create_inner(
+        &self,
+        guard: &MutationGuard,
+        reason: Reason,
+        transaction_id: Option<String>,
+        package_lock: Option<&OwnedPackageLock>,
+    ) -> Result<Snapshot> {
         require(
             guard.store == self.store,
             "lock belongs to another snapshot store",
@@ -661,10 +856,20 @@ impl<C: Commands> Manager<C> {
             "source is not writable sibling @",
         )?;
         self.no_children(&self.root)?;
-        require(
-            !self.root.join("var/lib/pacman/db.lck").try_exists()?,
-            "package database is locked; snapshot requires a quiescent package transaction",
-        )?;
+        let lock_path = self.root.join("var/lib/pacman/db.lck");
+        if let Some(lock) = package_lock {
+            lock.verify(&lock_path)?;
+        } else {
+            require(
+                !lock_path.try_exists()?,
+                "package database is locked; snapshot requires a quiescent package transaction",
+            )?;
+        }
+        self.commands.authorize_coordinator(&self.root)?;
+        let coordinator = CoordinatorIdentity {
+            recovery_protocol: RECOVERY_PROTOCOL,
+            sha256: self.digest(&self.root.join("usr/bin/distroctl"))?,
+        };
         self.verify_root(&self.root, &plan.filesystem_uuid, &esp_uuid)?;
         self.verify_uki(&self.root, &self.working_uki()?)?;
         self.verify_loader()?;
@@ -687,17 +892,58 @@ impl<C: Commands> Manager<C> {
         let image = private.join("boot.efi");
         copy_new(&self.working_uki()?, &image)?;
         let root = private.join("root");
-        self.commands.run(
-            "btrfs",
-            &[
-                "subvolume",
-                "snapshot",
-                "-r",
-                path_str(&self.root)?,
-                path_str(&root)?,
-            ],
-        )?;
+        if let Some(lock) = package_lock {
+            lock.verify(&lock_path)?;
+            self.commands.run(
+                "btrfs",
+                &[
+                    "subvolume",
+                    "snapshot",
+                    path_str(&self.root)?,
+                    path_str(&root)?,
+                ],
+            )?;
+            let copied_lock = root.join("var/lib/pacman/db.lck");
+            no_links(&copied_lock)?;
+            require(
+                fs::symlink_metadata(&copied_lock)?.is_file()
+                    && fs::read(&copied_lock)? == fs::read(&lock_path)?,
+                "snapshot package lock differs from owned lock",
+            )?;
+            lock.verify(&lock_path)?;
+            fs::remove_file(&copied_lock)?;
+            self.sync(&root)?;
+            self.commands.run(
+                "btrfs",
+                &["property", "set", "-ts", path_str(&root)?, "ro", "true"],
+            )?;
+            require(
+                !copied_lock.try_exists()?,
+                "copied package lock survived snapshot sealing",
+            )?;
+            lock.verify(&lock_path)?;
+        } else {
+            self.commands.run(
+                "btrfs",
+                &[
+                    "subvolume",
+                    "snapshot",
+                    "-r",
+                    path_str(&self.root)?,
+                    path_str(&root)?,
+                ],
+            )?;
+        }
         let root_identity = self.show(&root)?;
+        require(root_identity.read_only, "snapshot sealing failed")?;
+        require(
+            !root.join("var/lib/pacman/db.lck").try_exists()?,
+            "snapshot contains an unowned package lock",
+        )?;
+        require(
+            self.digest(&root.join("usr/bin/distroctl"))? == coordinator.sha256,
+            "coordinator changed during snapshot",
+        )?;
         self.verify_root(&root, &plan.filesystem_uuid, &esp_uuid)?;
         self.verify_uki(&root, &image)?;
         require(
@@ -705,7 +951,7 @@ impl<C: Commands> Manager<C> {
             "UKI changed during snapshot",
         )?;
         let snapshot = Snapshot {
-            schema_version: 1,
+            schema_version: 2,
             id: id.clone(),
             created_unix_seconds: now.as_secs(),
             filesystem_uuid: plan.filesystem_uuid,
@@ -725,9 +971,18 @@ impl<C: Commands> Manager<C> {
                 }
                 .into(),
             },
+            coordinator: Some(coordinator),
         };
         snapshot.validate()?;
         self.sync(&entry)?;
+        if let Some(lock) = package_lock {
+            lock.verify(&lock_path)?;
+        } else {
+            require(
+                !lock_path.try_exists()?,
+                "package transaction started during snapshot",
+            )?;
+        }
         write_new(
             &entry.join("metadata.json"),
             &serde_json::to_vec_pretty(&snapshot)?,
@@ -751,6 +1006,16 @@ impl<C: Commands> Manager<C> {
         )?;
         self.verify_root(&root, &snapshot.filesystem_uuid, &snapshot.boot.esp_uuid)?;
         self.verify_uki(&root, &private.join("boot.efi"))?;
+        if let Some(coordinator) = &snapshot.coordinator {
+            require(
+                self.digest(&root.join("usr/bin/distroctl"))? == coordinator.sha256,
+                "saved coordinator identity changed",
+            )?;
+            require(
+                !root.join("var/lib/pacman/db.lck").try_exists()?,
+                "saved root contains a package lock",
+            )?;
+        }
         Ok(root)
     }
     pub fn mark(&self, id: &SnapshotId, health: Health, evidence: &str) -> Result<Snapshot> {
@@ -790,6 +1055,10 @@ impl<C: Commands> Manager<C> {
         )?;
         self.no_pending()?;
         let snapshot = self.inspect(id)?;
+        require(
+            snapshot.schema_version == 2,
+            "protocol-1 snapshots are inspection-only; routine rollback requires protocol 2",
+        )?;
         self.verify_snapshot(&snapshot)?;
         let (_, esp_uuid) = self.layout(false)?;
         let current = self.show(&self.root)?;
@@ -839,6 +1108,10 @@ impl<C: Commands> Manager<C> {
         self.no_pending()?;
         let snapshot = self.inspect(id)?;
         require(
+            snapshot.schema_version == 2,
+            "protocol-1 snapshots are inspection-only; routine rollback requires protocol 2",
+        )?;
+        require(
             snapshot.health == Health::KnownGood,
             "rollback target must be explicitly validated known-good",
         )?;
@@ -874,6 +1147,10 @@ impl<C: Commands> Manager<C> {
     /// Offline switch. Any partial failure leaves pending.json and retained roots.
     /// No automatic retry can rename or delete a root whose identity has changed.
     pub fn rollback(&self, id: &SnapshotId) -> Result<RollbackResult> {
+        require(
+            self.inspect(id)?.schema_version == 2,
+            "protocol-1 snapshots are inspection-only; routine rollback requires protocol 2",
+        )?;
         self.no_pending()?;
         self.layout(true)?;
         let _lock = self.lock()?;

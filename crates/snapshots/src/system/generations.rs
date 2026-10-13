@@ -258,6 +258,10 @@ impl<C: Commands> Manager<C> {
     ) -> Result<Generation> {
         self.generation_guard(guard)?;
         let snapshot = self.inspect(snapshot_id)?;
+        require(
+            snapshot.schema_version == 2,
+            "protocol-1 snapshots are inspection-only; generation staging requires protocol 2",
+        )?;
         let source = self.verify_snapshot(&snapshot)?;
         let retained = snapshot.reason == Reason::PreUpdate;
         require(

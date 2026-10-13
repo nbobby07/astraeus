@@ -20,13 +20,27 @@ pub struct UpdateSession {
 fn records(db: &Connection) -> Result<Vec<TransactionRecord>> {
     // ponytail: scan the small history; add indexed summaries/pagination when history grows large.
     let mut statement = db
-        .prepare("SELECT record FROM transactions ORDER BY id DESC")
+        .prepare("SELECT id, record FROM transactions ORDER BY id DESC")
         .map_err(|e| e.to_string())?;
     let rows = statement
-        .query_map([], |r| r.get::<_, String>(0))
+        .query_map([], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, String>(1)?)))
         .map_err(|e| e.to_string())?;
+    let database_version = version(db)?;
+    require_version(database_version)?;
     rows.map(|row| {
-        serde_json::from_str(&row.map_err(|e| e.to_string())?).map_err(|e| e.to_string())
+        let (id, json) = row.map_err(|e| e.to_string())?;
+        let record: TransactionRecord = serde_json::from_str(&json).map_err(|e| e.to_string())?;
+        if !matches!(record.schema_version, 1 | 2)
+            || !matches!(record.plan.schema_version, 1 | 2)
+            || record.schema_version > database_version as u32
+            || record.plan.schema_version > record.schema_version
+            || (record.plan.management.is_some() && record.plan.schema_version != 2)
+            || record.id != id
+            || id <= 0
+        {
+            return Err("unsupported or inconsistent transaction record schema".into());
+        }
+        Ok(record)
     })
     .collect()
 }
@@ -34,6 +48,14 @@ fn records(db: &Connection) -> Result<Vec<TransactionRecord>> {
 fn version(db: &Connection) -> Result<i64> {
     db.pragma_query_value(None, "user_version", |r| r.get(0))
         .map_err(|e| e.to_string())
+}
+
+fn require_version(version: i64) -> Result<()> {
+    if matches!(version, 1 | 2) {
+        Ok(())
+    } else {
+        Err("unsupported history schema".into())
+    }
 }
 
 pub fn read_history(path: &Path) -> Result<Vec<TransactionRecord>> {
@@ -44,9 +66,7 @@ pub fn read_history(path: &Path) -> Result<Vec<TransactionRecord>> {
     }
     let db = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_ONLY)
         .map_err(|e| e.to_string())?;
-    if version(&db)? != 1 {
-        return Err("unsupported history schema".into());
-    }
+    require_version(version(&db)?)?;
     records(&db)
 }
 
@@ -74,9 +94,8 @@ pub fn read_recovery_history(public: &Path) -> Result<Vec<TransactionRecord>> {
 }
 
 fn legacy_changed(current: &Connection, published: &Connection) -> Result<bool> {
-    if version(current)? != 1 || version(published)? != 1 {
-        return Err("unsupported history schema".into());
-    }
+    require_version(version(current)?)?;
+    require_version(version(published)?)?;
     let baseline: String = published
         .query_row("SELECT digest FROM astraeus_publication", [], |r| r.get(0))
         .map_err(|_| {
@@ -103,6 +122,8 @@ impl UpdateSession {
     /// Keep public readers on replaceable copies, never on the writer's SQLite inode.
     pub fn open_published(path: &Path, lock_path: &Path, public: &Path) -> Result<Self> {
         let parent = path.parent().ok_or("history directory missing")?;
+        no_links(parent).map_err(|e| e.to_string())?;
+        no_links(public).map_err(|e| e.to_string())?;
         let mut directory = fs::DirBuilder::new();
         directory.recursive(false);
         #[cfg(unix)]
@@ -128,14 +149,13 @@ impl UpdateSession {
         let lock = private_file(lock_path).map_err(|e| format!("update lock: {e}"))?;
         lock.try_lock()
             .map_err(|e| format!("another Astraeus update holds the lock: {e}"))?;
+        no_links(path).map_err(|e| e.to_string())?;
         if let Some(source) = public.as_ref() {
             if source.try_exists().map_err(|e| e.to_string())? {
                 let exists = path.try_exists().map_err(|e| e.to_string())?;
                 let legacy = Connection::open_with_flags(source, OpenFlags::SQLITE_OPEN_READ_WRITE)
                     .map_err(|e| e.to_string())?;
-                if version(&legacy)? != 1 {
-                    return Err("unsupported history schema".into());
-                }
+                require_version(version(&legacy)?)?;
                 let changed = if exists {
                     let current =
                         Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE)
@@ -153,16 +173,21 @@ impl UpdateSession {
         }
         private_file(path).map_err(|e| e.to_string())?;
         let db = Connection::open(path).map_err(|e| e.to_string())?;
-        db.execute_batch("PRAGMA journal_mode=DELETE; PRAGMA synchronous=FULL;")
-            .map_err(|e| e.to_string())?;
         match version(&db)? {
             0 => db.execute_batch("BEGIN IMMEDIATE;
                 CREATE TABLE transactions (id INTEGER PRIMARY KEY AUTOINCREMENT, record TEXT NOT NULL);
-                PRAGMA user_version=1;
+                PRAGMA user_version=2;
                 COMMIT;").map_err(|e| e.to_string())?,
-            1 => {},
+            1 => {
+                records(&db)?;
+                db.execute_batch("BEGIN IMMEDIATE; PRAGMA user_version=2; COMMIT;")
+                    .map_err(|e| e.to_string())?;
+            },
+            2 => { records(&db)?; },
             _ => return Err("unsupported history schema".into()),
         }
+        db.execute_batch("PRAGMA journal_mode=DELETE; PRAGMA synchronous=FULL;")
+            .map_err(|e| e.to_string())?;
         let session = Self {
             db,
             _lock: lock,
@@ -277,6 +302,17 @@ impl UpdateSession {
 }
 
 fn private_file(path: &Path) -> std::io::Result<File> {
+    no_links(path)?;
+    match fs::symlink_metadata(path) {
+        Ok(metadata) if !metadata.is_file() => {
+            return Err(std::io::Error::other(
+                "history or lock path is not a regular file",
+            ))
+        }
+        Ok(_) => {}
+        Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
+        Err(e) => return Err(e),
+    }
     let mut options = OpenOptions::new();
     options.read(true).write(true).create(true).truncate(false);
     #[cfg(unix)]
@@ -284,19 +320,79 @@ fn private_file(path: &Path) -> std::io::Result<File> {
         use std::os::unix::fs::OpenOptionsExt;
         options.mode(0o600);
     }
+    #[cfg(target_os = "linux")]
+    {
+        use std::os::unix::fs::OpenOptionsExt;
+        options.custom_flags(libc::O_NOFOLLOW | libc::O_CLOEXEC | libc::O_NONBLOCK);
+    }
     let file = options.open(path)?;
+    if !file.metadata()?.is_file() {
+        return Err(std::io::Error::other(
+            "history or lock path is not a regular file",
+        ));
+    }
     #[cfg(unix)]
     {
-        use std::os::unix::fs::PermissionsExt;
+        use std::os::unix::fs::{MetadataExt, PermissionsExt};
+        if file.metadata()?.nlink() != 1 {
+            return Err(std::io::Error::other(
+                "history or lock file has multiple links",
+            ));
+        }
         file.set_permissions(fs::Permissions::from_mode(0o600))?;
     }
     Ok(file)
 }
 
+fn no_links(path: &Path) -> std::io::Result<()> {
+    if !path.is_absolute() {
+        return Err(std::io::Error::other("history path must be absolute"));
+    }
+    for ancestor in path.ancestors() {
+        match fs::symlink_metadata(ancestor) {
+            Ok(metadata) if metadata.file_type().is_symlink() => {
+                return Err(std::io::Error::other("symlink in history path"))
+            }
+            Ok(metadata) => {
+                #[cfg(target_os = "linux")]
+                {
+                    use std::os::unix::fs::MetadataExt;
+                    let owner = unsafe { libc::geteuid() };
+                    if (metadata.uid() != 0 && metadata.uid() != owner)
+                        || (metadata.is_dir()
+                            && metadata.mode() & 0o022 != 0
+                            && !(metadata.uid() == 0 && metadata.mode() & 0o1000 != 0))
+                    {
+                        return Err(std::io::Error::other(
+                            "untrusted history path ownership or permissions",
+                        ));
+                    }
+                }
+                #[cfg(not(target_os = "linux"))]
+                let _ = metadata;
+            }
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
+            Err(e) => return Err(e),
+        }
+    }
+    Ok(())
+}
+
 fn records_digest(db: &Connection) -> Result<String> {
+    records(db)?;
+    // Hash the stored JSON, so added serde defaults cannot invalidate a legacy publication.
+    let mut query = db
+        .prepare("SELECT record FROM transactions ORDER BY id DESC")
+        .map_err(|e| e.to_string())?;
+    let rows = query
+        .query_map([], |r| r.get::<_, String>(0))
+        .map_err(|e| e.to_string())?;
+    let json = rows
+        .collect::<std::result::Result<Vec<_>, _>>()
+        .map_err(|e| e.to_string())?;
     Ok(format!(
         "{:x}",
-        Sha256::digest(serde_json::to_vec(&records(db)?).map_err(|e| e.to_string())?)
+        Sha256::digest(format!("[{}]", json.join(",")).as_bytes())
     ))
 }
 
@@ -306,6 +402,8 @@ fn snapshot(
     temporary: PathBuf,
     publication: bool,
 ) -> Result<()> {
+    no_links(destination).map_err(|e| e.to_string())?;
+    no_links(&temporary).map_err(|e| e.to_string())?;
     match fs::remove_file(&temporary) {
         Ok(()) => {}
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
@@ -329,8 +427,11 @@ fn snapshot(
     #[cfg(unix)]
     {
         use std::os::unix::fs::PermissionsExt;
-        fs::set_permissions(&temporary, fs::Permissions::from_mode(0o644))
-            .map_err(|e| e.to_string())?;
+        fs::set_permissions(
+            &temporary,
+            fs::Permissions::from_mode(if publication { 0o644 } else { 0o600 }),
+        )
+        .map_err(|e| e.to_string())?;
     }
     OpenOptions::new()
         .write(true)
@@ -343,4 +444,127 @@ fn snapshot(
         .and_then(|f| f.sync_all())
         .map_err(|e| e.to_string())?;
     Ok(())
+}
+
+#[cfg(test)]
+mod migration_tests {
+    use super::*;
+    use crate::{CurrentSystemState, ExecutionPlan, PackagePlan};
+    use std::sync::atomic::{AtomicUsize, Ordering};
+
+    static NEXT: AtomicUsize = AtomicUsize::new(0);
+    struct Directory(PathBuf);
+    impl Directory {
+        fn new() -> Self {
+            let path = std::env::temp_dir().join(format!(
+                "astraeus-history-v2-{}-{}",
+                std::process::id(),
+                NEXT.fetch_add(1, Ordering::Relaxed)
+            ));
+            fs::create_dir(&path).unwrap();
+            Self(path)
+        }
+    }
+    impl Drop for Directory {
+        fn drop(&mut self) {
+            fs::remove_dir_all(&self.0).unwrap();
+        }
+    }
+    fn record() -> TransactionRecord {
+        let mut record = TransactionRecord::new(ExecutionPlan::new(
+            CurrentSystemState::new(Default::default()),
+            PackagePlan {
+                changes: vec![],
+                targets: vec![],
+                download_bytes: 0,
+                installed_delta_bytes: Some(0),
+            },
+        ));
+        record.id = 1;
+        record.schema_version = 1;
+        record
+    }
+    fn legacy(path: &Path) -> String {
+        let db = Connection::open(path).unwrap();
+        db.execute_batch("CREATE TABLE transactions (id INTEGER PRIMARY KEY AUTOINCREMENT, record TEXT NOT NULL); PRAGMA user_version=1;").unwrap();
+        let json = serde_json::to_string(&record())
+            .unwrap()
+            .replace(",\"management\":null", "")
+            .replace(",\"operation_id\":null", "");
+        db.execute("INSERT INTO transactions VALUES (1,?1)", [&json])
+            .unwrap();
+        json
+    }
+
+    #[test]
+    fn legacy_migration_is_read_only_until_writer_lock_and_preserves_raw_publication_digest() {
+        let temp = Directory::new();
+        let public = temp.0.join("history.sqlite");
+        let private = temp.0.join("private/history.sqlite");
+        let raw = legacy(&public);
+        let before = fs::read(&public).unwrap();
+        let expected = read_history(&public).unwrap();
+        assert_eq!(expected.len(), 1);
+        assert_eq!(expected[0].schema_version, 1);
+        assert_eq!(fs::read(&public).unwrap(), before);
+        let digest = format!("{:x}", Sha256::digest(format!("[{raw}]").as_bytes()));
+        let db = Connection::open(&public).unwrap();
+        db.execute_batch("CREATE TABLE astraeus_publication (digest TEXT NOT NULL)")
+            .unwrap();
+        db.execute("INSERT INTO astraeus_publication VALUES (?1)", [&digest])
+            .unwrap();
+        drop(db);
+        fs::create_dir(private.parent().unwrap()).unwrap();
+        fs::copy(&public, &private).unwrap();
+        let session =
+            UpdateSession::open_published(&private, &temp.0.join("update.lock"), &public).unwrap();
+        assert_eq!(version(&session.db).unwrap(), 2);
+        assert_eq!(session.records().unwrap(), expected);
+        assert_eq!(records_digest(&session.db).unwrap(), digest);
+        let published = Connection::open(&public).unwrap();
+        assert_eq!(version(&published).unwrap(), 2);
+        assert_eq!(records_digest(&published).unwrap(), digest);
+        drop(published);
+        drop(session);
+    }
+
+    #[test]
+    fn unknown_record_and_database_versions_fail_without_rewriting_either_database() {
+        for unknown_record in [true, false] {
+            let temp = Directory::new();
+            let path = temp.0.join("history.sqlite");
+            legacy(&path);
+            let db = Connection::open(&path).unwrap();
+            if unknown_record {
+                let mut invalid = record();
+                invalid.schema_version = 99;
+                db.execute(
+                    "UPDATE transactions SET record=?1",
+                    [serde_json::to_string(&invalid).unwrap()],
+                )
+                .unwrap();
+            } else {
+                db.pragma_update(None, "user_version", 99).unwrap();
+            }
+            drop(db);
+            let before = fs::read(&path).unwrap();
+            assert!(read_history(&path).is_err());
+            assert!(UpdateSession::open(&path, &temp.0.join("lock")).is_err());
+            assert_eq!(fs::read(&path).unwrap(), before);
+        }
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn migration_rejects_linked_private_history_and_does_not_touch_its_target() {
+        use std::os::unix::fs::symlink;
+        let temp = Directory::new();
+        let original = temp.0.join("original.sqlite");
+        legacy(&original);
+        let before = fs::read(&original).unwrap();
+        let linked = temp.0.join("history.sqlite");
+        symlink(&original, &linked).unwrap();
+        assert!(UpdateSession::open(&linked, &temp.0.join("lock")).is_err());
+        assert_eq!(fs::read(&original).unwrap(), before);
+    }
 }

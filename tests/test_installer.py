@@ -79,20 +79,34 @@ class InstallerTests(unittest.TestCase):
             calls = []
             def run(*args, **kwargs):
                 calls.append(args)
+                if args[:3] == ("arch-chroot", out / "installed-root", "/usr/bin/pacman-conf"):
+                    return subprocess.CompletedProcess(args, 0, stdout="[options]\nArchitecture = x86_64\n")
                 if args[0] == "pacstrap":
                     root = out / "installed-root"
                     bootstrap.write(root / "etc/shadow", "root:!:20100:0:99999:7:::\n")
                     bootstrap.write(root / "etc/resolv.conf", "temporary builder DNS\n")
                     bootstrap.write(root / "boot/initramfs-linux.img", "temporary build initramfs\n")
                     bootstrap.write(root / "var/cache/pacman/pkg/example.pkg.tar.zst", "cache\n")
-                    bootstrap.write(root / "var/lib/pacman/local/example/desc", "%INSTALLDATE%\n123456\n")
-            installer.build_payload(out, profile, values, run, bootstrap.write, bootstrap.render, ["virtio", "software"], ["core"])
-            pacstrap = next(call for call in calls if call[0] == "pacstrap")
-            self.assertIn("steam", pacstrap)
-            self.assertIn("lib32-vulkan-swrast", pacstrap)
-            self.assertNotIn("gamescope", pacstrap)
+                    for name in [*args[7:], "example"]:
+                        bootstrap.write(root / "var/lib/pacman/local" / name / "desc",
+                                        f"%NAME%\n{name}\n\n%VERSION%\n1-1\n\n%REASON%\n0\n\n%INSTALLDATE%\n123456\n")
+            def resolution(root, packages):
+                return {"distro": "sha256:" + "a" * 64}, {name: {"version": package["version"], "repository": "distro", "sha256": "b" * 64} for name, package in packages.items()}
+            with patch.object(installer, "locked_packages", side_effect=resolution):
+                installer.build_payload(out, profile, values, run, bootstrap.write, bootstrap.render, ["virtio", "software"], ["core"])
+            pacstrap = [call for call in calls if call[0] == "pacstrap"]
+            self.assertEqual(len(pacstrap), 2)
+            self.assertNotIn("steam", pacstrap[0])
+            self.assertIn("steam", pacstrap[1])
+            self.assertIn("lib32-vulkan-swrast", pacstrap[0])
+            self.assertNotIn("lib32-vulkan-swrast", pacstrap[1])
+            self.assertFalse(any("gamescope" in call for call in pacstrap))
             self.assertEqual(json.loads((out / "installed-root/usr/share/distro/install-inputs/gaming.json").read_text())["features"], ["core"])
             root = out / "installed-root"
+            state = json.loads((root / "var/lib/astraeus/management/state.json").read_text())
+            self.assertIn("lib32-vulkan-swrast", state["protected"])
+            self.assertEqual(state["packages"]["steam"]["owners"], ["gaming:core"])
+            self.assertIn(("arch-chroot", root, "/usr/bin/distroctl", "system", "export", "--json"), calls)
             self.assertNotIn("live:", (root / "etc/shadow").read_text())
             self.assertIn("20727", (root / "etc/shadow").read_text())
             self.assertFalse((root / "etc/systemd/system/systemd-firstboot.service").exists())

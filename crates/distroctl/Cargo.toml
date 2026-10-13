@@ -13,3 +13,9 @@ distro-snapshots = { path = "../snapshots" }
 distro-transactions = { path = "../transactions" }
 serde.workspace = true
 serde_json.workspace = true
+
+[features]
+native-alpm = ["distro-transactions/native-alpm"]
+
+[target.'cfg(target_os = "linux")'.dependencies]
+libc = "0.2"
