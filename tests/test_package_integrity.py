@@ -4,6 +4,7 @@ import hashlib
 import importlib.util
 import os
 from pathlib import Path
+import sys
 import tempfile
 import time
 import unittest
@@ -15,6 +16,8 @@ integrity = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(integrity)
 
 
+# The native inspector runs only on Linux and relies on its file identity and no-follow semantics.
+@unittest.skipUnless(sys.platform == "linux", "installed package integrity requires Linux filesystem semantics")
 class PackageIntegrityTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -139,14 +142,6 @@ class PackageIntegrityTests(unittest.TestCase):
         self.payload.symlink_to("elsewhere")
         self.assertFalse(self.inspect()["removable"])
 
-    def test_unsafe_mtree_paths_and_expired_work_are_retained(self):
-        for path in ("../outside", "/etc/passwd", "usr/../outside", "usr//outside"):
-            with self.subTest(path=path), self.assertRaises(ValueError):
-                integrity.mtree_entries(gzip.compress(f"#mtree\n{path} type=file\n".encode()))
-        result = integrity.inspect_package(self.root, "fixture", "1-1", deadline=time.monotonic() - 1)
-        self.assertFalse(result["removable"])
-        self.assertIn("time limit", result["detail"])
-
     def test_octally_escaped_file_names_are_verified(self):
         path = self.root / "usr/share/a file"
         self.payload.rename(path)
@@ -154,6 +149,25 @@ class PackageIntegrityTests(unittest.TestCase):
         digest = hashlib.sha256(b"original").hexdigest()
         self.mtree(f"./usr/share/a\\040file type=file sha256digest={digest}\n")
         self.assertTrue(self.inspect()["removable"])
+
+
+class PackageIntegrityParsingTests(unittest.TestCase):
+    def test_unsafe_mtree_paths_and_expired_work_are_retained(self):
+        for path in ("../outside", "/etc/passwd", "usr/../outside", "usr//outside"):
+            with self.subTest(path=path), self.assertRaises(ValueError):
+                integrity.mtree_entries(gzip.compress(f"#mtree\n{path} type=file\n".encode()))
+        # The deadline must refuse work before any platform-specific filesystem access.
+        with patch.object(integrity, "read_metadata", side_effect=AssertionError("filesystem was accessed")):
+            result = integrity.inspect_package(Path("/"), "fixture", "1-1", deadline=time.monotonic() - 1)
+        self.assertFalse(result["removable"])
+        self.assertIn("time limit", result["detail"])
+
+    def test_octally_escaped_paths_and_duplicate_entries_are_parsed_without_a_filesystem(self):
+        entry = "./usr/share/a\\040file type=file sha256digest=" + "a" * 64 + "\n"
+        parsed = integrity.mtree_entries(gzip.compress(("#mtree\n" + entry).encode()))
+        self.assertEqual(parsed, {"usr/share/a file": {"type": "file", "sha256digest": "a" * 64}})
+        with self.assertRaisesRegex(ValueError, "duplicate"):
+            integrity.mtree_entries(gzip.compress(("#mtree\n" + entry + entry).encode()))
 
 
 if __name__ == "__main__":
