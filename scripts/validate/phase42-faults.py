@@ -23,7 +23,8 @@ import uuid
 
 SHARE = Path('/mnt/astraeus-validation')
 STATE = Path('/var/lib/astraeus/management/state.json')
-SCENARIOS = ('metadata', 'interruption', 'abandoned')
+SCENARIOS = ('metadata', 'interruption', 'abandoned', 'failed-hook', 'signing-failure',
+             'root-space', 'cache-space', 'esp-space')
 SECURE_LIVE_MARKER = 'ASTRAEUS_SECURE_LIVE_OK: SecureBoot=1 SetupMode=0 rootfs=verified-in-RAM'
 LIVE_DESKTOP_MARKER = 'DISTRO_BOOT_OK: uefi plasma wayland pipewire networkmanager distroctl'
 
@@ -145,7 +146,8 @@ def barrier_paths(config):
             Path('/var/log/astraeus/phase42-barrier-' + token + '.json'))
 
 
-def guest_arm_barrier():
+def guest_arm_hook(kind='interruption'):
+    require(kind in ['interruption', 'failed-hook', 'signing-failure'], 'invalid hook fault')
     config = guest_guard()
     runtime, hook, marker = barrier_paths(config)
     require(not runtime.exists() and not hook.exists() and not marker.exists(), 'fault fixture already exists')
@@ -153,7 +155,7 @@ def guest_arm_barrier():
     hook.parent.mkdir(mode=0o755, exist_ok=True)
     marker.parent.mkdir(mode=0o755, exist_ok=True)
     script = runtime / 'barrier.py'
-    script.write_text('''import json,os,pathlib,time
+    source = '''import json,os,pathlib,stat,sys,time
 pid=os.getppid()
 chain=[]
 while pid>1:
@@ -165,25 +167,168 @@ while pid>1:
         break
     pid=int(next(line.split()[1] for line in path.joinpath('status').read_text().splitlines() if line.startswith('PPid:')))
 else: raise RuntimeError('production worker ancestor missing')
-path=pathlib.Path(''' + repr(str(marker)) + ''')
+'''
+    source += 'record["fault"]=' + repr(kind) + '\n'
+    if kind == 'signing-failure':
+        # Only this disposable guest's private key path changes; its bytes never enter evidence.
+        source += '''policy=json.loads(pathlib.Path('/etc/astraeus/secure-boot/policy.json').read_text())
+key=pathlib.Path('/var/lib/astraeus/keys/db.key')
+assert policy['private_key']==str(key)
+info=key.lstat()
+assert stat.S_ISREG(info.st_mode) and info.st_uid==0 and info.st_nlink==1 and info.st_mode&0o077==0
+backup=key.with_name(''' + repr('db.key.phase42-' + config['run_id']) + ''')
+assert not backup.exists()
+key.rename(backup)
+record['expected_private_key_missing']=not key.exists()
+'''
+    source += 'path=pathlib.Path(' + repr(str(marker)) + ''')
 with path.open('x') as output:
     json.dump(record,output);output.flush();os.fsync(output.fileno())
 os.sync()
-time.sleep(3600)
-''')
+'''
+    source += 'time.sleep(3600)\n' if kind == 'interruption' else 'sys.exit(1)\n' if kind == 'failed-hook' else ''
+    script.write_text(source)
     script.chmod(0o600)
+    when = 'PreTransaction' if kind == 'failed-hook' else 'PostTransaction'
     hook.write_text('[Trigger]\nOperation = Install\nType = Package\nTarget = ' + config['package']
-                    + '\n[Action]\nDescription = Disposable Phase 4.2 interruption barrier\nWhen = PostTransaction\n'
-                    + 'Exec = /usr/bin/python3 ' + str(script) + '\n')
+                    + '\n[Action]\nDescription = Disposable Phase 4.2 fault\nWhen = ' + when + '\n'
+                    + 'Exec = /usr/bin/python3 ' + str(script) + '\n'
+                    + ('AbortOnFail\n' if kind == 'failed-hook' else ''))
     hook.chmod(0o644)
     os.sync()
-    return {'hook': str(hook), 'hook_sha256': digest(hook), 'marker': str(marker), 'when': 'PostTransaction'}
+    return {'hook': str(hook), 'hook_sha256': digest(hook), 'marker': str(marker), 'when': when, 'fault': kind}
 
 
 def guest_barrier():
     config = guest_guard()
     marker = barrier_paths(config)[2]
     return json.loads(marker.read_text()) if marker.exists() else None
+
+
+def available(path):
+    value = os.statvfs(path)
+    return value.f_bavail * value.f_frsize
+
+
+def space_paths(config, kind):
+    token = config['run_id']
+    paths = {'root-space': Path('/var/lib/astraeus-validation/phase42-space-' + token),
+             'esp-space': Path('/efi/EFI/Astraeus/phase42-space-' + token + '.reserve'),
+             'cache-space': Path('/run/astraeus-validation-space/filler')}
+    require(kind in paths, 'unknown capacity fault')
+    return Path('/run/astraeus-phase42-space-' + token + '.json'), paths[kind]
+
+
+def capacity_target(kind, before, required):
+    mib = 1024 * 1024
+    require(type(before) is int and type(required) is int and before >= required + 64 * mib,
+            'baseline already lacks capacity; cannot attribute failure to this fault')
+    target = (384 if kind == 'esp-space' else 128) * mib
+    require(target < required, 'capacity fixture would not violate the observed package policy')
+    allocation = ((before - target) // mib) * mib
+    require(0 < allocation <= (1024 if kind == 'esp-space' else 64 * 1024) * mib, 'capacity fixture exceeds its bound')
+    return allocation
+
+
+def reserve_btrfs(descriptor, allocation):
+    # Unlike posix_fallocate, this direct wrapper does not emulate reservations
+    # with zero writes on a filesystem that lacks native fallocate support.
+    library = ctypes.CDLL(None, use_errno=True)
+    library.fallocate.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_longlong, ctypes.c_longlong]
+    library.fallocate.restype = ctypes.c_int
+    require(library.fallocate(descriptor, 0, 0, allocation) == 0,
+            'Btrfs reservation failed: errno ' + str(ctypes.get_errno()))
+
+
+def guest_space_arm():
+    config = guest_guard()
+    intent = json.loads((SHARE / 'space-target.json').read_text())
+    kind = intent['kind']
+    record_path, filler = space_paths(config, kind)
+    require(not record_path.exists() and not filler.exists(), 'capacity fixture already exists')
+    target = {'root-space': '/', 'esp-space': '/efi', 'cache-space': '/var/cache/pacman/pkg'}[kind]
+    expected_uuid = intent['esp_uuid'] if kind == 'esp-space' else intent['root_uuid']
+    actual_uuid = call('findmnt', '-rn', '-T', target, '-o', 'UUID')['output'].strip()
+    require(actual_uuid == expected_uuid, 'capacity fault is not on the observed validation filesystem')
+    before = available(target)
+    required = intent['required_bytes']
+    allocation = capacity_target(kind, before, required)
+    if kind == 'cache-space':
+        require(not Path('/run/astraeus-validation-space').exists()
+                and not Path('/var/cache/pacman/pkg.astraeus-validation-saved').exists(),
+                'cache capacity staging already exists')
+    record = {'schema_version': 1, 'kind': kind, 'run_id': config['run_id'], 'target': target,
+              'path': str(filler), 'required_bytes': required, 'available_before': before,
+              'filesystem_uuid': actual_uuid}
+    with record_path.open('x') as stream:
+        json.dump(record, stream)
+        stream.flush()
+        os.fsync(stream.fileno())
+    record_path.chmod(0o600)
+    if kind == 'cache-space':
+        call('python3', SHARE / 'phase2-guest.py', 'fault', 'space')
+        record.update(method='bounded-16MiB-tmpfs-cache', allocation_limit_bytes=16 * 1024 * 1024)
+    else:
+        filler.parent.mkdir(mode=0o700 if kind == 'root-space' else 0o755, parents=True, exist_ok=True)
+        with filler.open('xb') as output:
+            if kind == 'root-space':
+                require(call('findmnt', '-rn', '-T', filler, '-o', 'FSTYPE')['output'].strip() == 'btrfs', 'root capacity fixture requires Btrfs')
+                reserve_btrfs(output.fileno(), allocation)
+                record['method'] = 'Btrfs-preallocation-without-data-writes'
+            else:
+                remaining = allocation
+                block = bytes(1024 * 1024)
+                while remaining:
+                    count = min(remaining, len(block))
+                    output.write(block[:count])
+                    remaining -= count
+                record['method'] = 'bounded-ESP-reservation'
+            output.flush()
+            os.fsync(output.fileno())
+        filler.chmod(0o600)
+        record['allocation_limit_bytes'] = allocation
+    os.sync()
+    record['available_after'] = available(target)
+    record_path.write_text(json.dumps(record))
+    require(record['available_after'] < required, 'fault did not create the required real capacity shortfall')
+    return record
+
+
+def guest_space_reset():
+    config = guest_guard()
+    intent = json.loads((SHARE / 'space-target.json').read_text())
+    record_path, filler = space_paths(config, intent['kind'])
+    if not record_path.exists():
+        return {'cleanup': 'fixture-never-created'}
+    record = json.loads(record_path.read_text())
+    require(record['run_id'] == config['run_id'] and record['kind'] == intent['kind']
+            and record['path'] == str(filler), 'capacity cleanup identity mismatch')
+    if intent['kind'] == 'cache-space':
+        cache = Path('/var/cache/pacman/pkg')
+        if cache.is_symlink():
+            call('python3', SHARE / 'phase2-guest.py', 'fault', 'space-reset')
+        else:
+            require(not Path('/var/cache/pacman/pkg.astraeus-validation-saved').exists(), 'partially staged cache fixture requires inspection')
+            staging = Path('/run/astraeus-validation-space')
+            if staging.exists():
+                mounted = call('findmnt', '-rn', '-M', staging, '-o', 'FSTYPE', check=False)
+                if mounted['code'] == 0:
+                    require(mounted['output'].strip() == 'tmpfs', 'unexpected cache fixture filesystem')
+                    call('umount', staging)
+                staging.rmdir()
+    elif filler.exists():
+        observed = filler.lstat()
+        require(stat.S_ISREG(observed.st_mode) and observed.st_uid == 0 and observed.st_nlink == 1, 'unsafe capacity fixture cleanup')
+        filler.unlink()
+    os.sync()
+    after = available(record['target'])
+    deadline = time.monotonic() + 30
+    while after < record['required_bytes'] and time.monotonic() < deadline:
+        time.sleep(0.25)
+        os.sync()
+        after = available(record['target'])
+    require(after >= record['required_bytes'], 'capacity did not recover after fixture removal')
+    return {'cleanup': 'only-owned-capacity-fixture-removed', 'available_after': after, 'kind': intent['kind']}
 
 
 def guest_competing_writer(operation_id):
@@ -347,15 +492,18 @@ def guest_metadata_negative():
 
 
 def guest(action, value):
-    functions = {'home': guest_home, 'observe': guest_observe, 'arm': guest_arm_barrier,
+    functions = {'home': guest_home, 'observe': guest_observe, 'arm': guest_arm_hook,
                  'barrier': guest_barrier, 'abandoned': guest_inject_abandoned,
-                 'metadata-negative': guest_metadata_negative}
+                 'metadata-negative': guest_metadata_negative, 'space-arm': guest_space_arm,
+                 'space-reset': guest_space_reset}
     if action in functions:
         result = functions[action]()
     elif action == 'compete':
         result = guest_competing_writer(value)
     elif action == 'recover':
         result = guest_recover(value)
+    elif action == 'arm-failure':
+        result = guest_arm_hook(value)
     else:
         raise ValueError('unsupported guest fault action')
     print(json.dumps(result, sort_keys=True))
@@ -535,6 +683,7 @@ def offline_restore(vm, args, recovery, before, record, metadata_after=None):
     require(finalized['confirmation']['boot_id'] != record['update_boot_id'], 'rollback was finalized in the original boot')
     actual = guest_command(vm, 'observe', label='restored-state')
     state_equal(before, actual)
+    vm.command('astraeus-secure-boot check-config', label='restored-signing-identity')
     _, snapshots = phase42.json_command(vm, ['snapshot', 'list', '--json'], label='restored-snapshots')
     require(record['snapshot'] in {item['id'] for item in snapshots}, 'recovery snapshot was lost')
     p2.healthy(p2.observe(vm, 'restored-health'), args.encryption)
@@ -555,6 +704,127 @@ def submitted(vm, config, plan, label):
     require(operation.get('state') == 'queued' and re.fullmatch('[0-9a-f]{32}', operation.get('operation_id', '')),
             'submission was not acknowledged')
     return operation['operation_id']
+
+
+def reject_replay(vm, identifier, label):
+    before = guest_command(vm, 'observe', label=label + '-before')
+    result = vm.command(shlex.join(['distroctl', 'system', 'worker', identifier]), check=False, label=label)
+    require(result['code'] != 0 and 'replay refused' in result['output'], 'started request was replayed')
+    require(guest_command(vm, 'observe', label=label + '-after') == before, 'replay refusal changed the system')
+
+
+def failed_mutation(record, expected_phase, diagnostic):
+    require(record.get('state') == 'rollback_required' and record.get('failure', {}).get('at') == expected_phase,
+            'failed mutation did not retain the correct recovery phase')
+    transaction_boundary(record)
+    require(diagnostic in record['failure']['message'] and not record.get('post_snapshot')
+            and not record.get('boot_regenerated') and not record.get('confirmation'),
+            'failed mutation was published as a complete candidate')
+
+
+def failure_scenario(vm, args, recovery, gate, before):
+    phase42, _ = host_modules()
+    kind = args.active_scenario
+    require(kind in ['failed-hook', 'signing-failure'] and args.package not in before['packages'], 'invalid failed-mutation fixture')
+    gate('arm-' + kind, lambda: guest_command(vm, 'arm-failure', kind))
+    desired = copy.deepcopy(before['configuration'])
+    desired['packages'] = sorted([*desired['packages'], args.package])
+    plan = gate(kind + '-plan', lambda: reviewed(vm, desired, args.user, kind + '-plan'))
+    require(any(change.get('kind') == 'install' and change.get('name') == args.package for change in plan['plan']['packages']['changes']),
+            'fault hook will not be triggered by the reviewed transaction')
+    def apply():
+        identifier = submitted(vm, desired, plan, kind + '-submit')
+        operation = phase42.wait_operation(vm, identifier, args.timeout)
+        wait_worker_exit(vm, identifier, args.timeout)
+        record = operation.get('transaction')
+        require(isinstance(record, dict), 'failed worker did not retain a durable transaction')
+        failed_mutation(record, 'applying' if kind == 'failed-hook' else 'validating',
+                        'package application' if kind == 'failed-hook' else 'boot artifact regeneration')
+        injected = guest_command(vm, 'barrier', label=kind + '-actual-fault')
+        require(injected and injected['operation_id'] == identifier and injected.get('fault') == kind, 'failure did not reach the injected condition')
+        observed = guest_command(vm, 'observe', label=kind + '-resulting-state')
+        if kind == 'failed-hook':
+            require('hook' in record['failure']['message'].lower(), 'native package error is not the failed hook')
+            state_equal(before, observed)
+        else:
+            require(injected.get('expected_private_key_missing') is True and args.package in observed['packages']
+                    and observed['management'] == record['plan']['management']['after'], 'signing fault did not occur after real package/management application')
+            probe = vm.command('astraeus-secure-boot check-config', check=False, label='actual-disabled-signing-provider')
+            require(probe['code'] != 0 and 'db.key' in probe['output'], 'configured signer did not reject its missing private key')
+        vm.command(shlex.join(['journalctl', '--no-pager', '--unit=astraeus-apply@' + identifier + '.service']), label=kind + '-worker-journal')
+        return record
+    record = gate(kind + '-durable-recovery', apply)
+    gate(kind + '-no-replay', lambda: reject_replay(vm, record['operation_id'], kind + '-replay-refusal'))
+    gate(kind + '-offline-rollback', lambda: offline_restore(vm, args, recovery, before, record))
+
+
+def capacity_budget(plan, kind):
+    if kind == 'esp-space':
+        require(plan['plan']['boot']['regenerate_uki'] is True, 'ESP capacity case requires boot regeneration')
+        return 512 * 1024 * 1024
+    packages = plan['plan']['packages']
+    return packages['download_bytes'] + sum(target['installed_bytes'] for target in packages['targets']) + 256 * 1024 * 1024
+
+
+def capacity_failure(record, required):
+    require(record.get('state') == 'failed' and record.get('failure', {}).get('at') == 'preparing', 'capacity refusal occurred after the safe preflight boundary')
+    expected = f'package prerequisites: insufficient disk space: {required} bytes required'
+    require(expected in record['failure']['message'] and not record.get('snapshot') and not record.get('post_snapshot')
+            and not record.get('boot_regenerated') and not record.get('confirmation'), 'capacity refusal lacks its exact cause or mutated recovery/boot state')
+
+
+def allocated_bytes(path):
+    return path.stat().st_blocks * 512
+
+
+def space_scenario(vm, args, recovery, gate, before):
+    phase42, p2 = host_modules()
+    kind = args.active_scenario
+    require(args.package not in before['packages'], 'capacity package must start absent')
+    desired = copy.deepcopy(before['configuration'])
+    desired['packages'] = sorted([*desired['packages'], args.package])
+    plan = gate(kind + '-plan', lambda: reviewed(vm, desired, args.user, kind + '-plan'))
+    require(any(change.get('kind') == 'install' and change.get('name') == args.package for change in plan['plan']['packages']['changes']),
+            'capacity fixture needs the nominated package installation')
+    required = capacity_budget(plan, kind)
+    p2.save(vm.share / 'space-target.json', {'kind': kind, 'required_bytes': required,
+                                          'root_uuid': before['root_uuid'], 'esp_uuid': before['esp_uuid']})
+    overlay = vm.out / 'disk.qcow2'
+    allocated_before = allocated_bytes(overlay)
+    growth_limit = (1024 if kind == 'esp-space' else 512) * 1024 * 1024
+    require(shutil.disk_usage(vm.out).free >= growth_limit + 4 * 1024 ** 3, 'validator lacks safe physical headroom for this bounded capacity fixture')
+    record = None
+    try:
+        injected = gate(kind + '-actual-shortfall', lambda: guest_command(vm, 'space-arm'))
+        host_growth = max(0, allocated_bytes(overlay) - allocated_before)
+        p2.save(vm.out / 'capacity-host-budget.json', {'allocated_before': allocated_before, 'allocation_growth': host_growth,
+                                                     'growth_limit': growth_limit, 'free_after': shutil.disk_usage(vm.out).free})
+        require(host_growth <= growth_limit and shutil.disk_usage(vm.out).free >= 4 * 1024 ** 3,
+                'capacity fixture exceeded the validator physical-allocation budget')
+        require(injected['available_after'] < required and injected['required_bytes'] == required, 'capacity evidence disagrees with actual native policy')
+        def refused():
+            identifier = submitted(vm, desired, plan, kind + '-submit')
+            operation = phase42.wait_operation(vm, identifier, args.timeout)
+            wait_worker_exit(vm, identifier, args.timeout)
+            record = operation.get('transaction')
+            require(isinstance(record, dict), 'capacity failure lacks a durable transaction')
+            capacity_failure(record, required)
+            state_equal(before, guest_command(vm, 'observe', label=kind + '-unchanged-state'))
+            return record
+        record = gate(kind + '-preflight-refusal', refused)
+        gate(kind + '-no-replay', lambda: reject_replay(vm, record['operation_id'], kind + '-replay-refusal'))
+    finally:
+        gate(kind + '-remove-only-owned-fixture', lambda: guest_command(vm, 'space-reset'))
+    def reboot_refusal():
+        require(record is not None, 'capacity refusal did not finish')
+        _, history = phase42.json_command(vm, ['history', '--json'], label=kind + '-history-before-reboot')
+        installed_boot(vm, args, reboot=True)
+        vm.command('systemctl start astraeus-confirm-boot.service', label=kind + '-boot-confirmation')
+        _, after = phase42.json_command(vm, ['history', '--json'], label=kind + '-history-after-reboot')
+        require(after == history, 'boot replayed or changed the rejected capacity transaction')
+        state_equal(before, guest_command(vm, 'observe', label=kind + '-after-reboot-state'))
+        p2.healthy(p2.observe(vm, kind + '-recovered-health'), args.encryption)
+    gate(kind + '-reboot-without-replay', reboot_refusal)
 
 
 def metadata_scenario(vm, args, recovery, gate, before):
@@ -720,6 +990,7 @@ def run(args):
                                'phase2.py': digest(Path(p2.__file__)), 'qmp.py': digest(p2.HERE / 'qmp.py')}})
     try:
         for scenario in SCENARIOS if args.scenario == 'all' else [args.scenario]:
+            args.active_scenario = scenario
             out = args.output / scenario
             out.mkdir(mode=0o700)
             p2.clone(args.base, out)
@@ -754,7 +1025,9 @@ def run(args):
                 before = gate('candidate-identity-and-state', lambda: guest_command(vm, 'observe'))
                 gate('baseline-health', lambda: p2.healthy(p2.observe(vm, scenario + '-baseline-health'), args.encryption))
                 {'metadata': metadata_scenario, 'interruption': interruption_scenario,
-                 'abandoned': abandoned_scenario}[scenario](vm, args, recovery, gate, before)
+                 'abandoned': abandoned_scenario, 'failed-hook': failure_scenario,
+                 'signing-failure': failure_scenario, 'root-space': space_scenario,
+                 'cache-space': space_scenario, 'esp-space': space_scenario}[scenario](vm, args, recovery, gate, before)
                 vm.shutdown()
             finally:
                 vm.stop()
@@ -785,7 +1058,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='action', required=True)
     guest_parser = commands.add_parser('guest', help=argparse.SUPPRESS)
-    guest_parser.add_argument('guest_action', choices=['home', 'observe', 'arm', 'barrier', 'compete', 'abandoned', 'recover', 'metadata-negative'])
+    guest_parser.add_argument('guest_action', choices=['home', 'observe', 'arm', 'barrier', 'compete', 'abandoned',
+        'recover', 'metadata-negative', 'arm-failure', 'space-arm', 'space-reset'])
     guest_parser.add_argument('value', nargs='?')
     host = commands.add_parser('run')
     for name in ['base', 'output', 'ovmf-code', 'recovery-image', 'recovery-manifest']:

@@ -2,9 +2,11 @@
 import copy
 import importlib.util
 import json
+import os
 from pathlib import Path
 from types import SimpleNamespace
 import subprocess
+import shutil
 import sys
 import tempfile
 import unittest
@@ -152,7 +154,7 @@ class Phase42FaultsTests(unittest.TestCase):
             paths = root / 'runtime', root / 'hooks/fault.hook', root / 'logs/barrier.json'
             with patch.object(faults, 'guest_guard', return_value={'run_id': 'a' * 32, 'package': 'hello'}), \
                     patch.object(faults, 'barrier_paths', return_value=paths), patch.object(faults.os, 'sync', create=True):
-                result = faults.guest_arm_barrier()
+                result = faults.guest_arm_hook()
             self.assertEqual(result['when'], 'PostTransaction')
             self.assertIn('Target = hello', paths[1].read_text())
             self.assertIn('When = PostTransaction', paths[1].read_text())
@@ -161,6 +163,103 @@ class Phase42FaultsTests(unittest.TestCase):
             self.assertIn("args[1:3]==[b'system',b'worker']", source)
             self.assertIn('os.fsync', source)
             self.assertIn('time.sleep(3600)', source)
+
+    def test_hook_and_signer_faults_have_distinct_real_mutation_boundaries(self):
+        for kind in ['failed-hook', 'signing-failure']:
+            with self.subTest(kind=kind), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                paths = root / 'runtime', root / 'hooks/fault.hook', root / 'logs/marker.json'
+                with patch.object(faults, 'guest_guard', return_value={'run_id': 'a' * 32, 'package': 'hello'}), \
+                        patch.object(faults, 'barrier_paths', return_value=paths), patch.object(faults.os, 'sync', create=True):
+                    result = faults.guest_arm_hook(kind)
+                self.assertEqual(result['fault'], kind)
+                script = (paths[0] / 'barrier.py').read_text()
+                compile(script, 'fault.py', 'exec')
+                if kind == 'failed-hook':
+                    self.assertIn('When = PreTransaction', paths[1].read_text())
+                    self.assertIn('AbortOnFail', paths[1].read_text())
+                    self.assertIn('sys.exit(1)', script)
+                    self.assertNotIn('key.rename', script)
+                else:
+                    self.assertIn('When = PostTransaction', paths[1].read_text())
+                    self.assertIn('key.rename(backup)', script)
+                    self.assertIn('expected_private_key_missing', script)
+                    self.assertNotIn('key.read_bytes', script)
+                    self.assertNotIn('key.open', script)
+
+    def test_failed_mutation_requires_prior_snapshot_exact_cause_and_no_candidate(self):
+        record = {'state': 'rollback_required', 'failure': {'at': 'validating', 'message': 'boot artifact regeneration: missing key'},
+                  'snapshot': 'pre', 'post_snapshot': None, 'boot_regenerated': False, 'confirmation': None,
+                  'events': [{'state': 'snapshot_created'}, {'state': 'applying'}]}
+        faults.failed_mutation(record, 'validating', 'boot artifact regeneration')
+        for field, value in [('state', 'succeeded'), ('snapshot', None), ('post_snapshot', 'published'),
+                             ('boot_regenerated', True), ('confirmation', {'passed': True})]:
+            with self.subTest(field=field), self.assertRaises(RuntimeError):
+                faults.failed_mutation(dict(record, **{field: value}), 'validating', 'boot artifact regeneration')
+        with self.assertRaises(RuntimeError):
+            faults.failed_mutation(record, 'applying', 'package application')
+
+    def test_capacity_budget_matches_native_preflight_and_fault_is_bounded(self):
+        mib = 1024 * 1024
+        plan = {'plan': {'boot': {'regenerate_uki': True}, 'packages': {'download_bytes': 10, 'targets': [{'installed_bytes': 20}]}}}
+        self.assertEqual(faults.capacity_budget(plan, 'root-space'), 256 * mib + 30)
+        self.assertEqual(faults.capacity_budget(plan, 'cache-space'), 256 * mib + 30)
+        self.assertEqual(faults.capacity_budget(plan, 'esp-space'), 512 * mib)
+        self.assertEqual(faults.capacity_target('root-space', 30 * 1024 * mib, 256 * mib), (30 * 1024 - 128) * mib)
+        self.assertEqual(faults.capacity_target('esp-space', 800 * mib, 512 * mib), 416 * mib)
+        for kind, before, required in [('root-space', 256 * mib, 256 * mib), ('esp-space', 2048 * mib, 512 * mib),
+                                       ('root-space', 100 * 1024 * mib, 256 * mib), ('root-space', 1024 * mib, 64 * mib)]:
+            with self.subTest(kind=kind, before=before), self.assertRaises(RuntimeError):
+                faults.capacity_target(kind, before, required)
+
+    def test_capacity_refusal_must_be_the_injected_preflight_cause_without_mutation(self):
+        record = {'state': 'failed', 'failure': {'at': 'preparing', 'message': 'package prerequisites: insufficient disk space: 123 bytes required, 12 available'}}
+        faults.capacity_failure(record, 123)
+        for field, value in [('state', 'rollback_required'), ('snapshot', 'pre'), ('post_snapshot', 'post'),
+                             ('boot_regenerated', True), ('confirmation', {'passed': True})]:
+            with self.subTest(field=field), self.assertRaises(RuntimeError):
+                faults.capacity_failure(dict(record, **{field: value}), 123)
+        with self.assertRaises(RuntimeError):
+            faults.capacity_failure(record, 124)
+
+    @unittest.skipUnless(sys.platform == 'linux' and os.environ.get('ASTRAEUS_CAPACITY_LOOPBACK') == '1',
+                         'explicit Linux root Btrfs loopback check')
+    def test_real_btrfs_capacity_reservation_does_not_fill_outer_image(self):
+        self.assertEqual(os.geteuid(), 0)
+        for tool in ['losetup', 'mkfs.btrfs', 'mount', 'umount']:
+            self.assertIsNotNone(shutil.which(tool), tool)
+        with tempfile.TemporaryDirectory(prefix='astraeus-capacity-test-', dir='/root') as directory:
+            root = Path(directory)
+            image, mount = root / 'filesystem.img', root / 'mount'
+            with image.open('xb') as stream:
+                stream.truncate(1024 ** 3)
+            mount.mkdir()
+            device = subprocess.check_output(['losetup', '--find', '--show', str(image)], text=True).strip()
+            self.assertRegex(device, r'^/dev/loop[0-9]+$')
+            mounted = False
+            try:
+                subprocess.run(['mkfs.btrfs', '-f', device], check=True, capture_output=True)
+                subprocess.run(['mount', device, str(mount)], check=True, capture_output=True)
+                mounted = True
+                os.sync()
+                before_outer = faults.allocated_bytes(image)
+                before_free = faults.available(mount)
+                allocation = faults.capacity_target('root-space', before_free, 256 * 1024 ** 2)
+                filler = mount / 'reservation'
+                with filler.open('xb') as stream:
+                    faults.reserve_btrfs(stream.fileno(), allocation)
+                    os.fsync(stream.fileno())
+                os.sync()
+                self.assertLess(faults.available(mount), 256 * 1024 ** 2)
+                self.assertEqual(filler.stat().st_size, allocation)
+                self.assertLess(faults.allocated_bytes(image) - before_outer, 64 * 1024 ** 2)
+                filler.unlink()
+                os.sync()
+                self.assertGreaterEqual(faults.available(mount), 256 * 1024 ** 2)
+            finally:
+                if mounted:
+                    subprocess.run(['umount', str(mount)], check=True, capture_output=True)
+                subprocess.run(['losetup', '--detach', device], check=True, capture_output=True)
 
     def test_recovery_attach_is_readonly_secondary_and_does_not_change_firmware(self):
         _, p2 = faults.host_modules()

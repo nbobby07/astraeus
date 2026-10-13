@@ -1,6 +1,6 @@
 # Phase 4.2 fault acceptance
 
-`scripts/validate/phase42-faults.py` exercises three destructive scenarios in
+`scripts/validate/phase42-faults.py` exercises eight destructive scenarios in
 separate disposable KVM overlays. It requires a sealed fresh Phase 4.2 baseline,
 the exact runtime candidate source and binary hashes, and a signed RAM-verified
 recovery image made for that baseline by `phase42-recovery.py`.
@@ -45,6 +45,29 @@ A newly submitted reviewed no-op must finish, and a delayed worker for the old I
 must fail the current-request identity check. Inspection and replacement must not
 change packages, reasons, configuration, ownership or home data.
 
+`failed-hook` uses a real PreTransaction hook with `AbortOnFail` and a durable
+marker tied to the actual worker. It requires the native hook error, unchanged
+packages and management state, a retained pre-snapshot and recovery-required
+history. It then checks replay refusal and performs signed offline rollback.
+
+`signing-failure` moves only the disposable guest's signing key away from its
+configured path in a PostTransaction hook, after the protected pre-snapshot exists.
+The key is neither read nor exported. The runner requires real package and
+management changes, an actual signing-provider refusal, failed boot regeneration,
+and no published post-snapshot or successful confirmation. Offline recovery must
+restore the previous packages, metadata and valid signing identity.
+
+`root-space`, `cache-space` and `esp-space` require actual available space below
+the reviewed native policy budget. Cache uses the existing bounded 16 MiB tmpfs
+fixture. Root uses direct Btrfs `fallocate` reservation without data writes; it
+does not use `posix_fallocate`, whose fallback can write zeros. ESP writes at most
+1 GiB in a dedicated fixture file. Each case requires at least 4 GiB of extra host
+headroom, caps observed overlay growth, proves the exact capacity preflight
+refusal before snapshots or mutation, removes only its owned fixture, and reboots
+to prove the failed transaction was not replayed. Root and cache normally share
+one Btrfs filesystem; the cache fixture also exercises the distinct cache-path
+check without exhausting the shared root.
+
 ## Inputs and operation
 
 Choose an initially absent small repository package for `--package`. Choose an
@@ -67,8 +90,12 @@ python3 scripts/validate/phase42-faults.py run \
   --encryption none --user tester --package hello --metadata-package mangohud
 ```
 
-`--scenario metadata|interruption|abandoned` runs just one scenario. The default
-is `all`. A rerun requires a new output directory. LUKS2 uses a separately sealed
+`--scenario` runs any one of the named scenarios. On a space-constrained validator,
+run one scenario at a time. Export and verify the thin evidence before retiring
+that successful run's owned overlay and VARS. Never export disks containing test
+private keys, or delete sealed baselines and recovery media. The default `all`
+retains every overlay and therefore requires substantially more storage.
+A rerun requires a new output directory. LUKS2 uses a separately sealed
 encrypted baseline and its own matching owner-signed recovery image. Credentials
 are entered through the existing private QMP console, never command arguments
 or exported evidence. The runner writes `attention.json` when the signed live
@@ -95,3 +122,6 @@ recovery refusal tests and physical GPU support need their own evidence.
 `python3 -m unittest discover -s tests -p test_phase42_faults.py -v` checks the
 adapter and guards without booting a guest. Unit results do not close any runtime
 acceptance gate. No guest run is implied by the presence of this harness.
+On Linux root, `ASTRAEUS_CAPACITY_LOOPBACK=1` additionally checks the direct Btrfs
+reservation against a fresh sparse 1 GiB loopback filesystem, including restored
+capacity and a 64 MiB bound on outer-image growth. It uses no existing block device.
