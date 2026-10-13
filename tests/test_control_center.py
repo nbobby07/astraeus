@@ -2,6 +2,8 @@
 import importlib.util
 from pathlib import Path
 import re
+import subprocess
+import sys
 import tarfile
 import tempfile
 import unittest
@@ -36,6 +38,21 @@ class ControlCenterPackaging(unittest.TestCase):
             self.assertIn("package_astraeus-control-center()", recipe)
             self.assertIn("--features native-alpm", recipe)
             self.assertIn("ctest --test-dir target/control-center", recipe)
+
+    def test_packaged_sources_run_the_rust_installer_seed_fixture(self):
+        with tempfile.TemporaryDirectory() as directory, patch.object(bootstrap, "run"):
+            output = Path(directory) / "package"
+            bootstrap.prepare_package(output)
+            with tarfile.open(output / "platform.tar.xz") as archive:
+                archive.extractall(Path(directory) / "extracted", filter="data")
+            source = Path(directory) / "extracted/platform"
+            test = (source / "crates/transactions/src/generation_tests.rs").read_text()
+            fixture = re.search(r'fn installed_image_seed_is_accepted_by_the_actual_rust_management_reader\(\).*?let script = r#"(.*?)"#;', test, re.S)
+            self.assertIsNotNone(fixture, "run the exact fixture used by the Rust management-reader test")
+            result = subprocess.run([sys.executable, "-I", "-c", fixture.group(1),
+                                     str(source / "scripts"), str(Path(directory) / "seed")],
+                                    cwd=directory, capture_output=True, text=True, timeout=30)
+            self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_authentication_is_active_session_only_and_never_cached(self):
         policy = ET.parse(ROOT / "distro/installed/org.astraeus.system.policy").getroot()
