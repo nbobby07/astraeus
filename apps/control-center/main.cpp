@@ -1,13 +1,16 @@
 #include "controller.h"
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QQuickStyle>
 
 int main(int argc, char **argv)
 {
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     app.setApplicationName("Astraeus Control Center");
     app.setOrganizationName("Astraeus");
     app.setDesktopFileName("org.astraeus.ControlCenter");
+    if (qEnvironmentVariableIsEmpty("QT_QUICK_CONTROLS_STYLE"))
+        QQuickStyle::setStyle("org.kde.desktop");
     Controller controller;
     QQmlApplicationEngine engine;
     engine.setInitialProperties({{"backend", QVariant::fromValue(&controller)}});
