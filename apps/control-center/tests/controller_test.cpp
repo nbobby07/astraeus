@@ -232,13 +232,17 @@ private slots:
         controller.refresh();
         QTRY_VERIFY(!controller.loading());
         const auto original = controller.draft();
+        QSignalSpy parsed(&controller, &Controller::configurationParsed);
         controller.parse("invalid");
         QTRY_VERIFY(!controller.loading());
+        QCOMPARE(parsed.size(), 0);
         QCOMPARE(controller.draft(), original);
         QVERIFY(!controller.error().isEmpty());
         controller.clearError();
         controller.parse("schema_version = 1");
         QTRY_VERIFY(!controller.loading());
+        QCOMPARE(parsed.size(), 1);
+        QCOMPARE(parsed.first().first().toString(), QString("schema_version = 1"));
         QCOMPARE(controller.draft().value("packages").toStringList(), QStringList{"kate"});
         const auto destination = directory.filePath("system.toml");
         controller.exportFile(QUrl::fromLocalFile(destination));

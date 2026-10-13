@@ -14,6 +14,9 @@ public slots:
         QFile blocked(QStringLiteral(QUICK_TEST_SOURCE_DIR "/fixtures/blocked-plan.json"));
         if (!blocked.open(QIODevice::ReadOnly)) qFatal("Rust-generated blocked plan fixture is missing");
         engine->rootContext()->setContextProperty("blockedPlanFixture", QJsonDocument::fromJson(blocked.readAll()).toVariant());
+        QFile metadata(QStringLiteral(QUICK_TEST_SOURCE_DIR "/fixtures/metadata-plan.json"));
+        if (!metadata.open(QIODevice::ReadOnly)) qFatal("Rust-generated metadata plan fixture is missing");
+        engine->rootContext()->setContextProperty("metadataPlanFixture", QJsonDocument::fromJson(metadata.readAll()).toVariant());
     }
 };
 QUICK_TEST_MAIN_WITH_SETUP(astraeus_control_center, Setup)

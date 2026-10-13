@@ -61,12 +61,13 @@ signals:
     void changed();
     void planReady();
     void submitted();
+    void configurationParsed(const QString &text);
 private:
     using Callback = std::function<void(const QJsonDocument &)>;
     void request(const QString &channel, QStringList arguments, QByteArray input, Callback callback, bool privileged = false);
     void poll();
     void editSelection(const QString &key, const QString &name, bool selected);
-    void acceptDraft(const QVariantMap &configuration);
+    bool acceptDraft(const QVariantMap &configuration);
     void fail(const QString &message);
     QString m_executable, m_authenticator, m_error, m_notice, m_configurationText, m_operationId;
     QVariantMap m_status, m_draft, m_plan, m_operation;

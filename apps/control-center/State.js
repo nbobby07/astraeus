@@ -74,6 +74,30 @@ function reasonChanges(plan) {
     return Object.keys(after).filter(function(name) { return before[name] && before[name] !== after[name]; })
         .map(function(name) { return name + ": " + before[name] + " → " + after[name]; });
 }
+function packageGroups(plan) {
+    const after = (plan.management || {}).after || {};
+    const explicit = (after.applied || {}).packages || [];
+    const owned = after.packages || {};
+    const groups = [
+        {id: "requested", title: "Requested installations", changes: []},
+        {id: "dependencies", title: "Required dependencies", changes: []},
+        {id: "updates", title: "Synchronized updates", changes: []},
+        {id: "removals", title: "Removals", changes: []},
+        {id: "other", title: "Other resolved changes", changes: []}
+    ];
+    ((plan.packages || {}).changes || []).forEach(function(change) {
+        let group = 4;
+        if (change.kind === "remove") group = 3;
+        else if (change.kind === "upgrade") group = 2;
+        else if (change.kind === "install") {
+            const receipt = owned[change.name];
+            if (contains(explicit, change.name) || (receipt && (receipt.owners || []).length)) group = 0;
+            else if (receipt && Array.isArray(receipt.owners) && !receipt.owners.length) group = 1;
+        }
+        groups[group].changes.push(change);
+    });
+    return groups.filter(function(group) { return group.changes.length > 0; });
+}
 function canApply(status, plan, busy, active, validated) {
     const inner = plan.plan || {}, boot = inner.boot || {}, packages = inner.packages || {};
     if ((packages.changes || []).length && (inner.snapshot_required !== true || boot.regenerate_uki !== true)) return false;

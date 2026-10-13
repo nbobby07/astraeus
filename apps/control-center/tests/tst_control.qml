@@ -30,6 +30,7 @@ TestCase {
         property bool lastSelected: false
         signal planReady()
         signal submitted()
+        signal configurationParsed(string text)
         function refresh() {}
         function installed() {}
         function clearError() { error = ""; }
@@ -116,6 +117,43 @@ TestCase {
         compare(State.observation(null), "Unavailable");
         verify(!State.canApply({}, fake.plan, false, false, true));
         compare(State.bytes(-2048), "-2.0 KiB");
+    }
+    function test_reviewGroupsUseResolvedKindsAndRecordedOwnership() {
+        const groups = State.packageGroups({management: {after: {
+            applied: {packages: ["kate"]},
+            packages: {steam: {owners: ["gaming:core"]}, library: {owners: []}}
+        }}, packages: {changes: [
+            {kind: "install", name: "kate"}, {kind: "install", name: "steam"},
+            {kind: "install", name: "library"}, {kind: "upgrade", name: "nano"},
+            {kind: "remove", name: "old-app"}, {kind: "install", name: "unknown"}
+        ]}});
+        compare(groups.map(group => group.id), ["requested", "dependencies", "updates", "removals", "other"]);
+        compare(groups[0].changes.map(change => change.name), ["kate", "steam"]);
+        compare(groups[1].changes[0].name, "library");
+        compare(groups[2].changes[0].name, "nano");
+        compare(groups[3].changes[0].name, "old-app");
+        compare(groups[4].changes[0].name, "unknown");
+        compare(State.packageGroups(installPlanFixture.plan)[0].id, "requested");
+    }
+    function test_metadataChangesStillExplainVerifiedRestart() {
+        app.section = 4;
+        fake.plan = metadataPlanFixture;
+        verify(findChild(app, "restartExplanation").text.includes("verified restart"));
+    }
+    function test_validatedTextBecomesCleanWithoutDiscardingLaterEdits() {
+        app.section = 2;
+        const editor = findChild(app, "configurationEditor");
+        editor.text = "invalid TOML";
+        compare(app.editorDirty, true);
+        fake.error = "Invalid TOML";
+        compare(app.editorDirty, true);
+        fake.error = "";
+        editor.text = "schema_version = 1";
+        fake.configurationParsed("schema_version = 1");
+        compare(app.editorDirty, false);
+        editor.text = "schema_version = 1\npackages = [\"kate\"]";
+        fake.configurationParsed("schema_version = 1");
+        compare(app.editorDirty, true);
     }
     function test_existingAppsCanBeSelectedWithoutRemovingProtection() {
         app.section = 1;

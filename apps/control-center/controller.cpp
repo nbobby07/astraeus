@@ -257,9 +257,9 @@ void Controller::installed()
     request("search-" + QString::number(revision), {"system", "packages", "installed", "--json"}, {},
             [this, revision](const auto &doc) { if (revision == m_searchRevision) m_packages = doc.object().value("packages").toArray().toVariantList(); });
 }
-void Controller::acceptDraft(const QVariantMap &configuration)
+bool Controller::acceptDraft(const QVariantMap &configuration)
 {
-    if (!validConfiguration(configuration)) { fail("The configuration response is incomplete."); return; }
+    if (!validConfiguration(configuration)) { fail("The configuration response is incomplete."); return false; }
     m_draft = configuration;
     m_haveDraft = true;
     m_dirty = true;
@@ -268,6 +268,7 @@ void Controller::acceptDraft(const QVariantMap &configuration)
     m_notice.clear();
     ++m_draftRevision;
     emit changed();
+    return true;
 }
 void Controller::editSelection(const QString &key, const QString &name, bool selected)
 {
@@ -357,7 +358,7 @@ void Controller::adopt()
 {
     if (busy() || active()) return;
     request("adopt", {"system", "adopt", "--json"}, {}, [this](const auto &doc) {
-        acceptDraft(doc.object().value("configuration").toObject().toVariantMap());
+        if (!acceptDraft(doc.object().value("configuration").toObject().toVariantMap())) return;
         m_notice = "Installed packages were copied into your draft. Review changes before saving them.";
     });
 }
@@ -365,9 +366,10 @@ void Controller::parse(const QString &text)
 {
     if (busy() || active()) return;
     if (text.toUtf8().size() > maximumConfiguration) { fail("Configuration files must not exceed 256 KiB."); return; }
-    request("parse", {"system", "parse", "--stdin", "--json"}, text.toUtf8(), [this](const auto &doc) {
-        acceptDraft(doc.object().value("configuration").toObject().toVariantMap());
+    request("parse", {"system", "parse", "--stdin", "--json"}, text.toUtf8(), [this, text](const auto &doc) {
+        if (!acceptDraft(doc.object().value("configuration").toObject().toVariantMap())) return;
         m_notice = "Configuration loaded into your draft. Review changes before applying it.";
+        emit configurationParsed(text);
     });
 }
 void Controller::importFile(const QUrl &url)

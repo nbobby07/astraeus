@@ -1,0 +1,82 @@
+{
+  "blockers": [],
+  "executable": true,
+  "plan": {
+    "boot": {
+      "regenerate_uki": true,
+      "update_bootloader": false
+    },
+    "current": {
+      "id": "sha256:982f28c9e7edda2437013dba151112da1c6457627b151ae55a93db5a77f4c060",
+      "packages": {
+        "nano": "9.2-1"
+      }
+    },
+    "desired": "managed_system",
+    "management": {
+      "after": {
+        "applied": {
+          "gaming": [],
+          "packages": [
+            "nano"
+          ],
+          "providers": {},
+          "schema_version": 1
+        },
+        "packages": {},
+        "protected": [
+          "nano"
+        ],
+        "repositories": {
+          "extra": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "resolution": {},
+        "resolved_providers": {},
+        "schema_version": 1
+      },
+      "after_digest": "sha256:ccded24f7a473ab1581916d48f309b12734e942ab7a905a72da477ecead41ae2",
+      "before": {
+        "applied": {
+          "gaming": [],
+          "packages": [],
+          "providers": {},
+          "schema_version": 1
+        },
+        "packages": {},
+        "protected": [
+          "nano"
+        ],
+        "repositories": {
+          "extra": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "resolution": {},
+        "resolved_providers": {},
+        "schema_version": 1
+      },
+      "before_digest": "sha256:a02b3b43c52da1c27b57ffc5babe956b9734baed158a065fbbaf922320b02d23",
+      "reasons_after": {
+        "nano": "explicit"
+      },
+      "reasons_before": {
+        "nano": "explicit"
+      }
+    },
+    "notes": [
+      "Uses existing sync databases; does not refresh repositories.",
+      "Boot regeneration is conservative for every nonempty update.",
+      "Loader binaries are not updated; plans changing systemd are rejected.",
+      "Plans changing distroctl are rejected until coordinator self-updates are supported."
+    ],
+    "packages": {
+      "changes": [],
+      "download_bytes": 0,
+      "installed_delta_bytes": 0,
+      "targets": []
+    },
+    "schema_version": 2,
+    "snapshot_required": true
+  },
+  "plan_id": "sha256:ae306b7bfa1d901e79b230dc832432ff3e4c8c7a563633e9fd2761c1ab6cd1fd",
+  "schema_version": 1,
+  "warnings": []
+}

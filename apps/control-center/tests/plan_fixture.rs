@@ -28,7 +28,17 @@ fn main() {
     let mut blocked = executable.clone();
     blocked["executable"] = false.into();
     blocked["blockers"] = serde_json::json!(["A previous transaction is awaiting boot confirmation."]);
-    for (name, value) in [("install-plan.json", executable), ("blocked-plan.json", blocked)] {
+    let metadata_current = CurrentSystemState::new(BTreeMap::from([("nano".into(), "9.2-1".into())]));
+    let metadata_before = ManagementState { applied: SystemConfig::default(), ..before.clone() };
+    let metadata_management = reconcile(Some(&metadata_before), &metadata_current, &reasons,
+        &metadata_current, &reasons, &before.applied, &before.protected, &before.repositories).unwrap();
+    let metadata_plan = ExecutionPlan::new(metadata_current, PackagePlan {
+        changes: vec![], targets: vec![], download_bytes: 0, installed_delta_bytes: Some(0),
+    }).with_management(metadata_management);
+    metadata_plan.validate().unwrap();
+    assert!(metadata_plan.snapshot_required);
+    let metadata = serde_json::json!({"schema_version":1,"plan_id":metadata_plan.fingerprint(),"executable":true,"plan":metadata_plan,"blockers":[],"warnings":[]});
+    for (name, value) in [("install-plan.json", executable), ("blocked-plan.json", blocked), ("metadata-plan.json", metadata)] {
         fs::write(output.join(name), serde_json::to_string_pretty(&value).unwrap() + "\n").unwrap();
     }
 }

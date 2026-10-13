@@ -25,6 +25,7 @@ ApplicationWindow {
         target: window.backend
         function onPlanReady() { window.section = 4; }
         function onSubmitted() { window.section = 3; }
+        function onConfigurationParsed(text) { if (configurationEditor.text === text) window.editorDirty = false; }
     }
     FileDialog {
         id: importDialog
@@ -293,7 +294,7 @@ ApplicationWindow {
                             title: qsTr("Edit or paste TOML")
                             ColumnLayout {
                                 width: parent.width
-                                TextArea { id: configurationEditor; Layout.fillWidth: true; Layout.preferredHeight: 180; placeholderText: "schema_version = 1\npackages = []\ngaming = []\n\n[providers]"; selectByMouse: true; wrapMode: TextEdit.WrapAnywhere; Accessible.name: qsTr("TOML configuration editor"); onTextChanged: window.editorDirty = true }
+                                TextArea { id: configurationEditor; objectName: "configurationEditor"; Layout.fillWidth: true; Layout.preferredHeight: 180; placeholderText: "schema_version = 1\npackages = []\ngaming = []\n\n[providers]"; selectByMouse: true; wrapMode: TextEdit.WrapAnywhere; Accessible.name: qsTr("TOML configuration editor"); onTextChanged: window.editorDirty = true }
                                 RowLayout {
                                     Button { text: qsTr("Load saved text"); enabled: !window.backend.busy; onClicked: { configurationEditor.text = window.backend.configurationText; window.editorDirty = false; } }
                                     Button { text: qsTr("Validate into draft"); enabled: window.editing && configurationEditor.text.length > 0; onClicked: window.backend.parse(configurationEditor.text) }
@@ -375,16 +376,35 @@ ApplicationWindow {
                                 Label { visible: !State.configurationChanges(window.backend.plan.plan || {}).length; text: qsTr("No changes to saved software choices.") }
                             }
                         }
+                        Repeater {
+                            model: State.packageGroups(window.backend.plan.plan || {})
+                            delegate: GroupBox {
+                                required property var modelData
+                                Layout.fillWidth: true
+                                title: modelData.title
+                                ColumnLayout {
+                                    width: parent.width
+                                    Repeater { model: modelData.changes; delegate: Label { required property var modelData; Layout.fillWidth: true; wrapMode: Text.WrapAnywhere; text: State.changeLabel(modelData); textFormat: Text.PlainText } }
+                                }
+                            }
+                        }
+                        Label { visible: !(window.packagePlan.changes || []).length; text: qsTr("No package file changes.") }
                         GroupBox {
                             Layout.fillWidth: true
-                            title: qsTr("Package changes")
+                            title: qsTr("Install reason changes")
+                            visible: State.reasonChanges(window.backend.plan.plan || {}).length > 0
                             ColumnLayout {
                                 width: parent.width
-                                Repeater { model: window.packagePlan.changes || []; delegate: Label { required property var modelData; Layout.fillWidth: true; wrapMode: Text.WrapAnywhere; text: State.changeLabel(modelData); textFormat: Text.PlainText } }
-                                Label { visible: !(window.packagePlan.changes || []).length; text: qsTr("No package changes.") }
+                                Repeater { model: State.reasonChanges(window.backend.plan.plan || {}); delegate: Label { required property string modelData; Layout.fillWidth: true; wrapMode: Text.WordWrap; text: modelData; textFormat: Text.PlainText } }
+                            }
+                        }
+                        GroupBox {
+                            Layout.fillWidth: true
+                            title: qsTr("Download and space")
+                            ColumnLayout {
+                                width: parent.width
                                 Label { text: qsTr("Download upper bound: ") + State.bytes(window.packagePlan.download_bytes) }
                                 Label { text: qsTr("Installed size change: ") + State.bytes(window.packagePlan.installed_delta_bytes) }
-                                Repeater { model: State.reasonChanges(window.backend.plan.plan || {}); delegate: Label { required property string modelData; Layout.fillWidth: true; wrapMode: Text.WordWrap; text: qsTr("Install reason: ") + modelData; textFormat: Text.PlainText } }
                             }
                         }
                         GroupBox {
@@ -397,7 +417,7 @@ ApplicationWindow {
                             }
                         }
                         Label { Layout.fillWidth: true; wrapMode: Text.WordWrap; text: qsTr("Recovery snapshot: ") + ((window.backend.plan.plan || {}).snapshot_required ? qsTr("Required") : qsTr("Not required by this plan")) }
-                        Label { Layout.fillWidth: true; wrapMode: Text.WordWrap; text: ((window.packagePlan.changes || []).length > 0) ? qsTr("Package changes need a verified restart before they count as complete. Your home files are outside the system snapshot.") : qsTr("This plan does not change package files. Review configuration and install-reason changes above.") }
+                        Label { objectName: "restartExplanation"; Layout.fillWidth: true; wrapMode: Text.WordWrap; text: (window.backend.plan.plan || {}).snapshot_required ? qsTr("These changes need a verified restart before they count as complete, including configuration and install-reason changes. Your home files are outside the system snapshot.") : qsTr("This plan does not require a recovery snapshot. Review configuration and install-reason changes above.") }
                         Button {
                             objectName: "applyButton"
                             text: window.backend.busy ? qsTr("Waiting for authentication…") : qsTr("Authenticate and apply")
