@@ -4,9 +4,11 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The current runtime candidate is `0c938b94f44956fd77890d851e35650b62b1e6da`.
-Clean A and its expanded final image audit passed. Independent B is running;
-fresh plain/LUKS2 management, GUI and recovery acceptance remain pending.
+The latest built runtime is `0c938b94f44956fd77890d851e35650b62b1e6da`.
+Clean A and its expanded final image audit passed. Independent B failed its
+native transaction check before producing an image. A coordinator lock-release
+fix now supersedes this runtime; replacement builds and fresh plain/LUKS2
+management, GUI and recovery acceptance remain pending.
 
 The earlier built runtime `9825438d275c3037fcb41fbd768eebc71ef3f38c` is
 superseded by an installed trust-input permissions defect found during CLI acceptance.
@@ -507,6 +509,31 @@ The disposable replacement repository signer is
 formatter was inspected and exercised for all six configured mounts with both
 plain and encrypted sources; it preserves the canonical subvolume paths. This
 source-level check does not establish Calamares UI acceptance.
+
+The complete replacement A ISO was verified locally and made read-only. Its
+chunked transport retried four interrupted requests, verified each retained chunk
+and checked the final whole-file hash. The thin export is 52,811,769 bytes with
+SHA256 `4c0bd1b3f8177daf4755244eb08d6732b1dedd447d841f34c8cc98b19876b126`.
+
+Independent B exited four during native checks. The confirmation test reopened
+its session after dropping the previous one and unexpectedly found the lock busy.
+It recorded 52 passing transaction tests, one failure and one ignored privileged
+fixture. No image was produced. All 18 exported public failure files were verified;
+the 58,878-byte archive has SHA256
+`ec9af4da5a351ca2705ccb354442b4b3f1ed2b5409fba768e9ed7193d37bfb51`.
+
+Commit `f8c55b2` fixes the cause: closing one file descriptor does not release a
+Unix flock while an inherited descriptor remains open. New deterministic tests
+reproduced this in both history sessions and snapshot guards before the fix.
+The guards now explicitly unlock at scope exit without unlinking the lock file;
+the history database closes before its lock is released. Snapshot guards also
+release on pending-state validation failure. Tests prove another writer remains
+blocked while the new owner holds the lock, even when the older inherited
+descriptor closes. Windows passes 141 Rust tests; Linux native passes 158 with
+five normal-run privileged skips. Both Clippy checks pass with warnings denied.
+Thirty repeated full native transaction unit runs pass with 16 parallel threads,
+including the child-process image-seeding test. These host checks do not qualify
+replacement images or VM recovery. The failed B gate leaves the milestone incomplete.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software

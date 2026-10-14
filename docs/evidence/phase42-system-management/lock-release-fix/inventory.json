@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "files": {
+    "failed-B-index.json": {
+      "bytes": 2912,
+      "sha256": "06fcca64dfae9ee4234b9d906052c91075b9c2f86d05c7409b3578ecfdd91a2e"
+    },
+    "failed-B-build.log": {
+      "bytes": 81704,
+      "sha256": "ae123856a7e4e1f346e9263f3b50f71daed37201d603cf27981b0f8fa6f76403"
+    },
+    "parallel-stress.json": {
+      "bytes": 272,
+      "sha256": "ea8e6f6835b004ff757d82f7ea0545b05ae6949c3210bd0b4c6c103bc6823ffd"
+    },
+    "linux-native-clippy.log": {
+      "bytes": 482,
+      "sha256": "24d25eabcefb1d3073adc6af0091aa2c0728a79c23a973429d7d830adf8f7794"
+    },
+    "windows-clippy.log": {
+      "bytes": 602,
+      "sha256": "68188e5793da42fcc359ef2ef72f972d120d9430e4758e6b363810667132f9b8"
+    }
+  },
+  "failed_archive_sha256": "ec9af4da5a351ca2705ccb354442b4b3f1ed2b5409fba768e9ed7193d37bfb51"
+}
