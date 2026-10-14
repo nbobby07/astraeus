@@ -54,7 +54,7 @@ reproducibility, so use the same VM baseline for comparison builds.
 
 Reference: [Arch Linux Archive](https://wiki.archlinux.org/title/Arch_Linux_Archive).
 
-## Build and sign the platform package
+## Build and sign the platform packages
 
 As the ordinary build user, choose or create a **development-only** GPG signing
 identity outside the source tree. Use an isolated `GNUPGHOME`, mode 0700, and run
@@ -78,7 +78,9 @@ bash scripts/publish-repo.sh "$KEY" out/repo .build/package/*.pkg.tar.zst
 The first package preparation downloads exactly the dependencies in Cargo.lock,
 vendors them and creates a normalized source archive with a SHA256-pinned PKGBUILD.
 `makepkg` then builds and tests offline with `cargo --frozen`. It must not run as
-root. Keep the same signed package/repository input for both ISO comparison builds;
+root. The source produces the `distroctl` and `astraeus-control-center` split
+packages, with native libalpm enabled in the CLI. Keep the same signed
+package/repository input for both ISO comparison builds;
 regenerating signatures changes bytes independently of the image build.
 
 `publish-repo.sh` only publishes into a new local directory. It checks package
@@ -102,7 +104,8 @@ bash scripts/publish-repo.sh "$KEY" out/phase1-repo \
 ```
 
 Use this complete repository as `--repo` below. The existing `out/repo` example
-must likewise contain both signed packages. Publication always requires a new
+must likewise contain signed `distroctl`, `astraeus-control-center` and `calamares`
+packages. Publication always requires a new
 directory. The Calamares source URL/version/hash and its minimal upstream module
 selection are in the reviewable PKGBUILD. Build prerequisites also belong to the
 archive lock; verification checks the union of live, installed and builder inputs.
@@ -128,6 +131,13 @@ repository public-key fingerprint, initializes an isolated build keyring and run
 mkarchiso with a fixed `SOURCE_DATE_EPOCH`. Pacman verifies package signatures and
 the custom database before installation. The live ISO includes the signed custom
 repository so its pacman configuration never refers to the build host.
+
+ArchISO 91 removes sync databases during cleanup. The profile stages only the
+three verified upstream databases plus `distro.db` and its signature outside the
+live root. Its existing compression hook restores those exact bytes after cleanup,
+checks their hashes and sets public read access with fixed timestamps. This lets
+live users inspect packages and resolve plans without refreshing repository
+metadata. No build keyring is copied into the live image.
 
 Successful output includes `iso/*.iso`, `iso/SHA256SUMS`, `inputs.json`,
 and the selected [graphics bundles](graphics.md#image-selection). Add `--graphics`
@@ -160,9 +170,14 @@ Software emulation requires an explicit `--accel tcg`; that result is not KVM
 validation. It has no virtual hard disk
 and no host-directory sharing. The test waits up to ten minutes for evidence from
 the actual guest: UEFI, the platform CLI, NetworkManager, initialized keyring, an
-active live-user Wayland session, plasmashell, and PipeWire/Pulse sockets. A boot
+ordinary-user package query and resolved installation plan blocked only by the
+live-session rule, an active live-user Wayland session, plasmashell, and
+PipeWire/Pulse sockets. A boot
 menu, SDDM greeter or early kernel log cannot satisfy this check. The harness does
 not prove network connectivity or successful audio playback; inspect those manually.
+This unsigned smoke does not qualify Secure Boot. Phase 4.2 management and recovery
+acceptance uses signed, RAM-verified media and enforcing installed guests; see the
+[acceptance report](phase42-acceptance.md).
 
 For visual inspection, run the same QEMU arguments shown in `boot-smoke.py` with
 `-display gtk` instead of `-display none`, using a copied writable VARS file.
