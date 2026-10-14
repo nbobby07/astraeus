@@ -1,0 +1,910 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "iso_sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+  "auditor_sha256": "193677419a881d5ce87d5a30ece7a00b3365bb9a83dea2469c5ff60183d091b2",
+  "expectations_sha256": "1bd2116a1400ceb986fbcf95ad8ce9cc3770ec84c675255dd404c00ce6a2461b",
+  "build_inputs_sha256": "983fc63b09e72606bd850cdb8f1ee9813101ba4172569e12bbab71845f994266",
+  "payloads": {
+    "live": {
+      "sha256": "f612bbc33f189b916bd21bb40080a447158caa24fa0a9bba9d4184496486ddae",
+      "bytes": 3296444416,
+      "inventory_sha256": "84f1e8f1abbc922544c3175e6cab369ba6d0f4579eb5552b252ded673b634235",
+      "entry_count": 188698,
+      "stream_content_audit": {
+        "bytes": 5576213787,
+        "sha256": "4f195cd5e83e0930e828551ad57c63b2c6787dd762487447a1ecaf51c02c0ec7",
+        "regular_payload_records": 137545,
+        "regular_inventory_paths": 139384,
+        "unclassified_private_key_blocks": 0,
+        "classified_public_test_material": {
+          "usr/bin/gnutls-cli": {
+            "package": "gnutls-3.8.13-3-x86_64.pkg.tar.zst",
+            "sha256": "aebb0a2de480d91841f30b10618f1d2550519aeca8c0ff49ac04b5447ec6369e",
+            "bytes": 133888,
+            "private_key_blocks": [
+              {
+                "offset": 122912,
+                "bytes": 118,
+                "sha256": "4c2aecf7b5d6a8f7b0bbf59a4f7cc0ea0263fcb0b231ea3db531410b564d1c7c"
+              },
+              {
+                "offset": 125408,
+                "bytes": 155,
+                "sha256": "fd0521c2c1339568b5f8df1156ade46cc1af9aca529f2d929eead9cd67e37e9a"
+              },
+              {
+                "offset": 126656,
+                "bytes": 226,
+                "sha256": "2ea9de3056e2f838e4b078f83dd7227809816f0b6540b7ac8fb9291eb63a8de8"
+              },
+              {
+                "offset": 127584,
+                "bytes": 2458,
+                "sha256": "43eb5881ab1e22dc3d13740cc09badf2930fd3d1489ae0f4f32378b6fbd2b3bc"
+              }
+            ],
+            "classification": "public upstream benchmark/self-test constants"
+          },
+          "usr/lib/libgnutls.so.30.42.0": {
+            "package": "gnutls-3.8.13-3-x86_64.pkg.tar.zst",
+            "sha256": "34fb5f09418585343efa342a2a4b57904544d6f562d7179a5eeaca60b0abd0c6",
+            "bytes": 2254952,
+            "private_key_blocks": [
+              {
+                "offset": 1763904,
+                "bytes": 155,
+                "sha256": "fed7079dd4491609e4c996e232f366ac434fa4cc9df19df363391d079d470964"
+              },
+              {
+                "offset": 1764160,
+                "bytes": 118,
+                "sha256": "5a09eb5df3674472eda0077d83cbccef72692c3d052ab393368ac57295439c58"
+              },
+              {
+                "offset": 1766816,
+                "bytes": 200,
+                "sha256": "a4d138d7ef9748464117b44fb9c0a4b5b85a1599a127d02690abaa96d03c16e6"
+              },
+              {
+                "offset": 1767040,
+                "bytes": 155,
+                "sha256": "fa0b06a72461ec0a963dcfccb8d5b61bd88a6074fc7271573bff68ab86b8c1af"
+              },
+              {
+                "offset": 1767200,
+                "bytes": 151,
+                "sha256": "ef237ea8db4f2ae9ee100e8ced96d29b5dceb0e6a948443e6b8a00b1791f9ec9"
+              },
+              {
+                "offset": 1768032,
+                "bytes": 226,
+                "sha256": "91ea1699ff6b1a34b4a1d500a9c75a808441e47b9ea68da6fb0195e01ce1dc61"
+              },
+              {
+                "offset": 1768704,
+                "bytes": 1211,
+                "sha256": "7c4c63ee462e0e700cd9e29c8e0f730b3f1b484c4abdd83f1e69fcd477c061fa"
+              },
+              {
+                "offset": 1769952,
+                "bytes": 1674,
+                "sha256": "d039c8119a029ab9f9c83c04d67002d887b6bc6026c4264402ab27cdf24cf138"
+              }
+            ],
+            "classification": "public upstream benchmark/self-test constants"
+          }
+        }
+      },
+      "identities": {
+        "usr/lib/systemd/system/astraeus-apply@.service": "ec5d55f92b588a6fbd7d6a945794cdb96dde4eae7baa99de3a18797e25d4de13",
+        "usr/share/polkit-1/actions/org.astraeus.system.policy": "8a06872fc36e73c59c35de84332bfed679fed472dc4e076ccbc5ff9e5afe0000",
+        "usr/bin/distroctl": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b",
+        "usr/bin/astraeus-control-center": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41"
+      },
+      "accounts": [
+        {
+          "name": "root",
+          "uid": 0
+        },
+        {
+          "name": "live",
+          "uid": 1000
+        },
+        {
+          "name": "bin",
+          "uid": 1
+        },
+        {
+          "name": "daemon",
+          "uid": 2
+        },
+        {
+          "name": "mail",
+          "uid": 8
+        },
+        {
+          "name": "ftp",
+          "uid": 14
+        },
+        {
+          "name": "http",
+          "uid": 33
+        },
+        {
+          "name": "nobody",
+          "uid": 65534
+        },
+        {
+          "name": "dbus",
+          "uid": 81
+        },
+        {
+          "name": "systemd-coredump",
+          "uid": 980
+        },
+        {
+          "name": "systemd-imds",
+          "uid": 979
+        },
+        {
+          "name": "systemd-network",
+          "uid": 978
+        },
+        {
+          "name": "systemd-oom",
+          "uid": 977
+        },
+        {
+          "name": "systemd-journal-remote",
+          "uid": 976
+        },
+        {
+          "name": "systemd-resolve",
+          "uid": 975
+        },
+        {
+          "name": "systemd-timesync",
+          "uid": 974
+        },
+        {
+          "name": "tss",
+          "uid": 973
+        },
+        {
+          "name": "uuidd",
+          "uid": 972
+        },
+        {
+          "name": "alpm",
+          "uid": 970
+        },
+        {
+          "name": "avahi",
+          "uid": 969
+        },
+        {
+          "name": "flatpak",
+          "uid": 968
+        },
+        {
+          "name": "pcscd",
+          "uid": 967
+        },
+        {
+          "name": "polkitd",
+          "uid": 102
+        },
+        {
+          "name": "sddm",
+          "uid": 966
+        }
+      ],
+      "worker_enabled": false,
+      "owner_and_validation_state_absent": true,
+      "embedded_repository_matches_verified_archives": true,
+      "sync_metadata": {
+        "files": {
+          "core.db": "48984a2b5a339954dc1a7c21bce7ff651b6b0c7747d0545c36ca454bee005a73",
+          "distro.db": "bcd9a8808cdd4f455d8997260bf4e9977d6eca28476d3ef005cf37e1ea4c40bd",
+          "distro.db.sig": "13ddb6e2670d10360a3be8e67d67849dd1d0b14346173f7bf1c5386f69284558",
+          "extra.db": "b2c0d01420d9bc1da17589c622fbf12c49af15d60e54f46cad8f6c307b5497ba",
+          "multilib.db": "17e1a87e6ecd932e053e6553187a468820c9dbc2e3a0954162f7ca349c4d47cf"
+        },
+        "access": {
+          "/": {
+            "mode": "dr-xr-xr-x",
+            "owner": "0/0"
+          },
+          "var": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "var/lib": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "var/lib/pacman": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/core.db": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/distro.db": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/distro.db.sig": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/extra.db": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/multilib.db": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          }
+        },
+        "ordinary_user_accessible": true,
+        "matches_approved_build_inputs_and_verified_repository": true
+      },
+      "installed_trust_inputs": null
+    },
+    "installed": {
+      "sha256": "c8b9eebc89c6e66ded0c5c363f60f0cbb915cdafc029899ee8dfa2b04e21493e",
+      "bytes": 1619607552,
+      "inventory_sha256": "e88d43d5c90356cec43c51e75a520d514036aeef335cbcaf3c3495cae54882b1",
+      "entry_count": 186542,
+      "stream_content_audit": {
+        "bytes": 4246031824,
+        "sha256": "cad27df07f264dcc5aea45989e6970e6b5c674398d4760b8299b7ae9b581be88",
+        "regular_payload_records": 135064,
+        "regular_inventory_paths": 136903,
+        "unclassified_private_key_blocks": 0,
+        "classified_public_test_material": {
+          "usr/bin/gnutls-cli": {
+            "package": "gnutls-3.8.13-3-x86_64.pkg.tar.zst",
+            "sha256": "aebb0a2de480d91841f30b10618f1d2550519aeca8c0ff49ac04b5447ec6369e",
+            "bytes": 133888,
+            "private_key_blocks": [
+              {
+                "offset": 122912,
+                "bytes": 118,
+                "sha256": "4c2aecf7b5d6a8f7b0bbf59a4f7cc0ea0263fcb0b231ea3db531410b564d1c7c"
+              },
+              {
+                "offset": 125408,
+                "bytes": 155,
+                "sha256": "fd0521c2c1339568b5f8df1156ade46cc1af9aca529f2d929eead9cd67e37e9a"
+              },
+              {
+                "offset": 126656,
+                "bytes": 226,
+                "sha256": "2ea9de3056e2f838e4b078f83dd7227809816f0b6540b7ac8fb9291eb63a8de8"
+              },
+              {
+                "offset": 127584,
+                "bytes": 2458,
+                "sha256": "43eb5881ab1e22dc3d13740cc09badf2930fd3d1489ae0f4f32378b6fbd2b3bc"
+              }
+            ],
+            "classification": "public upstream benchmark/self-test constants"
+          },
+          "usr/lib/libgnutls.so.30.42.0": {
+            "package": "gnutls-3.8.13-3-x86_64.pkg.tar.zst",
+            "sha256": "34fb5f09418585343efa342a2a4b57904544d6f562d7179a5eeaca60b0abd0c6",
+            "bytes": 2254952,
+            "private_key_blocks": [
+              {
+                "offset": 1763904,
+                "bytes": 155,
+                "sha256": "fed7079dd4491609e4c996e232f366ac434fa4cc9df19df363391d079d470964"
+              },
+              {
+                "offset": 1764160,
+                "bytes": 118,
+                "sha256": "5a09eb5df3674472eda0077d83cbccef72692c3d052ab393368ac57295439c58"
+              },
+              {
+                "offset": 1766816,
+                "bytes": 200,
+                "sha256": "a4d138d7ef9748464117b44fb9c0a4b5b85a1599a127d02690abaa96d03c16e6"
+              },
+              {
+                "offset": 1767040,
+                "bytes": 155,
+                "sha256": "fa0b06a72461ec0a963dcfccb8d5b61bd88a6074fc7271573bff68ab86b8c1af"
+              },
+              {
+                "offset": 1767200,
+                "bytes": 151,
+                "sha256": "ef237ea8db4f2ae9ee100e8ced96d29b5dceb0e6a948443e6b8a00b1791f9ec9"
+              },
+              {
+                "offset": 1768032,
+                "bytes": 226,
+                "sha256": "91ea1699ff6b1a34b4a1d500a9c75a808441e47b9ea68da6fb0195e01ce1dc61"
+              },
+              {
+                "offset": 1768704,
+                "bytes": 1211,
+                "sha256": "7c4c63ee462e0e700cd9e29c8e0f730b3f1b484c4abdd83f1e69fcd477c061fa"
+              },
+              {
+                "offset": 1769952,
+                "bytes": 1674,
+                "sha256": "d039c8119a029ab9f9c83c04d67002d887b6bc6026c4264402ab27cdf24cf138"
+              }
+            ],
+            "classification": "public upstream benchmark/self-test constants"
+          },
+          "usr/lib32/libgnutls.so.30.42.0": {
+            "package": "lib32-gnutls-3.8.13-3-x86_64.pkg.tar.zst",
+            "sha256": "193505f8baf8a807ed22c0147505791bb891133c088576de12c9d0c7b64838ad",
+            "bytes": 2104700,
+            "private_key_blocks": [
+              {
+                "offset": 1575872,
+                "bytes": 155,
+                "sha256": "fed7079dd4491609e4c996e232f366ac434fa4cc9df19df363391d079d470964"
+              },
+              {
+                "offset": 1576128,
+                "bytes": 118,
+                "sha256": "5a09eb5df3674472eda0077d83cbccef72692c3d052ab393368ac57295439c58"
+              },
+              {
+                "offset": 1578752,
+                "bytes": 200,
+                "sha256": "a4d138d7ef9748464117b44fb9c0a4b5b85a1599a127d02690abaa96d03c16e6"
+              },
+              {
+                "offset": 1578976,
+                "bytes": 155,
+                "sha256": "fa0b06a72461ec0a963dcfccb8d5b61bd88a6074fc7271573bff68ab86b8c1af"
+              },
+              {
+                "offset": 1579136,
+                "bytes": 151,
+                "sha256": "ef237ea8db4f2ae9ee100e8ced96d29b5dceb0e6a948443e6b8a00b1791f9ec9"
+              },
+              {
+                "offset": 1579968,
+                "bytes": 226,
+                "sha256": "91ea1699ff6b1a34b4a1d500a9c75a808441e47b9ea68da6fb0195e01ce1dc61"
+              },
+              {
+                "offset": 1580640,
+                "bytes": 1211,
+                "sha256": "7c4c63ee462e0e700cd9e29c8e0f730b3f1b484c4abdd83f1e69fcd477c061fa"
+              },
+              {
+                "offset": 1581888,
+                "bytes": 1674,
+                "sha256": "d039c8119a029ab9f9c83c04d67002d887b6bc6026c4264402ab27cdf24cf138"
+              }
+            ],
+            "classification": "public upstream benchmark/self-test constants"
+          }
+        }
+      },
+      "identities": {
+        "usr/lib/systemd/system/astraeus-apply@.service": "ec5d55f92b588a6fbd7d6a945794cdb96dde4eae7baa99de3a18797e25d4de13",
+        "usr/share/polkit-1/actions/org.astraeus.system.policy": "8a06872fc36e73c59c35de84332bfed679fed472dc4e076ccbc5ff9e5afe0000",
+        "usr/bin/distroctl": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b",
+        "usr/bin/astraeus-control-center": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41"
+      },
+      "accounts": [
+        {
+          "name": "root",
+          "uid": 0
+        },
+        {
+          "name": "bin",
+          "uid": 1
+        },
+        {
+          "name": "daemon",
+          "uid": 2
+        },
+        {
+          "name": "mail",
+          "uid": 8
+        },
+        {
+          "name": "ftp",
+          "uid": 14
+        },
+        {
+          "name": "http",
+          "uid": 33
+        },
+        {
+          "name": "nobody",
+          "uid": 65534
+        },
+        {
+          "name": "dbus",
+          "uid": 81
+        },
+        {
+          "name": "systemd-coredump",
+          "uid": 979
+        },
+        {
+          "name": "systemd-imds",
+          "uid": 978
+        },
+        {
+          "name": "systemd-network",
+          "uid": 977
+        },
+        {
+          "name": "systemd-oom",
+          "uid": 976
+        },
+        {
+          "name": "systemd-journal-remote",
+          "uid": 975
+        },
+        {
+          "name": "systemd-resolve",
+          "uid": 974
+        },
+        {
+          "name": "systemd-timesync",
+          "uid": 973
+        },
+        {
+          "name": "tss",
+          "uid": 972
+        },
+        {
+          "name": "uuidd",
+          "uid": 971
+        },
+        {
+          "name": "alpm",
+          "uid": 969
+        },
+        {
+          "name": "avahi",
+          "uid": 968
+        },
+        {
+          "name": "flatpak",
+          "uid": 967
+        },
+        {
+          "name": "pcscd",
+          "uid": 966
+        },
+        {
+          "name": "polkitd",
+          "uid": 102
+        },
+        {
+          "name": "sddm",
+          "uid": 965
+        }
+      ],
+      "worker_enabled": false,
+      "owner_and_validation_state_absent": true,
+      "embedded_repository_matches_verified_archives": true,
+      "sync_metadata": {
+        "files": {
+          "core.db": "48984a2b5a339954dc1a7c21bce7ff651b6b0c7747d0545c36ca454bee005a73",
+          "distro.db": "bcd9a8808cdd4f455d8997260bf4e9977d6eca28476d3ef005cf37e1ea4c40bd",
+          "distro.db.sig": "13ddb6e2670d10360a3be8e67d67849dd1d0b14346173f7bf1c5386f69284558",
+          "extra.db": "b2c0d01420d9bc1da17589c622fbf12c49af15d60e54f46cad8f6c307b5497ba",
+          "multilib.db": "17e1a87e6ecd932e053e6553187a468820c9dbc2e3a0954162f7ca349c4d47cf"
+        },
+        "access": {
+          "/": {
+            "mode": "dr-xr-xr-x",
+            "owner": "0/0"
+          },
+          "var": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "var/lib": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "var/lib/pacman": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/core.db": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/distro.db": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/distro.db.sig": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/extra.db": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "var/lib/pacman/sync/multilib.db": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          }
+        },
+        "ordinary_user_accessible": true,
+        "matches_approved_build_inputs_and_verified_repository": true
+      },
+      "installed_trust_inputs": {
+        "access": {
+          "/": {
+            "mode": "dr-xr-xr-x",
+            "owner": "0/0"
+          },
+          "usr": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "usr/share": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "usr/share/distro": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/80-astraeus-secure-boot.hook": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/90-astraeus-boot.hook": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/95-astraeus-uki.hook": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/astraeus-apply@.service": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/astraeus-bless-boot.conf": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/astraeus-confirm-boot.service": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/gaming.json": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/graphics.json": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/linux.preset.in": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/management.json": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/mkinitcpio.conf": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/org.astraeus.system.policy": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/packages.x86_64": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/secure-boot": {
+            "mode": "drwxr-xr-x",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/secure-boot/95-astraeus-sign": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          },
+          "usr/share/distro/install-inputs/secure-boot/linux.preset": {
+            "mode": "-rw-r--r--",
+            "owner": "0/0"
+          }
+        },
+        "root_owned_nonwritable_and_readable": true
+      }
+    }
+  },
+  "public_test_material_provenance_sha256": "5202315e3ff9682c4f3ba6f8d3c7351d1269215174f76c509a1779812f717311",
+  "public_test_material_packages": {
+    "gnutls-3.8.13-3-x86_64.pkg.tar.zst": {
+      "sha256": "a61d5d908aa83ad2ed6ddffda70ae2ddb5a81852dddcbf68ec42c1744e8a8ee9",
+      "signature": {
+        "sha256": "7d9ccc0c6981ed2f526ab40714065fa316eb9f1812e834b3e5d5b9d91920a10d",
+        "bytes": 310,
+        "source": "closed_a_cache",
+        "matches_approved_database_embedded_bytes": true,
+        "signer_fingerprint": "ADC8A1FCC15E01D45310419E94657AB20F2A092B",
+        "gpgv_verified": true
+      }
+    },
+    "lib32-gnutls-3.8.13-3-x86_64.pkg.tar.zst": {
+      "sha256": "551f78f088f2605bba38c6a85fe7d2b047dea8a099f27249dec64fa5d4e3242f",
+      "signature": {
+        "sha256": "7889036471adcdf9684fb3c2b31f387722f075b76d76e4917a23d61effae0a2c",
+        "bytes": 119,
+        "source": "closed_a_cache",
+        "matches_approved_database_embedded_bytes": true,
+        "signer_fingerprint": "38100C24376CD5F6ED4FF4B46918400C2703040C",
+        "gpgv_verified": true
+      }
+    }
+  },
+  "public_test_material_source": {
+    "report_sha256": "baae9ab0603f9660b47dcff1af891f19859d6cc93d56b31694c970dd9facfddb",
+    "report": {
+      "schema_version": 1,
+      "official_download_page": "https://www.gnutls.org/download.html",
+      "source_url": "https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/gnutls-3.8.13.tar.xz",
+      "archive_sha256": "ffed8ec1bf09c2426d4f14aae377de4753b53e537d685e604e99a8b16ca9c97e",
+      "signed_package_proof_sha256": "45ad7a8bef8058b956d20340d73638d671423e1dc9b803542f0405ebc948c852",
+      "expected_unique_blocks": 12,
+      "matched_unique_blocks": 12,
+      "missing": [],
+      "source_files": [
+        {
+          "path": "src/benchmark-tls.c",
+          "sha256": "e7e0d21a0a84961ded0da44bbbbcb72663ead33cc9b0f45c7b9ea6e25efaf671"
+        },
+        {
+          "path": "lib/crypto-selftests-pk.c",
+          "sha256": "6e596be00754107fd7f7d1f132c2dc8cd0ff12bbdfc6de08c162a1dd5eedc7e8"
+        }
+      ],
+      "matches": [
+        {
+          "path": "lib/crypto-selftests-pk.c",
+          "line": 44,
+          "constant": "rsa_2048_privkey",
+          "sha256": "d039c8119a029ab9f9c83c04d67002d887b6bc6026c4264402ab27cdf24cf138",
+          "bytes": 1674
+        },
+        {
+          "path": "lib/crypto-selftests-pk.c",
+          "line": 111,
+          "constant": "dsa_2048_privkey",
+          "sha256": "7c4c63ee462e0e700cd9e29c8e0f730b3f1b484c4abdd83f1e69fcd477c061fa",
+          "bytes": 1211
+        },
+        {
+          "path": "lib/crypto-selftests-pk.c",
+          "line": 141,
+          "constant": "ecdsa_secp256r1_privkey",
+          "sha256": "91ea1699ff6b1a34b4a1d500a9c75a808441e47b9ea68da6fb0195e01ce1dc61",
+          "bytes": 226
+        },
+        {
+          "path": "lib/crypto-selftests-pk.c",
+          "line": 225,
+          "constant": "gost01_privkey",
+          "sha256": "ef237ea8db4f2ae9ee100e8ced96d29b5dceb0e6a948443e6b8a00b1791f9ec9",
+          "bytes": 151
+        },
+        {
+          "path": "lib/crypto-selftests-pk.c",
+          "line": 232,
+          "constant": "gost12_256_privkey",
+          "sha256": "fa0b06a72461ec0a963dcfccb8d5b61bd88a6074fc7271573bff68ab86b8c1af",
+          "bytes": 155
+        },
+        {
+          "path": "lib/crypto-selftests-pk.c",
+          "line": 239,
+          "constant": "gost12_512_privkey",
+          "sha256": "a4d138d7ef9748464117b44fb9c0a4b5b85a1599a127d02690abaa96d03c16e6",
+          "bytes": 200
+        },
+        {
+          "path": "lib/crypto-selftests-pk.c",
+          "line": 247,
+          "constant": "eddsa_ed25519_privkey",
+          "sha256": "5a09eb5df3674472eda0077d83cbccef72692c3d052ab393368ac57295439c58",
+          "bytes": 118
+        },
+        {
+          "path": "lib/crypto-selftests-pk.c",
+          "line": 259,
+          "constant": "eddsa_ed448_privkey",
+          "sha256": "fed7079dd4491609e4c996e232f366ac434fa4cc9df19df363391d079d470964",
+          "bytes": 155
+        },
+        {
+          "path": "src/benchmark-tls.c",
+          "line": 142,
+          "constant": "server_key_pem",
+          "sha256": "43eb5881ab1e22dc3d13740cc09badf2930fd3d1489ae0f4f32378b6fbd2b3bc",
+          "bytes": 2458
+        },
+        {
+          "path": "src/benchmark-tls.c",
+          "line": 183,
+          "constant": "server_ecc_key_pem",
+          "sha256": "2ea9de3056e2f838e4b078f83dd7227809816f0b6540b7ac8fb9291eb63a8de8",
+          "bytes": 226
+        },
+        {
+          "path": "src/benchmark-tls.c",
+          "line": 204,
+          "constant": "server_ed25519_key_pem",
+          "sha256": "4c2aecf7b5d6a8f7b0bbf59a4f7cc0ea0263fcb0b231ea3db531410b564d1c7c",
+          "bytes": 118
+        },
+        {
+          "path": "src/benchmark-tls.c",
+          "line": 224,
+          "constant": "server_gost12_256_key_pem",
+          "sha256": "fd0521c2c1339568b5f8df1156ade46cc1af9aca529f2d929eead9cd67e37e9a",
+          "bytes": 155
+        }
+      ]
+    },
+    "signature_report_sha256": "4c1342fca344fa2dfd476087deace789e6ce5aabb79e8ec17050219f0425f56a",
+    "signature_report": {
+      "exit": 0,
+      "status": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED 5D46CB0F763405A7053556F47A75A648B3F9220C 0\n[GNUPG:] SIG_ID 6oSfCQ7/WJqTtvPlK7ZpJBrcTq4 2026-04-29 1777475920\n[GNUPG:] GOODSIG 7A75A648B3F9220C Zoltan Fridrich <zfridric@redhat.com>\n[GNUPG:] VALIDSIG 5D46CB0F763405A7053556F47A75A648B3F9220C 2026-04-29 1777475920 0 4 0 22 10 00 5D46CB0F763405A7053556F47A75A648B3F9220C\n[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED E987AB7F7E89667776D05B3BB0E9DD20B29F1432 0\n[GNUPG:] SIG_ID fDQJ2hVNa9ybH+eTIbG0Oz2llmc 2026-04-29 1777474247\n[GNUPG:] GOODSIG 412748A40AFCC2FB Alexander Sosedkin <monk@unboiled.info>\n[GNUPG:] VALIDSIG A6AB53A01D237A94F9EEC4D0412748A40AFCC2FB 2026-04-29 1777474247 0 4 0 1 10 00 E987AB7F7E89667776D05B3BB0E9DD20B29F1432\n",
+      "stderr": "gpgv: Signature made Wed Apr 29 08:18:40 2026 PDT\ngpgv:                using EDDSA key 5D46CB0F763405A7053556F47A75A648B3F9220C\ngpgv: Good signature from \"Zoltan Fridrich <zfridric@redhat.com>\"\ngpgv: Signature made Wed Apr 29 07:50:47 2026 PDT\ngpgv:                using RSA key A6AB53A01D237A94F9EEC4D0412748A40AFCC2FB\ngpgv: Good signature from \"Alexander Sosedkin <monk@unboiled.info>\"\n",
+      "signature_sha256": "fbe8e5a702febffba6df45bbcfc0e6f46300e68fb380b0757f3ad0c3544abada",
+      "official_public_keyring_sha256": "a47ae67e65375cedf0e0af830db4f29b29365283c1c3661a47d3d67601b9eada"
+    }
+  },
+  "repository": {
+    "fingerprint": "6DA84EB479F3A2F88C2B658E17BF6CA306695F72",
+    "signatures_verified": 6,
+    "files": {
+      "SHA256SUMS": {
+        "bytes": 1381,
+        "sha256": "14d578b42699003158627a33bd8cece136ffd2382afa3c2f9d2f7c6cc5bfb36f",
+        "private_key_blocks": 0
+      },
+      "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+        "bytes": 132853,
+        "sha256": "ef80d32616e39f8d12447cf413efea175a778cdc51bb5c6f47be3a15c9015c3b",
+        "private_key_blocks": 0
+      },
+      "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+        "bytes": 119,
+        "sha256": "8ad49907f39a2fd1cc350e46b0fa84e32d7a79ce214028c04dc01e5a452c2c69",
+        "private_key_blocks": 0
+      },
+      "calamares-3.4.3-1-x86_64.pkg.tar.zst": {
+        "bytes": 4253631,
+        "sha256": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+        "private_key_blocks": 0
+      },
+      "calamares-3.4.3-1-x86_64.pkg.tar.zst.sig": {
+        "bytes": 119,
+        "sha256": "5ed44f15e7d76219d594b9e85d09272ff604aece82eb3e33b4417338d7fd2da7",
+        "private_key_blocks": 0
+      },
+      "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": {
+        "bytes": 43686681,
+        "sha256": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+        "private_key_blocks": 0
+      },
+      "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst.sig": {
+        "bytes": 119,
+        "sha256": "126662f1925779ddae561b9c131e2b00bb23e3d12ec2e7082748dacdccea6352",
+        "private_key_blocks": 0
+      },
+      "distro.db": {
+        "bytes": 1906,
+        "sha256": "bcd9a8808cdd4f455d8997260bf4e9977d6eca28476d3ef005cf37e1ea4c40bd",
+        "private_key_blocks": 0
+      },
+      "distro.db.sig": {
+        "bytes": 119,
+        "sha256": "13ddb6e2670d10360a3be8e67d67849dd1d0b14346173f7bf1c5386f69284558",
+        "private_key_blocks": 0
+      },
+      "distro.db.tar.gz": {
+        "bytes": 1906,
+        "sha256": "bcd9a8808cdd4f455d8997260bf4e9977d6eca28476d3ef005cf37e1ea4c40bd",
+        "private_key_blocks": 0
+      },
+      "distro.db.tar.gz.sig": {
+        "bytes": 119,
+        "sha256": "13ddb6e2670d10360a3be8e67d67849dd1d0b14346173f7bf1c5386f69284558",
+        "private_key_blocks": 0
+      },
+      "distro.files": {
+        "bytes": 10442,
+        "sha256": "3bd902dc74429780def55b6c72ebcf163a7c5c4064331dd3ad6fd4d319f66910",
+        "private_key_blocks": 0
+      },
+      "distro.files.sig": {
+        "bytes": 119,
+        "sha256": "cfea55313ff1fa4d52f59720c5917efee2f406391e24c3fe616c00a6e7c1d7c7",
+        "private_key_blocks": 0
+      },
+      "distro.files.tar.gz": {
+        "bytes": 10442,
+        "sha256": "3bd902dc74429780def55b6c72ebcf163a7c5c4064331dd3ad6fd4d319f66910",
+        "private_key_blocks": 0
+      },
+      "distro.files.tar.gz.sig": {
+        "bytes": 119,
+        "sha256": "cfea55313ff1fa4d52f59720c5917efee2f406391e24c3fe616c00a6e7c1d7c7",
+        "private_key_blocks": 0
+      },
+      "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+        "bytes": 2537381,
+        "sha256": "40981acea1038fab29f2db61df222091ddcdb2341155ada5c315846dd6c7252a",
+        "private_key_blocks": 0
+      },
+      "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+        "bytes": 119,
+        "sha256": "f8b87e5e4a9d475b2bd9209ff1247982a6b04f816b1726112716b2258949c717",
+        "private_key_blocks": 0
+      },
+      "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+        "bytes": 1882554,
+        "sha256": "f8306dcfd1a68a2215290ff1a096d5f0a534081d178da1b4bcd8eaabd5faf78d",
+        "private_key_blocks": 0
+      },
+      "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+        "bytes": 119,
+        "sha256": "65ee97d7d91fe487d55df7150b3d14b4ee9fd850212bf0cee6220644a2614c1e",
+        "private_key_blocks": 0
+      },
+      "repository-key.asc": {
+        "bytes": 409,
+        "sha256": "fe7bb7d1801b64e5c044aacea994a2898373406b43c9ab01eee5971ed8a02d0d",
+        "private_key_blocks": 0
+      }
+    },
+    "package_member_counts": {
+      "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": 7,
+      "calamares-3.4.3-1-x86_64.pkg.tar.zst": 240,
+      "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": 561,
+      "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": 21,
+      "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": 18
+    },
+    "identities": {
+      "usr/bin/astraeus-control-center": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+      "usr/bin/distroctl": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b",
+      "usr/lib/systemd/system/astraeus-apply@.service": "ec5d55f92b588a6fbd7d6a945794cdb96dde4eae7baa99de3a18797e25d4de13",
+      "usr/share/polkit-1/actions/org.astraeus.system.policy": "8a06872fc36e73c59c35de84332bfed679fed472dc4e076ccbc5ff9e5afe0000"
+    },
+    "private_key_blocks": 0,
+    "private_key_paths_absent": true
+  }
+}

@@ -16,8 +16,10 @@ physical gaming qualification remain incomplete.
 
 Phase 4.2 implements selected-subset system management and the native
 [Control Center](control-center.md). Host and native package-fixture checks have
-passed, and two clean builds produced byte-identical images. Installed-VM
-management/recovery acceptance remains pending. See the [current report](phase42-acceptance.md).
+passed, and two clean builds of `6d10954` produced byte-identical images. Its plain
+CLI lifecycle and signed live-media checks passed, but offline recovery exposed a
+boot-preference defect. Corrected `ec3641b` images and fresh installed-VM acceptance
+remain required. See the [current report](phase42-acceptance.md).
 
 | Phase | State | Deliverable | Evidence needed to close |
 | --- | --- | --- | --- |

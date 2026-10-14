@@ -4,6 +4,13 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
+Corrected runtime `ec3641b` clean A has passed its native package checks (159 Rust
+tests with five fixture skips, 21 Qt controller and 13 QML checks), complete image
+audit, source verification and thin evidence export. Its ISO SHA256 is
+`2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca`.
+The fresh plain VM is running as an early functional recovery gate; independent B,
+byte comparison and complete corrected-candidate VM acceptance remain required.
+
 The latest code fixes a real offline-recovery defect found in the `6d10954`
 candidate. Both `6d10954` independent images and their full byte comparison passed; clean A also
 passed the complete image audit. The fresh plain baseline passed two enforcing

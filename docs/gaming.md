@@ -314,5 +314,7 @@ the full independent ISO reproducibility gate must be repeated by integration.
 See [gaming runtime test design](gaming-runtime-tests.md) for the acceptance owner's
 next steps. Real Steam startup, Proton execution, physical 64/32-bit graphics,
 controller input, Gamescope, overlays, GameMode and OBS capture remain unvalidated.
-Targeted transactions, authenticated GE acquisition, Flatpak installation, broad
-discovery layouts, a Control Center and all Phase 5 work remain deferred.
+At that Phase 4 checkpoint, targeted transactions and a Control Center remained
+deferred. Phase 4.2 now implements them, with acceptance tracked above.
+Authenticated GE acquisition, Flatpak installation, broad discovery layouts and
+Phase 5 work remain deferred.
