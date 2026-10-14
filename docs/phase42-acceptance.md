@@ -133,6 +133,17 @@ This is a seeding regression check, not an ISO or boot acceptance result. The
 first helper attempt stopped before creating an overlay because its restricted
 PATH omitted Ubuntu's `blockdev`; that failed harness receipt is also retained.
 
+The new `0e8bb00` A build passed 156 native tests with five ignored fixtures and
+both Qt groups, built the split packages and Calamares, and verified its signed
+repository. Its clean installed payload then passed configuration expansion,
+management seeding and the installed Rust reader, proceeding into compression.
+`A-initial-seed-check.json` has SHA256
+`939bb15cb3b9ff06802a0959dcb36a31b27561c06b44f54fb957f7bdbe99f41f`.
+The CLI and GUI binary hashes match the earlier `298e12a` binaries, while the
+package archives reflect the changed build inputs. This repository's signer is
+`9AA267C32CFD7576040F95A75AE5520391EC79F0`, created 2026-10-14 01:43:52 UTC
+and expiring 2026-10-15 01:43:52 UTC. ISO and installed-VM checks remain pending.
+
 The immutable VM harness is `ad3f097d9475c52d18b4095fce5fc160d8edaa04`,
 exported as a 368,640-byte archive with SHA256
 `819e08cb18e69b8515ccfbf8cabbdb9ff1e88d0f1ad59d82ff06b1109bbb0abb`.
@@ -185,13 +196,13 @@ while it applies. Live sessions permit inspection and planning only.
 
 | Gate | Current evidence |
 | --- | --- |
-| Host Rust checks | Windows workspace 140 passed; native Linux workspace 155 passed with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy passed; earlier Windows Clippy evidence is retained |
+| Host Rust checks | Current Windows and Linux CI passed. The clean Arch `0e8bb00` workspace passed 156 tests with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy also passed with warnings denied |
 | Python, shell and signing | Full Python suites passed on `0e8bb00`: Windows 126 passed/64 skipped, Linux root 186 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
 | Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
-| Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment and in the pinned Arch `298e12a` package build |
+| Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment and in the pinned Arch `0e8bb00` package build |
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
-| Native desktop build and tests | 21 Qt controller checks passed; the corrected local QML suite passes 13 checks. Both Qt groups passed in the pinned Arch `298e12a` package build. Production startup loaded the KDE desktop style; installed-VM backend acceptance remains pending |
+| Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `298e12a` build; both Qt groups passed again on `0e8bb00`. Production startup loaded the KDE desktop style; installed-VM backend acceptance remains pending |
 | Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
 | Two byte-identical candidate images | Not built yet |
 | Physical PC and USB boot | Deferred by request |
