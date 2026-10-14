@@ -10,7 +10,7 @@ distro-snapshots = { path = "../snapshots" }
 serde.workspace = true
 serde_json.workspace = true
 rusqlite = { version = "0.38", features = ["bundled"] }
-sha2 = "0.10"
+sha2 = "0.11"
 
 [target.'cfg(target_os = "linux")'.dependencies]
 libc = "0.2"
