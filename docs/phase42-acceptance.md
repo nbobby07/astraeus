@@ -4,9 +4,9 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The current runtime candidate is `298e12a538faf19a4ad302ca73d1f25436f2b45d`.
-Its clean-build source archive is 4,986,336 bytes with SHA256
-`0f9669f4a5f728cbbc8258655a5ba0713c4dfad1cd7898a985f5d0f99930b094`.
+The current runtime candidate is `0e8bb00e3edc5382fa177bf0017b2f8595ee8229`.
+Its clean-build source archive is 4,991,208 bytes with SHA256
+`f0d5c0019f5e9962506dbcc7359cdc2d98ae4d143528d1ede8943238ea83b0d4`.
 Earlier stopped build attempts remain preliminary evidence and do not qualify this
 candidate. Later validation-only commits are recorded separately from runtime.
 
@@ -120,6 +120,18 @@ private-key paths protected. Payload tests check that build keys are removed and
 the empty directory has the required mode even under a restrictive umask. The
 full Python suite passes on Windows (126 passed, 64 platform skips) and Linux
 root (186 passed, four skips). A new clean image is still required.
+
+Before rebuilding, a disposable overlay over the read-only failed `298e12a` root
+passed the full seeding boundary with its actual installed binaries. Adding only
+the empty `0755` directory let `pacman-conf` expand the final configuration;
+production seeding resolved and protected all 736 packages; the installed Rust
+reader accepted the generated configuration, lock and ownership records. The
+lower input hashes remained unchanged and all mounts were detached. The public
+`seed-preflight-result.json` has SHA256
+`eb622762e3aeeefa133eec5d232fef0a5a9106ece1d6b2f7e5bc9d9933b75352`.
+This is a seeding regression check, not an ISO or boot acceptance result. The
+first helper attempt stopped before creating an overlay because its restricted
+PATH omitted Ubuntu's `blockdev`; that failed harness receipt is also retained.
 
 The immutable VM harness is `ad3f097d9475c52d18b4095fce5fc160d8edaa04`,
 exported as a 368,640-byte archive with SHA256
