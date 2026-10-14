@@ -5,8 +5,10 @@ has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
 The latest code is `6d10954`, including the coordinator lock-release fix and
-Zstd live compression. Its clean A image and complete image audit passed;
-independent B is building. Fresh installed-system acceptance remains pending.
+Zstd live compression. Both independent images and their full byte comparison passed; clean A also
+passed the complete image audit. The fresh plain baseline passed two enforcing
+boots and all 12 CLI lifecycle gates. LUKS2, installed GUI, metadata/fault and
+recovery acceptance remain pending.
 
 The previous complete image was runtime `0c938b94f44956fd77890d851e35650b62b1e6da`.
 Clean A and its expanded final image audit passed. Independent B failed its
@@ -278,16 +280,16 @@ while it applies. Live sessions permit inspection and planning only.
 
 | Gate | Current evidence |
 | --- | --- |
-| Host Rust checks | Current Windows and Linux CI passed. The clean Arch `9825438` A workspace passed 156 tests with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy also passed with warnings denied |
-| Python, shell and signing | Full Python suites passed on `9825438`: Windows 143 passed/65 skipped, Linux root 204 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
+| Host Rust checks | Current Windows and Linux CI passed. Both clean Arch `6d10954` workspaces passed 158 tests with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy also passed with warnings denied |
+| Python, shell and signing | Full Python suites passed on `6d10954`: Windows 144 passed/65 skipped, Linux root 205 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
 | Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
-| Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment and in the pinned Arch `9825438` A package build |
+| Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment and in both pinned Arch `6d10954` package builds |
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
-| Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `9825438` A build. Production startup loaded the KDE desktop style in earlier checks; replacement installed-VM backend acceptance remains pending |
-| Plain and LUKS2 installed VMs with enforced Secure Boot | Fresh `9825438` plain baseline passed two enforcing cold boots and actual SDDM/Plasma logins. LUKS2 and management/recovery acceptance remain pending |
-| Image contents and signing-key audit | Replacement `9825438` A passed the full content/key audit and strict final compressed repository metadata/access checks in both live and installed roots |
-| Two byte-identical candidate images | Passed on `9825438`: full ISO `cmp` returned zero; all five independent package archives, generated source archives, inputs and manifests match. Both builds passed 156 native, 21 controller and 13 QML tests |
+| Native desktop build and tests | 21 Qt controller and 13 QML checks passed in both pinned Arch `6d10954` builds. Installed GUI acceptance remains pending |
+| Plain and LUKS2 installed VMs with enforced Secure Boot | Fresh `6d10954` plain baseline passed two enforcing cold boots and actual SDDM/Plasma logins. All 12 real CLI package lifecycle gates passed; LUKS2, installed GUI and fault/recovery acceptance remain pending |
+| Image contents and signing-key audit | Current `6d10954` A passed the full content/key audit and strict final compressed repository metadata/access checks in both live and installed roots |
+| Two byte-identical candidate images | Passed on `6d10954`: full ISO `cmp` returned zero; all five independent package archives, generated source archives, inputs and manifests match. Both builds passed 158 native, 21 controller and 13 QML tests |
 | Physical PC and USB boot | Deferred by request |
 
 The native fixture runner is `scripts/validate/native-alpm.py`. It creates a new

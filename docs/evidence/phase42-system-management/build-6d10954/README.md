@@ -6,4 +6,8 @@ Clean A completed with 158 native Rust passes and five normal-run skips, plus 21
 - Thin archive: 52,867,427 bytes; SHA256 `030d2dc5977f4c29bf0da1beda087f1123b16d50d96b73574a524bc1ae98cbcf`.
 - Audit archive: 8,923 bytes; SHA256 `3297868ac3673d4d1e2376970f7db4734cd023655aa6b9b7bd15d4f06556d3c4`.
 
-The complete local ISO transfer remains in progress. Independent B is running with 789 verified upstream archives copied from closed A; normal B trust checks remain enabled. B equality and fresh plain/LUKS2 management, installed GUI and recovery acceptance are still pending. Original keyring and firmware messages remain in the raw build log.
+Both independent builds completed and their full ISO bytes compare equal. All five independently compiled packages, source packaging and seven build-input/manifests also match. Both normal Arch checks passed 158 Rust tests with five skips, plus 21 controller and 13 QML checks.
+
+The complete A ISO was downloaded in 29 checked chunks, with one recorded network retry, and its full hash matches. It is read-only locally. B was independently built and compared remotely; its identical bytes are represented by a read-only local hardlink after that comparison, rather than a second download. Both closed build disks were retired after verified evidence exports.
+
+Fresh plain/LUKS2 management, installed GUI and recovery acceptance are not implied by these image checks. Original keyring and firmware messages remain in the raw A build log.

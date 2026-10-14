@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "image_sha256": "13709ebc3213061daabf2a29db6911520e477e8608d26231ebd8018955629148",
+  "distroctl_sha256": "38509da005f4ebe5aa81fb5f5e100c2fb22e66c1d8d008378028c33137573090",
+  "desktop_sha256": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+  "serial": "AS426f57d6f8b04f8f1e",
+  "encryption": "none",
+  "user": "tester",
+  "certificate_sha256": "9e1810eaf8de9e97e7cc63278316464d6984a21818fcdbb5d6392cadb6c1cdda"
+}

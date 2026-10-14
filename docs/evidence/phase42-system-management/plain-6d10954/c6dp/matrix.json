@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "qualified": false,
+  "physical_hardware_qualified": false,
+  "scenarios": [
+    {
+      "id": "candidate-identity",
+      "expected": "Fresh candidate source, ISO, firmware and installed binary identities agree",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:07:03.830832+00:00",
+      "finished": "2026-10-14T15:07:09.696346+00:00"
+    },
+    {
+      "id": "readonly-user",
+      "expected": "Ordinary-user observations and planning leave package/configuration/history state unchanged",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:07:12.173806+00:00",
+      "finished": "2026-10-14T15:07:18.347010+00:00"
+    },
+    {
+      "id": "invalid-configuration",
+      "expected": "Malformed, duplicate, unsupported and unsafe requests are rejected without mutation",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:07:18.347657+00:00",
+      "finished": "2026-10-14T15:07:21.231928+00:00"
+    },
+    {
+      "id": "unprivileged-submit",
+      "expected": "Direct unauthenticated submission cannot start a root operation",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:07:22.311965+00:00",
+      "finished": "2026-10-14T15:07:24.164996+00:00"
+    },
+    {
+      "id": "stale-plan",
+      "expected": "A different reviewed-plan digest is rejected without mutation",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:07:24.165584+00:00",
+      "finished": "2026-10-14T15:07:28.302525+00:00"
+    },
+    {
+      "id": "install-plan",
+      "expected": "The selected approved package resolves to an executable complete installation plan",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:07:21.232599+00:00",
+      "finished": "2026-10-14T15:07:22.311478+00:00"
+    },
+    {
+      "id": "install-transaction",
+      "expected": "The worker applies the reviewed package set after a snapshot and stops at awaiting_boot",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:07:28.454989+00:00",
+      "finished": "2026-10-14T15:08:32.355024+00:00"
+    },
+    {
+      "id": "pending-boot-block",
+      "expected": "A second request cannot mutate the system while boot confirmation is pending",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:08:32.355809+00:00",
+      "finished": "2026-10-14T15:08:35.931267+00:00"
+    },
+    {
+      "id": "install-confirmation",
+      "expected": "A different healthy boot verifies the installed package and desired configuration",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:08:35.931929+00:00",
+      "finished": "2026-10-14T15:09:06.807911+00:00"
+    },
+    {
+      "id": "remove-transaction",
+      "expected": "Removing the managed choice removes its package through the same coordinator",
+      "status": "PASS",
+      "evidence": [
+        "boot-2/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:09:08.258461+00:00",
+      "finished": "2026-10-14T15:10:04.414582+00:00"
+    },
+    {
+      "id": "remove-confirmation",
+      "expected": "Another healthy boot verifies removal and restored desired configuration",
+      "status": "PASS",
+      "evidence": [
+        "boot-2/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:10:04.415413+00:00",
+      "finished": "2026-10-14T15:10:35.971879+00:00"
+    },
+    {
+      "id": "history-and-home",
+      "expected": "Pre/post snapshots and complete history remain, while home test data survives",
+      "status": "PASS",
+      "evidence": [
+        "boot-3/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T15:10:35.972685+00:00",
+      "finished": "2026-10-14T15:10:36.418040+00:00"
+    },
+    {
+      "id": "fresh-install-plain",
+      "expected": "Fresh candidate installs and authenticates on plain Btrfs",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "fresh-install-luks2",
+      "expected": "Fresh candidate installs and authenticates on LUKS2/Btrfs",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "image-reproducibility",
+      "expected": "Two independent clean builds produce identical candidate ISO bytes",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "live-readonly",
+      "expected": "Packaged GUI and CLI refuse mutation from live media",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "dependency-ownership",
+      "expected": "Shared dependencies, explicit choices and externally changed packages remain safe",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "resolver-conflicts",
+      "expected": "Conflicts, replacements and ambiguous providers expose the complete reviewed outcome",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "signature-and-provenance",
+      "expected": "Tampered/unsigned packages and changed repository provenance are rejected",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "protected-packages",
+      "expected": "Protected base, bootloader, graphics transitions and coordinator changes are refused",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "worker-interruption",
+      "expected": "Killed worker leaves a visible durable failure or recovery-required state without replay",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "failed-hooks-and-space",
+      "expected": "Failed package hooks, health checks and capacity failures preserve recovery evidence",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "offline-recovery",
+      "expected": "Deliberate offline rollback restores packages, ownership, configuration and signed boot state",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "gui-polkit",
+      "expected": "Packaged native GUI authenticates through the real desktop polkit agent",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "gui-close-survival",
+      "expected": "Accepted mutation survives closing the native GUI and reconnects on reopening",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "gui-crash-survival",
+      "expected": "Accepted mutation survives a GUI crash and reconnects on reopening",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "signed-boot-generations",
+      "expected": "Secure Boot remains enforcing across candidate install, removal and recovery",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "image-key-audit",
+      "expected": "Candidate media and repository contain no private signing keys",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    }
+  ],
+  "started": "2026-10-14T15:06:47.202190+00:00",
+  "encryption": "none",
+  "candidate_source": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "candidate_iso_sha256": "13709ebc3213061daabf2a29db6911520e477e8608d26231ebd8018955629148",
+  "requested_run_passed": true,
+  "secure_boot_requested": true,
+  "finished": "2026-10-14T15:10:44.750720+00:00"
+}

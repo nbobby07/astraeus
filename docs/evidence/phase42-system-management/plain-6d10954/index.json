@@ -1,0 +1,74 @@
+{
+  "full-export-index.json": {
+    "bytes": 61535,
+    "sha256": "de5b00cee27f36d9f2c7bf7b9c145338f0efe582b0eb1bbf130cdbece2ff7515"
+  },
+  "plain-baseline-launch.json": {
+    "bytes": 140,
+    "sha256": "33b91c29e541c1e1961fb439b933b26b16edc6545c62aea31997fcfe4f5c0cf3"
+  },
+  "plain-cli-launch.json": {
+    "bytes": 88,
+    "sha256": "0ad0bda4f537a5ad9462c12c0462b4993ad4836cf3574540d8a6127f275cf337"
+  },
+  "plain-export-receipt.json": {
+    "bytes": 264,
+    "sha256": "a412f4f2d13a5cf620c8766b741316ea3c61841248894bdc44474d0b9d6f66b7"
+  },
+  "plain-installed-boot-one-login.png": {
+    "bytes": 221803,
+    "sha256": "2ea440300ad4f05150bb0e023404e7e6226ced0e1ab2bcc52c8d4fdc12bb2774"
+  },
+  "plain-installed-boot-two-login.png": {
+    "bytes": 222229,
+    "sha256": "2c3de5cb4c635ea2eec3935be9559d7c687a67b3130e7ac073dc159d0f0c552b"
+  },
+  "plain-live-initial.png": {
+    "bytes": 555015,
+    "sha256": "284b7bfa88027e19d0a46927ebf7268990312b80d5a818d1f44ffbc94d909e14"
+  },
+  "c6dp/inputs.json": {
+    "bytes": 3174,
+    "sha256": "d8768185219dc5753019daea2ac31393802090d4c8cba16ea3c1ddf1fa072b20"
+  },
+  "c6dp/install-operation.json": {
+    "bytes": 434745,
+    "sha256": "237378e8c2522e711114eeea8c3257f9a477795c53c6002ca5544303741202af"
+  },
+  "c6dp/matrix.json": {
+    "bytes": 8624,
+    "sha256": "c8237d82d04146a199fca60a857449c8046b17e7b5e19809572f1f6b1138cf07"
+  },
+  "c6dp/remove-operation.json": {
+    "bytes": 434586,
+    "sha256": "7601d929443ad93e1d4ec2c85fb0d53dce8aa1553f591b3f9f81201b9d16d495"
+  },
+  "n6dp/baseline.json": {
+    "bytes": 2229,
+    "sha256": "b1519a8b063e2594e09e47c68a1c5e25b5237aa11e006694eefcfd4fa9477543"
+  },
+  "n6dp/fresh-installation.json": {
+    "bytes": 1556,
+    "sha256": "ccead6644fce6cc0a9b78a11973bfd4bdf0991eb1a00409ba40f26885c3d94e7"
+  },
+  "n6dp/inputs.json": {
+    "bytes": 764,
+    "sha256": "71280569fbd154696c903f5d157c1315e8de6eb1a59d06e6b68ca706e909be2d"
+  },
+  "n6dp/installation.json": {
+    "bytes": 525,
+    "sha256": "559a22df8fbd1fa21d30b2f4db5b0507995c4e12718e2b5216bdabbaf7f74b6f"
+  },
+  "n6dp/maintained-uki-trust-1.json": {
+    "bytes": 361,
+    "sha256": "1272998beb76f001283c8f666f03dbedd9e5fdeb47c2ab9f9817521f4791f8c2"
+  },
+  "n6dp/maintained-uki-trust-2.json": {
+    "bytes": 361,
+    "sha256": "1272998beb76f001283c8f666f03dbedd9e5fdeb47c2ab9f9817521f4791f8c2"
+  },
+  "n6dp/result.json": {
+    "bytes": 518,
+    "sha256": "cde29e9e021f66075d850875f91553ee991a2c1c91de6bc4579b782999b3242d"
+  }
+}
