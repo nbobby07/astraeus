@@ -27,6 +27,39 @@ def fake_resolution(_root, packages):
 
 
 class ManagementSeedTests(unittest.TestCase):
+    def test_actual_pacman_record_with_empty_url_preserves_installed_identity(self):
+        # Exact desc emitted by pacman for the signed 620d clean-build package.
+        text = (ROOT / "tests/fixtures/pacman/distroctl-empty-url.desc").read_text()
+        self.assertIn("%URL%\n\n\n%ARCH%", text)
+        self.assertEqual(installer.metadata_fields(text)["%URL%"], [])
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            bootstrap.write(root / "var/lib/pacman/local/distroctl-0.1.0.dev-1/desc", text)
+            self.assertEqual(installer.installed_state(root), {
+                "distroctl": {"version": "0.1.0.dev-1", "reason": "explicit"}})
+
+    def test_metadata_boundaries_and_required_values_remain_strict(self):
+        valid = "%NAME%\nmesa\n\n%VERSION%\n1-1\n\n%REASON%\n0\n"
+        invalid = {
+            "duplicate-name": valid + "\n%NAME%\nmesa\n",
+            "duplicate-empty-optional": valid + "\n%URL%\n\n\n%URL%\n\n",
+            "duplicate-reason": valid + "\n%REASON%\n0\n",
+            "orphan-value": valid + "\nnot-a-field\n",
+            "missing-separator": valid.replace("mesa\n\n%VERSION%", "mesa\n%VERSION%"),
+            "empty-name": valid.replace("%NAME%\nmesa", "%NAME%"),
+            "multiple-names": valid.replace("%NAME%\nmesa", "%NAME%\nmesa\nother"),
+            "multiple-versions": valid.replace("%VERSION%\n1-1", "%VERSION%\n1-1\n2-1"),
+            "empty-reason": valid.replace("%REASON%\n0", "%REASON%"),
+            "trailing-version-whitespace": "%NAME%\nmesa\n\n%VERSION%\n1-1 ",
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            for name, text in invalid.items():
+                with self.subTest(case=name):
+                    bootstrap.write(root / "var/lib/pacman/local/mesa/desc", text)
+                    with self.assertRaises(ValueError):
+                        installer.installed_state(root)
+
     def test_seed_preserves_base_and_shared_packages_and_records_new_feature_closure(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -93,7 +126,7 @@ class ManagementSeedTests(unittest.TestCase):
             for name in ("distro", "core", "extra", "multilib"):
                 with tarfile.open(sync / (name + ".db"), "w") as archive:
                     if name == "extra":
-                        data = ("%NAME%\nmesa\n\n%VERSION%\n1-1\n\n%SHA256SUM%\n" + "b" * 64 + "\n").encode()
+                        data = ("%URL%\n\n\n%NAME%\nmesa\n\n%VERSION%\n1-1\n\n%GROUPS%\n\n\n%SHA256SUM%\n" + "b" * 64 + "\n").encode()
                         member = tarfile.TarInfo("mesa-1-1/desc")
                         member.size = len(data)
                         archive.addfile(member, io.BytesIO(data))

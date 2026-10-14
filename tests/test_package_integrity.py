@@ -96,6 +96,36 @@ class PackageIntegrityTests(unittest.TestCase):
         (self.local / "desc").write_text("%NAME%\nother\n\n%VERSION%\n1-1\n")
         self.assertIn("identity changed", self.inspect()["detail"])
 
+    def test_empty_optional_metadata_fields_do_not_prevent_verified_removal(self):
+        description = ("%DESC%\n\n\n%NAME%\nfixture\n\n%URL%\n\n\n"
+                       "%VERSION%\n1-1\n\n%PACKAGER%\n\n\n%REASON%\n1\n\n%GROUPS%\n\n\n")
+        (self.local / "desc").write_text(description)
+        result = self.inspect()
+        self.assertTrue(result["removable"], result)
+        self.assertIn("complete MTREE SHA256 verification passed", result["detail"])
+
+    def test_metadata_separators_do_not_hide_duplicates_or_invalid_identity(self):
+        valid = "%NAME%\nfixture\n\n%VERSION%\n1-1\n\n"
+        invalid = {
+            "duplicate identity": valid + "%NAME%\nfixture\n\n",
+            "duplicate empty optional": valid + "%URL%\n\n\n%URL%\n\n",
+            "duplicate reason": valid + "%REASON%\n0\n\n%REASON%\n1\n\n",
+            "orphan data": valid + "orphan\n\n",
+            "orphan after empty optional": valid + "%URL%\n\n\norphan\n\n",
+            "empty name": "%NAME%\n\n%VERSION%\n1-1\n\n",
+            "multiple names": "%NAME%\nfixture\nother\n\n%VERSION%\n1-1\n\n",
+            "empty version": "%NAME%\nfixture\n\n%VERSION%\n\n",
+            "multiple versions": "%NAME%\nfixture\n\n%VERSION%\n1-1\n2-1\n\n",
+            "trailing whitespace at EOF": "%NAME%\nfixture\n\n%VERSION%\n1-1 \n",
+            "missing field separator": "%NAME%\nfixture\n\n%VERSION%\n1-1\n%REASON%\n0\n",
+        }
+        for label, description in invalid.items():
+            with self.subTest(label=label):
+                (self.local / "desc").write_text(description)
+                result = self.inspect()
+                self.assertFalse(result["removable"], result)
+                self.assertTrue(result["detail"])
+
     def test_metadata_change_during_inspection_invalidates_evidence(self):
         def change(_name, _deadline):
             with (self.local / "desc").open("ab") as output:

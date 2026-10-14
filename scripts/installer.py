@@ -83,11 +83,19 @@ def gaming_packages(features):
 
 def metadata_fields(text):
     fields = {}
-    for block in text.strip().split("\n\n"):
-        lines = block.splitlines()
-        if not lines or not re.fullmatch(r"%[A-Z0-9_]+%", lines[0]) or lines[0] in fields:
+    current = None
+    for line in text.split("\n"):
+        if not line:
+            current = None
+        elif re.fullmatch(r"%[A-Z0-9_]+%", line):
+            if current is not None or line in fields:
+                raise ValueError("invalid or duplicate package metadata field")
+            current = line
+            fields[current] = []
+        elif current is None:
             raise ValueError("invalid or duplicate package metadata field")
-        fields[lines[0]] = lines[1:]
+        else:
+            fields[current].append(line)
     return fields
 
 

@@ -75,13 +75,19 @@ def read_metadata(root, relative):
 
 def fields(text):
     result = {}
-    for block in text.strip().split('\n\n'):
-        if not block:
-            continue
-        lines = block.splitlines()
-        if not re.fullmatch(r'%[A-Z0-9_]+%', lines[0]) or lines[0] in result:
+    current = None
+    for line in text.split('\n'):
+        if not line:
+            current = None
+        elif re.fullmatch(r'%[A-Z0-9_]+%', line):
+            if current is not None or line in result:
+                raise ValueError('invalid or duplicate package metadata field')
+            current = line
+            result[current] = []
+        elif current is None:
             raise ValueError('invalid or duplicate package metadata field')
-        result[lines[0]] = lines[1:]
+        else:
+            result[current].append(line)
     return result
 
 

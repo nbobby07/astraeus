@@ -181,6 +181,11 @@ fn signed_native_backend() {
         InstallReason::Dependency
     );
     assert!(Path::new("/hook-ran").exists());
+    let installed_desc = fs::read_to_string("/var/lib/pacman/local/test-app-1-1/desc").unwrap();
+    assert!(
+        installed_desc.contains("%URL%\n\n\n"),
+        "the real libalpm fixture must serialize an empty optional URL field"
+    );
     assert!(!first
         .management
         .as_ref()
@@ -213,6 +218,7 @@ fn signed_native_backend() {
     let both = config(&["test-app", "test-app2"]);
     apply(both);
     let removed = apply(config(&["test-app2"]));
+    // Empty optional metadata must not turn an intact, owned package into a retained package.
     assert!(removed
         .packages
         .changes

@@ -69,8 +69,10 @@ def fixture(root, keyring):
     rows = []
     for name, extra in packages.items():
         archive = repo / f"{name}-1-1-any.pkg.tar.gz"
+        # libalpm serializes a legitimate empty optional URL with extra separators.
         info = dict(pkgname=name, pkgver="1-1", pkgdesc="Astraeus disposable native test",
-                    url="https://example.invalid", builddate="1790812800", packager="Astraeus tests",
+                    url="" if name == "test-app" else "https://example.invalid",
+                    builddate="1790812800", packager="Astraeus tests",
                     size="64", arch="any", **extra)
         with tarfile.open(archive, "w:gz") as tar:
             tar_entry(tar, ".PKGINFO", "".join(f"{k} = {v}\n" for k, v in info.items()).encode())
