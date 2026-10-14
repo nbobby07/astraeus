@@ -1,0 +1,106 @@
+{
+  "B-remote-retirement-local-proof.json": {
+    "bytes": 852,
+    "sha256": "c548b2c71c0dbf49b353d4324a05b41a6680efd6f7f2f1101efd1f8c10b8753a"
+  },
+  "mecp-disabled/result.json": {
+    "bytes": 2655,
+    "sha256": "641051c383d4b71c7bc2c04c688e75e062c1dff6333ec3a2c4867d0306dc712b"
+  },
+  "mecp-root-tampered/result.json": {
+    "bytes": 2660,
+    "sha256": "48065f4daa9a16ed073461093749d83f8c7d86ce1b2b0ab7e27aec0ff1568552"
+  },
+  "mecp-tampered/result.json": {
+    "bytes": 2655,
+    "sha256": "cba708b572b39bc36ac6d507bc58fa8d0ba9456fb3c1e5242da5839dc2739ac0"
+  },
+  "mecp-trusted/gui-complete.json": {
+    "bytes": 1555,
+    "sha256": "1cf1609e37a969e2df9ad1b10e5750d8172deb07a01ba3fd8d935d3dcbbe0f91"
+  },
+  "mecp-trusted/gui-process-identity.json": {
+    "bytes": 227,
+    "sha256": "6c49542842074a35674bab11f25832d5397b4dfc86f39db4390d2d44538577eb"
+  },
+  "mecp-trusted/result.json": {
+    "bytes": 294811,
+    "sha256": "2ad83a5497e5977216a9c11059d0ffff43b50657a78ec58015befb9a7f24c642"
+  },
+  "mecp-trusted/screenshots/control-overview.png": {
+    "bytes": 275992,
+    "sha256": "292c2e249e3753bf3a3f582a9a0ab90d5f42ef7cf122d844135e314177ea6bde"
+  },
+  "mecp-trusted/screenshots/kcalc-search.png": {
+    "bytes": 187522,
+    "sha256": "2681d3a0ac35d45b7463681760ebf479941bcf8c12faf03f0505562df1625895"
+  },
+  "mecp-trusted/screenshots/kcalc-selected.png": {
+    "bytes": 188127,
+    "sha256": "4b95668cb67c8637f1a6c8400b305954fc2b440648e29b2ba83b861a75a83865"
+  },
+  "mecp-trusted/screenshots/launcher.png": {
+    "bytes": 282199,
+    "sha256": "234d72c3b22a19d82b7dea70d5684039d83e83f88c2e8492249bf3740d0eeec6"
+  },
+  "mecp-trusted/screenshots/live-desktop.png": {
+    "bytes": 554404,
+    "sha256": "0f0985091b4a6a9d1e6d9516b4e86ddf409e0eb504a806527bad6192b677408a"
+  },
+  "mecp-trusted/screenshots/live-terminal.png": {
+    "bytes": 272918,
+    "sha256": "a06ab54ab66b2606a552ac58c03c05b9decc994b30df88e57509be4abc07ecb3"
+  },
+  "mecp-trusted/screenshots/packages.png": {
+    "bytes": 226901,
+    "sha256": "c246d905293bb9b788396be93728800e7bb6e111796cbf5e28c46ed0e7ddd01b"
+  },
+  "mecp-trusted/screenshots/review-disabled-apply.png": {
+    "bytes": 226423,
+    "sha256": "22c45648d94153e228a308f9029579b87993482c486ced0f2d645bd15e20062a"
+  },
+  "mecp-trusted/screenshots/review-top.png": {
+    "bytes": 233481,
+    "sha256": "116dbabf72aea3f28f21614af99011f0d0fb32d0b4ce50bc20e4a8f9173f5ae4"
+  },
+  "mecp-trusted/screenshots/software.png": {
+    "bytes": 208808,
+    "sha256": "046be260f881c22b0345906e1c85c004da4359fb756353b51421468c57dfedc7"
+  },
+  "mecp-unsigned/result.json": {
+    "bytes": 2655,
+    "sha256": "12a59bbd1a35430c5d2776ca1efba15a5d610e3c96a0539ba123083c7e7e5464"
+  },
+  "mecp-untrusted/result.json": {
+    "bytes": 2656,
+    "sha256": "818dd38dd600c5f06a2347f18e6597013e26cd57a24a9840eee56c065cc35df2"
+  },
+  "media-ec-evidence-index.json": {
+    "bytes": 21290,
+    "sha256": "689aac89a348abb5b8a431e6eb883b935cca998da1118fb7cc13c2a8562a8092"
+  },
+  "media-ec-export.json": {
+    "bytes": 226,
+    "sha256": "2ffefb8fe8e27eb507fe758fea874191ee60ba8541aa263ceefe3750d770edd9"
+  },
+  "media-ec-local-verification.json": {
+    "bytes": 146,
+    "sha256": "ab061651292668bf48281bf3528827b6877e100ffdebc9319be798eef202ba99"
+  },
+  "media-ec-negative-summary.json": {
+    "bytes": 683,
+    "sha256": "3f0b04c603a1d03b23e34fc1089168956b948b965c657291ff915e0628ad7835"
+  },
+  "README.md": {
+    "bytes": 1492,
+    "sha256": "f631d6a5be50e95f91c86f588cec4d4273d7d47cd89b114e1da113126a4425f3"
+  },
+  "recp/manifest.json": {
+    "bytes": 2121,
+    "sha256": "cb4deea690ebc476bf591394e5f01d7513896e9dbd6c65cc099980478fda3eb1"
+  },
+  "retired-remote-B-duplicate.json": {
+    "bytes": 1311,
+    "sha256": "36f46c9efc7c185615166460078804397bb3b6331dd9e1a02c5706ea8b85940c"
+  }
+}

@@ -16,7 +16,9 @@ and 292 public baseline/recovery evidence files verified locally. Independent B 
 built packages, seven manifests and the generated source archive match. Both local
 image identities and thin exports verified. Corrected plain CLI passed all 12 lifecycle gates. The full plain fault suite
 passed all eight scenarios and 70 gates; all 976 public files verified locally.
-Installed GUI, LUKS2 and formal corrected-media acceptance remain required.
+All six formal corrected-media cases also passed, including actual ordinary-user
+GUI inspection, disabled live Apply and unchanged system state; all 134 public
+files verified locally. Installed GUI and LUKS2 acceptance remain required.
 
 The corrected plain CLI run has passed all 12 lifecycle gates; its 257 public
 evidence files verified locally. The first interruption trial killed both the

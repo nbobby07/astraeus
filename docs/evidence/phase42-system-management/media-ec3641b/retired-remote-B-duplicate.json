@@ -1,0 +1,30 @@
+{
+  "state": "retired",
+  "target": "/home/ubuntu/p42/candidate-ec3641b72ad4-r1/share/evidence/B/astraeus-dev-0.1.0-dev-x86_64.iso",
+  "sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+  "bytes": 3783227392,
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "local_proof": {
+    "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+    "verified_local_images": {
+      "A": {
+        "bytes": 3783227392,
+        "sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+        "local_path": "C:\\Astraeus-Phase42-System-Management\\candidate-ec3641b\\astraeus-dev-0.1.0-dev-x86_64-A.iso",
+        "read_only": true
+      },
+      "B": {
+        "bytes": 3783227392,
+        "sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+        "local_path": "C:\\Astraeus-Phase42-System-Management\\candidate-ec3641b\\astraeus-dev-0.1.0-dev-x86_64-B.iso",
+        "read_only": true
+      }
+    },
+    "independent_remote_cmp_exit_code": 0,
+    "purpose": "Retire only redundant remote B ISO after full local image verification; preserve remote A, original artifacts, manifests and evidence."
+  },
+  "free_before": 23070081024,
+  "free_after": 26853310464,
+  "remote_A_preserved": true,
+  "local_A_and_B_preserved": true
+}
