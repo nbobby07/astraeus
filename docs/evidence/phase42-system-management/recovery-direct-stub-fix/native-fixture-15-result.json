@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "test_binary_sha256": "b73141b49df626b46212db2f7b83dc4d907c95bd164715efa5e1bcd92f052c6b",
+  "command": [
+    "chroot",
+    "/root/astraeus-native-alpm-15/root",
+    "/usr/bin/native-tests",
+    "signed_native_backend",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ]
+}

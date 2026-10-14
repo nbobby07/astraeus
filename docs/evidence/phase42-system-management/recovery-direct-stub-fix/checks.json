@@ -11,5 +11,9 @@
   "linux_native_passed": 159,
   "linux_native_ignored": 5,
   "linux_native_clippy": "PASS",
-  "new_images_and_vm_recovery": "REQUIRED; not yet run"
+  "new_images_and_vm_recovery": "REQUIRED; not yet run",
+  "real_snapshot_fixtures_passed": 3,
+  "signed_native_fixture_attempt": 15,
+  "signed_native_fixture": "PASS; 18 isolated signed-package cases exercised by real backend",
+  "fixture_scope": "Host checks on exact ec3641b source; production-image VM recovery remains pending"
 }

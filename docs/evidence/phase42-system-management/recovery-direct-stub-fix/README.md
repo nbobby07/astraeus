@@ -19,6 +19,13 @@ workspace passed 159 tests with five fixture skips and Clippy. The raw Linux
 logs are included. Corrected packaged images and fresh installed recovery tests
 remain required; this directory does not claim VM qualification of the fix.
 
+Three explicit privileged snapshot fixtures also passed, including real Btrfs/FAT
+round-trip restoration and proof that snapshots omit the copied package lock
+without changing the live lock. Attempt 15 of the isolated signed-package fixture
+passed against the current native backend, exercising its 18-package repository,
+signature/corruption failures, dependencies, providers, hooks, ownership and
+removal behavior. Its private signing fixture stays outside this public evidence.
+
 The first trial also exposed an overly specific same-boot error expectation in
 the harness. Commit `23ab305` fixed that expectation and added durable-history
 checks. The second trial passed that check. Both trial failures are preserved.

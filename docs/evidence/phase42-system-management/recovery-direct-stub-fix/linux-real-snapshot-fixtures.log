@@ -1,0 +1,16 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.41s
+     Running unittests src/lib.rs (/root/astraeus-phase42-target/debug/deps/distro_snapshots-1dee1525e857f441)
+
+running 3 tests
+test system::tests::coordinator_snapshots_seal_without_copying_the_owned_live_package_lock ... ok
+test system::tests::disposable_linux_btrfs_roundtrip ... ok
+test system::tests::interruption_during_coordinator_snapshot_never_unlinks_live_lock_or_publishes_writable_root ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 33 filtered out; finished in 1.73s
+
+   Doc-tests distro_snapshots
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
