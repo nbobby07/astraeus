@@ -173,10 +173,23 @@ copies elsewhere, and unexpected hardlinks. There is no filename-wide exemption.
 The signed-source confirmation has SHA256
 `ae67885f23f7339b977067afa88f4f184980e27cc778668d77a08a420037d212`.
 
-The second independent build and installed-VM acceptance remain pending. After
-verified export and guarded retirement of A's closed build disk, the validator
-has enough space for B but cannot retain a useful fresh baseline alongside B's
-35-GiB reserve. B therefore precedes fresh plain and LUKS2 VM acceptance.
+The independent B build also completed successfully. Both full ISOs have the
+size and SHA256 above, and direct `cmp` returned zero. All five independently
+rebuilt package archives, live/installed/builder manifests, input records and
+generated package-source archives match. Both images consume the same signed
+repository published by A; the unsigned package comparison separately proves
+that those packages were independently rebuilt. The comparison receipt has SHA256
+`fd294105be7ffdcd7f0a814ae5b4f97851464b453a541922619f8018e0d623df`.
+B's 52,722,243-byte thin archive has SHA256
+`a2f2bc5f865a284b59af0d9bf68a7038bea50992a4be89aaa8ca8448663c8f8b`.
+After remote equality passed, the verified local B ISO path was created as a
+read-only hardlink to A. This local content deduplication avoids another identical
+download; it does not replace the independent B build or its remote comparison.
+
+Installed-VM acceptance remains pending. B preceded fresh plain and LUKS2 VM
+creation because retaining a useful baseline would have consumed its required
+35-GiB build reserve. VM acceptance uses separate disposable overlays after both
+closed builder disks have been retired and resource guards pass.
 
 The immutable VM harness is `ad3f097d9475c52d18b4095fce5fc160d8edaa04`,
 exported as a 368,640-byte archive with SHA256
@@ -239,7 +252,7 @@ while it applies. Live sessions permit inspection and planning only.
 | Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `298e12a` build; both Qt groups passed again on `0e8bb00`. Production startup loaded the KDE desktop style; installed-VM backend acceptance remains pending |
 | Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
 | Image contents and signing-key audit | Image A passed the complete payload/repository audit, with exact upstream GnuTLS test constants identified and retained in the report |
-| Two byte-identical candidate images | A built and exported with verified hashes; independent B build and byte comparison pending |
+| Two byte-identical candidate images | Passed: both clean builds exited successfully, all five independent package archives match, and full ISO `cmp` returned zero with identical hashes and sizes |
 | Physical PC and USB boot | Deferred by request |
 
 The native fixture runner is `scripts/validate/native-alpm.py`. It creates a new

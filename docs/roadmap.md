@@ -15,9 +15,9 @@ closed the remaining recorded negative case. GameMode's full self-test and
 physical gaming qualification remain incomplete.
 
 Phase 4.2 implements selected-subset system management and the native
-[Control Center](control-center.md). Host, native package-fixture and image A
-checks have passed; the second independent image build and installed-VM
-management/recovery acceptance remain pending. See the [current report](phase42-acceptance.md).
+[Control Center](control-center.md). Host and native package-fixture checks have
+passed, and two clean builds produced byte-identical images. Installed-VM
+management/recovery acceptance remains pending. See the [current report](phase42-acceptance.md).
 
 | Phase | State | Deliverable | Evidence needed to close |
 | --- | --- | --- | --- |
