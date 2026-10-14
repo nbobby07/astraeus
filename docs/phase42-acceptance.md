@@ -9,7 +9,8 @@ Its source archive is 5,016,480 bytes with SHA256
 `e1eec7917965b73893f013c896bb3028d819f1e362b698a398c85530b3e70c35`.
 An independent Git archive and compression pass produced the same bytes. It fixes
 missing live repository metadata exposed by the earlier candidate's boot tests.
-Replacement image builds and fresh VM acceptance remain required.
+Replacement build A and its full compressed-image audit passed. Independent
+build B and fresh VM acceptance remain required.
 
 The previous `0e8bb00e3edc5382fa177bf0017b2f8595ee8229` source archive was
 4,991,208 bytes with SHA256
@@ -263,16 +264,16 @@ while it applies. Live sessions permit inspection and planning only.
 
 | Gate | Current evidence |
 | --- | --- |
-| Host Rust checks | Current Windows and Linux CI passed. The clean Arch `0e8bb00` workspace passed 156 tests with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy also passed with warnings denied |
-| Python, shell and signing | Full Python suites passed on `0e8bb00`: Windows 126 passed/64 skipped, Linux root 186 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
+| Host Rust checks | Current Windows and Linux CI passed. The clean Arch `9825438` A workspace passed 156 tests with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy also passed with warnings denied |
+| Python, shell and signing | Full Python suites passed on `9825438`: Windows 143 passed/65 skipped, Linux root 204 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
 | Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
-| Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment and in the pinned Arch `0e8bb00` package build |
+| Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment and in the pinned Arch `9825438` A package build |
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
-| Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `298e12a` build; both Qt groups passed again on `0e8bb00`. Production startup loaded the KDE desktop style; installed-VM backend acceptance remains pending |
+| Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `9825438` A build. Production startup loaded the KDE desktop style in earlier checks; replacement installed-VM backend acceptance remains pending |
 | Plain and LUKS2 installed VMs with enforced Secure Boot | Historical `0e8bb00` plain baseline passed two enforcing cold boots and real SDDM/Plasma logins. Both replacement baselines and management/recovery acceptance remain pending |
-| Image contents and signing-key audit | Historical `0e8bb00` A passed the full content/key audit. The replacement must also pass strict final compressed repository metadata and access checks |
-| Two byte-identical candidate images | Passed on historical `0e8bb00`: all five independent package archives matched and full ISO `cmp` returned zero. Replacement `9825438` A/B builds remain pending |
+| Image contents and signing-key audit | Replacement `9825438` A passed the full content/key audit and strict final compressed repository metadata/access checks in both live and installed roots |
+| Two byte-identical candidate images | Passed on historical `0e8bb00`: all five independent package archives matched and full ISO `cmp` returned zero. Replacement `9825438` A built successfully; B and comparison remain pending |
 | Physical PC and USB boot | Deferred by request |
 
 The native fixture runner is `scripts/validate/native-alpm.py`. It creates a new
@@ -366,6 +367,52 @@ All small evidence, certificates, VARS and provenance keys remain. The earlier
 images remain verified on the local D drive. The retirement receipt has SHA256
 `bc91af027d87a0adcae33bd2b089ec00f8e7521de0f8bd68cc8c8859a168f75f`;
 42,711,842,816 bytes were free afterward. Original USB artifacts were untouched.
+
+The replacement `9825438` A build completed with exit zero. Its ISO is
+3,645,478,912 bytes with SHA256
+`558475af3eb219277786ded7379e1c80a12557064b2e26e245648f355011bb16`.
+Closed logs confirm 156 native Rust tests, 21 controller tests and 13 QML tests
+passed. The live and installed manifests match all 691 and 736 package records,
+respectively. All 151 source hashes in the build-input receipt match the exact
+frozen Git objects. That receipt has SHA256
+`c580a59e4d6f4c71a4ab3f98472ac82cba74b7ef60ba2326f8d7d970b9a192b5`.
+The locally verified 52,812,027-byte evidence archive has SHA256
+`2c20b9974bb9d95cea849bee8bd1e62e17d8c82d069bb8a783842a98f41342b0`.
+Its 49 non-ISO manifest entries were independently checked. The complete local
+ISO also passed an independent whole-file hash check. Independent B and all
+replacement VM acceptance remain pending.
+
+The direct ISO transfer stopped after 2,374,172,672 bytes. The complete local
+prefix matched the original image, and transfer resumed in individually checked
+128-MiB chunks. The final whole-file hash matched with no chunk errors. Separately, the first
+audit stopped before scanning because its new decoder preflight expected exit
+zero from `unsquashfs -version`. The authenticated decoder returned the exact
+expected text, empty stderr and exit one, matching
+[upstream's version-only behavior](https://github.com/plougher/squashfs-tools/blob/4.7.5/squashfs-tools/unsquashfs.c#L4201).
+The corrected check requires that exact result and retains all 57 authenticated
+member checks. Five focused tests pass on Linux and Windows. The failed attempt
+is retained; this validation-helper correction does not change the OS image.
+
+The new disposable repository signer is
+`9F6A6F116D78889664B0936292990E47A359C45A`, created 2026-10-14 05:17:30 UTC
+and expiring 2026-10-15 05:17:30 UTC. This validation key is separate from the VM
+Secure Boot certificate. The public GnuTLS test-material classification was
+compared against this actual new signer; the new proof has SHA256
+`936cb17eb1a07023d2387a701612edc104297de876fae535ea8d32fd8b4b55b7`.
+This preparation does not by itself constitute the replacement image audit.
+
+The subsequent complete image audit passed. Its result has SHA256
+`932fdec80c7e9113fa8383676d0c1518d2bfdbe9078a23269461f97f34eb4754`;
+the verified 8,913-byte audit archive has SHA256
+`5a7dc414e17cd564698b1bb32689ca76851d7c33d4b403c45a6e1fdea3cfa151`.
+It scanned all 139,384 live and 136,903 installed regular-file paths, checked the
+signed repository and packaged identities, and found no unclassified private-key
+blocks. Both compressed roots contain exactly the five approved repository
+database/signature files, matching the actual build-input hashes and verified
+repository. Their complete paths are root-owned and readable by ordinary users.
+The actual decoder preflight and all five decoder and nine auditor tests passed
+before the scan. Audit scratch was removed, and the original ISO hash remained
+unchanged. Booted live behavior still requires fresh VM acceptance.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software
