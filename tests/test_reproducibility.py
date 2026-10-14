@@ -38,7 +38,7 @@ class ImageDeterminismTests(unittest.TestCase):
                     os.utime(path, (1790812800 + index + 10,) * 2)
                 result = subprocess.run(["bash", "-euc", 'declare -A file_permissions; source "$1"; '
                                 'profile="$2/profile"; pacstrap_dir="$2/root"; '
-                                'mksquashfs "$2/root" "$2/root.sfs" -noappend -no-progress -processors 1; '
+                                'mksquashfs "$2/root" "$2/root.sfs" "${airootfs_image_tool_options[@]}" -noappend -no-progress -processors 1; '
                                 'touch -m -d "@$3" "$2/root.sfs"; '
                                 'xorriso -as mkisofs -quiet -r -o "$2/test.iso" "$2/root.sfs"',
                                 "test", str(profile), str(out), str(1790812810 + index)],

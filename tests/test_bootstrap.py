@@ -171,7 +171,7 @@ class BootstrapTests(unittest.TestCase):
             seed = profile / "pacman-sync"
             command = ['bash', '-c', 'set -euo pipefail; declare -A file_permissions; source "$1/profiledef.sh"; '
                        'profile="$1"; pacstrap_dir="$2"; '
-                       'mksquashfs "$2" "$3" -noappend -processors 1 -quiet', '_']
+                       'mksquashfs "$2" "$3" "${airootfs_image_tool_options[@]}" -noappend -processors 1 -quiet', '_']
             env = dict(os.environ, SOURCE_DATE_EPOCH="1000")
             outputs = []
             for iteration in range(2):
@@ -186,6 +186,9 @@ class BootstrapTests(unittest.TestCase):
                 result = subprocess.run([*command, str(profile), str(tree), str(image)], env=env,
                                         capture_output=True, text=True)
                 self.assertEqual(result.returncode, 0, result.stderr)
+                superblock = subprocess.run(['unsquashfs', '-s', str(image)], check=True,
+                                            capture_output=True, text=True).stdout
+                self.assertIn('Compression zstd', superblock)
                 outputs.append(bootstrap.digest(image))
                 self.assertEqual(sync.stat().st_mode & 0o777, 0o755)
                 self.assertEqual(sync.stat().st_uid, 0)

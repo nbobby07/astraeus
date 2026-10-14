@@ -11,7 +11,7 @@ buildmodes=('iso')
 bootmodes=('uefi.systemd-boot')
 pacman_conf="pacman.conf"
 airootfs_image_type="squashfs"
-airootfs_image_tool_options=('-comp' 'xz' '-Xbcj' 'x86' '-b' '1M' '-Xdict-size' '1M')
+airootfs_image_tool_options=('-comp' 'zstd' '-Xcompression-level' '15' '-b' '1M')
 # This profile is built as root. ArchISO 91 resolves these commands in its shell.
 # ArchISO deletes sync metadata before compression. Restore only the exact staged
 # public databases; the live keyring is initialized separately on first boot.
