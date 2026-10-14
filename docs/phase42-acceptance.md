@@ -93,11 +93,26 @@ The backend is unchanged from the validated `17773af` source.
 No completed package or ISO came from `17773af` A/r1. Its thin archive is
 `superseded-17773af-r1-A-evidence.tar.gz` (117,489 bytes), SHA256
 `86278cb1a050a0aadbafbe5aecfc04991950267cad25affb7b543ad688079dcc`.
-The new clean image build and all installed-VM acceptance remain pending.
+The `298e12a` clean Arch build passed 155 native Rust tests with five ignored
+fixtures and both Qt test groups. Its CLI, Control Center and Calamares packages
+were built and their package/database signatures verified. ISO assembly and all
+installed-VM acceptance remain pending. The packaged CLI SHA256 is
+`da09689543719261309adb0e41e796f12597e34f75d64865d6c09845e6e00e43`;
+the Control Center SHA256 is
+`a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41`.
+The disposable repository signer is
+`10A2160B80D3546E9E754A99875C9A330560CA57`, created 2026-10-14 00:50:43 UTC
+and expiring 2026-10-15 00:50:43 UTC. It is separate from the VM Secure Boot key.
 
-The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
-exported as a 358,400-byte archive with SHA256
-`41e8c3db8dce243939e07c11678c022c10a6dedc119b701e60b5e90528892c46`.
+The immutable VM harness is `ad3f097d9475c52d18b4095fce5fc160d8edaa04`,
+exported as a 368,640-byte archive with SHA256
+`819e08cb18e69b8515ccfbf8cabbdb9ff1e88d0f1ad59d82ff06b1109bbb0abb`.
+It adds real concurrent-submission, symlink-staging and systemd-start-failure
+assertions to the interruption and abandoned-operation scenarios. Focused harness
+tests passed on Windows (20 passed, four platform skips) and Linux root (23 passed,
+one loopback skip); CLI subprocess rejection tests passed on both platforms.
+These new assertions have not run in the candidate VM yet. The earlier `13f573cd`
+harness archive remains preserved separately.
 
 The branch starts at `b1d16953ce5918b23c772e3ce99a35c7d37ac6b5`.
 Work is isolated on `codex/phase4-system-management`; PR #7, the original
@@ -144,10 +159,10 @@ while it applies. Live sessions permit inspection and planning only.
 | Host Rust checks | Windows workspace 140 passed; native Linux workspace 155 passed with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy passed; earlier Windows Clippy evidence is retained |
 | Python, shell and signing | Full Python suites passed: Windows 123 passed/60 skipped, Linux root 179 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
 | Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
-| Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment. The pinned Arch package build passed on `620d1d3`; the new candidate package build is pending |
+| Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment and in the pinned Arch `298e12a` package build |
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
-| Native desktop build and tests | 21 Qt controller checks passed; the corrected local QML suite passes 13 checks. The pinned Arch `620d1d3` package build passed 21 controller and 12 earlier QML checks. Production startup loaded the KDE desktop style; the new package and installed-VM backend acceptance remain pending |
+| Native desktop build and tests | 21 Qt controller checks passed; the corrected local QML suite passes 13 checks. Both Qt groups passed in the pinned Arch `298e12a` package build. Production startup loaded the KDE desktop style; installed-VM backend acceptance remains pending |
 | Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
 | Two byte-identical candidate images | Not built yet |
 | Physical PC and USB boot | Deferred by request |
