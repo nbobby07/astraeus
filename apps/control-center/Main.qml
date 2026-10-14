@@ -108,7 +108,8 @@ ApplicationWindow {
             Kirigami.InlineMessage {
                 objectName: "errorMessage"
                 Layout.fillWidth: true
-                visible: window.backend.error.length > 0
+                // Kirigami's close button assigns visible, replacing a direct binding.
+                Binding on visible { value: window.backend.error.length > 0 }
                 text: State.message(window.backend.error)
                 type: Kirigami.MessageType.Error
                 showCloseButton: true

@@ -155,6 +155,32 @@ TestCase {
         fake.configurationParsed("schema_version = 1");
         compare(app.editorDirty, true);
     }
+    function findCloseControl(item) {
+        if (item.text === "Close" && item.icon && item.icon.name === "dialog-close") return item;
+        const children = item.children || [];
+        for (let index = 0; index < children.length; ++index) {
+            const match = findCloseControl(children[index]);
+            if (match) return match;
+        }
+        return null;
+    }
+    function test_errorCanReappearAfterDismiss() {
+        const message = findChild(app, "errorMessage");
+        verify(message);
+        fake.error = "First observed error";
+        tryCompare(message, "visible", true);
+        verify(waitForPolish(app));
+        const close = findCloseControl(message);
+        verify(close !== null, "actual Kirigami close control found");
+        mouseClick(close);
+        tryCompare(message, "visible", false);
+        tryCompare(fake, "error", "");
+        fake.error = "Second observed error";
+        tryCompare(message, "visible", true);
+        verify(message.text.includes("Second observed error"));
+        fake.clearError();
+        tryCompare(message, "visible", false);
+    }
     function test_existingAppsCanBeSelectedWithoutRemovingProtection() {
         app.section = 1;
         findChild(app, "softwareTabs").currentIndex = 1;
