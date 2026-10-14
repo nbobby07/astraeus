@@ -1,0 +1,33 @@
+{
+  "id": "vm-3614c8ea177748e8952c562250e9ce09",
+  "state": "paused",
+  "slug": "astraeus-phase42-validator",
+  "displayName": "Astraeus Phase 4.2 temporary validator",
+  "resources": {
+    "cpu": 4,
+    "memory": 8192,
+    "storage": 32768
+  },
+  "image": null,
+  "snapshotId": "sh-5779fd551557471792701bdf9bc3214c",
+  "sourceSnapshotSlugAtCreate": "freestyle/ubuntu",
+  "sourceSnapshotSlug": "ubuntu",
+  "sourceSnapshotDisplayName": "Ubuntu 24.04 LTS (4 vCPU · 8 GiB · 32 GB)",
+  "idleTimeoutSeconds": 600,
+  "totalRunSeconds": 58,
+  "automaticRestart": false,
+  "ipMode": "dualStack",
+  "publicIpv6": "2602:f470:40:0:ff49:c808:2c1c:61ab",
+  "egressIpv4": "208.72.218.134",
+  "egressIpv6": "2602:f470:40:0:ff49:c808:2c1c:61ab",
+  "metadata": {
+    "compute_budget_usd": "10",
+    "phase": "phase4.2"
+  },
+  "cpuTimeSeconds": null,
+  "lastNetworkActivity": "2026-10-13T20:15:16.488770Z",
+  "vpcs": [],
+  "networks": [],
+  "createdAt": "2026-10-13T20:15:00.225616Z",
+  "updatedAt": "2026-10-13T20:15:58.762009Z"
+}

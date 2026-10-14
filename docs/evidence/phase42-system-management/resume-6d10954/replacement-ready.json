@@ -1,0 +1,28 @@
+{
+  "started": "2026-10-14T12:48:12.086775+00:00",
+  "purpose": "builder prerequisites only, no candidate build",
+  "kvm": "API 12 and CREATE_VM passed",
+  "base": {
+    "path": "/home/ubuntu/p42/arch-base.qcow2",
+    "sha256": "360f0fa49db6813bdc8e35bed230a2dc2ae3567b7b5ab74719c0a706e4e34e87",
+    "bytes": 578080256,
+    "primary_fingerprint": "1B9A16984A4E8CB448712D2AE0B78BF4326C6F8F",
+    "signature_sha256": "ace927f824b100af00c2f165d07c0a0200e6a57b65590e8c09b208930f90a7fd"
+  },
+  "tools": {
+    "qemu-system-x86_64": "/usr/bin/qemu-system-x86_64",
+    "qemu-img": "/usr/bin/qemu-img",
+    "cloud-localds": "/usr/bin/cloud-localds",
+    "gpg": "/usr/bin/gpg"
+  },
+  "firmware": {
+    "/usr/share/OVMF/OVMF_CODE_4M.fd": "ad23261d43116abc3747d59a7837fbf578c9586a8993f4eeba064cd07eccb083",
+    "/usr/share/OVMF/OVMF_VARS_4M.fd": "5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e"
+  },
+  "disk": {
+    "total": 67318312960,
+    "free": 58053693440
+  },
+  "finished": "2026-10-14T12:48:26.280298+00:00",
+  "status": "ready"
+}

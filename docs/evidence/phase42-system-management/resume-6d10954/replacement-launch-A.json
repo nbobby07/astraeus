@@ -1,0 +1,3 @@
+Formatting '/home/ubuntu/p42/candidate-6d10954a501f-r1/builder-A/disk.qcow2', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=38654705664 backing_file=/home/ubuntu/p42/arch-base.qcow2 backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+Started builder-A. Inspect /home/ubuntu/p42/candidate-6d10954a501f-r1/builder-A/serial.log and shared evidence/A.
+

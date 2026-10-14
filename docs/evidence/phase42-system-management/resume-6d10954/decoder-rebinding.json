@@ -1,0 +1,11 @@
+{
+  "previous_receipt_sha256": "d9d8ddc0cd9f87e7c4f6fe10e85c94dc97ab46f17cf904633c12433b5a2f1d83",
+  "current_receipt_sha256": "2cc8f1fe870f1fa5b2e66578818738a7f5e53d534e585390c313cf2543007712",
+  "verified_identical_members": 57,
+  "verified_identical_signed_archives": 9,
+  "only_normalized_fields": [
+    "unsquashfs_libraries",
+    "mksquashfs_libraries"
+  ],
+  "normalization": "Runtime hexadecimal load addresses only; library paths, hashes, versions, signer identities and all other fields identical."
+}

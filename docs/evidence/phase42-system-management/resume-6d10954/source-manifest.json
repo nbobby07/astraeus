@@ -1,0 +1,7 @@
+{
+  "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "bytes": 5622868,
+  "sha256": "7cce2daaf754c2f10ad4456aac863b6bf2dd4f0b723ecd42577be902cb65d767",
+  "qualified_image": false,
+  "scope": "Reviewable committed source; liveZstd fixture checks passed, fullproductionimages andVMacceptance pending"
+}

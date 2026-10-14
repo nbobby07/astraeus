@@ -562,9 +562,41 @@ that the repeated complete-image failure is resolved. New clean images, complete
 audits and all fresh VM acceptance are still required.
 
 Both task validators were verified paused on 2026-10-14 at 12:11:22 UTC after
-exporting evidence. Conservative additional compute and active storage are $5.71
-of the approved $10 cap. Codex account usage was observed at 92% used; a preference
-between conserving the remainder and continuing full acceptance is pending.
+exporting evidence. The user subsequently requested continued work after switching
+models. The frozen `6d10954` source was prepared for a fresh build, but the original
+validator's resume immediately reverted to paused after one provider runtime second.
+A subsequent start timed out after 90 seconds. An idle-timeout update returned
+`INTERNAL_ERROR: Internal server error`; its cause is unconfirmed. No source transfer,
+new builder or image acceptance ran. Final read-only checks confirmed both task
+validators paused and the original idle timeout unchanged at 600 seconds.
+
+The [resume receipts](evidence/phase42-system-management/resume-6d10954/README.md)
+preserve the observed states and frozen-source identity. The conservative cost
+estimate counts the complete attempted-resume wall interval, including time paused,
+and is $5.74 of the approved $10 compute and active-storage cap. No billing plan
+was changed. These failed resume attempts do not count as a passing image gate.
+
+The existing replacement validator subsequently resumed and was resized to
+4 vCPUs, 16 GiB RAM and 64 GiB disk within the existing plan. Host tools installed
+successfully. The authenticated 578,080,256-byte Arch base was copied out of the
+paused original and matched its recorded SHA256. Full uploads encountered connection
+resets and a TLS bad-record error; the bounded chunked attempt also failed. The
+existing preparation script then fetched the exact upstream image directly and
+verified its recorded size, hash and Arch release signature. Failed transfers
+remain preserved. No TLS checks were disabled.
+
+Fresh build A of frozen `6d10954` started on the replacement at 12:49:44 UTC on
+2026-10-14. Its source archive and builder scripts were verified before launch.
+It uses fresh signed downloads from the same pinned repository snapshot. The
+original validator remains paused. No replacement image has passed acceptance yet.
+
+The replacement's NBD device is built into its kernel: the device and sysfs
+entries exist even though `modprobe` cannot find a loadable module. No kernel
+change was made. The task-local image decoder was reconstructed from the same
+nine authenticated archive/signature pairs. All 57 member identities match the
+prior receipt; only runtime library load addresses differ. Its receipt binding
+was updated after that comparison, and all five version/preflight regression
+tests pass. Complete image auditing still requires a successful build.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software
