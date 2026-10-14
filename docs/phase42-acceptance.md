@@ -17,6 +17,14 @@ built packages, seven manifests and the generated source archive match. Both loc
 image identities and thin exports verified. Corrected CLI package lifecycle, other
 fault scenarios, installed GUI and LUKS2 acceptance remain required.
 
+The corrected plain CLI run has passed all 12 lifecycle gates; its 257 public
+evidence files verified locally. The first interruption trial killed both the
+service main process and the newly spawned ExecStopPost finalizer through
+`systemctl kill --kill-whom=all`. The test was stopped with its failed evidence
+retained. The harness now targets the main process so systemd can clean up the
+remaining children and execute the finalizer. Runtime images are unchanged;
+a fresh interruption trial remains required.
+
 The latest code fixes a real offline-recovery defect found in the `6d10954`
 candidate. Both `6d10954` independent images and their full byte comparison passed; clean A also
 passed the complete image audit. The fresh plain baseline passed two enforcing

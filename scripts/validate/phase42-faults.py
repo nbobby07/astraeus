@@ -1209,7 +1209,8 @@ def interruption_scenario(vm, args, recovery, gate, before):
     gate('concurrent-submit-preserves-applying-worker', lambda: guest_command(vm, 'concurrent-submit', identifier))
     gate('native-lock-excludes-competing-writer', lambda: guest_command(vm, 'compete', identifier))
     def kill():
-        vm.command(shlex.join(['systemctl', 'kill', '--signal=SIGKILL', '--kill-whom=all', 'astraeus-apply@' + identifier + '.service']), label='sigkill-worker-service')
+        # Killing the whole cgroup can also kill the newly spawned ExecStopPost finalizer.
+        vm.command(shlex.join(['systemctl', 'kill', '--signal=SIGKILL', '--kill-whom=main', 'astraeus-apply@' + identifier + '.service']), label='sigkill-worker-service')
         operation = phase42.wait_operation(vm, identifier, args.timeout)
         require(operation['state'] == 'rollback_required' and operation['transaction']['failure']['interrupted'] is True,
                 'killed mutation was not recorded as interrupted recovery-required')
