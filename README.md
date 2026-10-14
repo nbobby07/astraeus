@@ -1,7 +1,7 @@
 # Project Astraeus
 
 An Arch-based desktop operating system with a reproducible image build, a Calamares
-installer and a small Rust interface for inspecting the running system.
+installer, a Rust management backend and a native Qt/Kirigami control center.
 
 [![Checks](https://github.com/nbobby07/astraeus/actions/workflows/check.yml/badge.svg)](https://github.com/nbobby07/astraeus/actions/workflows/check.yml)
 
@@ -46,6 +46,9 @@ public ISO download yet.
   offline Rust package builds and measured ISO reproducibility.
 - Package update plans, durable transaction history, Btrfs snapshots with matching
   UKIs, and boot confirmation that checks the running state and required services.
+- Phase 4.2 selected-package and gaming configuration, reviewed apply, import/export
+  and adoption through the CLI and Control Center. Implementation checks pass;
+  installed-VM management and recovery acceptance remains pending.
 - Explicit offline rollback through the existing live ISO, preserving all five
   persistent subvolumes. Recovery requires manual intervention; root and ESP
   changes are not atomic, and general power-loss safety is not qualified.
@@ -156,9 +159,11 @@ have no implementation claim.
 | 1 | Validated | Real installer, Btrfs/LUKS2, installed UKI and hardware/status |
 | 2 | Validated | Package transactions, snapshot history and boot-tested offline rollback |
 | 3 | Validated on recorded QEMU target | Owner-enforced Secure Boot, signed generations and deliberate recovery |
-| 4 | Integrated, not validated | Connected diagnostics and explicit image selections; software Vulkan and Steam startup tested, remaining runtime gaps documented |
+| 4 | Integrated, not fully qualified | Connected diagnostics and explicit image selections; software Vulkan and Steam startup tested |
+| 4.1 | Partially requalified | Normal Proton diagnostic and recorded negatives passed; full GameMode self-test and physical gaming qualification incomplete |
+| 4.2 | Implemented, acceptance pending | Selected-subset system management, native package transactions and Qt/Kirigami Control Center |
 | 5 | Planned | Performance policies backed by measurements and restoration tests |
-| 6 | Planned | Declarative state, planning, diff and adoption |
+| 6 | Planned | General configuration language and desired state beyond the implemented package/gaming subset |
 
 The [full roadmap](docs/roadmap.md) lists exit gates and deferred work. The recorded
 install, update, break, rollback and reboot flow has passed on the qualified VM
@@ -176,6 +181,8 @@ not establish a stable release.
   [historical Phase 1 validation](docs/validation.md)
 - [Phase 3 acceptance](docs/phase3-acceptance.md), [Phase 4 acceptance](docs/phase4-acceptance.md),
   [graphics](docs/graphics.md) and [gaming](docs/gaming.md)
+- [Phase 4.1 requalification](docs/phase4-runtime-requalification.md),
+  [Phase 4.2 acceptance](docs/phase42-acceptance.md) and [Control Center](docs/control-center.md)
 - [Transactions](docs/transactions.md), [snapshots and recovery](docs/snapshots.md),
   and [installed-system QEMU runner](docs/phase2-validation.md)
 - [Signing model](docs/security.md) and [reporting vulnerabilities](SECURITY.md)

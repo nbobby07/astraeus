@@ -7,9 +7,17 @@ hashes and installed-guest results. [Phase 3 acceptance](phase3-acceptance.md)
 records enforcing owner trust, generation fallback, deliberate recovery and two
 identical clean builds at runtime `fdb784c`. Phase 4 is integrated at runtime
 `cac8998`, with two identical clean ISO builds, native/ELF32 software Vulkan and
-Steam startup evidence. Full acceptance remains open because normal Proton launch
-and parts of the optional-tool/negative matrix did not pass. See the complete
-[Phase 4 report](phase4-acceptance.md), including its supported scope and failures.
+Steam startup evidence. Its initial Proton and optional-tool failures remain in
+the historical [Phase 4 report](phase4-acceptance.md). Subsequent
+[Phase 4.1 requalification](phase4-runtime-requalification.md) passed the normal
+Proton diagnostic, and the [signed fixture refresh](phase4-signed-fixture-refresh.md)
+closed the remaining recorded negative case. GameMode's full self-test and
+physical gaming qualification remain incomplete.
+
+Phase 4.2 implements selected-subset system management and the native
+[Control Center](control-center.md). Host, native package-fixture and image A
+checks have passed; the second independent image build and installed-VM
+management/recovery acceptance remain pending. See the [current report](phase42-acceptance.md).
 
 | Phase | State | Deliverable | Evidence needed to close |
 | --- | --- | --- | --- |
@@ -17,9 +25,11 @@ and parts of the optional-tool/negative matrix did not pass. See the complete
 | 1 | Validated | Calamares, Btrfs, optional LUKS2, installed UKI, hardware/status | Fresh encrypted and plain native installations; two ISO-detached boots of each; actual CLI, network, audio and failed-unit checks; repeated ISO comparison |
 | 2 | Validated | Package transactions, snapshots, history, offline rollback | Passed signed update, failed update, plain/LUKS2 rollback, interrupted mutation, unbootable recovery and independent full ISO comparison |
 | 3 | Validated on recorded QEMU target | Owner Secure Boot, signed generations and deliberate recovery | Integrated A-N matrix, Phase 2 regressions and two identical clean ISO builds passed; see [acceptance](phase3-acceptance.md) |
-| 4 | Integrated, not validated | Connected graphics/gaming reports, pinned multilib image selections, blocked feature proposals | Close remaining Proton and optional-tool runtime gaps on an explicitly supported target; retain unsupported transaction and physical qualification boundaries |
+| 4 | Integrated, not fully qualified | Connected graphics/gaming reports and pinned multilib image selections | Preserve the original runtime evidence and failures; subsequent checks are recorded under 4.1 |
+| 4.1 | Partially requalified | Normal Proton diagnostic and recorded negatives passed | Full GameMode self-test and physical gaming qualification remain incomplete; software rendering does not qualify a physical GPU |
+| 4.2 | Implemented, acceptance pending | Selected package/gaming state, native transactions, saved configuration and Qt/Kirigami Control Center | Two identical clean images and fresh plain/LUKS2 enforcing management, authorization, failure, reboot and recovery checks |
 | 5 | Planned | Measured performance policies | Recorded baselines, power/thermal context, safety checks, restoration and repeatable improvements |
-| 6 | Planned | Declarative state | Parse, validate, plan, diff, apply and adopt against resolved package state; safe failure handling |
+| 6 | Planned | General configuration language and broader desired state | Extend beyond the implemented package/gaming subset with explicit validation, migration and recovery guarantees |
 
 ## Validated boundary and remaining limits
 
@@ -39,10 +49,10 @@ unresolved. Physical hardware and arbitrary kernel/systemd upgrades are not
 qualified by controlled fixture updates. Production recovery-media signing and
 key recovery/rotation still need qualification.
 
-The install, update, deliberate break, rollback and reboot flow passed with user
-files and failure logs preserved. That evidence qualifies this development
-milestone, not a stable `v0.1` release or broader compatibility. Milestone
-completion tags are evidence markers, not stable releases.
+The earlier install, update, deliberate break, rollback and reboot flow passed with
+user files and failure logs preserved. That evidence qualifies its recorded
+development milestone, not Phase 4.2, a stable `v0.1` release or broader compatibility.
+Milestone completion tags are evidence markers, not stable releases.
 
 ## Work without a scheduled phase
 
@@ -51,6 +61,6 @@ hybrid graphics, swap/hibernation and TPM unlock need their own compatibility or
 design work. Current QEMU results do not establish support for them.
 
 Stable/current/edge promotion, mixed component channels, reproducible AUR builds,
-a Qt/QML control center, Hyprland and a custom compositor remain deferred. Add
+Hyprland and a custom compositor remain deferred. Add
 components when their implementation is needed; do not create empty services or
 crates to fill out the roadmap. No calendar promises are attached to these items.

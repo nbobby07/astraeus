@@ -17,13 +17,14 @@ distroctl -> distro-config -> serde / TOML
           -> distro-transactions -> distro-snapshots / serde / SQLite / SHA-256
 ```
 
-`distro-config` owns release metadata and validation. Parsing produces a typed
-value; semantic validation is a separate method. `distroctl` handles arguments,
-file I/O and presentation. Metadata and status commands remain read-only.
+`distro-config` owns release metadata, selected-subset `SystemConfig` and validation.
+Parsing produces a typed value; semantic validation is a separate method.
+`distroctl` handles arguments, file I/O and presentation. Metadata and status
+commands remain read-only.
 The [graphics foundation](graphics.md) separates GPU discovery, driver candidates,
 package requirements and native/32-bit runtime evidence. Its update preconditions
 are called by the existing transaction planner; it has no mutation executor.
-The read-only CLI exposes `info`, `validate`, `hardware`, `status`, help and version.
+Read-only CLI commands include `info`, `validate`, `hardware`, `status`, help and version.
 Phase 2 adds `snapshot` and `rollback` through `distro-snapshots`; privileged
 mutation belongs to that library. See [snapshots and recovery](snapshots.md).
 Phase 2 adds read-only `update --dry-run` and `history`, plus an update coordinator
@@ -77,29 +78,47 @@ installed. This account policy must never be copied to an installed system.
 - Upstream Mesa drivers cover AMD, Intel and Nouveau for initial live testing.
   NVIDIA proprietary drivers, hybrid switching, VRR/HDR and real hardware remain
   unqualified. No GPU vendor is selected as the architecture's only target.
-- Use ordinary, unsigned UEFI boot for Phase 0 validation. No Secure Boot
-  enrollment, bypass or firmware-setting modification is attempted by scripts.
+- Phase 0 validation used ordinary, unsigned UEFI boot without firmware changes.
+  Phase 3 introduced explicit owner enrollment and enforcing boot qualification;
+  see its [acceptance record](phase3-acceptance.md).
 - Source packaging is deterministic. Full ISO byte reproducibility is a separate
   acceptance gate; it must be measured, not inferred from fixed input versions.
 
-## Later platform boundaries, not implemented
+## Phase 4.2 system management
 
 Configuration decoding -> typed configuration -> validation -> desired state ->
 current-state comparison -> execution plan -> transaction -> structured report.
-The eventual desired-state model must not depend on TOML syntax. No full Nix
-semantics, custom package format, pacman replacement or plugin system is planned.
-`system.lock` will describe resolved inputs and provenance, not imply hermetic
-execution on a normally writable Linux filesystem.
+This flow is implemented for selected named packages, supported gaming features
+and provider choices. Linux's native libalpm backend resolves dependencies and
+rechecks reviewed plans under the coordinator and package locks. Removal preserves
+pre-existing or externally modified packages. Applied configuration, ownership and
+`system.lock` share the snapshotted root; the lock records resolved inputs and
+provenance, not hermetic execution on a writable Linux filesystem.
 
-Hardware probing will separate raw observations from capabilities. Performance
-policies consume capabilities, validate safety, plan changes and record reversible
-actuations. Deterministic rules come before adaptation. No security mitigation
+The unprivileged Qt/Kirigami [Control Center](control-center.md) uses the same
+versioned JSON CLI as terminal workflows. `pkexec` authenticates a bounded reviewed
+submission, then a systemd worker runs the transaction independently of the
+window. It has no automatic restart or boot replay. Live sessions allow inspection
+and planning only. Configuration-only changes still require snapshots, signed
+boot artifacts and verified boot confirmation. Implementation checks have passed;
+[installed-VM acceptance](phase42-acceptance.md) remains pending.
+
+## Deferred platform boundaries
+
+The general configuration language and desired state beyond the package/gaming
+subset remain deferred. The typed model is independent of TOML syntax. No full
+Nix semantics, custom package format, pacman replacement or plugin system is
+planned.
+
+Hardware probing separates raw observations from capabilities. Future performance
+policies will consume capabilities, validate safety, plan changes and record
+reversible actuations. Deterministic rules come before adaptation. No security mitigation
 changes or speculative tuning are part of this milestone.
 
-Privileged execution will be confined to the transaction/actuator boundary,
-with argument-array subprocess calls, inspected plans and structured failures.
-Reusable libraries serve both CLI and future Qt/QML applications. Do not add a
-daemon until lifetime, arbitration or privilege requirements justify it.
+Future actuators must retain the existing privileged transaction boundary,
+argument-array subprocess calls, inspected plans and structured failures. The
+current operation worker provides the required lifetime and arbitration without
+a persistent management daemon.
 
 ## Phase 1 installed foundation
 
@@ -140,21 +159,22 @@ can overwrite the active artifact. Offline recovery restores the root and saved
 UKI together, retaining their predecessors. Opt-in Phase 3 adds the native owner
 trust provider, immutable signed UKIs and an independently rooted recovery entry.
 See [boot generations](boot-generations.md) and [integration acceptance](phase3-acceptance.md).
-The implementation and preliminary fixture boots do not establish final image
-acceptance or arbitrary power-loss safety.
+That acceptance applies to the recorded source and target; it does not establish
+current-candidate acceptance or arbitrary power-loss safety.
 
 Durable phases distinguish preparation, downloaded/verified inputs, pre-snapshot,
 package mutation, boot-artifact work, validated candidate and boot-confirmed
 success. Intent is persisted before mutation. A crash during pacman application
-means recovery-required. The coordinator holds MutationGuard through the update
-and respects pacman's own lock. Independent package tools do not honor Astraeus's
-advisory lock and must not run concurrently.
+means recovery-required. The coordinator holds MutationGuard through the update.
+Phase 4.2's native backend also retains libalpm's package lock across snapshots
+and mutation; independent package tools do not honor Astraeus's advisory lock.
 
 A successful package command and post-update snapshot leave the transaction at
 awaiting_boot. Confirmation checks a new kernel boot ID, intended root, saved and
 active UKI, running kernel/command line, package map and required services before
-known-good promotion. Transaction history lives on persistent @log. See the
-[acceptance report](phase2-integration.md) for successful real update, interruption
+known-good promotion. Managed transactions also check applied configuration,
+ownership and installation reasons. Transaction history lives on persistent @log.
+See the [acceptance report](phase2-integration.md) for successful real update, interruption
 and recovery scenarios. Root/ESP changes remain non-atomic; disk-full failures,
 arbitrary write-boundary power loss and interrupted rollback resumption remain
 unqualified.
