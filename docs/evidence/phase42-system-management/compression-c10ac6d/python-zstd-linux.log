@@ -1,0 +1,15 @@
+Verified 1 database hashes and 1 upstream package names.
+Prepared /tmp/tmp5e3wum3z/package. Run makepkg as a non-root user in the pinned Arch builder.
+Prepared /tmp/tmpmk3i6ps9/package. Run makepkg as a non-root user in the pinned Arch builder.
+Prepared /tmp/tmperjvwzfp/package. Run makepkg as a non-root user in the pinned Arch builder.
+Prepared /tmp/tmp6z7akdqj/source. Run makepkg as a non-root user in the pinned Arch builder.
+Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+QMP: /tmp/tmpk02a4pm2/boot-1/qmp.sock
+QMP: /tmp/tmp06086krx/boot-1/qmp.sock
+Start the recovery command channel and unlock LUKS if needed through private QMP; see attention.json.
+----------------------------------------------------------------------
+Ran 209 tests in 17.827s
+
+OK (skipped=4)
+/root/astraeus-signature-tests-tfr9vs3e/tmpvka0uovm/uki.ready

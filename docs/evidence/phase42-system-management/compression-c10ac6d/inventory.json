@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "files": {
+    "failed-A-compression-index.json": {
+      "bytes": 3426,
+      "sha256": "8f62d2db305352ff97385a19947527e2f8a356b9275ae921def1d70a12d90753"
+    },
+    "failed-A-retry2-index.json": {
+      "bytes": 5448,
+      "sha256": "1ce9e1b123f12e7a399ecfb36b00e7c806d78f151e31c5f3cb8072f3d945bb0d"
+    },
+    "python-zstd-windows.log": {
+      "bytes": 1068,
+      "sha256": "49331bb658f4443aa4c73d5ea9414ed16aca1fd376140878f12450a8a9f17287"
+    },
+    "python-zstd-linux.log": {
+      "bytes": 948,
+      "sha256": "a0dda4d72326fe9da7a875d4746ee6f6605d8e7c221058b6a979e75e4033eb60"
+    }
+  },
+  "original_failure_archive_sha256": "7f4bd148f49449ca3367e2c1431e7d593ad9efb05ca1d5825b5d79eeb7bdf2d6",
+  "cold_retry_archive_sha256": "576700afdc8a819a59ea710e87c1316b1b46a5473a8e14b25ade1f1bf1e30248"
+}

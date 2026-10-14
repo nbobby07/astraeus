@@ -4,7 +4,10 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The latest built runtime is `0c938b94f44956fd77890d851e35650b62b1e6da`.
+The latest code is `6d10954`, including the coordinator lock-release fix and
+Zstd live compression. Its new production images have not been built or accepted.
+
+The last complete image was runtime `0c938b94f44956fd77890d851e35650b62b1e6da`.
 Clean A and its expanded final image audit passed. Independent B failed its
 native transaction check before producing an image. A coordinator lock-release
 fix now supersedes this runtime; replacement builds and fresh plain/LUKS2
@@ -534,6 +537,34 @@ five normal-run privileged skips. Both Clippy checks pass with warnings denied.
 Thirty repeated full native transaction unit runs pass with 16 parallel threads,
 including the child-process image-seeding test. These host checks do not qualify
 replacement images or VM recovery. The failed B gate leaves the milestone incomplete.
+
+Frozen runtime `c10ac6d` passed package checks with the lock fix: 158 native Rust
+tests and 21 controller plus 13 QML checks. Final live XZ compression then failed
+with `xz uncompress failed with error code 9`. A cold retry failed with the same
+error. No kernel I/O, out-of-memory or machine-check event was recorded in the
+builder console. The cause remains unconfirmed; neither attempt is an accepted
+image. A retry-helper error before compression also remains in the evidence.
+
+The first 21-file failure export has SHA256
+`7f4bd148f49449ca3367e2c1431e7d593ad9efb05ca1d5825b5d79eeb7bdf2d6`;
+the subsequent 33-file export has SHA256
+`576700afdc8a819a59ea710e87c1316b1b46a5473a8e14b25ade1f1bf1e30248`.
+Both were verified locally. The original source still matched frozen Git during
+read-only inspection. Original package-test logs and failed compression logs were
+kept separately; a compression retry does not imply package tests ran again.
+
+Commit `6d10954` changes only the live filesystem to Zstd level 15. The installed
+payload remains XZ. Real compression tests exercise the profile's actual options,
+verify Zstd decoding and repository metadata, and compare two complete fixture
+image outputs byte for byte. Full Python suites pass 209 tests on Windows and
+Linux, with 65 and four platform-dependent skips. These fixtures do not establish
+that the repeated complete-image failure is resolved. New clean images, complete
+audits and all fresh VM acceptance are still required.
+
+Both task validators were verified paused on 2026-10-14 at 12:11:22 UTC after
+exporting evidence. Conservative additional compute and active storage are $5.71
+of the approved $10 cap. Codex account usage was observed at 92% used; a preference
+between conserving the remainder and continuing full acceptance is pending.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software

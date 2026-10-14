@@ -1,0 +1,91 @@
+{
+  "source_commit": "c10ac6dcba54c01e905718be69a039a66145cc50",
+  "passed": false,
+  "reason": "Final live SquashFS compression aborted with xz data error9; no kernelOOM/IO errors recorded",
+  "files": {
+    "share/evidence/A/git-head.txt": {
+      "bytes": 190,
+      "sha256": "e000a2af1ee89f0ad516cabc7796f7f529d06e051684977cbe3f0d32c2f3b2e7"
+    },
+    "share/evidence/A/os-release.txt": {
+      "bytes": 382,
+      "sha256": "71ff7a6e248d9a0718344c957ec709cb6f0b18631682fa404d7cff2af3ff341d"
+    },
+    "share/evidence/A/build.log": {
+      "bytes": 388292,
+      "sha256": "f68b501350d3432938a1f3c37f7ffd4df367b9e6659d4c487ed6217b519a0c28"
+    },
+    "share/evidence/A/ended.txt": {
+      "bytes": 21,
+      "sha256": "e4ad717281d5bc522b64612a749414a32e02674edc1e04e7e590e99214d9baf4"
+    },
+    "share/evidence/A/pacman.conf": {
+      "bytes": 562,
+      "sha256": "02d59346d7a05a8019277c1167c6a7a1f8a941aceefaf49dfa10050c80412ee9"
+    },
+    "share/evidence/A/source-sha256.txt": {
+      "bytes": 92,
+      "sha256": "84b888305b14effff1b9d4d61bddf0460e6978c453ecb529e4367f2df30686ea"
+    },
+    "share/evidence/A/platform-package-sha256.txt": {
+      "bytes": 628,
+      "sha256": "691d95bd28db4f2437d5b0eebb91c35e0d4c7013eccc4f6b5a15bd6bbecfeab6"
+    },
+    "share/evidence/A/packages-before-build.txt": {
+      "bytes": 7854,
+      "sha256": "facd1ca68cc0d14184827b0fd660ecbe59add832d216d60b4b767b032adb103d"
+    },
+    "share/evidence/A/kernel.txt": {
+      "bytes": 107,
+      "sha256": "bd850b44098647c0ecef4cb526fa1dbef014bb67046b527949a37c11db5d1495"
+    },
+    "share/evidence/A/started.txt": {
+      "bytes": 21,
+      "sha256": "340fa98faabda2af82816f002f7c4dc661da3eca433b7114800116222700df95"
+    },
+    "share/evidence/A/git-status.txt": {
+      "bytes": 250,
+      "sha256": "70a244d0bc21a1e6e4b340ce4d3e188185b2c797bd760e15f9600f0a4c9a053b"
+    },
+    "share/evidence/A/exit-code": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "share/evidence/A/upstream-cache-manifest.json": {
+      "bytes": 441972,
+      "sha256": "b9cae3316e3cbc4e08d9e32b0d8b2093120b6d67ff318f52c7f0e1c813066dd1"
+    },
+    "share/evidence/A/command.txt": {
+      "bytes": 183,
+      "sha256": "382bd64413f5154b314cdaab60e45e564db88d4fa9ed1aa61a9c8f55a8bc9db3"
+    },
+    "share/evidence/A/builder-script-sha256.txt": {
+      "bytes": 89,
+      "sha256": "e190bfac61a142ecafc9666aca647d3ab1a03f7c35f1075ca5d6dbdb896ecb76"
+    },
+    "builder-A/meta-data": {
+      "bytes": 61,
+      "sha256": "1a354b0367d4178ba0e781ba750827f0932ea9ffdf06e6ab2261514eb7497c7f"
+    },
+    "builder-A/qemu-command.json": {
+      "bytes": 1061,
+      "sha256": "3efc264f9817fcfc6e22d6b4e76d3f21ca335e668a4465e701d945b5172a8fe5"
+    },
+    "builder-A/seed.img": {
+      "bytes": 374784,
+      "sha256": "529b8cf68657140c75445f5e6ae460f5d984a7ab1bd736a24a03349320f29431"
+    },
+    "builder-A/user-data": {
+      "bytes": 404,
+      "sha256": "6de166827c9a52bee2f7feb02ab06517ffd039e1d0e56a5949537acb7888e609"
+    },
+    "builder-A/serial.log": {
+      "bytes": 653297,
+      "sha256": "c598e06e1bc33e690753485faca2a22f394074aff9e0d0abe4154efee9376446"
+    },
+    "run.json": {
+      "bytes": 665,
+      "sha256": "94e058c0794fb03fb3b2b7af299be70b73141c6dc7a4fcf5dacd8e3181dbd180"
+    }
+  }
+}

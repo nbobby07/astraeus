@@ -1,0 +1,139 @@
+{
+  "source_commit": "c10ac6dcba54c01e905718be69a039a66145cc50",
+  "qualified": false,
+  "reason": "Repeat final live XZ data error9 after cold boot; originalpackageRust158/Qt21+13 passed; operator firstretry error retained",
+  "files": {
+    "share/evidence/A/git-head.txt": {
+      "bytes": 190,
+      "sha256": "e000a2af1ee89f0ad516cabc7796f7f529d06e051684977cbe3f0d32c2f3b2e7"
+    },
+    "share/evidence/A/compression-retry-intent.json": {
+      "bytes": 676,
+      "sha256": "dcf78e53e4aee47d6b297c0371d3b72644ed947704d3ca6c233f66759b57f382"
+    },
+    "share/evidence/A/os-release.txt": {
+      "bytes": 382,
+      "sha256": "71ff7a6e248d9a0718344c957ec709cb6f0b18631682fa404d7cff2af3ff341d"
+    },
+    "share/evidence/A/build.log": {
+      "bytes": 5263,
+      "sha256": "81f9eb2e190d79c23aa3f30db767c3ddb7a893467919425cc4dd02c4ead014ec"
+    },
+    "share/evidence/A/ended.txt": {
+      "bytes": 21,
+      "sha256": "e4ad717281d5bc522b64612a749414a32e02674edc1e04e7e590e99214d9baf4"
+    },
+    "share/evidence/A/pacman.conf": {
+      "bytes": 562,
+      "sha256": "02d59346d7a05a8019277c1167c6a7a1f8a941aceefaf49dfa10050c80412ee9"
+    },
+    "share/evidence/A/cold-retry1-exit-code": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "share/evidence/A/cold-retry1-build.log": {
+      "bytes": 649,
+      "sha256": "5bf782d41fa9c02471051166a39455e0d02d350d360ca45a41bdb95af47b7333"
+    },
+    "share/evidence/A/source-sha256.txt": {
+      "bytes": 92,
+      "sha256": "84b888305b14effff1b9d4d61bddf0460e6978c453ecb529e4367f2df30686ea"
+    },
+    "share/evidence/A/first-compression-exit-code": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "share/evidence/A/platform-package-sha256.txt": {
+      "bytes": 628,
+      "sha256": "691d95bd28db4f2437d5b0eebb91c35e0d4c7013eccc4f6b5a15bd6bbecfeab6"
+    },
+    "share/evidence/A/first-compression-build.log": {
+      "bytes": 388292,
+      "sha256": "f68b501350d3432938a1f3c37f7ffd4df367b9e6659d4c487ed6217b519a0c28"
+    },
+    "share/evidence/A/packages-before-build.txt": {
+      "bytes": 7854,
+      "sha256": "facd1ca68cc0d14184827b0fd660ecbe59add832d216d60b4b767b032adb103d"
+    },
+    "share/evidence/A/kernel.txt": {
+      "bytes": 107,
+      "sha256": "bd850b44098647c0ecef4cb526fa1dbef014bb67046b527949a37c11db5d1495"
+    },
+    "share/evidence/A/started.txt": {
+      "bytes": 21,
+      "sha256": "340fa98faabda2af82816f002f7c4dc661da3eca433b7114800116222700df95"
+    },
+    "share/evidence/A/git-status.txt": {
+      "bytes": 250,
+      "sha256": "70a244d0bc21a1e6e4b340ce4d3e188185b2c797bd760e15f9600f0a4c9a053b"
+    },
+    "share/evidence/A/exit-code": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "share/evidence/A/upstream-cache-manifest.json": {
+      "bytes": 441972,
+      "sha256": "b9cae3316e3cbc4e08d9e32b0d8b2093120b6d67ff318f52c7f0e1c813066dd1"
+    },
+    "share/evidence/A/command.txt": {
+      "bytes": 183,
+      "sha256": "382bd64413f5154b314cdaab60e45e564db88d4fa9ed1aa61a9c8f55a8bc9db3"
+    },
+    "share/evidence/A/builder-script-sha256.txt": {
+      "bytes": 89,
+      "sha256": "e190bfac61a142ecafc9666aca647d3ab1a03f7c35f1075ca5d6dbdb896ecb76"
+    },
+    "builder-A/meta-data": {
+      "bytes": 61,
+      "sha256": "1a354b0367d4178ba0e781ba750827f0932ea9ffdf06e6ab2261514eb7497c7f"
+    },
+    "builder-A/qemu-command.json": {
+      "bytes": 1061,
+      "sha256": "3efc264f9817fcfc6e22d6b4e76d3f21ca335e668a4465e701d945b5172a8fe5"
+    },
+    "builder-A/seed.img": {
+      "bytes": 374784,
+      "sha256": "529b8cf68657140c75445f5e6ae460f5d984a7ab1bd736a24a03349320f29431"
+    },
+    "builder-A/user-data": {
+      "bytes": 404,
+      "sha256": "6de166827c9a52bee2f7feb02ab06517ffd039e1d0e56a5949537acb7888e609"
+    },
+    "builder-A/compression-retry-meta-data": {
+      "bytes": 76,
+      "sha256": "3813b089bae15fa1921956b13a254001c6c0fb4aa0984ae27a4843cd880706e9"
+    },
+    "builder-A/first-compression-serial.log": {
+      "bytes": 653297,
+      "sha256": "c598e06e1bc33e690753485faca2a22f394074aff9e0d0abe4154efee9376446"
+    },
+    "builder-A/serial.log": {
+      "bytes": 47251,
+      "sha256": "817834d63a4fc56caf5a417d0926f6ae51af180bf6f607fe3123bb2714e58049"
+    },
+    "builder-A/compression-retry2-seed.img": {
+      "bytes": 374784,
+      "sha256": "379632cf2593fb598565115c558400f3df34905e59de071be807cab1f72f51a3"
+    },
+    "builder-A/compression-retry2-user-data": {
+      "bytes": 260,
+      "sha256": "782239e1033394c3286cf3e65cdf6e42868af68201b51fb2e702d5969e9a7577"
+    },
+    "builder-A/compression-retry2-meta-data": {
+      "bytes": 76,
+      "sha256": "a7d167eda477921b3a3e8f7dfd60556ced2d4e2372115f311e555cc9cd81e028"
+    },
+    "builder-A/compression-retry-user-data": {
+      "bytes": 260,
+      "sha256": "782239e1033394c3286cf3e65cdf6e42868af68201b51fb2e702d5969e9a7577"
+    },
+    "builder-A/compression-retry-seed.img": {
+      "bytes": 374784,
+      "sha256": "587b37029dd0798e6a8b4a2eed56aa3587d3809b966868dc096753da2875dbe1"
+    },
+    "builder-A/cold-retry1-serial.log": {
+      "bytes": 47945,
+      "sha256": "5157839d5a728733b74ccc718d2ac77eb6504326a4b77f7e7dd1df19ae8bbc68"
+    }
+  }
+}
