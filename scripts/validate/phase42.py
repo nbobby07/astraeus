@@ -2,6 +2,7 @@
 """Candidate-only Phase 4.2 KVM lifecycle evidence. Missing gates never become passes."""
 import argparse
 import copy
+from importlib import import_module
 import json
 import os
 from pathlib import Path
@@ -14,6 +15,7 @@ import time
 import uuid
 
 import phase2 as p2
+from phase42_trust import verify_maintained_uki
 
 GATES = {
     'candidate-identity': 'Fresh candidate source, ISO, firmware and installed binary identities agree',
@@ -105,7 +107,20 @@ def submit(vm, config, plan_id, timeout, label='submit'):
     reply, result = json_command(vm, ['system', 'submit', '--json'],
                                  {'schema_version': 1, 'config': config, 'expected_plan': plan_id},
                                  label=label, check=False)
-    return (reply, None) if result is None else (reply, wait_operation(vm, result['operation_id'], timeout))
+    if result is None:
+        return reply, None
+    operation = wait_operation(vm, result['operation_id'], timeout)
+    # A terminal receipt can precede ExecStopPost and release of the worker's locks.
+    import_module('phase42-faults').wait_worker_exit(vm, result['operation_id'], timeout)
+    return reply, operation
+
+
+def installed_trust(vm, manifest, label):
+    trust = verify_maintained_uki(
+        lambda *args: vm.command(shlex.join(args), label=label + '-trust')['output'],
+        manifest['signer_sha256'])
+    p2.save(vm.session / (label + '-trust.json'), dict(boot_id=vm.boot_id, **trust))
+    return trust
 
 
 def check_transaction(record, expected_kind, package):
@@ -140,6 +155,7 @@ def confirmed(vm, transaction_id, timeout):
 
 
 def run(args):
+    p2.require(args.secure_boot, 'Phase 4.2 acceptance requires enforcing Secure Boot')
     p2.require(sys.platform == 'linux' and Path('/dev/kvm').exists() and os.geteuid() == 0,
                'run only as root on a disposable Linux KVM validator')
     p2.require(re.fullmatch('[0-9a-f]{40}', args.source_commit), 'full candidate source commit required')
@@ -183,7 +199,8 @@ def run(args):
             'source_commit': args.source_commit, 'iso_sha256': args.image_sha256,
             'distroctl_sha256': args.distroctl_sha256, 'desktop_sha256': args.desktop_sha256,
             'baseline': manifest, 'package': args.package,
-            'harness_sha256': {name: p2.digest(p2.HERE / name) for name in ['phase42.py', 'phase2.py', 'qmp.py']}})
+            'harness_sha256': {name: p2.digest(p2.HERE / name) for name in
+                               ['phase42.py', 'phase2.py', 'qmp.py', 'phase42-faults.py', 'phase42_trust.py']}})
         vm = p2.VM(args.output, args.ovmf_code, share, args.timeout, secure_boot=args.secure_boot)
         vm.start()
         print('If encrypted, unlock this disposable guest through its private QMP console.', flush=True)
@@ -198,10 +215,7 @@ def run(args):
                        'baseline is live, pending a reboot, or has configuration drift')
             health = p2.observe(vm, 'candidate-health')
             p2.healthy(health, args.encryption)
-            if args.secure_boot:
-                _, security = json_command(vm, ['security', 'status', '--json'], label='candidate-security')
-                p2.require(security.get('firmware', {}).get('SecureBoot') is True
-                           and security.get('firmware', {}).get('SetupMode') is False, 'Secure Boot is not enforcing')
+            installed_trust(vm, manifest, 'candidate')
             return status
         status = gate('candidate-identity', identity)
         original = copy.deepcopy(status['configuration'])
@@ -280,6 +294,7 @@ def run(args):
 
         def reboot_check(record, config, present):
             vm.reboot()
+            installed_trust(vm, manifest, 'confirmation-' + str(record['id']))
             confirmed(vm, record['id'], min(args.timeout, 180))
             _, actual = json_command(vm, ['system', 'status', '--json'], label='confirmed-configuration')
             p2.require(actual['configuration'] == config and not actual.get('reboot_required') and not actual.get('drift'),
