@@ -1,0 +1,90 @@
+{
+  "cecp/inputs.json": {
+    "bytes": 3174,
+    "sha256": "1ef16aa39a6647a2ddd7901fd698b9ce57e9bd70fe4ef583e231ec8be8acdcec"
+  },
+  "cecp/install-operation.json": {
+    "bytes": 434745,
+    "sha256": "ae3b696168d4ce1def5a2f1716c837fafe79df8c6b3cddae81491eecdb07fe4f"
+  },
+  "cecp/matrix.json": {
+    "bytes": 8624,
+    "sha256": "11ff84758be5cd02ebfe28748570fc2ea9505eeffe4ad502f397e1f12c73dcb4"
+  },
+  "cecp/remove-operation.json": {
+    "bytes": 434586,
+    "sha256": "26888478f4a03879d010734e6013c72dc3cae66994e2b9dd4cf89f55b3347afe"
+  },
+  "fecp-interruption/interruption/diagnostic-killed-worker-status.json": {
+    "bytes": 1879,
+    "sha256": "21b8656c2268f580e13b44b95255943fbd9ee626e3ac52c57a9ab29849f1aed8"
+  },
+  "fecp-interruption/matrix.json": {
+    "bytes": 6669,
+    "sha256": "1e02c4e49a11550f65f301e6e4432d460c895ac961947befafb8e4a8910068c8"
+  },
+  "fecp-interruption-r2/interruption/offline-restore.json": {
+    "bytes": 5078,
+    "sha256": "1d4b0d1e558cdc96a7ff85494ca9d0ea9d09c906bcb0fbcc9cfe28c42636ee0b"
+  },
+  "fecp-interruption-r2/interruption/screenshots/live-desktop.png": {
+    "bytes": 554429,
+    "sha256": "5f0f2a8709a8771f1cfd5b9d8b920a156c15832023111802f60a642861e5e2b0"
+  },
+  "fecp-interruption-r2/interruption/screenshots/live-terminal.png": {
+    "bytes": 272942,
+    "sha256": "8dc33888cfcbf4d989ce3f1832bbd9dbb2d987829d866445a5792d44ebbfe886"
+  },
+  "fecp-interruption-r2/matrix.json": {
+    "bytes": 7280,
+    "sha256": "2ba1f2e839f4533b49734f21d64e249afeed87dca0fa42bee2d41cdd7b42da5e"
+  },
+  "harness-ca10b5f.json": {
+    "bytes": 3751,
+    "sha256": "55d851313385062dd03d9398f0530ffc74d95fd6b2f5e398941145da3e3b29c1"
+  },
+  "harness-staging.json": {
+    "bytes": 152,
+    "sha256": "685d201ef272f1cd95ea9cd9b1ead41c16e953ae32d1b06a339004a976e66afb"
+  },
+  "interruption-ec-r1-evidence-index.json": {
+    "bytes": 39208,
+    "sha256": "50e40fbe29ccfa7d2b3c9e96eab2a3fbc24de5cb86821b4dc76141fbb9a859f4"
+  },
+  "interruption-ec-r1-export.json": {
+    "bytes": 237,
+    "sha256": "e4c79d7e03b4934f166eef52ad498a535b25e7e16b886342f5d3866073435760"
+  },
+  "interruption-ec-r1-local-verification.json": {
+    "bytes": 124,
+    "sha256": "4d11ec4d33769ca238ccd86f542bd2c881be2d0101f168153a05cbb1f021efa2"
+  },
+  "interruption-ec-r2-evidence-index.json": {
+    "bytes": 30003,
+    "sha256": "4d6c835c6767fbc2ea0219635b1ca7012dd8969856ad94eb00a285427d543b82"
+  },
+  "interruption-ec-r2-export.json": {
+    "bytes": 236,
+    "sha256": "ca803299a008415eb266077682c0676a938c1a6ef6611feb9c396dcd0870ea6b"
+  },
+  "interruption-ec-r2-local-verification.json": {
+    "bytes": 124,
+    "sha256": "4703b944e96de3e8c0d54c9adf52c36c6e0bc9f7a6da84bbe2f123b917af76f1"
+  },
+  "plain-cli-ec-evidence-index.json": {
+    "bytes": 42407,
+    "sha256": "3da0f575da8ba1c279f2a56af8e882953893e80c257ec67b87c2739711abc066"
+  },
+  "plain-cli-ec-export.json": {
+    "bytes": 281,
+    "sha256": "dcdf7e3756ea00e14a769ef02ca07d7031e6df1370c43beddb6a01304fb8df04"
+  },
+  "plain-cli-ec-local-verification.json": {
+    "bytes": 188,
+    "sha256": "708bafbe1fe4ed151742412005cd4da0da76c0910fad2b0e6b6b3c9778f2fdd3"
+  },
+  "README.md": {
+    "bytes": 1345,
+    "sha256": "62da9fb2cc60bbbe9c923bff93df244b2a696264115d0346affd2998b59e31eb"
+  }
+}

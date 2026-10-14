@@ -23,7 +23,9 @@ service main process and the newly spawned ExecStopPost finalizer through
 `systemctl kill --kill-whom=all`. The test was stopped with its failed evidence
 retained. The harness now targets the main process so systemd can clean up the
 remaining children and execute the finalizer. Runtime images are unchanged;
-a fresh interruption trial remains required.
+a fresh interruption trial has now passed all 12 gates, including durable
+interrupted recovery, no replay, and verified offline restoration. All 159 public
+files from that passing trial verified locally.
 
 The latest code fixes a real offline-recovery defect found in the `6d10954`
 candidate. Both `6d10954` independent images and their full byte comparison passed; clean A also

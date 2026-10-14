@@ -1,0 +1,140 @@
+{
+  "firmware": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "plan": {
+    "affected": [
+      "@: / (OS, configuration, pacman database and service state)"
+    ],
+    "boot_implications": "Restore saved matching UKI to /efi/EFI/Linux/astraeus-dev-linux.efi; preserve old UKI and root. No boot menu changes. Recovery media required.",
+    "current_state": {
+      "id": 256,
+      "parent_uuid": null,
+      "read_only": false,
+      "top_level": 5,
+      "uuid": "27c625d6-d667-2543-a01a-f651e7a4ec90"
+    },
+    "execution_supported": true,
+    "persistent": [
+      "@home: /home",
+      "@snapshots: /.snapshots",
+      "@log: /var/log",
+      "@cache: /var/cache",
+      "@containers: /var/lib/containers"
+    ],
+    "reboot_required": true,
+    "safety_checks": [
+      "filesystem/ESP UUID and six-subvolume layout verified",
+      "target read-only identity, saved UKI hash, kernel, command line and fstab verified",
+      "known-good evidence required; no recursive snapshot",
+      "execution rechecks under lock and rejects mounted installed subvolumes"
+    ],
+    "target": {
+      "boot": {
+        "esp_uuid": "588C-DF69",
+        "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+        "sha256": "0119f9b9789da97a8d5d5803277fe3327f1458309b118d929b58541bdc7f0fd1"
+      },
+      "coordinator": {
+        "recovery_protocol": 2,
+        "sha256": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b"
+      },
+      "created_unix_seconds": 1792001961,
+      "filesystem_uuid": "d716a114-52b1-484f-adc3-806beb897071",
+      "health": "known-good",
+      "id": "1792001961-547134804-929",
+      "reason": "pre-update",
+      "root": {
+        "id": 262,
+        "parent_uuid": "27c625d6-d667-2543-a01a-f651e7a4ec90",
+        "read_only": true,
+        "top_level": 258,
+        "uuid": "189aca47-30c8-0849-b603-7f58c0baf300"
+      },
+      "schema_version": 2,
+      "source_state": {
+        "id": 256,
+        "parent_uuid": null,
+        "read_only": false,
+        "top_level": 5,
+        "uuid": "27c625d6-d667-2543-a01a-f651e7a4ec90"
+      },
+      "transaction_id": "1",
+      "validation_evidence": "Pre-update boot f0e4cbfc-5bf4-475f-be7f-5da5475840ed: root/UKI identity and required system health passed; transaction 1"
+    }
+  },
+  "restored": {
+    "operation_id": "1792002224187934595",
+    "plan": {
+      "affected": [
+        "@: / (OS, configuration, pacman database and service state)"
+      ],
+      "boot_implications": "Restore saved matching UKI to /efi/EFI/Linux/astraeus-dev-linux.efi; preserve old UKI and root. No boot menu changes. Recovery media required.",
+      "current_state": {
+        "id": 256,
+        "parent_uuid": null,
+        "read_only": false,
+        "top_level": 5,
+        "uuid": "27c625d6-d667-2543-a01a-f651e7a4ec90"
+      },
+      "execution_supported": true,
+      "persistent": [
+        "@home: /home",
+        "@snapshots: /.snapshots",
+        "@log: /var/log",
+        "@cache: /var/cache",
+        "@containers: /var/lib/containers"
+      ],
+      "reboot_required": true,
+      "safety_checks": [
+        "filesystem/ESP UUID and six-subvolume layout verified",
+        "target read-only identity, saved UKI hash, kernel, command line and fstab verified",
+        "known-good evidence required; no recursive snapshot",
+        "execution rechecks under lock and rejects mounted installed subvolumes"
+      ],
+      "target": {
+        "boot": {
+          "esp_uuid": "588C-DF69",
+          "relative_path": "EFI/Linux/astraeus-dev-linux.efi",
+          "sha256": "0119f9b9789da97a8d5d5803277fe3327f1458309b118d929b58541bdc7f0fd1"
+        },
+        "coordinator": {
+          "recovery_protocol": 2,
+          "sha256": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b"
+        },
+        "created_unix_seconds": 1792001961,
+        "filesystem_uuid": "d716a114-52b1-484f-adc3-806beb897071",
+        "health": "known-good",
+        "id": "1792001961-547134804-929",
+        "reason": "pre-update",
+        "root": {
+          "id": 262,
+          "parent_uuid": "27c625d6-d667-2543-a01a-f651e7a4ec90",
+          "read_only": true,
+          "top_level": 258,
+          "uuid": "189aca47-30c8-0849-b603-7f58c0baf300"
+        },
+        "schema_version": 2,
+        "source_state": {
+          "id": 256,
+          "parent_uuid": null,
+          "read_only": false,
+          "top_level": 5,
+          "uuid": "27c625d6-d667-2543-a01a-f651e7a4ec90"
+        },
+        "transaction_id": "1",
+        "validation_evidence": "Pre-update boot f0e4cbfc-5bf4-475f-be7f-5da5475840ed: root/UKI identity and required system health passed; transaction 1"
+      }
+    },
+    "previous_root": "/mnt/astraeus-fault-root/@previous-1792002224187934595",
+    "previous_uki": "/mnt/astraeus-fault-root/@snapshots/astraeus/operation-1792002224187934595-previous.efi",
+    "restored_state": {
+      "id": 264,
+      "parent_uuid": "189aca47-30c8-0849-b603-7f58c0baf300",
+      "read_only": false,
+      "top_level": 5,
+      "uuid": "155febba-47c1-dd43-976e-39f48da7c98b"
+    }
+  }
+}
