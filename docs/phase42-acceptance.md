@@ -4,8 +4,12 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The latest built runtime candidate is `9825438d275c3037fcb41fbd768eebc71ef3f38c`,
-now superseded by an installed trust-input permissions defect found during CLI acceptance.
+The current runtime candidate is `0c938b94f44956fd77890d851e35650b62b1e6da`.
+Clean A and its expanded final image audit passed. Independent B is running;
+fresh plain/LUKS2 management, GUI and recovery acceptance remain pending.
+
+The earlier built runtime `9825438d275c3037fcb41fbd768eebc71ef3f38c` is
+superseded by an installed trust-input permissions defect found during CLI acceptance.
 Its source archive is 5,016,480 bytes with SHA256
 `e1eec7917965b73893f013c896bb3028d819f1e362b698a398c85530b3e70c35`.
 An independent Git archive and compression pass produced the same bytes. It fixes
@@ -474,6 +478,35 @@ the diagnostic used the available KCalc package. Windows and Linux Python suites
 each pass 209 tests, with 65 and four platform-dependent skips respectively.
 The [VM receipts](evidence/phase42-system-management/vm/cli-and-media-9825438/README.md)
 keep the image failure separate from corrected-overlay diagnostic results.
+
+Replacement `0c938b9` comes from a frozen 5,597,568-byte Git archive, SHA256
+`e195fd75d140b0ac045d4292c59c181fd9acea746064d8b9ff3bb10283749899`.
+Two independent compression passes produced the same source archive bytes.
+Clean A passed 156 native Rust tests with five normal-run fixture skips, plus
+21 controller and 13 QML tests. Its 691 live and 736 installed package records
+exactly match the built roots. All 151 source hashes and Cargo.lock were checked
+against the frozen Git commit, and every non-ISO export manifest entry was verified.
+
+The 3,645,478,912-byte replacement A image has SHA256
+`453a517eaef1494dc32bb71a78238eea8d0b0c4d08ce9838567cbdec41b5cd76`.
+Its expanded audit passed, including installed trust-input ownership, permissions,
+ordinary-user access and required files. Ten auditor regressions include actual
+compressed roots with writable inputs, missing files, wrong owners and symlinks.
+The unchanged decoder provenance checks and all five version-contract tests passed.
+The full audit again scanned 139,384 live and 136,903 installed regular paths,
+verified the five repository metadata files in each root, and retained the exact
+GnuTLS public-test-material classification compared with the new actual signer.
+Its result SHA256 is
+`34a833a8d8126d36005d1b11cd617df1361a00112790766a98dc7c91d36f909b`.
+All seven exported audit files were independently verified; the 8,884-byte archive
+has SHA256 `eebb4fdc0187b1fffeb1330224c3beda62a073eb6d1fd19d01d688c599a12aa9`.
+
+The disposable replacement repository signer is
+`3FDFDCA998005BDCC115A8306C9208154CFDDBF6`, expiring on
+2026-10-15 at 08:54:42 UTC. The actual signed Calamares 3.4.3 package's fstab
+formatter was inspected and exercised for all six configured mounts with both
+plain and encrypted sources; it preserves the canonical subvolume paths. This
+source-level check does not establish Calamares UI acceptance.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software

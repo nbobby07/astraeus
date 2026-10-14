@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source_commit": "0c938b94f44956fd77890d851e35650b62b1e6da",
+  "files": {
+    "audit-image.py": {
+      "sha256": "193677419a881d5ce87d5a30ece7a00b3365bb9a83dea2469c5ff60183d091b2",
+      "bytes": 27485
+    },
+    "test_audit_image.py": {
+      "sha256": "4b3b146b91de46660f1cfe26d4844cd32255e5c590a566d93f857a3d78ae386e",
+      "bytes": 18956
+    },
+    "decoder-preflight.py": {
+      "sha256": "016482d2e22ea179b4b15c2ac2768f88ca7b2624402cd848aa3a85dd5c0f5b8d",
+      "bytes": 4736
+    },
+    "test_decoder_preflight.py": {
+      "sha256": "12273c926e6c1f63b279822cf362a91b94d1f8e22cdb622ea412a3b19951f350",
+      "bytes": 2746
+    },
+    "decoder-version-observed.json": {
+      "sha256": "0014e80724b80765132d02916c5dd64553765053da3ca271675edb0482aa20c5",
+      "bytes": 905
+    },
+    "decoder-receipt.json": {
+      "sha256": "d9d8ddc0cd9f87e7c4f6fe10e85c94dc97ab46f17cf904633c12433b5a2f1d83",
+      "bytes": 21317
+    },
+    "decoder-preflight-original.py.txt": {
+      "sha256": "03237b2c17d11599a5c3a9613aae32702317feb4a42760fc142d83973eedcb6d",
+      "bytes": 4256
+    },
+    "expected.json": {
+      "sha256": "256f6ef961edec312e1df09914c246f33f4698921823efb0761019e4b617e292",
+      "bytes": 849
+    },
+    "public-test-material.json": {
+      "sha256": "13895184aea7854662d806a2b4c7c9d62443e9a19f582e291d92ccef4b0542fa",
+      "bytes": 17848
+    },
+    "audit-command.json": {
+      "sha256": "a0be6554701c71328298015c5e7a42c989a4befb6c5580424643d08c5587fdd5",
+      "bytes": 2526
+    },
+    "A-inputs.json": {
+      "sha256": "f1ad8f7c3a99e1ca0d4a74592aef929514b068c0cf5334d0dfc2d8455cc210ce",
+      "bytes": 19906
+    },
+    "A-binary-identities.json": {
+      "sha256": "5f99de96e0f6e7a1a82ee2a0954f75f130fb9d890e6de69c0d9802093624957d",
+      "bytes": 896
+    }
+  }
+}
