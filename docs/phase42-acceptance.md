@@ -5,9 +5,10 @@ has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
 The latest code is `6d10954`, including the coordinator lock-release fix and
-Zstd live compression. Its new production images have not been built or accepted.
+Zstd live compression. Its clean A image and complete image audit passed;
+independent B is building. Fresh installed-system acceptance remains pending.
 
-The last complete image was runtime `0c938b94f44956fd77890d851e35650b62b1e6da`.
+The previous complete image was runtime `0c938b94f44956fd77890d851e35650b62b1e6da`.
 Clean A and its expanded final image audit passed. Independent B failed its
 native transaction check before producing an image. A coordinator lock-release
 fix now supersedes this runtime; replacement builds and fresh plain/LUKS2

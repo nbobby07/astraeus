@@ -1,0 +1,27 @@
+{"schema_version": 1, "passed": true, "receipt_sha256": "2cc8f1fe870f1fa5b2e66578818738a7f5e53d534e585390c313cf2543007712", "verified_members": 57, "signed_package_count": 9, "wrapper": "/home/ubuntu/p42/decoder475-r3/bin/unsquashfs", "wrapper_sha256": "e093243854a9990e858b5d0b56a14f35edb85792da578e0c178fcc58795943cd", "version": "unsquashfs version 4.7.5 (2026/03/01)", "version_exit_code": 1, "minimal_audit_environment": {"PATH": "/home/ubuntu/p42/decoder475-r3/bin:/usr/sbin:/usr/bin:/sbin:/bin", "LANG": "C", "PYTHONDONTWRITEBYTECODE": "1"}, "host_tool_replaced": false}
+test_other_exit_codes_rejected (__main__.VersionContract.test_other_exit_codes_rejected) ... ok
+test_provenance_and_all_member_checks_unchanged (__main__.VersionContract.test_provenance_and_all_member_checks_unchanged) ... ok
+test_real_captured_version_behavior (__main__.VersionContract.test_real_captured_version_behavior) ... ok
+test_stderr_rejected_even_with_exact_stdout (__main__.VersionContract.test_stderr_rejected_even_with_exact_stdout) ... ok
+test_wrong_missing_or_extra_stdout_rejected (__main__.VersionContract.test_wrong_missing_or_extra_stdout_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.006s
+
+OK
+test_compressed_installed_inputs_reject_archive_modes_ownership_and_symlinks (__main__.ImageAudit.test_compressed_installed_inputs_reject_archive_modes_ownership_and_symlinks) ... ok
+test_final_compressed_live_and_installed_sync_metadata_missing_or_tampered_is_rejected (__main__.ImageAudit.test_final_compressed_live_and_installed_sync_metadata_missing_or_tampered_is_rejected) ... ok
+test_installed_accounts_and_archive_paths_fail_closed (__main__.ImageAudit.test_installed_accounts_and_archive_paths_fail_closed) ... ok
+test_owners_agents_and_enabled_worker_rejected (__main__.ImageAudit.test_owners_agents_and_enabled_worker_rejected) ... ok
+test_private_key_content_rejected_without_exposing_bytes (__main__.ImageAudit.test_private_key_content_rejected_without_exposing_bytes) ... ok
+test_public_test_material_requires_exact_file_bytes_and_location (__main__.ImageAudit.test_public_test_material_requires_exact_file_bytes_and_location) ... ok
+test_real_signed_repository_stream_matches_packaged_identities (__main__.ImageAudit.test_real_signed_repository_stream_matches_packaged_identities) ... ok
+test_real_squashfs_changed_public_test_file_rejected (__main__.ImageAudit.test_real_squashfs_changed_public_test_file_rejected) ... ok
+test_real_squashfs_stream_and_packaged_file_identity (__main__.ImageAudit.test_real_squashfs_stream_and_packaged_file_identity) ... ok
+test_sync_contract_binds_approved_build_inputs_and_verified_signed_repository (__main__.ImageAudit.test_sync_contract_binds_approved_build_inputs_and_verified_signed_repository) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.780s
+
+OK
+{"passed": true, "result": "/home/ubuntu/p42/ia6d-a/result.json"}

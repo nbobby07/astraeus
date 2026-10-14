@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "files": {
+    "audit-image.py": {
+      "sha256": "193677419a881d5ce87d5a30ece7a00b3365bb9a83dea2469c5ff60183d091b2",
+      "bytes": 27485
+    },
+    "test_audit_image.py": {
+      "sha256": "4b3b146b91de46660f1cfe26d4844cd32255e5c590a566d93f857a3d78ae386e",
+      "bytes": 18956
+    },
+    "decoder-preflight.py": {
+      "sha256": "8e35a1f5d48160702d6d14516d2c04ec982dfd33bba3fc3281b37514d34eefae",
+      "bytes": 4828
+    },
+    "test_decoder_preflight.py": {
+      "sha256": "12273c926e6c1f63b279822cf362a91b94d1f8e22cdb622ea412a3b19951f350",
+      "bytes": 2746
+    },
+    "decoder-version-observed.json": {
+      "sha256": "0014e80724b80765132d02916c5dd64553765053da3ca271675edb0482aa20c5",
+      "bytes": 905
+    },
+    "decoder-receipt.json": {
+      "sha256": "2cc8f1fe870f1fa5b2e66578818738a7f5e53d534e585390c313cf2543007712",
+      "bytes": 21317
+    },
+    "decoder-preflight-original.py.txt": {
+      "sha256": "03237b2c17d11599a5c3a9613aae32702317feb4a42760fc142d83973eedcb6d",
+      "bytes": 4256
+    },
+    "expected.json": {
+      "sha256": "aa113cb252ef53952288bc8a6f97046823bae2139241655b972429d86ff85082",
+      "bytes": 849
+    },
+    "public-test-material.json": {
+      "sha256": "7a2dd1e8f1472ced832f0ab989655bdec20ec056a8d767148529aa0615d5ff37",
+      "bytes": 17848
+    },
+    "audit-command.json": {
+      "sha256": "9bc8d95c9957fbfe855c2241c66a824a14b03b02aa584fb2c7d9ce86fb9167a6",
+      "bytes": 2526
+    },
+    "A-inputs.json": {
+      "sha256": "16c2cd9d4add6c5b50e148d1bcd1201edc490dc08486f3d12445e80793fbec8e",
+      "bytes": 19906
+    },
+    "A-binary-identities.json": {
+      "sha256": "a6ff0a430cd28f7f002d9f37f5c7ea4529827fd47876f760f39c42d4c56f1c1e",
+      "bytes": 896
+    }
+  }
+}

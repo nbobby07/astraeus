@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "repository_fingerprint": "B11B3F9ACCB018F89E892BDF4287BAE93739097C",
+  "packages": {
+    "distroctl": {
+      "archive": "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst",
+      "archive_sha256": "62d2abee0f17f2810dc8ca1ddd62b78692a2cf6132f72561fc360a096406e98a",
+      "member": "usr/bin/distroctl",
+      "binary_sha256": "38509da005f4ebe5aa81fb5f5e100c2fb22e66c1d8d008378028c33137573090",
+      "binary_bytes": 5932552
+    },
+    "astraeus-control-center": {
+      "archive": "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst",
+      "archive_sha256": "1f09613d0a084e617c847aa192205b59c36f4d92a0d250d61ef0ab3fa9586d1e",
+      "member": "usr/bin/astraeus-control-center",
+      "binary_sha256": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+      "binary_bytes": 338544
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "time": "2026-10-14T14:09:25.810502+00:00",
+  "label": "A",
+  "verified": true,
+  "archive_sha256": "3297868ac3673d4d1e2376970f7db4734cd023655aa6b9b7bd15d4f06556d3c4",
+  "result_sha256": "a1bc9bb880b78bd6583840d1532840081891e923a5e2fb886e23f2916bc79b7d",
+  "files_verified": 7,
+  "directory": "C:\\Astraeus-Phase42-System-Management\\candidate-6d10954\\A-audit-final",
+  "remote_export_receipt_sha256": "2a05cb30dd7db54d122645d58f10bc9aa47ab7c7233ced9bf6e3c7fbc13f436d"
+}
