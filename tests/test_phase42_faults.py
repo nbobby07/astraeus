@@ -46,6 +46,58 @@ def observation():
 
 
 class Phase42FaultsTests(unittest.TestCase):
+    def test_installed_guard_checks_public_image_trust_while_signing_key_and_running_uki_are_unavailable(self):
+        from test_phase42_trust import PIN, security, verdict
+        config = dict(schema_version=1, run_id='a' * 32, source_commit='b' * 40, image_sha256='c' * 64,
+                      certificate_sha256=PIN, distroctl_sha256='e' * 64, desktop_sha256='f' * 64,
+                      encryption='none', user='tester', package='hello')
+        exists = Path.exists
+        for revoked in [False, True]:
+            with self.subTest(revoked=revoked), tempfile.TemporaryDirectory() as directory:
+                share = Path(directory)
+                (share / 'fault-config.json').write_text(json.dumps(config))
+                commands = []
+
+                def call(*args, **kwargs):
+                    commands.append(args)
+                    if args == ('systemd-detect-virt',):
+                        return {'output': 'kvm\n'}
+                    if args == ('astraeus-secure-boot', 'status', '--json'):
+                        return {'output': json.dumps(security())}
+                    if args == ('astraeus-boot-artifact', 'verify', '/efi/EFI/Astraeus/maintenance.efi'):
+                        if revoked:
+                            raise RuntimeError('image is revoked by firmware dbx')
+                        return {'output': json.dumps(verdict())}
+                    self.fail('unexpected command during public fault guard: ' + repr(args))
+
+                def path_exists(path):
+                    if path == Path('/dev/virtio-ports/org.astraeus.validation'):
+                        return True
+                    return False if path == Path('/run/archiso') else exists(path)
+
+                with patch.object(faults, 'SHARE', share), patch.object(faults.sys, 'platform', 'linux'), \
+                        patch.object(faults.os, 'geteuid', return_value=0, create=True), \
+                        patch.object(Path, 'exists', path_exists), patch.object(faults, 'call', side_effect=call), \
+                        patch.object(faults, 'digest', side_effect=['e' * 64, 'f' * 64]), \
+                        patch.object(faults, 'firmware', return_value={'SecureBoot': True, 'SetupMode': False}):
+                    if revoked:
+                        with self.assertRaisesRegex(RuntimeError, 'image is revoked'):
+                            faults.guest_guard()
+                    else:
+                        result = faults.guest_guard()['maintained_uki_verification']
+                        self.assertEqual(result['scope'], 'maintained-installed-uki')
+                        self.assertFalse(result['provider_readiness_checked'])
+                self.assertEqual(len(commands), 3)
+
+    def test_staged_fault_guest_contains_exact_shared_helper_and_imports_independently(self):
+        with tempfile.TemporaryDirectory() as directory:
+            share = Path(directory)
+            faults.stage_guest_scripts(share)
+            for name in ['phase42-faults.py', 'phase2-guest.py', 'phase42_trust.py']:
+                self.assertEqual((share / name).read_bytes(), (ROOT / 'scripts/validate' / name).read_bytes())
+            subprocess.run([sys.executable, '-E', '-s', str(share / 'phase42-faults.py'), '--help'],
+                           cwd=share, capture_output=True, check=True)
+
     def test_only_fresh_exact_candidate_baseline_is_accepted(self):
         manifest = baseline()
         faults.candidate_guard(arguments(), manifest, 'c' * 64)

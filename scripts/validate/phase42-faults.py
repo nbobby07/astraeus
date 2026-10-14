@@ -20,6 +20,7 @@ import subprocess
 import sys
 import time
 import uuid
+from phase42_trust import verify_maintained_uki
 
 SHARE = Path('/mnt/astraeus-validation')
 STATE = Path('/var/lib/astraeus/management/state.json')
@@ -87,9 +88,9 @@ def guest_guard(live=False):
     require(digest('/usr/bin/astraeus-control-center') == config['desktop_sha256'], 'candidate desktop changed')
     firmware()
     if not live:
-        policy = json.loads(Path('/etc/astraeus/secure-boot/policy.json').read_text())
-        require(policy.get('certificate_sha256') == config['certificate_sha256'], 'installed signing policy differs from the baseline')
-        call('astraeus-secure-boot', 'check-enrollment')
+        # Public image trust remains observable during intentional key/signing-state failures.
+        config['maintained_uki_verification'] = verify_maintained_uki(
+            lambda *args: call(*args)['output'], config['certificate_sha256'])
     return config
 
 
@@ -138,6 +139,7 @@ def guest_observe():
             'system_lock': json.loads(STATE.with_name('system.lock').read_text()),
             'config_toml': Path('/etc/astraeus/system.toml').read_text(),
             'root_uuid': root_uuid, 'esp_uuid': esp_uuid, 'firmware': firmware(),
+            'maintained_uki_verification': config['maintained_uki_verification'],
             'home': {'sha256': digest(home), 'uid': home.stat().st_uid} if home.exists() else None,
             'package_lock_present': Path('/var/lib/pacman/db.lck').exists(),
             'boot_id': Path('/proc/sys/kernel/random/boot_id').read_text().strip()}
@@ -775,6 +777,11 @@ def host_modules():
     return phase42, phase42.p2
 
 
+def stage_guest_scripts(share):
+    for name in ['phase42-faults.py', 'phase2-guest.py', 'phase42_trust.py']:
+        shutil.copyfile(Path(__file__).with_name(name), share / name)
+
+
 def candidate_guard(args, manifest, firmware_sha256):
     phase42, _ = host_modules()
     phase42.candidate_matches(manifest, args.source_commit, args.image_sha256, firmware_sha256, args.encryption)
@@ -1279,7 +1286,8 @@ def run(args):
     p2.save(args.output / 'inputs.json', {'baseline': baseline, 'configuration': config,
             'recovery_manifest_sha256': digest(args.recovery_manifest),
             'harness_sha256': {Path(__file__).name: digest(__file__), 'phase42.py': digest(Path(phase42.__file__)),
-                               'phase2.py': digest(Path(p2.__file__)), 'qmp.py': digest(p2.HERE / 'qmp.py')}})
+                               'phase2.py': digest(Path(p2.__file__)), 'qmp.py': digest(p2.HERE / 'qmp.py'),
+                               'phase42_trust.py': digest(p2.HERE / 'phase42_trust.py')}})
     try:
         for scenario in SCENARIOS if args.scenario == 'all' else [args.scenario]:
             args.active_scenario = scenario
@@ -1288,8 +1296,7 @@ def run(args):
             p2.clone(args.base, out)
             share = out / 'share'
             share.mkdir(mode=0o700)
-            shutil.copyfile(__file__, share / 'phase42-faults.py')
-            shutil.copyfile(p2.HERE / 'phase2-guest.py', share / 'phase2-guest.py')
+            stage_guest_scripts(share)
             args.run_id = uuid.uuid4().hex
             config['run_id'] = args.run_id
             p2.save(share / 'fault-config.json', config)

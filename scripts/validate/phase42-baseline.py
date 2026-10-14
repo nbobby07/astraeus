@@ -12,12 +12,14 @@ import os
 from pathlib import Path
 import re
 import secrets
+import shlex
 import signal
 import shutil
 import subprocess
 import sys
 import time
 import uuid
+from phase42_trust import enforced, verify_maintained_uki
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
@@ -320,14 +322,9 @@ def guest_desktop(initial):
                       'original_installed_smoke': True, 'initial_boot': initial, 'management': status}))
 
 
-def enforced(status, pin):
-    firmware = status.get('firmware', {})
-    require(status.get('certificate_sha256') == pin and firmware.get('SecureBoot') is True
-            and firmware.get('SetupMode') is False and firmware.get('AuditMode') is not True,
-            'candidate did not boot with the intended owner and enforcing Secure Boot')
-    require(firmware.get('db', {}).get('contains_signer_certificate') is True
-            and firmware.get('dbx', {}).get('contains_signer_certificate') is False,
-            'candidate signer enrollment or revocation evidence is incomplete')
+def installed_boot_trust(vm, pin):
+    return verify_maintained_uki(lambda *args: vm.command(shlex.join(args), label='installed-boot-trust')['output'],
+                                 pin, require_ready=True)
 
 
 def make_owner(private, public):
@@ -377,7 +374,7 @@ def host_run(args):
             credential = secrets.token_hex(24)
             write(private / name, credential, 0o600)
             write(share / name, credential, 0o600)
-        for name in ['phase2-guest.py', 'phase42-baseline.py']:
+        for name in ['phase2-guest.py', 'phase42-baseline.py', 'phase42_trust.py']:
             shutil.copyfile(HERE / name, share / name)
         shutil.copyfile(REPO / 'tests/boot/installed-smoke.sh', share / 'installed-smoke.sh')
         shutil.copyfile(private / 'db.key', share / 'db.key')
@@ -452,14 +449,11 @@ def host_run(args):
             vm.ready()
             require(vm.boot_id not in boots, 'cold boots reused one boot identity')
             boots.append(vm.boot_id)
-            security = json.loads(vm.command('astraeus-secure-boot status --json', label='enforcing-security')['output'])
-            enforced(security, pins['db'])
-            vm.command('astraeus-secure-boot check-enrollment', label='owner-enrollment')
+            p2.save(out / f'maintained-uki-trust-{number}.json', installed_boot_trust(vm, pins['db']))
             vm.command('systemctl start NetworkManager-wait-online.service', timeout=120, label='network-online')
             p2.healthy(p2.observe(vm, 'fresh-installed-' + str(number), product=False), args.encryption)
             vm.command('python3 /mnt/astraeus-validation/phase42-baseline.py guest-desktop'
                        + (' --initial' if number == 1 else ''), timeout=900, label='actual-desktop-' + str(number))
-            vm.command('astraeus-boot-artifact ready /efi', label='signed-provider-ready')
             if number == 1:
                 vm.command('distroctl boot enable', timeout=300, label='enable-managed-generations')
             vm.shutdown()

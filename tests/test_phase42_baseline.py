@@ -8,7 +8,7 @@ import sys
 import tempfile
 from types import SimpleNamespace
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts/validate'))
@@ -88,6 +88,17 @@ class FreshCandidateBaseline(unittest.TestCase):
                 baseline.enforced(invalid, 'e' * 64)
         with self.assertRaises(RuntimeError):
             baseline.enforced(status, 'f' * 64)
+
+    def test_installed_boot_uses_ready_and_image_aware_provider_commands(self):
+        from test_phase42_trust import PIN, ready, security, verdict
+        vm = Mock()
+        vm.command.side_effect = [{'output': json.dumps(value)} for value in [security(), ready(), verdict()]]
+        result = baseline.installed_boot_trust(vm, PIN)
+        self.assertEqual(result['scope'], 'maintained-installed-uki')
+        self.assertTrue(result['provider_readiness_checked'])
+        self.assertEqual([call.args[0] for call in vm.command.call_args_list],
+                         ['astraeus-secure-boot status --json', 'astraeus-boot-artifact ready /efi',
+                          'astraeus-boot-artifact verify /efi/EFI/Astraeus/maintenance.efi'])
 
     def test_initial_firmware_is_read_from_real_variable_bytes_and_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(baseline, 'EFIVARS', Path(directory)), \
@@ -169,6 +180,11 @@ class FreshCandidateBaseline(unittest.TestCase):
                                                 args.timeout, secure_boot=True)
                 self.assertEqual((args.output / 'vars.fd').read_bytes(), paths['vars'].read_bytes())
                 factory.return_value.stop.assert_called_once_with()
+                share = args.private_directory / 'share'
+                self.assertEqual((share / 'phase42_trust.py').read_bytes(),
+                                 (ROOT / 'scripts/validate/phase42_trust.py').read_bytes())
+                subprocess.run([sys.executable, '-E', '-s', str(share / 'phase42-baseline.py'), '--help'],
+                               cwd=share, capture_output=True, check=True)
 
     def test_firmware_refusal_precedes_every_partition_or_installation_write(self):
         commands = []
