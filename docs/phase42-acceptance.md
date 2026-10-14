@@ -135,14 +135,48 @@ PATH omitted Ubuntu's `blockdev`; that failed harness receipt is also retained.
 
 The new `0e8bb00` A build passed 156 native tests with five ignored fixtures and
 both Qt groups, built the split packages and Calamares, and verified its signed
-repository. Its clean installed payload then passed configuration expansion,
-management seeding and the installed Rust reader, proceeding into compression.
+repository. Its clean installed payload passed configuration expansion,
+management seeding and the installed Rust reader, then completed the ISO.
 `A-initial-seed-check.json` has SHA256
 `939bb15cb3b9ff06802a0959dcb36a31b27561c06b44f54fb957f7bdbe99f41f`.
 The CLI and GUI binary hashes match the earlier `298e12a` binaries, while the
 package archives reflect the changed build inputs. This repository's signer is
 `9AA267C32CFD7576040F95A75AE5520391EC79F0`, created 2026-10-14 01:43:52 UTC
-and expiring 2026-10-15 01:43:52 UTC. ISO and installed-VM checks remain pending.
+and expiring 2026-10-15 01:43:52 UTC. This is a disposable validation repository
+key, not a production release key or the VM Secure Boot certificate.
+
+Image A is 3,636,389,888 bytes with SHA256
+`2c047e270d6d99e0c0a6a09d81ade25752e4549457052f20d2fbecfa796a3072`.
+Its exported copy passes the same whole-file hash. The live manifest matches all
+691 installed live records and mkarchiso's final package list; the installed
+manifest matches all 736 installed-root records. The 52,812,545-byte thin evidence
+archive has SHA256
+`bb43725b72b87152f8a89bfd319015df9bfea939a1c44a76692a45266aff5cb2`.
+An interrupted ISO transfer was resumed through verified bounded chunks, then
+the complete local file was hashed. The failed transport receipts remain saved.
+
+The full image audit passed with result SHA256
+`e2bdc2ea831cb24a869b2fb5a7a2ef3662f15e234c160b6230d1f2d394f116d8`.
+It checks signed repository contents, both payloads, packaged binary/policy/service
+identities, disabled worker instances, accounts, and absence of owner or validation
+state. Ubuntu's older SquashFS decoder aborted during the first complete stream;
+a task-local decoder from authenticated pinned Arch packages completed the scan.
+That tool failure remains recorded.
+
+The scan also identified embedded private-key blocks in three GnuTLS binaries.
+All three whole files match their approved signed upstream packages, and all 12
+unique blocks match public benchmark or cryptographic self-test constants in the
+signed GnuTLS 3.8.13 source release. None matches the generated repository signer.
+The audit retains these findings and classifies only those exact file and block
+hashes. Seven controls passed, including rejection of changed or appended blocks,
+copies elsewhere, and unexpected hardlinks. There is no filename-wide exemption.
+The signed-source confirmation has SHA256
+`ae67885f23f7339b977067afa88f4f184980e27cc778668d77a08a420037d212`.
+
+The second independent build and installed-VM acceptance remain pending. After
+verified export and guarded retirement of A's closed build disk, the validator
+has enough space for B but cannot retain a useful fresh baseline alongside B's
+35-GiB reserve. B therefore precedes fresh plain and LUKS2 VM acceptance.
 
 The immutable VM harness is `ad3f097d9475c52d18b4095fce5fc160d8edaa04`,
 exported as a 368,640-byte archive with SHA256
@@ -204,7 +238,8 @@ while it applies. Live sessions permit inspection and planning only.
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
 | Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `298e12a` build; both Qt groups passed again on `0e8bb00`. Production startup loaded the KDE desktop style; installed-VM backend acceptance remains pending |
 | Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
-| Two byte-identical candidate images | Not built yet |
+| Image contents and signing-key audit | Image A passed the complete payload/repository audit, with exact upstream GnuTLS test constants identified and retained in the report |
+| Two byte-identical candidate images | A built and exported with verified hashes; independent B build and byte comparison pending |
 | Physical PC and USB boot | Deferred by request |
 
 The native fixture runner is `scripts/validate/native-alpm.py`. It creates a new
