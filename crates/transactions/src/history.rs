@@ -10,10 +10,20 @@ pub const HISTORY_PATH: &str = "/var/log/astraeus/transactions.sqlite";
 pub const PRIVATE_HISTORY_PATH: &str = "/var/log/astraeus/private/transactions.sqlite";
 pub const LOCK_PATH: &str = "/run/astraeus-update.lock";
 
-/// The OS releases this lock on process exit. Never unlink a held lock file.
+struct UpdateLock(File);
+
+impl Drop for UpdateLock {
+    fn drop(&mut self) {
+        // Closing one descriptor does not release flock while a forked child retains it.
+        let _ = self.0.unlock();
+    }
+}
+
+/// Held until the session ends. Never unlink a held lock file.
 pub struct UpdateSession {
     db: Connection,
-    _lock: File,
+    // Field drop order closes the database before releasing its writer lock.
+    _lock: UpdateLock,
     public: Option<PathBuf>,
 }
 
@@ -149,6 +159,7 @@ impl UpdateSession {
         let lock = private_file(lock_path).map_err(|e| format!("update lock: {e}"))?;
         lock.try_lock()
             .map_err(|e| format!("another Astraeus update holds the lock: {e}"))?;
+        let lock = UpdateLock(lock);
         no_links(path).map_err(|e| e.to_string())?;
         if let Some(source) = public.as_ref() {
             if source.try_exists().map_err(|e| e.to_string())? {
@@ -494,6 +505,23 @@ mod migration_tests {
         db.execute("INSERT INTO transactions VALUES (1,?1)", [&json])
             .unwrap();
         json
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn session_releases_lock_while_an_inherited_descriptor_remains_open() {
+        let temp = Directory::new();
+        let history = temp.0.join("history.sqlite");
+        let lock = temp.0.join("update.lock");
+        let session = UpdateSession::open(&history, &lock).unwrap();
+        let inherited = session._lock.0.try_clone().unwrap();
+        assert!(UpdateSession::open(&history, &lock).is_err());
+        drop(session);
+        let next = UpdateSession::open(&history, &lock).unwrap();
+        drop(inherited);
+        assert!(UpdateSession::open(&history, &lock).is_err());
+        drop(next);
+        assert!(UpdateSession::open(&history, &lock).is_ok());
     }
 
     #[test]

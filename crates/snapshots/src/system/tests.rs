@@ -363,6 +363,21 @@ fn planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots() {
             .any(|v| matches!(v.as_str(), "snapshot" | "delete"))));
 }
 
+#[cfg(unix)]
+#[test]
+fn mutation_guard_releases_lock_while_an_inherited_descriptor_remains_open() {
+    let f = Fixture::new();
+    let guard = f.manager.lock().unwrap();
+    let inherited = guard._file.try_clone().unwrap();
+    assert!(f.manager.lock().is_err());
+    drop(guard);
+    let next = f.manager.lock().unwrap();
+    drop(inherited);
+    assert!(f.manager.lock().is_err());
+    drop(next);
+    assert!(f.manager.lock().is_ok());
+}
+
 #[test]
 fn old_snapshot_is_inspectable_but_cannot_restore_a_protocol_one_coordinator() {
     let f = Fixture::new();

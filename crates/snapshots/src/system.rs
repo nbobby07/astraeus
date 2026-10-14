@@ -112,6 +112,13 @@ pub struct MutationGuard {
     store: PathBuf,
 }
 
+impl Drop for MutationGuard {
+    fn drop(&mut self) {
+        // Forked children can retain a descriptor after the owning guard ends.
+        let _ = self._file.unlock();
+    }
+}
+
 /// Observation of libalpm's lock owned by this process. Only libalpm releases it.
 #[derive(Clone)]
 pub struct OwnedPackageLock {
@@ -588,11 +595,12 @@ impl<C: Commands> Manager<C> {
         }
         lock.try_lock()
             .map_err(|e| format!("snapshot/transaction lock busy: {e}"))?;
-        self.no_pending()?;
-        Ok(MutationGuard {
+        let guard = MutationGuard {
             _file: lock,
             store: self.store.clone(),
-        })
+        };
+        self.no_pending()?;
+        Ok(guard)
     }
     fn verify_root(&self, root: &Path, fs_uuid: &str, esp_uuid: &str) -> Result<()> {
         self.verify_root_selection(root, fs_uuid, esp_uuid, None)
