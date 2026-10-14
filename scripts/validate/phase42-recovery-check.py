@@ -6,6 +6,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import signal
 import subprocess
@@ -138,13 +139,31 @@ def live_cli(vm):
     _, features = phase42.json_command(vm, ['system', 'features', '--json'], user='live', label='live-user-features')
     _, packages = phase42.json_command(vm, ['system', 'packages', 'installed', '--json'], user='live', label='live-user-packages')
     p2.require(features.get('features') and packages.get('packages'), 'live inspection returned no feature/package catalog')
-    config = {'schema_version': 1, 'packages': [], 'gaming': [], 'providers': {}}
+    config = {'schema_version': 1, 'packages': ['kcalc'], 'gaming': [], 'providers': {}}
     _, plan = phase42.json_command(vm, ['system', 'plan', '--stdin', '--json'], config, 'live', label='live-user-plan')
-    p2.require(plan.get('executable') is False and any('live' in blocker.lower() for blocker in plan.get('blockers', [])),
+    resolved = plan.get('plan')
+    expected_plan = plan.get('plan_id')
+    p2.require(isinstance(resolved, dict) and type(resolved.get('schema_version')) is int
+               and resolved['schema_version'] == 2 and resolved.get('desired') == 'managed_system',
+               'live inspection did not resolve a managed package plan')
+    p2.require(isinstance(expected_plan, str) and re.fullmatch(r'sha256:[0-9a-f]{64}', expected_plan),
+               'live resolved plan lacks a valid review digest')
+    management = resolved.get('management')
+    after = management.get('after') if isinstance(management, dict) else None
+    p2.require(isinstance(after, dict) and after.get('applied') == config,
+               'live resolved plan does not match the requested application configuration')
+    packages = resolved.get('packages')
+    changes = packages.get('changes') if isinstance(packages, dict) else None
+    targets = packages.get('targets') if isinstance(packages, dict) else None
+    p2.require(isinstance(changes, list) and isinstance(targets, list)
+               and any(isinstance(item, dict) and item.get('name') == 'kcalc' and item.get('kind') == 'install' for item in changes)
+               and any(isinstance(item, dict) and item.get('name') == 'kcalc' for item in targets),
+               'live resolved plan does not install the nominated application')
+    blockers = plan.get('blockers')
+    p2.require(plan.get('executable') is False
+               and blockers == ['Live sessions support inspection only; install the system before applying changes.'],
                'live plan did not expose its mutation blocker')
-    # A syntactically valid root request must still stop at the live guard. The
-    # fallback digest never grants review approval when planning has no plan ID.
-    expected_plan = plan.get('plan_id') or 'sha256:' + '0' * 64
+    # Submit the actual reviewed intent as root; the explicit live guard must still refuse it.
     reply, _ = phase42.json_command(vm, ['system', 'submit', '--json'],
              {'schema_version': 1, 'config': config, 'expected_plan': expected_plan},
              label='live-root-submit-refusal', check=False)

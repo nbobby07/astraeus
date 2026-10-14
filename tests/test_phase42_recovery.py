@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('build_recovery', ROOT / 'scripts/validate/phase42-recovery.py')
@@ -27,7 +28,81 @@ def baseline():
             'installed_binaries': {'distroctl': 'd' * 64}}
 
 
+def live_plan():
+    return {'schema_version': 1, 'plan_id': 'sha256:' + 'a' * 64, 'executable': False,
+            'blockers': ['Live sessions support inspection only; install the system before applying changes.'],
+            'plan': {'schema_version': 2, 'desired': 'managed_system',
+                     'management': {'after': {'applied': {'schema_version': 1, 'packages': ['kcalc'], 'gaming': [], 'providers': {}}}},
+                     'packages': {'changes': [{'kind': 'install', 'name': 'kcalc', 'version': '1-1'}],
+                                  'targets': [{'name': 'kcalc', 'version': '1-1'}]}}}
+
+
+def live_replies(plan, refusal=None):
+    return [({}, {'live': True, 'supported': True}), ({}, {'features': [{'id': 'tools'}]}),
+            ({}, {'packages': [{'name': 'konsole'}]}), ({}, plan),
+            (refusal or {'code': 1, 'output': 'live sessions cannot apply'}, None)]
+
+
 class RecoveryBuilder(unittest.TestCase):
+    def test_live_cli_resolves_nonempty_app_intent_and_submits_its_actual_digest_only_for_refusal(self):
+        before = {'configuration': None, 'packages': 'konsole 1-1', 'files': {}}
+        plan = live_plan()
+        with patch.object(checks, 'management_fingerprint', side_effect=[before, copy.deepcopy(before)]), \
+                patch.object(checks.phase42, 'json_command', side_effect=live_replies(plan)) as command:
+            self.assertTrue(checks.live_cli(Mock())['passed'])
+        request = command.call_args_list[3]
+        self.assertEqual(request.args[2], {'schema_version': 1, 'packages': ['kcalc'], 'gaming': [], 'providers': {}})
+        self.assertEqual(request.args[3], 'live')
+        submit = command.call_args_list[4]
+        self.assertEqual(submit.args[1], ['system', 'submit', '--json'])
+        self.assertEqual(submit.args[2]['config'], request.args[2])
+        self.assertEqual(submit.args[2]['expected_plan'], plan['plan_id'])
+        self.assertNotIn('user', submit.kwargs)
+
+    def test_live_blocker_cannot_hide_failed_resolution_or_missing_review_identity(self):
+        for kind in ['null-plan', 'empty-plan', 'missing-id', 'empty-id', 'null-id', 'malformed-id',
+                     'wrong-schema', 'wrong-intent', 'missing-change', 'missing-target', 'generic-live-blocker',
+                     'unrelated-blocker', 'executable']:
+            plan = live_plan()
+            if kind == 'null-plan':
+                plan['plan'] = None
+                plan['blockers'].insert(0, 'package metadata unavailable')
+            elif kind == 'empty-plan':
+                plan['plan'] = {}
+            elif kind == 'missing-id':
+                del plan['plan_id']
+            elif kind in ['empty-id', 'null-id', 'malformed-id']:
+                plan['plan_id'] = {'empty-id': '', 'null-id': None, 'malformed-id': 'sha256:' + 'A' * 64}[kind]
+            elif kind == 'wrong-schema':
+                plan['plan']['schema_version'] = True
+            elif kind == 'wrong-intent':
+                plan['plan']['management']['after']['applied']['packages'] = []
+            elif kind == 'missing-change':
+                plan['plan']['packages']['changes'] = []
+            elif kind == 'missing-target':
+                plan['plan']['packages']['targets'] = []
+            elif kind == 'generic-live-blocker':
+                plan['blockers'] = ['live resolver failed']
+            elif kind == 'unrelated-blocker':
+                plan['blockers'].append('operation history unavailable')
+            else:
+                plan['executable'] = True
+            with self.subTest(kind=kind), patch.object(checks, 'management_fingerprint', return_value={}), \
+                    patch.object(checks.phase42, 'json_command', side_effect=live_replies(plan)) as command:
+                with self.assertRaises(RuntimeError):
+                    checks.live_cli(Mock())
+                self.assertEqual(command.call_count, 4, 'unresolved intent reached submission')
+
+    def test_live_cli_still_requires_explicit_apply_refusal_and_unchanged_managed_state(self):
+        for refusal, after in [({'code': 0, 'output': 'live sessions cannot apply'}, {}),
+                               ({'code': 1, 'output': 'unrelated resolver failure'}, {}),
+                               ({'code': 1, 'output': 'live sessions cannot apply'}, {'changed': True})]:
+            with self.subTest(refusal=refusal, after=after), \
+                    patch.object(checks, 'management_fingerprint', side_effect=[{}, after]), \
+                    patch.object(checks.phase42, 'json_command', side_effect=live_replies(live_plan(), refusal)):
+                with self.assertRaises(RuntimeError):
+                    checks.live_cli(Mock())
+
     def test_live_gui_receipt_requires_exact_observed_candidate_and_all_refusal_checks(self):
         manifest = {'distroctl_sha256': 'a' * 64, 'desktop_sha256': 'b' * 64}
         receipt = {'schema_version': 1, 'source_commit': 'c' * 40, 'live': True,
