@@ -14,8 +14,9 @@ rejected before correct rollback finalization, and packages, reasons,
 configuration, ownership and personal data restored together. The full A ISO
 and 292 public baseline/recovery evidence files verified locally. Independent B completed, and full byte comparison exited 0. Five independently
 built packages, seven manifests and the generated source archive match. Both local
-image identities and thin exports verified. Corrected CLI package lifecycle, other
-fault scenarios, installed GUI and LUKS2 acceptance remain required.
+image identities and thin exports verified. Corrected plain CLI passed all 12 lifecycle gates. The full plain fault suite
+passed all eight scenarios and 70 gates; all 976 public files verified locally.
+Installed GUI, LUKS2 and formal corrected-media acceptance remain required.
 
 The corrected plain CLI run has passed all 12 lifecycle gates; its 257 public
 evidence files verified locally. The first interruption trial killed both the

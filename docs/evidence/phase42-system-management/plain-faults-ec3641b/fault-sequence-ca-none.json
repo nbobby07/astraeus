@@ -1,0 +1,48 @@
+{
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "harness_commit": "ca10b5fea8e8e869c9e2470d1b7a52473fe7c759",
+  "layout": "none",
+  "complete": true,
+  "results": {
+    "metadata": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T17:18:55.965581+00:00"
+    },
+    "interruption": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:24:36.915091+00:00"
+    },
+    "abandoned": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:25:42.283105+00:00"
+    },
+    "failed-hook": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:30:16.657178+00:00"
+    },
+    "signing-failure": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:35:15.663944+00:00"
+    },
+    "root-space": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:36:50.541452+00:00"
+    },
+    "cache-space": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:38:19.479296+00:00"
+    },
+    "esp-space": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:39:49.799775+00:00"
+    }
+  }
+}
