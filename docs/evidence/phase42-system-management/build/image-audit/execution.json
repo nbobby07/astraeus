@@ -1,0 +1,10 @@
+{
+  "exit_code": 0,
+  "started_unix": 1791946010,
+  "finished_unix": 1791946143,
+  "free_bytes_after": 21130289152,
+  "scratch_removed": true,
+  "guest_started": false,
+  "decoder_receipt_sha256": "d9d8ddc0cd9f87e7c4f6fe10e85c94dc97ab46f17cf904633c12433b5a2f1d83",
+  "result_sha256": "e2bdc2ea831cb24a869b2fb5a7a2ef3662f15e234c160b6230d1f2d394f116d8"
+}
