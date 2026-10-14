@@ -1,0 +1,8 @@
+{
+  "archive": "/home/ubuntu/p42/plain-gui-ec-evidence.tar.gz",
+  "bytes": 38317333,
+  "sha256": "9ea6acdbaa7e2e87cf9c8deda2aba80c82936318f1f195b2e2f79f265170ed9f",
+  "files": 523,
+  "private_keys_and_credentials_excluded": true,
+  "base_disks_retained_for_remaining_tests": true
+}

@@ -1,0 +1,20 @@
+{
+  "runtime_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "setup_only": true,
+  "managed_transaction_submitted": false,
+  "manual_pacman_refused": true,
+  "before_after_equal_fields": [
+    "packages",
+    "reasons",
+    "configuration",
+    "management",
+    "system_lock",
+    "config_toml",
+    "home",
+    "package_lock_present",
+    "boot_id"
+  ],
+  "package_count": 736,
+  "guard_error": "resolving dependencies...\nlooking for conflicting packages...\n\nPackages (1) tree-2.3.2-1\n\nTotal Download Size:   0.04 MiB\nTotal Installed Size:  0.09 MiB\n\n:: Proceed with installation? [Y/n] \n:: Retrieving packages...\n tree-2.3.2-1-x86_64 downloading...\nchecking keyring...\nchecking package integrity...\nloading package files...\nchecking for file conflicts...\nchecking available disk space...\n:: Running pre-transaction hooks...\n(1/1) Verify the retained signed generation before package mutation\nastraeus-secure-boot: [Errno 2] No such file or directory: '/run/astraeus-update.lock'\nerror: command failed to execute correctly\nerror: failed to commit transaction (failed to run transaction hooks)\nErrors occurred, no packages were upgraded.\n",
+  "fixture_followup": "Install declared unmanaged app during initial setup before signing/enrollment; retain all normal package checks."
+}

@@ -22,7 +22,11 @@ files verified locally. The fresh LUKS2 baseline passed two enforcing cold boots
 and all 12 CLI lifecycle gates; its 132 baseline and 285 CLI public files verified
 locally. The encrypted fault suite also passed all eight scenarios and 70 gates;
 all 1126 public evidence files verified locally. Installed Control Center
-acceptance on both layouts remains required.
+acceptance has now passed on the plain layout, including real authentication,
+worker survival across normal close and GUI crash, verified install/removal,
+no-op, external reason drift, native import/export/adoption, keyboard access and
+bundle overlap. All 523 public files verified locally. Encrypted installed
+Control Center acceptance remains required.
 
 The corrected plain CLI run has passed all 12 lifecycle gates; its 257 public
 evidence files verified locally. The first interruption trial killed both the
