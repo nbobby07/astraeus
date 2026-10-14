@@ -1110,6 +1110,19 @@ def space_scenario(vm, args, recovery, gate, before):
     gate(kind + '-reboot-without-replay', reboot_refusal)
 
 
+def reject_same_boot(vm, record):
+    phase42, _ = host_modules()
+    reply = vm.command(shlex.join(['distroctl', 'confirm-boot', str(record['id'])]), check=False, label='reject-same-boot')
+    require(reply['code'] != 0 and any(message in reply['output'] for message in [
+        'different kernel boot', 'running boot entry is not a managed generation']),
+        'same-boot confirmation did not report the expected boot-evidence refusal')
+    _, records = phase42.json_command(vm, ['history', '--json'], label='same-boot-refusal-history')
+    current = next(item for item in records if item['id'] == record['id'])
+    require(current['state'] == 'awaiting_boot' and not any(
+        event['state'] == 'succeeded' for event in current['events']),
+        'same-boot confirmation blessed the transaction')
+
+
 def metadata_scenario(vm, args, recovery, gate, before):
     phase42, p2 = host_modules()
     def no_op():
@@ -1142,8 +1155,7 @@ def metadata_scenario(vm, args, recovery, gate, before):
         require(observed['packages'] == before['packages'] and observed['reasons'] == before['reasons'], 'metadata-only apply changed packages/reasons')
         require(observed['configuration'] == desired and observed['management'] == record['plan']['management']['after'], 'metadata state differs from reviewed intent')
         p2.save(vm.out / 'metadata-after-state.json', observed)
-        reply = vm.command(shlex.join(['distroctl', 'confirm-boot', str(record['id'])]), check=False, label='reject-same-boot')
-        require(reply['code'] != 0 and 'different kernel boot' in reply['output'], 'metadata transaction accepted same-boot confirmation')
+        reject_same_boot(vm, record)
         return record
     record = gate('metadata-apply-and-same-boot-refusal', apply)
     def confirm():

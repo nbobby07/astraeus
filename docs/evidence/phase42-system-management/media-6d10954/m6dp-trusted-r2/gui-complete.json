@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "live": true,
+  "distroctl_sha256": "38509da005f4ebe5aa81fb5f5e100c2fb22e66c1d8d008378028c33137573090",
+  "desktop_sha256": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+  "firmware": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "checks": {
+    "inspection_visible": true,
+    "live_warning_visible": true,
+    "review_blocked": true,
+    "apply_disabled": true
+  },
+  "evidence": [
+    {
+      "path": "screenshots/overview.png",
+      "sha256": "4b3b4aef8900cd7e2eb25b33454d23f57d84d7976866da8c7c1a632b21cd1fb7"
+    },
+    {
+      "path": "screenshots/search-kcalc.png",
+      "sha256": "1187b9f45269ebe338541a51f83f8921c18baeef3310bbcbe957f929ec1780e4"
+    },
+    {
+      "path": "screenshots/choice-kcalc.png",
+      "sha256": "6f455a4b0c61bd3c41459dfa9bbedbca6b445959ff67308e8bb0d8b1b830d5a9"
+    },
+    {
+      "path": "screenshots/review-kcalc.png",
+      "sha256": "30b6d43dd7f9338e3d1b41eed5c6f4375f5cee04f231455fe286a2665131bc05"
+    },
+    {
+      "path": "screenshots/apply-disabled.png",
+      "sha256": "85a4346d12a682ba87eda68b81b73904d9a951a3ca8503d668dc58450e64429c"
+    }
+  ],
+  "observed_request": "kcalc26.08.1-1 withlibmpc1.4.1-1 dependency; liveguardexplicit andauthenticate/apply visiblydisabled; normaluserLive session"
+}

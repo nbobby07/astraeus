@@ -1,0 +1,70 @@
+{
+  "full-export-index.json": {
+    "bytes": 32649,
+    "sha256": "a9326cba6ee392d066e511605ea26639100b4ba755fa7d28b4279cb5728eef42"
+  },
+  "media-6d-negative-summary.json": {
+    "bytes": 683,
+    "sha256": "461dadb8f4c2271ecfee617b4862ebda60ef751f8240d15ee34f2fe558c1d522"
+  },
+  "r6dp-build.log": {
+    "bytes": 4533,
+    "sha256": "b4af2c329769298c6ccd129034eada125f59b54d4e3a49343fc73957bab7cd0d"
+  },
+  "m6dp-disabled\\result.json": {
+    "bytes": 2655,
+    "sha256": "9cf21e04502f909735e201ac66d80a513b2d7cc727a1e44ff4364f1c9335ca4a"
+  },
+  "m6dp-root-tampered\\result.json": {
+    "bytes": 2660,
+    "sha256": "dcc5819d6634778fc123005ab5e7d8afcaa2d080bc1dd6824fcc68ed60d1363b"
+  },
+  "m6dp-tampered\\result.json": {
+    "bytes": 2655,
+    "sha256": "92272bd6f770e6f8a34d2c449756524db6d3e1b8abab0ca5856ab91266dbed38"
+  },
+  "m6dp-trusted\\result.json": {
+    "bytes": 293253,
+    "sha256": "dd530901a1b1b9d502f3ca2caff5d67f5e9f71c4ea9efc0ba31799ce1c0b8b78"
+  },
+  "m6dp-trusted-r2\\gui-complete.json": {
+    "bytes": 1369,
+    "sha256": "fdbd9ad1124afe7e1c4ac27a391fc899c87d67d2b5fe97a1fe7d2e699c3321a5"
+  },
+  "m6dp-trusted-r2\\result.json": {
+    "bytes": 294616,
+    "sha256": "13ff187ee009fc8ab4faf2e16724c37a923da66fbb7864b7a13bd2dab5282f5d"
+  },
+  "m6dp-trusted-r2\\screenshots\\apply-disabled.png": {
+    "bytes": 226819,
+    "sha256": "85a4346d12a682ba87eda68b81b73904d9a951a3ca8503d668dc58450e64429c"
+  },
+  "m6dp-trusted-r2\\screenshots\\choice-kcalc.png": {
+    "bytes": 188144,
+    "sha256": "6f455a4b0c61bd3c41459dfa9bbedbca6b445959ff67308e8bb0d8b1b830d5a9"
+  },
+  "m6dp-trusted-r2\\screenshots\\overview.png": {
+    "bytes": 276125,
+    "sha256": "4b3b4aef8900cd7e2eb25b33454d23f57d84d7976866da8c7c1a632b21cd1fb7"
+  },
+  "m6dp-trusted-r2\\screenshots\\review-kcalc.png": {
+    "bytes": 233499,
+    "sha256": "30b6d43dd7f9338e3d1b41eed5c6f4375f5cee04f231455fe286a2665131bc05"
+  },
+  "m6dp-trusted-r2\\screenshots\\search-kcalc.png": {
+    "bytes": 187341,
+    "sha256": "1187b9f45269ebe338541a51f83f8921c18baeef3310bbcbe957f929ec1780e4"
+  },
+  "m6dp-unsigned\\result.json": {
+    "bytes": 2655,
+    "sha256": "954b54d52f61e4560515d5357edebba71d016d9e684b825f7caf3516d786f256"
+  },
+  "m6dp-untrusted\\result.json": {
+    "bytes": 2656,
+    "sha256": "ccdebb880cbb86429f20999c58ec77e31ca3e7f63bc8211c564b34e12f1ec4e4"
+  },
+  "r6dp\\manifest.json": {
+    "bytes": 2121,
+    "sha256": "0a2adeee8a0b98f01097777116a215d3fe0db1fa4212a3614ca0a1364c9a4dd0"
+  }
+}

@@ -46,6 +46,25 @@ def observation():
 
 
 class Phase42FaultsTests(unittest.TestCase):
+    def test_same_boot_refusal_checks_initial_and_managed_boot_errors_and_durable_state(self):
+        record = {'id': 1, 'state': 'awaiting_boot', 'events': [{'state': 'awaiting_boot'}]}
+        backend = SimpleNamespace(json_command=Mock(return_value=(None, [record])))
+        vm = SimpleNamespace(command=Mock())
+        with patch.object(faults, 'host_modules', return_value=(backend, None)):
+            for message in ['a different kernel boot is required; update remains unconfirmed',
+                            'running boot entry is not a managed generation']:
+                vm.command.return_value = {'code': 1, 'output': message}
+                faults.reject_same_boot(vm, record)
+            for code, message in [(0, 'different kernel boot'), (1, 'unrelated error')]:
+                vm.command.return_value = {'code': code, 'output': message}
+                with self.assertRaisesRegex(RuntimeError, 'boot-evidence refusal'):
+                    faults.reject_same_boot(vm, record)
+            vm.command.return_value = {'code': 1, 'output': 'different kernel boot'}
+            for state, events in [('succeeded', []), ('awaiting_boot', [{'state': 'succeeded'}])]:
+                backend.json_command.return_value = (None, [{'id': 1, 'state': state, 'events': events}])
+                with self.assertRaisesRegex(RuntimeError, 'blessed'):
+                    faults.reject_same_boot(vm, record)
+
     def test_installed_guard_checks_public_image_trust_while_signing_key_and_running_uki_are_unavailable(self):
         from test_phase42_trust import PIN, security, verdict
         config = dict(schema_version=1, run_id='a' * 32, source_commit='b' * 40, image_sha256='c' * 64,

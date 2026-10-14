@@ -7,8 +7,16 @@ candidate identities and exported evidence after the integrated acceptance run.
 The latest code is `6d10954`, including the coordinator lock-release fix and
 Zstd live compression. Both independent images and their full byte comparison passed; clean A also
 passed the complete image audit. The fresh plain baseline passed two enforcing
-boots and all 12 CLI lifecycle gates. LUKS2, installed GUI, metadata/fault and
-recovery acceptance remain pending.
+boots and all 12 CLI lifecycle gates. Its signed RAM recovery medium also passed
+the trusted live GUI/CLI inspection gate and all five negative media gates.
+LUKS2, installed GUI and complete metadata/fault recovery acceptance remain pending.
+
+The first metadata-only trial safely refused confirmation from the initial
+unmanaged boot entry. The harness expected only the different-kernel-boot error
+and incorrectly failed. Its corrected check accepts either specific boot-evidence
+refusal and verifies durable history remains awaiting boot with no success event.
+The 27 focused harness tests pass (four platform fixture skips); a fresh VM trial
+is still required. The failed trial remains evidence.
 
 The previous complete image was runtime `0c938b94f44956fd77890d851e35650b62b1e6da`.
 Clean A and its expanded final image audit passed. Independent B failed its

@@ -1,0 +1,77 @@
+Certificate will not expire
+xorriso 1.5.6 : RockRidge filesystem manipulator, libburnia project.
+
+Copying of file objects from ISO image to disk filesystem is: Enabled
+xorriso : NOTE : Loading ISO image tree from LBA 0
+xorriso : UPDATE :      24 nodes read in 1 seconds
+libisofs: NOTE : Found hidden El-Torito image for EFI.
+libisofs: NOTE : EFI image start and size: 1726429 * 2048 , 0 * 512
+xorriso : NOTE : Detected El-Torito boot information which currently is set to be discarded
+Drive current: -indev '/home/ubuntu/p42/candidate-6d10954a501f-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso'
+Media current: stdio file, overwriteable
+Media status : is written , is appendable
+Boot record  : El Torito , MBR protective-msdos-label cyl-align-off GPT
+Media summary: 1 session, 1847277 data blocks, 3608m data, 41.1g free
+Volume id    : 'DISTRO_BOOT'
+xorriso : UPDATE :       5 files restored ( 437.7m) in 1 seconds , 331.3xD
+xorriso : UPDATE :       5 files restored ( 901.8m) in 2 seconds , 351.3xD
+xorriso : UPDATE :       5 files restored (1442.2m) in 3 seconds , 409.0xD
+xorriso : UPDATE :       5 files restored (1797.3m) in 4 seconds , 268.8xD
+xorriso : UPDATE :       5 files restored (2141.3m) in 5 seconds , 260.4xD
+xorriso : UPDATE :       5 files restored (2464.8m) in 6 seconds , 244.9xD
+xorriso : UPDATE :       5 files restored (2804.5m) in 7 seconds , 257.1xD
+xorriso : UPDATE :       5 files restored (3149.8m) in 8 seconds , 261.4xD
+xorriso : UPDATE :      10 files restored (3371.4m) in 9 seconds = 296.4xD
+Extracted from ISO image: file '/arch'='/home/ubuntu/p42/r6dp/arch'
+32 blocks
+Using config file: /dev/null
+Kernel version not specified, starting autodetection 😖.
+Found uname version: 7.2.7-arch1-1
+Wrote unsigned /home/ubuntu/p42/r6dp/live-unsigned.efi
+Signing Unsigned original image
+Signature verification OK
+Creating new GPT entries in memory.
+Warning: The kernel is still using the old partition table.
+The new table will be used at the next reboot or after you
+run partprobe(8) or kpartx(8)
+The operation has completed successfully.
+Warning: block count mismatch: found 4193280 but assuming 4192256.
+mkfs.fat 4.2 (2021-01-31)
+
+Caution: Partition 1 doesn't end on a 2048-sector boundary. This may
+result in problems with some disk encryption tools.
+
+No problems found. 4062 free sectors (2.0 MiB) available in 2
+segments, the largest of which is 2048 (1024.0 KiB) in size.
+{
+  "schema_version": 1,
+  "kind": "phase42-ram-verified-recovery",
+  "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "iso_sha256": "13709ebc3213061daabf2a29db6911520e477e8608d26231ebd8018955629148",
+  "image": "recovery.img",
+  "image_sha256": "6fb08d195428a4f935443931a9bdd9d0e1a8a5064e21ee4655418f88da4d65d0",
+  "image_bytes": 4294967296,
+  "rootfs_sha256": "e41ae89e214c05a0d8d667cd7e1df52d990e80fc7951870d6e0dc1e74a349ede",
+  "rootfs_bytes": 3296440320,
+  "certificate_sha256": "9e1810eaf8de9e97e7cc63278316464d6984a21818fcdbb5d6392cadb6c1cdda",
+  "uki_sha256": "29e1931a8d8bfb52bf3b3fb4a0799e0e73e75e89a0a5de98e86d8d9811f26e38",
+  "unsigned_uki_sha256": "8a9b355739a8b47556a75942895b77840e8ceae98879bced7dca6ac2d94bdc86",
+  "distroctl_sha256": "38509da005f4ebe5aa81fb5f5e100c2fb22e66c1d8d008378028c33137573090",
+  "desktop_sha256": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+  "extracted": {
+    "usr/bin/ukify": "faeaf0656a88d290fba40dc928cac4954286aae094f4d26200f3b5f25a89d918",
+    "usr/lib/systemd/boot/efi/linuxx64.efi.stub": "b16c31a0cff3ca1996aaa4d3e101309830c8c186d4230f1607712c0879ebb8e3",
+    "usr/lib/initcpio/hooks/archiso": "6e7263e703bf9bab16cbf054937f1595e70ed760e296ff8c4ef6967311b25623",
+    "usr/lib/os-release": "71ff7a6e248d9a0718344c957ec709cb6f0b18631682fa404d7cff2af3ff341d",
+    "usr/bin/distroctl": "38509da005f4ebe5aa81fb5f5e100c2fb22e66c1d8d008378028c33137573090",
+    "usr/bin/astraeus-control-center": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41"
+  },
+  "command_line": "archisobasedir=arch archisolabel=ASTRAEUS_SB copytoram=y cow_spacesize=2G console=tty0 console=ttyS0,115200n8",
+  "builder_sha256": "a803cbef6bc6fc4514734454bf974f3b105c953c9ad8a96d1c5fdac27d77152b",
+  "guard_origin_sha256": "23298042ca035c8b2b1e2360e5a6bda66db94fe55d8dc32e035740c937c3c0d0",
+  "baseline_manifest_sha256": "b1519a8b063e2594e09e47c68a1c5e25b5237aa11e006694eefcfd4fa9477543",
+  "qualified": false,
+  "qualification": "Pending candidate enforcing-firmware boot and refusal tests",
+  "minimum_ram_gib": 8,
+  "private_key_in_image": false
+}
