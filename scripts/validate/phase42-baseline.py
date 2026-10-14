@@ -69,7 +69,7 @@ def write(path, value, mode=0o644):
 def configuration(value):
     expected = {'schema_version', 'source_commit', 'image_sha256', 'distroctl_sha256',
                 'desktop_sha256', 'serial', 'encryption', 'user', 'certificate_sha256'}
-    require(isinstance(value, dict) and set(value) == expected
+    require(isinstance(value, dict) and set(value) in [expected, expected | {'preexisting_package'}]
             and type(value['schema_version']) is int and value['schema_version'] == 1,
             'invalid fresh-install configuration schema')
     require(isinstance(value['source_commit'], str) and re.fullmatch('[0-9a-f]{40}', value['source_commit']),
@@ -82,6 +82,7 @@ def configuration(value):
     require(value['encryption'] in ['none', 'LUKS2'], 'unsupported encryption')
     require(isinstance(value['user'], str) and re.fullmatch('[a-z_][a-z0-9_-]{0,30}', value['user'])
             and value['user'] not in ['root', 'live'], 'ordinary installed user required')
+    require(value.get('preexisting_package') in [None, 'tree'], 'unsupported pre-existing application fixture')
     return value
 
 
@@ -135,6 +136,36 @@ def installation_firmware():
     require(observed['SecureBoot'] is False and observed['SetupMode'] is True,
             'initial bootstrap requires observed SetupMode; enforcing installation is not this adapter\'s scope')
     return observed
+
+
+def preexisting_application(root, config):
+    if config.get('preexisting_package') is None:
+        return None
+    require(config['preexisting_package'] == 'tree', 'unsupported pre-existing application fixture')
+    for name in ['etc/astraeus/secure-boot/policy.json', 'var/lib/astraeus/secure-boot', 'etc/astraeus/boot-generations']:
+        require(not (root / name).exists(), 'pre-existing app fixture must run before initial signing')
+    paths = [root / name for name in ['etc/astraeus/system.toml', 'var/lib/astraeus/management/state.json',
+                                     'var/lib/astraeus/management/system.lock']]
+    original = {str(path.relative_to(root)): path.read_bytes() for path in paths}
+    state = json.loads(paths[1].read_text())
+    require('tree' not in state['packages'] and 'tree' not in state['protected'], 'fixture application is already tracked')
+    def installed():
+        return dict(line.split() for line in run('arch-chroot', root, 'pacman', '-Q').splitlines())
+    before = installed()
+    explicit_before = set(run('arch-chroot', root, 'pacman', '-Qqe').splitlines())
+    require('tree' not in before, 'pre-existing fixture application must initially be absent')
+    # Setup only, before enrollment: retain normal signature, dependency and hook checks.
+    run('arch-chroot', root, 'pacman', '-S', '--noconfirm', '--needed', 'tree')
+    after = installed()
+    require(set(after) - set(before) == {'tree'} and all(after.get(k) == v for k, v in before.items()),
+            'pre-existing fixture changed packages outside its single declared application')
+    require(set(run('arch-chroot', root, 'pacman', '-Qqe').splitlines()) == explicit_before | {'tree'},
+            'pre-existing fixture changed existing installation reasons')
+    require(all(path.read_bytes() == original[str(path.relative_to(root))] for path in paths),
+            'pre-existing app fixture changed management state or removal ownership')
+    return {'name': 'tree', 'version': after['tree'], 'reason': 'explicit', 'unmanaged': True,
+            'installed_before_initial_signing': True,
+            'management_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in original.items()}}
 
 
 def initial_signing(root, config):
@@ -246,6 +277,7 @@ def guest_install():
         provision = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(provision)
         provision.provision(str(TARGET), [partition], keyboard=('us', ''), username=config['user'])
+        preexisting = preexisting_application(TARGET, config)
         receipts = initial_signing(TARGET, config)
         # This is test instrumentation only, not an installed-smoke acceptance marker.
         agent = TARGET / 'var/lib/astraeus-validation/guest.py'
@@ -267,6 +299,7 @@ WantedBy=multi-user.target
         result = {'schema_version': 1, 'method': 'candidate-payload-and-production-provision', 'calamares_ui': False,
                   'payload_sha256': sha256(payload), 'provision_sha256': sha256(installer / 'provision.py'),
                   'configuration': exported['configuration'], 'signing': receipts, 'disk_serial': config['serial'],
+                  'preexisting_application': preexisting,
                   'installation_firmware': firmware, 'management_firmware_required': MANAGEMENT_FIRMWARE}
         write(TARGET / 'var/log/installer/phase42-adapter.json', json.dumps(result, indent=2) + '\n')
         os.sync()
@@ -357,7 +390,8 @@ def host_run(args):
     config = configuration(dict(schema_version=1, source_commit=args.source_commit, image_sha256=args.image_sha256,
                                 distroctl_sha256=args.distroctl_sha256, desktop_sha256=args.desktop_sha256,
                                 serial='AS42' + secrets.token_hex(8), encryption=args.encryption, user=args.user,
-                                certificate_sha256='0' * 64))
+                                certificate_sha256='0' * 64,
+                                **({'preexisting_package': args.preexisting_package} if getattr(args, 'preexisting_package', None) else {})))
     require(sha256(iso) == args.image_sha256, 'candidate ISO differs from the reviewed build identity')
     require(sha256(setup_code) == sha256(code),
             'initial SetupMode boot requires the same Secure Boot-capable OVMF code as enforcing boots')
@@ -464,6 +498,7 @@ def host_run(args):
                         method=installed['method'], calamares_ui=False, encryption=args.encryption,
                         source_commit=args.source_commit, inputs=inputs, signer_sha256=pins['db'],
                         public_fingerprints=pins, boot_ids=boots, created=p2.now(),
+                        preexisting_application=installed.get('preexisting_application'),
                         installation_firmware=installed['installation_firmware'],
                         management_firmware_required=MANAGEMENT_FIRMWARE,
                         installed_binaries={'distroctl': args.distroctl_sha256, 'astraeus-control-center': args.desktop_sha256},
@@ -499,6 +534,7 @@ def main():
     for name in ['source-commit', 'image-sha256', 'distroctl-sha256', 'desktop-sha256']:
         host.add_argument('--' + name, required=True)
     host.add_argument('--encryption', choices=['none', 'LUKS2'], required=True)
+    host.add_argument('--preexisting-package', choices=['tree'], help='disposable GUI fixture installed before initial signing, outside management ownership')
     host.add_argument('--user', default='tester')
     host.add_argument('--timeout', type=int, default=1800)
     args = parser.parse_args()

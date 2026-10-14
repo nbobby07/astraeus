@@ -275,5 +275,52 @@ class FreshCandidateBaseline(unittest.TestCase):
             self.assertIn(required, help_text)
 
 
+    def test_preexisting_package_is_an_explicit_bounded_setup_choice(self):
+        baseline.configuration({**config(), 'preexisting_package': 'tree'})
+        for value in ['linux', '../tree', 'tree;id', ['tree']]:
+            with self.subTest(value=value), self.assertRaises(RuntimeError):
+                baseline.configuration({**config(), 'preexisting_package': value})
+
+    def test_preexisting_fixture_preserves_state_and_rejects_extra_package_or_reason_changes(self):
+        for fault in [None, 'extra-package', 'management-write', 'reason-change']:
+            with self.subTest(fault=fault), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                paths = [root / n for n in ['etc/astraeus/system.toml', 'var/lib/astraeus/management/state.json',
+                                            'var/lib/astraeus/management/system.lock']]
+                for p, text in zip(paths, ['schema_version=1', json.dumps({'packages': {}, 'protected': ['base']}), '{}']):
+                    p.parent.mkdir(parents=True, exist_ok=True)
+                    p.write_text(text)
+                installed = False
+                def run(*args):
+                    nonlocal installed
+                    command = args[2:]
+                    if command == ('pacman', '-Q'):
+                        return 'base 1' + ('\ntree 2.3.2-1' if installed else '') + ('\nextra 1' if installed and fault == 'extra-package' else '')
+                    if command == ('pacman', '-Qqe'):
+                        return ('base' if not installed or fault != 'reason-change' else '') + ('\ntree' if installed else '')
+                    self.assertEqual(command, ('pacman', '-S', '--noconfirm', '--needed', 'tree'))
+                    installed = True
+                    if fault == 'management-write': paths[0].write_text('changed')
+                    return ''
+                with patch.object(baseline, 'run', side_effect=run):
+                    if fault:
+                        with self.assertRaisesRegex(RuntimeError, 'changed'):
+                            baseline.preexisting_application(root, {'preexisting_package': 'tree'})
+                    else:
+                        result = baseline.preexisting_application(root, {'preexisting_package': 'tree'})
+                        self.assertEqual(result['version'], '2.3.2-1')
+                        self.assertTrue(result['unmanaged'])
+                        self.assertTrue(result['installed_before_initial_signing'])
+
+    def test_preexisting_fixture_refuses_any_initialized_signing_context(self):
+        for name in ['etc/astraeus/secure-boot/policy.json', 'var/lib/astraeus/secure-boot', 'etc/astraeus/boot-generations']:
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory); p = root / name
+                p.parent.mkdir(parents=True, exist_ok=True); p.touch()
+                with patch.object(baseline, 'run') as run, self.assertRaisesRegex(RuntimeError, 'before initial signing'):
+                    baseline.preexisting_application(root, {'preexisting_package': 'tree'})
+                run.assert_not_called()
+
+
 if __name__ == '__main__':
     unittest.main()
