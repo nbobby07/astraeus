@@ -263,7 +263,7 @@ while it applies. Live sessions permit inspection and planning only.
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
 | Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `298e12a` build; both Qt groups passed again on `0e8bb00`. Production startup loaded the KDE desktop style; installed-VM backend acceptance remains pending |
-| Plain and LUKS2 installed VMs with enforced Secure Boot | Plain installation and its first enforcing boot passed, but the baseline run stopped at an incomplete enrollment query in the harness. No full baseline or management/recovery acceptance yet; LUKS2 is pending |
+| Plain and LUKS2 installed VMs with enforced Secure Boot | Fresh plain baseline passed two enforcing cold boots and real SDDM/Plasma logins. Management/recovery acceptance and the LUKS2 baseline remain pending |
 | Image contents and signing-key audit | Image A passed the complete payload/repository audit, with exact upstream GnuTLS test constants identified and retained in the report |
 | Two byte-identical candidate images | Passed: both clean builds exited successfully, all five independent package archives match, and full ISO `cmp` returned zero with identical hashes and sizes |
 | Physical PC and USB boot | Deferred by request |
@@ -309,6 +309,21 @@ after verified export; it is not an accepted baseline. The failed run's archive
 has SHA256 `bac5eaadd3fb913d8668f9923bac8e461778b6ab7e6ef08cb9d67ffda13b0df4`;
 the verifier diagnostic archive has SHA256
 `bf16be57ffeae94f2c9809900b103963003b895f9595451da4af6cc6e6c8a218`.
+
+The third fresh plain installation passed on `0e8bb00`, using validation harness
+`eb6587a1`. Both installed cold boots observed `SecureBoot=1`, `SetupMode=0`, the
+expected owner certificate and successful public image verification. Both real
+SDDM/Plasma Wayland logins passed the original installed smoke, including network,
+audio services, Btrfs boundaries and healthy management state. The boot IDs were
+`744ddea3-4b19-48f9-957c-8163284e28e5` and
+`7d916806-ff95-4fe8-894b-b34db4a98ba8`. Its sealed baseline manifest has SHA256
+`5597c9fbefcc14d180ffee176fcd5f603f1c4f36e96e6867f741f1d0ff63f0ea`;
+the 6,083,576-byte public evidence archive has SHA256
+`17def386a7abf05ce00eb106abf23fa8a0314fb2f0e57ca21ef1a96404812dbf`.
+The [plain baseline receipts](evidence/phase42-system-management/vm/plain-baseline/README.md)
+include the manifest, public trust results and actual desktop smoke observations.
+This validates production payload installation and boot readiness, not the
+Calamares UI, package management, recovery or physical graphics support.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software
