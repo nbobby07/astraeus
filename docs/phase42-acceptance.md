@@ -12,9 +12,10 @@ Its fresh plain installation passed two enforcing cold boots and all eight
 metadata-only lifecycle/recovery gates. Deliberate wrong management state was
 rejected before correct rollback finalization, and packages, reasons,
 configuration, ownership and personal data restored together. The full A ISO
-and 292 public baseline/recovery evidence files verified locally. Independent B
-is building; byte comparison, corrected CLI package lifecycle, other fault
-scenarios, installed GUI and LUKS2 acceptance remain required.
+and 292 public baseline/recovery evidence files verified locally. Independent B completed, and full byte comparison exited 0. Five independently
+built packages, seven manifests and the generated source archive match. Both local
+image identities and thin exports verified. Corrected CLI package lifecycle, other
+fault scenarios, installed GUI and LUKS2 acceptance remain required.
 
 The latest code fixes a real offline-recovery defect found in the `6d10954`
 candidate. Both `6d10954` independent images and their full byte comparison passed; clean A also
@@ -30,8 +31,8 @@ not publish `LoaderInfo`, so `bootctl` refused to clear loader preferences.
 The fix explicitly requests `--variables=yes` for the same three fixed preference
 clears. Firmware write errors still propagate. The new direct-stub regression
 failed before the fix and passes afterward. Windows passed 142 Rust tests and
-Clippy; Linux passed 159 native tests (five fixture skips) and Clippy. Corrected
-production images and fresh recovery acceptance remain required.
+Clippy; Linux passed 159 native tests (five fixture skips) and Clippy. Corrected A and fresh plain metadata recovery have since passed. Independent B has also passed; the remaining corrected-candidate acceptance
+gates are recorded above.
 
 The first metadata-only trial safely refused confirmation from the initial
 unmanaged boot entry. The harness expected only the different-kernel-boot error
