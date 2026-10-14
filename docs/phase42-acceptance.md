@@ -4,9 +4,9 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The current runtime candidate is `620d1d3edf9ba596d22e762591c296267951a81f`.
-Its clean-build source archive is 4,982,528 bytes with SHA256
-`00b4bcc311aacb96787289bab0be428f6f1d06b446870f3b2e01cb793701e030`.
+The current runtime candidate is `17773af1613aaad9b340382566194d71f62245aa`.
+Its clean-build source archive is 4,984,744 bytes with SHA256
+`8864ddd84b4f2464434907045e2b20109ec1b04f2e2d96543b7c544d02aab9eb`.
 Earlier stopped build attempts remain preliminary evidence and do not qualify this
 candidate. Later validation-only commits are recorded separately from runtime.
 
@@ -57,9 +57,30 @@ debug-path remapping: the old controller run passed 3 checks and failed 18; the
 corrected extracted archive passed all 21. Its 12 QML checks and 155 native Rust
 tests also passed. Archive verification checks 118 package names against the
 same three pinned repository database hashes. The clean Arch package build has
-now passed the same 155 native Rust tests and both Qt groups (21 controller and
+passed the same 155 native Rust tests and both Qt groups (21 controller and
 12 QML checks). The split packages and Calamares were built and their repository
-signatures verified. ISO assembly and installed-VM acceptance are still pending.
+signatures verified. Its image build then failed after all 736 installed-root
+packages and 29 hooks, before management seeding or compression. The metadata
+reader rejected the valid empty URL fields in the two new Astraeus packages.
+No ISO was produced. The failed A/r1 archive is
+`failed-620d1d3-r1-A-evidence.tar.gz` (240,502 bytes), SHA256
+`a10a1e44335c50d564d3dff77e677d77642f04c7779b142d4e7400c61a88bd6f`.
+
+Candidate `17773af` fixes both the build-time metadata reader and the embedded
+removal-integrity reader. Both now accept empty optional fields while preserving
+strict section boundaries, duplicate rejection and identity whitespace. The
+captured corpus passes both parsers for all 736 local records and 15,498 repository
+records; installed-state observation and exact repository locking also pass for
+all 736 packages. Its archive `metadata-620d-r1.tar.gz` has SHA256
+`bf5b190a2347421172171e37da9da539f519d20992f88a31099cc179b7b09e40`.
+The authoritative extraction used tar and Linux: an earlier Windows transfer
+lost colon-containing names and was rejected by its record-count check.
+
+Signed native fixture attempt 14 reproduces the old reader's incorrect retention
+after a real libalpm installation with an empty URL. A separate fresh root with
+the corrected reader passes the full install/removal fixture. The old negative
+run and an initial fixture setup error remain preserved. The new clean image
+build and all installed-VM acceptance are still pending.
 
 The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
 exported as a 358,400-byte archive with SHA256
@@ -108,12 +129,12 @@ while it applies. Live sessions permit inspection and planning only.
 | Gate | Current evidence |
 | --- | --- |
 | Host Rust checks | Windows workspace 140 passed; native Linux workspace 155 passed with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy passed; earlier Windows Clippy evidence is retained |
-| Python, shell and signing | Full Python suites passed: Windows 121 passed/58 skipped, Linux root 175 passed/4 skipped. The 11 Linux file-integrity fixtures also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
+| Python, shell and signing | Full Python suites passed: Windows 123 passed/60 skipped, Linux root 179 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
 | Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
-| Native libalpm compilation | Passed with libalpm 16 in both the Linux development environment and the pinned Arch package build |
-| Signed native package fixtures | Attempt 13 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies and provider choices retained when preparation fails |
+| Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment. The pinned Arch package build passed on `620d1d3`; the new candidate package build is pending |
+| Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
-| Native desktop build and tests | 21 Qt controller and 12 QML tests passed with Rust-generated contracts in both the development environment and the pinned Arch package build. Production startup loaded the KDE desktop style; installed-VM backend acceptance pending |
+| Native desktop build and tests | 21 Qt controller and 12 QML tests passed with Rust-generated contracts in both the development environment and the pinned Arch `620d1d3` package build. Production startup loaded the KDE desktop style; new package and installed-VM backend acceptance pending |
 | Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
 | Two byte-identical candidate images | Not built yet |
 | Physical PC and USB boot | Deferred by request |
