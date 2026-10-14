@@ -1,0 +1,1147 @@
+{
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "encrypted_baseline_accepted": true,
+  "cli_gates_passed": 12,
+  "files": {
+    "cece/install-plan.json": {
+      "bytes": 409965,
+      "sha256": "49d94fe5b6018d1444e0d0cc84dc58ea666031d6e206346d84e0b65f725ddc58"
+    },
+    "cece/baseline-reference.json": {
+      "bytes": 2399,
+      "sha256": "47d3e0aa9b9605c9ac84c475bfdc070de865963857bba65f33f11b642a947180"
+    },
+    "cece/install-operation.json": {
+      "bytes": 434745,
+      "sha256": "8f91c6b2cc5cc0d021d6ee0a23a19738eda96c152ec972ea36163e668b733338"
+    },
+    "cece/evidence-sha256.json": {
+      "bytes": 31521,
+      "sha256": "24c198ba92b60d73f8f91af202ac63bf0425faed0b9b3137f3befca3e7602478"
+    },
+    "cece/confirmed-health-2.json": {
+      "bytes": 2181581,
+      "sha256": "a42c23bc9283bcd96c90ccf494e6c14ac42c1fd14be2a1f5f604c1036e613a5e"
+    },
+    "cece/inputs.json": {
+      "bytes": 3175,
+      "sha256": "bcdb43b19f3944eded79c4f0b15dc9b533c2bc38ebb0b453a6b904b148b9ce39"
+    },
+    "cece/remove-operation.json": {
+      "bytes": 434588,
+      "sha256": "448c5536f87f25e0b4e0e4e6c37b202698b316f6347ad14c36f75b53fa8a4218"
+    },
+    "cece/candidate-health.json": {
+      "bytes": 155766,
+      "sha256": "508623d1b0caf54cb8280616dbb1e94229c76d0e4d378b08cb958c26c1e1b82b"
+    },
+    "cece/confirmed-health-1.json": {
+      "bytes": 1696026,
+      "sha256": "568d84f325b495715f09da4da65b6623d879341fa7cb715409e480a6e71c09b4"
+    },
+    "cece/matrix.json": {
+      "bytes": 8625,
+      "sha256": "0ade03c66406d72030b31a43b429465673fc8eea950bf5c494d5d42b1a5d6dcc"
+    },
+    "cece/boot-2/148-confirmed-health-1-persistent.json": {
+      "bytes": 414,
+      "sha256": "dd618ba93420f2b995032b32afce7bd615f6ca063b8d8b549839954b77402245"
+    },
+    "cece/boot-2/158-remove-submit.json": {
+      "bytes": 705,
+      "sha256": "f62b4b4413b0090e7da42a3555e1a8de9ddd012bef5bef8bbc369b8684077fd4"
+    },
+    "cece/boot-2/170-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477119,
+      "sha256": "924bd340e3f6226dbea79119684d97930eec85bc49d0656bffc29d4d75045606"
+    },
+    "cece/boot-2/199-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "6d2c0e1aedfc24384e8a11a2bbc69adda9aae4df80edbbb720bd24671f1f5c56"
+    },
+    "cece/boot-2/187-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "166054994b798ed2a7910a1147158f0b0429757163fd060453ef4ecda4b7b1b2"
+    },
+    "cece/boot-2/196-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "3b5ee50b016ef2ccc74e7d514e7bfff6993af0f15819f497ca1d6b8859538712"
+    },
+    "cece/boot-2/166-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477119,
+      "sha256": "bf2874ed62a51641e7addf8f021c01452f85e991652c25e4b4eab81b4741b064"
+    },
+    "cece/boot-2/190-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "e5639d26bb23fc7c7d81e4cbb852149ac33f21902668d859b095c667897c3932"
+    },
+    "cece/boot-2/145-confirmed-health-1-subvolumes.json": {
+      "bytes": 837,
+      "sha256": "3243595cd0939419b982d0b6ef2c22599ef6ba6c2f324e6d2b19f71b157a9cbd"
+    },
+    "cece/boot-2/140-confirmed-health-1-status.json": {
+      "bytes": 3323,
+      "sha256": "872c1d9b03ae4b278a3d799a9d8125b9e906874ff6111e245e5a5e02db9d1e2a"
+    },
+    "cece/boot-2/175-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477213,
+      "sha256": "8a67746bab8db5663dc71e59cb2d2780947a620ac2be5b932f6f67b917e23af6"
+    },
+    "cece/boot-2/162-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 476726,
+      "sha256": "5ec85bc3fdfbb0f2775a7da987f0086890765cbbd9abfaae7ba53594e42542fd"
+    },
+    "cece/boot-2/qemu-command.json": {
+      "bytes": 1159,
+      "sha256": "3c004344072f04c158a9282a6beef9018316147bfcc05fd62c963be1cc43a8a2"
+    },
+    "cece/boot-2/qmp-ready.json": {
+      "bytes": 4446,
+      "sha256": "c795e8c48da15582b0c32190a4eac7d2d4905a21efe6d29e422a06e85c004f62"
+    },
+    "cece/boot-2/188-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "8d8928897ea4e67746262018f2ab572275802bd46ed4190c39d6bc2c177ec095"
+    },
+    "cece/boot-2/195-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "4c7cba137dcc371a13bc039f150f7114c173a4229077fd891dbf671ab4b566ac"
+    },
+    "cece/boot-2/194-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "0ba6ad999cbf5959866803be57d9fbd5d9ea274a26bfb6830993075a2bae70e5"
+    },
+    "cece/boot-2/139-confirmed-package.json": {
+      "bytes": 322,
+      "sha256": "44ceeb9ba73ace65829cad0e370a5efc47d533155bcb6b26940fb5354828fbb5"
+    },
+    "cece/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "773bc653793413544c1750f150c383cbffe0c18293329835ab51460882c10c37"
+    },
+    "cece/boot-2/137-boot-confirmation-history.json": {
+      "bytes": 483790,
+      "sha256": "df4ddcb241c807399af8d76b8f349bb1e24bf8b8028cf65978b73d6e4b4cf3b3"
+    },
+    "cece/boot-2/191-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "40539d89ef26d9ae9c5d5461a8c573ae0c1f1d98a7385e7b19fbdb13c7e98313"
+    },
+    "cece/boot-2/122-ready.json": {
+      "bytes": 219,
+      "sha256": "6deaa5b5f3dea88c907ebfab71acf1125e299c416875ec29f84519ce0cf926b5"
+    },
+    "cece/boot-2/147-confirmed-health-1-root.json": {
+      "bytes": 376,
+      "sha256": "72cf48818a96d496054d9fd6fc8432b608b1c7ff6caad99c752b357be6c0ba5e"
+    },
+    "cece/boot-2/130-ready.json": {
+      "bytes": 219,
+      "sha256": "0687143889f89b4c68078a88d147880bdc35a201a4fb951a61089c439cbcf7a9"
+    },
+    "cece/boot-2/161-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 476690,
+      "sha256": "5251108e794a9c42ec95b639b952414ab1732851c3cc78d64255a5b3499683ca"
+    },
+    "cece/boot-2/176-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477213,
+      "sha256": "681ebf82d8ce95ae6e54888d9a1295d9eb93e0403a9fc744fd50e12d1123a47d"
+    },
+    "cece/boot-2/157-remove-plan.json": {
+      "bytes": 454132,
+      "sha256": "610f93e723dcc1ba918c7808d00ed1976295ef7cb75474bda98d5fedfc73fa7d"
+    },
+    "cece/boot-2/165-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477119,
+      "sha256": "254dca426933ac6609a1cb9a221d263a5a305048c26e848dcd3512f66ef24d87"
+    },
+    "cece/boot-2/136-boot-confirmation-history.json": {
+      "bytes": 483709,
+      "sha256": "fabbaa0a92d8180a68f2134fa95b901980a3c2d6fc01330d761a69331ce22c82"
+    },
+    "cece/boot-2/168-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477119,
+      "sha256": "803f4b8fcbed751864879a850f6610ea48532239be2a62fe7cb1d59f0650e54f"
+    },
+    "cece/boot-2/127-ready.json": {
+      "bytes": 219,
+      "sha256": "33142fdc85e97f64859ccac19a03c413be9fc689bd2bff276afd601caa4eb90b"
+    },
+    "cece/boot-2/173-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477213,
+      "sha256": "f92c704530246f27b5dcc667f11d6107964c01e6a195d3b0c735a7e3f24afcec"
+    },
+    "cece/boot-2/124-ready.json": {
+      "bytes": 219,
+      "sha256": "490a3d9e28cee45e5fe5253242781cd137d79501f87bd107e8853ec3cef81110"
+    },
+    "cece/boot-2/142-confirmed-health-1-database.json": {
+      "bytes": 337,
+      "sha256": "4aff9dc6399136f46f1b9f38bf0603dc2f50c9e29be8ae32b6176fe951a6d0ec"
+    },
+    "cece/boot-2/164-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 476926,
+      "sha256": "3f6a589243b9697719929f3bfc347087b8811962bfd1246b37a32ca73b25a878"
+    },
+    "cece/boot-2/182-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "55515359730b7eca07dae30d63f5b2259bd3be3f2582aeb89fed465e981b7f12"
+    },
+    "cece/boot-2/198-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "65050ff4812a41cf0a187de7fdb94f19252706c4fd2a6e9a28705f5d62ca73f8"
+    },
+    "cece/boot-2/169-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477119,
+      "sha256": "6d5a4779af1c2a828298fe91ba9a297cfc5fa4d0037f1dbcfeab83bbc138b3f3"
+    },
+    "cece/boot-2/120-ready.json": {
+      "bytes": 219,
+      "sha256": "10fe3a6a59ee5f0b1b89ffa4fa6b0be4ea4a2c9b40fdc77f5442cabf1c51dae9"
+    },
+    "cece/boot-2/192-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "a5214bca96ad550c847c41d04cd77f7de8a6c91f10cae167a591d1f2bd674111"
+    },
+    "cece/boot-2/126-ready.json": {
+      "bytes": 219,
+      "sha256": "a90d04bfa8de0f3a277e9d5e2ae6bdc6cfc5f172e4bc911c69a038538d779504"
+    },
+    "cece/boot-2/confirmation-1-trust.json": {
+      "bytes": 411,
+      "sha256": "cb9fb377ab1979a67e3b41219e727e306e43db9c5c324d2d2040734f21a80e8a"
+    },
+    "cece/boot-2/149-confirmed-health-1-journal.json": {
+      "bytes": 6678,
+      "sha256": "8398ab08398053f0e9d4097a9a35c0d49955353b9ace31b33d1916867160418d"
+    },
+    "cece/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cece/boot-2/189-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "6908e0305d4becd9aa701005fdc3ed048f913b5bb89c82706dd6406eea6efa4d"
+    },
+    "cece/boot-2/134-boot-confirmation-history.json": {
+      "bytes": 479143,
+      "sha256": "d1257ef2d221ae1992c7be27b682c773d91f70af9354f9f99516dabdb5b80afd"
+    },
+    "cece/boot-2/128-ready.json": {
+      "bytes": 219,
+      "sha256": "67dd575ebcd09dcade3675eb003fb9ae46deee0c4a05a358ad0a55bfa950dc57"
+    },
+    "cece/boot-2/163-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 476926,
+      "sha256": "ea5f91b6e5dc2377d8a31c3b05fc2931b959f648fa99740c313ae06759212a47"
+    },
+    "cece/boot-2/129-ready.json": {
+      "bytes": 219,
+      "sha256": "b1bd7bcc6c0d5948b9b5c8f4c346703e997c6b01fde5e37617103f4b1938cd93"
+    },
+    "cece/boot-2/185-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "69a21e2a616b89c4668f4957930ae7bf13625eb080c60985f5858241a838ccfa"
+    },
+    "cece/boot-2/119-ready.json": {
+      "bytes": 219,
+      "sha256": "d482545d8985014b60f7fb5e64625628e784151b3cba0fed2cc926529a231476"
+    },
+    "cece/boot-2/167-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477119,
+      "sha256": "f607c35133524eab070a7f4ceca4ba036c7e117d542cf4a4cc8ee8a1a783eec6"
+    },
+    "cece/boot-2/146-confirmed-health-1-boot.json": {
+      "bytes": 3994,
+      "sha256": "ae082d07deab12c045e22e583cd6bb5ca636daa4e4396d51b4338c76ddc2e347"
+    },
+    "cece/boot-2/186-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "496fff8311e9eecae31a119629d1e1273f834802648167ac9f0643f18ce04a79"
+    },
+    "cece/boot-2/156-confirmed-health-1-snapshots.json": {
+      "bytes": 2777,
+      "sha256": "3e72c7a2ec62d1e74260748623ad7f18a91cf3bd8e4a70f3db50f9a07ac67ff3"
+    },
+    "cece/boot-2/150-confirmed-health-1-boot-journal.json": {
+      "bytes": 1168705,
+      "sha256": "edfa53a6e65ce31a650b37fa0b4140e6f0f1d14fdf6c901ef18ab057cb25fb87"
+    },
+    "cece/boot-2/123-ready.json": {
+      "bytes": 219,
+      "sha256": "90e78d4ff2bb88397c123c2ff30a72bf9f14734e31277ea1ee07d2c7fc925dcf"
+    },
+    "cece/boot-2/131-ready.json": {
+      "bytes": 356,
+      "sha256": "8423b882f612b8c2b7eb6853c6b0fff9f98ef9d602d77945cb6dcc4100d73188"
+    },
+    "cece/boot-2/178-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477213,
+      "sha256": "59d05b78bf34abb6965655b1e5ad0912f5277b272852ab496bf77a7981c0878c"
+    },
+    "cece/boot-2/197-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "0102b12dbf8a8fb1af83be67b119cc0faa5e29c1ed31884c33975a02243ba5d0"
+    },
+    "cece/boot-2/154-confirmed-health-1-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "600360a490dabf2b1cfcd4e2c5043b75433fc68058183ba80952c115945bf536"
+    },
+    "cece/boot-2/reboot.json": {
+      "bytes": 110,
+      "sha256": "f358e433a50692ab25efd34d6deaa404a07664a7ea2a61ee753448e2d27a0166"
+    },
+    "cece/boot-2/143-confirmed-health-1-failed.json": {
+      "bytes": 328,
+      "sha256": "d9cf21ab77191f2a97a4a0b5768c3b3aa4eed6f8397dc5863189cc3059967fb7"
+    },
+    "cece/boot-2/133-confirmation-1-trust.json": {
+      "bytes": 518,
+      "sha256": "b63f04d0a7098423996c5d072a300baa3495de497aa0a239f80299087363b733"
+    },
+    "cece/boot-2/138-confirmed-configuration.json": {
+      "bytes": 510252,
+      "sha256": "5c5eea754b75f62529d5f2f6d54fd7617f408035dbfcf087c5aa7f417f58cf24"
+    },
+    "cece/boot-2/serial.log": {
+      "bytes": 2296,
+      "sha256": "cf7f9918845cf616c797ac6c122cd9af6bef897cd5131556e01da347e6e1f979"
+    },
+    "cece/boot-2/181-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 479168,
+      "sha256": "e58d4d20f457c3fa8d2219edc285dab883dfa591fbf8b1f9ef1c3a8e36a0777d"
+    },
+    "cece/boot-2/135-boot-confirmation-history.json": {
+      "bytes": 479143,
+      "sha256": "483cccb5b93e60ed4ee5a92428e60e66de03cd98df83c362b486da62c9122985"
+    },
+    "cece/boot-2/121-ready.json": {
+      "bytes": 219,
+      "sha256": "58cf7710aa0e826dcdacff1fb22b080e2f40444a6840284825d380235a257557"
+    },
+    "cece/boot-2/174-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477213,
+      "sha256": "f4bb934e41a70295a2fd79c181618cdbe94993b02f9a5fbe9e6940a4c94d8610"
+    },
+    "cece/boot-2/151-confirmed-health-1-uki-sha256.json": {
+      "bytes": 414,
+      "sha256": "659c4b4dabdfaa55df6b62e9b7123e645cd37fb0564751d61e3f8f21c5d28c97"
+    },
+    "cece/boot-2/184-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "5fb8bb6358f357af78fef9eeefdcc3a7c6153d819e3441237fc35a5a0a54550d"
+    },
+    "cece/boot-2/qmp-confirmed-health-1.json": {
+      "bytes": 4446,
+      "sha256": "fb998d14101b48e37be27ca5bc44d37779a64b2b1ea0c38b0dc38a15222e0d2e"
+    },
+    "cece/boot-2/141-confirmed-health-1-packages.json": {
+      "bytes": 15909,
+      "sha256": "66d2756f543e5b9e833cfde096bd9b386dc6433841c82d92351ecce300a59c23"
+    },
+    "cece/boot-2/160-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 476690,
+      "sha256": "8eb7126e0946d23fb020f6df62258c0b321057d0039e4589ceeab74445a2a9cb"
+    },
+    "cece/boot-2/183-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "3ce0deb1730de3941804dfdbd75ae6bbf8e30a2aa6abac344ec2d3e9cf542a1c"
+    },
+    "cece/boot-2/193-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "7b0941e544706365264eb67592acb8012e6fdb0b15f9ebfec557b1d745c85922"
+    },
+    "cece/boot-2/177-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477213,
+      "sha256": "f78e6099433ba91d13c5a415e403b1073f266460ee1fde696281a1ade3d13d82"
+    },
+    "cece/boot-2/179-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477213,
+      "sha256": "c01a847e0e44d40bb7a886bb1c10dbf17e738f2f5e343d3b79ef2bb56416fe99"
+    },
+    "cece/boot-2/155-confirmed-health-1-history.json": {
+      "bytes": 483781,
+      "sha256": "09404b8d911e2bcdb9a86b4b3fa79380799dda86298b56b9507e830120f28a07"
+    },
+    "cece/boot-2/152-confirmed-health-1-kernel-command-line.json": {
+      "bytes": 515,
+      "sha256": "1f1e956a323c14103fadbff8d40cfc8d48b531898eebd7fa7a4cab0bf92ffadd"
+    },
+    "cece/boot-2/159-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 528,
+      "sha256": "e917edaf7c9f8c79d863c1392d9676c3637fce942ab156ccd5e0c7d825f13a5e"
+    },
+    "cece/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "d3358610c46d41ea185c05521cb84aeda52c0959b5ffb03892b2a8c6e88aaaad"
+    },
+    "cece/boot-2/171-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477119,
+      "sha256": "f5599b976ad1897dda1b5cd9e89dfae0cba59f0c454b98c3a6a6585936450c79"
+    },
+    "cece/boot-2/132-confirmation-1-trust.json": {
+      "bytes": 2534,
+      "sha256": "f6ba1408c6dffe055d940b701b0184b9af3466184097fb525df568378275add4"
+    },
+    "cece/boot-2/144-confirmed-health-1-mounts.json": {
+      "bytes": 8943,
+      "sha256": "502ef24fc1df9c1171d239ecd68e4e1f0546a17b9ef65fedb233198fd47030b6"
+    },
+    "cece/boot-2/180-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477237,
+      "sha256": "5239b9c3f708731a22d848c10aeb229447b844729e2e5f34dc2134ecb5439a1c"
+    },
+    "cece/boot-2/153-confirmed-health-1-pacman-log.json": {
+      "bytes": 787,
+      "sha256": "faf6f6e5d7ea2890251cb1578df7a5340bde0f15fac11ad9bb56c6a727b46921"
+    },
+    "cece/boot-2/125-ready.json": {
+      "bytes": 219,
+      "sha256": "397528be33c6975e67d689a152224078782b6fee4d7cb572c688b36eeb1c3b8d"
+    },
+    "cece/boot-2/172-operation-6bae1545400fdada10544a753e24e7d8.json": {
+      "bytes": 477213,
+      "sha256": "1d1f0d2ca66395fca6e466ce751fb42413250033baf1bfe5edce645d32ee4b1e"
+    },
+    "cece/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "cece/boot-1/062-operation-fabd51b55ecebb1ad88bdedd58c4f25f.json": {
+      "bytes": 528,
+      "sha256": "0f896ed6ee33ea0c96462ae213c2e290ce4c4cf85a6bbb392295d5c361676f39"
+    },
+    "cece/boot-1/061-stale-plan-submit.json": {
+      "bytes": 714,
+      "sha256": "2e7c3c36c6fe76f880badd682bed3e218affd54824a66ac6a533afb2e4f98cc2"
+    },
+    "cece/boot-1/081-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477293,
+      "sha256": "52f8bda2cfde5fc22561f27c1a2d7b99c71ec960ba866d7906aca496b39cf9cf"
+    },
+    "cece/boot-1/068-stale-after-reasons.json": {
+      "bytes": 1053,
+      "sha256": "8b58d6d0738041ff66dbb9f155e9af8b7787b454b3e1f99e181ff1656579b89b"
+    },
+    "cece/boot-1/030-candidate-trust.json": {
+      "bytes": 2288,
+      "sha256": "f463270a413835a2f773e80ad60972d4e232df93e08417c5e2b4c12115192479"
+    },
+    "cece/boot-1/024-candidate-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "027c7a743d37bfc58e05b08781a97b544cc3a57f51e7f902731ef837bad9f326"
+    },
+    "cece/boot-1/011-candidate-astraeus-control-center.json": {
+      "bytes": 432,
+      "sha256": "31c8e83f9b20437724bfb11f697b1f1de59c109c047dbbc6db3ffead1a87e646"
+    },
+    "cece/boot-1/042-readonly-after-status.json": {
+      "bytes": 3427,
+      "sha256": "bd931be7a6d7383c2cefd8587170047a8aa4f9627e395a604cda8c16b400236f"
+    },
+    "cece/boot-1/027-candidate-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "6a82c6be7618ac3e27c9740041468e486c2666662dacada6ad54c9e8f2f66b95"
+    },
+    "cece/boot-1/089-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477387,
+      "sha256": "5e02698faacb3772469c84a599db7a786f4e6f239f647dc12bfae4613d1d5f56"
+    },
+    "cece/boot-1/023-candidate-health-boot-journal.json": {
+      "bytes": 114798,
+      "sha256": "0645af1bf3942b2b0a295c7dd6eed37b9fa19b1cd8bb42acddefe6303a263248"
+    },
+    "cece/boot-1/022-candidate-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "1a16d473bcd3854218af27a9fd444615ec69f913f6f0ca654fc7a00ab1cd534a"
+    },
+    "cece/boot-1/110-pending-before-history.json": {
+      "bytes": 479143,
+      "sha256": "45934432d2b84124c4bd34c07e27837a1be1a5b0dfba1160f251fcc53f16751a"
+    },
+    "cece/boot-1/086-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477387,
+      "sha256": "5d713d7fd44738a02401468a0b11664e1e8727e950a94e582ba343b09679505c"
+    },
+    "cece/boot-1/031-candidate-trust.json": {
+      "bytes": 522,
+      "sha256": "23fd2406d9311b7ca3201c8cb63ff9f27cbe54cbbd798feef5490e0b15715a83"
+    },
+    "cece/boot-1/008-ready.json": {
+      "bytes": 219,
+      "sha256": "4536194901eaeea2d091160c8325704dce5bfa598ee559c9fd9853aeb812d9e5"
+    },
+    "cece/boot-1/055-install-plan.json": {
+      "bytes": 454301,
+      "sha256": "cd843f8e6441e753b8978383d2aa27bb3f3e60c7f2e05a65eff6859a9cff4cf1"
+    },
+    "cece/boot-1/041-ordinary-user-plan.json": {
+      "bytes": 454301,
+      "sha256": "3b7a4aa440fcc49dcfd14f22712b4f4d238baff8f46420f87f45ad8e6ddb618c"
+    },
+    "cece/boot-1/095-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "ca62b80af061f68495e65a42e1eb2f915bd4906d3ec83e92a3bb210cf985ef53"
+    },
+    "cece/boot-1/043-readonly-after-history.json": {
+      "bytes": 325,
+      "sha256": "8a6a1b18a937566fce6370e3fba8215a9771a392fa5e53b47dabe98c54beef56"
+    },
+    "cece/boot-1/093-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 479342,
+      "sha256": "b3fcaa9e4ccc1102d66fff1e17fee8e06f1c011da615730ae77aedb8e1405931"
+    },
+    "cece/boot-1/111-pending-before-packages.json": {
+      "bytes": 15909,
+      "sha256": "383df449779f8bad478294ff0bd82dbd6986afb20bb1faa0e12f2081a2554e75"
+    },
+    "cece/boot-1/036-initial-reasons.json": {
+      "bytes": 1053,
+      "sha256": "32db8f295b2700272400e2d0bade19db6adb462f2728ad0666e0c51e7d47f72f"
+    },
+    "cece/boot-1/qemu-command.json": {
+      "bytes": 1159,
+      "sha256": "b6507f7f33ca58744fb8fa443702e4a40a74b8d04ba5d496bcd6038e2850b2fe"
+    },
+    "cece/boot-1/116-pending-after-packages.json": {
+      "bytes": 15909,
+      "sha256": "267823dbc0a3860083a756ded8e79aae384b7ee09cfabb14411c331c6570e764"
+    },
+    "cece/boot-1/059-unprivileged-after-packages.json": {
+      "bytes": 15876,
+      "sha256": "fb549abd7c73302522c6e7d53e059d4f19c2003ace10fe92f7562257a19571f3"
+    },
+    "cece/boot-1/098-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "12c24bedd3f762047ddb2b90e55b96454cdac2f245a33c898b36e6e4a1efd840"
+    },
+    "cece/boot-1/candidate-trust.json": {
+      "bytes": 415,
+      "sha256": "10fd7be80c8f21f20f8c0a70f0781dd846e20d280efb71e1246fedba6bc064cd"
+    },
+    "cece/boot-1/065-stale-after-status.json": {
+      "bytes": 3666,
+      "sha256": "cda1af63e773dc38b2610895bec9c4443ccafeb9ce180091583ee7967dcf7640"
+    },
+    "cece/boot-1/qmp-ready.json": {
+      "bytes": 4445,
+      "sha256": "a6b17216dd14e16de52adc05b0d3c447102f0c5ecb697382884adce32a268c5d"
+    },
+    "cece/boot-1/047-invalid-config-1.json": {
+      "bytes": 594,
+      "sha256": "ab030b9556aa5b3998ddf333fc5ef35ef6e70d9643f588ac4e9cfeb10473b4b3"
+    },
+    "cece/boot-1/096-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "9849a3105aa169489e6dc602a96dbde2a283e9aa7736fa2ef256aa555a5a41c0"
+    },
+    "cece/boot-1/085-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477387,
+      "sha256": "4335dd7960b1db07e70f769d0d36092d8a04b82769c475aed6758b7fc91aec61"
+    },
+    "cece/boot-1/100-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "70cc59ce3ea4789f3ecf7911c098216998062f5da1a68e2012dfbd05679c48d7"
+    },
+    "cece/boot-1/072-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 476864,
+      "sha256": "8bb8169abd5db83c0f092aac12ce3e869754ebf6f3dd42c78d030b1b9cd0068f"
+    },
+    "cece/boot-1/080-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477293,
+      "sha256": "5c78e7ee1c35264ae609e80fe9db271c2f51fab05f15ba80d09f611685e262bb"
+    },
+    "cece/boot-1/013-candidate-health-status.json": {
+      "bytes": 3313,
+      "sha256": "22fe16a47b6b332d8acaffe346f6dc3f83e77d8d4684b7ba745f454139fa6cd4"
+    },
+    "cece/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "32729475810428c937f440ddba56080e8a7657469ee02cfa1625968977618522"
+    },
+    "cece/boot-1/004-ready.json": {
+      "bytes": 219,
+      "sha256": "c396efaa32f316a14476198c39bff4ac979a137f5db5542f1816ef81f846e21e"
+    },
+    "cece/boot-1/079-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477293,
+      "sha256": "caa80fb96bcdd1dc78fc9396472451afd91785894f22c91dfef50261f7473774"
+    },
+    "cece/boot-1/005-ready.json": {
+      "bytes": 219,
+      "sha256": "33e4deb22d01460d37ebdbb9e245218e32e6a2620a3b8a2360a943c79e893760"
+    },
+    "cece/boot-1/117-pending-after-reasons.json": {
+      "bytes": 1060,
+      "sha256": "4f4a48efe0ebd1f27fe72c09c2e5d4815015a9b49f1d8d8adcd03078ce34cc14"
+    },
+    "cece/boot-1/025-candidate-health-kernel-command-line.json": {
+      "bytes": 455,
+      "sha256": "9ebade48ab4c1df587890edb1745227fc38083f852fe9e67871820f1ad0ce27f"
+    },
+    "cece/boot-1/057-unprivileged-after-status.json": {
+      "bytes": 3427,
+      "sha256": "26808dea327b23518f845c2116b33a290c0049a56dc33e1b1e3010ed04f05d24"
+    },
+    "cece/boot-1/074-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 476900,
+      "sha256": "3706e665114568f26388780780b9bb64828676e0fb43111b66dd8f533cb3c986"
+    },
+    "cece/boot-1/112-pending-before-reasons.json": {
+      "bytes": 1060,
+      "sha256": "3e12ca481887fb7c26f03185ce169e5b570648c0a05f5465a7c9806694945a1d"
+    },
+    "cece/boot-1/021-candidate-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "41344bab5aa92f7aaeaeaf1d4cfb96ad2bb22eeff7964f8ca38f06cb0d7e8089"
+    },
+    "cece/boot-1/108-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "fbd47e4860eccdd1f3d33cb3a9dabba2c07e38ebc16104665b6810db7e4191a3"
+    },
+    "cece/boot-1/053-invalid-after-packages.json": {
+      "bytes": 15876,
+      "sha256": "aa39dba78ce8b4f710be9a5d735a4ed843c1089136e47410e65f4b66799ec349"
+    },
+    "cece/boot-1/qmp-candidate-health.json": {
+      "bytes": 4445,
+      "sha256": "f81ed66e3f4264b8b71f5d11ce96ec7db47e8e90d3ac21bc5a733294aaec6a76"
+    },
+    "cece/boot-1/118-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "81fc2dfafdf01d52794ad35211df1ca2d66c9df4d8acb579ce0cbe784eedbc8f"
+    },
+    "cece/boot-1/044-readonly-after-packages.json": {
+      "bytes": 15876,
+      "sha256": "772daae720a4f431a87476c35b2d73c1abce52cd590d12e35d1d9647e6ebb022"
+    },
+    "cece/boot-1/016-candidate-health-failed.json": {
+      "bytes": 328,
+      "sha256": "797fc434801249de8ec38c37a1c08de07b1e5c221892030ba5637dc227c4a298"
+    },
+    "cece/boot-1/007-ready.json": {
+      "bytes": 219,
+      "sha256": "518b88ba5a037594108278761c32c9b54024663833b61b0c525c2a7ca34f6800"
+    },
+    "cece/boot-1/033-initial-status.json": {
+      "bytes": 3427,
+      "sha256": "d16005fcd0524439ba4d112be5836dab2ab63aec6801faab16d461fb71c48d58"
+    },
+    "cece/boot-1/078-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477293,
+      "sha256": "195ffa8caadd7e4bc9baed6143c961a9c2f67331aee6f6536d406ad9f5b827ba"
+    },
+    "cece/boot-1/087-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477387,
+      "sha256": "7cd8403608add8d40330325f4efe3fd34c16055f6cb3597778f828252d44680b"
+    },
+    "cece/boot-1/102-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "e1d29b1c9e0c44002bdc2b26900d21050fee1665a97b825e0be7726b390f3ae8"
+    },
+    "cece/boot-1/071-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 528,
+      "sha256": "f7ebe63c93f8ead8373e931b11d5a5dd9c8d9beacd2572ce09b9aa75da96848d"
+    },
+    "cece/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "a453f5853c77f86b11546c124b2267f43b9f2834169b15769a88297ce6d0b45d"
+    },
+    "cece/boot-1/106-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "b8d657f4750dd30ea746dc31fdf7564ad3207e721def7cb5bb798a46ca6a6d74"
+    },
+    "cece/boot-1/037-ordinary-user-status.json": {
+      "bytes": 3213,
+      "sha256": "b8772621c1f2dadebcb217b45263bb3b36f863fede1c36a1ecb10e236d5df1d8"
+    },
+    "cece/boot-1/069-home-sentinel.json": {
+      "bytes": 400,
+      "sha256": "2ec8f7ae8661593a963d11aee838c1b3000be7e6e8ddd6de27d9455303867cd3"
+    },
+    "cece/boot-1/048-invalid-config-2.json": {
+      "bytes": 575,
+      "sha256": "802380ebb9c0cef4ef0f2db28554badc0a9be52948d8a2842bcc498f38db0647"
+    },
+    "cece/boot-1/105-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "f90fb67af457ef08312d5f00ded5c45c96b7d2c0267c816ae05525d6702dd863"
+    },
+    "cece/boot-1/063-operation-fabd51b55ecebb1ad88bdedd58c4f25f.json": {
+      "bytes": 598,
+      "sha256": "b5e652eeca87034bd29404c852a52d32cfb30badf4e32cb710125cd8720547e6"
+    },
+    "cece/boot-1/003-ready.json": {
+      "bytes": 219,
+      "sha256": "28454664ab3cc0aa33a65f3f6c9a71556d70d108c31295eb2a8f98ffdd3babea"
+    },
+    "cece/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cece/boot-1/009-ready.json": {
+      "bytes": 356,
+      "sha256": "0e3402e96bd48a0c9bc944c9ffda18819ea9304cec0cd2bd77beac6a5d753319"
+    },
+    "cece/boot-1/029-candidate-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "a7f06006246fe9240c183d2987d41df518a6024d1dbbc567dc52b92159858e00"
+    },
+    "cece/boot-1/114-pending-after-status.json": {
+      "bytes": 505120,
+      "sha256": "64e213376c029ecdb935d5a0ee77eabbff413e70598b837182c81729ac050fe5"
+    },
+    "cece/boot-1/010-candidate-distroctl.json": {
+      "bytes": 404,
+      "sha256": "f10b217308bbceb1613975da17ce425ab66ede8555fe7e81b443497c7dd1d267"
+    },
+    "cece/boot-1/099-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "60e477877a2ea09d53e07eced37b88e6c2e26ad1c72126463f1a17abb47cbf0e"
+    },
+    "cece/boot-1/113-pending-boot-submit.json": {
+      "bytes": 624,
+      "sha256": "5aa4297a6c4864a48ec986f18a01a15dfbd2be7aefc38c258b5b202116db0dbb"
+    },
+    "cece/boot-1/083-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477293,
+      "sha256": "7c61921fd814d94a21758cbca986b7a9823904f0c596df9d9d229c2e4da44a0e"
+    },
+    "cece/boot-1/046-invalid-config-0.json": {
+      "bytes": 512,
+      "sha256": "03d5dfc9eb271b9c2724f219683ec1c703d177faa16c35e80fdd2aa21ee13e75"
+    },
+    "cece/boot-1/073-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 476864,
+      "sha256": "3a533068b58ff828842a4baf4399c286e3807543ead60c4fa9be7bd392964bcf"
+    },
+    "cece/boot-1/104-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "cf079dba48c4f776cc2e3027dc7b2cd56128468aceda389321b648a8ad3be8fe"
+    },
+    "cece/boot-1/067-stale-after-packages.json": {
+      "bytes": 15876,
+      "sha256": "0195ed98823994ecfee09a4b859f0a0584d841d950b0796eb9dafc9408d3a23c"
+    },
+    "cece/boot-1/014-candidate-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "7d35c0916eb02ffd23b9929ae12678cb2e72c44ea13e911d8cd94ba544f0980d"
+    },
+    "cece/boot-1/012-candidate-status.json": {
+      "bytes": 3213,
+      "sha256": "68e0053769df8b338dfc10583e63a65fbe52937b9e85e238bf5f2dcb748ac09f"
+    },
+    "cece/boot-1/064-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "9aef6a8b46e65023e3275f80bbcbbf81f24dd45bf9b8000b7ea2d03f02fdb0e7"
+    },
+    "cece/boot-1/032-package-details.json": {
+      "bytes": 690,
+      "sha256": "b6f6993710659f746771ea4adc6fa9a62f1dfa1ceadd715efeecbd0e8059255b"
+    },
+    "cece/boot-1/084-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477387,
+      "sha256": "3d9aff53a637d7d24362e7f1b2a5141b5866104eaae82f031a85295a64171a19"
+    },
+    "cece/boot-1/066-stale-after-history.json": {
+      "bytes": 325,
+      "sha256": "88808790c42094c535f2ef6628b863ca560c5fc1166f61048f26362b848c444d"
+    },
+    "cece/boot-1/038-ordinary-user-features.json": {
+      "bytes": 1903,
+      "sha256": "bfd220f5aff57b510ccc1cccc5007b43c4f959f55b62997a973f4c232acce9c4"
+    },
+    "cece/boot-1/006-ready.json": {
+      "bytes": 219,
+      "sha256": "33cbd0bb829d0d5242aa2d961ad399dcf499fc9150861c753aa3615e883ccbbf"
+    },
+    "cece/boot-1/056-unauthenticated-submit.json": {
+      "bytes": 668,
+      "sha256": "c2eec4c8e3f6866014913608336b65cab867d2112c4b77745b89cd5d6ca97cc1"
+    },
+    "cece/boot-1/092-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477411,
+      "sha256": "40082861344ae6f93b6ea40d54f1866359ffa979eb66fc65b9bff8bb08a0e38c"
+    },
+    "cece/boot-1/060-unprivileged-after-reasons.json": {
+      "bytes": 1053,
+      "sha256": "42d0be276cdb84a806d7264cd137417c6ed850f30c56d167fbb4d915c87fbecf"
+    },
+    "cece/boot-1/101-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "ff4295b5b2e6c72bd23d4b4eba84d918dd917ea0d1b49fdd410c89431a73eb7a"
+    },
+    "cece/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "5b16807562c97c0dd4f211b57a5fc87c620445abf380ff1138264acbc3bf42cc"
+    },
+    "cece/boot-1/051-invalid-after-status.json": {
+      "bytes": 3427,
+      "sha256": "c2d264398b77c7782ff0696af8853d58d8bca839061b9f106d866718f6740191"
+    },
+    "cece/boot-1/052-invalid-after-history.json": {
+      "bytes": 325,
+      "sha256": "f78a866bf6e35209383dcc625b20800f1eb43cd4ea1807b7c6b323bc8060fd2c"
+    },
+    "cece/boot-1/077-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477293,
+      "sha256": "5b34ed32a2c71cb39eb608d646df38cd9be9d2dbda6167a16536fee01ff87892"
+    },
+    "cece/boot-1/091-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477386,
+      "sha256": "a0322f5852baa66467460c95b25a9597a582681cfefaf1e497dc0977660851b0"
+    },
+    "cece/boot-1/026-candidate-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "03bbbec08b31ee3d9c57e82ea7c06cc06e69b3c603ef3a75ab5bb798f8fa5614"
+    },
+    "cece/boot-1/070-install-submit.json": {
+      "bytes": 714,
+      "sha256": "484e48f15a6826fefb9312ac10b756de98fd3077a34b80028b298ff7d6996746"
+    },
+    "cece/boot-1/097-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "4ba4a7e90ff8897d8dd15e217bc08ab974c1b7a117ab22b596d6922f59ab4541"
+    },
+    "cece/boot-1/035-initial-packages.json": {
+      "bytes": 15876,
+      "sha256": "4af6e14fbefb8b0630cb648e91a3349e44e0c5c42b620d1484a659c100d53544"
+    },
+    "cece/boot-1/018-candidate-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "da1ae5cfbe168899f331ab86690fbd4e662aef998c2af800fd62fb163536dd24"
+    },
+    "cece/boot-1/040-ordinary-user-export.json": {
+      "bytes": 602,
+      "sha256": "77d66d4be1e3484f9c8ebe7c1e47382dca2c70f4d656cbcb09890e2a2cfc6501"
+    },
+    "cece/boot-1/094-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "b5d130f3fff08c679c2e7eb66cc77d7e5e8c23479347877a5ca65613721a8254"
+    },
+    "cece/boot-1/serial.log": {
+      "bytes": 2130,
+      "sha256": "40b45d7292aaba2eb2d537b969a92d2549544ae147d287a3ea48c8c53f1b1291"
+    },
+    "cece/boot-1/054-invalid-after-reasons.json": {
+      "bytes": 1053,
+      "sha256": "9b3f0fbd588ac269aa6fa5015df78efeb19ec37edee6cbd3f5f787c7193c08b1"
+    },
+    "cece/boot-1/015-candidate-health-database.json": {
+      "bytes": 337,
+      "sha256": "31d001d483b0260859e7d4fbc897ddbf4759ddd83c2d127f19242ef794ac646f"
+    },
+    "cece/boot-1/082-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477293,
+      "sha256": "f3d5432e5daf725f1a781dc2d2a49372da5c270c6693eb02b68a97f63c7b8aea"
+    },
+    "cece/boot-1/019-candidate-health-boot.json": {
+      "bytes": 4085,
+      "sha256": "8ebae11014c9d2c984f73c00ad9f741beea1d9cef3fcd25d57a24fe9d4945f7f"
+    },
+    "cece/boot-1/058-unprivileged-after-history.json": {
+      "bytes": 325,
+      "sha256": "76e5cbcf00476f650a86c543841af97dd2086c05832596d1a7d12c178e18cefc"
+    },
+    "cece/boot-1/034-initial-history.json": {
+      "bytes": 325,
+      "sha256": "0f8cbfd3f3b3c73190e11b9cd6af47163ea73da95e0adff7e110d57da8e41acf"
+    },
+    "cece/boot-1/109-pending-before-status.json": {
+      "bytes": 505120,
+      "sha256": "6d3bf4f4b8154366d46da9878b1c6ac965ce23e8064ec7246250fd2734b17230"
+    },
+    "cece/boot-1/075-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 476992,
+      "sha256": "2e85c009f716692149872fe40df538971e3335e250b3703692d423be36f3e5fb"
+    },
+    "cece/boot-1/115-pending-after-history.json": {
+      "bytes": 479143,
+      "sha256": "f7ae476dddf7eee4acace7c8a631f2f688eac8cecccc70e5ff45b57782503d60"
+    },
+    "cece/boot-1/088-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477387,
+      "sha256": "83a7a73747b843f04ea14eab64488b3b5dd5a60a7165d0aac7ed9643d630b260"
+    },
+    "cece/boot-1/076-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477100,
+      "sha256": "9246db1a27669af2c5ed94c0fb952b74f843bff2acfb2807788b23d82969d34b"
+    },
+    "cece/boot-1/050-invalid-config-4.json": {
+      "bytes": 503,
+      "sha256": "4d855eb6acdde58a64b73801126ebd7b9be575a7bf2649006aa4695525d34cdc"
+    },
+    "cece/boot-1/045-readonly-after-reasons.json": {
+      "bytes": 1053,
+      "sha256": "81539b036434b7c74396889a9b32932ba1ee1c95059fccb5efb42c604e7520a8"
+    },
+    "cece/boot-1/017-candidate-health-mounts.json": {
+      "bytes": 9245,
+      "sha256": "811300618150bd4dee239b960b1ad367b09a1e0514d2b9c76b30206c545346d6"
+    },
+    "cece/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "b4b179fb98db8be022970b2fa32e76e3a8d46f7add6e9d4097e65a42c1fb6392"
+    },
+    "cece/boot-1/103-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "0bb7cc28f84e4ae72b027c97e66e4f2be8e1e1e17f1286f32a736edc9859fb14"
+    },
+    "cece/boot-1/020-candidate-health-root.json": {
+      "bytes": 376,
+      "sha256": "ee24da53e9ffaa6f29991f100e1bfa37b780491e091f0372e27801310dd70eee"
+    },
+    "cece/boot-1/107-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "cdaa22c5cf22afdd07fe371ad3f033e31eb6002cacba57d51f11c3cb1bfc19a8"
+    },
+    "cece/boot-1/090-operation-25692e564af31848c33453f6bd676c1e.json": {
+      "bytes": 477387,
+      "sha256": "9114bbe3108367418ba285fe2bc8692563a8c3e11f0765c2ee1fb8601fabb875"
+    },
+    "cece/boot-1/039-ordinary-user-packages.json": {
+      "bytes": 241942,
+      "sha256": "159ee7ebd246d188a897921c78b9769f13af6d273b712c71dab4e3a2b842f53e"
+    },
+    "cece/boot-1/028-candidate-health-history.json": {
+      "bytes": 316,
+      "sha256": "f18ba1e7b3980a46340025cb5261ef96c3bcb65069060fedcf4adde654980a0c"
+    },
+    "cece/boot-1/049-invalid-config-3.json": {
+      "bytes": 495,
+      "sha256": "e65a3995ffa254a026918ff7dcae945259eaf9c9c779035d9349bd106e0ead04"
+    },
+    "cece/screenshots/boot3-unlock.png": {
+      "bytes": 25567,
+      "sha256": "94d2385a78b962f08a5172e9782597cdfcfd7b5d045d0143f9aa3e09ddf1841c"
+    },
+    "cece/screenshots/boot1-unlock.png": {
+      "bytes": 25572,
+      "sha256": "233b0c0dc8ee6af06493833c7702920039bac83718462a6cafca40dd262b4a98"
+    },
+    "cece/screenshots/boot2-unlock.png": {
+      "bytes": 25559,
+      "sha256": "060aa35dcf91970af3fabbe136a164acac2166fc6374988ff5f9d10a270a9774"
+    },
+    "cece/boot-3/222-confirmed-package.json": {
+      "bytes": 343,
+      "sha256": "619f5697421401cc2150d228ddb177b2499556aa136b772805501e69222d4a27"
+    },
+    "cece/boot-3/240-retained-home-sentinel.json": {
+      "bytes": 389,
+      "sha256": "6e6c181c81c4b42628046ca20a84d59b3df1d5425a2d9a4ec342cd34914d1cfd"
+    },
+    "cece/boot-3/210-ready.json": {
+      "bytes": 219,
+      "sha256": "7161f461bc72a1ac170b6a632acf665c533766a6f283c1b689c888455d82d3e4"
+    },
+    "cece/boot-3/209-ready.json": {
+      "bytes": 219,
+      "sha256": "7a5c0d289adcf92eede94e9c8fbb6fef4245c00aa03ada65f1a36c4377892554"
+    },
+    "cece/boot-3/225-confirmed-health-2-database.json": {
+      "bytes": 337,
+      "sha256": "29f71527c7be9bd8dc75d38044ef88455636f35cec4c6a17821cf2bfd541494b"
+    },
+    "cece/boot-3/214-confirmation-2-trust.json": {
+      "bytes": 2534,
+      "sha256": "1370ba34158cced8ff5071a9b57c2806169e55486b73b5a06c746fd7b52bda51"
+    },
+    "cece/boot-3/218-boot-confirmation-history.json": {
+      "bytes": 966999,
+      "sha256": "5e361bdf0c3013a4c9e3d11d1f5b982a8c3c50066e3b6593cd16cb670c5e9bab"
+    },
+    "cece/boot-3/qemu-command.json": {
+      "bytes": 1159,
+      "sha256": "b8f6c45ccbe9788ebb9267693ef5b663657dfcf4020539475abd0f886348fde7"
+    },
+    "cece/boot-3/241-retained-history.json": {
+      "bytes": 967080,
+      "sha256": "9707ec73bdbdade13667832f07b6fc3c372de1632631bbdb763b8422e447c9bf"
+    },
+    "cece/boot-3/234-confirmed-health-2-uki-sha256.json": {
+      "bytes": 414,
+      "sha256": "f44d9ebcd5f472517a6f699c152803aa1f9ef182d078e570a6a37a5c179dc341"
+    },
+    "cece/boot-3/qmp-ready.json": {
+      "bytes": 4447,
+      "sha256": "2331e1844f6216c48da499c27140cf86a4c5ea7232b45e448c7aa34ec82eb9a1"
+    },
+    "cece/boot-3/237-confirmed-health-2-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "3b8c19021096eb7c76deecd153e6ebfef89ef7885d99bab77e868d9179e3efe4"
+    },
+    "cece/boot-3/231-confirmed-health-2-persistent.json": {
+      "bytes": 414,
+      "sha256": "952fc6114b4e3f58c444eb6339f634bf8ea3986c3c8586b9b6f5119121bf554e"
+    },
+    "cece/boot-3/208-ready.json": {
+      "bytes": 219,
+      "sha256": "359aeb77b087b58a99bd48e11f93d025a34f52aa10b14642572d74f99b7b4c5f"
+    },
+    "cece/boot-3/211-ready.json": {
+      "bytes": 219,
+      "sha256": "6ffade6a6db49782ffb3a905dd855b3da5aa82e3bdb9588ad538f516603a6bb8"
+    },
+    "cece/boot-3/221-confirmed-configuration.json": {
+      "bytes": 510041,
+      "sha256": "19f87a237cc06b8a49ceba9cb44f22593d6357f96881f1a2a483250afefef406"
+    },
+    "cece/boot-3/239-confirmed-health-2-snapshots.json": {
+      "bytes": 5225,
+      "sha256": "9c4cdb88e1c5a5c203c640a60d0639ea9291aabc5eedef5329a7e7a4caf4740d"
+    },
+    "cece/boot-3/207-ready.json": {
+      "bytes": 219,
+      "sha256": "d0ce8458051a87566070994a1f738887481022b27f33a44f3f08859d8087d6e4"
+    },
+    "cece/boot-3/203-ready.json": {
+      "bytes": 219,
+      "sha256": "2b80791faa36e7f632035ea83bac07cef644fdc02c732546a7fabd78a50b3810"
+    },
+    "cece/boot-3/242-retained-snapshots.json": {
+      "bytes": 5234,
+      "sha256": "c92dff90e7ce9291c145974138c728237729f95254d9450a1906221b3b6c3169"
+    },
+    "cece/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "97dd0e69817ec413c90cfbf8eea5980801f0e014f11a96fb338cbe5e30e0129d"
+    },
+    "cece/boot-3/205-ready.json": {
+      "bytes": 219,
+      "sha256": "15d9c4d1676b73ea6d96ebf3b26909676ebcacd0c12070695c61f695dc400053"
+    },
+    "cece/boot-3/243-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "5919cfd2a280496e6241ff3a487a58d6ccd13725f3cf8ae528331ad870f68420"
+    },
+    "cece/boot-3/qmp-confirmed-health-2.json": {
+      "bytes": 4447,
+      "sha256": "e7c872a99a0d6156c17f8940805c8887cc2ed5e1da1bf3664228b3d69a88378b"
+    },
+    "cece/boot-3/confirmation-2-trust.json": {
+      "bytes": 411,
+      "sha256": "30f3eae3440720dfd179c3b7632122500474c3082fa05f72ac3954987879df07"
+    },
+    "cece/boot-3/201-ready.json": {
+      "bytes": 219,
+      "sha256": "d4bb32be69782647497763feba39d70dd1f399529db80b0ecf464b56b9e2e9a8"
+    },
+    "cece/boot-3/219-boot-confirmation-history.json": {
+      "bytes": 966999,
+      "sha256": "b1924e7b36034c868cb883738eb5fb295035e5e8c7b8d399aac24109bda4fd8a"
+    },
+    "cece/boot-3/206-ready.json": {
+      "bytes": 219,
+      "sha256": "3b80974389e3b757ff4e14308ffc680fdefdad0f083702961dc92794f3cfcb87"
+    },
+    "cece/boot-3/229-confirmed-health-2-boot.json": {
+      "bytes": 3994,
+      "sha256": "f38606306ef98e5cba7a007b1201362248a3534fe1400241d8a2c4cc67a68274"
+    },
+    "cece/boot-3/204-ready.json": {
+      "bytes": 219,
+      "sha256": "6b54685c6902208be0b0b5173e9576cbeae353065e6486f0e34fc41ea845d317"
+    },
+    "cece/boot-3/216-boot-confirmation-history.json": {
+      "bytes": 962433,
+      "sha256": "80bacca319b415b6f383a5efe6b22a356d7ce0fcc6db05f8fb8200951833f7be"
+    },
+    "cece/boot-3/227-confirmed-health-2-mounts.json": {
+      "bytes": 8943,
+      "sha256": "31e6eb4178358c15c074ea934050821ce53aec701b375dc6cf74a38e025d036c"
+    },
+    "cece/boot-3/200-ready.json": {
+      "bytes": 219,
+      "sha256": "3298d484171ff414dd3df58614be74a3d1c6a0f6981383ea88daf44b9cb121c6"
+    },
+    "cece/boot-3/223-confirmed-health-2-status.json": {
+      "bytes": 3323,
+      "sha256": "2df7cc3cef603663395a6c98e792bb9cd715128aa252eb58c8ce51e37e773f92"
+    },
+    "cece/boot-3/233-confirmed-health-2-boot-journal.json": {
+      "bytes": 1167851,
+      "sha256": "c2564a78adad09f97a1df07436cc03f5be4b126604aa334abc5cbce4e1386d47"
+    },
+    "cece/boot-3/226-confirmed-health-2-failed.json": {
+      "bytes": 328,
+      "sha256": "d0cb41eac39c796a92cbb8e38a9edf5b4dd96991dd38e0b06f977b81483864a5"
+    },
+    "cece/boot-3/232-confirmed-health-2-journal.json": {
+      "bytes": 6677,
+      "sha256": "475a7f14bc19617775c78d7d3d2472d686618abe205263e29769c28dffcbdf51"
+    },
+    "cece/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cece/boot-3/212-ready.json": {
+      "bytes": 219,
+      "sha256": "72dac9fc68bc3f316508b006e4651f2eb385dcee6a94ebc477a15c24df1eee60"
+    },
+    "cece/boot-3/202-ready.json": {
+      "bytes": 219,
+      "sha256": "4bec3f5fb93d17217c9c932cd4f772bfbeaf3b3f5c1e6eb8374edbab0c31422d"
+    },
+    "cece/boot-3/reboot.json": {
+      "bytes": 110,
+      "sha256": "036f417104f33f5be3a1535dd8f13c5e7e02108b3ef97c0742c80518ac31a502"
+    },
+    "cece/boot-3/230-confirmed-health-2-root.json": {
+      "bytes": 376,
+      "sha256": "0647f12854fb52313dcb63a6396bbe30fa8ff09b0bed800c66a2d21da290c1d5"
+    },
+    "cece/boot-3/236-confirmed-health-2-pacman-log.json": {
+      "bytes": 1185,
+      "sha256": "eb32a55a625c736b8ff37b2b1e1d600ee072741966a59271f8ab5ad07d566405"
+    },
+    "cece/boot-3/serial.log": {
+      "bytes": 2310,
+      "sha256": "5f6e2c67fcb42a766c7a282e28e5638d8eb07db46fcf032f07c053e06436a4d2"
+    },
+    "cece/boot-3/220-boot-confirmation-history.json": {
+      "bytes": 967080,
+      "sha256": "95bf99d91693435311e82c8fdccd6982b87d70e725323fcacf00bae0011431ec"
+    },
+    "cece/boot-3/235-confirmed-health-2-kernel-command-line.json": {
+      "bytes": 515,
+      "sha256": "6211c4d5820be497565e167ef90b22f4275e923502f71d0258d9e9f66e53ad7e"
+    },
+    "cece/boot-3/217-boot-confirmation-history.json": {
+      "bytes": 962433,
+      "sha256": "1ae5fd6af0a16b2e93bf013d2219f2b142b36253ef556e60777a892785319c6a"
+    },
+    "cece/boot-3/213-ready.json": {
+      "bytes": 356,
+      "sha256": "13d6a1526de0798a6b7ebf24ec2e651c6874f2f0f62749106fb6ab8340c2b02f"
+    },
+    "cece/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "5f2cada11d2029239e39011f13500ab125f0f2ed5a2ed9709d028d4441d67ce1"
+    },
+    "cece/boot-3/224-confirmed-health-2-packages.json": {
+      "bytes": 15892,
+      "sha256": "728e352fb99dc2ece5a800b630a5b2738ac8df8795d4a436deb2ed57640a8b10"
+    },
+    "cece/boot-3/228-confirmed-health-2-subvolumes.json": {
+      "bytes": 1128,
+      "sha256": "81fcac145ee86626e001bc5374df18da1c6efac5d440c863367bf9f62105cc2e"
+    },
+    "cece/boot-3/215-confirmation-2-trust.json": {
+      "bytes": 518,
+      "sha256": "30e793fba114ac09ed3db9f29da9807cf728a359c2b0b8ab442209e9ada8d9dc"
+    },
+    "cece/boot-3/238-confirmed-health-2-history.json": {
+      "bytes": 967071,
+      "sha256": "1ae156a96ca6ce16b70ffaf9bead1121a504280847a6e8aeb1ebf90807ec4502"
+    },
+    "cece-control/output.log": {
+      "bytes": 246,
+      "sha256": "337d4dc238ba50ce241619ab6d31416fcb168d2ca8b58407263b0bd5aee9f7bf"
+    },
+    "cece-control/launch.json": {
+      "bytes": 685,
+      "sha256": "b27161781e93968f6f280682e3afa8d98f8a21b52d6084eb8988663d49b11207"
+    }
+  }
+}

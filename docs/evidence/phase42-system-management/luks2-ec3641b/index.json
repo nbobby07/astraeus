@@ -1,0 +1,102 @@
+{
+  "cece/inputs.json": {
+    "bytes": 3175,
+    "sha256": "bcdb43b19f3944eded79c4f0b15dc9b533c2bc38ebb0b453a6b904b148b9ce39"
+  },
+  "cece/install-operation.json": {
+    "bytes": 434745,
+    "sha256": "8f91c6b2cc5cc0d021d6ee0a23a19738eda96c152ec972ea36163e668b733338"
+  },
+  "cece/matrix.json": {
+    "bytes": 8625,
+    "sha256": "0ade03c66406d72030b31a43b429465673fc8eea950bf5c494d5d42b1a5d6dcc"
+  },
+  "cece/remove-operation.json": {
+    "bytes": 434588,
+    "sha256": "448c5536f87f25e0b4e0e4e6c37b202698b316f6347ad14c36f75b53fa8a4218"
+  },
+  "cece/screenshots/boot1-unlock.png": {
+    "bytes": 25572,
+    "sha256": "233b0c0dc8ee6af06493833c7702920039bac83718462a6cafca40dd262b4a98"
+  },
+  "cece/screenshots/boot2-unlock.png": {
+    "bytes": 25559,
+    "sha256": "060aa35dcf91970af3fabbe136a164acac2166fc6374988ff5f9d10a270a9774"
+  },
+  "cece/screenshots/boot3-unlock.png": {
+    "bytes": 25567,
+    "sha256": "94d2385a78b962f08a5172e9782597cdfcfd7b5d045d0143f9aa3e09ddf1841c"
+  },
+  "luks2-baseline-ec-evidence-index.json": {
+    "bytes": 20394,
+    "sha256": "70ed20188661e01dadbf0f7a90269444bd112e271e863134343efe8402a0dd71"
+  },
+  "luks2-baseline-ec-export.json": {
+    "bytes": 286,
+    "sha256": "e48704e8fff1321c4a438b7091fc7ef2f03d1431665ae18750a8ad5b944ea7ad"
+  },
+  "luks2-baseline-ec-local-verification.json": {
+    "bytes": 153,
+    "sha256": "315a6dd4b6823c7ac0007330750f71407c5861d099b3d7a878edcb856964486c"
+  },
+  "luks2-cli-ec-evidence-index.json": {
+    "bytes": 46470,
+    "sha256": "77ab44bc896f03afd918c95a74595652223f7775812b837b33354af247f04613"
+  },
+  "luks2-cli-ec-export.json": {
+    "bytes": 281,
+    "sha256": "15daa25476187fc8da8d068a002b88c97de2b80a2c5592b99a6a6536c8055123"
+  },
+  "luks2-cli-ec-local-verification.json": {
+    "bytes": 147,
+    "sha256": "a46455a14ee7e3fb74139130162ed91b87e9008cc5a319ab0ab84189449034c2"
+  },
+  "nece/baseline.json": {
+    "bytes": 2230,
+    "sha256": "2472396723d2fe07b5ae6d5185d6affd26721ae2b21693b4f55ee9ff5d4c3b18"
+  },
+  "nece/result.json": {
+    "bytes": 518,
+    "sha256": "df4eebde8ab90a9f3eaef471ace9901cd3c321cfdfbdab69de7730c290ceea7b"
+  },
+  "nece/screenshots/enforced1-sddm.png": {
+    "bytes": 222894,
+    "sha256": "83576997dcd429e54d4d060ad17140f50ad86c6337ac08e38bfc9760d227f709"
+  },
+  "nece/screenshots/enforced1-unlock.png": {
+    "bytes": 25534,
+    "sha256": "ebb25aebc90a724de0134504efb9f05131346fa16be3e99f9d107adf05479d16"
+  },
+  "nece/screenshots/enforced2-sddm.png": {
+    "bytes": 222536,
+    "sha256": "0ac65e1b4becc3dd214050d8201711a69d4443e5b7c667f7ee449c5e7b415bd5"
+  },
+  "nece/screenshots/enforced2-session.png": {
+    "bytes": 11802,
+    "sha256": "ac8d37e712b389b193e442cc8434209459550ab68ca0cb64400fe05f6089adbb"
+  },
+  "nece/screenshots/enforced2-unlock.png": {
+    "bytes": 25038,
+    "sha256": "a10e37e00116905a472f21d39eed7e0a0ba96d5e67e2b09df52989d57adf9cc0"
+  },
+  "nece/screenshots/setup-desktop.png": {
+    "bytes": 554956,
+    "sha256": "1558020861b217bf8be21b207b8f50e7160e469ee4b49146644a43e73b875561"
+  },
+  "nece/screenshots/setup-terminal.png": {
+    "bytes": 273438,
+    "sha256": "ee35d590489bcb697d62c21d7b0ec484ff4de1e0e541776809cc07b01b4d0145"
+  },
+  "README.md": {
+    "bytes": 1767,
+    "sha256": "d5e6eaadcd4d90faf5f729b440022bf3b45cba46316e384311b0af557d450cb9"
+  },
+  "rece-build.log": {
+    "bytes": 4609,
+    "sha256": "d63a831f2c5703a8b9fb07035f0452b002ee65540ccc3d243a1b1d89af7001a3"
+  },
+  "rece-manifest.json": {
+    "bytes": 2121,
+    "sha256": "2526beeca8964f21b0047662549cd7092090f59dbd230d1d56c33bd0bc20be5d"
+  }
+}

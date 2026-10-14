@@ -1,0 +1,535 @@
+{
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "encrypted_baseline_accepted": true,
+  "enforced_boots_passed": 2,
+  "files": {
+    "nece/baseline.json": {
+      "bytes": 2230,
+      "sha256": "2472396723d2fe07b5ae6d5185d6affd26721ae2b21693b4f55ee9ff5d4c3b18"
+    },
+    "nece/fresh-installation.json": {
+      "bytes": 1556,
+      "sha256": "a1e1cd4f8edf9e5e22f5c30044f649bf94041c2e31530c3c30b5b36da7cdf86e"
+    },
+    "nece/fresh-installed-2.json": {
+      "bytes": 151636,
+      "sha256": "cc450e84acef7c6c22626143f01b4e9a3d92f0c09017a2309670b7c04ddf8e5d"
+    },
+    "nece/fresh-installed-1.json": {
+      "bytes": 152738,
+      "sha256": "31ef3b438054281040b9f55e0f4d9fe579ced0085f27d8fdca27b5a70d4e016e"
+    },
+    "nece/attention.json": {
+      "bytes": 26,
+      "sha256": "ac0797c3ae00213252c3a7c84a4e88ab3412558e9f7bd2b0d18a2b708218ee1e"
+    },
+    "nece/installation.json": {
+      "bytes": 526,
+      "sha256": "e79d06abae013d732a3409901b0fa50eabaa70aa9cd4fd61c04e4b5f43ae03b7"
+    },
+    "nece/result.json": {
+      "bytes": 518,
+      "sha256": "df4eebde8ab90a9f3eaef471ace9901cd3c321cfdfbdab69de7730c290ceea7b"
+    },
+    "nece/maintained-uki-trust-2.json": {
+      "bytes": 361,
+      "sha256": "723e915928d3bb31985e94f6912b4537fd85009213c72e402031793c39fc3515"
+    },
+    "nece/inputs.json": {
+      "bytes": 764,
+      "sha256": "bf788ca19dbe02503512220f8c848e93dd1b55751c53335c0391c394878f8f63"
+    },
+    "nece/maintained-uki-trust-1.json": {
+      "bytes": 361,
+      "sha256": "723e915928d3bb31985e94f6912b4537fd85009213c72e402031793c39fc3515"
+    },
+    "nece/boot-2/048-fresh-installed-1-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "5ef794b6ab5f4917c7f3291dab207f050b3d31f38c991341fc7f9cb02b1d1e14"
+    },
+    "nece/boot-2/033-installed-boot-trust.json": {
+      "bytes": 2288,
+      "sha256": "1f1d9a83bc738aa88ba33be8300b0918f7418c7c3f5d242c2724c92b771a4510"
+    },
+    "nece/boot-2/021-ready.json": {
+      "bytes": 219,
+      "sha256": "a7f65368cf2fa096a848298dc15041da6c2d7322913dc0e1950fbe67d407ebe7"
+    },
+    "nece/boot-2/032-ready.json": {
+      "bytes": 356,
+      "sha256": "792868f089d920c6e722ee511a0770c9358a61ed37ab65ad647b44a3ac706b1e"
+    },
+    "nece/boot-2/017-ready.json": {
+      "bytes": 219,
+      "sha256": "478acc98be10d5a7afcde23073e68886e47bf5fa589981117d59fdf0db7e17e8"
+    },
+    "nece/boot-2/046-fresh-installed-1-journal.json": {
+      "bytes": 6677,
+      "sha256": "4641f8f2f79c72234ee4479e99f381e6e1af8cd4dbd059bd0167099328e889e4"
+    },
+    "nece/boot-2/042-fresh-installed-1-subvolumes.json": {
+      "bytes": 545,
+      "sha256": "6c54fa2e14ddb7197183dc38a7acc8a3af7f221605c6421945dd2ece35521493"
+    },
+    "nece/boot-2/qemu-command.json": {
+      "bytes": 1160,
+      "sha256": "a5ef57c78da24f13d7ce5a15cde844fd79685fa1bcaf5ae4e4f4b97e5f6debae"
+    },
+    "nece/boot-2/qmp-ready.json": {
+      "bytes": 3579,
+      "sha256": "d22f40574a153ddaaddc9bcebc0c818b3befd63eebfd8bfac1d601fddd0e4591"
+    },
+    "nece/boot-2/016-ready.json": {
+      "bytes": 219,
+      "sha256": "972752ac3feefdaf2eca20eea22f818b081efaa7415c16bb22ddb39c8d11a485"
+    },
+    "nece/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "e5ea2c8f73cfb84788388ff1e8832f512d07d67fabc3355b63a8287a058d8c5f"
+    },
+    "nece/boot-2/049-fresh-installed-1-kernel-command-line.json": {
+      "bytes": 455,
+      "sha256": "0f9447cd3bdcb61c2a1825b2b1c95a76fdd05619670f40c4de72f76cfa731342"
+    },
+    "nece/boot-2/047-fresh-installed-1-boot-journal.json": {
+      "bytes": 112427,
+      "sha256": "584dc9a93ad462b211d587f569dd7defb541c79a18eae95a1221a450605a48c7"
+    },
+    "nece/boot-2/043-fresh-installed-1-boot.json": {
+      "bytes": 4085,
+      "sha256": "a6d238f0f28fdcf2e02e3f0a5d6f982b6a875167b2c514796bbfd094a7a920a5"
+    },
+    "nece/boot-2/031-ready.json": {
+      "bytes": 219,
+      "sha256": "a8445fdfdb0b5dd48918e9abbe169fe65c4f37ee2f4cef7cbe238739c24bff3c"
+    },
+    "nece/boot-2/029-ready.json": {
+      "bytes": 219,
+      "sha256": "b7345613a9cc9a61e45ae4e9f02fbbb45c7defa17575440b666c0905f1b0241b"
+    },
+    "nece/boot-2/022-ready.json": {
+      "bytes": 219,
+      "sha256": "87ef5f389af09f4fd2417784fa8ff3d813c592ab7afb615ac1367c45f39bb9fa"
+    },
+    "nece/boot-2/025-ready.json": {
+      "bytes": 219,
+      "sha256": "fc9d4c40b95e5950bba4a975789b16e03ca61511de8c8135497bea9c5e607b63"
+    },
+    "nece/boot-2/020-ready.json": {
+      "bytes": 219,
+      "sha256": "ba96722d839c3c5b1537452ee96f0aa5e347854857343e72fb6196ea3250cde4"
+    },
+    "nece/boot-2/037-fresh-installed-1-status.json": {
+      "bytes": 3313,
+      "sha256": "46212fa84e859e42c641d1b0b6567e98447b7bf3ec6096597e9b5fb11ac772d9"
+    },
+    "nece/boot-2/038-fresh-installed-1-packages.json": {
+      "bytes": 15876,
+      "sha256": "4c06026d9406d464620717240dc3a692abac21c10c5b15840d3dfc85cad1ffcd"
+    },
+    "nece/boot-2/052-actual-desktop-1.json": {
+      "bytes": 7408,
+      "sha256": "0737896d55376451b296aa2d49baf14af7400f7758cdf228175485fdc320ac3f"
+    },
+    "nece/boot-2/024-ready.json": {
+      "bytes": 219,
+      "sha256": "1bf35813c8e84e73c5b9ce21265d4cfc47a2983f1c75e9093d749d3c1ef6c9c2"
+    },
+    "nece/boot-2/044-fresh-installed-1-root.json": {
+      "bytes": 376,
+      "sha256": "5dd001ffdc278cc67d50be7a96de73da81276dd7849c8ea878c4337d05cf8ea1"
+    },
+    "nece/boot-2/027-ready.json": {
+      "bytes": 219,
+      "sha256": "74481854648493353f75dfc33b54dde1bb3dacad29642f5ef2e403df0e1f75fd"
+    },
+    "nece/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nece/boot-2/051-fresh-installed-1-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "b63ee5093227e1842002f47ca2d4c59a032f94f21e69dc0409459be00f25d3c6"
+    },
+    "nece/boot-2/039-fresh-installed-1-database.json": {
+      "bytes": 337,
+      "sha256": "8a5c073a8dcc6f7fbb987923ae834250b7d3e85585be4fafde998245e371d504"
+    },
+    "nece/boot-2/030-ready.json": {
+      "bytes": 219,
+      "sha256": "074f01bae846eec8fbf644995ed49e4b8bc89ea2fd46fe6e7f3044f7d9a683cb"
+    },
+    "nece/boot-2/035-installed-boot-trust.json": {
+      "bytes": 522,
+      "sha256": "d92fac404c5e4e04f9b03b2ffd9085e11c21d3ec96f30e94ff09ac8166b7ac29"
+    },
+    "nece/boot-2/qmp-fresh-installed-1.json": {
+      "bytes": 3579,
+      "sha256": "7168b9ac4fba4b63a9696b15390d039f091d3684eb78c0c0446a3a3adc2ac527"
+    },
+    "nece/boot-2/041-fresh-installed-1-mounts.json": {
+      "bytes": 8942,
+      "sha256": "a977b57e1ae091d08f1eb0a1d9950fae85095701e7defd42497e0420d4bb0aa6"
+    },
+    "nece/boot-2/034-installed-boot-trust.json": {
+      "bytes": 429,
+      "sha256": "a8542a605e6f139dea59704710c2d6f42e7790361f3566f1946f8acf7821b516"
+    },
+    "nece/boot-2/036-network-online.json": {
+      "bytes": 340,
+      "sha256": "90cbe7a1edcb9f075f94137007c5636fd67e8d09a81efe632e342ccec61dfb05"
+    },
+    "nece/boot-2/serial.log": {
+      "bytes": 2085,
+      "sha256": "0dc374361c1347e8a971f280c1fa800fcecea1f773879440bd9cff6d9d85f988"
+    },
+    "nece/boot-2/040-fresh-installed-1-failed.json": {
+      "bytes": 328,
+      "sha256": "9a62db7bc29279e9ed32be2c87ff8445746382318bb78d84ddeda98dc29ad719"
+    },
+    "nece/boot-2/045-fresh-installed-1-persistent.json": {
+      "bytes": 414,
+      "sha256": "c413fc5509863c590e21bf3852fbdef51d5323d4d97d84926ecb4170a156af53"
+    },
+    "nece/boot-2/018-ready.json": {
+      "bytes": 219,
+      "sha256": "f422cbbd50ac4b71feb0e22f6913a8ec53e17aeb2382016ed81700e6e51d632f"
+    },
+    "nece/boot-2/026-ready.json": {
+      "bytes": 219,
+      "sha256": "2352ddd0291358e4deb8e22c6c352e56cdddd60448fa6f7f8b1d69155f67d430"
+    },
+    "nece/boot-2/053-enable-managed-generations.json": {
+      "bytes": 358,
+      "sha256": "0c98b83aa9c7a6f6e242065eb7f96740d54ce5be74e110513219cb8e396bbc62"
+    },
+    "nece/boot-2/023-ready.json": {
+      "bytes": 219,
+      "sha256": "2be3c49a0693cbebe37951ac3f262bd10eb30f711f6f4b64d1b37d0dac1b7102"
+    },
+    "nece/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "358bfbfb2b5b5d0e03726cb8670a7cad02369fb2fdcf55ed69f1448fe996fb24"
+    },
+    "nece/boot-2/050-fresh-installed-1-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "f924c90cf977c1a12e3b0d65d9b4ef98340ee60df31ac486014deeea747d2cc5"
+    },
+    "nece/boot-2/054-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "384aa949038de835c53d911b154bae07fe2f5854bedf4daf8b5cdd61b9ed8d5d"
+    },
+    "nece/boot-2/019-ready.json": {
+      "bytes": 219,
+      "sha256": "2fb7ec5f4f36bead90242c454446b5d657d00037e22c1111fb8eb6082ea485e8"
+    },
+    "nece/boot-2/028-ready.json": {
+      "bytes": 219,
+      "sha256": "9ccf6b5e44f3a4857afcf62b2cdaad42cf36ff545b826fb3f13a158c99afc54a"
+    },
+    "nece/public-owner/db.crt": {
+      "bytes": 1172,
+      "sha256": "bff4bcad2cc6949d7ae66b95a38c0ebe6e375f7ddaabdb1641109d856c2c48bb"
+    },
+    "nece/public-owner/PK.crt": {
+      "bytes": 1172,
+      "sha256": "49c44d688026ff7616d02eb69648ecb672e2c918a1fa5a059236e56c8c9976a8"
+    },
+    "nece/public-owner/db.cer": {
+      "bytes": 823,
+      "sha256": "afeff872533e481efe6457ebb4b99560d11b3b932195a4b4b3505394e1e08dec"
+    },
+    "nece/public-owner/KEK.cer": {
+      "bytes": 825,
+      "sha256": "ae0197e22522d4ebf7b8e1cd02d0ce2234725c448fc803db7908daf915092ce4"
+    },
+    "nece/public-owner/KEK.crt": {
+      "bytes": 1172,
+      "sha256": "fec823987a80e94671b13e92e9b61b28334022ec7538f9b984d1287ec874eaa8"
+    },
+    "nece/public-owner/PK.cer": {
+      "bytes": 823,
+      "sha256": "4abac1fab5945c922f558de7b5a940541369ce77cd9c5d1c09b5913abd10f99c"
+    },
+    "nece/boot-1/008-ready.json": {
+      "bytes": 219,
+      "sha256": "dcc006e852bf29bddc64ba93dc60aa4af0b94eb95af8c88a663443bffb70254c"
+    },
+    "nece/boot-1/012-ready.json": {
+      "bytes": 356,
+      "sha256": "cd591f513a33f4ded413dbb79fe1717b285f38f5b69f6e5259817a08f91437e3"
+    },
+    "nece/boot-1/011-ready.json": {
+      "bytes": 219,
+      "sha256": "42266c949aab46c2688a1902d53ae022b4e90eadbc01254f3e0cf6e525431776"
+    },
+    "nece/boot-1/qemu-command.json": {
+      "bytes": 1403,
+      "sha256": "98cfcf37699a171a84014524ca28d96344efba3f434a614d00d16c69421779b9"
+    },
+    "nece/boot-1/qmp-ready.json": {
+      "bytes": 4438,
+      "sha256": "4ecacdf112609f098ae0aa30f97b99b9763053a7b4f1c7d3537b6622f1c5bf35"
+    },
+    "nece/boot-1/013-installation-firmware-before-writes.json": {
+      "bytes": 472,
+      "sha256": "f087f4be3f775422b7851581a078253b3c44ae8dc13714bca16056fa9e28fce8"
+    },
+    "nece/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "96b5c4224e65d24e2a54835f8f60da33529854c2e2a8d17105f44177ab4a4297"
+    },
+    "nece/boot-1/004-ready.json": {
+      "bytes": 219,
+      "sha256": "0961bfef5bd925b6490482bd4cea9537f26a71a1bf910b9a7e54cb2f01452d35"
+    },
+    "nece/boot-1/005-ready.json": {
+      "bytes": 219,
+      "sha256": "0095a316fcf7db4eb196943168127c3bb785ad02d2deec470047a5cef0c3f1f9"
+    },
+    "nece/boot-1/015-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "202ff0bd3a35bdb25d4f8c5b3fbd6b41b44233efad21f87eb92fc62fdd1d027f"
+    },
+    "nece/boot-1/007-ready.json": {
+      "bytes": 219,
+      "sha256": "5db1a3f134d2f92c563993d3ac309d5544f82ace22bb3ce975c9a97706cd0c9e"
+    },
+    "nece/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "6b51e37c6d0f76a589b08538348a246465c2b29629908c2bd49b8eb1e0b4b807"
+    },
+    "nece/boot-1/003-ready.json": {
+      "bytes": 219,
+      "sha256": "90dc00326be0b5487b27ce3ac7e586b84b33cd14a94de8640fac66f300ca4ea2"
+    },
+    "nece/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nece/boot-1/009-ready.json": {
+      "bytes": 219,
+      "sha256": "02bb711d2aa62d52fb815b1a99925265f8175a3f05110157fb9278a480d263c0"
+    },
+    "nece/boot-1/010-ready.json": {
+      "bytes": 219,
+      "sha256": "049df3a43c2d1a8bbe4b4bd261f8c6b8415f29cd2faac657b157358e96b081c1"
+    },
+    "nece/boot-1/006-ready.json": {
+      "bytes": 219,
+      "sha256": "95713fa722ae2c66501b26ce3f64dfa64b3a48e87c8c96b2c8e62af2e7232752"
+    },
+    "nece/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "b8e68777dce053823432ec6cc754a0ef745eec83033e1829f064cecbfc0a7624"
+    },
+    "nece/boot-1/014-fresh-payload-install.json": {
+      "bytes": 1837,
+      "sha256": "58692e77939aab55e3fb02a6fa9c0a7e4469d8c20158b1a1b0a108388fb5e289"
+    },
+    "nece/boot-1/serial.log": {
+      "bytes": 28633,
+      "sha256": "817aedba46149a879b68a08469581b60e2db213a6f4c6ae5cfd0ae4e7569fbc4"
+    },
+    "nece/boot-1/process.json": {
+      "bytes": 174,
+      "sha256": "add75baa3ab9dc2746d640b7b976c6072b6b4035a5000425299ef86c3722c5a7"
+    },
+    "nece/screenshots/setup-terminal.png": {
+      "bytes": 273438,
+      "sha256": "ee35d590489bcb697d62c21d7b0ec484ff4de1e0e541776809cc07b01b4d0145"
+    },
+    "nece/screenshots/enforced2-unlock.png": {
+      "bytes": 25038,
+      "sha256": "a10e37e00116905a472f21d39eed7e0a0ba96d5e67e2b09df52989d57adf9cc0"
+    },
+    "nece/screenshots/enforced2-sddm.png": {
+      "bytes": 222536,
+      "sha256": "0ac65e1b4becc3dd214050d8201711a69d4443e5b7c667f7ee449c5e7b415bd5"
+    },
+    "nece/screenshots/enforced2-session.png": {
+      "bytes": 11802,
+      "sha256": "ac8d37e712b389b193e442cc8434209459550ab68ca0cb64400fe05f6089adbb"
+    },
+    "nece/screenshots/enforced1-sddm.png": {
+      "bytes": 222894,
+      "sha256": "83576997dcd429e54d4d060ad17140f50ad86c6337ac08e38bfc9760d227f709"
+    },
+    "nece/screenshots/enforced1-unlock.png": {
+      "bytes": 25534,
+      "sha256": "ebb25aebc90a724de0134504efb9f05131346fa16be3e99f9d107adf05479d16"
+    },
+    "nece/screenshots/setup-desktop.png": {
+      "bytes": 554956,
+      "sha256": "1558020861b217bf8be21b207b8f50e7160e469ee4b49146644a43e73b875561"
+    },
+    "nece/boot-3/082-fresh-installed-2-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "0e84b7c62b91018d38c79043ef860b022ce0d76a02fb66f6d4b0a69fb57c9849"
+    },
+    "nece/boot-3/069-installed-boot-trust.json": {
+      "bytes": 522,
+      "sha256": "abf9d9ac6b09f82ce7d1c6aff6fa181da201449732d6942067a14fb1b8e667e1"
+    },
+    "nece/boot-3/062-ready.json": {
+      "bytes": 219,
+      "sha256": "881cdc809d589087d59f7ddaef871cb4943cf99f784d8f6f2057af64370d263e"
+    },
+    "nece/boot-3/073-fresh-installed-2-database.json": {
+      "bytes": 337,
+      "sha256": "f6a5fbf074b831a079ce58da74104a234845631e5e4bdc0eed2898ce6b6d7ba9"
+    },
+    "nece/boot-3/085-fresh-installed-2-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "2358bd29d2b2529584875346054414e25564008f49d1391b1d308d5ea916ab5d"
+    },
+    "nece/boot-3/078-fresh-installed-2-root.json": {
+      "bytes": 376,
+      "sha256": "7a2ed575fb4c8de7b592836af3298487553df09dc0a4204271ce17cc5a339b1d"
+    },
+    "nece/boot-3/056-ready.json": {
+      "bytes": 219,
+      "sha256": "13af9ad2ad317768b8bc46df5a09683d873c0bb90a804c57220b8e794771bc0b"
+    },
+    "nece/boot-3/060-ready.json": {
+      "bytes": 219,
+      "sha256": "72076bdb9f663cb7291753d96e8b94efbdb1c26979c26596b02ed750de82f2c7"
+    },
+    "nece/boot-3/068-installed-boot-trust.json": {
+      "bytes": 429,
+      "sha256": "be7124bd07be8b477d2efbbb1826963f0fa351b96fa9550a777d929f55972ce8"
+    },
+    "nece/boot-3/077-fresh-installed-2-boot.json": {
+      "bytes": 4085,
+      "sha256": "7be305e71b7bbe570f918621c14f0d50689c0e40111ac6c240b733bf362def95"
+    },
+    "nece/boot-3/qemu-command.json": {
+      "bytes": 1160,
+      "sha256": "fac100f7a78a544bcb9c80cfb461a161fac65217b239ba49d26034b6935b3780"
+    },
+    "nece/boot-3/081-fresh-installed-2-boot-journal.json": {
+      "bytes": 111323,
+      "sha256": "508042823984bafb4b9cb8c100c2b11edb358bfaf9ba2c3471fbff4e11f6f1bf"
+    },
+    "nece/boot-3/080-fresh-installed-2-journal.json": {
+      "bytes": 6678,
+      "sha256": "434842bb500bb61a766a7b110b4dcb71bb9893c8a439fc96ffa55e4cdb2b2332"
+    },
+    "nece/boot-3/086-actual-desktop-2.json": {
+      "bytes": 7399,
+      "sha256": "e17618d4ccf57555c57e96c9864cb7029f3cdc4c3018e047219f3292182ba8fc"
+    },
+    "nece/boot-3/qmp-ready.json": {
+      "bytes": 3579,
+      "sha256": "dee52372164e9caf9e8949e841a6071295d71f3cc88ea83dd65bd0238bb215a9"
+    },
+    "nece/boot-3/067-installed-boot-trust.json": {
+      "bytes": 2288,
+      "sha256": "5cd7d1918e8f9ca02d7706c130a69dca74bbf5d56f31c5a30bc99c0adc039169"
+    },
+    "nece/boot-3/059-ready.json": {
+      "bytes": 219,
+      "sha256": "42a71495bc7e5205e3377d74caca02d18a2fdb301f524abb39ec1f4aadbf2251"
+    },
+    "nece/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "567fb57b66efba7a3504382bcb48182df0898a2597b3fc55f74c9f9da1528777"
+    },
+    "nece/boot-3/074-fresh-installed-2-failed.json": {
+      "bytes": 328,
+      "sha256": "610df78dfacb346b127306649b51dda9360449dba4dd4ebc19ec6c8abe5c9804"
+    },
+    "nece/boot-3/063-ready.json": {
+      "bytes": 219,
+      "sha256": "a119984fe7b1e87121d134a74540992b6a1c46fff92c4cf50e61c1e4285167f4"
+    },
+    "nece/boot-3/055-ready.json": {
+      "bytes": 219,
+      "sha256": "91501418653e4b198d34b2cbc5b05f96d4a7cf8bffd9ae2e4186d19eec9f5451"
+    },
+    "nece/boot-3/065-ready.json": {
+      "bytes": 219,
+      "sha256": "50654525a0f1e354a0c1d192d861c1ab73651ce8bac1763ddf337619d1b6fb44"
+    },
+    "nece/boot-3/083-fresh-installed-2-kernel-command-line.json": {
+      "bytes": 455,
+      "sha256": "0620d6fe035a99f925d9720754d31b4f3df9edd49deba190fe812a9bddac04e7"
+    },
+    "nece/boot-3/057-ready.json": {
+      "bytes": 219,
+      "sha256": "42140f96597432ee2fb205bcbba1556a4fb736f16de5094ce46f3d241889f25a"
+    },
+    "nece/boot-3/066-ready.json": {
+      "bytes": 356,
+      "sha256": "9c42e0e20f696d7d3527582442474f7a00506f13acab44fd608c86935186e8a8"
+    },
+    "nece/boot-3/087-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "21da13ad33a5af8d4194be50a051181ee1966fc8d94c3657be319dc5e6138a41"
+    },
+    "nece/boot-3/061-ready.json": {
+      "bytes": 219,
+      "sha256": "b3e75e56d3a98627fc66c52d3e2c83a6d45957d606534a9496c67d5efe9b07a5"
+    },
+    "nece/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nece/boot-3/072-fresh-installed-2-packages.json": {
+      "bytes": 15876,
+      "sha256": "af046a13cdfb4920c39753c0c106c54a8e41daf3485b08a38126ce848e3ea57d"
+    },
+    "nece/boot-3/071-fresh-installed-2-status.json": {
+      "bytes": 3313,
+      "sha256": "42bfaa955fba0f63f1cd6694c376653810f6342a61749f3332da08b7a40fb6da"
+    },
+    "nece/boot-3/075-fresh-installed-2-mounts.json": {
+      "bytes": 8942,
+      "sha256": "fca50d4a6f45ccafd0cdd79e0e1ed61842e678d83eb7ba336de97498b85c150a"
+    },
+    "nece/boot-3/064-ready.json": {
+      "bytes": 219,
+      "sha256": "bb53dec6f848034d171e2126693fda778c10a5b514e7d32213613f735c1f42a6"
+    },
+    "nece/boot-3/serial.log": {
+      "bytes": 2085,
+      "sha256": "6098176d09abaa597acc9385a415019be3f6c837b84b1ac7be747373816f6627"
+    },
+    "nece/boot-3/076-fresh-installed-2-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "68604e85bf845cd10456f5eb5be7cb36fbdec3e3daf2b94e0e38403e4577d6e1"
+    },
+    "nece/boot-3/079-fresh-installed-2-persistent.json": {
+      "bytes": 414,
+      "sha256": "c5e76ef4f1db354abd0f1c4854439b18c51404c4580db8ec6ea839a81d7bcfb3"
+    },
+    "nece/boot-3/070-network-online.json": {
+      "bytes": 340,
+      "sha256": "40afb99892a2a60e766ae8ee72dd009e64343e59191f260d6d11309c03a00cef"
+    },
+    "nece/boot-3/qmp-fresh-installed-2.json": {
+      "bytes": 3579,
+      "sha256": "dee52372164e9caf9e8949e841a6071295d71f3cc88ea83dd65bd0238bb215a9"
+    },
+    "nece/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "2482ce866cbeea5de47c30555c4077dc0b4bd03a7f647c4c8635adc174971bf8"
+    },
+    "nece/boot-3/084-fresh-installed-2-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "6a9cb1be77b432c4bc8fa47d6fbf2a45887b04eb7099dba4e04110826c8ffd4f"
+    },
+    "nece/boot-3/058-ready.json": {
+      "bytes": 219,
+      "sha256": "5a2fc3e2a5583e828754ebfeaea29cde83edcfc3a17144b0719330b08a97d2f2"
+    },
+    "nece-control/output.log": {
+      "bytes": 398,
+      "sha256": "ad9e3c9ca6e735525c299b2e591d5a57b6b89e669e46105233b9057665465fa9"
+    },
+    "nece-control/launch.json": {
+      "bytes": 942,
+      "sha256": "39f432534e9a3f29daa4affa952e23fce619803d725b24527f950e2ce5a26551"
+    }
+  }
+}
