@@ -22,6 +22,12 @@ for the firmware and private QMP inputs. Its receipt explicitly records
 `calamares_ui: false`; it does not claim a new Calamares UI test.
 Initial provisioning uses the existing SetupMode path. The recorded enrollment
 step precedes every management and recovery acceptance test.
+Use the same Secure Boot-capable CODE file for `--setup-ovmf-code` and
+`--ovmf-code`. The harness enables SMM and protected pflash while pristine,
+unenrolled VARS provide the initial SetupMode boot. Before partition writes it
+requires mounted efivarfs and explicit `SecureBoot=0`, `SetupMode=1` observations.
+Missing or malformed variables are failures. After enrollment, both installed
+boots require `SecureBoot=1`, `SetupMode=0`.
 
 ```sh
 python3 scripts/validate/phase42.py run \

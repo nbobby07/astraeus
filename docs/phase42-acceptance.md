@@ -270,6 +270,23 @@ use the signed, RAM-verified recovery medium. The initial setup-mode ISO does no
 qualify live management, and this milestone does not add an installer path that
 runs with Secure Boot already enforcing.
 
+The first fresh plain attempt stopped before partition writes because the chosen
+plain OVMF build omitted the SecureBoot and SetupMode variables. A separate
+diagnostic with no OS disk found mounted efivarfs and 33 other variables, confirming
+that missing variables could not be treated as observed disabled firmware. A second
+diskless diagnostic used the pinned Secure Boot-capable CODE, SMM and pristine
+unenrolled VARS. It observed the required five-byte Boolean variables with
+`SecureBoot=0` and `SetupMode=1`.
+
+Validation-only commit `33f5c11` requires the same capable CODE for setup and
+enforcing boots, enables the corresponding machine flags, and checks the mount
+and actual variable bytes before permitting writes. Its 12 focused tests passed
+on Windows and Linux. Runtime `0e8bb00` and both candidate ISOs are unchanged;
+a fresh installed baseline is still required. The failed attempt's thin archive
+has SHA256 `c76f2ce32c14573a28c8a869290cc17df2d927b0ceffae047445ecd182a2b2fa`;
+the two diagnostic runs' archive has SHA256
+`818d7ef6b872d3f3c2bc12eac5c1646b0d4fe5170c6e904fb14007367960dd6c`.
+
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software
 rendering is never evidence of physical GPU support.
