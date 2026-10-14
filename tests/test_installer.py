@@ -98,9 +98,17 @@ class InstallerTests(unittest.TestCase):
                                         f"%NAME%\n{name}\n\n%VERSION%\n1-1\n\n%REASON%\n0\n\n%INSTALLDATE%\n123456\n")
             def resolution(root, packages):
                 return {"distro": "sha256:" + "a" * 64}, {name: {"version": package["version"], "repository": "distro", "sha256": "b" * 64} for name, package in packages.items()}
+            original_copytree = shutil.copytree
+            def archived_copytree(source, target, *args, **kwargs):
+                result = original_copytree(source, target, *args, **kwargs)
+                if Path(target).name == "install-inputs":
+                    for path in [Path(target), *Path(target).rglob("*")]:
+                        path.chmod(0o775 if path.is_dir() else 0o664)
+                return result
             previous_umask = os.umask(0o077)
             try:
-                with patch.object(installer, "locked_packages", side_effect=resolution):
+                with patch.object(installer, "locked_packages", side_effect=resolution), \
+                        patch.object(installer.shutil, "copytree", side_effect=archived_copytree):
                     installer.build_payload(out, profile, values, run, bootstrap.write, bootstrap.render, ["virtio", "software"], ["core"])
             finally:
                 os.umask(previous_umask)
@@ -113,6 +121,9 @@ class InstallerTests(unittest.TestCase):
             self.assertFalse(any("gamescope" in call for call in pacstrap))
             self.assertEqual(json.loads((out / "installed-root/usr/share/distro/install-inputs/gaming.json").read_text())["features"], ["core"])
             root = out / "installed-root"
+            inputs = root / "usr/share/distro/install-inputs"
+            for path in [inputs, *inputs.rglob("*")]:
+                self.assertEqual(stat.S_IMODE(path.stat().st_mode), 0o755 if path.is_dir() else 0o644)
             state = json.loads((root / "var/lib/astraeus/management/state.json").read_text())
             self.assertIn("lib32-vulkan-swrast", state["protected"])
             self.assertEqual(state["packages"]["steam"]["owners"], ["gaming:core"])

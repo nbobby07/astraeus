@@ -258,6 +258,12 @@ def build_payload(out, profile, values, run, write, render, graphics=(), gaming=
     shutil.rmtree(root / "usr/share/distro/installer")
     configuration = run("arch-chroot", root, "/usr/bin/pacman-conf", capture_output=True, text=True)
     seed_management(root, baseline, graphics, gaming, write, configuration.stdout)
+    # Git archives can carry group-write bits; installed trust inputs must not.
+    inputs = root / "usr/share/distro/install-inputs"
+    for path in [inputs, *inputs.rglob("*")]:
+        if path.is_symlink():
+            raise ValueError("installer inputs must not contain symlinks")
+        path.chmod(0o755 if path.is_dir() else 0o644)
     # The installed Rust reader verifies the cross-language digest and all three seeded files.
     run("arch-chroot", root, "/usr/bin/distroctl", "system", "export", "--json")
     with (out / "installed-packages.txt").open("w") as log:
