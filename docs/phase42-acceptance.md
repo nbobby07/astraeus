@@ -4,9 +4,9 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The current runtime candidate is `17773af1613aaad9b340382566194d71f62245aa`.
-Its clean-build source archive is 4,984,744 bytes with SHA256
-`8864ddd84b4f2464434907045e2b20109ec1b04f2e2d96543b7c544d02aab9eb`.
+The current runtime candidate is `298e12a538faf19a4ad302ca73d1f25436f2b45d`.
+Its clean-build source archive is 4,986,336 bytes with SHA256
+`0f9669f4a5f728cbbc8258655a5ba0713c4dfad1cd7898a985f5d0f99930b094`.
 Earlier stopped build attempts remain preliminary evidence and do not qualify this
 candidate. Later validation-only commits are recorded separately from runtime.
 
@@ -79,8 +79,21 @@ lost colon-containing names and was rejected by its record-count check.
 Signed native fixture attempt 14 reproduces the old reader's incorrect retention
 after a real libalpm installation with an empty URL. A separate fresh root with
 the corrected reader passes the full install/removal fixture. The old negative
-run and an initial fixture setup error remain preserved. The new clean image
-build and all installed-VM acceptance are still pending.
+run and an initial fixture setup error remain preserved.
+
+The `17773af` clean build was superseded during compilation after a focused GUI
+test proved that dismissing an error hid subsequent errors. The exact pinned
+Kirigami 6.30.0-1 template sets `visible = false` on Close, replacing the app's
+original property binding. Candidate `298e12a` uses an explicit `Binding` and adds
+a test that clicks the real close control before raising another error. The old
+test fails and the corrected full QML suite passes 13 checks on Qt 6.10.2/Kirigami
+6.24.0; the pinned Arch package also contains the triggering close behavior.
+The backend is unchanged from the validated `17773af` source.
+
+No completed package or ISO came from `17773af` A/r1. Its thin archive is
+`superseded-17773af-r1-A-evidence.tar.gz` (117,489 bytes), SHA256
+`86278cb1a050a0aadbafbe5aecfc04991950267cad25affb7b543ad688079dcc`.
+The new clean image build and all installed-VM acceptance remain pending.
 
 The immutable VM harness is `13f573cd5d303c92acc4dcfb43cd9e1127423c7c`,
 exported as a 358,400-byte archive with SHA256
@@ -134,7 +147,7 @@ while it applies. Live sessions permit inspection and planning only.
 | Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment. The pinned Arch package build passed on `620d1d3`; the new candidate package build is pending |
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
-| Native desktop build and tests | 21 Qt controller and 12 QML tests passed with Rust-generated contracts in both the development environment and the pinned Arch `620d1d3` package build. Production startup loaded the KDE desktop style; new package and installed-VM backend acceptance pending |
+| Native desktop build and tests | 21 Qt controller checks passed; the corrected local QML suite passes 13 checks. The pinned Arch `620d1d3` package build passed 21 controller and 12 earlier QML checks. Production startup loaded the KDE desktop style; the new package and installed-VM backend acceptance remain pending |
 | Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
 | Two byte-identical candidate images | Not built yet |
 | Physical PC and USB boot | Deferred by request |
