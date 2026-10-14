@@ -193,7 +193,7 @@ creation because retaining a useful baseline would have consumed its required
 35-GiB build reserve. VM acceptance uses separate disposable overlays after both
 closed builder disks have been retired and resource guards pass.
 
-The immutable VM harness is `ad3f097d9475c52d18b4095fce5fc160d8edaa04`,
+The earlier immutable VM harness is `ad3f097d9475c52d18b4095fce5fc160d8edaa04`,
 exported as a 368,640-byte archive with SHA256
 `819e08cb18e69b8515ccfbf8cabbdb9ff1e88d0f1ad59d82ff06b1109bbb0abb`.
 It adds real concurrent-submission, symlink-staging and systemd-start-failure
@@ -202,6 +202,17 @@ tests passed on Windows (20 passed, four platform skips) and Linux root (23 pass
 one loopback skip); CLI subprocess rejection tests passed on both platforms.
 These new assertions have not run in the candidate VM yet. The earlier `13f573cd`
 harness archive remains preserved separately.
+
+The current immutable VM harness is `eb6587a11df844407152cb1c2c29f4c5f750c479`.
+Its 30-file archive is 378,880 bytes with SHA256
+`340796d25e57c78178f2c41737f032ac94c893c8995fadf3c43b85c28c920236`.
+It uses the Secure Boot capable firmware during initial SetupMode installation
+and verifies the maintained UKI through the production provider, including dbx
+revocations. Fault guards use public verification without requiring the private
+key or a clean signing state that the tests deliberately disrupt. This check
+does not substitute for running-root and generation confirmation. Focused helper
+checks passed on Linux (56 passed, one skip) and Windows (52 passed, five skips).
+These changes affect validation only; runtime and both ISO identities are unchanged.
 
 The branch starts at `b1d16953ce5918b23c772e3ce99a35c7d37ac6b5`.
 Work is isolated on `codex/phase4-system-management`; PR #7, the original
@@ -252,7 +263,7 @@ while it applies. Live sessions permit inspection and planning only.
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
 | Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `298e12a` build; both Qt groups passed again on `0e8bb00`. Production startup loaded the KDE desktop style; installed-VM backend acceptance remains pending |
-| Plain and LUKS2 installed VMs with enforced Secure Boot | Not run on the new candidate yet |
+| Plain and LUKS2 installed VMs with enforced Secure Boot | Plain installation and its first enforcing boot passed, but the baseline run stopped at an incomplete enrollment query in the harness. No full baseline or management/recovery acceptance yet; LUKS2 is pending |
 | Image contents and signing-key audit | Image A passed the complete payload/repository audit, with exact upstream GnuTLS test constants identified and retained in the report |
 | Two byte-identical candidate images | Passed: both clean builds exited successfully, all five independent package archives match, and full ISO `cmp` returned zero with identical hashes and sizes |
 | Physical PC and USB boot | Deferred by request |
@@ -286,6 +297,18 @@ a fresh installed baseline is still required. The failed attempt's thin archive
 has SHA256 `c76f2ce32c14573a28c8a869290cc17df2d927b0ceffae047445ecd182a2b2fa`;
 the two diagnostic runs' archive has SHA256
 `818d7ef6b872d3f3c2bc12eac5c1646b0d4fe5170c6e904fb14007367960dd6c`.
+
+The second attempt installed the production payload and booted its signed UKI
+with the intended certificate, `SecureBoot=1` and `SetupMode=0`. It then stopped
+at the harness's bare `check-enrollment` call. Firmware dbx contains a SHA256
+revocation entry, so the production provider correctly requires an actual image
+for evaluation. No dbx entry was removed. A separate diagnostic overlay passed
+the existing provider's `ready /efi` and UKI `verify` checks, including revocation,
+while preserving the original disk and VARS hashes. That overlay was retired
+after verified export; it is not an accepted baseline. The failed run's archive
+has SHA256 `bac5eaadd3fb913d8668f9923bac8e461778b6ab7e6ef08cb9d67ffda13b0df4`;
+the verifier diagnostic archive has SHA256
+`bf16be57ffeae94f2c9809900b103963003b895f9595451da4af6cc6e6c8a218`.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software
