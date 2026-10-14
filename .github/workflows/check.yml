@@ -37,6 +37,11 @@ jobs:
           sudo install -m755 /tmp/astraeus-ukify /usr/bin/ukify
           /usr/bin/ukify --version
       - run: python -m unittest discover -s tests -v
+      - name: Native image construction and reproducibility
+        if: runner.os == 'Linux'
+        run: |
+          sudo python3 -m unittest discover -s tests -p test_bootstrap.py -v
+          sudo python3 -m unittest discover -s tests -p test_reproducibility.py -v
       - name: Compile both Vulkan helper architectures
         if: runner.os == 'Linux'
         run: |
