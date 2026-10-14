@@ -107,9 +107,20 @@ def secret(name):
 
 def installation_firmware():
     """Observe this bootstrap's real firmware before permitting a partition write."""
+    try:
+        filesystem = run('findmnt', '-rn', '-M', EFIVARS, '-o', 'FSTYPE', timeout=10)
+    except (OSError, RuntimeError, subprocess.TimeoutExpired) as error:
+        raise RuntimeError('cannot inspect efivarfs mount for initial firmware observation') from error
+    require(filesystem == 'efivarfs', 'initial firmware observation requires mounted efivarfs at ' + str(EFIVARS))
     observed = {'observed': True, 'source': 'efivarfs-before-partition-write'}
     for name in ('SecureBoot', 'SetupMode'):
-        value = (EFIVARS / (name + '-' + EFI_GLOBAL_GUID)).read_bytes()
+        try:
+            value = (EFIVARS / (name + '-' + EFI_GLOBAL_GUID)).read_bytes()
+        except FileNotFoundError as error:
+            raise RuntimeError('firmware variable ' + name + ' is absent; initial SetupMode observation '
+                               'requires Secure Boot-capable firmware') from error
+        except OSError as error:
+            raise RuntimeError('cannot read initial firmware variable: ' + name) from error
         require(len(value) == 5 and value[4] in (0, 1), 'invalid firmware Boolean: ' + name)
         observed[name] = bool(value[4])
     require(observed['SecureBoot'] is False and observed['SetupMode'] is True,
@@ -348,6 +359,8 @@ def host_run(args):
                                 serial='AS42' + secrets.token_hex(8), encryption=args.encryption, user=args.user,
                                 certificate_sha256='0' * 64))
     require(sha256(iso) == args.image_sha256, 'candidate ISO differs from the reviewed build identity')
+    require(sha256(setup_code) == sha256(code),
+            'initial SetupMode boot requires the same Secure Boot-capable OVMF code as enforcing boots')
     require(60 <= args.timeout <= 3600, 'timeout must be 60..3600 seconds')
     out.mkdir(mode=0o700, parents=True, exist_ok=False)
     private.mkdir(mode=0o700, parents=True, exist_ok=False)
@@ -379,7 +392,8 @@ def host_run(args):
         p2.save(out / 'installation.json', config)
         p2.host(['qemu-img', 'create', '-f', 'qcow2', out / 'disk.qcow2', '32G'])
         shutil.copyfile(variables, out / 'vars.fd')
-        vm = p2.VM(out, setup_code, share, args.timeout)
+        # SMM and protected pflash expose authenticated variables; pristine VARS still boot in SetupMode.
+        vm = p2.VM(out, setup_code, share, args.timeout, secure_boot=True)
         original = p2.install.qemu_command
 
         def command(*positional, **keywords):
@@ -481,8 +495,10 @@ def main():
     commands.add_parser('guest-firmware')
     commands.add_parser('guest-desktop').add_argument('--initial', action='store_true')
     host = commands.add_parser('run')
-    for name in ['output', 'private-directory', 'iso', 'ovmf-code', 'setup-ovmf-code', 'ovmf-vars']:
+    for name in ['output', 'private-directory', 'iso', 'ovmf-code', 'ovmf-vars']:
         host.add_argument('--' + name, required=True, type=Path)
+    host.add_argument('--setup-ovmf-code', required=True, type=Path,
+                      help='must match --ovmf-code; pristine VARS provide the initial SetupMode boot')
     for name in ['source-commit', 'image-sha256', 'distroctl-sha256', 'desktop-sha256']:
         host.add_argument('--' + name, required=True)
     host.add_argument('--encryption', choices=['none', 'LUKS2'], required=True)

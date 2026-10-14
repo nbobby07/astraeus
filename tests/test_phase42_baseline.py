@@ -6,6 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -89,7 +90,8 @@ class FreshCandidateBaseline(unittest.TestCase):
             baseline.enforced(status, 'f' * 64)
 
     def test_initial_firmware_is_read_from_real_variable_bytes_and_fails_closed(self):
-        with tempfile.TemporaryDirectory() as directory, patch.object(baseline, 'EFIVARS', Path(directory)):
+        with tempfile.TemporaryDirectory() as directory, patch.object(baseline, 'EFIVARS', Path(directory)), \
+                patch.object(baseline, 'run', return_value='efivarfs'):
             paths = {name: Path(directory) / (name + '-' + baseline.EFI_GLOBAL_GUID)
                      for name in ('SecureBoot', 'SetupMode')}
             values = {'SecureBoot': b'\x07\0\0\0\0', 'SetupMode': b'\x07\0\0\0\x01'}
@@ -106,9 +108,67 @@ class FreshCandidateBaseline(unittest.TestCase):
                     with self.subTest(name=name, invalid=invalid), self.assertRaises(RuntimeError):
                         baseline.installation_firmware()
                 paths[name].unlink()
-                with self.assertRaises(FileNotFoundError):
+                with self.assertRaisesRegex(RuntimeError, 'firmware variable ' + name + ' is absent'):
                     baseline.installation_firmware()
                 paths[name].write_bytes(values[name])
+
+    def test_initial_firmware_requires_readable_efivarfs_without_mounting_or_inventing_values(self):
+        for filesystem in ('tmpfs', 'sysfs', ''):
+            with self.subTest(filesystem=filesystem), patch.object(baseline, 'run', return_value=filesystem) as command, \
+                    patch.object(Path, 'read_bytes') as read:
+                with self.assertRaisesRegex(RuntimeError, 'requires mounted efivarfs'):
+                    baseline.installation_firmware()
+                read.assert_not_called()
+                command.assert_called_once_with('findmnt', '-rn', '-M', baseline.EFIVARS, '-o', 'FSTYPE', timeout=10)
+        with patch.object(baseline, 'run', side_effect=RuntimeError('findmnt exited 1')), \
+                patch.object(Path, 'read_bytes') as read:
+            with self.assertRaisesRegex(RuntimeError, 'cannot inspect efivarfs mount'):
+                baseline.installation_firmware()
+            read.assert_not_called()
+        with patch.object(baseline, 'run', return_value='efivarfs'), \
+                patch.object(Path, 'read_bytes', side_effect=PermissionError('denied')):
+            with self.assertRaisesRegex(RuntimeError, 'cannot read initial firmware variable: SecureBoot'):
+                baseline.installation_firmware()
+
+    def test_bootstrap_rejects_different_firmware_before_writes_and_requests_smm_for_matching_code(self):
+        p2 = phase42.p2
+        exists = Path.exists
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            paths = {name: root / name for name in ('iso', 'code', 'setup', 'vars')}
+            for name, path in paths.items():
+                path.write_bytes(name.encode())
+            args = SimpleNamespace(output=root / 'out', private_directory=root / 'private',
+                iso=paths['iso'], ovmf_code=paths['code'], setup_ovmf_code=paths['setup'], ovmf_vars=paths['vars'],
+                source_commit='a' * 40, image_sha256=baseline.sha256(paths['iso']), distroctl_sha256='c' * 64,
+                desktop_sha256='d' * 64, encryption='none', user='tester', timeout=60)
+
+            def owner(private, public):
+                baseline.write(private / 'db.key', 'non-key fixture', 0o600)
+                baseline.write(public / 'db.crt', 'non-certificate fixture')
+                return {'db': 'e' * 64}
+
+            with patch.object(baseline.sys, 'platform', 'linux'), \
+                    patch.object(baseline.os, 'geteuid', return_value=0, create=True), \
+                    patch.object(baseline.shutil, 'which', return_value='fixture-tool'), \
+                    patch.object(Path, 'exists', lambda path: True if path == Path('/dev/kvm') else exists(path)), \
+                    patch.object(baseline, 'make_owner', side_effect=owner) as make_owner, \
+                    patch.object(p2, 'host') as host, patch.object(p2, 'VM') as factory:
+                with self.assertRaisesRegex(RuntimeError, 'same Secure Boot-capable OVMF code'):
+                    baseline.host_run(args)
+                self.assertFalse(args.output.exists())
+                self.assertFalse(args.private_directory.exists())
+                make_owner.assert_not_called()
+                host.assert_not_called()
+                factory.assert_not_called()
+                paths['setup'].write_bytes(paths['code'].read_bytes())
+                factory.return_value.start.side_effect = RuntimeError('stop before guest launch')
+                with self.assertRaisesRegex(RuntimeError, 'stop before guest launch'):
+                    baseline.host_run(args)
+                factory.assert_called_once_with(args.output, paths['setup'], args.private_directory / 'share',
+                                                args.timeout, secure_boot=True)
+                self.assertEqual((args.output / 'vars.fd').read_bytes(), paths['vars'].read_bytes())
+                factory.return_value.stop.assert_called_once_with()
 
     def test_firmware_refusal_precedes_every_partition_or_installation_write(self):
         commands = []
