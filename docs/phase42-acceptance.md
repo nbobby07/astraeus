@@ -8,8 +8,13 @@ Corrected runtime `ec3641b` clean A has passed its native package checks (159 Ru
 tests with five fixture skips, 21 Qt controller and 13 QML checks), complete image
 audit, source verification and thin evidence export. Its ISO SHA256 is
 `2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca`.
-The fresh plain VM is running as an early functional recovery gate; independent B,
-byte comparison and complete corrected-candidate VM acceptance remain required.
+Its fresh plain installation passed two enforcing cold boots and all eight
+metadata-only lifecycle/recovery gates. Deliberate wrong management state was
+rejected before correct rollback finalization, and packages, reasons,
+configuration, ownership and personal data restored together. The full A ISO
+and 292 public baseline/recovery evidence files verified locally. Independent B
+is building; byte comparison, corrected CLI package lifecycle, other fault
+scenarios, installed GUI and LUKS2 acceptance remain required.
 
 The latest code fixes a real offline-recovery defect found in the `6d10954`
 candidate. Both `6d10954` independent images and their full byte comparison passed; clean A also

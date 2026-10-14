@@ -1,0 +1,1175 @@
+{
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "plain_baseline_accepted": true,
+  "metadata_gates_passed": 8,
+  "files": {
+    "necp/baseline.json": {
+      "bytes": 2229,
+      "sha256": "bf5d449fdc5ffec2a47982d05114193be2b50a7ecd29a41283ad7f852d8a1bb3"
+    },
+    "necp/fresh-installation.json": {
+      "bytes": 1556,
+      "sha256": "aa0825881298d32aa0ad23b90315f4299c35d8c66827f792a7ed6f2737b17f23"
+    },
+    "necp/fresh-installed-2.json": {
+      "bytes": 149555,
+      "sha256": "58bc93e409a09a7836043b75fa47f448240779b06a9ebb62625c0e3bda5de82a"
+    },
+    "necp/fresh-installed-1.json": {
+      "bytes": 149694,
+      "sha256": "ac03894452a0d0a7e1e3d8d0971e446dda71e5493afde0c12f559d55bd3913cf"
+    },
+    "necp/attention.json": {
+      "bytes": 26,
+      "sha256": "ac0797c3ae00213252c3a7c84a4e88ab3412558e9f7bd2b0d18a2b708218ee1e"
+    },
+    "necp/installation.json": {
+      "bytes": 525,
+      "sha256": "ce23689a0585e323ca0a1ead725b128be2566b0dc75b8fa4e129e07ac54adc8b"
+    },
+    "necp/result.json": {
+      "bytes": 518,
+      "sha256": "7c24051a7d359eb4ddbcdd8e1077ed3cf8534dbf41f29641d45dbbe99668b54a"
+    },
+    "necp/maintained-uki-trust-2.json": {
+      "bytes": 361,
+      "sha256": "27f47f6185d8b0f396e7702986199f7d3d7490d0507718fa773ff72cc34f888e"
+    },
+    "necp/inputs.json": {
+      "bytes": 764,
+      "sha256": "bf788ca19dbe02503512220f8c848e93dd1b55751c53335c0391c394878f8f63"
+    },
+    "necp/maintained-uki-trust-1.json": {
+      "bytes": 361,
+      "sha256": "27f47f6185d8b0f396e7702986199f7d3d7490d0507718fa773ff72cc34f888e"
+    },
+    "necp/boot-2/030-fresh-installed-1-status.json": {
+      "bytes": 3055,
+      "sha256": "6079c6dc6566b1f8c1dceef0aa6a55d716704193af9cda3d323348c18eb2ed77"
+    },
+    "necp/boot-2/040-fresh-installed-1-boot-journal.json": {
+      "bytes": 109998,
+      "sha256": "5b6dd7b9b71b84b68806b34ead4ab68ea8feae6e6ceb0bd90ed3991e4b800f54"
+    },
+    "necp/boot-2/027-installed-boot-trust.json": {
+      "bytes": 429,
+      "sha256": "0b841d74aa2c559f0f751a6fdfd8e2e8d1cd58205729e5bf8f1d3431489707ec"
+    },
+    "necp/boot-2/033-fresh-installed-1-failed.json": {
+      "bytes": 328,
+      "sha256": "3363069091b0caa71b375b09a00d29612510868bb79067f5742e0325c2d18320"
+    },
+    "necp/boot-2/047-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "b6edc1e1beaf7fe7aeeeec50069d0b8ad16eafa7d65a724d2c7727bf70614107"
+    },
+    "necp/boot-2/qemu-command.json": {
+      "bytes": 1160,
+      "sha256": "aaab71e2500eb41a7879e387935006e2b9735213eb562735467ce3fecd8f8633"
+    },
+    "necp/boot-2/041-fresh-installed-1-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "8e02818995af16ce10e433ee0037b742ce6adb74687e9df1434e404e7302be24"
+    },
+    "necp/boot-2/045-actual-desktop-1.json": {
+      "bytes": 7424,
+      "sha256": "40fae7d968d8553276ac23a8b7dbd442d6aad993e2e71b3b073c3408db8bbcaa"
+    },
+    "necp/boot-2/qmp-ready.json": {
+      "bytes": 3579,
+      "sha256": "d4422acb8f9b58b4d8fb851beb3a4a724213e9334a4402c9b60bf4616db85dc9"
+    },
+    "necp/boot-2/042-fresh-installed-1-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "861a977ef78fe01cd23858bb4f3bcce5296c4e88e91fd37008c3f475d85a8fb0"
+    },
+    "necp/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "6ebf392ce414fee57a1380328b18fade7973f81b5cd1e39cf13c419bbd9b981e"
+    },
+    "necp/boot-2/029-network-online.json": {
+      "bytes": 340,
+      "sha256": "174d313c2feb4a6bd8b89b4d4285dbedf3c2130b477fdb0b40202d5a642680d8"
+    },
+    "necp/boot-2/028-installed-boot-trust.json": {
+      "bytes": 522,
+      "sha256": "3ef22190f1c6a4cf71fe2fabe5d9a400467d3ed02e048bd85c57ca99e3fc73b0"
+    },
+    "necp/boot-2/022-ready.json": {
+      "bytes": 219,
+      "sha256": "f8ea58c1ee55a7e83369d3cbbf9ba57dba75d098c9a89aa79d8b61691475d10a"
+    },
+    "necp/boot-2/025-ready.json": {
+      "bytes": 356,
+      "sha256": "1bd81aee8a1cd7381f59bec8a62ee401c01e2c7ecf3cb8af1e8c87d10feae1a3"
+    },
+    "necp/boot-2/032-fresh-installed-1-database.json": {
+      "bytes": 337,
+      "sha256": "72cfb0e378fa42415eb750dd642e44f4be30d09aec9a1f23cb78a5d4bda300f6"
+    },
+    "necp/boot-2/024-ready.json": {
+      "bytes": 219,
+      "sha256": "23a32bf3d7fe892e74b4399dab414fe921beafd7f589f67259507da65157d9d0"
+    },
+    "necp/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "necp/boot-2/qmp-fresh-installed-1.json": {
+      "bytes": 3579,
+      "sha256": "1f1ac5fcd438d1563cd091225f3cfe668cd0bc0d2520ad960e91b4af9b5b6d0f"
+    },
+    "necp/boot-2/046-enable-managed-generations.json": {
+      "bytes": 358,
+      "sha256": "2ca09b17e3160dffbe83ea8efa395c6295963a1e0552590ed7182bf4938e6786"
+    },
+    "necp/boot-2/036-fresh-installed-1-boot.json": {
+      "bytes": 4055,
+      "sha256": "8ce30666546629d3aa20228bd52a7e175f64dd0f118d7c1d62f1517961aeef0d"
+    },
+    "necp/boot-2/039-fresh-installed-1-journal.json": {
+      "bytes": 6678,
+      "sha256": "65fbf18a0955387e48763813008f9f2f0cecd8e920ee4eb59b5f0a8d924569c0"
+    },
+    "necp/boot-2/037-fresh-installed-1-root.json": {
+      "bytes": 376,
+      "sha256": "e10f01216187a8c3314f20ba1709d6c62a6357aa968e5d4d895bf0ef58bcde12"
+    },
+    "necp/boot-2/034-fresh-installed-1-mounts.json": {
+      "bytes": 8644,
+      "sha256": "90d483e9ee1f901f9487f63c17986fa958a2e8a3394800bf7502ab7b7ccb7343"
+    },
+    "necp/boot-2/serial.log": {
+      "bytes": 1997,
+      "sha256": "d16546ffbc044a9a62fd26d82100aeb41f3a29a77d075222ffe0efc230e191a3"
+    },
+    "necp/boot-2/035-fresh-installed-1-subvolumes.json": {
+      "bytes": 545,
+      "sha256": "7d13c945594267a0daccfe4f2ed09a5e4f88ea623fbd032d43855a6a800a8205"
+    },
+    "necp/boot-2/026-installed-boot-trust.json": {
+      "bytes": 2288,
+      "sha256": "a6613c1815da33e2000d76e4a0ed9811350b0f865b08d12875cd5a9bb3a7ef68"
+    },
+    "necp/boot-2/043-fresh-installed-1-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "4b23576932df4cd04bdcbe9bfb11e6c498ebf7dd490c59b25760d2e6b920a627"
+    },
+    "necp/boot-2/038-fresh-installed-1-persistent.json": {
+      "bytes": 414,
+      "sha256": "599a60723b34bf97c440e433fd74aa6309f608dc5c16f19a2325517d4f51b4b1"
+    },
+    "necp/boot-2/023-ready.json": {
+      "bytes": 219,
+      "sha256": "93bc9773a398c86549e948ee85ff6c3f67526233595f35b969f3d3c1ffcb7869"
+    },
+    "necp/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "33d6cf3bdb3a50478173b7b468d2321f93c8b2f568a5a3ddf68c06dea5e8c130"
+    },
+    "necp/boot-2/031-fresh-installed-1-packages.json": {
+      "bytes": 15876,
+      "sha256": "6f12a9e7c061048ffcd74a2fe583b2c2f2f5bce3c78a1b16df79369ba8ebe34c"
+    },
+    "necp/boot-2/044-fresh-installed-1-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "6458fddacfcc72c633ed7cb36ef2c73565c4de360cc50646b71a78eda4ffb768"
+    },
+    "necp/public-owner/db.crt": {
+      "bytes": 1172,
+      "sha256": "1c769c92fc06ef021cb9794227bf4451f0038be76c2d756e094feba38c6269b7"
+    },
+    "necp/public-owner/PK.crt": {
+      "bytes": 1172,
+      "sha256": "bc1e1dbc39405c175c89c9951f94ff7525d73998e0fe5a38a58af5a16dfa2617"
+    },
+    "necp/public-owner/db.cer": {
+      "bytes": 823,
+      "sha256": "e3a43c20de7ad909b13c596a656162c27f6a41b753d8f91e0a251920234e8c7d"
+    },
+    "necp/public-owner/KEK.cer": {
+      "bytes": 825,
+      "sha256": "e045267a98d79b57309024d7c96e7d84dfbf860c6271700584da941b701d2a89"
+    },
+    "necp/public-owner/KEK.crt": {
+      "bytes": 1172,
+      "sha256": "568b9c21ac7562be7bceb747c435a432715ce4f97d8ea9e5da7b72a507e47cf8"
+    },
+    "necp/public-owner/PK.cer": {
+      "bytes": 823,
+      "sha256": "43b3d717d497a91b4d72e502676a491a1dc074dcd0063eb760a5f1a9238f38ed"
+    },
+    "necp/boot-1/019-installation-firmware-before-writes.json": {
+      "bytes": 472,
+      "sha256": "37c87e0a7de7542698db496ca9f2aca66ebb3a23af8a0048079d891d967760b0"
+    },
+    "necp/boot-1/017-ready.json": {
+      "bytes": 219,
+      "sha256": "acd7d3d9ab4ffd0f056fc6bd6b422ffdd1c9dfc164923720fde74d710a53838c"
+    },
+    "necp/boot-1/008-ready.json": {
+      "bytes": 219,
+      "sha256": "45bc46504c6896bb995d272f385d8e3013eb92e25f500b16ce2a36a6bf17eeb8"
+    },
+    "necp/boot-1/014-ready.json": {
+      "bytes": 219,
+      "sha256": "83e4728924779ed0fdb741e83c25894d1732c76417490a546a277b8556f10c1e"
+    },
+    "necp/boot-1/012-ready.json": {
+      "bytes": 219,
+      "sha256": "6b009288f8594ac4078c58875abaf06857226ee254e5c3266b5acc9691b65da4"
+    },
+    "necp/boot-1/015-ready.json": {
+      "bytes": 219,
+      "sha256": "3f233e73cfacce0bcd8e97e7a8bc33014860ec5d3b139ca24551ef04de23fdcb"
+    },
+    "necp/boot-1/011-ready.json": {
+      "bytes": 219,
+      "sha256": "f555200eac63982b1b6cb67991b201864c12215fa65af59d5769253ab1599fdd"
+    },
+    "necp/boot-1/qemu-command.json": {
+      "bytes": 1403,
+      "sha256": "781cff879ddd6272aca1b01d09f67424ddeaf3df4f50dec24d4a4569f89c1a00"
+    },
+    "necp/boot-1/qmp-ready.json": {
+      "bytes": 4438,
+      "sha256": "8274cba318f8322ff78ea23f3ee0d6de9ee9b8826d269c0d35fa6f257112612d"
+    },
+    "necp/boot-1/016-ready.json": {
+      "bytes": 219,
+      "sha256": "116e94df114c92a852085960ab4186d8d9171caa40031820e992ecb6cdcede4f"
+    },
+    "necp/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "c674fa294d2c137e477ed72d0c56e077c618cedf9c6e56307b83b04ec1c8f957"
+    },
+    "necp/boot-1/004-ready.json": {
+      "bytes": 219,
+      "sha256": "d479912eb55a9a5f210241a5926c8b8f36053e1c82f2dbf54008ff4a1162b84b"
+    },
+    "necp/boot-1/005-ready.json": {
+      "bytes": 219,
+      "sha256": "a3685f8a706030a8e3c2fa08132c46f2a496dcd15c1579b897b3d7cc379bc308"
+    },
+    "necp/boot-1/007-ready.json": {
+      "bytes": 219,
+      "sha256": "330db167b9bf25356e6f4c9c9211b1b0d86f6021bea521ae8376e6b016f94bf4"
+    },
+    "necp/boot-1/020-fresh-payload-install.json": {
+      "bytes": 1837,
+      "sha256": "d3040e93e8abbadb1b3411ae29543b6df68fa6a393d576ea651de696207aac0c"
+    },
+    "necp/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "953a49584cc7fa61c65acee738d6a5b9e20580300c78ca1ac0c09b559fd70cb9"
+    },
+    "necp/boot-1/003-ready.json": {
+      "bytes": 219,
+      "sha256": "3d516783b2e3d210c0a887d3ce37b7361ad08948c5a272caeef0efe02c1427fe"
+    },
+    "necp/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "necp/boot-1/009-ready.json": {
+      "bytes": 219,
+      "sha256": "ce9623f32745f57a8aeaac5d3f55551248a066735b0aab47a85a38dc201e75b5"
+    },
+    "necp/boot-1/010-ready.json": {
+      "bytes": 219,
+      "sha256": "ae25d9ecc7e9dc30ee94ee3b3963e5fa189c9708714bdfc503a67ecbf8d9e509"
+    },
+    "necp/boot-1/006-ready.json": {
+      "bytes": 219,
+      "sha256": "4a0d83d3fab80147dbf2d1874c2b7e6e89dcc64a354e3b464cf37c7220b5e3ad"
+    },
+    "necp/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "467a494e45f3aa821b7d4ff6bed406bce0d9ee5a9b4af59024e4d9824c2c15b8"
+    },
+    "necp/boot-1/serial.log": {
+      "bytes": 30270,
+      "sha256": "8f1050fc9f19e94e47737f6a5550337d725ee37bb7150508bf95f38385ead88a"
+    },
+    "necp/boot-1/018-ready.json": {
+      "bytes": 356,
+      "sha256": "89ae4238ff6c227718372fc65bd63d63b0a3f041ee195ee826b5b806ab01796e"
+    },
+    "necp/boot-1/process.json": {
+      "bytes": 174,
+      "sha256": "416391cba518c88a8000913542993659312f41d0e96b4665c3d93b15d24c66e8"
+    },
+    "necp/boot-1/021-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "59958a25a2b0739117bb3dd660ae320922bc57f5d67f8c6cfc8bc2f113baf013"
+    },
+    "necp/boot-1/013-ready.json": {
+      "bytes": 219,
+      "sha256": "81031cf8d3d4539d4e7dc752faaa0efe5db9e3163ffba02f6f9071c1ecc6dfc7"
+    },
+    "necp/screenshots/live-terminal.png": {
+      "bytes": 273273,
+      "sha256": "9b8339d65745bd9f55062bf4d2bce0cc2d4009a14d470cbf02aec2020d8d1b1c"
+    },
+    "necp/screenshots/live-initial.png": {
+      "bytes": 554789,
+      "sha256": "eebdba4b47846e87c41b6baa93fd31ce665661f75251da8cc55abfcd5a245c81"
+    },
+    "necp/screenshots/installed-one-sddm.png": {
+      "bytes": 220902,
+      "sha256": "0e2238d5248c27123f1ba30a06c178840e8158f6e2840b63c4fa35561d6d211b"
+    },
+    "necp/screenshots/installed-two-sddm.png": {
+      "bytes": 220728,
+      "sha256": "6c099ef5cb37e3da53f2a4ca670a372a6d1bd363ea9cf7e9a0c5953cc2f449d3"
+    },
+    "necp/boot-3/061-fresh-installed-2-boot.json": {
+      "bytes": 4055,
+      "sha256": "d7e5151621b7591c5f5fb196efdb12bdcc0fce691a00d83c453b0a1f48da7eb8"
+    },
+    "necp/boot-3/054-network-online.json": {
+      "bytes": 340,
+      "sha256": "836e37b6432b444a2096cfb7e214919904077f3de6987f7d9a1041ec371aec13"
+    },
+    "necp/boot-3/059-fresh-installed-2-mounts.json": {
+      "bytes": 8644,
+      "sha256": "b84aa55f2da854090332c57172fdeb974adf51f3c146f6a1532ab343bc7e2622"
+    },
+    "necp/boot-3/069-fresh-installed-2-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "bde20c53cf70bd929e7833cf764290f8af42bf6fa0d4c5b607dd46fb85340857"
+    },
+    "necp/boot-3/qemu-command.json": {
+      "bytes": 1160,
+      "sha256": "499cf8a4e968c5b561e986e5404c5806ba01e7e33a0559f21d99e9f7486a59d6"
+    },
+    "necp/boot-3/qmp-ready.json": {
+      "bytes": 3579,
+      "sha256": "f2db8afc3b5c3c103631143c8ef5db66094563a88c7bc5ca8adf69b1f8d64057"
+    },
+    "necp/boot-3/052-installed-boot-trust.json": {
+      "bytes": 429,
+      "sha256": "3489086b09e70154cfc38e0dac5ebcf3566ac533f52e688aa287a41d93d19d1a"
+    },
+    "necp/boot-3/049-ready.json": {
+      "bytes": 219,
+      "sha256": "3d188d79417391c3757daf143e8798baa83d61c40f654757caf2140348e9071e"
+    },
+    "necp/boot-3/050-ready.json": {
+      "bytes": 356,
+      "sha256": "d09011f4328db260dc4d8f6c61cde41f7e369496e0d2e0ba582bf63216f38bb3"
+    },
+    "necp/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "d76717965747b46235731358fda7bc8e1a7ca69b87d3efa696f27993dc5285c4"
+    },
+    "necp/boot-3/058-fresh-installed-2-failed.json": {
+      "bytes": 328,
+      "sha256": "672bd3b9dcefc4f7fdbbc0e49b2234f59161d7bcff6a0899f99f696d25ec6cd0"
+    },
+    "necp/boot-3/055-fresh-installed-2-status.json": {
+      "bytes": 3055,
+      "sha256": "d1b8ec04c10e6245bf7b8f14b5d9b306f4bbfde4bf5e60bb929422023636d146"
+    },
+    "necp/boot-3/063-fresh-installed-2-persistent.json": {
+      "bytes": 414,
+      "sha256": "7c29e2fd383233c4add6ff9e0a7d365279409b626aa2977ff021c4d968ff4b1a"
+    },
+    "necp/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "necp/boot-3/062-fresh-installed-2-root.json": {
+      "bytes": 376,
+      "sha256": "aac88cd71dfb1ed7275d4476ca71470c6c9397d12b499e498eb00d387d4ee197"
+    },
+    "necp/boot-3/057-fresh-installed-2-database.json": {
+      "bytes": 337,
+      "sha256": "2574fb3463595efa62277273a02903ac15a8edd31dc87554518e6af9e545c9da"
+    },
+    "necp/boot-3/056-fresh-installed-2-packages.json": {
+      "bytes": 15876,
+      "sha256": "dcfc6fed30cbded00dd1fe9c33d4fe8ffe2d95f3a6e341574488565327666b1f"
+    },
+    "necp/boot-3/071-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "2e2c12aa77f15db93154040205c36d4d25d8ef8834ac35813300b09e862bc1b1"
+    },
+    "necp/boot-3/060-fresh-installed-2-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "fbd5cb674a7b92c523825d388014ba7fd6569a8f2eafefb4e40defe7e8d44981"
+    },
+    "necp/boot-3/070-actual-desktop-2.json": {
+      "bytes": 7415,
+      "sha256": "13902900924acf0570059e7784df12169d515a6ab6c1f5420fb5d9987c09b9c4"
+    },
+    "necp/boot-3/051-installed-boot-trust.json": {
+      "bytes": 2288,
+      "sha256": "3c97140874b755240f96206be9fb5e68e08e833b840a51c9955441aa84dab5ac"
+    },
+    "necp/boot-3/serial.log": {
+      "bytes": 2040,
+      "sha256": "e6561a0eebb0df269a82c1c494e7e6781e13c0019a29d368a4dfc89e33ce7f99"
+    },
+    "necp/boot-3/067-fresh-installed-2-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "6b3e311f08b3f7cd1916c4c39b04eed05ff3b6a060ca74db270f92049abaf5b4"
+    },
+    "necp/boot-3/066-fresh-installed-2-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "d80390d8de60cd171a7b16f1e0563027a6dd0b72834fefe2f36ed5eb35a4d477"
+    },
+    "necp/boot-3/064-fresh-installed-2-journal.json": {
+      "bytes": 6678,
+      "sha256": "b223792e53c8fd0cf8554c11d9deff4612901c43e96255fc9938e46fa38d5985"
+    },
+    "necp/boot-3/068-fresh-installed-2-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "c4a8f3ad6a0a29d6e72773bdeb3742709e7ec237e924914160c24ca2f866bf2a"
+    },
+    "necp/boot-3/053-installed-boot-trust.json": {
+      "bytes": 522,
+      "sha256": "7678e8357f96b7d714a3f6544a15d154cfd35e46c60a04e81948e21937930350"
+    },
+    "necp/boot-3/qmp-fresh-installed-2.json": {
+      "bytes": 3579,
+      "sha256": "f2db8afc3b5c3c103631143c8ef5db66094563a88c7bc5ca8adf69b1f8d64057"
+    },
+    "necp/boot-3/048-ready.json": {
+      "bytes": 219,
+      "sha256": "7208952d9ce6d0390319cfc8e4b36895e0afb7f3dba2abcd212c082d9978d0be"
+    },
+    "necp/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "9735fd97eed07884b8a9d8b083c7622e7e444e996a1e3dd2966b0fbe0e14841e"
+    },
+    "necp/boot-3/065-fresh-installed-2-boot-journal.json": {
+      "bytes": 109858,
+      "sha256": "68acec4924caff3e3c0c9bf60f8696942e926ac287ea78676e7eb10df4d742f6"
+    },
+    "necp-control/output.log": {
+      "bytes": 398,
+      "sha256": "f0d71242d247f8fa01778e8003c4bb9b6960a31fb5e2b1809ef767d5833efcac"
+    },
+    "necp-control/launch.json": {
+      "bytes": 941,
+      "sha256": "a624e77d4a9e9efacf3959225d6b6ea930488b2ff046df7554cd8b688fe5152e"
+    },
+    "fecp-metadata/evidence-sha256.json": {
+      "bytes": 20442,
+      "sha256": "d396a5dc17195c61495104ad763699aa097ca0fced27e7598d1a58fab326ceca"
+    },
+    "fecp-metadata/inputs.json": {
+      "bytes": 3526,
+      "sha256": "c02f715ef3209fcbccfd36dff4c1032decc95d3197f454435fa66592294533b0"
+    },
+    "fecp-metadata/matrix.json": {
+      "bytes": 5693,
+      "sha256": "a39d3957aeb0ccf3e9c4a50eb73ef8df98eaa16b65366c88fa851bc11d7f77ba"
+    },
+    "fecp-metadata/metadata/offline-restore.json": {
+      "bytes": 5078,
+      "sha256": "154fd46cb299668f4adc353e831fb86f3243887fffd338f142d42c06d984e981"
+    },
+    "fecp-metadata/metadata/restored-health.json": {
+      "bytes": 637884,
+      "sha256": "e3625cc5d282a1af8a9ec088ac4bfdb766fd30d2c6fb3e52dcd2053d0ee1cc10"
+    },
+    "fecp-metadata/metadata/metadata-plan.json": {
+      "bytes": 408419,
+      "sha256": "73e97dbd1164ca6bede53a90a69f5bfcf2005771d07866dc396484aa492ece3e"
+    },
+    "fecp-metadata/metadata/attention.json": {
+      "bytes": 276,
+      "sha256": "1cfcd634645851cb0a541e861364dcd57dc28e339c9368aaf65a141edb088db3"
+    },
+    "fecp-metadata/metadata/metadata-after-state.json": {
+      "bytes": 325241,
+      "sha256": "d3015e861178e089654d1782919a0c186557549263eaf6868bdbd1b96d77a45f"
+    },
+    "fecp-metadata/metadata/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-metadata/metadata/metadata-new-boot-confirmation.json": {
+      "bytes": 414265,
+      "sha256": "f39e86fce83d141b9ec4a479d6361157c6ec332b69f7e61ccc3f4812b5539fc0"
+    },
+    "fecp-metadata/metadata/metadata-offline-rollback.json": {
+      "bytes": 416530,
+      "sha256": "47c3453cb0ab93b955395ea8dc8d3c84f99119d9270bfb45692b46a7898837cb"
+    },
+    "fecp-metadata/metadata/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "a466bf4f222707800de7ec52a9d5e0c30c966909886d885aebbdbe7b0b4c6aac"
+    },
+    "fecp-metadata/metadata/metadata-baseline-health.json": {
+      "bytes": 149832,
+      "sha256": "298a2df385d68881cb3a485d099191e4a4e6ee1b6cb1251ebad575d17818bb2a"
+    },
+    "fecp-metadata/metadata/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "f3cfcc67041ab0a0e616db78f7f69aedb61a6e64228c6fc37dfca4cb78a2ae70"
+    },
+    "fecp-metadata/metadata/metadata-apply-and-same-boot-refusal.json": {
+      "bytes": 410468,
+      "sha256": "9945b2dee518f25f96748c4dd187e57e738b4e7d7e9bd6e1bb865ce9a3ec9f51"
+    },
+    "fecp-metadata/metadata/wrong-metadata-finalization-refusal.json": {
+      "bytes": 206,
+      "sha256": "3c29779e196b68dd09ceba98565ea53175fa92bfdc2dff3840390fce52009c92"
+    },
+    "fecp-metadata/metadata/boot-4/099-before-rollback-finalization.json": {
+      "bytes": 287139,
+      "sha256": "8631ca50f956dc412cde5ab93de3bd04118f72ce91caa61caa2d7c1c21aef458"
+    },
+    "fecp-metadata/metadata/boot-4/106-restored-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "7d24357bf1b213b1cd93174d180c01d4cc4b97d7c4cd08142c1882138967b1d5"
+    },
+    "fecp-metadata/metadata/boot-4/115-restored-health-boot-journal.json": {
+      "bytes": 110686,
+      "sha256": "e1fe03608c31421e99a81775ff36a436c5e47a7cd704cbe1dc84f7da5530083a"
+    },
+    "fecp-metadata/metadata/boot-4/094-ready.json": {
+      "bytes": 219,
+      "sha256": "8bce67dca66cb3e5995748770abb4e3cbf967128850cdcc93c64763b7ab2d9e7"
+    },
+    "fecp-metadata/metadata/boot-4/122-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "1a97c62733c4532455f0d8fbb16e5fa7280ba03599280512b88cefef86e5f82c"
+    },
+    "fecp-metadata/metadata/boot-4/120-restored-health-history.json": {
+      "bytes": 484664,
+      "sha256": "e1383a115164f1090f6b74ff05adc323190b0b44516963ff4446f761ec9a236e"
+    },
+    "fecp-metadata/metadata/boot-4/qemu-command.json": {
+      "bytes": 1267,
+      "sha256": "e0c7c043e5d4aa4d99424bb4ab130d3ccfe52050868789fd171cb211f384da4b"
+    },
+    "fecp-metadata/metadata/boot-4/qmp-ready.json": {
+      "bytes": 4518,
+      "sha256": "856545f85cd74c7fc97aa2c370c33d3b256fc2a0279931f64d8962ce0d9cf11c"
+    },
+    "fecp-metadata/metadata/boot-4/119-restored-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "54a859cd20392f39700d5d96e76bcada3aa2e9676d7eb0036eb625b038f28fc5"
+    },
+    "fecp-metadata/metadata/boot-4/109-restored-health-mounts.json": {
+      "bytes": 8644,
+      "sha256": "0e0f875f6b126280bcc72a5fdd6726307ef497ba3c7b7472e4567b915977aab0"
+    },
+    "fecp-metadata/metadata/boot-4/110-restored-health-subvolumes.json": {
+      "bytes": 896,
+      "sha256": "45a26c8149ee47725a719a324163314ad3fa1098d03c6f3e0836fb6e162fe89d"
+    },
+    "fecp-metadata/metadata/boot-4/shutdown.json": {
+      "bytes": 86,
+      "sha256": "f698fec4391e3466cffbb9c0392fcb549b6e1a41dcf84e39108ab49bc86e37f9"
+    },
+    "fecp-metadata/metadata/boot-4/117-restored-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "f317b13d69da0604d02893f8107a2e87188b0e4434e6784141e64bde7cbd726e"
+    },
+    "fecp-metadata/metadata/boot-4/116-restored-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "c20edaccd14dc70c3a81d3bcbabf7c08fdaf378709c4b1c7a157b1cf083ccbda"
+    },
+    "fecp-metadata/metadata/boot-4/105-restored-health-status.json": {
+      "bytes": 3055,
+      "sha256": "fcbaf272d926ab3ce2dfb0149e05bfa94f9249867402f60b4869fade3532cb3f"
+    },
+    "fecp-metadata/metadata/boot-4/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-metadata/metadata/boot-4/101-finalize-rollback.json": {
+      "bytes": 461685,
+      "sha256": "ecb238db5e87be357ac5fd6e8bfb01e026352b7c0720bf60fe093b5ce4051598"
+    },
+    "fecp-metadata/metadata/boot-4/100-wrong-metadata-finalization-refusal.json": {
+      "bytes": 574,
+      "sha256": "b4f64d12f9b45e43f77d6146740086170485a74007ed3dc9d064de28ae293170"
+    },
+    "fecp-metadata/metadata/boot-4/112-restored-health-root.json": {
+      "bytes": 376,
+      "sha256": "6002ed41bc54f167db37461dcec56980b62bdade9186c13bd0d20b3242b2f914"
+    },
+    "fecp-metadata/metadata/boot-4/reboot.json": {
+      "bytes": 110,
+      "sha256": "8f7975410fa9fda035ec45cddeb553c9a079f5be396beab9f8f2582b5af118bc"
+    },
+    "fecp-metadata/metadata/boot-4/serial.log": {
+      "bytes": 2040,
+      "sha256": "92a4839b908f24dd9ec65b3e5aaa3cb5bcd3fe2eb430b7150ffc93fc38059101"
+    },
+    "fecp-metadata/metadata/boot-4/118-restored-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "0d403972b5a8b9d73972972dfab621e2941f075638223aab109ea1d1a35d0bab"
+    },
+    "fecp-metadata/metadata/boot-4/103-restored-signing-identity.json": {
+      "bytes": 397,
+      "sha256": "cf61e3f429242eae915eedfb5827cb51c51b6572aff176e869def9a0c0cc04dd"
+    },
+    "fecp-metadata/metadata/boot-4/113-restored-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "d0b9e21755edb7b11e9cb98b6d87ed664756af645b451c2deeec2fdee105ddb2"
+    },
+    "fecp-metadata/metadata/boot-4/096-ready.json": {
+      "bytes": 356,
+      "sha256": "bc8ea793917e5f6a01a01aaf93e09ac7ba9e3feb2ad05d47403413f3fef022dc"
+    },
+    "fecp-metadata/metadata/boot-4/qmp-restored-health.json": {
+      "bytes": 4518,
+      "sha256": "964d1f94d771b6b860bebdd1dfccc8228ced3573d63425cadb76794a7129414b"
+    },
+    "fecp-metadata/metadata/boot-4/114-restored-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "1f3d1a061f9ce60763dee7bd5333d546ea5ff331de050d679323e33cf44ac8f9"
+    },
+    "fecp-metadata/metadata/boot-4/121-restored-health-snapshots.json": {
+      "bytes": 2775,
+      "sha256": "1a2ff499ea84994fe27f46f869323377af237d726a043cfff358ae107289bc8c"
+    },
+    "fecp-metadata/metadata/boot-4/095-ready.json": {
+      "bytes": 219,
+      "sha256": "77640b08b19b205d7d62386b828565e69422114f7a1c7db890ffa5a24c82f098"
+    },
+    "fecp-metadata/metadata/boot-4/107-restored-health-database.json": {
+      "bytes": 337,
+      "sha256": "89c4d75a137c890071bd798276bdc8cb9455166494923fa6e8406c73af053e5b"
+    },
+    "fecp-metadata/metadata/boot-4/process.json": {
+      "bytes": 83,
+      "sha256": "46330c6d53632c5d1fb7cbb63554fc116ee9c1e5861972a5b1732be1ea2356cd"
+    },
+    "fecp-metadata/metadata/boot-4/108-restored-health-failed.json": {
+      "bytes": 328,
+      "sha256": "106e16f9ab04277490a1fa392e487b0fbc9baf5fcd3d968167270702c8d4f89c"
+    },
+    "fecp-metadata/metadata/boot-4/097-wait-automatic-confirmation.json": {
+      "bytes": 335,
+      "sha256": "07eca066cb8c9dcb475573e7d96e14176db95437186fe148f7d7627db9389cd5"
+    },
+    "fecp-metadata/metadata/boot-4/111-restored-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "65a5c3bb0be21413d0be32733c57ce77c3621e7f6a10891b45c79202351f1849"
+    },
+    "fecp-metadata/metadata/boot-4/102-restored-state.json": {
+      "bytes": 287139,
+      "sha256": "a4bf34b54eb198a619ecc85dfdd641dc67f4e6d440549a9d2e9424c621217c53"
+    },
+    "fecp-metadata/metadata/boot-4/098-before-explicit-finalization.json": {
+      "bytes": 481955,
+      "sha256": "b0119370d498d7fd2b4011ea0051ad0de2a92c80e268be210a6ab210b1bf2eb7"
+    },
+    "fecp-metadata/metadata/boot-4/104-restored-snapshots.json": {
+      "bytes": 2784,
+      "sha256": "a7d41c88b7865a6f27ab7e8d4b191d8bd205abc2ebe38fa69b647f95666f3274"
+    },
+    "fecp-metadata/metadata/boot-2/072-metadata-confirmed.json": {
+      "bytes": 287163,
+      "sha256": "58e26bf634fcc70b0380c08b08682f4c7d9c67312adef2e0434bfe97e2b72f29"
+    },
+    "fecp-metadata/metadata/boot-2/qemu-command.json": {
+      "bytes": 1267,
+      "sha256": "59f052ad7f786fdbc45c09a95c2bca0e9ab486f38f25c07a85f689f62d01648a"
+    },
+    "fecp-metadata/metadata/boot-2/qmp-ready.json": {
+      "bytes": 4518,
+      "sha256": "8d8ec9a240dabca7044142f0f130c9c6548b0cf0d3a2249b18229e7d450c83ec"
+    },
+    "fecp-metadata/metadata/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "0aac0b01ed5a884f82791432c1008216a9afe6675e2ad77bb50453b46621af1f"
+    },
+    "fecp-metadata/metadata/boot-2/074-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "41930fa0bee2aaa206ed02b491b3cdb9afa4be834069b75b1a0b68645865ec9b"
+    },
+    "fecp-metadata/metadata/boot-2/065-ready.json": {
+      "bytes": 219,
+      "sha256": "01ef54a7eb7fefc3bf5bbd927c816c916bd55b320b01dd5ea806f3bc61c85bc2"
+    },
+    "fecp-metadata/metadata/boot-2/066-ready.json": {
+      "bytes": 356,
+      "sha256": "cec3bf66cb433ff0b4b71471d9c41bf70931da88fc1531a804870ad0041667fc"
+    },
+    "fecp-metadata/metadata/boot-2/067-boot-confirmation-history.json": {
+      "bytes": 477310,
+      "sha256": "62b586f384ba77c3afae3a51482823938966fe3e494dfe2fe2148a1f72587a74"
+    },
+    "fecp-metadata/metadata/boot-2/070-boot-confirmation-history.json": {
+      "bytes": 481874,
+      "sha256": "6ec404fa22591011f85684c279019c4a4d628d189c3c1bb6045c4af2d849134d"
+    },
+    "fecp-metadata/metadata/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-metadata/metadata/boot-2/068-boot-confirmation-history.json": {
+      "bytes": 477310,
+      "sha256": "0a17ab23cac5c387c6a043655c45b016f6fb9e5f7b1225bcada46dcdaac2a5a3"
+    },
+    "fecp-metadata/metadata/boot-2/069-boot-confirmation-history.json": {
+      "bytes": 477310,
+      "sha256": "1346d17e7477d0196bdcbc46d48d7c5ba37e1e719588a2307c2f1efce3b9761e"
+    },
+    "fecp-metadata/metadata/boot-2/071-boot-confirmation-history.json": {
+      "bytes": 481955,
+      "sha256": "37b230fab22ad5a150e88da41ce2d4ef87aaf4dd7988d4130110640e1d463f51"
+    },
+    "fecp-metadata/metadata/boot-2/reboot.json": {
+      "bytes": 110,
+      "sha256": "e176efba0d0c23e6c1260248b0fc287a6a158ccd74b8a908906bbd44d3358aa9"
+    },
+    "fecp-metadata/metadata/boot-2/064-ready.json": {
+      "bytes": 219,
+      "sha256": "006f33b25837adda1e35f146035bd0875d33b0d12d50672dae250c132edeb40e"
+    },
+    "fecp-metadata/metadata/boot-2/serial.log": {
+      "bytes": 2175,
+      "sha256": "9d305a828a2ad4ef37848c317d5f15f4c55ed81a43ea0982a545a097016b851b"
+    },
+    "fecp-metadata/metadata/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "9fef7da6c805c2560db1c5af5ea9e36669ad35384efac33eaef28254c2504f1b"
+    },
+    "fecp-metadata/metadata/boot-2/073-before-offline-history.json": {
+      "bytes": 481955,
+      "sha256": "763c6123494f1c1249e8253bfe68169d97b881d6c95397cb64627cafec4ef04d"
+    },
+    "fecp-metadata/metadata/share/phase42-faults.py": {
+      "bytes": 82604,
+      "sha256": "438028c0b8c4ecab8af72e734d497f526022ae9dfddfb7ac07fbe58d45658000"
+    },
+    "fecp-metadata/metadata/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "05157a95c3b4a5fd7fb932d727f94d5eb53717fe4e3ec234427feea4e781dcc5"
+    },
+    "fecp-metadata/metadata/share/metadata-negative.json": {
+      "bytes": 689061,
+      "sha256": "d3779dbd5545319bc1053663817ca8c58a2ef31e800e55f70aa707e3c5ee54a7"
+    },
+    "fecp-metadata/metadata/share/recovery-target.json": {
+      "bytes": 175,
+      "sha256": "1eeb9c0af86999682bf2b01d7958bd358e72e6cdb7d1fdc9585680cd4bc6298f"
+    },
+    "fecp-metadata/metadata/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-metadata/metadata/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-metadata/metadata/boot-1/056-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "0c703a5d08a68e443a965949fdc52ea62cc7c74f18f7f631a669d8bc42f32490"
+    },
+    "fecp-metadata/metadata/boot-1/034-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "ea1eddbbe5baccb371b21136e6714cc4e6bd4a845bb7275ea868e4e1a6de296c"
+    },
+    "fecp-metadata/metadata/boot-1/049-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "0f00ac8011d47dde7b6decba6151f3d0122540e244814ac17661e186e26dbbed"
+    },
+    "fecp-metadata/metadata/boot-1/012-metadata-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "ad625db6b3400523c843c13c0f3dea1f07cec660aa5cca10315af15a29984071"
+    },
+    "fecp-metadata/metadata/boot-1/024-after-noop-plan.json": {
+      "bytes": 287139,
+      "sha256": "cf139612915da44e20edbfaa124a242489c3b0335f3e4465a533ba594c7fabc0"
+    },
+    "fecp-metadata/metadata/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "a703babac0fcb7fe73e5af116abd2627caca9ff8d9a0da4158f04385f1caf2d7"
+    },
+    "fecp-metadata/metadata/boot-1/050-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "6292f5b94f20967c7d31b8ca643a809236665aef1fa17ef47d34207e0abc615c"
+    },
+    "fecp-metadata/metadata/boot-1/011-metadata-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "f74056534a6f1c27a31aa2112ae5905f78028d0ca869c68cf68b8a4edc2e22d5"
+    },
+    "fecp-metadata/metadata/boot-1/033-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "f02cf483ea5491492ca68a85f1cf018b2e209ea2fd6b37b1ae8a1af7a944f918"
+    },
+    "fecp-metadata/metadata/boot-1/038-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "262867419831083486ab1d975339d2d4245a09d9ee03af7103eb28b0b16c8004"
+    },
+    "fecp-metadata/metadata/boot-1/028-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475033,
+      "sha256": "93c846cbf0b3f41b23e51c5a2a1b1a1dd34524da60a9662abf4ebdb364836b9b"
+    },
+    "fecp-metadata/metadata/boot-1/054-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "d68ffa16e1737fc722a85e333e3e7b5637901422e9038c1c7bd3cc4449e6debd"
+    },
+    "fecp-metadata/metadata/boot-1/063-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "60b89b4abe26e024cfb39ee0ef1275d1ec60ff708db4fcf8b6c05eb22ca22de6"
+    },
+    "fecp-metadata/metadata/boot-1/058-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "bb797f0199acb855e69999423776dc83f45d361f10f3aee2e5fb1842d492f1f7"
+    },
+    "fecp-metadata/metadata/boot-1/qemu-command.json": {
+      "bytes": 1267,
+      "sha256": "062b243b08258f7363eb9f45c1592d84cc6ca468200f1565cd1a8e3d3ea42cd2"
+    },
+    "fecp-metadata/metadata/boot-1/016-metadata-baseline-health-boot-journal.json": {
+      "bytes": 109783,
+      "sha256": "81cdd844de0b3e6348fde384787348b498452f8991649a395339d4c05100d429"
+    },
+    "fecp-metadata/metadata/boot-1/qmp-ready.json": {
+      "bytes": 4517,
+      "sha256": "00ac66353156a58e127568bd18adbff99ada3862dfd6fac883cf35183993c7f8"
+    },
+    "fecp-metadata/metadata/boot-1/030-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475161,
+      "sha256": "9a5df1e9c3bb9e427df53e0717249913dc98764406500c6eca0acbe568e13932"
+    },
+    "fecp-metadata/metadata/boot-1/017-metadata-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "8041569a003d94ff0b90696fdbeec0ba8f9a245d794258b8487d8681829bcc0e"
+    },
+    "fecp-metadata/metadata/boot-1/026-metadata-submit.json": {
+      "bytes": 713,
+      "sha256": "c86a0649bf5236451cffa5a608baf392fe78b4aaf1542b036fab35a0e16d3c84"
+    },
+    "fecp-metadata/metadata/boot-1/053-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "10a4178d3185a55a5f1c8222a2e2e3182f20d40f52a8886725f9b426530b29f1"
+    },
+    "fecp-metadata/metadata/boot-1/036-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "79d3932819edd1134de4fc3c13ab745bb9ac7f4603c674d2eb5c9b756f1b1f59"
+    },
+    "fecp-metadata/metadata/boot-1/031-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475269,
+      "sha256": "d272de8d95de4bad18119926ec76497ab2a0653fefea20e77c640afd0737e9ea"
+    },
+    "fecp-metadata/metadata/boot-1/022-metadata-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "f5c768801da1e839f5dc5c89522d123c110375525c81624bea55d7a28e6e6bf2"
+    },
+    "fecp-metadata/metadata/boot-1/019-metadata-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "375bf2137a852b0ce8aad745318b189c4a9c36e85fed0d970cd7b5090718c18c"
+    },
+    "fecp-metadata/metadata/boot-1/029-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475033,
+      "sha256": "f9e6c224d3a77817ee3ae3bef8d4345ac6d499ea35463df37264affd73678537"
+    },
+    "fecp-metadata/metadata/boot-1/018-metadata-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "d7fae122ce6e138ec305dca18c86551e20ded6bb683092bc515bb858c0b0db33"
+    },
+    "fecp-metadata/metadata/boot-1/051-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "3abf2b2e0c62a023c5fcb01513621a34be56097ac7c53327328777ba7d58271c"
+    },
+    "fecp-metadata/metadata/boot-1/014-metadata-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "699186289c3f87d6ff9ab5e2a61fcfda34b1aa2f0809bbd8146e76d2d28e1275"
+    },
+    "fecp-metadata/metadata/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "c7b71eadb38981e4aab982526e1e07f029217572dbb1a5697bc5471ff0237add"
+    },
+    "fecp-metadata/metadata/boot-1/045-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475554,
+      "sha256": "5b419a234dd128c4c32c20785b0fd4e02df2e945f63a18b6749c6e9df8577df9"
+    },
+    "fecp-metadata/metadata/boot-1/046-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475578,
+      "sha256": "cce9bdcdb674245505fca2efdc88729f0aea168bbbf45adf6c3e8c63e9227205"
+    },
+    "fecp-metadata/metadata/boot-1/032-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "255b4d97672f05dae6cc1ce793a6c3b8b30b4cc2f9e95626e594d34250c74fd1"
+    },
+    "fecp-metadata/metadata/boot-1/040-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "4dbbdecc271873782006003885b5542e5bab317e2e9b8062976761cccf296923"
+    },
+    "fecp-metadata/metadata/boot-1/044-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "40bc630245af274afee663e2b9976d51bbfeb6734f7811eb349962bce478d8b1"
+    },
+    "fecp-metadata/metadata/boot-1/047-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 477509,
+      "sha256": "8c25daae05c8a6e3bbfeed9d611e005ca578e073473055da24c896fa164b0f68"
+    },
+    "fecp-metadata/metadata/boot-1/013-metadata-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "1c9dc1007006dbbdea4f93425c2e14ce991235ab55da04be525f07ab29babd30"
+    },
+    "fecp-metadata/metadata/boot-1/043-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "8556b13d2b5e2c87e15ba0e44a5166b651e44090ac35a304f42886f50dcf1e14"
+    },
+    "fecp-metadata/metadata/boot-1/027-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 528,
+      "sha256": "340343c73a60e4d7afecfd2dce4938e766be3afe6db1feb388f616b52db4f261"
+    },
+    "fecp-metadata/metadata/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "0635b92d14b1239fb6119e6a40a359de0a30b60bb90b4cf27896c40e20b025f1"
+    },
+    "fecp-metadata/metadata/boot-1/037-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "aff41c0558b8d55d51f3483192f3d20ad0bdc8e6856abba384125ba95eb72cf3"
+    },
+    "fecp-metadata/metadata/boot-1/007-metadata-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "370f907532c30e77b09083f5f9666123716a1c6136f12e2dacecb366e22890d5"
+    },
+    "fecp-metadata/metadata/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "04deec2a6aa320ffb19f5fe4a33bf9d9506a90672be2856eaf88566ddf3016bd"
+    },
+    "fecp-metadata/metadata/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-metadata/metadata/boot-1/039-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "6837f3a5dd647822d1bfaaff1731e78a72a6a61e70073d9c43300f730bccabfb"
+    },
+    "fecp-metadata/metadata/boot-1/015-metadata-baseline-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "c2432651f6ce3bfb45816ad044cc6eb1034b959bbd703e513f7fcd747db3d2b5"
+    },
+    "fecp-metadata/metadata/boot-1/035-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "c6bbcb65df6e3034b2c3e07db1ce279c2158dbbbdf5cbbfed32b8a0dedd387b1"
+    },
+    "fecp-metadata/metadata/boot-1/062-same-boot-refusal-history.json": {
+      "bytes": 477310,
+      "sha256": "515f4c6efd31df5228a46d509d12d349e2af75e03bd001047e2fe577630315b4"
+    },
+    "fecp-metadata/metadata/boot-1/060-metadata-applied.json": {
+      "bytes": 287163,
+      "sha256": "181bcb9bf5cece86c8a0c1ab45066c3cd77d00e7af6f6e656b4a522150569aa7"
+    },
+    "fecp-metadata/metadata/boot-1/qmp-metadata-baseline-health.json": {
+      "bytes": 4517,
+      "sha256": "bc129039ab664b97bb2041db398741c85dab0f2a1d9a35955970b83769db905b"
+    },
+    "fecp-metadata/metadata/boot-1/025-metadata-plan.json": {
+      "bytes": 452575,
+      "sha256": "6760636005f7d829688cdf17a67c67dfcfe5660d204ef1e53bae9c0b9a7710d1"
+    },
+    "fecp-metadata/metadata/boot-1/021-metadata-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "bfa8cee4376180288ac02204bc6ff5d6f441659ef5f6eef99b15fa1b4e942698"
+    },
+    "fecp-metadata/metadata/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "3283916070f775fb1a631cf820e58fde66a2c0b28ec028f3c132e1934a2fbea7"
+    },
+    "fecp-metadata/metadata/boot-1/061-reject-same-boot.json": {
+      "bytes": 373,
+      "sha256": "58e296f470d5455abdbe390c4b55275656efb666bc2c9efb9ec9c2e16d8052fb"
+    },
+    "fecp-metadata/metadata/boot-1/023-true-noop-plan.json": {
+      "bytes": 452586,
+      "sha256": "866c8d45e29902c85d913be46bf2ae1057d760aec6d21ab80a121f5e4ef1f1f9"
+    },
+    "fecp-metadata/metadata/boot-1/020-metadata-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "9827cc45e6f70b461014ddc7d465db11688844c55ce042d643d4370c661b4bbf"
+    },
+    "fecp-metadata/metadata/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "b0ecc8c8d24346d0cbe15fa9b8b37e93a5a85cfc3779469b80baa007d16c6669"
+    },
+    "fecp-metadata/metadata/boot-1/041-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "f082cc55adf3e3ac81106330e6a405ecbd262c9d867760d0a3c6f58e156b13c4"
+    },
+    "fecp-metadata/metadata/boot-1/serial.log": {
+      "bytes": 2041,
+      "sha256": "5a34c26b944da9872bed2e1c92cb414d3297328a70e336d6cef38ff0a2bb45ce"
+    },
+    "fecp-metadata/metadata/boot-1/008-metadata-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "cd99ec68b484a8b6e0f4beb9a5d1d314b637ccdd9fa1b195e2409393d0696462"
+    },
+    "fecp-metadata/metadata/boot-1/042-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "1f6721059b21c4c458577f5c4e06808553630237fb745dd0f66973d079be722e"
+    },
+    "fecp-metadata/metadata/boot-1/052-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "95b7ede66f12d592f0d1a931a3c30eca3b505fc5e27ae3e85b0b7760eb7e7ab8"
+    },
+    "fecp-metadata/metadata/boot-1/006-metadata-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "1adaed8728f6fab1030ce7d535bd6186d122366331f4ca363fd623e04a83c6ab"
+    },
+    "fecp-metadata/metadata/boot-1/009-metadata-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "b0916f194c074ef20482e85083d11750bee699669867ccc6cff5dffbe517b7e4"
+    },
+    "fecp-metadata/metadata/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "ba985577500570477109757d8cacf5d646b501916d541c49f7ab5e5bf06746bc"
+    },
+    "fecp-metadata/metadata/boot-1/057-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "ced8b1311132312fe9cca466e473e160c94c77bb9f84fd837fcaef347a4a91a5"
+    },
+    "fecp-metadata/metadata/boot-1/059-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "3e9bb3d62280489ad27626973d88c9d2828d75a8970a1dbd2a69223d8baa33f7"
+    },
+    "fecp-metadata/metadata/boot-1/010-metadata-baseline-health-mounts.json": {
+      "bytes": 8644,
+      "sha256": "2c433734bf87bb0a101b114f59bbaa02e98d49a60e6952a533e667ae0798eac4"
+    },
+    "fecp-metadata/metadata/boot-1/048-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "85ea7e57cec3a69f0ab2e7c817bf96b1b40243b969d967538646298a22209f0e"
+    },
+    "fecp-metadata/metadata/boot-1/055-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "1714d6b7ceea25c1a8dadf3d38c8a58b11543c7fdfc3fadcba8f4665c8ce1b3f"
+    },
+    "fecp-metadata/metadata/screenshots/recovery-terminal.png": {
+      "bytes": 272587,
+      "sha256": "b8d47044ff042f36031a269b6b7a3afd5bd7e4d75ef65e96b21cfd1d789db096"
+    },
+    "fecp-metadata/metadata/screenshots/recovery-desktop.png": {
+      "bytes": 554254,
+      "sha256": "7e4319b293ecf4cd3c1254c2b1329c1cb8e8441135bbfa4c7f1b58259a9a9ef2"
+    },
+    "fecp-metadata/metadata/boot-3/084-ready.json": {
+      "bytes": 219,
+      "sha256": "fdaac6034b423385f01cb127fb67966bb39e61fe51e3262516dc09113cca49b9"
+    },
+    "fecp-metadata/metadata/boot-3/086-ready.json": {
+      "bytes": 219,
+      "sha256": "2bba59b088ccc1c5e48953f94a8472b7ba20f4410a651ec1477435e29dd4fdac"
+    },
+    "fecp-metadata/metadata/boot-3/089-ready.json": {
+      "bytes": 219,
+      "sha256": "8128dcbbc18db209e02e457d53a6effc12cba1f65a58eb9bcfe8d0f1a3760ce9"
+    },
+    "fecp-metadata/metadata/boot-3/082-ready.json": {
+      "bytes": 219,
+      "sha256": "995deb67da6cb930ed40cd5362b769264f4c8e826daad344c5a278b45904ca20"
+    },
+    "fecp-metadata/metadata/boot-3/087-ready.json": {
+      "bytes": 219,
+      "sha256": "dd293fc169fede9d9927cba9066c62ca4231697e9ccca6951a501709a60c9d25"
+    },
+    "fecp-metadata/metadata/boot-3/qemu-command.json": {
+      "bytes": 1424,
+      "sha256": "bf39f7109c3ae3f3038c0b8371323911b41d76842add1534f7b877e0ceb390c6"
+    },
+    "fecp-metadata/metadata/boot-3/qmp-ready.json": {
+      "bytes": 5466,
+      "sha256": "8003bf114d96ea9f503ba0dcb80603ac8352af58f39fac3e0033d20aabd2b686"
+    },
+    "fecp-metadata/metadata/boot-3/091-ready.json": {
+      "bytes": 356,
+      "sha256": "76be96a158f6d31bbdc84ec0544edb3102bc0242b2b7633a99e04095e1d639e8"
+    },
+    "fecp-metadata/metadata/boot-3/077-ready.json": {
+      "bytes": 219,
+      "sha256": "71e445b90a87756301e1c0d9880fe59910806cc86f71039931989eb5dae1b8f1"
+    },
+    "fecp-metadata/metadata/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "40a71d4d64268a2427c1da944d8ee56fed1adc19173d1adbb825c2102ca20476"
+    },
+    "fecp-metadata/metadata/boot-3/088-ready.json": {
+      "bytes": 219,
+      "sha256": "3f841afc258a24b065d98ef71c6eb09062ab315349537dfbf3ddca60f6635b01"
+    },
+    "fecp-metadata/metadata/boot-3/079-ready.json": {
+      "bytes": 219,
+      "sha256": "55e0f9fa0c87640d223757ac6ca7f48931757c522604ca5f56921dce18ca3641"
+    },
+    "fecp-metadata/metadata/boot-3/083-ready.json": {
+      "bytes": 219,
+      "sha256": "a6f8965f33485712143b5d5d7e64a6bdb9d78d947f7f22e8cb0972561dcc1e0d"
+    },
+    "fecp-metadata/metadata/boot-3/093-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "176ef9b901fbd819cb782939837954245167f95041f4571952e5bc676d88df50"
+    },
+    "fecp-metadata/metadata/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-metadata/metadata/boot-3/092-offline-restore.json": {
+      "bytes": 4798,
+      "sha256": "71fa12c0ea1ba47a1ea064fa97edb2064c1db0eac328fbbc4ad9900a4acf20a1"
+    },
+    "fecp-metadata/metadata/boot-3/076-ready.json": {
+      "bytes": 219,
+      "sha256": "a63dbd509ca4e42357e9bf0ec8dde07a5eef2ca23d19ff5a59604228cd2c0236"
+    },
+    "fecp-metadata/metadata/boot-3/075-ready.json": {
+      "bytes": 219,
+      "sha256": "75226b22f449aa51cebb3c394402ff80db8c419e86323665e3d53bf5752af030"
+    },
+    "fecp-metadata/metadata/boot-3/080-ready.json": {
+      "bytes": 219,
+      "sha256": "cbc40af065536a03e9a26107ffb461b16c5db3f3a7b6490e9c85db5cf500aa51"
+    },
+    "fecp-metadata/metadata/boot-3/085-ready.json": {
+      "bytes": 219,
+      "sha256": "732dee38539c873918144d072f536a751a295e9ad6c65e4f67672d32040472c5"
+    },
+    "fecp-metadata/metadata/boot-3/081-ready.json": {
+      "bytes": 219,
+      "sha256": "ccb0b451f2992bd5283db71751f3a85fb04e118aefb96be51877224e7df18ab9"
+    },
+    "fecp-metadata/metadata/boot-3/serial.log": {
+      "bytes": 27107,
+      "sha256": "9374b02eba4e95faf1064cf184c75c7ecfc74445e4bd8072fc71e3a51284e320"
+    },
+    "fecp-metadata/metadata/boot-3/078-ready.json": {
+      "bytes": 219,
+      "sha256": "658d4eb0e8709cb510f9969e56a44368364b80fe3f8325e37823ca866b560486"
+    },
+    "fecp-metadata/metadata/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "76d8e4ad750417204681a20f54d02452cfea1cc54cdd40c7d3c9422871d74df5"
+    },
+    "fecp-metadata/metadata/boot-3/090-ready.json": {
+      "bytes": 219,
+      "sha256": "eabedbcd3da5c01d6c3b4e2302ec7ea63200cd699287551ae6e34e7523782d37"
+    },
+    "fecp-metadata-control/output.log": {
+      "bytes": 691,
+      "sha256": "6ff040325e358469a0278b06b20143c16662db575e83bb7a7cae3dd3bd196106"
+    },
+    "fecp-metadata-control/launch.json": {
+      "bytes": 923,
+      "sha256": "cbef1a22e73fb69aaf49de470ecc0dce177766cfc99d15ba433b776d3eaa0d19"
+    },
+    "recp/manifest.json": {
+      "bytes": 2121,
+      "sha256": "cb4deea690ebc476bf591394e5f01d7513896e9dbd6c65cc099980478fda3eb1"
+    },
+    "recp-build.log": {
+      "bytes": 4533,
+      "sha256": "3308675f48b9e29c10b4b46b217b6a1246c8a4f022c80f45a35a9520855fd448"
+    },
+    "recp-build-launch.json": {
+      "bytes": 496,
+      "sha256": "456780d24d0def4772c550e04f7b3d26c3d740faa2cafa1b0eb7c6bd53c4ffb9"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "method": "candidate-payload-and-production-provision",
+  "calamares_ui": false,
+  "payload_sha256": "c8b9eebc89c6e66ded0c5c363f60f0cbb915cdafc029899ee8dfa2b04e21493e",
+  "provision_sha256": "913f42f7c19096dc2bc90854fc202336c891d367c7ae65e1a2e5a60c7bca45ee",
+  "configuration": {
+    "gaming": [],
+    "packages": [],
+    "providers": {},
+    "schema_version": 1
+  },
+  "signing": {
+    "bootloader": {
+      "artifact_sha256": "cc8b62e3787f3c7adaf974c7ec5496d8440c7a9ef23837f2bccc049320c2cabe",
+      "certificate_sha256": "e3a43c20de7ad909b13c596a656162c27f6a41b753d8f91e0a251920234e8c7d",
+      "firmware_trust": "not-evaluated",
+      "input_sha256": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1",
+      "kind": "bootloader",
+      "purpose": "disposable-ovmf",
+      "schema_version": 1
+    },
+    "uki": {
+      "artifact_sha256": "0119f9b9789da97a8d5d5803277fe3327f1458309b118d929b58541bdc7f0fd1",
+      "certificate_sha256": "e3a43c20de7ad909b13c596a656162c27f6a41b753d8f91e0a251920234e8c7d",
+      "firmware_trust": "not-evaluated",
+      "input_sha256": "6c2e303674ee35ead644d448081656db99dd7b37f73ba4c692b656b1b66c1979",
+      "kind": "uki",
+      "purpose": "disposable-ovmf",
+      "schema_version": 1
+    }
+  },
+  "disk_serial": "AS42c1139fbbc69dd720",
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  }
+}
