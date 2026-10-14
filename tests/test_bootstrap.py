@@ -85,7 +85,13 @@ class BootstrapTests(unittest.TestCase):
             result = SimpleNamespace(stdout=f"pub:::::::::\nfpr:::::::::{fingerprint}:\n")
             with patch.object(bootstrap, "run", return_value=result) as run:
                 output = bootstrap.new_directory(root / "success")
-                profile = bootstrap.create_profile(output, repo, fingerprint)
+                archive = output / "archive"
+                archive.mkdir()
+                hashes = {}
+                for name in ["core", "extra", "multilib"]:
+                    (archive / f"{name}.db").write_bytes(database())
+                    hashes[name] = bootstrap.digest(archive / f"{name}.db")
+                profile = bootstrap.create_profile(output, repo, fingerprint, hashes)
                 live = profile / "airootfs"
                 self.assertIn("file:///opt/distro/repo", (live / "etc/pacman.conf").read_text())
                 self.assertNotIn(str(output), (live / "etc/pacman.conf").read_text())
@@ -106,11 +112,112 @@ class BootstrapTests(unittest.TestCase):
                 self.assertNotIn("ConditionPathExists=", keyring_unit)
                 self.assertEqual(list(profile.rglob("*.in")), [])
                 self.assertTrue((live / "usr/local/libexec/live-smoke.sh").is_file())
+                self.assertEqual(sorted(p.name for p in (profile / "pacman-sync").iterdir()),
+                                 ["SHA256SUMS", "core.db", "distro.db", "distro.db.sig", "extra.db", "multilib.db"])
+                self.assertFalse((live / "pacman-sync").exists())
                 self.assertEqual(run.call_count, 5)
                 run.reset_mock()
                 with self.assertRaisesRegex(ValueError, "fingerprint"):
-                    bootstrap.create_profile(bootstrap.new_directory(root / "rejected"), repo, "B" * 40)
+                    bootstrap.create_profile(bootstrap.new_directory(root / "rejected"), repo, "B" * 40, hashes)
                 self.assertEqual(run.call_count, 1)  # No import or local trust after mismatch.
+
+    def test_live_metadata_staging_keeps_only_exact_public_inputs(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            profile, archive, repo = (root / name for name in ["profile", "archive", "repo"])
+            for path in [profile, archive, repo]:
+                path.mkdir()
+            hashes = {}
+            for name in ["core", "extra", "multilib"]:
+                (archive / f"{name}.db").write_bytes(name.encode())
+                hashes[name] = bootstrap.digest(archive / f"{name}.db")
+            (repo / "distro.db").write_bytes(b"custom database")
+            (repo / "distro.db.sig").write_bytes(b"custom detached signature")
+            (repo / "unrelated").write_bytes(b"must not be copied")
+            bootstrap.stage_live_databases(profile, archive, repo, hashes, 1000)
+            seed = profile / "pacman-sync"
+            self.assertEqual(len(list(seed.iterdir())), 6)
+            for line in (seed / "SHA256SUMS").read_text().splitlines():
+                expected, name = line.split()
+                self.assertEqual(bootstrap.digest(seed / name), expected)
+                self.assertEqual(int((seed / name).stat().st_mtime), 1000)
+                if os.name != "nt":
+                    self.assertEqual((seed / name).stat().st_mode & 0o777, 0o444)
+            for name, changed in [("tampered", dict(hashes, core="0" * 64)), ("incomplete", {"core": hashes["core"]})]:
+                rejected = root / name
+                rejected.mkdir()
+                with self.assertRaises(ValueError):
+                    bootstrap.stage_live_databases(rejected, archive, repo, changed, 1000)
+                self.assertFalse((rejected / "pacman-sync").exists())
+
+    @unittest.skipUnless(os.name != "nt" and os.geteuid() == 0 and shutil.which("mksquashfs")
+                         and shutil.which("unsquashfs"), "root Linux squashfs tools required")
+    def test_live_metadata_survives_cleanup_at_real_compressor_boundary(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            profile, archive, repo = (root / name for name in ["profile", "archive", "repo"])
+            for path in [profile, archive, repo]:
+                path.mkdir()
+            hashes = {}
+            for name in ["core", "extra", "multilib"]:
+                (archive / f"{name}.db").write_bytes(name.encode())
+                hashes[name] = bootstrap.digest(archive / f"{name}.db")
+            (repo / "distro.db").write_bytes(b"custom database")
+            (repo / "distro.db.sig").write_bytes(b"signature")
+            bootstrap.stage_live_databases(profile, archive, repo, hashes, 1000)
+            values = dict(ID="test", NAME="Test", VERSION="0.0.1", EPOCH=1000)
+            (profile / "profiledef.sh").write_text(bootstrap.render(
+                (ROOT / "distro/archiso/profiledef.sh.in").read_text(), values))
+            seed = profile / "pacman-sync"
+            command = ['bash', '-c', 'set -euo pipefail; declare -A file_permissions; source "$1/profiledef.sh"; '
+                       'profile="$1"; pacstrap_dir="$2"; '
+                       'mksquashfs "$2" "$3" -noappend -processors 1 -quiet', '_']
+            env = dict(os.environ, SOURCE_DATE_EPOCH="1000")
+            outputs = []
+            for iteration in range(2):
+                tree = root / f"tree-{iteration}"
+                (tree / "var/lib/pacman/local").mkdir(parents=True)
+                sync = tree / "var/lib/pacman/sync"
+                sync.mkdir()
+                (sync / "old.db").write_bytes(b"removed by ArchISO")
+                # Same removal boundary as pinned ArchISO 91's _cleanup_pacstrap_dir.
+                subprocess.run(['find', str(sync), '-delete'], check=True, capture_output=True)
+                image = root / f"live-{iteration}.sfs"
+                result = subprocess.run([*command, str(profile), str(tree), str(image)], env=env,
+                                        capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                outputs.append(bootstrap.digest(image))
+                self.assertEqual(sync.stat().st_mode & 0o777, 0o755)
+                self.assertEqual(sync.stat().st_uid, 0)
+                names = sorted(p.name for p in seed.iterdir() if p.name != "SHA256SUMS")
+                self.assertEqual(sorted(p.name for p in sync.iterdir()), names)
+                for name in names:
+                    self.assertEqual((sync / name).stat().st_mode & 0o777, 0o644)
+                    self.assertEqual((sync / name).stat().st_uid, 0)
+                    self.assertEqual(int((sync / name).stat().st_mtime), 1000)
+                    content = subprocess.run(['unsquashfs', '-cat', str(image), 'var/lib/pacman/sync/' + name],
+                                             check=True, capture_output=True).stdout
+                    self.assertEqual(content, (seed / name).read_bytes())
+            self.assertEqual(outputs[0], outputs[1], "restoration must preserve deterministic image bytes")
+            for failure in ["missing-signature", "tampered-db", "existing-sync", "symlink-sync"]:
+                with self.subTest(failure=failure):
+                    changed = root / failure
+                    shutil.copytree(profile, changed)
+                    tree = root / (failure + "-tree")
+                    (tree / "var/lib/pacman/local").mkdir(parents=True)
+                    if failure == "missing-signature":
+                        (changed / "pacman-sync/distro.db.sig").unlink()
+                    elif failure == "tampered-db":
+                        (changed / "pacman-sync/core.db").write_bytes(b"tampered")
+                    elif failure == "existing-sync":
+                        (tree / "var/lib/pacman/sync").mkdir()
+                    else:
+                        (tree / "var/lib/pacman/sync").symlink_to(root / "missing")
+                    image = root / (failure + ".sfs")
+                    result = subprocess.run([*command, str(changed), str(tree), str(image)], env=env,
+                                            capture_output=True, text=True)
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertFalse(image.exists(), "invalid metadata must fail before compression")
 
     def test_source_archive_is_deterministic_and_refuses_reuse(self):
         with tempfile.TemporaryDirectory() as temp:

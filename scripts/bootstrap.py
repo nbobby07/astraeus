@@ -188,7 +188,33 @@ def pinned_archive_config(config, directory):
                           f"CacheServer = {server}\nServer = {directory.as_uri()}")
 
 
-def create_profile(out, repo, fingerprint):
+def stage_live_databases(profile, archive, repo, hashes, epoch):
+    # ArchISO removes sync databases before compression. Keep verified public bytes
+    # outside airootfs so its existing compressor wrapper can restore them afterward.
+    if set(hashes) != {"core", "extra", "multilib"}:
+        raise ValueError("live metadata requires the complete approved archive")
+    verify_archive_files(archive, hashes)
+    target = profile / "pacman-sync"
+    target.mkdir(mode=0o755)
+    sources = {f"{name}.db": (archive / f"{name}.db", digest_value) for name, digest_value in hashes.items()}
+    for name in ["distro.db", "distro.db.sig"]:
+        sources[name] = (repo / name, digest(repo / name))
+    checks = []
+    for name, (source, expected) in sorted(sources.items()):
+        shutil.copyfile(source, target / name)
+        if digest(target / name) != expected:
+            raise ValueError(f"live repository metadata changed while staging: {name}")
+        (target / name).chmod(0o444)
+        os.utime(target / name, (epoch, epoch))
+        checks.append(f"{expected}  {name}\n")
+    write(target / "SHA256SUMS", "".join(checks))
+    (target / "SHA256SUMS").chmod(0o444)
+    os.utime(target / "SHA256SUMS", (epoch, epoch))
+    target.chmod(0o755)
+    os.utime(target, (epoch, epoch))
+
+
+def create_profile(out, repo, fingerprint, archive_hashes):
     data = project()
     repo = repo.resolve(strict=True)
     if not re.fullmatch(r"[A-F0-9]{40}", fingerprint):
@@ -226,6 +252,7 @@ def create_profile(out, repo, fingerprint):
     for template in sorted(profile.rglob("*.in")):
         write(template.with_suffix(""), render(template.read_text(), values))
         template.unlink()
+    stage_live_databases(profile, out / "archive", repo, archive_hashes, values["EPOCH"])
     root = profile / "airootfs"
     shutil.copytree(repo, root / "opt/distro/repo", symlinks=False)
     write(root / "usr/share/distro/repository-key.asc", (repo / "repository-key.asc").read_text())
@@ -274,7 +301,7 @@ def build_iso(output, repo, fingerprint, graphics=(), gaming=()):
         raise ValueError(f"archiso version must be {data['build']['archiso_version']}, got {version}")
     out = new_directory(output)
     archive_hashes = check_archive(out / "archive")
-    profile = create_profile(out, repo, fingerprint)
+    profile = create_profile(out, repo, fingerprint, archive_hashes)
     env = dict(os.environ, SOURCE_DATE_EPOCH=str(data["build"]["source_date_epoch"]), TZ="UTC", LC_ALL="C")
     values = dict(ID=data["identity"]["id"], NAME=data["identity"]["name"], VERSION=data["identity"]["version"],
                   ARCHIVE=data["build"]["archive_date"], EPOCH=data["build"]["source_date_epoch"], FINGERPRINT=fingerprint)

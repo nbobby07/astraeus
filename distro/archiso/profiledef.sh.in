@@ -13,8 +13,37 @@ pacman_conf="pacman.conf"
 airootfs_image_type="squashfs"
 airootfs_image_tool_options=('-comp' 'xz' '-Xbcj' 'x86' '-b' '1M' '-Xdict-size' '1M')
 # This profile is built as root. ArchISO 91 resolves these commands in its shell.
-# The auxiliary cache contains build-filesystem identity and is safe to regenerate.
+# ArchISO deletes sync metadata before compression. Restore only the exact staged
+# public databases; the live keyring is initialized separately on first boot.
 mksquashfs() {
+  local root="${1:?}" seed="${profile:?}/pacman-sync" target="${1}/var/lib/pacman/sync"
+  local names=(core.db distro.db distro.db.sig extra.db multilib.db) checks=() name expected recorded extra index
+  [[ $EUID == 0 && "$root" == "${pacstrap_dir:?}" && -d "$root" && ! -L "$root" &&
+     -d "$root/var/lib/pacman/local" && ! -L "$root/var/lib/pacman" &&
+     ! -e "$target" && ! -L "$target" && -d "$seed" && ! -L "$seed" ]] || {
+    printf '%s\n' 'Unexpected live repository restoration paths' >&2; return 1;
+  }
+  for name in "${names[@]}" SHA256SUMS; do
+    [[ -f "$seed/$name" && ! -L "$seed/$name" ]] || {
+      printf '%s\n' "Missing regular live repository input: $name" >&2; return 1;
+    }
+  done
+  mapfile -t checks < "$seed/SHA256SUMS"
+  [[ ${#checks[@]} == ${#names[@]} ]] || return 1
+  for index in "${!names[@]}"; do
+    read -r expected recorded extra <<< "${checks[$index]}"
+    [[ "$expected" =~ ^[0-9a-f]{64}$ && "$recorded" == "${names[$index]}" && -z "$extra" ]] || return 1
+  done
+  (cd -- "$seed" && sha256sum --strict --status -c SHA256SUMS) || {
+    printf '%s\n' 'Staged live repository metadata changed' >&2; return 1;
+  }
+  install -d -m 0755 -o 0 -g 0 -- "$target" || return 1
+  for name in "${names[@]}"; do
+    install -m 0644 -o 0 -g 0 -- "$seed/$name" "$target/$name" || return 1
+  done
+  (cd -- "$target" && sha256sum --strict --status -c "$seed/SHA256SUMS") || return 1
+  touch -d "@${SOURCE_DATE_EPOCH:?}" -- "$target" "${names[@]/#/$target/}" || return 1
+  # The auxiliary cache contains build-filesystem identity and is safe to regenerate.
   command mksquashfs "$@" -e var/cache/ldconfig/aux-cache
 }
 # SOURCE_DATE_EPOCH alone does not normalize ISO directory-record timestamps.
