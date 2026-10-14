@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-14T15:48:00.148056+00:00",
+  "finished": "2026-10-14T15:48:00.384326+00:00",
+  "command": "distroctl confirm-boot 1",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: running boot entry is not a managed generation\n",
+    "id": "6b3a09a11d9e40baa25620ca31264729",
+    "boot_id": "d0e5a77c-164a-4a6e-97b5-879d242a9e85"
+  }
+}

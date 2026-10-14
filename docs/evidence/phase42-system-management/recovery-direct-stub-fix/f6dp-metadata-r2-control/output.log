@@ -1,0 +1,32 @@
+QMP: /home/ubuntu/p42/f6dp-metadata-r2/metadata/boot-1/qmp.sock
+Installed guest started; current private QMP is recorded in /home/ubuntu/p42/f6dp-metadata-r2/metadata/attention.json
+QMP: /home/ubuntu/p42/f6dp-metadata-r2/metadata/boot-2/qmp.sock
+Installed guest started; current private QMP is recorded in /home/ubuntu/p42/f6dp-metadata-r2/metadata/attention.json
+QMP: /home/ubuntu/p42/f6dp-metadata-r2/metadata/boot-3/qmp.sock
+Start the recovery command channel and unlock LUKS if needed through private QMP; see attention.json.
+Traceback (most recent call last):
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase42-faults.py", line 1398, in <module>
+    main()
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase42-faults.py", line 1391, in main
+    run(args)
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase42-faults.py", line 1340, in run
+    {'metadata': metadata_scenario, 'interruption': interruption_scenario,
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase42-faults.py", line 1168, in metadata_scenario
+    gate('metadata-offline-rollback', lambda: offline_restore(vm, args, recovery, before, record,
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase42-faults.py", line 1323, in gate
+    result = function()
+             ^^^^^^^^^^
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase42-faults.py", line 1168, in <lambda>
+    gate('metadata-offline-rollback', lambda: offline_restore(vm, args, recovery, before, record,
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase42-faults.py", line 948, in offline_restore
+    result = guest_command(vm, 'recover', record['snapshot'], label='offline-restore')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase42-faults.py", line 831, in guest_command
+    return json.loads(vm.command(shlex.join(command), timeout=1000 if action == 'recover' else 180,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase2.py", line 159, in command
+    require(result['code'] == 0, f'guest command {label} exited {result["code"]}; see {record}')
+  File "/home/ubuntu/p42/h23ab305/scripts/validate/phase2.py", line 36, in require
+    raise RuntimeError(message)
+RuntimeError: guest command offline-restore exited 1; see /home/ubuntu/p42/f6dp-metadata-r2/metadata/boot-3/087-offline-restore.json

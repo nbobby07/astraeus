@@ -1,0 +1,15 @@
+{
+  "runtime_candidate_tested_in_vm": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "vm_trial": "f6dp-metadata-r2",
+  "result": "metadata-only new-boot confirmation passed; offline rollback failed before root switch at bootctl LoaderInfo precondition",
+  "root_cause": "Direct recovery UKI does not publish boot-loader LoaderInfo; default bootctl refuses clearing loader preferences",
+  "fix": "Explicit --variables=yes for all three existing fixed preference-clearing paths; firmware write failures still propagate",
+  "source_reference": "https://github.com/systemd/systemd/blob/v262/src/bootctl/bootctl-util.c#L37-L73",
+  "regression_before_fix": "New direct-stub offline rollback test failed: Not booted with a supported boot loader.",
+  "windows_workspace_passed": 142,
+  "windows_clippy": "PASS",
+  "linux_native_passed": 159,
+  "linux_native_ignored": 5,
+  "linux_native_clippy": "PASS",
+  "new_images_and_vm_recovery": "REQUIRED; not yet run"
+}

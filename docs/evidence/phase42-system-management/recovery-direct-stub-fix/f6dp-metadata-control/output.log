@@ -1,0 +1,20 @@
+QMP: /home/ubuntu/p42/f6dp-metadata/metadata/boot-1/qmp.sock
+Installed guest started; current private QMP is recorded in /home/ubuntu/p42/f6dp-metadata/metadata/attention.json
+Traceback (most recent call last):
+  File "/home/ubuntu/p42/h6d10954a/scripts/validate/phase42-faults.py", line 1386, in <module>
+    main()
+  File "/home/ubuntu/p42/h6d10954a/scripts/validate/phase42-faults.py", line 1379, in main
+    run(args)
+  File "/home/ubuntu/p42/h6d10954a/scripts/validate/phase42-faults.py", line 1328, in run
+    {'metadata': metadata_scenario, 'interruption': interruption_scenario,
+  File "/home/ubuntu/p42/h6d10954a/scripts/validate/phase42-faults.py", line 1148, in metadata_scenario
+    record = gate('metadata-apply-and-same-boot-refusal', apply)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/p42/h6d10954a/scripts/validate/phase42-faults.py", line 1311, in gate
+    result = function()
+             ^^^^^^^^^^
+  File "/home/ubuntu/p42/h6d10954a/scripts/validate/phase42-faults.py", line 1146, in apply
+    require(reply['code'] != 0 and 'different kernel boot' in reply['output'], 'metadata transaction accepted same-boot confirmation')
+  File "/home/ubuntu/p42/h6d10954a/scripts/validate/phase42-faults.py", line 39, in require
+    raise RuntimeError(message)
+RuntimeError: metadata transaction accepted same-boot confirmation

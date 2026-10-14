@@ -1,0 +1,869 @@
+{
+  "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "failed_trials_preserved": [
+    "f6dp-metadata",
+    "f6dp-metadata-r2"
+  ],
+  "files": {
+    "f6dp-metadata/evidence-sha256.json": {
+      "bytes": 10247,
+      "sha256": "53b0eb9780d4f079ddc9b4c9d37efe03da80924fd4a9d091a7ed4fd4d539adae"
+    },
+    "f6dp-metadata/inputs.json": {
+      "bytes": 3526,
+      "sha256": "c1ee917560c521f728400b688b86ad407fc4681d6175ada10ebc38ccb7132597"
+    },
+    "f6dp-metadata/matrix.json": {
+      "bytes": 5128,
+      "sha256": "d94795e8ba7e5689f337a2a7c95f0d5c1f4f1486d4b2ff73c8980ebee9c03a9b"
+    },
+    "f6dp-metadata/metadata/metadata-plan.json": {
+      "bytes": 408419,
+      "sha256": "ad10e9d064ad7f36f3564d6c88e15a9fe885a8ecce03b5ded132703026112a29"
+    },
+    "f6dp-metadata/metadata/attention.json": {
+      "bytes": 276,
+      "sha256": "974143269dd3c932583ea3f79445ffec9e0598d450ac6ed1a7f1afeea5d6bf94"
+    },
+    "f6dp-metadata/metadata/metadata-after-state.json": {
+      "bytes": 325241,
+      "sha256": "e1aa3a5b404118765e8fce87d226f29b6f176b3c7720e15c1e366d35e536ced0"
+    },
+    "f6dp-metadata/metadata/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "9c8b91ee741e781e1dc723cee22c6ec02d5ba8a20e6af96d07497d21dc125381"
+    },
+    "f6dp-metadata/metadata/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "753ea4d3e35e095ec03efd749edea1b94cccaf4206805a5580a958afc407b848"
+    },
+    "f6dp-metadata/metadata/metadata-baseline-health.json": {
+      "bytes": 149776,
+      "sha256": "0de08184cd783b786fca8a20dfb81a304bc0819a17261839fce9e5a4290ef40e"
+    },
+    "f6dp-metadata/metadata/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "81631a169458ee9ae16a06325adf2c6aeac4b064e64e58edb237c8f324f611a4"
+    },
+    "f6dp-metadata/metadata/share/phase42-faults.py": {
+      "bytes": 82025,
+      "sha256": "b481a828493191d1d261c1c4faf0877e1a90662959ca879ccf863343b6d7d676"
+    },
+    "f6dp-metadata/metadata/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "673b49fff969513f317480534c722c369d50f482fad72e3e2f14e7c37f49266e"
+    },
+    "f6dp-metadata/metadata/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "f6dp-metadata/metadata/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "f6dp-metadata/metadata/boot-1/056-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "9891bb04dff663064ca1e3b6a4d4d192f306c60a2bbdc14c42e3b6911d282678"
+    },
+    "f6dp-metadata/metadata/boot-1/049-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "6d0347d35f95ba7b818aeff974d92bb8d0796ac2adcd6d7d0a5f4b0cd6e9aa87"
+    },
+    "f6dp-metadata/metadata/boot-1/045-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475555,
+      "sha256": "f8c91c8e8295cb36be5fa4b56899da7b03a6d055e79273307b25b994b2800052"
+    },
+    "f6dp-metadata/metadata/boot-1/012-metadata-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "0e34b32046e813117a054087ecde6886a6b1186d91605f7d457346717ad3bd8e"
+    },
+    "f6dp-metadata/metadata/boot-1/024-after-noop-plan.json": {
+      "bytes": 287139,
+      "sha256": "6e1a1de4d844be92ecceb9cf4b77bacf63e98952d064b01bcf03e63da89bb2d9"
+    },
+    "f6dp-metadata/metadata/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "c31dd41922122f1b79e4e236ac98a1c3faa1fa09e49ee20f6da0da5401fe6cca"
+    },
+    "f6dp-metadata/metadata/boot-1/050-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "9396c44d365352a6eccdba27447db399cb19a267a4d154a7097811ef3e7a7ee7"
+    },
+    "f6dp-metadata/metadata/boot-1/011-metadata-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "ab1d96f60de806585f54dcd5363d715fe59d9d02026dbc9c5b7a459a3a543cd0"
+    },
+    "f6dp-metadata/metadata/boot-1/027-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 527,
+      "sha256": "c7bb9a18b2f98e7dba8af5c390e95da6d97cc902ac700c4f70dfdd77cfb0a2e6"
+    },
+    "f6dp-metadata/metadata/boot-1/054-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "587859a95f3d190c42773f8d08a4c55d4bbc1d5397a0f71ce5e6d10d8927c98a"
+    },
+    "f6dp-metadata/metadata/boot-1/058-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "dc33c828e2ce9ec0dcea0ff2fe0088dab0042a96ef343689de0fa224320ae456"
+    },
+    "f6dp-metadata/metadata/boot-1/048-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 477509,
+      "sha256": "f4d17cd3408e23612cba6a6834e69e017e4001bb02d11ba15aec61b2b39a26a4"
+    },
+    "f6dp-metadata/metadata/boot-1/qemu-command.json": {
+      "bytes": 1267,
+      "sha256": "e2342a3c9c8b3e9c4de8140aaef820932b20f5d9efc409ced6dcfeb222b796fb"
+    },
+    "f6dp-metadata/metadata/boot-1/016-metadata-baseline-health-boot-journal.json": {
+      "bytes": 109726,
+      "sha256": "358da5451caa9d9f62c784fe13732c21155d5d84a0499eb92301130d67f38b31"
+    },
+    "f6dp-metadata/metadata/boot-1/062-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "9defb2b4707bda2ed703bfbcbeac8b8765369dd28070df6be35d454be851a7dc"
+    },
+    "f6dp-metadata/metadata/boot-1/034-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475461,
+      "sha256": "a632080c9ac28cc3d47fd51ff15cc0d65d5649230c38906b73097bbb67e57bc0"
+    },
+    "f6dp-metadata/metadata/boot-1/qmp-ready.json": {
+      "bytes": 4517,
+      "sha256": "b503a1b7fca58b79d933dc4f63d1e3cc56cb5f6b14b4c3f8609847e267bda371"
+    },
+    "f6dp-metadata/metadata/boot-1/017-metadata-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "b8b0495885a06e102da9775b1d47c44687b12fd76c7ae0bd0fe37b779bf80aa3"
+    },
+    "f6dp-metadata/metadata/boot-1/026-metadata-submit.json": {
+      "bytes": 713,
+      "sha256": "3fad114cb521096b7f30bdc2db186fef01d86b4966d4e169aacdecfc98b889a3"
+    },
+    "f6dp-metadata/metadata/boot-1/053-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "76d2c9d32a458301dd6b526f387336a002f311102e7254d971f8a3eaa8ddd285"
+    },
+    "f6dp-metadata/metadata/boot-1/033-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475269,
+      "sha256": "7f7db9656d4147ef9d3d14919dc5092e65986cf054582d4023a1ea82122f25e4"
+    },
+    "f6dp-metadata/metadata/boot-1/022-metadata-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "7585f0b72636cdee696344e5e4d56e412b8c13ca8f19fafcb51ba12b7766d853"
+    },
+    "f6dp-metadata/metadata/boot-1/019-metadata-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "eadbb50d55d37ed1dff146172362bb316d6227dc3afdbaa9569d765561d9e940"
+    },
+    "f6dp-metadata/metadata/boot-1/018-metadata-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "0ea27800c147673735ea192a2ee19a1942e1b403e1106a2218b01705dc6618fd"
+    },
+    "f6dp-metadata/metadata/boot-1/051-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "4b09e349112ead8c3feb44bf17a3a0d8202857e9376c6f623873aafd4b779180"
+    },
+    "f6dp-metadata/metadata/boot-1/037-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475461,
+      "sha256": "c3a878f79570b24c0fcfc0da78af583938adad33de728888d7df693dabd9e496"
+    },
+    "f6dp-metadata/metadata/boot-1/014-metadata-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "c85e00326c827c30bef4dc382a8260a2bb66dfd418969cfdbb1173bd8f39131c"
+    },
+    "f6dp-metadata/metadata/boot-1/shutdown.json": {
+      "bytes": 87,
+      "sha256": "b2b2ac6b12b0a701b506efb74fceacf771f4e2eea9c4a85c7bc0e7c7a66f5832"
+    },
+    "f6dp-metadata/metadata/boot-1/043-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475555,
+      "sha256": "0083d00291b1833a79987d3e10f66fa9a01854ad7190c1238899311e081c436a"
+    },
+    "f6dp-metadata/metadata/boot-1/044-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475555,
+      "sha256": "f2c5713d19ba7f2a79158045de45d2dc3adeef3f962d431fa98c63e0a721aca1"
+    },
+    "f6dp-metadata/metadata/boot-1/036-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475461,
+      "sha256": "2dbb78949595af9c092f2285cbf993a412c53e045a73d340be8b46d93ffca2bb"
+    },
+    "f6dp-metadata/metadata/boot-1/013-metadata-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "d84521ea444d76e1da68fac72cba702cbf588d4c87323c324020604b2e2bdfcb"
+    },
+    "f6dp-metadata/metadata/boot-1/032-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475161,
+      "sha256": "e296f80190553fdf0a1fd9c7e8215b2db23962dae7d3731aef38abf7c4da8abb"
+    },
+    "f6dp-metadata/metadata/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "b44d23feef8896293011ba1130a561bb1b64ac0cdfcf8d950b60c5be67de229e"
+    },
+    "f6dp-metadata/metadata/boot-1/031-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475033,
+      "sha256": "210893ea4b05a5784d46b5726298dca6410610e76b6a06cd86c3379e5736d05a"
+    },
+    "f6dp-metadata/metadata/boot-1/007-metadata-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "a17eae80b0f7bf2952b0f520d11f5a18067e3a934756c49d0babd7fa6bd4b7db"
+    },
+    "f6dp-metadata/metadata/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "228a1ef78b6c02cad8484d5ad7a8dec5655a0ddcdb40e74a5797bd5f716aedec"
+    },
+    "f6dp-metadata/metadata/boot-1/qemu.log": {
+      "bytes": 70,
+      "sha256": "37a80a4c01a111823af2d9a1f410da77623c1075a22ccb12572441593d0c8e15"
+    },
+    "f6dp-metadata/metadata/boot-1/015-metadata-baseline-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "8282a0625418a7b5473904bbe1ab3afe603ff92642becdf511318f72768c6a14"
+    },
+    "f6dp-metadata/metadata/boot-1/060-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "d6629e7121569168c0073d12d7f6fbe9bf9905948a0ce2123f85c9605cd1091e"
+    },
+    "f6dp-metadata/metadata/boot-1/039-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475461,
+      "sha256": "86e25082a0fd55b8ad2a872e7df591ae97162e12bc27a5941e15bc06e350a141"
+    },
+    "f6dp-metadata/metadata/boot-1/030-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475033,
+      "sha256": "bd5eba7e4b793a961de556d426731c0cf367a69bad4dadf1b768ea26cb206a43"
+    },
+    "f6dp-metadata/metadata/boot-1/042-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475555,
+      "sha256": "c9621e1ff86e92515adc68f4df836b3880805f485d40545fcc107e2aa6d728bc"
+    },
+    "f6dp-metadata/metadata/boot-1/061-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "a71046c7133e20c74a3c320e13020dcd1f5d76e42e6417b6033d4d7e1aef6814"
+    },
+    "f6dp-metadata/metadata/boot-1/028-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 528,
+      "sha256": "2e625b87666aab8fef669556a70a49e7ac29ae291ba4153ed3692639c85e872b"
+    },
+    "f6dp-metadata/metadata/boot-1/063-metadata-applied.json": {
+      "bytes": 287163,
+      "sha256": "663823d76cba0e515b64cddf2941c8495846cb20d0872001591fb10f85b36ca1"
+    },
+    "f6dp-metadata/metadata/boot-1/qmp-metadata-baseline-health.json": {
+      "bytes": 4517,
+      "sha256": "281695a4d544ecc63b7f50b6631c32dd8b1b76d9467196b6630ce91d39e4c316"
+    },
+    "f6dp-metadata/metadata/boot-1/025-metadata-plan.json": {
+      "bytes": 452575,
+      "sha256": "296e9c868de41de95a4b9cf3184a8403ca530e017593d1aa09f5d38f60df5abb"
+    },
+    "f6dp-metadata/metadata/boot-1/021-metadata-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "a591961c07b1a71cdda3f0edc45d4847263c46a481c64a03128314ca47ff46db"
+    },
+    "f6dp-metadata/metadata/boot-1/064-reject-same-boot.json": {
+      "bytes": 373,
+      "sha256": "cbec4e900e547f5cf876456b563c0fa3ec4dc95227da715bbab6a34b34795b71"
+    },
+    "f6dp-metadata/metadata/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "9abc891526620754cae29b70cde9f871d402c785838a7eff8c83be94d912b4c2"
+    },
+    "f6dp-metadata/metadata/boot-1/041-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475555,
+      "sha256": "be9905e7aabd739ef131288e08938de702cadedabbadc232e7e6d9a733d78224"
+    },
+    "f6dp-metadata/metadata/boot-1/023-true-noop-plan.json": {
+      "bytes": 452586,
+      "sha256": "5122ddce656b1ca5082898fa89604ca25ab46fa6b9124c86a5f8f22dec10ba1f"
+    },
+    "f6dp-metadata/metadata/boot-1/020-metadata-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "fee1f98fc3d4822f2f527419446398e380b04ea14e9bd3b32d915fe64b48202f"
+    },
+    "f6dp-metadata/metadata/boot-1/040-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475555,
+      "sha256": "00d6fd31523b8b795cee1df9594dcbad8e06251b9c01e0ca7abe6b8020ad81f6"
+    },
+    "f6dp-metadata/metadata/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "ab15e89d0de22fb0ccc80a3476a3cc17827d2017c3c581404fd7aa47b1f81bd3"
+    },
+    "f6dp-metadata/metadata/boot-1/serial.log": {
+      "bytes": 1910,
+      "sha256": "e9d3b64ede2df677263f316de6c34e37b0c7ee88bc1fe44dd9146975bbcf2d09"
+    },
+    "f6dp-metadata/metadata/boot-1/008-metadata-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "a07818f1ac20c2bc0e0cf1a09e8303206a5edd4060aba91c4690e15f855fc7fe"
+    },
+    "f6dp-metadata/metadata/boot-1/046-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475554,
+      "sha256": "0a4d0568ff014706c9db5cb47794b227b6e1f699d879071212fbb4d370279d34"
+    },
+    "f6dp-metadata/metadata/boot-1/035-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475461,
+      "sha256": "44dc73ee8fd3e0f6d3f403af182377e3749e0f301561343601fd11ff154311d7"
+    },
+    "f6dp-metadata/metadata/boot-1/029-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 528,
+      "sha256": "c1c8dcd62c2d51ccb6bb456860ee3cc66b8986379fe2931d900ff4fcc6b4681a"
+    },
+    "f6dp-metadata/metadata/boot-1/038-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475461,
+      "sha256": "3586c9df2b56f23b634a160d0784bf43e0ec825cbbeec9c2da35b25fe2e46419"
+    },
+    "f6dp-metadata/metadata/boot-1/052-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "52227c11f2218b4771c4caa677b54670f7d531e16a3484dd121d52d4a96da128"
+    },
+    "f6dp-metadata/metadata/boot-1/006-metadata-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "f963914d790af801f0a99530634d9fc9e33517cb745b09a0132b511fd5ee6ac6"
+    },
+    "f6dp-metadata/metadata/boot-1/009-metadata-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "be7ed96e855a93d900632690bbc3fb181289c6ee6cf1a70701521a1c1a57d08f"
+    },
+    "f6dp-metadata/metadata/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "b05eae0e9b1ea36d4eccd38e5982176281834b5d46b1927e28d35c4cbf04a95a"
+    },
+    "f6dp-metadata/metadata/boot-1/057-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "b26d6d9cf3b7f4a97d732a29321a57be96560cd6add7617f834fa9606277789e"
+    },
+    "f6dp-metadata/metadata/boot-1/059-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "79db52d8eb7786052781fdb9c34836fef49ba323853b74adfc76d0f6ede7d47c"
+    },
+    "f6dp-metadata/metadata/boot-1/010-metadata-baseline-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "00fff34a4d4cdab68ae334c210e9b48d35af444b82de47da554121293e57d768"
+    },
+    "f6dp-metadata/metadata/boot-1/047-operation-da1697a5c5ec60818de141206a63ae0d.json": {
+      "bytes": 475578,
+      "sha256": "00b305a7624af036d7d1522a14a7844273924fac9948e21d706b3ebc3808c466"
+    },
+    "f6dp-metadata/metadata/boot-1/055-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "dc8df6639ac3c26829f471655a86c13ec0574cb7065d4c7717d8aff665f1fec4"
+    },
+    "f6dp-metadata-r2/evidence-sha256.json": {
+      "bytes": 15028,
+      "sha256": "3dd3129d64d2bfc4cfa17d761bfa317fa8e8f0357e24bcc1564cf2edac5f3469"
+    },
+    "f6dp-metadata-r2/inputs.json": {
+      "bytes": 3526,
+      "sha256": "fb96e233004d086528719e7f7de459a000129719e53cc081d7c43706cdedba88"
+    },
+    "f6dp-metadata-r2/matrix.json": {
+      "bytes": 5949,
+      "sha256": "a9e90470fcea68469ddb87b6f9ea111ca50b4138696661b3a4f76d99ce18c07e"
+    },
+    "f6dp-metadata-r2/metadata/metadata-plan.json": {
+      "bytes": 408419,
+      "sha256": "ad10e9d064ad7f36f3564d6c88e15a9fe885a8ecce03b5ded132703026112a29"
+    },
+    "f6dp-metadata-r2/metadata/attention.json": {
+      "bytes": 466,
+      "sha256": "0131028cebb1cddbc7c8f269aaa0efdb4b7f45e6e0691c68cf457396d1c5e91d"
+    },
+    "f6dp-metadata-r2/metadata/metadata-after-state.json": {
+      "bytes": 325241,
+      "sha256": "50750e6874799edf2dc06987c071c212ff48fdefc586b88f504488741b243ce4"
+    },
+    "f6dp-metadata-r2/metadata/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "9c8b91ee741e781e1dc723cee22c6ec02d5ba8a20e6af96d07497d21dc125381"
+    },
+    "f6dp-metadata-r2/metadata/metadata-new-boot-confirmation.json": {
+      "bytes": 414264,
+      "sha256": "9dd9c275c16cf15a6fd7fdc5f4febc5d9b7d5fc12b0be34a3eb926cca7da9f1d"
+    },
+    "f6dp-metadata-r2/metadata/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "48eb0e15453cea707e69f51479dea2e16b3c83af7ec27a544f04bd42b63075b1"
+    },
+    "f6dp-metadata-r2/metadata/metadata-baseline-health.json": {
+      "bytes": 149499,
+      "sha256": "3f68914d4ba006833c2c572c7e758392bc197b496dbf8697d0b9eaac3895929a"
+    },
+    "f6dp-metadata-r2/metadata/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "b0cb5c53d4d88635d5b209bd69ec3bfc19bcd5228b250d39e43924d39915549d"
+    },
+    "f6dp-metadata-r2/metadata/metadata-apply-and-same-boot-refusal.json": {
+      "bytes": 410467,
+      "sha256": "9c1ddc01fb51798fe42468597ec9476c4fb15f18141e1f3b08a6851f56695ee0"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/078-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "a39f362b1c5ecd3a0872ff03727a0677af96a0421e93e1aafc18213b73f19107"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/074-boot-confirmation-history.json": {
+      "bytes": 477309,
+      "sha256": "b90097c6abf265d172c3af6b12bd6f8b13f037f1d99472b1717a015801d42adb"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/qemu-command.json": {
+      "bytes": 1285,
+      "sha256": "c3e1e62cd201777500bd115ac9c3dbb117517f5bbe206eebdba1f29b561b60d3"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/qmp-ready.json": {
+      "bytes": 4530,
+      "sha256": "de704d1cad5a934088aa53c341e5b66791af2ac53f786cb6a339cca45a1918e5"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/069-ready.json": {
+      "bytes": 219,
+      "sha256": "6797c72175b808a635abdc06940bb2a9780c4f56bc94bd2a817be12e8ff0d009"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "0959315c4b6917f3dd3ee1c44629e594a774a327024b21cf1bca5793b636d687"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/075-boot-confirmation-history.json": {
+      "bytes": 481954,
+      "sha256": "4f01818c3439ccb66972f68870c4106518af9a9f8c94e78cacf15f1d783e37ac"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/076-metadata-confirmed.json": {
+      "bytes": 287163,
+      "sha256": "5f95c9ea3e102943d27d045c2656a53e8216b22c5326c6b0258f123da43d888c"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/072-boot-confirmation-history.json": {
+      "bytes": 477309,
+      "sha256": "2a744e9afb1db714ee5531e8299670e513c27e2133223412e19e237177d60a97"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/071-boot-confirmation-history.json": {
+      "bytes": 477309,
+      "sha256": "e0349f7d19b3848ee48a5cf6c76da9a9de56c97a0fe72803918cf9d4438d24a4"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/reboot.json": {
+      "bytes": 110,
+      "sha256": "48d959a3e79119d3214d0f5d1c97c6126ef18bea4b3eefc62b45155547f76cc3"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/077-before-offline-history.json": {
+      "bytes": 481954,
+      "sha256": "8c122b73f19f9fde26ab6186a892938ba1a5c1ea07eb063305430aa5a0cadc9e"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/070-ready.json": {
+      "bytes": 356,
+      "sha256": "dbfbe35e6d492f6e91716b9f6a22c6a396146dd0262e6a664e72e7c525c119ac"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/068-ready.json": {
+      "bytes": 219,
+      "sha256": "042a90bc742b5793dace400dd90f5e97003437dcf339ec32b0c2015407f9e77a"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/serial.log": {
+      "bytes": 2176,
+      "sha256": "0ae5df2cb5a02233215598e74d57e2641c87d7b483ee13543d4bd32bcc86235e"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/073-boot-confirmation-history.json": {
+      "bytes": 477309,
+      "sha256": "fb2feb5c7956c137d9cbaeec31718d3345c84ab6f1c96cfe1a27f88f55dccd52"
+    },
+    "f6dp-metadata-r2/metadata/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "e345f7f3e56c49c9b758710dd0e547037d6155cf95bbcf8ce21e51ff2887ffc8"
+    },
+    "f6dp-metadata-r2/metadata/share/phase42-faults.py": {
+      "bytes": 82604,
+      "sha256": "438028c0b8c4ecab8af72e734d497f526022ae9dfddfb7ac07fbe58d45658000"
+    },
+    "f6dp-metadata-r2/metadata/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "1e134006f1f2c0a97ad72c8720e68a6a3c9e00dd43875de1ac5d8a704e79504c"
+    },
+    "f6dp-metadata-r2/metadata/share/recovery-target.json": {
+      "bytes": 174,
+      "sha256": "9659a1a53b1c06ea23293b9b7342b4a5606cf59fc0d36426adc938d6fd64a86c"
+    },
+    "f6dp-metadata-r2/metadata/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "f6dp-metadata-r2/metadata/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/056-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "aa3c3623cc3a598afa78c2ec5fc983ef36419c0629056a4102ff63095248653d"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/012-metadata-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "db8861326bc42bcafbc10ef21593c04bd57b87df6c71eadb0707a7325dccf89e"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/024-after-noop-plan.json": {
+      "bytes": 287139,
+      "sha256": "2b40c753de53348098554e8fbbc8bf85e79a1881f2b42d83e9c9ff0d2d8db9aa"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/066-same-boot-refusal-history.json": {
+      "bytes": 477309,
+      "sha256": "a7c4a1d47ec694f22e1a0f40414eeb57b518b658eb2daf892931cfff54eae3c3"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "1de522ea8cf34b5764c203480e85447595b18e0c2d0f3cda9433388889b26432"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/030-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475069,
+      "sha256": "f35ff992c032f84522102fc24ada4dce00ff2f4b2112ecabb5ce7f51fb2695bc"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/044-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475554,
+      "sha256": "4263adee4f5d771c9f180919ed4c0affc1b09672ffcf21d3ee4b862dd147b3b7"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/011-metadata-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "44538e156df7ad8f6c48e26aa8b327f871ed1ecb5336e7d81171f9ca74263fac"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/054-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "e643f4654e2c544a43c1f7780a4a985933d53d29248bb152b7d6125ba9d7cc9e"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/063-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "28e310c7fc5800ea8c45754ac0da146e35f51e1809e6faa1b6d6dafd470af175"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/058-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "f7c03d110cae79a1273b75b5f0462d0f9d6813dd578bff79fc7fdd5d31a2c5c2"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/qemu-command.json": {
+      "bytes": 1285,
+      "sha256": "97c360b6e81d5549704381b1747ecc066a4f617c43a7dadcddfcc8a2950dc65e"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/037-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475460,
+      "sha256": "1b67a9476173a9900ef06ba70fdf11fb74d60ccb778f658eced357ba00502447"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/016-metadata-baseline-health-boot-journal.json": {
+      "bytes": 109449,
+      "sha256": "ec8d7edeb49d28494d708ab2ef759af7ca07d536048cd80639ecbac1f031ff55"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/062-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "2d222a6efd2cd203b2db1063133f47cee0168806a48c94ecbe2835145a944415"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/qmp-ready.json": {
+      "bytes": 4529,
+      "sha256": "90914808f0329a230949da4e61eacb5f69a5f7f2e6fe3326197989da21f97394"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/017-metadata-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "ec38683e76349721c43eea12ced8b7be127ece726db1d00bced6d4fa0eb6fb31"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/026-metadata-submit.json": {
+      "bytes": 713,
+      "sha256": "02c50f84c5435e3feb56959592af7aa62122e44672395565bdaabb1e48f2c894"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/053-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "e9849d6d3c1268732b817ac9ce2487a5aa6cc6b991bef12e7d39b370d78d777a"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/039-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475460,
+      "sha256": "3b69bd59d07a0b087c2b4c0b9f11fa48f01c22faefd4bf9608fb299d0a546c69"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/028-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475033,
+      "sha256": "3f2b99e0567b1b5804cb5b6555c6bcea1c4e2e6e801eb5946749e02a98ac78b2"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/022-metadata-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "187835909081bd126f16a217b84686802d234c1826b5ff037b3c809993809ba6"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/019-metadata-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "8c4591f9b484b647404838e06198d08fd21e8c1aaa2e6658e1d32d61f088a9d5"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/018-metadata-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "97ac16f23206541f206457694c442b788a2903f89f780ba843363d318dc75d31"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/065-reject-same-boot.json": {
+      "bytes": 373,
+      "sha256": "721a533d3350506b06ae3d492bf9089a9deba40dc5c946c0f0e00bc047f43d8b"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/051-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "b81b8891d90f1d52b1f48b07cf6560135d6b395932fad7d51a1a1e734dffee8f"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/014-metadata-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "e171a97f8f77d50b3426f54a33a3bc55a6eb5354dd05dec8aa7e0b139ce6e1a9"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "2a6043d1d4ec7a5b0c2e2636bed7f773fa61b494192db9ccfebaebd96c96e34a"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/035-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475460,
+      "sha256": "2c191958fe3750b2d5d83407d95ca5e1b802cf9941e4ef0ea49143e511776e13"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/029-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475033,
+      "sha256": "b644064f43700a57d66d0dd8804a2120c8a06e35ce15951c8a51ae3c44bb1256"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/049-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475577,
+      "sha256": "6418cdfdd131a82ad215417273e40ff64452f7446960897ef330a75c2903dd13"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/027-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 528,
+      "sha256": "6a7cc910fd27310696bafdd0c40585832e378992b65d9d0a06afd14e92a7d9b8"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/048-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475577,
+      "sha256": "157ecf5147a23f7bd7fc75cc85789f5d9794146d99368ce1a1182fd834bb239c"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/013-metadata-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "f89fa64279724915ed75a04859f3319e0d62caed51c4caa6e4af0a1ff0185025"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/031-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475069,
+      "sha256": "cffbd17ea66f1896ed16d6b46403144a445180686f9c5eff564405215cf10d80"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "8e19d854a6c14f84a883414b65cb0cb4d95c5fe62ba7716b30626ff7e1576588"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/045-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475554,
+      "sha256": "6e61c250df4b809f9efa966ed94cab1885a2857676e0d94944a61775bf954e47"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/007-metadata-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "47c17ad99b7398be630ccf44a8da43b0cdb1ace5df610a1baa547aa4096c3ea7"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "fed53f1d47b7b5c4edce26d882aa4deb49e68aa45f03d8a0278e7b2580cff0e8"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/034-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475460,
+      "sha256": "ed6103512973c7df4f14408eb0bf44a776892c5426cbbdeb185919ba7cb890ca"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/047-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475554,
+      "sha256": "f4bc4c083cdebac46b630cd9a0404b5da2b652ff5ffc97dc0c39f2ad8ecad55f"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/015-metadata-baseline-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "3ed9f7e7ba6360beaea1c033d6a359eb5f1a51ab2a79c8be678c2652c6476ae2"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/060-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "8ca9052d03760004973fa425bd64a419873456569643f750deb9afaa278524bd"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/061-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "980a887e565e5cec5da64a7b3169955a5b13bcc80fe5e0c31fc35159cf709566"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/043-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475554,
+      "sha256": "f51665333aa9309755348dcbad62f40a488efb8d4c18a27fcd46031256ad2584"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/qmp-metadata-baseline-health.json": {
+      "bytes": 4529,
+      "sha256": "277c6dccab49e8bdc9186150ef98d50508adf88baae9abc0ea7ec2f242e07ced"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/025-metadata-plan.json": {
+      "bytes": 452575,
+      "sha256": "a41fdd6fe3cacd96fe4cf4243fc6fae26ed640793456baa809fa4b5e658739ce"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/064-metadata-applied.json": {
+      "bytes": 287163,
+      "sha256": "10269e789e26d89839e598bd553153e7a6e4927375cca222b8c16594c22866b6"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/042-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475554,
+      "sha256": "7b7170a133a7efbb8bff9ebe528b57c3ecf0f3aaf942d4c8638886566362ad42"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/021-metadata-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "e8a7eafc3175666b7048da1341f5d3594262d28aef791bdb5b5bec6c58f8babb"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "0f6560f89cb74d58225f8513c6f0c6ab06697fd9b82cff1befe15093083910eb"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/046-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475554,
+      "sha256": "a055e4861da6d1fe3b939e4169dc12bbd8a34f80fbd4897d4598f746e80d65e0"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/023-true-noop-plan.json": {
+      "bytes": 452586,
+      "sha256": "3f03dabc5095a74e8a1673638786f5990006446541a856a2143d979c24ff1d32"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/020-metadata-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "a306a6abc959ec31c7dc43827907d48f3c31725b0f7f578b76ba907cfb5965c7"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/032-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475161,
+      "sha256": "7d03b42d8e76ee3157b1f4327b2aaf29bf9b66c9e4b6827a61cb998810bfe477"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "0ee892e5e1bd16afbbcaf9438bdbf7494e362a1ed4f746f50454e4ca64fefb61"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/040-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475554,
+      "sha256": "e6dab886f2b7f0656bb4e25b77a483e471fe8c0c1f9f6bdea6267e1a7d0af313"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/serial.log": {
+      "bytes": 2041,
+      "sha256": "3be1119d0d5e5dcfc6c5d55b21cdb702b4260a760ab0742f114420c5f344e4be"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/008-metadata-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "27383a735acd742faac0b3633cac177c71c29c0f0df31d72c4a85187094dbc5c"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/050-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 477508,
+      "sha256": "fe4b0af9ef8adb8317db3995d06a937a5b0d8845fa5bc7dad66e5c2fcee1d61a"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/052-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "7145d489d28dbf0b5ed6c61513d9a350f4427ab986283a2d478b380fe2a0b7aa"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/036-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475460,
+      "sha256": "4257a5ad5dfcd0b259d9577b1443c17f948bdf225204afae3d3080878296d7b8"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/006-metadata-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "d984a0680a1b2629f2cb5de647f16748bc230da0b07c9d25cc51e8fa3256ff19"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/009-metadata-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "340047b6f52bf719054428178a4412a40a57541ceed58fc78ca2164a5dd39ed2"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "2cf34ef2ce43c60882f8f1f08d2da398b10021291840921f1878d9672b5bdb87"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/057-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "60f8ef68f03298d22eb9e6b844f8c7dfe32179f0e4e82c0f9fb83f76b3a7d974"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/059-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "ac7b986fb14e7a9692c3636adbeb5572a674675a5d1a5f5da6f64be0b0746d9d"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/010-metadata-baseline-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "8e4a152de7a37d8200ae4f1de1c10779c713848191e9b8c544a6e1459ce4685d"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/067-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "4936be34495e024d384e4dff082124f969fbd58c51c35d981d29bc3b8358c6f3"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/033-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475269,
+      "sha256": "6e9e01acad066d7824ab623be75dc946b0444cb8966055b27b6d4429dae5b9b9"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/038-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475460,
+      "sha256": "294ed0c5aa0ccc700af49a09a83a298a82baf0cbcf192c16811fce16f3677f3a"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/041-operation-28fa7cadbad20eddd8eb48d698757368.json": {
+      "bytes": 475554,
+      "sha256": "98262dc95df5c97aa43864706cdfd9943ada4e1d31d7a6fb1b165bb26aceaef6"
+    },
+    "f6dp-metadata-r2/metadata/boot-1/055-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "574ffeb1808fac1b492ab16cb94040d794d599eed2af476e87941ed96d441052"
+    },
+    "f6dp-metadata-r2/metadata/screenshots/recovery-terminal.png": {
+      "bytes": 272832,
+      "sha256": "e260479f423d5d3f01efeeb7e19e9573e09b4e0e0c1132632c0a0867fa966938"
+    },
+    "f6dp-metadata-r2/metadata/screenshots/recovery-desktop.png": {
+      "bytes": 554383,
+      "sha256": "d65112a128ec8fe3ece7b55cffadd29965b4359887819b93079ee850188d690e"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/084-ready.json": {
+      "bytes": 219,
+      "sha256": "edd288a063a92f66dd30c36249cc6fde12a9845d101e9bcaaf1426d8c0f1df79"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/086-ready.json": {
+      "bytes": 356,
+      "sha256": "7e2513912a9711233c6450ae09cbf3b1552160401ce577b4a9908fd77b10fa93"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/082-ready.json": {
+      "bytes": 219,
+      "sha256": "ba0caf21c01fb54cafc77da77eb516d6046320129ab4327158f2791ef535c250"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/qemu-command.json": {
+      "bytes": 1442,
+      "sha256": "ac5286a3713f4920e22dfcf100c6961c2ef5118150588558e3be35727f52f5f7"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/qmp-ready.json": {
+      "bytes": 5478,
+      "sha256": "912a02e69a42cc07e4c4351241da323aace7ac7d738e6382946196b79d8c2263"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/shutdown.json": {
+      "bytes": 87,
+      "sha256": "858b0f20a45db16d0ed7e33021166f3595a4c17c6c81b1bcd4c50ac4169eba4f"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/087-offline-restore.json": {
+      "bytes": 1587,
+      "sha256": "5276d7fef02b6ced3bcb5ebef0a64f15849d8520fa9152a07d51fa904bdb71f2"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/079-ready.json": {
+      "bytes": 219,
+      "sha256": "0bab2bb0d8fcfc7bf332a0b815c73dfa6f8223f64c41b1e8cda89cac3cb75020"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/083-ready.json": {
+      "bytes": 219,
+      "sha256": "708221e08ced353bd75af971cd76b8edd6ceac365066613595c1eef28c16134d"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/qemu.log": {
+      "bytes": 70,
+      "sha256": "cf0030ef36b8b7653a2bdbbf3ab85233ef997d814ece947e9e4b49e9ef9e19f5"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/080-ready.json": {
+      "bytes": 219,
+      "sha256": "24da5fa2eb5abfbc4aee523e74e5a8d6e0d2e15995249e0c834db4e0446df85e"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/085-ready.json": {
+      "bytes": 219,
+      "sha256": "deb1c156bdbeb98f409bed85b3df3cacd3e07381be181f48dd7b16df6df943ff"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/081-ready.json": {
+      "bytes": 219,
+      "sha256": "ee5457ff53e04c93b30aec9596983a6a9f414cb1ad327008c0c2d3a68cf6d940"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/serial.log": {
+      "bytes": 17016,
+      "sha256": "afbbf37126b05102777802d9a212e61f754e8ad45814c60681fb4c87baf9677f"
+    },
+    "f6dp-metadata-r2/metadata/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "5bc56de53b7bbc080668cb21b4e9c88b0db91818a9ed7fe974c27ba36d4d364b"
+    },
+    "f6dp-metadata-control/output.log": {
+      "bytes": 1378,
+      "sha256": "3e2174ad58357b477cb43e60b09f0bff89c0589875b03185af0d2d39a6759221"
+    },
+    "f6dp-metadata-control/launch.json": {
+      "bytes": 924,
+      "sha256": "1692db3fb76158099394adebee7e4d2069bdcc7e84b3e4a821126221b1f9a1a1"
+    },
+    "f6dp-metadata-r2-control/output.log": {
+      "bytes": 2568,
+      "sha256": "55ea7866c8833a2f79be38b249051cb27dbd4639e6c495b14003f7b93f58e027"
+    },
+    "f6dp-metadata-r2-control/launch.json": {
+      "bytes": 926,
+      "sha256": "9dd664d9e4202beecb4d5f8b33f3b72e1e2d43b5d73f7d7b18fe14084a240026"
+    }
+  }
+}

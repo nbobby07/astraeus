@@ -517,10 +517,18 @@ impl<C: Commands> Manager<C> {
         self.sync(&self.esp)?;
         fs::rename(loader_next, self.esp.join("loader/loader.conf"))?;
         self.sync(&self.esp)?;
-        // Firmware preferences override loader.conf. Clearing them is part of the journal.
+        // Clear known EFI preferences even when recovery booted a UKI directly.
         for verb in ["set-oneshot", "set-default", "set-preferred"] {
-            self.commands
-                .run("bootctl", &["--esp-path", path_str(&self.esp)?, verb, ""])?;
+            self.commands.run(
+                "bootctl",
+                &[
+                    "--variables=yes",
+                    "--esp-path",
+                    path_str(&self.esp)?,
+                    verb,
+                    "",
+                ],
+            )?;
         }
         // The maintenance UKI must not provide an uncounted Type #2 bypass.
         // The independent fallback is durable and selected before changing either side.
@@ -778,8 +786,16 @@ impl<C: Commands> Manager<C> {
         }
         fs::rename(temporary, self.esp.join("loader/loader.conf"))?;
         for verb in ["set-oneshot", "set-default", "set-preferred"] {
-            self.commands
-                .run("bootctl", &["--esp-path", path_str(&self.esp)?, verb, ""])?;
+            self.commands.run(
+                "bootctl",
+                &[
+                    "--variables=yes",
+                    "--esp-path",
+                    path_str(&self.esp)?,
+                    verb,
+                    "",
+                ],
+            )?;
         }
         for generation in self.generations()? {
             if let Some((filename, _)) = self.generation_counter(&generation.id)? {
@@ -813,8 +829,16 @@ impl<C: Commands> Manager<C> {
         fs::rename(temporary, self.esp.join("loader/loader.conf"))?;
         self.sync(&self.esp)?;
         for verb in ["set-oneshot", "set-default", "set-preferred"] {
-            self.commands
-                .run("bootctl", &["--esp-path", path_str(&self.esp)?, verb, ""])?;
+            self.commands.run(
+                "bootctl",
+                &[
+                    "--variables=yes",
+                    "--esp-path",
+                    path_str(&self.esp)?,
+                    verb,
+                    "",
+                ],
+            )?;
         }
         if let Some(current) = selection.current {
             if let Some((filename, _)) = self.generation_counter(&current)? {

@@ -4,19 +4,29 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The latest code is `6d10954`, including the coordinator lock-release fix and
-Zstd live compression. Both independent images and their full byte comparison passed; clean A also
+The latest code fixes a real offline-recovery defect found in the `6d10954`
+candidate. Both `6d10954` independent images and their full byte comparison passed; clean A also
 passed the complete image audit. The fresh plain baseline passed two enforcing
 boots and all 12 CLI lifecycle gates. Its signed RAM recovery medium also passed
 the trusted live GUI/CLI inspection gate and all five negative media gates.
 LUKS2, installed GUI and complete metadata/fault recovery acceptance remain pending.
 
+The corrected metadata trial passed configuration-only mutation, unchanged
+package/reason maps, same-boot refusal and confirmation after a new enforcing boot.
+Offline rollback then failed before the root switch: direct UKI recovery does
+not publish `LoaderInfo`, so `bootctl` refused to clear loader preferences.
+The fix explicitly requests `--variables=yes` for the same three fixed preference
+clears. Firmware write errors still propagate. The new direct-stub regression
+failed before the fix and passes afterward. Windows passed 142 Rust tests and
+Clippy; Linux passed 159 native tests (five fixture skips) and Clippy. Corrected
+production images and fresh recovery acceptance remain required.
+
 The first metadata-only trial safely refused confirmation from the initial
 unmanaged boot entry. The harness expected only the different-kernel-boot error
 and incorrectly failed. Its corrected check accepts either specific boot-evidence
 refusal and verifies durable history remains awaiting boot with no success event.
-The 27 focused harness tests pass (four platform fixture skips); a fresh VM trial
-is still required. The failed trial remains evidence.
+The 27 focused harness tests pass (four platform fixture skips), and the fresh
+trial passed this corrected check. Both failed trials remain evidence.
 
 The previous complete image was runtime `0c938b94f44956fd77890d851e35650b62b1e6da`.
 Clean A and its expanded final image audit passed. Independent B failed its

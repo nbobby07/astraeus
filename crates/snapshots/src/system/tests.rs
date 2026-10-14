@@ -61,7 +61,11 @@ impl Commands for Fake {
             "bootctl" => match args {
                 ["--print-stub-path"] => self.boot.borrow().get("stub_path").cloned().ok_or_else(|| "no boot evidence".into()),
                 ["--version"] => Ok("systemd 262".into()),
-                ["--esp-path", _, "set-default" | "set-oneshot" | "set-preferred", ""] => Ok(String::new()),
+                ["--esp-path", _, "set-default" | "set-oneshot" | "set-preferred", ""] => {
+                    require(!self.boot.borrow().contains_key("direct-stub"), "Not booted with a supported boot loader.")?;
+                    Ok(String::new())
+                },
+                ["--variables=yes", "--esp-path", _, "set-default" | "set-oneshot" | "set-preferred", ""] => Ok(String::new()),
                 _ => Err("unexpected bootctl call".into()),
             },
             "od" => {
@@ -903,7 +907,7 @@ fn disposable_linux_btrfs_roundtrip() {
         fn run(&self, program: &str, args: &[&str]) -> Result<String> {
             if program == "bootctl" {
                 require(
-                    matches!(args,["--esp-path", path, "set-default" | "set-oneshot" | "set-preferred", ""] if Path::new(path).starts_with(&self.directory)),
+                    matches!(args,["--variables=yes", "--esp-path", path, "set-default" | "set-oneshot" | "set-preferred", ""] if Path::new(path).starts_with(&self.directory)),
                     "unexpected firmware mutation in storage fixture",
                 )?;
                 return Ok(String::new()); // Never touch host firmware variables.
