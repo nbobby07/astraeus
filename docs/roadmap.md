@@ -15,11 +15,12 @@ closed the remaining recorded negative case. GameMode's full self-test and
 physical gaming qualification remain incomplete.
 
 Phase 4.2 implements selected-subset system management and the native
-[Control Center](control-center.md). Host and native package-fixture checks have
-passed, and two clean builds of `6d10954` produced byte-identical images. Its plain
-CLI lifecycle and signed live-media checks passed, but offline recovery exposed a
-boot-preference defect. Corrected `ec3641b` images and fresh installed-VM acceptance
-remain required. See the [current report](phase42-acceptance.md).
+[Control Center](control-center.md). Corrected runtime `ec3641b` passed two
+independent byte-identical builds, native package/GUI checks, fresh plain and
+LUKS2 enforcing CLI and desktop lifecycles, signed-media refusal checks, and all
+failure/recovery scenarios. The implementation remains in a draft PR awaiting
+review. See the [acceptance report](phase42-acceptance.md) for identities, retained
+failures, screenshots and qualification limits.
 
 | Phase | State | Deliverable | Evidence needed to close |
 | --- | --- | --- | --- |
@@ -29,7 +30,7 @@ remain required. See the [current report](phase42-acceptance.md).
 | 3 | Validated on recorded QEMU target | Owner Secure Boot, signed generations and deliberate recovery | Integrated A-N matrix, Phase 2 regressions and two identical clean ISO builds passed; see [acceptance](phase3-acceptance.md) |
 | 4 | Integrated, not fully qualified | Connected graphics/gaming reports and pinned multilib image selections | Preserve the original runtime evidence and failures; subsequent checks are recorded under 4.1 |
 | 4.1 | Partially requalified | Normal Proton diagnostic and recorded negatives passed | Full GameMode self-test and physical gaming qualification remain incomplete; software rendering does not qualify a physical GPU |
-| 4.2 | Implemented, acceptance pending | Selected package/gaming state, native transactions, saved configuration and Qt/Kirigami Control Center | Two identical clean images and fresh plain/LUKS2 enforcing management, authorization, failure, reboot and recovery checks |
+| 4.2 | VM acceptance passed, awaiting review | Selected package/gaming state, native transactions, saved configuration and Qt/Kirigami Control Center | Passed two identical clean images and fresh plain/LUKS2 enforcing management, authorization, failure, reboot and recovery checks; review remains |
 | 5 | Planned | Measured performance policies | Recorded baselines, power/thermal context, safety checks, restoration and repeatable improvements |
 | 6 | Planned | General configuration language and broader desired state | Extend beyond the implemented package/gaming subset with explicit validation, migration and recovery guarantees |
 
@@ -53,7 +54,7 @@ key recovery/rotation still need qualification.
 
 The earlier install, update, deliberate break, rollback and reboot flow passed with
 user files and failure logs preserved. That evidence qualifies its recorded
-development milestone, not Phase 4.2, a stable `v0.1` release or broader compatibility.
+development milestone, not a stable `v0.1` release or broader compatibility. Phase 4.2 has its own acceptance record.
 Milestone completion tags are evidence markers, not stable releases.
 
 ## Work without a scheduled phase

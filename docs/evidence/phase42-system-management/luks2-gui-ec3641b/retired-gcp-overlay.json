@@ -1,0 +1,9 @@
+{
+  "retired": "/home/ubuntu/p42/gcp/disk.qcow2",
+  "bytes": 2835283968,
+  "sha256": "5f9d3968916a1037db75cedfeceafd7ea1ca96b2ad9c370a345cdb32e445a493",
+  "verified_public_files": 523,
+  "export_sha256": "9ea6acdbaa7e2e87cf9c8deda2aba80c82936318f1f195b2e2f79f265170ed9f",
+  "reason": "Closed disposable GUI overlay after full verified export; accepted baseline retained for reproduction",
+  "free_bytes_after": 15744671744
+}

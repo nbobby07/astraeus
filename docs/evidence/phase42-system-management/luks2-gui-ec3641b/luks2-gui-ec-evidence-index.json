@@ -1,0 +1,2036 @@
+{
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "encrypted_baseline_accepted": true,
+  "gui_acceptance": "See separately asserted gui-acceptance.json; harness session.qualified is unchanged",
+  "enforced_boots_passed": 2,
+  "files": {
+    "nge/baseline.json": {
+      "bytes": 2864,
+      "sha256": "85a767f3be119151ca2fcb4145b64d0b4a93c05b6dc9929350aee011d3c159df"
+    },
+    "nge/resumed-uki-trust-2.json": {
+      "bytes": 361,
+      "sha256": "6181be8105de4767000b5fb20898ceea974873643c4dba4405ea011662c57141"
+    },
+    "nge/fresh-installation.json": {
+      "bytes": 2100,
+      "sha256": "4c7d855dd66dd748199945fc03786cca3366fd4f52d0f0d1bc2842d0077e0203"
+    },
+    "nge/fresh-installed-1.json": {
+      "bytes": 152717,
+      "sha256": "a8383a86be1093afa4e52a6f00d995da31ee48c2fd28c8a4812c2085e2adb79a"
+    },
+    "nge/attention.json": {
+      "bytes": 26,
+      "sha256": "ac0797c3ae00213252c3a7c84a4e88ab3412558e9f7bd2b0d18a2b708218ee1e"
+    },
+    "nge/resumed-installed-1.json": {
+      "bytes": 153036,
+      "sha256": "f3bdb62c22f4cab8ff91b0ee93c28e7039771c021f8bafa9d27b73b86577b030"
+    },
+    "nge/resumed-uki-trust-1.json": {
+      "bytes": 361,
+      "sha256": "6181be8105de4767000b5fb20898ceea974873643c4dba4405ea011662c57141"
+    },
+    "nge/resumed-installed-2.json": {
+      "bytes": 152078,
+      "sha256": "f61eba85ea8d2dd9e10a9bae05a3dfff2aa806a6e687b8eeb226d8d757d7ec44"
+    },
+    "nge/installation.json": {
+      "bytes": 559,
+      "sha256": "8cd5ef70d99820acc2c948d33edd7c5499804a71bd059a62da7cfb60f82e8d19"
+    },
+    "nge/result.json": {
+      "bytes": 538,
+      "sha256": "e9db4f473e4e5b28e142de88b61ec008e68a9f3915a143a6e069b99e04fbc555"
+    },
+    "nge/inputs.json": {
+      "bytes": 764,
+      "sha256": "bf788ca19dbe02503512220f8c848e93dd1b55751c53335c0391c394878f8f63"
+    },
+    "nge/maintained-uki-trust-1.json": {
+      "bytes": 361,
+      "sha256": "6181be8105de4767000b5fb20898ceea974873643c4dba4405ea011662c57141"
+    },
+    "nge/resume-result.json": {
+      "bytes": 454,
+      "sha256": "7539d044ab545559bff13bb2875fb2e3f410825a21d4ac265c24da971869f71d"
+    },
+    "nge/boot-4/047-ready.json": {
+      "bytes": 356,
+      "sha256": "cf6ebc8168ac22b0afafb6946954a6ff1f816be035c3763202eedc6aa5282145"
+    },
+    "nge/boot-4/044-ready.json": {
+      "bytes": 219,
+      "sha256": "30060c894f245e5f0e41b279c8089f15a416e9b33a6b8581df1bc3d3cbeb02f5"
+    },
+    "nge/boot-4/060-resumed-installed-2-persistent.json": {
+      "bytes": 414,
+      "sha256": "19bce757ac038e9f42c74fae08e950bc81059d53291392917ed4ec7552f44112"
+    },
+    "nge/boot-4/039-ready.json": {
+      "bytes": 219,
+      "sha256": "f82c31ef465b686876aa82ae4634401e79e3b9ed4213d5d31aff3c0da689ec08"
+    },
+    "nge/boot-4/046-ready.json": {
+      "bytes": 219,
+      "sha256": "4181fe82dbe5ee33956744b87a3a1c77c0e474c5a33bf0ea3e5908b5edf9c4c6"
+    },
+    "nge/boot-4/063-resumed-installed-2-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "2dfa27886b6b9a2e8e842af40ea59296474635823edb30e373bf1b05f38556aa"
+    },
+    "nge/boot-4/062-resumed-installed-2-boot-journal.json": {
+      "bytes": 111347,
+      "sha256": "81312351ee555cff84a2d4fc5e1f1ab30cfd46d1047777143d55dfe80203608a"
+    },
+    "nge/boot-4/059-resumed-installed-2-root.json": {
+      "bytes": 376,
+      "sha256": "b9c777e260c5c212275711e80ab7c41950484b3fb18b14847bad36ff2514241a"
+    },
+    "nge/boot-4/qemu-command.json": {
+      "bytes": 1154,
+      "sha256": "46a3fdbed6817169b1089da514a64cbd3cde0c1255544b1fdc5786984fd3d9d2"
+    },
+    "nge/boot-4/037-ready.json": {
+      "bytes": 219,
+      "sha256": "0dc6abed36b61970126b910e842e0031f77420252c99a0e5b95adf868ff97350"
+    },
+    "nge/boot-4/qmp-ready.json": {
+      "bytes": 3575,
+      "sha256": "2988cfe358cd1a414fe59aae8343542648cdc25a8130e97d8bef3a7106244673"
+    },
+    "nge/boot-4/043-ready.json": {
+      "bytes": 219,
+      "sha256": "305aa626843dbf76768dd4b291ba24bbcb5090526425f125d57fd95444d773b0"
+    },
+    "nge/boot-4/shutdown.json": {
+      "bytes": 86,
+      "sha256": "419bcd9b14db24d0acfd58c56315d4f611fbdecdda8e106973bce9e489b4aaf3"
+    },
+    "nge/boot-4/038-ready.json": {
+      "bytes": 219,
+      "sha256": "eca3ea3f0137f0800473adb57eb099df4ca319e94239915e3f90c13c6de20dae"
+    },
+    "nge/boot-4/034-ready.json": {
+      "bytes": 219,
+      "sha256": "754a7ffeeb7f5cb963a9fb318b97f2dea8c6ca3f600a2a90b7fc5d426ab24489"
+    },
+    "nge/boot-4/064-resumed-installed-2-kernel-command-line.json": {
+      "bytes": 455,
+      "sha256": "6c9fa76463144e76faaeb3b929d5834eda09e012994ed71b7f6528c64a462f3e"
+    },
+    "nge/boot-4/042-ready.json": {
+      "bytes": 219,
+      "sha256": "54083bf555a8d5f22e5e3508ad0aaa1bde4c69d9851ba4cf86d63cf3fbd3072b"
+    },
+    "nge/boot-4/041-ready.json": {
+      "bytes": 219,
+      "sha256": "7f3681d19d54b36e153ecfe353dbe50f1f2ca292dcd51d4ae5dc071a03b950e9"
+    },
+    "nge/boot-4/045-ready.json": {
+      "bytes": 219,
+      "sha256": "8d957f31b54540bdd8887e5f5d8032c2eadfd054d620082f7330aa6a39ad14b1"
+    },
+    "nge/boot-4/061-resumed-installed-2-journal.json": {
+      "bytes": 6678,
+      "sha256": "3fd653014b6754ffa267eea4d4ee0d0dfebc2280818fa71a28125c9692f0ce67"
+    },
+    "nge/boot-4/065-resumed-installed-2-pacman-log.json": {
+      "bytes": 728,
+      "sha256": "086792a482ac9014f814b7859bee8b56273a3c39504936f190f8f19a44132ec3"
+    },
+    "nge/boot-4/040-ready.json": {
+      "bytes": 219,
+      "sha256": "4bf868683c0972570ed62ceeb0814028709a01cebfedcc51da5a7349233f118b"
+    },
+    "nge/boot-4/036-ready.json": {
+      "bytes": 219,
+      "sha256": "69f81f57898e4eed576d6d811223b18a809f27ccc088fb99232de9cdc68bd6f2"
+    },
+    "nge/boot-4/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nge/boot-4/049-installed-boot-trust.json": {
+      "bytes": 429,
+      "sha256": "a838fc06dd39d7d699cec95217f831a7dc830492b752731886e0e715786e11ee"
+    },
+    "nge/boot-4/067-actual-resumed-desktop-2.json": {
+      "bytes": 7399,
+      "sha256": "0527c94c1017965ddcf6abfea758c0c70e5b0cfbaed417fbf55f055aa93ce32c"
+    },
+    "nge/boot-4/058-resumed-installed-2-boot.json": {
+      "bytes": 4085,
+      "sha256": "06172e53cbb8ffe672d9ee2eb131d9442a196135e2eb5a59057000fa46b20f65"
+    },
+    "nge/boot-4/057-resumed-installed-2-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "522fc17e0e272e33a7a342ea475f67d23a19dd249353e707d1e684532fae173a"
+    },
+    "nge/boot-4/qmp-resumed-installed-2.json": {
+      "bytes": 3575,
+      "sha256": "2988cfe358cd1a414fe59aae8343542648cdc25a8130e97d8bef3a7106244673"
+    },
+    "nge/boot-4/068-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "d3a359101eead3520480e6700d4214655b6e6e77f87cea18d495fd1ce49e05dd"
+    },
+    "nge/boot-4/055-resumed-installed-2-failed.json": {
+      "bytes": 328,
+      "sha256": "191e20241dc25dedbef15fe511ab51623f6051355017692178a9e99d8f70d7af"
+    },
+    "nge/boot-4/052-resumed-installed-2-status.json": {
+      "bytes": 3313,
+      "sha256": "8102df37ab062e3a8c362a82e5dbb4e824188de9b42ef4d47733656f70e92e77"
+    },
+    "nge/boot-4/053-resumed-installed-2-packages.json": {
+      "bytes": 15890,
+      "sha256": "43c012f98084a093ac5d0fa337266f6945df32546d24e00f49739b78501768dd"
+    },
+    "nge/boot-4/066-resumed-installed-2-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "d39ea8fb0a3172afb3464f681e5af85ea422068242cb8903de78ca0a3dd5e972"
+    },
+    "nge/boot-4/serial.log": {
+      "bytes": 2085,
+      "sha256": "6f3c95383a3f6fdd129b040bef625fc38e393a10bea15226ce7ce96ece0e3220"
+    },
+    "nge/boot-4/051-network-online.json": {
+      "bytes": 340,
+      "sha256": "d4de55ed5a4c12644250c4a36402a6b15b83b678eda87dec3472c158623bdc03"
+    },
+    "nge/boot-4/050-installed-boot-trust.json": {
+      "bytes": 522,
+      "sha256": "2a0b6dc6650a9ae18a446be5a56b30ce0fa0bfae97c9576f168e9bd9400a2578"
+    },
+    "nge/boot-4/056-resumed-installed-2-mounts.json": {
+      "bytes": 8943,
+      "sha256": "b2354a28c4b3e0d7a0c1e176150d5ae20975d830cd18016aeadf37187ac82d11"
+    },
+    "nge/boot-4/048-installed-boot-trust.json": {
+      "bytes": 2288,
+      "sha256": "7dac2beef719be5de4d309a20280031393aae29501d156050ab9a519e6dc20c6"
+    },
+    "nge/boot-4/process.json": {
+      "bytes": 83,
+      "sha256": "f99df3721d1ec9b412e52d2ca75aa54a7358a9543271525271cd5ebb59d27861"
+    },
+    "nge/boot-4/035-ready.json": {
+      "bytes": 219,
+      "sha256": "12bad5196c43d8193c51c36c5a14433c7f5a89facc7a3159bcb49509a04851c4"
+    },
+    "nge/boot-4/054-resumed-installed-2-database.json": {
+      "bytes": 337,
+      "sha256": "b5273b1a811052f11573ac5e83fe15c411b1e671f34d45c0a24da011f70836f4"
+    },
+    "nge/boot-2/032-installed-boot-trust.json": {
+      "bytes": 2288,
+      "sha256": "9ae4730ee6e25220ad8fcb3466550fcff14efa10e486a79e893674adec4b45a4"
+    },
+    "nge/boot-2/050-fresh-installed-1-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "77dd827dcd733cc2d968cc24e07a32dd3fee68ecb8dfff948b5156652bf5ace8"
+    },
+    "nge/boot-2/033-installed-boot-trust.json": {
+      "bytes": 429,
+      "sha256": "6e4c35d5d3f96c841b2ae765a45767ad1c1944f88055a430c4df7a72755390f8"
+    },
+    "nge/boot-2/048-fresh-installed-1-kernel-command-line.json": {
+      "bytes": 455,
+      "sha256": "e2a59ce88bdcca4e7f1b35c032275045e1d58027cfbfd2389d6b95220007f00a"
+    },
+    "nge/boot-2/021-ready.json": {
+      "bytes": 219,
+      "sha256": "03556520e10484cbbe5bf5c21fd43b3813144f6061b5868c0633b2bb24fb5e14"
+    },
+    "nge/boot-2/017-ready.json": {
+      "bytes": 219,
+      "sha256": "0d78d3602cc61fb6dd5389f25c17091acb6ae944613520ed52d1c001070cf393"
+    },
+    "nge/boot-2/015-ready.json": {
+      "bytes": 219,
+      "sha256": "541d3bf67609d93cae9208d207b0cf0f0299dddeae3bca1413fc8725ea6594fe"
+    },
+    "nge/boot-2/045-fresh-installed-1-journal.json": {
+      "bytes": 6677,
+      "sha256": "823e21c9d129f865d839781c2911a296c15df52d4f2ad80f3d3af6caa8173743"
+    },
+    "nge/boot-2/047-fresh-installed-1-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "331f5f30d8965aefe2dca20f37a0ea676aa96e98fc813151fdd9abfbf02aa943"
+    },
+    "nge/boot-2/qemu-command.json": {
+      "bytes": 1154,
+      "sha256": "e64aedc823849ca526aa89a8b1a99814488e3fef81d38c27124f7209899c8610"
+    },
+    "nge/boot-2/qmp-ready.json": {
+      "bytes": 3575,
+      "sha256": "6df4db3088d64df78b096a736f4a82564ec8a07aaae7b6d6f967b73b99a87b59"
+    },
+    "nge/boot-2/038-fresh-installed-1-database.json": {
+      "bytes": 337,
+      "sha256": "56054f2433ee1dbcf8f7162abdc644b7c119594ee8e59951964d777394ef34f9"
+    },
+    "nge/boot-2/016-ready.json": {
+      "bytes": 219,
+      "sha256": "e871f5b34d7e5442c88133d289a19418499dd8aba5d7487a7fe8c0acfff6816a"
+    },
+    "nge/boot-2/049-fresh-installed-1-pacman-log.json": {
+      "bytes": 728,
+      "sha256": "8d5b258652ced16ee1f8042b2a8bdbbe5466331e230cef4b81baa4800a6e5ac5"
+    },
+    "nge/boot-2/035-network-online.json": {
+      "bytes": 340,
+      "sha256": "31ca4b7d47f9d743a46ca9b20a8b1247146f5957232416818a58e300767a25c0"
+    },
+    "nge/boot-2/shutdown.json": {
+      "bytes": 87,
+      "sha256": "63297f96f77bd82ce88acec85b5015df736d0bb05948184e287012b6984613a2"
+    },
+    "nge/boot-2/046-fresh-installed-1-boot-journal.json": {
+      "bytes": 111988,
+      "sha256": "06fa21302fb05aa1a780205a64664c72cbd7012340df77f67b03312b6cddfa4a"
+    },
+    "nge/boot-2/040-fresh-installed-1-mounts.json": {
+      "bytes": 8943,
+      "sha256": "5cbc2cc14fe6b8979c2841a5b6331255b7b0d53c4a0c55dd86ec636bf4efc784"
+    },
+    "nge/boot-2/031-ready.json": {
+      "bytes": 356,
+      "sha256": "46edad4fe9cc8ea3f55dc2742c5c9450d83fc26c82e571d661e10abadfc9b246"
+    },
+    "nge/boot-2/029-ready.json": {
+      "bytes": 219,
+      "sha256": "8d6cb7c4fa08a5edb999f1f24d0b7f6db577c64d43a4bd42bca66f568f4b3cdd"
+    },
+    "nge/boot-2/022-ready.json": {
+      "bytes": 219,
+      "sha256": "d4b41a33ea5d6af3cb50add8df6ad5ed194c3b70c51b9a7e27d98bc16db33322"
+    },
+    "nge/boot-2/043-fresh-installed-1-root.json": {
+      "bytes": 376,
+      "sha256": "56fa74d25be46e868c351f6893c6cacbc45c1901ac296b971d7f8b65f8921554"
+    },
+    "nge/boot-2/025-ready.json": {
+      "bytes": 219,
+      "sha256": "8970af238f21a4c32b2508205e30072a66d7375d5f4d106e64abd107df5947dc"
+    },
+    "nge/boot-2/020-ready.json": {
+      "bytes": 219,
+      "sha256": "372db505c02665ac40787eb27c919b3f4593c4160e5a371fe55bee127c5ecf49"
+    },
+    "nge/boot-2/024-ready.json": {
+      "bytes": 219,
+      "sha256": "27b0d14c4d5a9d1d9e652121aa93e6938224c6bdae9fa0681c8c37ba856ca5df"
+    },
+    "nge/boot-2/036-fresh-installed-1-status.json": {
+      "bytes": 3313,
+      "sha256": "fea2993eae2307ad67ab8f03bae39285adfdffc33596723e8958878dd59ecf60"
+    },
+    "nge/boot-2/027-ready.json": {
+      "bytes": 219,
+      "sha256": "66bf32159f1550f101ee458ee9d592e390311bc78175c60d557dd122783e00d1"
+    },
+    "nge/boot-2/qemu.log": {
+      "bytes": 70,
+      "sha256": "14f3edc2b9c8dbb1a1f1b1c733c341ec64bdad6bc487adc37ef49456f826e510"
+    },
+    "nge/boot-2/030-ready.json": {
+      "bytes": 219,
+      "sha256": "08cab7ea41c951d02ced6a8982e52ab535bbdde2486a89f10416115278f8d955"
+    },
+    "nge/boot-2/qmp-fresh-installed-1.json": {
+      "bytes": 3575,
+      "sha256": "383468d0d76b5c5bd23c05bf95ea3957e30f9328295e71b05e4676373d9bafba"
+    },
+    "nge/boot-2/034-installed-boot-trust.json": {
+      "bytes": 522,
+      "sha256": "f0ac6147fad73513b45644458348d1e172c7ee5a10d48db8d635d85bac75a326"
+    },
+    "nge/boot-2/042-fresh-installed-1-boot.json": {
+      "bytes": 4085,
+      "sha256": "d2832cfdc06766c7fcecb3962426b0baea6b5a9dd69a9c8b07202865b343ddc9"
+    },
+    "nge/boot-2/037-fresh-installed-1-packages.json": {
+      "bytes": 15890,
+      "sha256": "d2ef949747ee36b2748db9dfcc840e5da0930698d79cd57d065b762b7cbd187a"
+    },
+    "nge/boot-2/serial.log": {
+      "bytes": 1999,
+      "sha256": "b2cdf2c009fd20f18b52ee433a573d276c49df735ab190ac152128bdb80e30dd"
+    },
+    "nge/boot-2/041-fresh-installed-1-subvolumes.json": {
+      "bytes": 545,
+      "sha256": "f7dd7a03debd54a86ed9ccc528dafa9551b72a8265fec257a542913010fbc241"
+    },
+    "nge/boot-2/051-actual-desktop-1.json": {
+      "bytes": 1394,
+      "sha256": "bc03bddd4570fa8038d3a6ca6502484fe8184e88ce686429b463b0710c4a07fd"
+    },
+    "nge/boot-2/018-ready.json": {
+      "bytes": 219,
+      "sha256": "f7a92172beca7bbcd15c7db043f40df3773d1a8ea55c5cf657ff6cd2ec8a8fe8"
+    },
+    "nge/boot-2/026-ready.json": {
+      "bytes": 219,
+      "sha256": "7967ac730b0fae0197e55fac77a64ea3d956e069626532a29c93ec3327bc0a01"
+    },
+    "nge/boot-2/044-fresh-installed-1-persistent.json": {
+      "bytes": 414,
+      "sha256": "8380b63c8304e676b0bc48c14c1a4d615159dee4644a099d155a8538a0bc8305"
+    },
+    "nge/boot-2/023-ready.json": {
+      "bytes": 219,
+      "sha256": "19cee5560a93c51a79f678a57f27cca40e92d37a7214570f2a1ff8f37e297e21"
+    },
+    "nge/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "40f5d9c0d9bb1754639e61474b4af989dd63a304a69710d67976d71e64c1d899"
+    },
+    "nge/boot-2/039-fresh-installed-1-failed.json": {
+      "bytes": 328,
+      "sha256": "db07f0576d8b81837b63ec7937b1620b5ea456d04d5c35489217f6c4b4a24009"
+    },
+    "nge/boot-2/019-ready.json": {
+      "bytes": 219,
+      "sha256": "e4378b3f86a7193684f13167eca56d95a05245fef00b8a1b39a852b73d27bbda"
+    },
+    "nge/boot-2/028-ready.json": {
+      "bytes": 219,
+      "sha256": "3f7d303daf85ab5e0703d7b05ec904da60015bae64f2654d1293fe59885bc65b"
+    },
+    "nge/public-owner/db.crt": {
+      "bytes": 1172,
+      "sha256": "3bd76e7b7621b2b916eb1c63902aa66d87415d3cd0987e9767d4eef800710adf"
+    },
+    "nge/public-owner/PK.crt": {
+      "bytes": 1172,
+      "sha256": "8b906d3165c67024184f1219e0c38244d620baca26110bcb91e01e627cd0ce7b"
+    },
+    "nge/public-owner/db.cer": {
+      "bytes": 823,
+      "sha256": "3322b6f3b9b58e97160127ddd81223fb4c1b1396862bcc4d38b6143796645045"
+    },
+    "nge/public-owner/KEK.cer": {
+      "bytes": 825,
+      "sha256": "2733fd37c65b16b8a69dfc8965f90628e46117d442afdd85376c4f115bbccf9a"
+    },
+    "nge/public-owner/KEK.crt": {
+      "bytes": 1172,
+      "sha256": "47e506a4f8f1b6484f0723b5eaa5a820089aaaae65840a15f5ae349548224669"
+    },
+    "nge/public-owner/PK.cer": {
+      "bytes": 823,
+      "sha256": "95247d911b016275ad07b8ddc441a8db2c6041122a29279d268887b3fc450e9a"
+    },
+    "nge/boot-1/008-ready.json": {
+      "bytes": 219,
+      "sha256": "9c1a18a53c4575cf784d5a0a643dea27b7f129edce498e0e37b6f958beec9f11"
+    },
+    "nge/boot-1/011-ready.json": {
+      "bytes": 356,
+      "sha256": "08bbd9a86f653766c4b70609471b992456e517350be9437b1411f35c900d606d"
+    },
+    "nge/boot-1/qemu-command.json": {
+      "bytes": 1397,
+      "sha256": "c4ce54180386deeb2d1633dc964220248d3001249df1e9b2a9d165134830efec"
+    },
+    "nge/boot-1/qmp-ready.json": {
+      "bytes": 4434,
+      "sha256": "f859a51798e6ab5a1b0d4c9f2ccf39caeb42d5f4c25cd15696c218ffe9030538"
+    },
+    "nge/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "039310663be6234846746afda78bdcc896b74b10467cba2272e19c9941811587"
+    },
+    "nge/boot-1/004-ready.json": {
+      "bytes": 219,
+      "sha256": "d0a9ed633b5a7f87fd13ecb3e79fa78ef8bd85e275be6ee0e3cc3c5970b3a1df"
+    },
+    "nge/boot-1/005-ready.json": {
+      "bytes": 219,
+      "sha256": "5cd217bac8faa8f493d602471256fb159943c7365e6c46a025b0bbbafc91b07d"
+    },
+    "nge/boot-1/012-installation-firmware-before-writes.json": {
+      "bytes": 472,
+      "sha256": "481352105c28b454f2cf17c76cacaac1fac8578fa83e70f164826cc187dcaae9"
+    },
+    "nge/boot-1/007-ready.json": {
+      "bytes": 219,
+      "sha256": "6703ba749dc27dfbf6480462c7fa5943542a4a5b36242ec13c012cbc91a79a75"
+    },
+    "nge/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "d3d5634f08645fd5a0a1345702e28797e1104cbfe606822d1ac260ddcdd1b49b"
+    },
+    "nge/boot-1/003-ready.json": {
+      "bytes": 219,
+      "sha256": "51ce3602d6b15fc391891c0150689df76ea05ed066496b7cdb7484a162e68d7d"
+    },
+    "nge/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nge/boot-1/009-ready.json": {
+      "bytes": 219,
+      "sha256": "618be82fa4acf0eedfa04ef8ea88f317e0699e0ecbc6f248c0845296cb640cb9"
+    },
+    "nge/boot-1/010-ready.json": {
+      "bytes": 219,
+      "sha256": "a851f3161669402a66feed2010071acc263ecc0283e94ba8e2f9668588ca23e0"
+    },
+    "nge/boot-1/006-ready.json": {
+      "bytes": 219,
+      "sha256": "75972c28df5452658d0f38be27e5fbc7b85b2f8f8f516516fd2bb9b5898f15b7"
+    },
+    "nge/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "bcb218604dd8c1b5aed3aa7a739ab733c87acb54edc6919f15b3594d94396d9b"
+    },
+    "nge/boot-1/013-fresh-payload-install.json": {
+      "bytes": 2359,
+      "sha256": "558a3f049a267e3d2552068e0da5afcbe12196df5a2532369183d60f548ce9e7"
+    },
+    "nge/boot-1/serial.log": {
+      "bytes": 30124,
+      "sha256": "3fab13bcae0cef34a70c5e700ef010943c74116b4577c0727ad1a40c1bbc76cd"
+    },
+    "nge/boot-1/process.json": {
+      "bytes": 174,
+      "sha256": "96dd879bc4b755f6b6fa77396b2d5cd0fbb6573109e656bda8d8b27f1697af5a"
+    },
+    "nge/boot-1/014-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "8b3e39b6081ecfb4e0a0ef47806101414358050927105c0f1cf6cbca17bb971e"
+    },
+    "nge/screenshots/initial-desktop.png": {
+      "bytes": 555047,
+      "sha256": "a64d7e12dc3a86b962e284db686b426395ff299b9c9d6d7503da94adfc6cd60a"
+    },
+    "nge/screenshots/enforcing1-unlock.png": {
+      "bytes": 24963,
+      "sha256": "1ecbd39594dbb2c0f8e796e3fdc367a8549f5470d7be327913e45e95a8c00318"
+    },
+    "nge/screenshots/resumed1-unlock.png": {
+      "bytes": 24957,
+      "sha256": "c66a824e3bec39d6598fbf2b20a04d076e47919257059c54daec2cc8f5c264a4"
+    },
+    "nge/screenshots/resumed1-sddm.png": {
+      "bytes": 222477,
+      "sha256": "0345ca233addb9f8d5ca82d27e8f4b16bd846fbd47d7ac296b52947cff1321fa"
+    },
+    "nge/screenshots/bootstrap-terminal.png": {
+      "bytes": 273414,
+      "sha256": "f252c0a10dfdd98a97131458f819e7dfd3414e5335a1a94fc3be7673b1b10700"
+    },
+    "nge/screenshots/resumed2-sddm.png": {
+      "bytes": 219766,
+      "sha256": "14eafdc6618dafeef8d4c2321d55e583c2b1bbef57cf10b8d449af9dcbda932e"
+    },
+    "nge/screenshots/enforcing1-sddm.png": {
+      "bytes": 221749,
+      "sha256": "172eb5cc1610410355e76c272bc8a52d9cd89f84cdb5e8c8aa6b9b3aa5b98459"
+    },
+    "nge/screenshots/resumed2-unlock.png": {
+      "bytes": 24943,
+      "sha256": "4109bc055c78cc1499648fc1bb8eb2a5d8f855d4e7a5d4eb5581fa560f8a87ec"
+    },
+    "nge/boot-3/029-resumed-installed-1-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "e591371afd2dcd892a35299e86a35305fc91f9c032d63985301590fa33a01575"
+    },
+    "nge/boot-3/015-resumed-installed-1-status.json": {
+      "bytes": 3313,
+      "sha256": "1f65d8683729c026c153fe731a7ca41fe227f16fb577472443023c2a08303203"
+    },
+    "nge/boot-3/008-ready.json": {
+      "bytes": 219,
+      "sha256": "d67a484012cc076106bb61e60347c3481721636b3cbff025cddbfe81300954fa"
+    },
+    "nge/boot-3/017-resumed-installed-1-database.json": {
+      "bytes": 337,
+      "sha256": "be7dcbdbecc6556fe30db9606f708ede95034993b6a0c3eb4ad07cd71ffa152c"
+    },
+    "nge/boot-3/033-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "34261bbe38c2224c1c1a8ce55d65a74ff63e7a397531d85791ca2979deb92e37"
+    },
+    "nge/boot-3/020-resumed-installed-1-subvolumes.json": {
+      "bytes": 545,
+      "sha256": "bc9fea451ac75368e318d58ce3d6f0d58be938205acda102d4b693447f9a8668"
+    },
+    "nge/boot-3/qemu-command.json": {
+      "bytes": 1154,
+      "sha256": "956dff90bc68fd4302e1810373706ac02723d71017973f3eddcdb937d999b639"
+    },
+    "nge/boot-3/027-resumed-installed-1-kernel-command-line.json": {
+      "bytes": 455,
+      "sha256": "33086262ef88b60e5a2a1987302d563cf01f4dc721b6e57b49a12b00d342987a"
+    },
+    "nge/boot-3/qmp-ready.json": {
+      "bytes": 3575,
+      "sha256": "f35eeff38d9dab8ef787640512015f2343c32b87fe374db406def49df18a7fe0"
+    },
+    "nge/boot-3/021-resumed-installed-1-boot.json": {
+      "bytes": 4085,
+      "sha256": "a5303ec4b65fc8d0808ca2ea4f603f20d4b0852ff688ba63a2c88ee68be4ecab"
+    },
+    "nge/boot-3/022-resumed-installed-1-root.json": {
+      "bytes": 376,
+      "sha256": "a78e09388e689ed07ff047bdfb65638bc3deaa65120c329c99042d3e3a330064"
+    },
+    "nge/boot-3/012-installed-boot-trust.json": {
+      "bytes": 429,
+      "sha256": "47c1f5f6e0502defd06d35c86b926ec9958fbcb3da6c8b6d0c2bbc4bb25e11d0"
+    },
+    "nge/boot-3/qmp-resumed-installed-1.json": {
+      "bytes": 3575,
+      "sha256": "f35eeff38d9dab8ef787640512015f2343c32b87fe374db406def49df18a7fe0"
+    },
+    "nge/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "e052e4c9adc3bee975c9e705f79d40dd1c6c8d8ae8cba47bf61b05be2d6a9d52"
+    },
+    "nge/boot-3/004-ready.json": {
+      "bytes": 219,
+      "sha256": "e067a3df585d58f1c2cf3c9c663cd04e5d533bc0e07223038cb31e21a82c1fe3"
+    },
+    "nge/boot-3/005-ready.json": {
+      "bytes": 219,
+      "sha256": "b37e1a2ab0acdaff6e2f7a819eefd5d28dc6f49bdca2b692acdb40be41fe732e"
+    },
+    "nge/boot-3/007-ready.json": {
+      "bytes": 219,
+      "sha256": "6ffe479a5259ccf8e8c73e3bfc3982052dc892068881c2873182f07e5cd81a84"
+    },
+    "nge/boot-3/031-actual-resumed-desktop-1.json": {
+      "bytes": 7408,
+      "sha256": "b9ca3aed6d6106d9645828012ddcdd490acd7e7f6981974ce0e726b3978eb1c6"
+    },
+    "nge/boot-3/001-ready.json": {
+      "bytes": 219,
+      "sha256": "f62e1f93aa758a3478a44e6e283f118c2736b52750bd3010833168e035d535ce"
+    },
+    "nge/boot-3/003-ready.json": {
+      "bytes": 219,
+      "sha256": "1d754d93c2d201dbc585aaacec05cf6f7b4ca68b87a9e5bb0fa7e518d7d0db2d"
+    },
+    "nge/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nge/boot-3/009-ready.json": {
+      "bytes": 219,
+      "sha256": "2eec4546c88dc51d2af94e22dcb89680d7694fe2bb6bfe1c36b58130ee59c4e6"
+    },
+    "nge/boot-3/010-ready.json": {
+      "bytes": 356,
+      "sha256": "45abb6b0281498699dbe1706ecf4859ca79c09bbabb377117f06bda341cde841"
+    },
+    "nge/boot-3/011-installed-boot-trust.json": {
+      "bytes": 2288,
+      "sha256": "96c8854ed9ac247caa401d48e16f22a310a69584f94f65ef7da529b0cd715d88"
+    },
+    "nge/boot-3/028-resumed-installed-1-pacman-log.json": {
+      "bytes": 728,
+      "sha256": "92a866a4eb3294ff060b66718a419e4c1732117bd0cd536957ee882ea1ce2d61"
+    },
+    "nge/boot-3/019-resumed-installed-1-mounts.json": {
+      "bytes": 8943,
+      "sha256": "94bcccd8fd1713d7dd75b08770f3542942c9be58916182685d111e14b6ca117f"
+    },
+    "nge/boot-3/018-resumed-installed-1-failed.json": {
+      "bytes": 328,
+      "sha256": "b4e7dd0bd9a205ec434eabf934d0baed5771510e52db152739512993f01e3c64"
+    },
+    "nge/boot-3/023-resumed-installed-1-persistent.json": {
+      "bytes": 414,
+      "sha256": "3a3eeef3d9aa63c7ea36db818307051996b060ce9a8668cf8a35ba7df551a841"
+    },
+    "nge/boot-3/025-resumed-installed-1-boot-journal.json": {
+      "bytes": 112094,
+      "sha256": "51b46dfafc7c87af6c81b7223d85f8aacd4167ecd2e92b2a88cd2899c22295f2"
+    },
+    "nge/boot-3/006-ready.json": {
+      "bytes": 219,
+      "sha256": "19805a640e94b9a863927d3a20b3a8f362c71c30f83d8dc940b959c16f582b79"
+    },
+    "nge/boot-3/026-resumed-installed-1-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "b508cb6c4f7bc1a490ba805d9ea9b60ce68bd7d9f5dc518a7497a76f0a34e219"
+    },
+    "nge/boot-3/002-ready.json": {
+      "bytes": 219,
+      "sha256": "8956c767aa4921f51bcd40c35f11de33426f34d3bf9cb9408f03da0dc017b86b"
+    },
+    "nge/boot-3/016-resumed-installed-1-packages.json": {
+      "bytes": 15890,
+      "sha256": "cb334e878275170e9f69f5d22b10ffc2a1c90e7d42a1c8f486779237ad03cf0a"
+    },
+    "nge/boot-3/013-installed-boot-trust.json": {
+      "bytes": 522,
+      "sha256": "b1bf1878b4fe2678ee28470404a27df21bf94e4d379fab87e0486554019520ef"
+    },
+    "nge/boot-3/serial.log": {
+      "bytes": 2085,
+      "sha256": "493fdbbdf4c414a2df24d1c8a1ad280b594fe76e853627fc123a211cb5498965"
+    },
+    "nge/boot-3/032-enable-managed-generations.json": {
+      "bytes": 358,
+      "sha256": "7516ef394d6a2b6ceb1dc79cd8e66784f13a7bd892fa3f3eae3e04872199165a"
+    },
+    "nge/boot-3/030-retained-original-smoke-failure.json": {
+      "bytes": 409,
+      "sha256": "fd937421ed0cc35eecb1243d08511e460ed679e8b108d5bcb7f1bf182e24af65"
+    },
+    "nge/boot-3/014-network-online.json": {
+      "bytes": 340,
+      "sha256": "079015408103932b2df5788b217d1466e6482c8b6a6e40844c2d4e6c73d9b67a"
+    },
+    "nge/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "73882c85f5f090cf59b12ba97eeef7d1677e7ce915ba2626ccb7103d6707e469"
+    },
+    "nge/boot-3/024-resumed-installed-1-journal.json": {
+      "bytes": 6890,
+      "sha256": "936efbea627c2765f3d3e4bfb79f6f6cec1c572d0334f4b71a9ea6b5ce1533be"
+    },
+    "nge-control/output.log": {
+      "bytes": 1106,
+      "sha256": "3995866c5d4a6f44ba62e6743bbec8d9b513823955fbfd900c97f016648ea4bc"
+    },
+    "nge-control/launch.json": {
+      "bytes": 973,
+      "sha256": "4c06b3fb52a4b6474e494ca825b45d2f249c0d02f0e9fc7af2d068834e0d90b1"
+    },
+    "nge-control/resume.log": {
+      "bytes": 84,
+      "sha256": "ea4239f55fe542373420d7c1f2a0a38cd542ce0e2389da6e86845edb0f9f5f29"
+    },
+    "gce/remove-barrier-id": {
+      "bytes": 33,
+      "sha256": "7b1109956ef641eec1a4eba31929a70b53d201bc9c26d7bbbbbd28559d04ae30"
+    },
+    "gce/gui-state-inputs.json": {
+      "bytes": 830,
+      "sha256": "b7ad1926ff577d2e4e4559471a969094f195d6db765d6e1bca7e9457f32ce500"
+    },
+    "gce/attention.json": {
+      "bytes": 72,
+      "sha256": "f7f63bb15cf1c198909031420ff19c063a6b7b8fe45fabab006171c9766dbebe"
+    },
+    "gce/install-barrier-id": {
+      "bytes": 33,
+      "sha256": "a95b93e3b7e2fadbf8c9c02d985b29fdbf1bbf95e9f3cad55493cd6adb2761ec"
+    },
+    "gce/baseline-reference.json": {
+      "bytes": 3060,
+      "sha256": "caa7c8ccd9914fbcd2a45a41654e2d25d2b89522a7bb13c30899394fb11d4a9d"
+    },
+    "gce/gui-acceptance.json": {
+      "bytes": 19268,
+      "sha256": "9dea868f81b43567e07dbde8b649027ef7779312706e142d6e3a92398171cb6b"
+    },
+    "gce/boot-4/qemu-command.json": {
+      "bytes": 1153,
+      "sha256": "16ce764c23c16be8688f1f330b1abb5e769a60244d36ed2bddf6a47e3ff4bccc"
+    },
+    "gce/boot-4/qmp-ready.json": {
+      "bytes": 4439,
+      "sha256": "e2ad4d5fd0195277c189d08bde35d6f5816ed66c23ffce18d5171b567167f738"
+    },
+    "gce/boot-4/082-encrypted-overlap-install-idle.json": {
+      "bytes": 368207,
+      "sha256": "38366a374d98e7abf971eb66a5bbb1180c33ae13cf0e432bf2950adde2cb3244"
+    },
+    "gce/boot-4/077-ready.json": {
+      "bytes": 219,
+      "sha256": "e43fba5ad01b71c154b01c92772d6b5f0e6eb58ea1f8dab44f05fcfdc3a4423d"
+    },
+    "gce/boot-4/shutdown.json": {
+      "bytes": 86,
+      "sha256": "758dd8f758a741db12e72adb0ab28510970d095361004189df8668c90aaa22a9"
+    },
+    "gce/boot-4/079-ready.json": {
+      "bytes": 356,
+      "sha256": "2dabb354d94f0684eb6863164f909cbd938d60a9c8b346ec6c6171e13734f85b"
+    },
+    "gce/boot-4/074-ready.json": {
+      "bytes": 219,
+      "sha256": "c7fafbf7006c058457bae5de99edad736859c020711d593f4abade2068d53064"
+    },
+    "gce/boot-4/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "gce/boot-4/076-ready.json": {
+      "bytes": 219,
+      "sha256": "20d0f82b55252397c777ab4fae963080bfa05d57c34c7e94669327faf2943e38"
+    },
+    "gce/boot-4/075-ready.json": {
+      "bytes": 219,
+      "sha256": "13ab06c5dd9b02885a0be945d001bb0cdaff710b6c5b209e6c352f7930f06434"
+    },
+    "gce/boot-4/081-independent-overlap-install-plan.json": {
+      "bytes": 515197,
+      "sha256": "8f10e5673496b948b611b2efe3b10560e9ab48fde3b7ada8bcedb980b8337651"
+    },
+    "gce/boot-4/070-ready.json": {
+      "bytes": 219,
+      "sha256": "a562575ac1fd2cbcb23faa83b6b433c15ce21046302affd4ff5d6e81bebd632e"
+    },
+    "gce/boot-4/072-ready.json": {
+      "bytes": 219,
+      "sha256": "2d96449242e94497576eec7fe2ab97b309e42fdb7f2187286241296e3a89f811"
+    },
+    "gce/boot-4/serial.log": {
+      "bytes": 2264,
+      "sha256": "6119ca371ccce243970d8f188d061bf9afb3cfb1e5156119fcbcf7a3be06408b"
+    },
+    "gce/boot-4/073-ready.json": {
+      "bytes": 219,
+      "sha256": "6cd4d4b253dbe8e52edd6c272f31ab8ec0e7267694ff930c26a8d66d7b9ce794"
+    },
+    "gce/boot-4/080-metadata-after-actual-login-confirmation.json": {
+      "bytes": 2889203,
+      "sha256": "8c90cb2fd49e92fbd3c56dd3cbe031db5b8041fbe9e5394ac975f797039cf6b3"
+    },
+    "gce/boot-4/078-ready.json": {
+      "bytes": 219,
+      "sha256": "3fa6f797c02a31b91638722ac00665d6b11deca3dc718916c3a36968dcb1b841"
+    },
+    "gce/boot-4/071-ready.json": {
+      "bytes": 219,
+      "sha256": "47f8ee431b55addc199c3464d971a73105a32e6fd1fb4f4b7413feb027f01239"
+    },
+    "gce/boot-4/process.json": {
+      "bytes": 83,
+      "sha256": "1e6fd9d044754a947bdea40af8aea310e9ba8f5cb1939f1c8d1115d6df1dd7d4"
+    },
+    "gce/boot-4/083-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "d2bfb6d94430ff32de99cd817fb8c9a78955b8ee527ce8e5942fed72d560d925"
+    },
+    "gce/boot-2/050-after-removal-before-reboot.json": {
+      "bytes": 1635990,
+      "sha256": "47271749e3e896627c60b1dc8e2fa1346402f47e5200e0b6caba22724b9683cd"
+    },
+    "gce/boot-2/039-ready.json": {
+      "bytes": 219,
+      "sha256": "8e70fda2da99e2276bbc633b5a7692eaa1c054172da802e57bd590918e23aa0c"
+    },
+    "gce/boot-2/032-ready.json": {
+      "bytes": 219,
+      "sha256": "81c8f3b26d19c3b908d2d2337819a7be340c3e23c1695ee65ef1386de06bbf49"
+    },
+    "gce/boot-2/051-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "8c34d423db797a2b61360ae739796cf0e5fe55afe403f4433efc465354856588"
+    },
+    "gce/boot-2/042-after-gui-install-new-boot.json": {
+      "bytes": 1011279,
+      "sha256": "60c7ead4518d1fe0f1e2466d2496705f93c1c168145ba96f3ee83310f09336a9"
+    },
+    "gce/boot-2/049-export-removal-barrier-and-idle-cleanup.json": {
+      "bytes": 367322,
+      "sha256": "c023fec1296b1be44fc7dd1e976d633c565aac22226565a2ae761360bf1fbce4"
+    },
+    "gce/boot-2/048-release-after-visible-crash-reconnection.json": {
+      "bytes": 362375,
+      "sha256": "60bfa4ba5dd4abe70b0d3264c17392d79797de3fc20dbe240ee6139880885b3e"
+    },
+    "gce/boot-2/qemu-command.json": {
+      "bytes": 1153,
+      "sha256": "1729f50e3334ffe9b758976e07ace21d1ec5230264d22d0022f34a9aa2609b37"
+    },
+    "gce/boot-2/037-ready.json": {
+      "bytes": 219,
+      "sha256": "e2dd2e03f8d03380d4ed4e5e22cad68bf78899dd2d46452139ea9f06ed34ed11"
+    },
+    "gce/boot-2/qmp-ready.json": {
+      "bytes": 4438,
+      "sha256": "c7b198113c5e10720fb0057e4956e885c9a3aa56804cef790d925e9199481df6"
+    },
+    "gce/boot-2/033-ready.json": {
+      "bytes": 219,
+      "sha256": "ba9e4634f1e8f4c52d383db5bae272d4b92fe821ab468abebd2542ccf5f921f9"
+    },
+    "gce/boot-2/046-guarded-ordinary-gui-crash-at-removal-commit.json": {
+      "bytes": 363524,
+      "sha256": "ab7e06f65d551b74af7e4c1b602125cd62b99ff0e14c7c36e87bc14d85367688"
+    },
+    "gce/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "1296287bf50b1c26b333c3622f047a3c00f4f13688a3d31c18567b944598e53c"
+    },
+    "gce/boot-2/038-ready.json": {
+      "bytes": 219,
+      "sha256": "081a0c5c45a4675592a4b7935703139ca0e4e8c48efa53edc1980ea645659b40"
+    },
+    "gce/boot-2/034-ready.json": {
+      "bytes": 219,
+      "sha256": "7ac0245088d86a49a73fc90aad49f75457863ee2d71a2d984f0c880ac58af338"
+    },
+    "gce/boot-2/041-ready.json": {
+      "bytes": 356,
+      "sha256": "ef40f4efa97354d8de830c473f04e3b72767526b8551c30a7a10d133cb23b644"
+    },
+    "gce/boot-2/040-ready.json": {
+      "bytes": 219,
+      "sha256": "dea1c5d175591755853d2c05f15de55c83effdf1eeb98d5278bacb4719557810"
+    },
+    "gce/boot-2/036-ready.json": {
+      "bytes": 219,
+      "sha256": "f22ac381e1eec7de582681273e0e24a23da82a5726fad7cf14c45beab0eef5b3"
+    },
+    "gce/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "gce/boot-2/043-encrypted-removal-barrier-arm.json": {
+      "bytes": 1240,
+      "sha256": "ab6e54b824f6dbbb7af8cddeabca5e87068972a3a79d9d81723baf0816d7ec13"
+    },
+    "gce/boot-2/044-independent-user-removal-plan.json": {
+      "bytes": 508923,
+      "sha256": "92ebed4d3aa1bfbce6a36f101236b21e53994d2e602888bab061dd39a0582fbf"
+    },
+    "gce/boot-2/045-removal-before-gui-crash-barrier.json": {
+      "bytes": 458,
+      "sha256": "ca32f948a0cf8efadd825554f969d2fe193d5e5522f5cfb04ede1eedfaf9441a"
+    },
+    "gce/boot-2/serial.log": {
+      "bytes": 2264,
+      "sha256": "93b038f819929daa5c7df188ad1d7ecff461af665a7ed6ccd1fb5d866c515ab6"
+    },
+    "gce/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "d24274c24233eb77985dbe345de35a503744a7ac3757cffe497500dc1ca21fb8"
+    },
+    "gce/boot-2/047-same-encrypted-worker-after-gui-crash.json": {
+      "bytes": 362375,
+      "sha256": "a42292047ba8314fa9dd6ef0d3d2fbd2117891f26cddcda93c2ea7adf51d8a82"
+    },
+    "gce/boot-2/035-ready.json": {
+      "bytes": 219,
+      "sha256": "58a747c164fa78b1b057b2c98774bd170572ceaea2423a458fdcecde9b71a5d6"
+    },
+    "gce/boot-5/084-ready.json": {
+      "bytes": 219,
+      "sha256": "d485263e1eaf9a4cfb8478d3ce0c3f15be266cb1476100b023411edf0714b75e"
+    },
+    "gce/boot-5/086-ready.json": {
+      "bytes": 219,
+      "sha256": "1e1ccf005b903f62d18b008f7571daa36b25faa36fbc7c2113e40fa351354310"
+    },
+    "gce/boot-5/089-ready.json": {
+      "bytes": 219,
+      "sha256": "28a39ce1753988ddd415a367b362c992abdb82adf057c4956b8d1e663d3948fb"
+    },
+    "gce/boot-5/094-ready.json": {
+      "bytes": 219,
+      "sha256": "1d61c423ead6cfa2fe102ae68bce5b663351fd7c1d8f32e12c21c7b8c43b15f3"
+    },
+    "gce/boot-5/087-ready.json": {
+      "bytes": 219,
+      "sha256": "1bc5b786d16628be9eb1f79d5ddb575032c8f9b5d00bfcff6058b892b271a1e9"
+    },
+    "gce/boot-5/qemu-command.json": {
+      "bytes": 1153,
+      "sha256": "f18b0b768e9b1bb12dbcda9298388a0544bb7258c8943a3f3da7cebb0236aa4b"
+    },
+    "gce/boot-5/qmp-ready.json": {
+      "bytes": 4439,
+      "sha256": "4c05d2f057310afaed46b8d9075b1dc6afe3d520b72a16c745b87d3a630426b6"
+    },
+    "gce/boot-5/091-ready.json": {
+      "bytes": 219,
+      "sha256": "e0e7058241ce8c010cc9540354163684b6ab7354b70001cb83279f6b27b94a88"
+    },
+    "gce/boot-5/shutdown.json": {
+      "bytes": 86,
+      "sha256": "439648713a7b766656af63ac300c6438ea3753fef01fd2ee9d61926fcab81c94"
+    },
+    "gce/boot-5/088-ready.json": {
+      "bytes": 219,
+      "sha256": "d79a4c9f1ef33cf3e029d7a632fbb4d4d90ec5f3fec971095057380bcf9a5c8b"
+    },
+    "gce/boot-5/096-independent-overlap-metadata-plan.json": {
+      "bytes": 515516,
+      "sha256": "c9f59de5ec9accfab76a0ec02ae29fa4b1bee04eb31899614f71e9e46bc42296"
+    },
+    "gce/boot-5/092-ready.json": {
+      "bytes": 219,
+      "sha256": "917abae37f9d80ecd4fbd90db930e2991a8cfd84a90cc5fce72a3ca2684caa5a"
+    },
+    "gce/boot-5/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "gce/boot-5/093-ready.json": {
+      "bytes": 219,
+      "sha256": "ffadc75da4675ee7d8f730006cc41cdfbc9dada83c5d82c6f5c6395a1a75eaf1"
+    },
+    "gce/boot-5/085-ready.json": {
+      "bytes": 219,
+      "sha256": "d0cd6007e2b1a88d74a6215900d7e3aa7196deec126604665c6e4857b3c90dca"
+    },
+    "gce/boot-5/serial.log": {
+      "bytes": 2310,
+      "sha256": "29bb5027b4a510a71f52b778afec181e03d0c8ebbb515fb412770b3cd3cc4291"
+    },
+    "gce/boot-5/098-encrypted-overlap-metadata-idle.json": {
+      "bytes": 368320,
+      "sha256": "aa2539dc5dce978f67a1e81d66018e62df71782a36f3c3bb0d7c8e5e095ef78a"
+    },
+    "gce/boot-5/095-ready.json": {
+      "bytes": 356,
+      "sha256": "58ae8d8756dd8f4dc033c0afdd4268e4f9193c0595433301800a11e86a5cf4fa"
+    },
+    "gce/boot-5/097-bounded-overlap-installed-before-metadata.json": {
+      "bytes": 320863,
+      "sha256": "6c571b9912a13ba1ae5459a2dc132606ce2c0a6083371951d6a0d93c7f0ecaca"
+    },
+    "gce/boot-5/process.json": {
+      "bytes": 83,
+      "sha256": "a3d84aacad72c21b8dbbb88e5e5ddfad7179a04bacb9e1c4d95d06f3dd36f7ca"
+    },
+    "gce/boot-5/090-ready.json": {
+      "bytes": 219,
+      "sha256": "df0d29998b983ad32ab672d65ab089db013a83c45994937b405cd2c9d744ce61"
+    },
+    "gce/boot-5/100-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "41accbf9ef7427f7f0edc3537b2dced81ce608ef7e47eb78ee2f1745971a3a82"
+    },
+    "gce/boot-5/099-encrypted-overlap-after.json": {
+      "bytes": 320769,
+      "sha256": "576f6f2881c79cee1e3133329557b1f0219133f0d3a9073f5be1d66efd15c4ea"
+    },
+    "gce/share/phase42-faults.py": {
+      "bytes": 82696,
+      "sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b"
+    },
+    "gce/share/core-install.json": {
+      "bytes": 94,
+      "sha256": "5bf4a75e5e0183dcc4e2e99c4d7b7dbf0520cc32d08e0f0f7428a1629d4af0db"
+    },
+    "gce/share/noop-submission.json": {
+      "bytes": 207,
+      "sha256": "dd271ea4e67ac1f2c83e5fd121877ab9ba6848256869066e584ab8c8ed3d7827"
+    },
+    "gce/share/core-install.toml": {
+      "bytes": 83,
+      "sha256": "383d24c40ae50a4402c36a22ac59eafd109c23f815e8938f91656a9a840fabf2"
+    },
+    "gce/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "2cd9e58b16dc4514171d06aa59f08520a6eea5992c63763dda77a9b1844cef1d"
+    },
+    "gce/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "gce/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "gce/share/gui-barrier.py": {
+      "bytes": 15263,
+      "sha256": "1ac4093c764851f90363d89490878db73e71e9cf44ddaf88533badc409be9b1a"
+    },
+    "gce/share/overlap-metadata.json": {
+      "bytes": 91,
+      "sha256": "75607924cf86b211a8aec8da2629818079c1f7ab40acfe9a55741fdb6eaef5b2"
+    },
+    "gce/share/overlap-install.json": {
+      "bytes": 103,
+      "sha256": "461bb91c5d4607d5e8d4c42f80522e0efdd1dc77d48573ea9e9157f4fd46a61c"
+    },
+    "gce/share/remove-mangohud.json": {
+      "bytes": 82,
+      "sha256": "1dc385fb6762c28316d94c3319063a62e23493fc5ab12147f1a7b755033e2bb9"
+    },
+    "gce/boot-1/020-before-real-auth-state.json": {
+      "bytes": 344201,
+      "sha256": "60ab92d684baadc3570c19e3cc07c176e98756f1e65635b97cb11ca932b3c7be"
+    },
+    "gce/boot-1/030-installed-state-before-first-gui-reboot.json": {
+      "bytes": 882261,
+      "sha256": "83384bafe7d7ebf99dcb061ef907b5a5419be35e49c7e42531c5991a01c31153"
+    },
+    "gce/boot-1/008-ready.json": {
+      "bytes": 219,
+      "sha256": "ec4bf87d8951f3a1f85fb269b0c637b2323c7614ac49f2f2f5b08c3fa4491538"
+    },
+    "gce/boot-1/027-release-after-visible-gui-reconnection.json": {
+      "bytes": 361879,
+      "sha256": "124c39956b219d0251213e53bfeab144506101068634a944a683357fcb89796c"
+    },
+    "gce/boot-1/011-ready.json": {
+      "bytes": 356,
+      "sha256": "393594601971d3515542b554cebbc62de3eae327fff8c1d3bcb29f36d2fb2e4d"
+    },
+    "gce/boot-1/qemu-command.json": {
+      "bytes": 1153,
+      "sha256": "2d2b18fb42527e3a891c144bb692e569695749f7a7d77811723141f6de6575e0"
+    },
+    "gce/boot-1/013-identity-astraeus-control-center.json": {
+      "bytes": 432,
+      "sha256": "91dd1d9be8bdd293a9d6e6848c819294149d0a175cd4ebcb306a35dac6ad3b55"
+    },
+    "gce/boot-1/qmp-ready.json": {
+      "bytes": 4436,
+      "sha256": "acfb749f4e5480d767867bade29a058309ff5a6bf9d2af2162b96dd3a1ffd646"
+    },
+    "gce/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "a6824785f7552b48517274142e405f45fd946142b74cb24e76728e6fe22dc067"
+    },
+    "gce/boot-1/004-ready.json": {
+      "bytes": 219,
+      "sha256": "17deb4082278d9d9531e03de96e5879a389faabca871828376a30702e008fa2a"
+    },
+    "gce/boot-1/005-ready.json": {
+      "bytes": 219,
+      "sha256": "25019f02e4af596c5876f1e070b9aa4a82f55283489c57d520783020e5f221e2"
+    },
+    "gce/boot-1/026-same-encrypted-worker-after-normal-gui-close.json": {
+      "bytes": 361954,
+      "sha256": "67719bbeacd680a46ac5fd3218f9293ecef6a0a5e33875ef4fa2a92d03b40835"
+    },
+    "gce/boot-1/021-after-cancel-auth-state.json": {
+      "bytes": 344201,
+      "sha256": "d397db1767b25ba0626c62952697ac9a66239f774086ce45d60329a1aa5e6cc3"
+    },
+    "gce/boot-1/014-gui-home-sentinel.json": {
+      "bytes": 535,
+      "sha256": "823b2839f297b60ba68f778e38485552cdf1ebcd6ad0b779701e48d05942a838"
+    },
+    "gce/boot-1/017-independent-user-core-plan.json": {
+      "bytes": 507983,
+      "sha256": "2bfbf9e02fbbde6eec183fec92467adb9ae027e25f3c62a31a65a64071fb252b"
+    },
+    "gce/boot-1/007-ready.json": {
+      "bytes": 219,
+      "sha256": "0b5512d46cf299c0689ee10f576362b326a92ebbe3c8142386efd68afa68190f"
+    },
+    "gce/boot-1/022-after-denied-auth-state.json": {
+      "bytes": 344201,
+      "sha256": "496b0bef7c022067c910b00fd0c7a7df33895ab857bbb7d2cfa2f4bdef976004"
+    },
+    "gce/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "5141b692ad5aa48b42bb7672eb08f769b1fc370feddf4184a125423d318f4b50"
+    },
+    "gce/boot-1/003-ready.json": {
+      "bytes": 219,
+      "sha256": "44cab6a4192b4ac69a919512af504397d1154385eec09ba2a08ebb77b619111f"
+    },
+    "gce/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "gce/boot-1/009-ready.json": {
+      "bytes": 219,
+      "sha256": "1a14e3efed62835b6372705d704538127c6e04ac7be23543136b80424a13e7bf"
+    },
+    "gce/boot-1/010-ready.json": {
+      "bytes": 219,
+      "sha256": "07d34dc7d2b1cfd1ada687d9c8c4abb69f073cf1e69f0631fb1f4f4863f66023"
+    },
+    "gce/boot-1/016-encrypted-gui-arm-install-barrier.json": {
+      "bytes": 1232,
+      "sha256": "399129366d48815317097425fd0a5c9f529cc910fe9e99bd075b2982b766e3e4"
+    },
+    "gce/boot-1/012-identity-distroctl.json": {
+      "bytes": 404,
+      "sha256": "f403eb89f9befc0e73642aa49f260a7f233088f760aa1cf81b094b6d829aa957"
+    },
+    "gce/boot-1/019-after-adoption-discard.json": {
+      "bytes": 287186,
+      "sha256": "67dd2971cd8ccb9e384f9b3a16048ddbaaccab3284d4829140c0a65361f5438f"
+    },
+    "gce/boot-1/031-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "071a2efe8ddf0ba8a0e3e674f64145b9fe5f09540576d04c7eea86cfc8c48897"
+    },
+    "gce/boot-1/006-ready.json": {
+      "bytes": 219,
+      "sha256": "6eb4a499beb783fb3af0fe6550aac87a07ee9a205471187f2972e693ffebcbc8"
+    },
+    "gce/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "a25e51e75e204ecb59cd04f4994de3ce454655a213841762eb76ba5407373a39"
+    },
+    "gce/boot-1/029-actual-gui-export-equals-applied-toml.json": {
+      "bytes": 973,
+      "sha256": "3995d521d2f1aeb5bb24c391d80a2f1faafb2a44da0f7391b5bfd63c1fbc867f"
+    },
+    "gce/boot-1/serial.log": {
+      "bytes": 2130,
+      "sha256": "e82243dad416d7a8aaa8cb1b2ccf441f93710c42ddaf0b86eed9fa6226574d02"
+    },
+    "gce/boot-1/023-reset-only-disposable-tester-auth-lock.json": {
+      "bytes": 796,
+      "sha256": "a99673bef12d97ae5e76454e1d5d597ee208e7cb8199de98c72d64d6c9e3977f"
+    },
+    "gce/boot-1/028-export-install-barrier-and-idle-cleanup.json": {
+      "bytes": 366834,
+      "sha256": "5bea12369943490cd91a294de2ef5110280749fc9c208451da5bb2f70d63b372"
+    },
+    "gce/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "996481b9f3c92374758cc11c62e9419b88a6d5a45ada74103d8f201d66bdb966"
+    },
+    "gce/boot-1/025-encrypted-install-committed-barrier.json": {
+      "bytes": 361879,
+      "sha256": "df0ebe1af9a91702dc248c6d1c20f570d8ed21caa480f34520d5297fbedb1d1d"
+    },
+    "gce/boot-1/015-gui-initial-state.json": {
+      "bytes": 287186,
+      "sha256": "ab9464e8497276f020b0e77ee298b808cac9cd0558b8ea173a3398d69adf58f3"
+    },
+    "gce/boot-1/024-gui-install-first-barrier-status.json": {
+      "bytes": 458,
+      "sha256": "17431bcf690de385fb3ea5930517cb4de5c4be5cda21dec8f7566827f3a748da"
+    },
+    "gce/boot-1/018-actual-ordinary-gui-identity.json": {
+      "bytes": 847,
+      "sha256": "b5650f1d36a75dc002b75351aa7ebb259d7a925a247e625e39ae2ff2c63fa7f6"
+    },
+    "gce/screenshots/config-export-ready.png": {
+      "bytes": 205205,
+      "sha256": "4c46984a4610a700a679d8a7f29676e7cee7082296653338fc1f3e91e8caf1e6"
+    },
+    "gce/screenshots/initial-sddm.png": {
+      "bytes": 221093,
+      "sha256": "ff105fe7e909259944239f1abdc6e08d7c9f5e7bdba435a1de9dd51a66e3c5cc"
+    },
+    "gce/screenshots/reconnected-after-crash.png": {
+      "bytes": 177972,
+      "sha256": "d8e8e5d27fe318f3044dae03a8b545b2373d4b6a7c9d262d4e0e3a461990fb1d"
+    },
+    "gce/screenshots/metadata-polkit.png": {
+      "bytes": 241940,
+      "sha256": "2160e495def815e94d5d91c826516cf3d67bf90ebde24ff272ea68cba0b4612b"
+    },
+    "gce/screenshots/overlap-keyboard-authentication.png": {
+      "bytes": 242271,
+      "sha256": "cd5170e5d1df924064544f874776316297274bb4490d2251692e01e8b4eb45b5"
+    },
+    "gce/screenshots/true-noop-review.png": {
+      "bytes": 229605,
+      "sha256": "6e97c6ffd69912468cbdc57d35b294c76e5a058fdaf9cae3cf0a9ca7c81ec046"
+    },
+    "gce/screenshots/ordinary-noop-terminal.png": {
+      "bytes": 180173,
+      "sha256": "df2d90b6369c0507f8fce2c0913142bc91742afc17df6a5f99989cdece2741a7"
+    },
+    "gce/screenshots/overlap-metadata-review-final.png": {
+      "bytes": 198361,
+      "sha256": "fe9fb8f543031a541061240499006ef22037f40b19f31c041d94ddfd9f09e623"
+    },
+    "gce/screenshots/authentication-denied.png": {
+      "bytes": 232190,
+      "sha256": "12883a5976c1c95c6cf1b5ffb933f5802ba9cd0cea0c0889d6c738c2ab334e18"
+    },
+    "gce/screenshots/metadata-reconciliation-review.png": {
+      "bytes": 229532,
+      "sha256": "3c63b7f670238fec66eb5efb5d811366e3c60052b864aa6db699c74a2c68297b"
+    },
+    "gce/screenshots/final-encrypted-verified-complete.png": {
+      "bytes": 184833,
+      "sha256": "e55c472da7946a67d12b0ecbe14b9d18dacaf71a7e0aacbd36c51d128ade6fa8"
+    },
+    "gce/screenshots/install-verified-complete.png": {
+      "bytes": 173222,
+      "sha256": "bfaa2c0beecba60d6bd6861e57d6b2f71142309d63870d4dc75fada372e5a7e1"
+    },
+    "gce/screenshots/actual-native-import-dialog.png": {
+      "bytes": 254314,
+      "sha256": "5d758a540e4be0c523d412dca95ec346cdcd5bf38a048b3d8a313254c54ebdcd"
+    },
+    "gce/screenshots/overlap-install-unlock.png": {
+      "bytes": 26567,
+      "sha256": "dfc1fa20180ecca08bb34747a3bbc439a817c536f694e75b42d968d3695bdd67"
+    },
+    "gce/screenshots/removal-polkit.png": {
+      "bytes": 246526,
+      "sha256": "bc6c0a178d842d478656d539a4687655bd5a087da5683430103298b52c13ee17"
+    },
+    "gce/screenshots/native-export-dialog.png": {
+      "bytes": 217980,
+      "sha256": "7513f45dd30f7cdd82a18070976faee1d84d1b302d3df3c54646596829044f0e"
+    },
+    "gce/screenshots/final-login-observed.png": {
+      "bytes": 223729,
+      "sha256": "3b35f6f26124bb63b1bc4e25b82c65a1818a00e6ea5d3986bdea99773eee135d"
+    },
+    "gce/screenshots/metadata-apply-progress.png": {
+      "bytes": 196252,
+      "sha256": "9ab600eeeefa66c61be6dc22474a05e99399c04dd5b02028911b8739644f6ad3"
+    },
+    "gce/screenshots/actual-removal-verified-complete.png": {
+      "bytes": 174656,
+      "sha256": "59b86d36f160b6046d77f7f2b3efe19e7d8e8f45fc8c1178855a4f56d5bbe914"
+    },
+    "gce/screenshots/install-reboot-unlock.png": {
+      "bytes": 24957,
+      "sha256": "eaf216bda8892f826139702c988407c3878f652b5fc0bd161539cc4527bdfdc9"
+    },
+    "gce/screenshots/denial-prompt.png": {
+      "bytes": 237446,
+      "sha256": "dceffe4e44714864c912d57ee4f8ce27edd8fa209220f9bc1659cc76437a3e7f"
+    },
+    "gce/screenshots/overlap-review.png": {
+      "bytes": 230224,
+      "sha256": "8ae9ffc3dbae8ff59071fa4fcc1c9830e3e7f831ef347c1aee355a016ee6a268"
+    },
+    "gce/screenshots/overlap-install-sddm.png": {
+      "bytes": 223245,
+      "sha256": "f07cd28f43017f87851d6a303ae4ce908e2fdcab4e01b64098e3d880cffb501c"
+    },
+    "gce/screenshots/closed-during-install.png": {
+      "bytes": 552895,
+      "sha256": "c07309d41c5b068dd7929a4142c2b5264634e7976119c3d6e8dc14b1059d2a18"
+    },
+    "gce/screenshots/install-after-release.png": {
+      "bytes": 182458,
+      "sha256": "4d12de72027e7e3a8f30c2feb3acca739b594ca6c96a31843944dca7b3e8736d"
+    },
+    "gce/screenshots/final-reboot-unlock.png": {
+      "bytes": 3869,
+      "sha256": "de01ee417a0831559745a7eae45bfc95512c8eee3f0509dccd08e7eca42f296a"
+    },
+    "gce/screenshots/detected-external-reason-drift.png": {
+      "bytes": 295780,
+      "sha256": "6a4ebc269788a213a85ddbcc2b57cfa14867d13dbe8883169d3bb13dce0ddb2c"
+    },
+    "gce/screenshots/configuration-draft.png": {
+      "bytes": 200059,
+      "sha256": "a2ced5b3f286a066c6c67759ba0a16970a4613a0f5d09057339e303a3a6d36c1"
+    },
+    "gce/screenshots/final-unlock-ready.png": {
+      "bytes": 26053,
+      "sha256": "edc3d72e954d2634621c5658e19e6f1979e1ddf7732d05eb4b3a6316ad217a9a"
+    },
+    "gce/screenshots/kcalc-search.png": {
+      "bytes": 177092,
+      "sha256": "0e5116e016815d98b66030233a86d857f98c90a4929a13db1410f723940a8ad5"
+    },
+    "gce/screenshots/review-apply-ready.png": {
+      "bytes": 229118,
+      "sha256": "105d1c84bb0f9f0dafd9af255716fa2cfe98e801c857ce07246108823c89d3a5"
+    },
+    "gce/screenshots/plasma-ready.png": {
+      "bytes": 552907,
+      "sha256": "cb5ba3afdfc56e1f8e3ae825f97a176b70b1a809ac1ba5eb56e737bfaa59e3ec"
+    },
+    "gce/screenshots/imported-current-draft.png": {
+      "bytes": 212249,
+      "sha256": "a18e7dceee45d707b0498edafd2b8bc00bf361668f46c7ff60cb0b669147319c"
+    },
+    "gce/screenshots/wrong-auth-two.png": {
+      "bytes": 235434,
+      "sha256": "33e5fb0f42aadeec306df323f162d3e6e60574eb24c679b1350cdf86292e368a"
+    },
+    "gce/screenshots/review-core-top.png": {
+      "bytes": 230213,
+      "sha256": "9b32cf091e9f3a4b6a2b1b2637f27aa60179f140cf191d5d5161a37b72ab1f07"
+    },
+    "gce/screenshots/wrong-auth-one.png": {
+      "bytes": 236736,
+      "sha256": "cccfb548357a1acbc56d07b3ed563c249c5b19ebaadc4c5d0e1b482962c89139"
+    },
+    "gce/screenshots/removal-reboot-unlock.png": {
+      "bytes": 24992,
+      "sha256": "0067e95b2bf5e74786f3ec509cd54a02f3e4c46a8507c8dc1fae27bdfdd062ad"
+    },
+    "gce/screenshots/reconnected-applying.png": {
+      "bytes": 175348,
+      "sha256": "0a410319adee1c84da1b5f1c9fd564335ea27adf329416b666ae4ab6ed0fa014"
+    },
+    "gce/screenshots/metadata-verified-complete.png": {
+      "bytes": 180148,
+      "sha256": "18f78690ab9a224f62de64f0418c03833f9b8e3d15487f1667e67da0e80d346e"
+    },
+    "gce/screenshots/crashed-during-removal.png": {
+      "bytes": 552969,
+      "sha256": "65246bb240f528ca8418c39abab861c73a49ff338e441ce129830e27c768b071"
+    },
+    "gce/screenshots/removal-review-ready.png": {
+      "bytes": 198108,
+      "sha256": "31db44b7a02036353d508e129478e551009b37c15d141eee9c391df4948b0f08"
+    },
+    "gce/screenshots/adoption-draft.png": {
+      "bytes": 206500,
+      "sha256": "e29b108783f2596539d06bcda21ed1f45313e95deea0988402b0d26a41e4ecd6"
+    },
+    "gce/screenshots/removal-awaiting-boot.png": {
+      "bytes": 184704,
+      "sha256": "fcc56783c21e402e58c0683439b8bdece6c9386e890bf87c70cad29c99051d9f"
+    },
+    "gce/screenshots/install-reboot-sddm.png": {
+      "bytes": 221702,
+      "sha256": "f8b822d181cb87a592483fce015e79b3fea814ca58990a5dcccc314ee59eadd6"
+    },
+    "gce/screenshots/overlap-polkit.png": {
+      "bytes": 235910,
+      "sha256": "7e056b050d92ce9a2d17f5541067eeca0a2d447196f764386b56f0c38c41b9d1"
+    },
+    "gce/screenshots/polkit-first-prompt.png": {
+      "bytes": 237075,
+      "sha256": "39e5179a5396bebf734222770e38a2ef55be68c8baccd798e72a0cdc9b39e86a"
+    },
+    "gce/screenshots/native-import-dialog.png": {
+      "bytes": 211581,
+      "sha256": "6f03a7e73c8f479b1f81f3937302c9d5684f7bacb36559b7ccdd3da930be21f6"
+    },
+    "gce/screenshots/install-progress.png": {
+      "bytes": 183162,
+      "sha256": "55084aa024ffab67e927d26ad8973e6d94e23c33d9a6c5f9eb760a3029135d46"
+    },
+    "gce/screenshots/authentication-cancelled.png": {
+      "bytes": 231975,
+      "sha256": "45def8f47778beb96fbdadbd51ce99fae847f03ad709074d97043fa8058b5c97"
+    },
+    "gce/screenshots/metadata-reboot-sddm.png": {
+      "bytes": 222454,
+      "sha256": "97f0bf00e65da26fb797d56c034a64103c39acc91134d6d3cbbb97493a09760b"
+    },
+    "gce/screenshots/noop-polkit.png": {
+      "bytes": 207298,
+      "sha256": "31087c1a12f7c4bd494fcb8e4cb47b993c87096e6b3b087061534d66ea7c43f7"
+    },
+    "gce/screenshots/final-login-ready.png": {
+      "bytes": 3077,
+      "sha256": "390ba68ca0aee8eaf0e1422b421880974924934d495c4403af69974fcd6acba2"
+    },
+    "gce/screenshots/removal-reboot-sddm.png": {
+      "bytes": 224036,
+      "sha256": "7d1d98c4ecf6e0e07847c60383bf3731f3f5ac03d6fc8ecf9485ee6046cd5a86"
+    },
+    "gce/screenshots/overlap-installed-selections.png": {
+      "bytes": 199485,
+      "sha256": "ac740169323fb59084277cac8a6072383734b8efb20a068a0b1182a9c145f0f9"
+    },
+    "gce/screenshots/initial-unlock.png": {
+      "bytes": 24978,
+      "sha256": "5352d862a86e355e40150485c64cb3818f5b1a7415aae2f0e7b467566bb7333a"
+    },
+    "gce/screenshots/overlap-install-progress.png": {
+      "bytes": 189717,
+      "sha256": "39dac8402e1019ef2ccf2e6558353497511dde495cea4d0b2e7dc0abf6f31f1b"
+    },
+    "gce/screenshots/valid-polkit.png": {
+      "bytes": 237320,
+      "sha256": "c1f58b27f9b80a33e7dbf583677cdd10d2c84d79b97d918f4e6c463f59fa3231"
+    },
+    "gce/screenshots/after-removal-overview.png": {
+      "bytes": 293034,
+      "sha256": "c6c4a192ab07d2d997988c0800bc9babee75eecb2517d25809937c423f602286"
+    },
+    "gce/screenshots/package-selection.png": {
+      "bytes": 241233,
+      "sha256": "6bc9283dd8d184ac4694efcf2a4720f3d4a2372decb5fb9bbc965285f22ebdb5"
+    },
+    "gce/screenshots/overlap-apply-ready.png": {
+      "bytes": 225417,
+      "sha256": "b6d5b39c224c7a400b3d8c2824cf419284b0d336109f6d4cc046d21f59714b17"
+    },
+    "gce/screenshots/metadata-reboot-unlock.png": {
+      "bytes": 24965,
+      "sha256": "d0881e780d13ae55b2d5fea920b776e78cffd40d2d09d385597a0970ca4e2785"
+    },
+    "gce/screenshots/after-removal-gui-ready.png": {
+      "bytes": 552638,
+      "sha256": "a6d2e14b8cd17d31ab3f46316878f937408907975ffdb9e606a780fa83fa8d8f"
+    },
+    "gce/screenshots/removal-applying.png": {
+      "bytes": 182909,
+      "sha256": "cf5b38ecef9a7eabfa9bf58f5697284c4e71f7bfb238ac11e2756abe09f72a33"
+    },
+    "gce/screenshots/cli-noop-result.png": {
+      "bytes": 194969,
+      "sha256": "bef634d66ea3521d5effb2fee423a65073af2d36119b515a8f300e0682bbe07f"
+    },
+    "gce/screenshots/overlap-metadata-review-ready.png": {
+      "bytes": 229088,
+      "sha256": "a2664beb4c1128c522f90382e750a1a404c1cbf59819e3ad94b008e7a63f908a"
+    },
+    "gce/screenshots/overlap-metadata-applying.png": {
+      "bytes": 191907,
+      "sha256": "758a2ea91a435b6d054f599687d79efdf59db7a18e5abe1eebb0d27dbef5d18a"
+    },
+    "gce/screenshots/removal-verified-complete.png": {
+      "bytes": 554791,
+      "sha256": "67f96f915a876c19145ea3dd66e0bfe5ed3ae543d146feb041968b911bdc2b09"
+    },
+    "gce/boot-3/068-metadata-reconciliation-idle-and-envelope.json": {
+      "bytes": 362946,
+      "sha256": "ce5f7fb8fd7a5e7a3f1e86a93a8b00ae47cd9a83e14bc83d6fa28b0a8df9310f"
+    },
+    "gce/boot-3/056-ready.json": {
+      "bytes": 219,
+      "sha256": "400c0d1daba9fcaae8ab52e59c4249740ac973faba063fe19a67cac9867ae67a"
+    },
+    "gce/boot-3/060-ready.json": {
+      "bytes": 219,
+      "sha256": "34f2a83fb76b0f54ee06db9027c2a2a561bac708d2fc38d585169e776f55c2e9"
+    },
+    "gce/boot-3/qemu-command.json": {
+      "bytes": 1153,
+      "sha256": "c18d6d16caa58591f5090ef8df0751e1e15ea934edbb6bda80a7e290791e4bb4"
+    },
+    "gce/boot-3/qmp-ready.json": {
+      "bytes": 4439,
+      "sha256": "669fb12b204c7b71338c4a7df98bf4c02b4de8da6dc7e3aeb0aa7b6c861fcadf"
+    },
+    "gce/boot-3/066-external-owned-kcalc-reason-change-r2.json": {
+      "bytes": 633803,
+      "sha256": "5fa7af02a6ec7e5c4cda8ec82ca30e72f7753b05b708fb15f00851fecd3c34ce"
+    },
+    "gce/boot-3/069-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "31b8db41f94147474db73285028fce2a83dbd24c981e23f87456c3356f3df3d9"
+    },
+    "gce/boot-3/059-ready.json": {
+      "bytes": 219,
+      "sha256": "42db433e3f90a9007a5c99bd64be11c2e9f48e819758af20a6444ef346ba906f"
+    },
+    "gce/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "68250e8a46aa21bd5e6cb077db87799d73131a818151d98f079b8d37adb4bfe3"
+    },
+    "gce/boot-3/054-ready.json": {
+      "bytes": 219,
+      "sha256": "8660d7f01a39e348e8f6c9d8fc9c7a4d22d3d6ee77e1c08d9b576c2bacec06e1"
+    },
+    "gce/boot-3/055-ready.json": {
+      "bytes": 219,
+      "sha256": "a01840a67f60f94500f4ff2d811dd29b64bc8e2fc2b1955073026bacac620c15"
+    },
+    "gce/boot-3/057-ready.json": {
+      "bytes": 219,
+      "sha256": "3b5806fd736eb370fda8ad40edb76d4e9979cc144da1de5d8cd2c82af9738376"
+    },
+    "gce/boot-3/067-external-reason-metadata-reconciliation-plan.json": {
+      "bytes": 507354,
+      "sha256": "eb353fc2bf2f65dec2282f042c132a043f115f2e930818ca098201d1b15f3131"
+    },
+    "gce/boot-3/061-ready.json": {
+      "bytes": 356,
+      "sha256": "71280cd27576aae01dd3e6729ebba6eb9a3565eca900696fe82a899799620688"
+    },
+    "gce/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "gce/boot-3/065-after-noop-worker-exit.json": {
+      "bytes": 2259996,
+      "sha256": "ff9fe1b372f4569f2a633061e03cfb14065b551fe2d229fbd3f6119b8d27c0d8"
+    },
+    "gce/boot-3/062-independent-true-noop-plan.json": {
+      "bytes": 507574,
+      "sha256": "e13e3076717ab929e84f6ad10da2cf81a55d5372cb700b603ab4ad4778a72170"
+    },
+    "gce/boot-3/064-after-authenticated-cli-noop.json": {
+      "bytes": 2259815,
+      "sha256": "ee257fdfd59fd4b0a2a0b75e270c9f38953aca83c360316def833d1c0d2904f7"
+    },
+    "gce/boot-3/serial.log": {
+      "bytes": 2310,
+      "sha256": "8ccc02f6f759841433273637320435b2e7aa4a635ee255d93b27d2b9df94fc2a"
+    },
+    "gce/boot-3/063-after-removal-login-confirmation.json": {
+      "bytes": 1641436,
+      "sha256": "a5adc4ad5b0bc17fc9e45d6a311bc586ce5ec61015c1a17dbd3093e3bf3f8be0"
+    },
+    "gce/boot-3/053-ready.json": {
+      "bytes": 219,
+      "sha256": "9fa8cf89e2c65d574fa13946c40d0f3f1e90d2eee408170598f35dba7405cb14"
+    },
+    "gce/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "f4667f2956df213a89eafc8b9411e085fcc004600cc899d085fc4d73249187e8"
+    },
+    "gce/boot-3/058-ready.json": {
+      "bytes": 219,
+      "sha256": "b8105f2e9e7ab9db55a2ec29f6313d441a3f4341224447a99e803669d01d4928"
+    },
+    "gce/boot-3/052-ready.json": {
+      "bytes": 219,
+      "sha256": "3b8efb7a0422260479d86200be300ea17f4e0ce6106483ff56dfc0ac498e4a28"
+    },
+    "gce/boot-6/101-ready.json": {
+      "bytes": 219,
+      "sha256": "6080bf08a6f6611966336e76c55525a9b4aa156e4846af6c1bb44d10c27053d5"
+    },
+    "gce/boot-6/qemu-command.json": {
+      "bytes": 1153,
+      "sha256": "a3668dd68ac242e97a977d0dc66f150c146e79b99f50651ac8a5d75e709f2016"
+    },
+    "gce/boot-6/qmp-ready.json": {
+      "bytes": 4439,
+      "sha256": "7f057660501dec1c78bff3e2001a1e40aabc5147705558462b0ba15abaf3f63b"
+    },
+    "gce/boot-6/111-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "3fc4d838a1532970f2957dfbe4b50f76bbbf467979311cf8f52d964fded5608e"
+    },
+    "gce/boot-6/102-ready.json": {
+      "bytes": 219,
+      "sha256": "6644851e0a2f83ae493535567b2f4ba161d93d4f760efbfed04d897241dbfe13"
+    },
+    "gce/boot-6/shutdown.json": {
+      "bytes": 86,
+      "sha256": "0bb8aa208d00982a8f9d925126db53a3d318b3cc4ba51e574b71ba62021471b1"
+    },
+    "gce/boot-6/108-ready.json": {
+      "bytes": 356,
+      "sha256": "0e87ff118ec070bf75da80718fc1db816790b51b61e9f91a44f32d75091782e6"
+    },
+    "gce/boot-6/105-ready.json": {
+      "bytes": 219,
+      "sha256": "0c8fdf62b5aa2eb44e11034d943f85d4840add35a85ff249bd5f35466908bf06"
+    },
+    "gce/boot-6/110-encrypted-final-observation.json": {
+      "bytes": 320769,
+      "sha256": "0e058d83d93dc633b9fd121dc0da74af2964c5e8515f8a4c01b72e89b99098b8"
+    },
+    "gce/boot-6/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "gce/boot-6/104-ready.json": {
+      "bytes": 219,
+      "sha256": "342f3fba34343b4ec0235f82ff6c432beac50aad5a4c6de1c02757ed066b9c1e"
+    },
+    "gce/boot-6/103-ready.json": {
+      "bytes": 219,
+      "sha256": "ab80c555d34a76703d4ee41fb5f9b73d2e60d63d218a6364419e29b7ad900f5a"
+    },
+    "gce/boot-6/serial.log": {
+      "bytes": 2265,
+      "sha256": "ceadcf84ae7cac65c4e204b80172a200136d4c1d300a861260002422e963989e"
+    },
+    "gce/boot-6/107-ready.json": {
+      "bytes": 219,
+      "sha256": "cecf73378982a3c5aee8fc60d994f1429c25ee9bb6af5cf6eb5c0b629d9f8c37"
+    },
+    "gce/boot-6/109-encrypted-final-confirmation.json": {
+      "bytes": 9114,
+      "sha256": "0e4cae956c3a7dbe838b9f87819219a1cf197763dfcfaf2739c39a13b7ad283b"
+    },
+    "gce/boot-6/process.json": {
+      "bytes": 83,
+      "sha256": "c55187b18e111d387925f7b89630f939bf48a310444efe0e39c29e7e548966db"
+    },
+    "gce/boot-6/106-ready.json": {
+      "bytes": 219,
+      "sha256": "f6416aeb3744f94b870ac4bbf900bdf168654a476518d32d27ddcecf7d023d2d"
+    },
+    "gce/requests/0055.running": {
+      "bytes": 835,
+      "sha256": "daf0174268d2afdc3c243c46cd5e39c295fd3fa23df99436c32d1295ceee9d1a"
+    },
+    "gce/requests/0011.result": {
+      "bytes": 371,
+      "sha256": "42684c5b10a46530f168e6d99a0c747c60204af125a15ad81f303620e5b95c2f"
+    },
+    "gce/requests/0043.running": {
+      "bytes": 20,
+      "sha256": "0a800aa2794c1cf0e3a93b2b7d0735520f9bb91176839eeff60e910e2213cad0"
+    },
+    "gce/requests/0011.running": {
+      "bytes": 193,
+      "sha256": "491c32c8a1828d7b32b5a3855474cbf177b2ce666872a33dd7dc6c145ec01c95"
+    },
+    "gce/requests/0023.running": {
+      "bytes": 20,
+      "sha256": "0a800aa2794c1cf0e3a93b2b7d0735520f9bb91176839eeff60e910e2213cad0"
+    },
+    "gce/requests/0058.running": {
+      "bytes": 20,
+      "sha256": "0a800aa2794c1cf0e3a93b2b7d0735520f9bb91176839eeff60e910e2213cad0"
+    },
+    "gce/requests/0033.running": {
+      "bytes": 20,
+      "sha256": "0a800aa2794c1cf0e3a93b2b7d0735520f9bb91176839eeff60e910e2213cad0"
+    },
+    "gce/requests/0040.result": {
+      "bytes": 507258,
+      "sha256": "3edf56d96c8e4156f11227412bb468b32776efc2bc9f3082704dd3ee9dcdfc88"
+    },
+    "gce/requests/0009.result": {
+      "bytes": 343636,
+      "sha256": "875ae417809ddf64cb25c5a2d86530b4b0bb7ef7a2a988376f37f79d63061878"
+    },
+    "gce/requests/0046.running": {
+      "bytes": 202,
+      "sha256": "245ecf1189123b7f9f5cae8c5ad1fa7a67309c2c4b6f1c2c848545fe46de1192"
+    },
+    "gce/requests/0003.result": {
+      "bytes": 788,
+      "sha256": "244cd9d50cfab3998fcb6552083c3c2527245244c412ff9cb58437832333e3f4"
+    },
+    "gce/requests/0023.result": {
+      "bytes": 230,
+      "sha256": "52709dc471b10dbbed26ab7041124d7c6bec6bf4a02b010feda274b0d905b374"
+    },
+    "gce/requests/0041.running": {
+      "bytes": 845,
+      "sha256": "5e2d4c217097db36665ba6728facd56ae4c057a2efd297a49ab16e8a276271ec"
+    },
+    "gce/requests/0027.running": {
+      "bytes": 193,
+      "sha256": "645954e1bfbe15d9e415ae7d889332c5abc64e83e36ae169958777f7256698a0"
+    },
+    "gce/requests/0028.running": {
+      "bytes": 1241,
+      "sha256": "4859f4959f0a9e656bd0b92e7a63e2bdd349b2d7c82e9db2acfebfe612478240"
+    },
+    "gce/requests/0008.running": {
+      "bytes": 662,
+      "sha256": "a4a14f0d0db7da40d1ff572aa5fd6caaa5427c8e81e87d8908da1a98c20e1e19"
+    },
+    "gce/requests/0037.running": {
+      "bytes": 667,
+      "sha256": "50ac1f63e8ebaa9a05e19f948ace9c4f4b6674eee9e767852a2ae947b1828f7c"
+    },
+    "gce/requests/0037.result": {
+      "bytes": 2259250,
+      "sha256": "786a8e479aa606c34e8858ad678e68001ae86f48401d1a85f29c2528e84d869a"
+    },
+    "gce/requests/0038.result": {
+      "bytes": 2259431,
+      "sha256": "155c3a86c5d73e3a4ed8378c81922e1e4be872d71c910f4f5491e99f0228c5d4"
+    },
+    "gce/requests/0054.running": {
+      "bytes": 170,
+      "sha256": "d6b75220f53654e15621cae5d768bb755b38a239155c2cdc05876fe475671f18"
+    },
+    "gce/requests/0053.result": {
+      "bytes": 515419,
+      "sha256": "61e9a24d4c5d65c5f5b742bb0c4dacaf97dd6ae44f2059f3b4760bd9432a707e"
+    },
+    "gce/requests/0002.running": {
+      "bytes": 146,
+      "sha256": "113dc2f7275f2e6c6cfd6c0a82fdb96cb11e3050f358b693aa8cd526856c58c5"
+    },
+    "gce/requests/0004.running": {
+      "bytes": 151,
+      "sha256": "b01855501201d480492cda8b3b56bfc218b8ded83596d32486d6618cfbee5fc7"
+    },
+    "gce/requests/0030.result": {
+      "bytes": 362287,
+      "sha256": "c01217c02c211fc6def13f2c2e476abce678af52f510239d08ad8389b30cc5a1"
+    },
+    "gce/requests/0045.result": {
+      "bytes": 2888638,
+      "sha256": "476d168bf7430f8758aa0c3a7fc075ad98cafea4635ac94c3f0b2bae8ed41f55"
+    },
+    "gce/requests/0001.result": {
+      "bytes": 483,
+      "sha256": "4e198475f9a0e22096e7264f59343d9eb5e2de8713f64eb732113a176b0a0e30"
+    },
+    "gce/requests/0055.result": {
+      "bytes": 367590,
+      "sha256": "ffa8d0d0085bbbdc1fa97a38604d01971051e7496b3287e060dc47eb8c6edeb8"
+    },
+    "gce/requests/0024.result": {
+      "bytes": 1010714,
+      "sha256": "076d808f5a0a51b5d008d98760161d90205889b42d0f7d9ffe3e2f19ce0e492b"
+    },
+    "gce/requests/0025.running": {
+      "bytes": 549,
+      "sha256": "81526e93af3548092a0b02a37581992d52bc78725eef48608cce3074e29ff340"
+    },
+    "gce/requests/0059.running": {
+      "bytes": 734,
+      "sha256": "36da7e59c1d9cd9bc7011911f42178f0ab2c42cd5625d80dd0f094f19249c839"
+    },
+    "gce/requests/0006.result": {
+      "bytes": 361,
+      "sha256": "70b7867a18a73c27cfe97f2ac2937e867922b0812fb130e6abc9409d79465d9a"
+    },
+    "gce/requests/0018.running": {
+      "bytes": 196,
+      "sha256": "fc4e8cfe35910cd80a000bde3a7e11a1b6e0c04056dfa0aa009b1b6e46928c53"
+    },
+    "gce/requests/0012.running": {
+      "bytes": 547,
+      "sha256": "2663b210d0abd5cf2e5eecde02983612958330563ebd4107af5154862ad9f62e"
+    },
+    "gce/requests/0056.result": {
+      "bytes": 320714,
+      "sha256": "265f3ba0841627f82c252ab62e9a6551d8e5b02204b21e9f81e8fdaea436e342"
+    },
+    "gce/requests/0061.running": {
+      "bytes": 22,
+      "sha256": "a9b9b43157103129c5a105a968915c8c527d72a2a025ea215b87333847edf14f"
+    },
+    "gce/requests/0031.result": {
+      "bytes": 365905,
+      "sha256": "5055c0abd41bf7307682f21a21eed1b3be401e0345d875ba2e5a8acf5da81e40"
+    },
+    "gce/requests/0035.running": {
+      "bytes": 196,
+      "sha256": "cbf47b79d8ffba807a5825fbabbd19267c7fb6dfd85e9670ccc0f7fc402480bc"
+    },
+    "gce/requests/0001.running": {
+      "bytes": 143,
+      "sha256": "69770d04df7deeba957baceae1653b16a9991cb65c02bb486718f568c55cbc28"
+    },
+    "gce/requests/0061.result": {
+      "bytes": 107,
+      "sha256": "f265c1be697425e62642d04239d0e51ae426a0bb0e20c9291bf00e4081d4566f"
+    },
+    "gce/requests/0019.running": {
+      "bytes": 259,
+      "sha256": "9c40f367400fb09e5c696da3a49efe3bc001baefb34d52e38278b4a48efb4698"
+    },
+    "gce/requests/0047.running": {
+      "bytes": 834,
+      "sha256": "c95d467479f5507e8cf74c9bbb99d7c77bf4fabebd3fa2209980423f3e37eeb1"
+    },
+    "gce/requests/0033.result": {
+      "bytes": 230,
+      "sha256": "554b7bad792cf080063407b242c65b61072708f25f0845b53546edc3995374df"
+    },
+    "gce/requests/0060.result": {
+      "bytes": 320714,
+      "sha256": "e38ee5e3e5cce893efd1271cd3f9d8a15aee8e13a691afc751b793f7aa3fd5d2"
+    },
+    "gce/requests/0058.result": {
+      "bytes": 230,
+      "sha256": "eaf3842da99e058dbf29387f739c22e3937152e59c68b12dfc217501bc594a93"
+    },
+    "gce/requests/0060.running": {
+      "bytes": 156,
+      "sha256": "d8544c71fa331571c4177471cfcc3eb64c80d15386fb41bd5440fb786c91731c"
+    },
+    "gce/requests/0039.running": {
+      "bytes": 1037,
+      "sha256": "c27374ce3a7863e9c9f6533727f66470557be7e165853b4462e37e0ea3952ff6"
+    },
+    "gce/requests/0028.result": {
+      "bytes": 362401,
+      "sha256": "2eccc96b1a6cef9e32d53ff9b238f09214582c1150b6a4abd3f8c57397f3147a"
+    },
+    "gce/requests/0027.result": {
+      "bytes": 371,
+      "sha256": "ffa027afc72353e6352f6bb737689bc79a8674d8e8739ef23d7f19f9bbe02c08"
+    },
+    "gce/requests/0047.result": {
+      "bytes": 367477,
+      "sha256": "e16ecac8e3c7fcdd5e322d8ec47714e2b842f426f6ae12ce0380febadb6c940c"
+    },
+    "gce/requests/0039.result": {
+      "bytes": 632877,
+      "sha256": "5bb2b1c67e04c3c548910fecb61c99475c62b52da7cd814a82f69eb2ac127fe8"
+    },
+    "gce/requests/0021.running": {
+      "bytes": 1530,
+      "sha256": "1ebc4443c0c0fc6a50abc8fef7b2f1e9fcbe3aeeed4718e1ef6e7ba5c797750a"
+    },
+    "gce/requests/0054.result": {
+      "bytes": 320808,
+      "sha256": "fc41c94c5846325cfdf6585944414f01b9ff8a3b0013c4f270b83c71527c7b19"
+    },
+    "gce/requests/0007.running": {
+      "bytes": 661,
+      "sha256": "70ed14b819df3b3d118c35dae3fa15b6487a7d593c060b46785b5985c24f8c32"
+    },
+    "gce/requests/0003.running": {
+      "bytes": 551,
+      "sha256": "e2b38d4518e1bfc7880e919284519498d2a7f9d2b12141ef86a851381c087f1b"
+    },
+    "gce/requests/0007.result": {
+      "bytes": 343636,
+      "sha256": "d90ff781375f43d41aabad7b09afd4addec134f029aa44ac7dde24a726d2e4e4"
+    },
+    "gce/requests/0005.running": {
+      "bytes": 193,
+      "sha256": "968b80a0b83d07e956690f052fe78290539f87760bf60d3e535674380d33ee86"
+    },
+    "gce/requests/0020.result": {
+      "bytes": 361791,
+      "sha256": "50408351a5730e41665c05aed2a24e08c4ac53979a0c57d66cb7db9e3abc149e"
+    },
+    "gce/requests/0012.result": {
+      "bytes": 537,
+      "sha256": "ad52430797c3569def9fb8e6f3ac806387be28de84fbab3e491e2a048b62756f"
+    },
+    "gce/requests/0010.running": {
+      "bytes": 180,
+      "sha256": "98379eb9ae47e80ee7fa1d3b7299e710d281bb1d036da1a651feb94a057c869a"
+    },
+    "gce/requests/0053.running": {
+      "bytes": 204,
+      "sha256": "46ba8d715f30964dcf20bbeb405947b8bdb72d228d9de2b35e53811e96e5ee09"
+    },
+    "gce/requests/0036.running": {
+      "bytes": 671,
+      "sha256": "c0281277eaf34eb2b5b407cbc61ca693da732223dfe106c1303e326c4e16f29d"
+    },
+    "gce/requests/0004.result": {
+      "bytes": 287131,
+      "sha256": "bf168e3e68bc2ce909ea0c586da5ea87c87f182eef7da1362d188a6457d1f4ae"
+    },
+    "gce/requests/0026.result": {
+      "bytes": 508827,
+      "sha256": "5adb4ca64917ec2d6fb109456c044a989c3834ac0a4433a31c54a523726c7eef"
+    },
+    "gce/requests/0026.running": {
+      "bytes": 199,
+      "sha256": "9473e1d6b03558413d96ac481240d38156ca6db97b9af7d7fe5f8f1b973ca611"
+    },
+    "gce/requests/0010.result": {
+      "bytes": 727,
+      "sha256": "a1e03b5e2f6eee8f09ec4211feaacc860bb764cb460686afc23b6111794f3439"
+    },
+    "gce/requests/0018.result": {
+      "bytes": 361792,
+      "sha256": "39d1e363558e552aae3c09bba08c29defb8ff5032b949010480294f5561e4cbe"
+    },
+    "gce/requests/0006.running": {
+      "bytes": 588,
+      "sha256": "2e1a8ebbbd79ad69efadf3e5d9f938048309a2d0e60950737d156f848acbb796"
+    },
+    "gce/requests/0041.result": {
+      "bytes": 362216,
+      "sha256": "6b333c01fa9ad3c5c1c284f65d0b508b6697e5572883532ced7877d91d1e7f54"
+    },
+    "gce/requests/0025.result": {
+      "bytes": 794,
+      "sha256": "bea7f17d96ae81d7c3bf8436f4b806f1f3775fc6aa93213d96a098ca930a3592"
+    },
+    "gce/requests/0046.result": {
+      "bytes": 515101,
+      "sha256": "dab78385f1d24fc1e7212a7cc57404c136d10dad19daec7a93762a1e3bd4b738"
+    },
+    "gce/requests/0051.result": {
+      "bytes": 230,
+      "sha256": "24fd1de7175e4357fafc4a6dff03a64fe984b28e3865bb09e39201425eaa4373"
+    },
+    "gce/requests/0020.running": {
+      "bytes": 200,
+      "sha256": "c309b117d9cc775e242341f2f657bec2c48bec1365e488c80b325003b3225fc9"
+    },
+    "gce/requests/0005.result": {
+      "bytes": 507890,
+      "sha256": "5b9186a3c22cafc26c03fa0714590f3e59799cd8d70eff36166c55778dd0a438"
+    },
+    "gce/requests/0035.result": {
+      "bytes": 507478,
+      "sha256": "1320f1f8e561203522ba8c27ed24cc1d2080946c2f23b59b8679beb75bfc776d"
+    },
+    "gce/requests/0043.result": {
+      "bytes": 230,
+      "sha256": "6580e7fbe79ea008e88013f414b916dfc860fa163bd819104c1bea0fedcc48c0"
+    },
+    "gce/requests/0040.running": {
+      "bytes": 214,
+      "sha256": "dd86ac12a12a39f7de32a55c077c19609fbe34e6288f719d9732b273a3ac035a"
+    },
+    "gce/requests/0045.running": {
+      "bytes": 679,
+      "sha256": "58959693b5123a7a72d7978e7ba82b23e28b47c73ac927d1c0369a2c42b61e9b"
+    },
+    "gce/requests/0051.running": {
+      "bytes": 20,
+      "sha256": "0a800aa2794c1cf0e3a93b2b7d0735520f9bb91176839eeff60e910e2213cad0"
+    },
+    "gce/requests/0038.running": {
+      "bytes": 661,
+      "sha256": "82cf134878add7b8fa99caf9dc362fc35e99cad63495b69d30b68eaa7dc34508"
+    },
+    "gce/requests/0030.running": {
+      "bytes": 202,
+      "sha256": "9613b5f4f5cb6c6c437e2eb1b9f6f652c84a62f6097519c79e4e8a77b6e42e09"
+    },
+    "gce/requests/0032.running": {
+      "bytes": 666,
+      "sha256": "ed8464c95f58118e11e55a41a60651eb2fdfa14006789c9b712c10424e6f7c7c"
+    },
+    "gce/requests/0008.result": {
+      "bytes": 343636,
+      "sha256": "cc7e77cde2974eda7e8917e6218d3a01702565acc844f4f1e8d385c9a9741e69"
+    },
+    "gce/requests/0009.running": {
+      "bytes": 662,
+      "sha256": "0f7ecc8975d9d7231cafc0cbbb318958f54e35a4d33ad1355f2e794a4d53afd7"
+    },
+    "gce/requests/0019.result": {
+      "bytes": 361813,
+      "sha256": "3752188dc1d3df96eb07038f8e23676b41c19136bf4058ac2a38c1b6e5b189df"
+    },
+    "gce/requests/0056.running": {
+      "bytes": 152,
+      "sha256": "2955c3dedf75fbfc6f1cf94aa0295fdd56e5b4dd88f5f7056c2a718a43dc9e93"
+    },
+    "gce/requests/0036.result": {
+      "bytes": 1640871,
+      "sha256": "8ac3e7dfb153f94b05122a35f272fd1ce90e4c170f8e46efa52591ab43cf85f9"
+    },
+    "gce/requests/0002.result": {
+      "bytes": 287131,
+      "sha256": "d8a168c04b3feb418c973d221bb319b04cd3de2ca65a9eae601243ed43dec47b"
+    },
+    "gce/requests/0029.result": {
+      "bytes": 362288,
+      "sha256": "76aac66eb86262b133e24be9bb19c0388d7070aa62edb7331c0978918da316c0"
+    },
+    "gce/requests/0031.running": {
+      "bytes": 1530,
+      "sha256": "40f52e1286c73d996b32c73a02eaa9cd7810cea35f71cfb4539b480fd30ca78b"
+    },
+    "gce/requests/0022.result": {
+      "bytes": 882174,
+      "sha256": "5e153523397af7cebbc594f6ce1ca1e71ce1d89133cf9387eaa72c67f395437d"
+    },
+    "gce/requests/0021.result": {
+      "bytes": 365417,
+      "sha256": "6e00e412b80c8464678ee3eee74c6fb3fead0fa00f14e5ec60db82db3ef25e6e"
+    },
+    "gce/requests/0029.running": {
+      "bytes": 198,
+      "sha256": "d94a59925a291a3456b76739d11ebd1b21cb7a0e119ce5fc98dd6347bb68e073"
+    },
+    "gce/requests/0032.result": {
+      "bytes": 1635425,
+      "sha256": "254ab5488fe9f97c24f0f4b4e7250d6f2f71476cd1fdd9a00ae73ca5f0225e10"
+    },
+    "gce/requests/0022.running": {
+      "bytes": 200,
+      "sha256": "c55e6dbb1da89eb431ed8f99c1f919a149287d80b736b074259ff1250ba4c8b7"
+    },
+    "gce/requests/0059.result": {
+      "bytes": 8482,
+      "sha256": "663e54ec6248cae2534461ee31f6c61e2452813524a6527b69575514e9115865"
+    },
+    "gce/requests/0024.running": {
+      "bytes": 665,
+      "sha256": "430ad13b3695d05df42c6c80de0bc7a44ab345b436c21d9de5345f07f03a2a51"
+    },
+    "gce-control/output.log": {
+      "bytes": 252,
+      "sha256": "7fb645080f9d5bf876b794f49f24d8ae95a04c72905ef493780a779300ac434e"
+    },
+    "gce-control/launch.json": {
+      "bytes": 644,
+      "sha256": "e5a78cf000cd9b82491ff26ffdf7ce97d8f7ce63499dd73be74cd1978477152b"
+    },
+    "resume-nge-baseline.py": {
+      "bytes": 4898,
+      "sha256": "c93973b1796c3737e41579984d10b8f805dd67b6b85bb2e7d2c25cc1236a47a3"
+    },
+    "retired-gcp-overlay.json": {
+      "bytes": 425,
+      "sha256": "8f32bd5aac96dc2dc1f8f31ecc989f2d2fcc8f6fc91f591297872d0b13f965f2"
+    }
+  }
+}

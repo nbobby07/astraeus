@@ -98,9 +98,10 @@ replay it after reboot.
 Unit tests cover read-only startup, draft invalidation, malformed and future JSON,
 live-session refusal, authentication cancellation and denial, apply/result flow,
 configuration import/export, keyboard review, and pending-versus-confirmed state.
-Actual polkit prompts, worker survival, package mutation, reboot and recovery must
-also pass the disposable installed-VM acceptance matrix. These unit tests do not
-establish that acceptance or physical hardware compatibility.
+Actual polkit prompts, worker survival, package mutation, reboot and recovery
+also passed on plain and LUKS2 disposable installations with Secure Boot enforced;
+see the [acceptance report](phase42-acceptance.md). Unit tests alone do not establish
+installed acceptance or physical hardware compatibility.
 
 Review fixtures under `apps/control-center/tests/fixtures` are serialized by
 `tests/plan_fixture.rs` using the real Rust `ExecutionPlan` and management types.

@@ -1,32 +1,68 @@
 # Phase 4.2 implementation and acceptance
 
-Status: **in progress, not qualified for release**. A required gate that fails or
-has not run leaves this milestone incomplete. This report will be updated with
-candidate identities and exported evidence after the integrated acceptance run.
+Status: **implemented and passed the planned disposable-VM acceptance matrix;
+ready for review, draft PR unmerged**. This qualifies the recorded x86-64
+UEFI/QEMU/KVM development target, not a stable release or physical hardware.
 
-Corrected runtime `ec3641b` clean A has passed its native package checks (159 Rust
-tests with five fixture skips, 21 Qt controller and 13 QML checks), complete image
-audit, source verification and thin evidence export. Its ISO SHA256 is
+The accepted production runtime is
+`ec3641b72ad48d0ed24d4d9c8aa1a39cce938025`. Later commits change validation and
+documentation only. Two independently built candidate ISOs are byte-identical:
+3,783,227,392 bytes, SHA256
 `2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca`.
-Its fresh plain installation passed two enforcing cold boots and all eight
-metadata-only lifecycle/recovery gates. Deliberate wrong management state was
-rejected before correct rollback finalization, and packages, reasons,
-configuration, ownership and personal data restored together. The full A ISO
-and 292 public baseline/recovery evidence files verified locally. Independent B completed, and full byte comparison exited 0. Five independently
-built packages, seven manifests and the generated source archive match. Both local
-image identities and thin exports verified. Corrected plain CLI passed all 12 lifecycle gates. The full plain fault suite
-passed all eight scenarios and 70 gates; all 976 public files verified locally.
-All six formal corrected-media cases also passed, including actual ordinary-user
-GUI inspection, disabled live Apply and unchanged system state; all 134 public
-files verified locally. The fresh LUKS2 baseline passed two enforcing cold boots
-and all 12 CLI lifecycle gates; its 132 baseline and 285 CLI public files verified
-locally. The encrypted fault suite also passed all eight scenarios and 70 gates;
-all 1126 public evidence files verified locally. Installed Control Center
-acceptance has now passed on the plain layout, including real authentication,
-worker survival across normal close and GUI crash, verified install/removal,
-no-op, external reason drift, native import/export/adoption, keyboard access and
-bundle overlap. All 523 public files verified locally. Encrypted installed
-Control Center acceptance remains required.
+Five independent packages, seven manifests and the generated source archive
+also match. The complete image/source/private-key audit passed.
+
+Fresh plain and LUKS2 installations used the candidate payload and existing
+production provisioner, followed by test-owner enrollment. The Calamares UI was
+not rerun for this management milestone. Each passed two enforcing cold boots, all
+12 CLI lifecycle gates, and all eight fault/recovery scenarios with 70 gates.
+Management and recovery retained Secure Boot enforcement. Tests covered
+metadata-only signing and boot confirmation, mismatched-state refusal, real
+package-worker interruption, no replay, hook/signing failures, capacity refusal,
+and offline restoration of packages, reasons, configuration and ownership.
+The six signed-media cases passed, including visible live inspection, disabled
+Apply, and untrusted/tampered/unsigned/altered-root/disabled-Secure-Boot refusals.
+
+Installed native Control Center acceptance passed on both layouts using the
+packaged production backend and ordinary tester authentication. It covered
+installation/removal, exact independent CLI plans, protected pre-existing apps
+and personal files, shared dependencies, real polkit cancellation/denial, normal
+GUI closure and guarded GUI crash with worker survival and visible reconnection,
+native import/export/adoption, true no-op, external reason drift, metadata-only
+reconciliation, keyboard access and bundle overlap. All mutations verified after
+a new enforcing boot. Plain and encrypted GUI archives contain 523 and 507
+locally verified public files respectively.
+
+See [plain GUI evidence](evidence/phase42-system-management/plain-gui-ec3641b/README.md)
+and [encrypted GUI evidence](evidence/phase42-system-management/luks2-gui-ec3641b/README.md).
+The final encrypted screenshot shows all six transactions verified complete.
+Initial network/setup/harness failures remain retained; successful corrected
+runs are separately identified. Original harness session qualification fields
+were not rewritten.
+
+The validator is paused, confirmed at 2026-10-14 22:38:16 UTC. The conservative
+additional compute and active-storage bound is **$9.495978**, below the $10 cap.
+All final public evidence was exported before pausing. No billing plan changed.
+The ledger excludes network and paused-storage charges from this compute and
+active-storage estimate.
+
+These are validation candidates using disposable repository signing key
+`6DA84EB479F3A2F88C2B658E17BF6CA306695F72`, which expires at
+2026-10-15 16:18:26 UTC. Future distribution/package operations require a reviewed
+signing refresh; these images are not a production-key release. This key is
+separate from each guest's Secure Boot owner key.
+
+Physical PC/USB/GPU qualification and GameMode's full self-test remain deferred.
+Phase 4.1's normal Proton diagnostic and recorded negative tests remain passed.
+Software rendering does not qualify physical GPU support. General power-loss
+safety, arbitrary driver/kernel transitions and stable-release support are not
+claimed.
+
+## Historical checkpoints
+
+The following entries preserve earlier failures and incomplete checkpoints in
+order of recording. Their pending statements describe those earlier candidates;
+the accepted final runtime and results are stated above.
 
 The corrected plain CLI run has passed all 12 lifecycle gates; its 257 public
 evidence files verified locally. The first interruption trial killed both the
@@ -328,20 +364,20 @@ connects the app to the non-enabled systemd worker and durable history. The work
 has no automatic restart or boot replay. Sleep and normal shutdown are inhibited
 while it applies. Live sessions permit inspection and planning only.
 
-## Checks so far
+## Automated checks and accepted candidate
 
 | Gate | Current evidence |
 | --- | --- |
-| Host Rust checks | Current Windows and Linux CI passed. Both clean Arch `6d10954` workspaces passed 158 tests with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy also passed with warnings denied |
+| Host Rust checks | Corrected Windows passed 142 tests and Clippy; Linux passed 159 native tests (five normal-run fixture skips) and Clippy. Both clean Arch `ec3641b` workspaces passed 159 native tests with five skips |
 | Python, shell and signing | Full Python suites passed on `6d10954`: Windows 144 passed/65 skipped, Linux root 205 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
 | Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
 | Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment and in both pinned Arch `6d10954` package builds |
-| Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
+| Signed native package fixtures | Attempt 15 on the corrected source passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
-| Native desktop build and tests | 21 Qt controller and 13 QML checks passed in both pinned Arch `6d10954` builds. Installed GUI acceptance remains pending |
-| Plain and LUKS2 installed VMs with enforced Secure Boot | Fresh `6d10954` plain baseline passed two enforcing cold boots and actual SDDM/Plasma logins. All 12 real CLI package lifecycle gates passed; LUKS2, installed GUI and fault/recovery acceptance remain pending |
-| Image contents and signing-key audit | Current `6d10954` A passed the full content/key audit and strict final compressed repository metadata/access checks in both live and installed roots |
-| Two byte-identical candidate images | Passed on `6d10954`: full ISO `cmp` returned zero; all five independent package archives, generated source archives, inputs and manifests match. Both builds passed 158 native, 21 controller and 13 QML tests |
+| Native desktop build and tests | 21 Qt controller and 13 QML checks passed in both pinned Arch `ec3641b` builds. Installed plain and LUKS2 GUI lifecycle and authorization passed |
+| Plain and LUKS2 installed VMs with enforced Secure Boot | Fresh `ec3641b` plain and LUKS2 baselines each passed two enforcing cold boots, 12 CLI lifecycle gates, eight fault/recovery scenarios with 70 gates, and actual installed GUI lifecycle/authorization |
+| Image contents and signing-key audit | Accepted `ec3641b` A passed the full content/key and source audit and strict final compressed repository metadata/access checks in both live and installed roots |
+| Two byte-identical candidate images | Passed on `ec3641b`: full ISO `cmp` returned zero; all five independent package archives, generated source archives, inputs and manifests match. Both builds passed 159 native, 21 controller and 13 QML tests |
 | Physical PC and USB boot | Deferred by request |
 
 The native fixture runner is `scripts/validate/native-alpm.py`. It creates a new
@@ -664,7 +700,7 @@ checked before starting: $0.04032/vCPU-hour, $0.0129/GiB-memory-hour and
 $0.000086/GiB-storage-hour. The existing 4-vCPU, 16-GiB, 64-GiB validator costs
 $0.373184/hour at these rates. A temporary replacement ran for 58 seconds at
 4-vCPU, 8-GiB, 32-GiB before it was paused when the original became available.
-No billing plan was changed. Final usage and exported evidence are pending.
+No billing plan was changed. Final validator pause and $9.495978 conservative compute/active-storage bound are recorded above and in the encrypted GUI evidence ledger.
 
 Before candidate builds, the original validator was paused at 4,759 total runtime
 seconds, up from 3,486. Combined additional compute and active storage for both

@@ -5,12 +5,12 @@ installer, a Rust management backend and a native Qt/Kirigami control center.
 
 [![Checks](https://github.com/nbobby07/astraeus/actions/workflows/check.yml/badge.svg)](https://github.com/nbobby07/astraeus/actions/workflows/check.yml)
 
-**Current work: Phase 4.2 system management, acceptance pending.** Version
+**Phase 4.2 system management: VM acceptance passed, awaiting review.** Version
 `0.1.0-dev` now includes the native libalpm management backend and
 [Astraeus Control Center](docs/control-center.md). Configuration, ownership,
 package changes and boot confirmation share the existing snapshot coordinator.
 The [Phase 4.2 report](docs/phase42-acceptance.md) distinguishes implementation
-checks from installed-VM acceptance.
+checks from installed-VM acceptance and physical qualification.
 
 [Phase 4.1 guest requalification](docs/phase4-runtime-requalification.md) passed
 the normal Proton diagnostic and its recorded negative tests. GameMode's full
@@ -47,8 +47,8 @@ public ISO download yet.
 - Package update plans, durable transaction history, Btrfs snapshots with matching
   UKIs, and boot confirmation that checks the running state and required services.
 - Phase 4.2 selected-package and gaming configuration, reviewed apply, import/export
-  and adoption through the CLI and Control Center. Implementation checks pass;
-  installed-VM management and recovery acceptance remains pending.
+  and adoption through the CLI and Control Center. Plain and LUKS2 enforcing
+  management, authorization, reboot and recovery acceptance passed.
 - Explicit offline rollback through the existing live ISO, preserving all five
   persistent subvolumes. Recovery requires manual intervention; root and ESP
   changes are not atomic, and general power-loss safety is not qualified.
@@ -161,7 +161,7 @@ have no implementation claim.
 | 3 | Validated on recorded QEMU target | Owner-enforced Secure Boot, signed generations and deliberate recovery |
 | 4 | Integrated, not fully qualified | Connected diagnostics and explicit image selections; software Vulkan and Steam startup tested |
 | 4.1 | Partially requalified | Normal Proton diagnostic and recorded negatives passed; full GameMode self-test and physical gaming qualification incomplete |
-| 4.2 | Implemented, acceptance pending | Selected-subset system management, native package transactions and Qt/Kirigami Control Center |
+| 4.2 | VM acceptance passed, awaiting review | Selected-subset system management, native package transactions and Qt/Kirigami Control Center |
 | 5 | Planned | Performance policies backed by measurements and restoration tests |
 | 6 | Planned | General configuration language and desired state beyond the implemented package/gaming subset |
 
