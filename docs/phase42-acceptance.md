@@ -182,6 +182,8 @@ that those packages were independently rebuilt. The comparison receipt has SHA25
 `fd294105be7ffdcd7f0a814ae5b4f97851464b453a541922619f8018e0d623df`.
 B's 52,722,243-byte thin archive has SHA256
 `a2f2bc5f865a284b59af0d9bf68a7038bea50992a4be89aaa8ca8448663c8f8b`.
+The [public build receipts](evidence/phase42-system-management/build/README.md)
+include the comparisons, test summaries, manifest checks and image-audit proofs.
 After remote equality passed, the verified local B ISO path was created as a
 read-only hardlink to A. This local content deduplication avoids another identical
 download; it does not replace the independent B build or its remote comparison.
