@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "qualified": false,
+  "physical_hardware_qualified": false,
+  "scenarios": [
+    {
+      "id": "candidate-identity",
+      "expected": "Fresh candidate source, ISO, firmware and installed binary identities agree",
+      "status": "PASS",
+      "evidence": [
+        "boot-1/"
+      ],
+      "detail": "Observed assertions passed",
+      "started": "2026-10-14T07:59:58.494989+00:00",
+      "finished": "2026-10-14T08:00:04.471977+00:00"
+    },
+    {
+      "id": "readonly-user",
+      "expected": "Ordinary-user observations and planning leave package/configuration/history state unchanged",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "invalid-configuration",
+      "expected": "Malformed, duplicate, unsupported and unsafe requests are rejected without mutation",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "unprivileged-submit",
+      "expected": "Direct unauthenticated submission cannot start a root operation",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "stale-plan",
+      "expected": "A different reviewed-plan digest is rejected without mutation",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "install-plan",
+      "expected": "The selected approved package resolves to an executable complete installation plan",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "install-transaction",
+      "expected": "The worker applies the reviewed package set after a snapshot and stops at awaiting_boot",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "pending-boot-block",
+      "expected": "A second request cannot mutate the system while boot confirmation is pending",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "install-confirmation",
+      "expected": "A different healthy boot verifies the installed package and desired configuration",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "remove-transaction",
+      "expected": "Removing the managed choice removes its package through the same coordinator",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "remove-confirmation",
+      "expected": "Another healthy boot verifies removal and restored desired configuration",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "history-and-home",
+      "expected": "Pre/post snapshots and complete history remain, while home test data survives",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "fresh-install-plain",
+      "expected": "Fresh candidate installs and authenticates on plain Btrfs",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "fresh-install-luks2",
+      "expected": "Fresh candidate installs and authenticates on LUKS2/Btrfs",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "image-reproducibility",
+      "expected": "Two independent clean builds produce identical candidate ISO bytes",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "live-readonly",
+      "expected": "Packaged GUI and CLI refuse mutation from live media",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "dependency-ownership",
+      "expected": "Shared dependencies, explicit choices and externally changed packages remain safe",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "resolver-conflicts",
+      "expected": "Conflicts, replacements and ambiguous providers expose the complete reviewed outcome",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "signature-and-provenance",
+      "expected": "Tampered/unsigned packages and changed repository provenance are rejected",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "protected-packages",
+      "expected": "Protected base, bootloader, graphics transitions and coordinator changes are refused",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "worker-interruption",
+      "expected": "Killed worker leaves a visible durable failure or recovery-required state without replay",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "failed-hooks-and-space",
+      "expected": "Failed package hooks, health checks and capacity failures preserve recovery evidence",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "offline-recovery",
+      "expected": "Deliberate offline rollback restores packages, ownership, configuration and signed boot state",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "gui-polkit",
+      "expected": "Packaged native GUI authenticates through the real desktop polkit agent",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "gui-close-survival",
+      "expected": "Accepted mutation survives closing the native GUI and reconnects on reopening",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "gui-crash-survival",
+      "expected": "Accepted mutation survives a GUI crash and reconnects on reopening",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "signed-boot-generations",
+      "expected": "Secure Boot remains enforcing across candidate install, removal and recovery",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    },
+    {
+      "id": "image-key-audit",
+      "expected": "Candidate media and repository contain no private signing keys",
+      "status": "NOT RUN",
+      "evidence": [],
+      "detail": "Not executed by this run"
+    }
+  ],
+  "started": "2026-10-14T07:59:44.051527+00:00",
+  "encryption": "none",
+  "candidate_source": "9825438d275c3037fcb41fbd768eebc71ef3f38c",
+  "candidate_iso_sha256": "558475af3eb219277786ded7379e1c80a12557064b2e26e245648f355011bb16",
+  "requested_run_passed": false,
+  "secure_boot_requested": true,
+  "error": "RuntimeError: guest command package-details exited 1; see /home/ubuntu/p42/c982p/boot-1/026-package-details.json",
+  "finished": "2026-10-14T08:00:07.406438+00:00"
+}

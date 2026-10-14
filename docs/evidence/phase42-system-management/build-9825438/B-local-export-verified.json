@@ -1,0 +1,19 @@
+{
+  "time": "2026-10-14T07:20:25.092375+00:00",
+  "label": "B",
+  "source_commit": "9825438d275c3037fcb41fbd768eebc71ef3f38c",
+  "archive": {
+    "path": "D:\\Astraeus-Phase42-System-Management\\candidate-9825438\\evidence-B.tar.gz",
+    "sha256": "9d7695397c9d44067dfcce8033d446d8920aab875b4761120460f1ec63bcde97",
+    "bytes": 52724051
+  },
+  "iso": {
+    "path": "D:\\Astraeus-Phase42-System-Management\\candidate-9825438\\astraeus-dev-0.1.0-dev-x86_64-B.iso",
+    "sha256": "558475af3eb219277786ded7379e1c80a12557064b2e26e245648f355011bb16",
+    "bytes": 3645478912
+  },
+  "transport": "readonly local hardlink after independent remote full-file equality",
+  "verified": true,
+  "transport_receipt_sha256": "aa4953ddd3a5bebdd2ccfb7b173b3e31bedc7fe3e91abbbb14ca0bf9dff81e7d",
+  "limitation": "B was independently built and compared remotely. Its identical content was deduplicated locally, not downloaded again."
+}

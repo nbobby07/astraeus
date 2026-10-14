@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "kind": "phase42-fresh-candidate-payload",
+  "accepted": true,
+  "method": "candidate-payload-and-production-provision",
+  "calamares_ui": false,
+  "encryption": "none",
+  "source_commit": "9825438d275c3037fcb41fbd768eebc71ef3f38c",
+  "inputs": {
+    "source_commits": [
+      "9825438d275c3037fcb41fbd768eebc71ef3f38c"
+    ],
+    "iso": {
+      "path": "/home/ubuntu/p42/candidate-9825438d275c-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "sha256": "558475af3eb219277786ded7379e1c80a12557064b2e26e245648f355011bb16"
+    },
+    "ovmf_code": {
+      "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+      "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+    },
+    "setup_ovmf_code": {
+      "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+      "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+    },
+    "pristine_ovmf_vars": {
+      "path": "/usr/share/OVMF/OVMF_VARS_4M.fd",
+      "sha256": "5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e"
+    }
+  },
+  "signer_sha256": "1eb034d33b9bb2e3d839c9bb93168619bde4eb373fc484a501c54d08c36518e2",
+  "public_fingerprints": {
+    "PK": "2f7b5bb2a69a5fae8f8406f397d87c23d33e86b9c7f67b09ea4d5954a61922fc",
+    "KEK": "c2b4fe82da552332e8881df6271826e3d24dfd5ea390e4525eedb2ed677abaff",
+    "db": "1eb034d33b9bb2e3d839c9bb93168619bde4eb373fc484a501c54d08c36518e2"
+  },
+  "boot_ids": [
+    "ca6be5dc-6071-469c-8fea-129d5c036145",
+    "a307902a-849b-48be-ba68-439d97be82ac"
+  ],
+  "created": "2026-10-14T07:31:07.254234+00:00",
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "installed_binaries": {
+    "distroctl": "da09689543719261309adb0e41e796f12597e34f75d64865d6c09845e6e00e43",
+    "astraeus-control-center": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41"
+  },
+  "sha256": {
+    "disk.qcow2": "914212b25e71b9265b11848544d598dc72ee35047c97ff91779e6b990fdf4ef4",
+    "vars.fd": "3dcbeb5ed8ff4d9b315a88845728530ac40d267d5f385ed5f2936284292fafef"
+  }
+}

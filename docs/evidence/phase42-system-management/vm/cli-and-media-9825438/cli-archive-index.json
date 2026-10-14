@@ -1,0 +1,2112 @@
+{
+  "schema_version": 1,
+  "runtime_candidate": "9825438d275c3037fcb41fbd768eebc71ef3f38c",
+  "qualified": false,
+  "scope": "original image permission failure and disposable corrected-input/fstab diagnostic runs; original matrices remain authoritative",
+  "guest_disks_exported": false,
+  "private_credentials_exported": false,
+  "files": [
+    {
+      "path": "c982p/baseline-reference.json",
+      "bytes": 2399,
+      "sha256": "468928f6dd0fe355a940899d0f102650631855429dc0a3959c58c7f16dc4cdff"
+    },
+    {
+      "path": "c982p/boot-1/001-ready.json",
+      "bytes": 219,
+      "sha256": "a0f11ad9a30bd4c838bd57464eed5980a18ec95aeb2d2d3e19d25c438ba037f8"
+    },
+    {
+      "path": "c982p/boot-1/002-ready.json",
+      "bytes": 219,
+      "sha256": "578e052e622ca057ed111214ef4a5157fe7991fb2f0c5dd075874bf24503139d"
+    },
+    {
+      "path": "c982p/boot-1/003-ready.json",
+      "bytes": 356,
+      "sha256": "b4ea81aef3ee9222b62c3eb0b949007567ee235e03c3ec3490b7ed6709f1dd7a"
+    },
+    {
+      "path": "c982p/boot-1/004-candidate-distroctl.json",
+      "bytes": 404,
+      "sha256": "17fa2a16b7f4b314da143ccba6472630b8f767a9b343986b01ff648777c57f2a"
+    },
+    {
+      "path": "c982p/boot-1/005-candidate-astraeus-control-center.json",
+      "bytes": 432,
+      "sha256": "5d325bb1a4e4c03d95d3f4874059b0380c3264406f73713fae41e7630299e3af"
+    },
+    {
+      "path": "c982p/boot-1/006-candidate-status.json",
+      "bytes": 3219,
+      "sha256": "01783b8fa309a05a52969b6c581fb6392ae51fa51315b38851aad5656c8ce85f"
+    },
+    {
+      "path": "c982p/boot-1/007-candidate-health-status.json",
+      "bytes": 3055,
+      "sha256": "705ecf34f3cd748b1d44d21b244bc0bf2d24c8e3c4fcfec7dda42289a61fbb36"
+    },
+    {
+      "path": "c982p/boot-1/008-candidate-health-packages.json",
+      "bytes": 15876,
+      "sha256": "ef3b79ef7e26557895339b97ecdce1c74010a26a54c210a7528e98def36864bb"
+    },
+    {
+      "path": "c982p/boot-1/009-candidate-health-database.json",
+      "bytes": 337,
+      "sha256": "aad168412ebbaae9ac95712367fe112630af2dc3c4f45f3a5e9e0aaf144f0feb"
+    },
+    {
+      "path": "c982p/boot-1/010-candidate-health-failed.json",
+      "bytes": 328,
+      "sha256": "45c74334951523cabec590ff27efd6b4e951608aff9dfedaed7b61bf1431a71d"
+    },
+    {
+      "path": "c982p/boot-1/011-candidate-health-mounts.json",
+      "bytes": 8947,
+      "sha256": "8d3bacef5d8adb912056da942230eac649f74793aa4aba7152344a5ee613f7aa"
+    },
+    {
+      "path": "c982p/boot-1/012-candidate-health-subvolumes.json",
+      "bytes": 546,
+      "sha256": "b8c6d358bcc807aa294664d0e007bf54c0878e3e31c828a0477acb4224fcb52e"
+    },
+    {
+      "path": "c982p/boot-1/013-candidate-health-boot.json",
+      "bytes": 4055,
+      "sha256": "15fc2b24347cfca3537104cbe9778179897ad26d6f2d0d9b4da9ad166bab0f54"
+    },
+    {
+      "path": "c982p/boot-1/014-candidate-health-root.json",
+      "bytes": 376,
+      "sha256": "15320110971f55c689e37d04c67169a5da34527fafe05676768dc7c4075b37ab"
+    },
+    {
+      "path": "c982p/boot-1/015-candidate-health-persistent.json",
+      "bytes": 414,
+      "sha256": "bfb7b4b7cff99d8e426cec8693066542e0a9062d58f8380cc48e3fb8b6789546"
+    },
+    {
+      "path": "c982p/boot-1/016-candidate-health-journal.json",
+      "bytes": 6678,
+      "sha256": "a4791ca6ca907640cb12977be096683699056575e34c11d5b23d3c035a999a2d"
+    },
+    {
+      "path": "c982p/boot-1/017-candidate-health-boot-journal.json",
+      "bytes": 113351,
+      "sha256": "35adab24fba56e6e3d20eeed6ccb2dd3b7d124d060ac3b78983795f5c6815dec"
+    },
+    {
+      "path": "c982p/boot-1/018-candidate-health-uki-sha256.json",
+      "bytes": 442,
+      "sha256": "5d13fa16fc49118ce945b5d6b888dad5259e1589f31b890a990c3e4d10231eb7"
+    },
+    {
+      "path": "c982p/boot-1/019-candidate-health-kernel-command-line.json",
+      "bytes": 425,
+      "sha256": "a8dc864090f12336d57bcb7391e1aacb22cc1c0c99bc433f14d421bea99fa44b"
+    },
+    {
+      "path": "c982p/boot-1/020-candidate-health-pacman-log.json",
+      "bytes": 325,
+      "sha256": "d3d3d677dc1f912ea6fa7a08d082c3a8ce80ee218c60497f542929e968a73b12"
+    },
+    {
+      "path": "c982p/boot-1/021-candidate-health-transaction-log.json",
+      "bytes": 445,
+      "sha256": "4cfba48bc3b200cf9134f825a3a616c1565af429e34a47037651db5f324a8295"
+    },
+    {
+      "path": "c982p/boot-1/022-candidate-health-history.json",
+      "bytes": 316,
+      "sha256": "32a4835bdaa7c6375d1788f7f9bbc7d662e0d6933506c2b2a30d03a58a41f6fa"
+    },
+    {
+      "path": "c982p/boot-1/023-candidate-health-snapshots.json",
+      "bytes": 324,
+      "sha256": "26ecd18a4cc9450709cc18202c99026cfea3ef239356ec617ac1d639c17c4222"
+    },
+    {
+      "path": "c982p/boot-1/024-candidate-trust.json",
+      "bytes": 2288,
+      "sha256": "1e7596de6e5f73bab50824277f5b8deec42a2e9f21d602c1023b174ff52760ec"
+    },
+    {
+      "path": "c982p/boot-1/025-candidate-trust.json",
+      "bytes": 522,
+      "sha256": "6a97b4d477f195b2b4d7ed2236e44df946785f2d8fad2304dd17cddea98c7286"
+    },
+    {
+      "path": "c982p/boot-1/026-package-details.json",
+      "bytes": 410,
+      "sha256": "606d5c3dfbaf789782af32ba4afe1f2aaade9276799c168dc6a40c03f9e5213b"
+    },
+    {
+      "path": "c982p/boot-1/candidate-trust.json",
+      "bytes": 415,
+      "sha256": "5ff073902d03407d98145eed669e209f48fb764f3db71898c3955a7577aee9e4"
+    },
+    {
+      "path": "c982p/boot-1/process.json",
+      "bytes": 83,
+      "sha256": "602ea7ebc45e211f33b110fc20978c49e475a6ced29a7ffa1d5bb6c2b74d6958"
+    },
+    {
+      "path": "c982p/boot-1/qemu-command.json",
+      "bytes": 1165,
+      "sha256": "814fce56625cfa20f429206a02250708bc76789d0c844059cf31482d792cd146"
+    },
+    {
+      "path": "c982p/boot-1/qemu.log",
+      "bytes": 70,
+      "sha256": "a0b5e6725addabbc0081bff12b9af6f46bdcc3a24ecc4baa92bb27612d0ad796"
+    },
+    {
+      "path": "c982p/boot-1/qmp-candidate-health.json",
+      "bytes": 4452,
+      "sha256": "2e8e5cc82a3eae02d513d1175fb818e573d24abdf84fb1e9f077de140d2c78ee"
+    },
+    {
+      "path": "c982p/boot-1/qmp-ready.json",
+      "bytes": 4452,
+      "sha256": "d1b89ca487334ddaddab7a8c3837dab0731878452a2c1479924a57b1f8f0d43e"
+    },
+    {
+      "path": "c982p/boot-1/serial.log",
+      "bytes": 1911,
+      "sha256": "0e81ea61556339c8c1b0acf44bc63c2110c20355ec2a6c26097b55f1c0c2e50d"
+    },
+    {
+      "path": "c982p/boot-1/shutdown.json",
+      "bytes": 87,
+      "sha256": "d14bfb9ce0e0804f9bdae16a8fd0425407296ad0f6e04678477cce416e402504"
+    },
+    {
+      "path": "c982p/candidate-health.json",
+      "bytes": 153703,
+      "sha256": "6617b80d1665e57c4c25e32f612f8e164b54653bb3cb44074633a00fdc0a3f5a"
+    },
+    {
+      "path": "c982p/evidence-sha256.json",
+      "bytes": 4135,
+      "sha256": "f5fd12a67369ef9be49b76414079df24fdcb9c0dfc543836a004eb134598c472"
+    },
+    {
+      "path": "c982p/inputs.json",
+      "bytes": 3174,
+      "sha256": "d331dd6f02fa0e7d8d57dd118ed70300857234279fb0c14770a8b863191b0aaa"
+    },
+    {
+      "path": "c982p/matrix.json",
+      "bytes": 7311,
+      "sha256": "ca573ad37156f055ccd3366e0725c47f279d1dad36a9a73978ec072f56c40365"
+    },
+    {
+      "path": "d982p-inputs/baseline-reference.json",
+      "bytes": 2399,
+      "sha256": "468928f6dd0fe355a940899d0f102650631855429dc0a3959c58c7f16dc4cdff"
+    },
+    {
+      "path": "d982p-inputs/boot-1/001-ready.json",
+      "bytes": 219,
+      "sha256": "2bd598c499ebcaba88dbf7cb4957ca51af331c31b8756a57ba8a12abc95e5f76"
+    },
+    {
+      "path": "d982p-inputs/boot-1/002-ready.json",
+      "bytes": 219,
+      "sha256": "ab34e5bb5f47962e54b9275c99893f2f532b44344173d04480a7ebbbe9b3abc3"
+    },
+    {
+      "path": "d982p-inputs/boot-1/003-ready.json",
+      "bytes": 356,
+      "sha256": "872fb1fb9e60c7ec37251869f7b95c7fca444a788be30398db9639d0a1d42834"
+    },
+    {
+      "path": "d982p-inputs/boot-1/004-diagnostic-input-modes.json",
+      "bytes": 336,
+      "sha256": "a7122fb3f7a3f1b17df3f2b452f198bcc75fec94be830cb7bd7c0a5fe396ba30"
+    },
+    {
+      "path": "d982p-inputs/boot-1/005-candidate-distroctl.json",
+      "bytes": 404,
+      "sha256": "cda0cd64b86e392d71f8e1e1f04bc7ae769c43dbcbc524ca89e16a6def0ffbf4"
+    },
+    {
+      "path": "d982p-inputs/boot-1/006-candidate-astraeus-control-center.json",
+      "bytes": 432,
+      "sha256": "2872a0b3116a693986907ab0667913e968f5ccf6b2098888d25f30c8d00a44a5"
+    },
+    {
+      "path": "d982p-inputs/boot-1/007-candidate-status.json",
+      "bytes": 3219,
+      "sha256": "7f0038724e083ef4848d6c9c2ee3e10914d168a17c8d6c3d9ca6895a2f5e429f"
+    },
+    {
+      "path": "d982p-inputs/boot-1/008-candidate-health-status.json",
+      "bytes": 3055,
+      "sha256": "380672e78a6e0ed0a25ba210ae2f2acfd6aca1db71ec1f9183cdeaa986d5bbfb"
+    },
+    {
+      "path": "d982p-inputs/boot-1/009-candidate-health-packages.json",
+      "bytes": 15876,
+      "sha256": "eca7b4d84675c01c4974ee360468d7d1a3bc244b64ee116aec0caeae855606f5"
+    },
+    {
+      "path": "d982p-inputs/boot-1/010-candidate-health-database.json",
+      "bytes": 337,
+      "sha256": "76b87c90488f47fc6df0b60ed6183ef8807d53ecbe0f02664d4d4a0aa3ac024b"
+    },
+    {
+      "path": "d982p-inputs/boot-1/011-candidate-health-failed.json",
+      "bytes": 328,
+      "sha256": "9e38f83e4859696a2b85799e0aae27e273d7efdaa3718410756fc80cced0ab7e"
+    },
+    {
+      "path": "d982p-inputs/boot-1/012-candidate-health-mounts.json",
+      "bytes": 8947,
+      "sha256": "c338a0d0cc9bb2a74ed4e47eca49fdca491e84c3b928bb8496f9e008280f2ac4"
+    },
+    {
+      "path": "d982p-inputs/boot-1/013-candidate-health-subvolumes.json",
+      "bytes": 546,
+      "sha256": "4f4f0419713d5ca55f5aee6aabd2f80af3a3947f09cb9762075881b19911a41e"
+    },
+    {
+      "path": "d982p-inputs/boot-1/014-candidate-health-boot.json",
+      "bytes": 4055,
+      "sha256": "44018e158a56fded6a043d848331de9e54d67af1205b10009e6a51004caf994b"
+    },
+    {
+      "path": "d982p-inputs/boot-1/015-candidate-health-root.json",
+      "bytes": 376,
+      "sha256": "52e93c5ed0d20af12ab2981870b773e41447777f6e0e2e9ddc0dc7d489f96f66"
+    },
+    {
+      "path": "d982p-inputs/boot-1/016-candidate-health-persistent.json",
+      "bytes": 414,
+      "sha256": "92100c0f9736403c4d2e56e28ff76a41ed3c9a6b1252f18b908c0c71c29cb9ca"
+    },
+    {
+      "path": "d982p-inputs/boot-1/017-candidate-health-journal.json",
+      "bytes": 6677,
+      "sha256": "c1e8f7d5679255090d2a514e5d7f9407d99713903dfd0b8bd98cda145e2fcfec"
+    },
+    {
+      "path": "d982p-inputs/boot-1/018-candidate-health-boot-journal.json",
+      "bytes": 113286,
+      "sha256": "2f32794fb0d99cd580c7c35abee9a618cea05508bc4f9d7bd14cde3941b24b28"
+    },
+    {
+      "path": "d982p-inputs/boot-1/019-candidate-health-uki-sha256.json",
+      "bytes": 442,
+      "sha256": "07368ea600383868db2a604a26b5199ad08f5f9e9ab241283a0493f55b84e82d"
+    },
+    {
+      "path": "d982p-inputs/boot-1/020-candidate-health-kernel-command-line.json",
+      "bytes": 425,
+      "sha256": "8ba10e8c0c7517326a0fe513534874800f771758ad31bed102879ddc860de4c9"
+    },
+    {
+      "path": "d982p-inputs/boot-1/021-candidate-health-pacman-log.json",
+      "bytes": 325,
+      "sha256": "cf8adcd215c381b47f6442cf9dc407c08c6e06a614df766e289487287df01dc8"
+    },
+    {
+      "path": "d982p-inputs/boot-1/022-candidate-health-transaction-log.json",
+      "bytes": 445,
+      "sha256": "bb3aa427c3167fb45ea8f369a8d2183fa2ff4cda3ab73c657786621245d93d40"
+    },
+    {
+      "path": "d982p-inputs/boot-1/023-candidate-health-history.json",
+      "bytes": 316,
+      "sha256": "bf8198ff2dc748b79755291c2826dcaa7e239ec4ca8e5c3b4041c9d762095d81"
+    },
+    {
+      "path": "d982p-inputs/boot-1/024-candidate-health-snapshots.json",
+      "bytes": 324,
+      "sha256": "4453588a7fb5a91a5d15a824d2a2456abf4ce221a6b12369677b980d9a294eeb"
+    },
+    {
+      "path": "d982p-inputs/boot-1/025-candidate-trust.json",
+      "bytes": 2288,
+      "sha256": "63db4b5253d20c9ba6ff827ce464c8ba8cf9272f704567380966a909321c94e9"
+    },
+    {
+      "path": "d982p-inputs/boot-1/026-candidate-trust.json",
+      "bytes": 522,
+      "sha256": "1da4d4bf17eed0b90ed682cc73ad2b8281ef31285f6e99fc9d52f0050a082bd8"
+    },
+    {
+      "path": "d982p-inputs/boot-1/027-package-details.json",
+      "bytes": 397,
+      "sha256": "9f198da95825e8b5e1e7095c3f3425e94f369b773dd3ece001d7043327a54824"
+    },
+    {
+      "path": "d982p-inputs/boot-1/candidate-trust.json",
+      "bytes": 415,
+      "sha256": "be3fc14a30b7060767094d398186da277a22d3e5fb7441dbdada202ea544c4ec"
+    },
+    {
+      "path": "d982p-inputs/boot-1/process.json",
+      "bytes": 83,
+      "sha256": "d9bb0cb87a648190c843e4b2e2e83df8428ed353c7541de0c9a070be291fa035"
+    },
+    {
+      "path": "d982p-inputs/boot-1/qemu-command.json",
+      "bytes": 1207,
+      "sha256": "1a07ad757f654b59e1ea067da3b52b4929824458b6e2b38d6584cde0e43a0071"
+    },
+    {
+      "path": "d982p-inputs/boot-1/qemu.log",
+      "bytes": 70,
+      "sha256": "3bebdc5dbdc63c57c8a4c9bd04d346306b5fe686619b773b0ed7419986ac9b50"
+    },
+    {
+      "path": "d982p-inputs/boot-1/qmp-candidate-health.json",
+      "bytes": 4481,
+      "sha256": "1845b4ecf5afc7abf986a5512ca1192bf77e16113fd404301894488874f886e5"
+    },
+    {
+      "path": "d982p-inputs/boot-1/qmp-ready.json",
+      "bytes": 4481,
+      "sha256": "fc3b4f744145828903167ce5d848e840b17fd7fa8a7cae698d9b0d7ca95766d8"
+    },
+    {
+      "path": "d982p-inputs/boot-1/serial.log",
+      "bytes": 1910,
+      "sha256": "4c87b553034b63919871250263850f8a532838c168a851d8e46229d517999cf8"
+    },
+    {
+      "path": "d982p-inputs/boot-1/shutdown.json",
+      "bytes": 87,
+      "sha256": "5e0d25c937609c66fee7dd41fbb88f3a726b65977df9ee8c65f2e3cfdba30903"
+    },
+    {
+      "path": "d982p-inputs/candidate-health.json",
+      "bytes": 153637,
+      "sha256": "b3805fa8d099b69570171b686beb7a3690d31f74b16056c48ba1ba37d3648aa2"
+    },
+    {
+      "path": "d982p-inputs/diagnostic-scope.json",
+      "bytes": 170,
+      "sha256": "5b56c8dd0b28c365b1d7f854bf60a31882b129882f6863873fda4663542b75f5"
+    },
+    {
+      "path": "d982p-inputs/evidence-sha256.json",
+      "bytes": 4342,
+      "sha256": "9aa3295eb8755cdef35c5db22cc13ede1d3c80e2c980f993640ce130e4e427ad"
+    },
+    {
+      "path": "d982p-inputs/inputs.json",
+      "bytes": 3174,
+      "sha256": "247e9b0d964648202c4f0bceae72b02f2ccf329e1964eff4a50313000803ed87"
+    },
+    {
+      "path": "d982p-inputs/matrix.json",
+      "bytes": 7283,
+      "sha256": "c23c8974d2d59f40dd057a9f4775a2cc80a36f17ea0595f4115e49ea19c2c78f"
+    },
+    {
+      "path": "d982p-inputs-kcalc/baseline-reference.json",
+      "bytes": 2399,
+      "sha256": "468928f6dd0fe355a940899d0f102650631855429dc0a3959c58c7f16dc4cdff"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/001-ready.json",
+      "bytes": 219,
+      "sha256": "113851326dbc84256b2f788cf7c686cad6a00f92f0388d5f53e34831622e6929"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/002-ready.json",
+      "bytes": 219,
+      "sha256": "6b364556e961708c257338aeabc0d47b683e2e83d148f6e26295b2aea256c157"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/003-ready.json",
+      "bytes": 356,
+      "sha256": "82d5f0f61b45a503ba16ae1daa42ade57a6151305738056d18087cc6a93133d7"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/004-diagnostic-input-modes.json",
+      "bytes": 336,
+      "sha256": "53cbb095ede73995df3e42529c691bf0d7a324d734523113c4b065474b6a6187"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/005-candidate-distroctl.json",
+      "bytes": 404,
+      "sha256": "1788d2362aaa7d07935c82f3f596262a4ca3c0ca3249c820c758c2cde58b63fb"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/006-candidate-astraeus-control-center.json",
+      "bytes": 432,
+      "sha256": "a6d6f6ff1699bcb008cdf4680b15c3784a27acc8280962f374cbca10b1b8e13e"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/007-candidate-status.json",
+      "bytes": 3219,
+      "sha256": "1d3382976abe4d1498b0b4b449e654e8ddea2cb1717ec01d1ddfffcec677eccd"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/008-candidate-health-status.json",
+      "bytes": 3055,
+      "sha256": "479bf416768f5d31b86f6ee757cf730700cc026da7357e8fcaa2d87f37fe1df5"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/009-candidate-health-packages.json",
+      "bytes": 15876,
+      "sha256": "8a8dbe47ce9980ae95734b19ba9873fd38fa92450f0db2552e591e9b30c7e252"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/010-candidate-health-database.json",
+      "bytes": 337,
+      "sha256": "11bc6b42a5088d80ead569ab2d00546c48e0acb4fc048e9297f4b8645e3203bb"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/011-candidate-health-failed.json",
+      "bytes": 328,
+      "sha256": "9e5a2761aaf2ada90760e898392f7a4a5654a0a7d28601a2f784a957f734b70a"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/012-candidate-health-mounts.json",
+      "bytes": 8947,
+      "sha256": "853fab0974dfe3ca9e3772af730d900e901248f0a3fb44372cc7070401bdd9e8"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/013-candidate-health-subvolumes.json",
+      "bytes": 546,
+      "sha256": "309eebcc3f39f87a9d8d5639feb8e5abf9888036527e1cf75c72139a07445ec3"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/014-candidate-health-boot.json",
+      "bytes": 4055,
+      "sha256": "c01669cb329fdf74068455d6e855cc5d9e2799bd6527ea90e528bc1c76afe3ef"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/015-candidate-health-root.json",
+      "bytes": 376,
+      "sha256": "0443546123d6d68c3579b13a8d2019576280522f360283c8c3ea95a67d6f6bec"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/016-candidate-health-persistent.json",
+      "bytes": 414,
+      "sha256": "2cbd93e39a155d6708367f0cb1a627fdcd6892cb696e514d26bda9a121101ba7"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/017-candidate-health-journal.json",
+      "bytes": 6678,
+      "sha256": "82825abd748b78f97afabba636442851187c94bba777286fe9d6695ca7901178"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/018-candidate-health-boot-journal.json",
+      "bytes": 114024,
+      "sha256": "fd272c63236a31e3e35d2a5eab2d151d136ca8b40e42634edd0a6d877d1cf2f3"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/019-candidate-health-uki-sha256.json",
+      "bytes": 442,
+      "sha256": "571511663221e174e625fd5019b310ca2fb37cf1464370800200526e49681384"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/020-candidate-health-kernel-command-line.json",
+      "bytes": 425,
+      "sha256": "2eb58a3596093d39812d059d7820418b97d12c4a99e20e352e8d27732e993ebf"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/021-candidate-health-pacman-log.json",
+      "bytes": 325,
+      "sha256": "4bf1dddcee99ceb1ca5b9663feab28dfed96281870df47cad97b3d4d0baead47"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/022-candidate-health-transaction-log.json",
+      "bytes": 445,
+      "sha256": "afdd1f3abbaf1afa0ffd881f06df25542f7a29e997797e529072a1ab96f3bef6"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/023-candidate-health-history.json",
+      "bytes": 316,
+      "sha256": "b850ab0bcaa5b2f05bc009b1b99afa825c3e1f1b58b8474ddc3eb4c7813ebc24"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/024-candidate-health-snapshots.json",
+      "bytes": 324,
+      "sha256": "a282ba4fd9db8309f07bd3a5b7b6175daee34acdcb6ca100fd9da7be0e5d63e1"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/025-candidate-trust.json",
+      "bytes": 2288,
+      "sha256": "857249ac3430fc2f950066b04a80d15c811cc30aa76a3623d21c81bde947c784"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/026-candidate-trust.json",
+      "bytes": 522,
+      "sha256": "666089c313b46f1d5d19005cd74aee7e4848c47e3552ce7df4d9c2e04126f615"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/027-package-details.json",
+      "bytes": 690,
+      "sha256": "8531585c81876c93116d6ea4dd28e0ed056dd6302346d58ff38727224fd0940f"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/028-initial-status.json",
+      "bytes": 3433,
+      "sha256": "d889088c50f25497e353c6b486dd494a2d6919720ff3887f43c23d69ee2d5580"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/029-initial-history.json",
+      "bytes": 325,
+      "sha256": "8746460692065606a5b50fccb3c9dd923a439cf48be8bc50338dc7757ad46940"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/030-initial-packages.json",
+      "bytes": 15876,
+      "sha256": "a95c352d38ddb3ba31f842b7a5dec372401620c58bcce7822e4e422708a66f14"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/031-initial-reasons.json",
+      "bytes": 1053,
+      "sha256": "70bd0733e434ac08145eb31a71742a5fc7ceeb39457a617ffc26b15d3eae3668"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/032-ordinary-user-status.json",
+      "bytes": 3219,
+      "sha256": "60ae26d383f03509b4aae4b5a86c84f36b67bc115493af3734df82f94bdfd50f"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/033-ordinary-user-features.json",
+      "bytes": 1903,
+      "sha256": "2e96b29426c4f1797f7c652952afb0bd834d46becfb681fda85d550168552a0c"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/034-ordinary-user-packages.json",
+      "bytes": 241942,
+      "sha256": "7be3a6dbd78f6a77a8d2214bfa7c6ca543922722b509a8465b7867769a141262"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/035-ordinary-user-export.json",
+      "bytes": 602,
+      "sha256": "3919ee914da0585e4059fe4a2a663b79e6ab3e98ca7bb64e39301d089b212a09"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/036-ordinary-user-plan.json",
+      "bytes": 454301,
+      "sha256": "85d034dd9c33a69075d9b2663deab6d4b840671032784bb894a701a935a6a41e"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/037-readonly-after-status.json",
+      "bytes": 3433,
+      "sha256": "bd54e12cabd1370023979e51d8aa89abf86e4c1aa5ab74a9a7f32d19e485eaae"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/038-readonly-after-history.json",
+      "bytes": 325,
+      "sha256": "efff81027840c280c3eaecc0f9355c64ed500d8a70de419abedc337b5d5c8d29"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/039-readonly-after-packages.json",
+      "bytes": 15876,
+      "sha256": "d126d9f85a33abe8f30e59a0cfbc36384d83c1ae4393dc5e89c16ecfe02b0d83"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/040-readonly-after-reasons.json",
+      "bytes": 1053,
+      "sha256": "cd04ca611fd420d09a5acefaaa8b9ca0a1e96efd691404291eca31d93e5af998"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/041-invalid-config-0.json",
+      "bytes": 512,
+      "sha256": "96166748077e4334396d9813197c6e0645567c89fb6c24ccf81af0900d4f11be"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/042-invalid-config-1.json",
+      "bytes": 594,
+      "sha256": "bd46fda83efc4cb2872c6dccffd76a50661d8b462cd173c18a3e30b151b3a163"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/043-invalid-config-2.json",
+      "bytes": 575,
+      "sha256": "fe399a28027e2bf9cd0a9fb6b873eeed546ba41c4eb731afea8ec31562073c4e"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/044-invalid-config-3.json",
+      "bytes": 495,
+      "sha256": "5643ccdf0b34301fad729fe08c8d2f31511c6bac381444641fcc7ebfcb3e48d6"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/045-invalid-config-4.json",
+      "bytes": 503,
+      "sha256": "f6d5e30b9439746e0abec7450aff824f35c1184eac5d5a99f3d466afc3081235"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/046-invalid-after-status.json",
+      "bytes": 3433,
+      "sha256": "afe7f4e835538b2c260db492e89c31182f7f6cdeb425ff6c116ab61cc2854fdd"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/047-invalid-after-history.json",
+      "bytes": 325,
+      "sha256": "39250c84fe36b347f1daee3828940e321b57417b8187dead40251bb74aad9c85"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/048-invalid-after-packages.json",
+      "bytes": 15876,
+      "sha256": "5f34e071cce25417cf83458861e980f42e0dabb272ffcd5de8e9ec712c1c7a3b"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/049-invalid-after-reasons.json",
+      "bytes": 1053,
+      "sha256": "e9be305faa1de84a3ccdfd32b1ae08ed03a2513c298bea74e604d1c43d0432b4"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/050-install-plan.json",
+      "bytes": 454301,
+      "sha256": "01f5cb2a47cf1e1e296c45de970eddaf6d07611194902cfee5fa89d184d51096"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/051-unauthenticated-submit.json",
+      "bytes": 668,
+      "sha256": "daf5b9d9d48aab76b388cc83e03ba339c457b36f13988f4d7bc1ce764cfbdb33"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/052-unprivileged-after-status.json",
+      "bytes": 3433,
+      "sha256": "e0e11f443aa0a9f0d4997ed574851c4e38df09f62c3a9edb1341119ae28d87d0"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/053-unprivileged-after-history.json",
+      "bytes": 325,
+      "sha256": "20cb62fdbb67e5b2076f010e0a598ccecc82baf3474e91cf5a706bbf271451e8"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/054-unprivileged-after-packages.json",
+      "bytes": 15876,
+      "sha256": "5e7f08a391938da3ab1afc4c32ec487519f8875a0e6c96929e21fa9096675598"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/055-unprivileged-after-reasons.json",
+      "bytes": 1053,
+      "sha256": "91a90223e3ba6712c3a5ab0d10a660b76dbe0e32c95d0f8fa608ff3d3831161e"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/056-stale-plan-submit.json",
+      "bytes": 714,
+      "sha256": "ad3cd9dbb1d99ef35d47b7c8a7f81ec0ae801f5139d560d5669e81513f948c89"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/057-operation-0bab8e5634fbfc9887beafdd47583b08.json",
+      "bytes": 528,
+      "sha256": "ab125c2f42bd819a271bfefded4270b16b9b00605ff2227fe04fbd7af9bbe599"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/058-operation-0bab8e5634fbfc9887beafdd47583b08.json",
+      "bytes": 598,
+      "sha256": "391b9056c7df7ee9d6ff3a0442a0d7035e9b210b921a7887455ccc4659898693"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/059-wait-worker-exit.json",
+      "bytes": 449,
+      "sha256": "7fd6239901be9a85f2efe5733a2024baf2c1312922db903cbec0f3a6ab2265ae"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/060-stale-after-status.json",
+      "bytes": 3672,
+      "sha256": "e53ffd223c81d890b0371640b196f1a474627611a347bd0741b5f947c4afda50"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/061-stale-after-history.json",
+      "bytes": 325,
+      "sha256": "71a6b532655c6e388e7a4bd041124aefb15e529e1870fd4748b66e3946b78760"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/062-stale-after-packages.json",
+      "bytes": 15876,
+      "sha256": "57b122dc9a26e6db89f000dab54afcb7361f810b9749ff0ed58a67cd1144b340"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/063-stale-after-reasons.json",
+      "bytes": 1053,
+      "sha256": "9c0a97ea7faf4c609fee047d232cdf7646551afc678a618913dac6ba7aed4672"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/064-home-sentinel.json",
+      "bytes": 400,
+      "sha256": "097a3e46965b2c512fb07ca269789c33fb61f615374fb75974c783b1786691f4"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/065-install-submit.json",
+      "bytes": 714,
+      "sha256": "f0c733959af333d0cff727c5b69c9ce103306720e172825028da76e0ac96331a"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/066-operation-b76607580b1e6a76b0b5eafe3149864b.json",
+      "bytes": 528,
+      "sha256": "d5580f03b0aa1671b67c19a033d2e32fea4617d3deb323f1e71b7a9e1338ac71"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/067-operation-b76607580b1e6a76b0b5eafe3149864b.json",
+      "bytes": 476864,
+      "sha256": "a22e1703b06709973c4e3e6ee1d4697892e2f9c85f4aff2ca140cdbda1b8fca7"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/068-operation-b76607580b1e6a76b0b5eafe3149864b.json",
+      "bytes": 476864,
+      "sha256": "6ef6dfb85f9e4b657a376c1e5ba12f2e3dae19268cc97b964596a962782c6390"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/069-operation-b76607580b1e6a76b0b5eafe3149864b.json",
+      "bytes": 476900,
+      "sha256": "4e2cb9397874fec4ce72ff590ae6dd2d346bf5a952ac8e59e7953d62f7f2ab90"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/070-operation-b76607580b1e6a76b0b5eafe3149864b.json",
+      "bytes": 476900,
+      "sha256": "6451f27ae705c9cf4601f59a779374d16ae06c1124cea726fbeefc769de7c160"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/071-operation-b76607580b1e6a76b0b5eafe3149864b.json",
+      "bytes": 476992,
+      "sha256": "810f1b42d0ed44e1e3b1969c06bbc41f3ed629d327704c0572516cf5945347c1"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/072-operation-b76607580b1e6a76b0b5eafe3149864b.json",
+      "bytes": 477100,
+      "sha256": "463ef2db3bcb04aa2f2bd5b965e9ab44f01faef411e1382c1603c308ee568727"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/073-operation-b76607580b1e6a76b0b5eafe3149864b.json",
+      "bytes": 477364,
+      "sha256": "83fcfb03a0dfcbe45b145973029d5ab408889350c89b29ad30ff06bdf5e12fec"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/074-wait-worker-exit.json",
+      "bytes": 453,
+      "sha256": "ee9e2f220a4c13c358174d43ed2813bd26740d795df3b9267d77ac405e2c3813"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/075-wait-worker-exit.json",
+      "bytes": 453,
+      "sha256": "8cf5d282827dfdf04e4eb44ebb5ab3955c04ce5dcc9f74db46817f9819d34cc4"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/076-wait-worker-exit.json",
+      "bytes": 453,
+      "sha256": "5240effd4817c8d4a10ee52789e2c466b9b1719076b17628d681737e44557be9"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/077-wait-worker-exit.json",
+      "bytes": 453,
+      "sha256": "83f478f13f18aa3bc1ddad3854870dd669a79c09e3cff07f347a63d21fe3f6ea"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/078-wait-worker-exit.json",
+      "bytes": 453,
+      "sha256": "df3045257691aa0773f237ebabdf17aa3770bca0e063e06a5c85e78f5879a37a"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/079-wait-worker-exit.json",
+      "bytes": 449,
+      "sha256": "d41385607a01df0d07e7dce609452db7a8463aab9e6275df9642d558fc12bed0"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/candidate-trust.json",
+      "bytes": 415,
+      "sha256": "7f0df3b8de0fdf37e17a6db21982c0261c6e0285d0589621b9b535cbf12c29a4"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/process.json",
+      "bytes": 83,
+      "sha256": "b06665b5db8548355466d1e6445f5bad6b51ac5af920f0681206f759f1ea5588"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/qemu-command.json",
+      "bytes": 1243,
+      "sha256": "fe5efb3abf4bd74a09d17301540717edcdc0e99069741e8c446ef1d84aa8d90d"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/qemu.log",
+      "bytes": 70,
+      "sha256": "24a556026ef64ec68822c35cb826194cc2669100d2f473f2467de8dffc13a874"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/qmp-candidate-health.json",
+      "bytes": 4505,
+      "sha256": "c9a94e8fe0aee5206a3a9b10457816ec98d2dac5584503b40bfe10cd7a2ae025"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/qmp-ready.json",
+      "bytes": 4505,
+      "sha256": "a408351e8de32ec6053821fab0d1a0fa9c694dbd84abdbeea2cae3e018e8e57c"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/serial.log",
+      "bytes": 1911,
+      "sha256": "9c9eafaba465111f82b349e1cae4b92daeb8fa0946c7c8c828df3e6a0b747a16"
+    },
+    {
+      "path": "d982p-inputs-kcalc/boot-1/shutdown.json",
+      "bytes": 87,
+      "sha256": "5f824777c5ad4c9d10488c6e1c8288a1676a2aaa0126294da3f02ed5c103e45a"
+    },
+    {
+      "path": "d982p-inputs-kcalc/candidate-health.json",
+      "bytes": 154376,
+      "sha256": "1344678a9e873384005c94357a1f3009dd555d0c4a0a3487b8e6584fe6309960"
+    },
+    {
+      "path": "d982p-inputs-kcalc/diagnostic-scope.json",
+      "bytes": 170,
+      "sha256": "5b56c8dd0b28c365b1d7f854bf60a31882b129882f6863873fda4663542b75f5"
+    },
+    {
+      "path": "d982p-inputs-kcalc/evidence-sha256.json",
+      "bytes": 10317,
+      "sha256": "586410490d5077e810a36c9b418608caa4d3f84a56ce8dc60134b693f7156e5b"
+    },
+    {
+      "path": "d982p-inputs-kcalc/inputs.json",
+      "bytes": 3174,
+      "sha256": "b163d6a34079fda5a92fa7ebd418e5489de3cf07d40fa2ddb8b5ded35c589e33"
+    },
+    {
+      "path": "d982p-inputs-kcalc/install-plan.json",
+      "bytes": 409965,
+      "sha256": "be32d005146a406ee6b481609ffed0ab9d4accdab08aaa05916a8e1fedd09982"
+    },
+    {
+      "path": "d982p-inputs-kcalc/matrix.json",
+      "bytes": 8063,
+      "sha256": "2858d62ae62231ea8ec7b497f030a6c47a6840cf7530138a1fc9ded9050c441b"
+    },
+    {
+      "path": "d982p-inputs-layout/baseline-reference.json",
+      "bytes": 2399,
+      "sha256": "468928f6dd0fe355a940899d0f102650631855429dc0a3959c58c7f16dc4cdff"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/001-ready.json",
+      "bytes": 219,
+      "sha256": "0a9ddb76b1c86b294345cf4c2eb58ec02895ee0aa30d7f18620cf07df8adf1f0"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/002-ready.json",
+      "bytes": 219,
+      "sha256": "9a62999cb7884e1b7061e954426492384564931ac1000c4a0abb9c9d01ada1fd"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/003-ready.json",
+      "bytes": 356,
+      "sha256": "b3417ad9f2647abd3b8974f8dd5f11a40efe2ff62d5f7616febd6815eefc50d5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/004-diagnostic-input-modes.json",
+      "bytes": 336,
+      "sha256": "d905fe1c10a5be4ca5b781ef51f1680fade199dc07e91060a839a9a4f2fefc88"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/005-diagnostic-fstab-layout.json",
+      "bytes": 494,
+      "sha256": "76e6f5143b58eb1a0a96de2e33eeb23c8d7f232d9d1e3752ba2cb9c45f21e2cd"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/006-candidate-distroctl.json",
+      "bytes": 404,
+      "sha256": "e32085f359822ccbc9d9922042ff3cf8bed6046e5205e9b979703eb0e5ff8ebd"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/007-candidate-astraeus-control-center.json",
+      "bytes": 432,
+      "sha256": "f07b8bc4c2db145f72bd31be0d3401528e5943390d1abae5e1eda09e86ad6006"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/008-candidate-status.json",
+      "bytes": 3219,
+      "sha256": "e2497fad3902a750e7d9ed5d6a5aaefc6bef9379b2a71064ff133d7d0d87271a"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/009-candidate-health-status.json",
+      "bytes": 3055,
+      "sha256": "6fb4cde73acb90e87ab2bc1de95b4ea8c5485233b96a5bd887b387ae2b1d561e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/010-candidate-health-packages.json",
+      "bytes": 15876,
+      "sha256": "9178f1e357c30a9ff44905bda39724e67a1a630d38457c917052adebc2f0a112"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/011-candidate-health-database.json",
+      "bytes": 337,
+      "sha256": "cc503bf6eb24a50a5e86ac52a18badf18f49377bbfcf37916c2bc2c89dbc5dc7"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/012-candidate-health-failed.json",
+      "bytes": 328,
+      "sha256": "d41f7e333ebacfcfea2da1c8a68b0f7019c463f6177d7693e0ba327f9051d125"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/013-candidate-health-mounts.json",
+      "bytes": 8947,
+      "sha256": "c4d48b82bb09e431de67c69d6a3526683fe7c38356bf4b9dd93a884f2b4474eb"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/014-candidate-health-subvolumes.json",
+      "bytes": 546,
+      "sha256": "e9f6a4d477591fd65b51cb7f098b3d1e00df49297eef905c20541a6f22e16f7c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/015-candidate-health-boot.json",
+      "bytes": 4055,
+      "sha256": "5d948f3130dbca01c3e0e21f0c7a9b3553b6782a7b2ae64655ae879ff2a51b06"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/016-candidate-health-root.json",
+      "bytes": 376,
+      "sha256": "44a451e65710c6d99d332a03c084c5f9c802ef5f7a611b3c114c73cb5fc112a7"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/017-candidate-health-persistent.json",
+      "bytes": 414,
+      "sha256": "d91ccb88a61822d74d14f358713b6edc1eeab520e20432cc9421ab39d72e8f43"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/018-candidate-health-journal.json",
+      "bytes": 6678,
+      "sha256": "fd3b52db15b4346df61e0f6ce7da26bcc907ddc6dd8dd2ec13a8391812e9b4cd"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/019-candidate-health-boot-journal.json",
+      "bytes": 113600,
+      "sha256": "7d6fee906304c52bcc6ab2b90c9606b3aab91795afc8f1fc97633de3d1f2a076"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/020-candidate-health-uki-sha256.json",
+      "bytes": 442,
+      "sha256": "87b5f4f77e96d08afa7987348ed84f53232ceb60a5875f6ec77bae14f6fa9aa5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/021-candidate-health-kernel-command-line.json",
+      "bytes": 425,
+      "sha256": "49c8882cb853da13542b83472a8065cdfa6b9cc8b33110bf722850a28477a0c3"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/022-candidate-health-pacman-log.json",
+      "bytes": 325,
+      "sha256": "c655fdd153aa2b8b023f4136f87f0ab295d828cbb515f7b1e2c4fbd9a53a4af0"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/023-candidate-health-transaction-log.json",
+      "bytes": 445,
+      "sha256": "e16e4696cd9a4be4cc1fd5ddf07f340f4bcb1c5e1b84044da3c715f7512ab465"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/024-candidate-health-history.json",
+      "bytes": 316,
+      "sha256": "9a998310f56d65a1ffd15e7337c1832134e1cdb05f096aafcb12ef88b39e650f"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/025-candidate-health-snapshots.json",
+      "bytes": 324,
+      "sha256": "4e178cfaf80bd3fb915aa9f630b57dda8a645e3ea3fc80a479a1ef3790767fc4"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/026-candidate-trust.json",
+      "bytes": 2288,
+      "sha256": "6cfafe5498be27d378eafcba214eb871ed4d803d0149e45b55cb3c0adcd8121a"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/027-candidate-trust.json",
+      "bytes": 522,
+      "sha256": "3346a73bc26939b5b2123bee4f0b2161954db5164dfbc9b7ff6788ef15641b2e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/028-package-details.json",
+      "bytes": 690,
+      "sha256": "a4b931ef02dc311f20fd2d58099c5f9c7bb53ffd5b2e650ccd9f577f6df52ff1"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/029-initial-status.json",
+      "bytes": 3433,
+      "sha256": "a4b994640c153149dc9746b269a61d6302f588f343383cb9edb0dd6104e306e7"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/030-initial-history.json",
+      "bytes": 325,
+      "sha256": "69d9d5d96a399546b6522d491824c5389f4a7a934bc67be2b11cd7b5316ca671"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/031-initial-packages.json",
+      "bytes": 15876,
+      "sha256": "38ef666ead3081a0d0211449259bc78a374bfdcb26abe15529cf1fb4cb1d5294"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/032-initial-reasons.json",
+      "bytes": 1053,
+      "sha256": "efe9398b4ff35b25adaab30cc4228fbf857790817d39b3a4d67f4e1a752b71fd"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/033-ordinary-user-status.json",
+      "bytes": 3219,
+      "sha256": "bb2369a9ec43fee7fcc234adf862070bf7ccd236e3843b4a9560d5e39b7a84a9"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/034-ordinary-user-features.json",
+      "bytes": 1903,
+      "sha256": "7f94749625dcb53e385127ac87e39ba53b2e7c38dad15e9d8d673a19471a52af"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/035-ordinary-user-packages.json",
+      "bytes": 241942,
+      "sha256": "59e26167b7ffd961d36c9583581119ac8941b4d88a03d1aefb5d77c58fb8076d"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/036-ordinary-user-export.json",
+      "bytes": 602,
+      "sha256": "90b48a9dc19652779015af02fe939d77ea15a6f258b443b79f60ca8d3c178983"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/037-ordinary-user-plan.json",
+      "bytes": 454301,
+      "sha256": "3c53357f1dd78aef23a3b76273ec9d485b7f14d9b9c6c8eec4e3fbd19f7a30f3"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/038-readonly-after-status.json",
+      "bytes": 3433,
+      "sha256": "5d8035758ea5671bd006544232c127319c2dbdbe417452e47fc97958c63a8478"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/039-readonly-after-history.json",
+      "bytes": 325,
+      "sha256": "881f9c0ecd1d3b966be8a7bf92f28bc42ddabd587d325fa4208fdf5cc30864e1"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/040-readonly-after-packages.json",
+      "bytes": 15876,
+      "sha256": "7e2b6f9e2ad1621dbb17cb659d05ece22106e78fd9c9f066530cbc68b2aa61fe"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/041-readonly-after-reasons.json",
+      "bytes": 1053,
+      "sha256": "fd66bd99296764354537aecbc4fab047d2f528c16fbdb4a1cacef65252755f07"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/042-invalid-config-0.json",
+      "bytes": 512,
+      "sha256": "0443b29965b479fa755d90696bde7ca7cf5430f7e4ce2a4266d8d288e373a3ee"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/043-invalid-config-1.json",
+      "bytes": 594,
+      "sha256": "7486d780cad3b80897d90ffcda3872ad6ffa23bc4b18c3e0f7ca8754dc74402c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/044-invalid-config-2.json",
+      "bytes": 575,
+      "sha256": "a2034db4b99e4016bd51133ee238f9f91516c9a7b8ebcba098bb8c25e0d557cd"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/045-invalid-config-3.json",
+      "bytes": 495,
+      "sha256": "3136919103bc810716fae361aae233bde11f2135b176fa9b6847514b76e53bb6"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/046-invalid-config-4.json",
+      "bytes": 503,
+      "sha256": "570b72e99e7eaa15a57927d81d34127fb5ef299b0a4c4da58ee0043bad9fcce0"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/047-invalid-after-status.json",
+      "bytes": 3433,
+      "sha256": "5b6b1a032612fc8d54d6876fb14369c49ff26c7f4f141cbc1e4220f2265696b9"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/048-invalid-after-history.json",
+      "bytes": 325,
+      "sha256": "8bedc83a4bdbac4f4b0eda332aa31ea43d6766596f7a824af9c340b11276d1b9"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/049-invalid-after-packages.json",
+      "bytes": 15876,
+      "sha256": "531cb09147a800ff75a63fc82325bfee2e828582465dcd1c916ef24ef1324773"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/050-invalid-after-reasons.json",
+      "bytes": 1053,
+      "sha256": "8935972778947e5a40b47b83c22bdd6487df4e46c5b9879dd523907e6200c083"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/051-install-plan.json",
+      "bytes": 454301,
+      "sha256": "747e737f6b3a4ebf4ddbc6db2ac5a6c99f8baddf62873a21233015ea6c55344c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/052-unauthenticated-submit.json",
+      "bytes": 668,
+      "sha256": "2e9fa681bd4950f81f9a7cf1526578dbc8e3027fa86362e5aab7f1dbb9ea72c3"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/053-unprivileged-after-status.json",
+      "bytes": 3433,
+      "sha256": "d911681106bb1809acd2ccf84c3ee4d895f800c70e31f439fec1967664f82917"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/054-unprivileged-after-history.json",
+      "bytes": 325,
+      "sha256": "1d2d4ae556be3ee6d135eacb8bc1c8057b62db59010d0e8c6570b8e6c0a10ea6"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/055-unprivileged-after-packages.json",
+      "bytes": 15876,
+      "sha256": "43022d8dde1e04d50ebab3f3512f87f6ead71040ce6cda2740983b2d1ef7f631"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/056-unprivileged-after-reasons.json",
+      "bytes": 1053,
+      "sha256": "274f007953d3f26fba89202f035765907bdbfae4e956241bd03f0f9c0e86220f"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/057-stale-plan-submit.json",
+      "bytes": 714,
+      "sha256": "02edce35812586ce2ab5fa0fb1be560ea13d3b9c8e79cd671f47306060629f02"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/058-operation-792ed16b47b4e476d5218340e1396139.json",
+      "bytes": 528,
+      "sha256": "99f2b240c962d159f35f79461043864ed75c2fb89965c65eac2bf121f8ba4417"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/059-operation-792ed16b47b4e476d5218340e1396139.json",
+      "bytes": 598,
+      "sha256": "5c8b74cbb79ae2e523e69dbc6a706b06c1a354ed4f5ef7e8317eb3b047437045"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/060-wait-worker-exit.json",
+      "bytes": 449,
+      "sha256": "f432ff185e0f011960077fe77af106bd22ff55d833bbf9506b95a94f3cbd3348"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/061-stale-after-status.json",
+      "bytes": 3672,
+      "sha256": "9d84378c26db7ecec15bb675dfa112d5f74b48b3285ed319fdbab1ae9ce33d59"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/062-stale-after-history.json",
+      "bytes": 325,
+      "sha256": "673c8f263bde586c1bdbd5bcdf6ef65dd20df81cc0d2e679a9ce8879167a4646"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/063-stale-after-packages.json",
+      "bytes": 15876,
+      "sha256": "388cb73b07d377c5ef0b57f94b9be06fc094802a086d54fc090bc4d60ec1d949"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/064-stale-after-reasons.json",
+      "bytes": 1053,
+      "sha256": "2e0ccfa0c1be1797340dd088b9c31b0af8a051d92f3adfc5a087d96662b31a05"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/065-home-sentinel.json",
+      "bytes": 400,
+      "sha256": "b19b6655df3db10fc9f0ecd891d47e1468de38f6cb77751b9b058096e061c092"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/066-install-submit.json",
+      "bytes": 714,
+      "sha256": "9a00f20594da14a0061d210b636851dc446dd5953db312cc5eef4dcb9d83017a"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/067-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 528,
+      "sha256": "b874bff1f20937a2cd8ca40b64252878ce13c9b4da2a199ee91cc88597f755e5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/068-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 476864,
+      "sha256": "a00aa63cd8915df099dc5b920d3c5c07942055140f351ea5a92a46b354e70f79"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/069-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 476864,
+      "sha256": "7973a49765820c7299f2551561ec0ec341e6c82f3224d219bdd24fdeb2b6b378"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/070-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 476900,
+      "sha256": "117d3b4e0d7a076269405f5fae24833d6f77e3ace05f6327193e356a5b053812"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/071-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 476992,
+      "sha256": "f5ac8e153b560034241ead266ad47db332f49b4689e9ddc26332a9c39436c878"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/072-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477100,
+      "sha256": "8a7b89b461aaaf3c790443e37ccea34dad8d8fd288838c1141109a10ac42c7a1"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/073-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477293,
+      "sha256": "72779cab020b6510ee6c2394ebdd500104ae5aa31b23f9b07fbee6c2ba920876"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/074-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477293,
+      "sha256": "086754dcc55eed629369c062880e6c8ec9f953980c427755bde8ca0a7fa4b4af"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/075-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477293,
+      "sha256": "1c8339b1e823ac1ed4e4cf35acb2aba18f36e9aab2dcfaa833145d49c30316d0"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/076-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477293,
+      "sha256": "685cb3a108a999b9356f28bc5ca94b86a7fcb5f850806e88f526f189284aa53a"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/077-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477293,
+      "sha256": "1db3f7dec52f9b776644a7cbdee2ef67f98c3ec1c5d104d09ff70a573660256c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/078-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477293,
+      "sha256": "b730ff4a0b97e791474d61d0b35f2a1c7a0e2d5a318fb03561c311cd8a7bb7ba"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/079-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477293,
+      "sha256": "6ef0d5396ac87a4911631b40176bfa5b2a49a423b68bd8a18d4cad0d4d55ca5e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/080-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477387,
+      "sha256": "f978fbff2ef2a5c1ad261a16b6a831c1171cf842a362770ddd4b193fee3bb9d5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/081-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477387,
+      "sha256": "ac12d7e9b698deef3f4b744fbcebfcdd92a28bfbb481346bf520fea16600b7fc"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/082-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477387,
+      "sha256": "bcfc8521c6463bdc6c2d7f5c512e46a2c57b95a868a7b41a3a9e538d92045219"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/083-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477387,
+      "sha256": "ba4dfa17748ea50a69a7e96ebd4bcaf1a7b82283aa2fce0b2e313e19074c697c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/084-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477387,
+      "sha256": "39d99e2ecddd0a4547728b0954be05e2abab7922e6d820202b6c9c8e5b69e23a"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/085-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477387,
+      "sha256": "1b1af6cb7929e1a555d32dfa4a819743c4a245bb957b0bffe6664ae862692646"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/086-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477387,
+      "sha256": "e906d46fba289f31918a00afee8da6217cd6172fffa7aaf5d2642ea84de5ab9f"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/087-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477386,
+      "sha256": "4093bc6b2b97a90f942382cba88b42dd5e05859dbeb43a13055f925d72b4d5ff"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/088-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 477411,
+      "sha256": "73cd222c35270481475642007e5703f3ffcda6cf74626c04d376c4aca4fafd24"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/089-operation-d46f65d0da4419c6f1af0485959c509c.json",
+      "bytes": 479342,
+      "sha256": "f67e42ae860f5a4b61ac264d78a07a7a71fdfd3d8e471685c15a2b48a8e5f5e9"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/090-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "e65996442f4c1845363d0c9f6df4f5478b32fc6d0782c50a09f0236a8265ee80"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/091-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "59dafdcdfb97d9121c8872ed0aea8498be5025492a5b327af173393e70edef14"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/092-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "1ced8a997edbfa573351f6d8a765cc0b5b629422226988355aaf10f67be20687"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/093-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "07e56ec1e51868ce4bbccd5a8ea9e5731e0013c97e68e7ada2b4729211b4e23c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/094-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "c4c9a3885f9b41daa1df2def08358ac73669fde5c393b8f5d35089a36d1b67bc"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/095-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "189dc9e00df505c8716e5ac5e66fdd6374ae906f5109dd650944bff07dd29b6c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/096-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "9fb7f174cf8b52bfa9f46e22d6f0e4194de51e5622389b8de5ff02ec76a9831c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/097-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "f78e818e9920a6d72122197ad6986ea2b83c2bcb6e8681e224c8bd1cbacc9d30"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/098-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "52f003189586ebc451e0da3f376c279fc9a63c28a5e43c602bb6d6de831ca10a"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/099-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "50ad629700bbd91f28a17b27247eaee5506b6ae0099244c981fd3056fdf1db49"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/100-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "5d3f27197440747cbb194a1aa4f83706288181160bd9de67acaa627fe58e2008"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/101-wait-worker-exit.json",
+      "bytes": 453,
+      "sha256": "41bde89bbf833a54e95fee974d1e887a8406d57644e0e206daa9cc570df675d9"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/102-wait-worker-exit.json",
+      "bytes": 449,
+      "sha256": "78e73fe2a24f964c4d6ca352c908248d03d0ddebd0d981070311fef4e4bc4001"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/103-pending-before-status.json",
+      "bytes": 505126,
+      "sha256": "1eb73b223904562d7ee5f2460a9cc5112d055b9c42284a582af159de097a8c39"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/104-pending-before-history.json",
+      "bytes": 479143,
+      "sha256": "0d6185a1724947460e7c1fb08cf5f6e9916345f60207e75650e24ecfe9b13482"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/105-pending-before-packages.json",
+      "bytes": 15909,
+      "sha256": "b92f1ba3f086a885762a7b15f52b6f6116c5129c182000a1acaa65990b2a5616"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/106-pending-before-reasons.json",
+      "bytes": 1060,
+      "sha256": "39c68da9deceb923a1ec710458996c7345c79f2f248a254faf030c00c2fd6132"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/107-pending-boot-submit.json",
+      "bytes": 624,
+      "sha256": "ea99e4966aae7a617111c026b6a475756b01958cbe3525dce2b318f6b9abd49e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/108-pending-after-status.json",
+      "bytes": 505126,
+      "sha256": "65a1cdcb2175308aa0bcf41079b7faa45f6dff0739e68ed3e59d8c2f89c1e711"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/109-pending-after-history.json",
+      "bytes": 479143,
+      "sha256": "b475ac91e4a5d826c6b55c461e0ab1deb1e435a08ecffdcb1f44765ab6edbdf1"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/110-pending-after-packages.json",
+      "bytes": 15909,
+      "sha256": "278f9674087bc8c7f2d460faa89db8de930cf6af9ec1ce3a557fa55c43c4f782"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/111-pending-after-reasons.json",
+      "bytes": 1060,
+      "sha256": "128b9913364479cea90d650b44bae6c0a37392ff6dedde9c021a7e232d704628"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/112-schedule-poweroff.json",
+      "bytes": 535,
+      "sha256": "d71879d37ad969573f946dad467e5c9f5f7c7ab996cd582e116ca7cb211abc72"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/candidate-trust.json",
+      "bytes": 415,
+      "sha256": "01c755189665edfd0bd538c8c2ff2de9436e6dabc7d355d2e739cc363f388fb2"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/process.json",
+      "bytes": 83,
+      "sha256": "0b8488dd682a87c72917c360e2fba834f5a3c2a98547622b905ad7db9e5e2c65"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/qemu-command.json",
+      "bytes": 1249,
+      "sha256": "4e95bb3d0a99fe5a8bb490023c22b8299ed4edd30405b5d897f2cb3a0de48dad"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/qemu.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/qmp-candidate-health.json",
+      "bytes": 4508,
+      "sha256": "81e7381b760859531584bcfc3bec782b94e2d36898ed01fd6292342bb12f4799"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/qmp-ready.json",
+      "bytes": 4508,
+      "sha256": "6c5f180399ed27a67c9b1376e36a736d1ae18f027333159d1ed8e492f30e0e06"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/serial.log",
+      "bytes": 2041,
+      "sha256": "5d6dd487ed76401b3e576121050154c690d086902e8f380a599eb38938c71c3e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-1/shutdown.json",
+      "bytes": 86,
+      "sha256": "4daa215ed82df242ffa88e66024dd1223155859243b39051a16e44a37a1f064f"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/113-ready.json",
+      "bytes": 219,
+      "sha256": "9a75a9f67f06542e7526ca6f7337c515a63528c89e7b643e93ce3e3f219eb307"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/114-ready.json",
+      "bytes": 219,
+      "sha256": "cd8fd79b075ec6a455d20847fafac50428f249d49ae33c0852874e0144861396"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/115-ready.json",
+      "bytes": 356,
+      "sha256": "c940559feed816df77cc4c92e62cd1bb91a1309ae7b05cd6fe80a913f25bba13"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/116-confirmation-1-trust.json",
+      "bytes": 2534,
+      "sha256": "4c715673cfe483242e7920af2b8c4adda3ef1f84e6d3c9cb347741beb130c879"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/117-confirmation-1-trust.json",
+      "bytes": 518,
+      "sha256": "c9087cff2145ecfd3a3d888496b5c6f13eeeb3bc7024f6727fa7657a60312b7d"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/118-boot-confirmation-history.json",
+      "bytes": 479143,
+      "sha256": "b690a9c72bb67a3a4b5bf877278b08e1087ec0b0954d0550afb5fcd6a14811c0"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/119-boot-confirmation-history.json",
+      "bytes": 479143,
+      "sha256": "afe6c4eee76243df76fc5294b1dc7b86e2c2f65044cf483ed387bc013b23c77c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/120-boot-confirmation-history.json",
+      "bytes": 483790,
+      "sha256": "21c288f2808b1a1ca720ca5ee50da33177cac10f1d97245010778e6a8acc50f0"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/121-confirmed-configuration.json",
+      "bytes": 510258,
+      "sha256": "5263289bf5cccea0c1752ea51f9105edaa5380f49fccdc8cb000d8385393743b"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/122-confirmed-package.json",
+      "bytes": 322,
+      "sha256": "f862f7a24ee01ad0850a7c3bb797c6a91f219839e1d2d6bac77b43a400c04bcf"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/123-confirmed-health-1-status.json",
+      "bytes": 3065,
+      "sha256": "347482bdca82330a96bef557623d676a5c9851d59a2952944e3376bfecacbed6"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/124-confirmed-health-1-packages.json",
+      "bytes": 15909,
+      "sha256": "caf2e3cfd226d9fac420ed3eb0051b520187f5919a71ceed83717f189f747357"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/125-confirmed-health-1-database.json",
+      "bytes": 337,
+      "sha256": "83aa66c4e0cf377128ab2c5aefaa8c7e1b6643662aed58688d54998db9d4c390"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/126-confirmed-health-1-failed.json",
+      "bytes": 328,
+      "sha256": "d70336bb6abf3fbd90618a7b6221bc4603b4145cbdf267a0a76f1a53969d15d5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/127-confirmed-health-1-mounts.json",
+      "bytes": 8645,
+      "sha256": "ba3c567ee9826db9b7ed4d06836f3fba4de774732b7f0dfc36622f5b43f11816"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/128-confirmed-health-1-subvolumes.json",
+      "bytes": 837,
+      "sha256": "11c7a1a43d9b252e9c7a8cd02a52f3900a0ff4a63bba50e9c66a0b6697727db7"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/129-confirmed-health-1-boot.json",
+      "bytes": 3994,
+      "sha256": "8bd4c08b637f2d7ac2a8e156919c706587b6e777f57c71f2ca8e9032d539f067"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/130-confirmed-health-1-root.json",
+      "bytes": 376,
+      "sha256": "ac33e2397fc43d799f47cf980a2b126d13bbde3edebce61d61130004dc02b6fa"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/131-confirmed-health-1-persistent.json",
+      "bytes": 414,
+      "sha256": "33061c7df62271dc4da6b9663f0c5368e4825dbef4a260b35ed65fa84383c48f"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/132-confirmed-health-1-journal.json",
+      "bytes": 6678,
+      "sha256": "3c39076f974faa305fffde421e0d8835757531e182b4841a92ad3bfea5287843"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/133-confirmed-health-1-boot-journal.json",
+      "bytes": 1166842,
+      "sha256": "7faa18b1f1a098e9f4d192326b84267f557e673250ac7452fe4d78a08273ab12"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/134-confirmed-health-1-uki-sha256.json",
+      "bytes": 414,
+      "sha256": "93e4350bb5ed94f321ff9092c82599a720ba6d8b49b0c9cd38d9cde195f0520f"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/135-confirmed-health-1-kernel-command-line.json",
+      "bytes": 485,
+      "sha256": "b53bb88d5616196681d9b71bf7e47ef30a880822f47bfc07bd5e234f8adc4d99"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/136-confirmed-health-1-pacman-log.json",
+      "bytes": 787,
+      "sha256": "4ce304b2dd09916badc17f2062b969570134e66bd7088c3b3bc778eec97948d5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/137-confirmed-health-1-transaction-log.json",
+      "bytes": 445,
+      "sha256": "17a21dc7c2ed86fccd32e711a8fb3889bc91464fad646d21d5767da875c829d6"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/138-confirmed-health-1-history.json",
+      "bytes": 483781,
+      "sha256": "63be5d5d71875e1cf67b95c4d8ccfe769fb4bcd04771d2bbd776bd27dbbeaeb3"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/139-confirmed-health-1-snapshots.json",
+      "bytes": 2777,
+      "sha256": "21e0de32ae2e4957cd23d00b3136b1c61553e2385f9167440f0dde8368b4443e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/140-remove-plan.json",
+      "bytes": 454132,
+      "sha256": "dceeea8cf1f92f8d8251139746103631e49d75eb3f24efe697b7e4cfbfb49af1"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/141-remove-submit.json",
+      "bytes": 705,
+      "sha256": "c58577e26ef71183afa1caef8b25208635ec0d2a77ef2469682e844b4e45003c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/142-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 528,
+      "sha256": "60b271a3d8dfb013b5ebb4384ca51bdd1b85124667ab0d33a8e556cfd838af0b"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/143-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 476690,
+      "sha256": "52768bf47e07c245ba31f544afb086300dc534d234a92077253940019a2bb44e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/144-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 476690,
+      "sha256": "659dee26be67bb3ba08b2f00313c4f8274c531a7009f6f66963419f3b3def848"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/145-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 476818,
+      "sha256": "488f4db0e2dc8573f0e5247253f28d2cea6787f866362a7e7e725707c1cd56da"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/146-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 476926,
+      "sha256": "c98029d151c26cb6bad883faf120bfa20d3089b44b3c338a85ffb1e74e9ce054"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/147-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 476926,
+      "sha256": "89ea3104abe12e6797b9a524360a59f28df61397722c8f23415612fd1c4b2fb4"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/148-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477118,
+      "sha256": "950e3429792c62398b70761db2865c069d6bc9ce49deb741cffcb621ff0086a9"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/149-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477118,
+      "sha256": "a91efafb0801f03ae4bc7392d342d34956a85b1d331e1e1da4f977b7af53858d"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/150-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477118,
+      "sha256": "9788e4d4a6b31a55c69f33c8e782763a01471282bbb265b68a7d91774485bd3d"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/151-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477118,
+      "sha256": "bbbeaa369882fb592081e859be8be0e067a708b94b419d93e99491b9f76deaa7"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/152-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477118,
+      "sha256": "ea519335113a0c1b242980fd183df1f7b183030f322390b5f1bbb836e24b3579"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/153-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477118,
+      "sha256": "50de5da9e79c8e3a8654e94ec90a8834803d46d9d268aed6f82abe33f6797668"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/154-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477212,
+      "sha256": "35fc95b9cfd7c410beed52dfaeb24f0d8fe79a8e39395c6ac90403400c4407db"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/155-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477212,
+      "sha256": "e0a21ef2d21e8196bd7127b7d5c585efd0b9767991785a19b034cbfea24cd258"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/156-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477212,
+      "sha256": "f36e8ddaed74af2272c79a9c85386e6226de5b503e9442374594d4e9e5552785"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/157-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477212,
+      "sha256": "edafe6f4212e6cf9d5c85e3dbe5f4a6bb0ff75fdb819a81cbf8ef492bc42e7c2"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/158-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477212,
+      "sha256": "920946837cfda5ee3035728d14b4566e5454c36d415f6040ded11884d926665b"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/159-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477212,
+      "sha256": "ff266cf7500e4252749ef130829894fc4ffec6da30885b5d100372d8d2ddcec4"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/160-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477212,
+      "sha256": "1198c8a85ec69a3681328c6b946bb195617de9a912d02f0e2e88a117d34860b1"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/161-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 477235,
+      "sha256": "d8e9d37938e2fb76e66a704371f2361f979f395d8a9b8942dc030486a9945370"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/162-operation-51d03275f2886035435547ffbe94f03a.json",
+      "bytes": 479166,
+      "sha256": "4d6fffdf0d35b5dabdfda22ee23f2be0449666ec2d070b26aabddc1ebac87457"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/163-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "3bf06f9be27fb2f27016d8edf855533d3735bdbc0793113361d075d212d5bb42"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/164-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "213fc5aa05aecd67d07b101829f372eb195e003309cb6f5a2507b255c8c0e919"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/165-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "0f5236744a0c10e06a7f7c2a9fa2cb059ab2b38a9320b27b18c47d3abdf78eb1"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/166-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "a195393e487153190a332d26f7a4a9c19b2e9c487ab7f2fe7db6b5ea96cc390d"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/167-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "4ce3044daa2a3514499c5cbd98802e5dc21cfc98995e1c0de5df725ecb892ff5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/168-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "6b9dca0110985650ffd32f6cbb1d5fd759e04b2cb647a5c86aee9b41c52c3986"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/169-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "2e186a84defd6907eee04b4ab03dcc8d5b9c4fe98ff09b51cb04290b05aeead5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/170-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "b963e6b044adb8d49c39d78dcba9c2b096227170d070e203473aec3f8ba0db08"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/171-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "9c412db2ea75cdff4fc7b2ad4625fb43eca8173f0b179bef05e6658ce3d8be54"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/172-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "e972ef339937df03498fcf710c51b2f5435d357affd0f9d7999659af52b45e4b"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/173-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "cdbd40874d2e507f0dbde994ea8eb469cc046e24b55e92917db9929ab21c6171"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/174-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "4bf100a0d7c8440420a390deb9b19a70d5144ce2563ac374cda1234a647f3d21"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/175-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "b0c018dc59a3294f74c91090a42718152531e8d35f21328673695f5d7caabc46"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/176-wait-worker-exit.json",
+      "bytes": 447,
+      "sha256": "5cce11cf9e71ace9f6c692380f993861e7cac790afc751472b7a940a812ff3e5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/177-wait-worker-exit.json",
+      "bytes": 449,
+      "sha256": "d65f2368522ad07ae993f7d5874e3afa283a0eb3f88d1d9b714fd5c91be42a82"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/178-schedule-poweroff.json",
+      "bytes": 535,
+      "sha256": "a9707848e3dfd83de1e1f86e45ae591a619ae128a272a05696014748772ea0e6"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/confirmation-1-trust.json",
+      "bytes": 411,
+      "sha256": "b1d02367537bf15bd610ba2ccd3f57a5c5836bea274e3250906b7e3c873feb41"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/process.json",
+      "bytes": 83,
+      "sha256": "e831b6317d14d86f7f8bd20532a0b938ce1f2eb8b02b82de1a31f7f0734fdf9b"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/qemu-command.json",
+      "bytes": 1249,
+      "sha256": "d8496151cb63ead4fc511dc85ea76e11440d7f51cb6721aee500108199c257bc"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/qemu.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/qmp-confirmed-health-1.json",
+      "bytes": 4510,
+      "sha256": "5e88c7d82c9c107dfe634348856f2b65daaff3612e15421abc9d7e3db16fd9de"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/qmp-ready.json",
+      "bytes": 4510,
+      "sha256": "8731b16c69e34cf512943c4460b76bc29e02048fe5c4cdbf00ccc06b060a4a0b"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/reboot.json",
+      "bytes": 110,
+      "sha256": "a9729664b460f84ad951cb93a5eb46e209a179f9b2d89c75583362eb1dc4c98d"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/serial.log",
+      "bytes": 2222,
+      "sha256": "4fb6d790b3f365ad009593b83ac58a931da42f763cffbd5a2c778c020eab4305"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-2/shutdown.json",
+      "bytes": 86,
+      "sha256": "59babc502f3f721eaa48792e6e025cd9678222ff7b4fdc4b3e2a27100229d9ec"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/179-ready.json",
+      "bytes": 219,
+      "sha256": "800da3ac4cd82320cc5db961bc9d0629e9e5a96bad05999c92ac0a0b68b39e6d"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/180-ready.json",
+      "bytes": 219,
+      "sha256": "21d2f850837f46ebbb84f333ef7dd5ab4e0feb622aca53734e9c5a21e3f1a72f"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/181-ready.json",
+      "bytes": 356,
+      "sha256": "d370cd8b08e9dc3d76690f4805147f2533960c31395747dae1adc4af056f6dd5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/182-confirmation-2-trust.json",
+      "bytes": 2533,
+      "sha256": "5ae1ade6a78d9d42b0cd01aecaa32751e09456f1abef1c4159e65208d6339ee6"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/183-confirmation-2-trust.json",
+      "bytes": 518,
+      "sha256": "b014ce7f0815971ac4fea124ffc5d47e8be4325384d1777c56bf28769ebf6a47"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/184-boot-confirmation-history.json",
+      "bytes": 962431,
+      "sha256": "1ec5a3cfcf89515271d0455443a1b4aeaf2da9b010bd88ce9af2fe9a88c018dc"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/185-boot-confirmation-history.json",
+      "bytes": 962431,
+      "sha256": "b82a7795751e57e99ac50ae105fa29a4c289734d987615491b9f16b8e8b5e959"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/186-boot-confirmation-history.json",
+      "bytes": 967076,
+      "sha256": "10db0d6b2bfaf61bbb2fba6076b3dc701a781baa14932ce52042fe5b29f8f91e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/187-confirmed-configuration.json",
+      "bytes": 510041,
+      "sha256": "940f80a884f3daeb28faae01dd19dcb12fb3fc06a57da5abd57be5ead393b783"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/188-confirmed-package.json",
+      "bytes": 343,
+      "sha256": "dc56de4cc9aa9818410c68febac643621eb398df0332c6293b5ee6a3ab5d368c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/189-confirmed-health-2-status.json",
+      "bytes": 3064,
+      "sha256": "2955c329c80bd33bb5ab6ce568d7956d658cbb50f5f32e55014f77c53a616f52"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/190-confirmed-health-2-packages.json",
+      "bytes": 15892,
+      "sha256": "8ff17247bc3e436137473fd2319cc5a458fa445e66351a4b28cd974a32413d72"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/191-confirmed-health-2-database.json",
+      "bytes": 337,
+      "sha256": "d4c5dec20775e55113b7b02284835a71a29c8860f8655aabca45d4452dc711ac"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/192-confirmed-health-2-failed.json",
+      "bytes": 328,
+      "sha256": "89401c30347d3ca29d9f8a8d78f2535049fd754c08626ca2fb749b828265e7c2"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/193-confirmed-health-2-mounts.json",
+      "bytes": 8645,
+      "sha256": "587d329ed871a4ce23097d9196d4a74a905b8503f066a93240f793da90e72cb6"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/194-confirmed-health-2-subvolumes.json",
+      "bytes": 1125,
+      "sha256": "f1001602b7547b27e297a519aa04a6e3950c40230811abb05161b50fc189bcc8"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/195-confirmed-health-2-boot.json",
+      "bytes": 3988,
+      "sha256": "67b92cd8f033903f731a40addfb68f13dd0dfe37c0b778f69d06c0eae5fc7509"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/196-confirmed-health-2-root.json",
+      "bytes": 376,
+      "sha256": "ca11db134d6548c02eaa983aa124a96e884f15e1348d9c8bd517e1caf453fbbf"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/197-confirmed-health-2-persistent.json",
+      "bytes": 414,
+      "sha256": "07893931dfea8a6e532a325f63d9f6ca0d1921560d36a24e33de023bf441403e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/198-confirmed-health-2-journal.json",
+      "bytes": 6677,
+      "sha256": "00e6753b6df4bf7cc23429e8fc6b00f70be0313b50e950923694edc002fd601c"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/199-confirmed-health-2-boot-journal.json",
+      "bytes": 1166494,
+      "sha256": "2714fbecf6f14a4fadf5aabcacbedad768360e90b6e86eebc5f6dd33f54c14dc"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/200-confirmed-health-2-uki-sha256.json",
+      "bytes": 414,
+      "sha256": "6b79bf85970a6db62bf5b8bcfe9bd6c108d48d5bd3a399d8e491cf2dc9d4a116"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/201-confirmed-health-2-kernel-command-line.json",
+      "bytes": 485,
+      "sha256": "a4f6836746e95b1d383ac4b02e85fba8d2153c405f51e8466b30adeddd74c9f5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/202-confirmed-health-2-pacman-log.json",
+      "bytes": 1185,
+      "sha256": "5f1490a006df018b0131b2a13f321639c748b4fd299921a0b1cd08aeea795c3b"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/203-confirmed-health-2-transaction-log.json",
+      "bytes": 445,
+      "sha256": "d7f89749a03b299bf17f91ec5b2edcf9f64962f44ada2317093f184ff422ed4d"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/204-confirmed-health-2-history.json",
+      "bytes": 967067,
+      "sha256": "56d161de0c5980763785e2861a0d9463842764387062b58f01e99a37b744377f"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/205-confirmed-health-2-snapshots.json",
+      "bytes": 5223,
+      "sha256": "b362b7ced2f9afc71941104cb1200e5c74856267a37ad6c84550eb6d32873cb3"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/206-retained-home-sentinel.json",
+      "bytes": 389,
+      "sha256": "7a7632b9a99cbd97a180dca7f4a49ae79c2768294fb914dcd110c817947e73d5"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/207-retained-history.json",
+      "bytes": 967076,
+      "sha256": "12fe2a0005357d9991d6926b09c86ee8b380b42e4ef893b5b7c8148bd770bebf"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/208-retained-snapshots.json",
+      "bytes": 5232,
+      "sha256": "c4f24884d046e9812b651cb99eb0201b15a40fd4bce5b2b884a2f84352156801"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/209-schedule-poweroff.json",
+      "bytes": 535,
+      "sha256": "4d72e0e91ca14cb915edf36188ee29c35cfb03a2018bdb22654076f38ad7923b"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/confirmation-2-trust.json",
+      "bytes": 411,
+      "sha256": "a62c21ea127992fa2be2cee763316bc8b942e3bc094914e04cd53462d84d5523"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/process.json",
+      "bytes": 83,
+      "sha256": "10b9ee96f1cb63dfdd3ab364d4f1c32f8477a7cf9d1c22d6a1b426fac235c6c8"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/qemu-command.json",
+      "bytes": 1249,
+      "sha256": "dc59d394829fbb7c806f813829d7f8ca4424248c96d3ca5bda0e295d4a87bb7e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/qemu.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/qmp-confirmed-health-2.json",
+      "bytes": 4511,
+      "sha256": "b30d650e023fcae42be3c213c4d2d41752645874652bb9fbe98df7d3af6e9d3a"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/qmp-ready.json",
+      "bytes": 4511,
+      "sha256": "70ca0fd8632f2a9f1cf78fec1b2af645e827188037c2f04fd786ea342790e70e"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/reboot.json",
+      "bytes": 110,
+      "sha256": "6a8b63da1e746d1ccc87964e425639aa556c53aeace08f2cf2c5b35a9f5b7bb8"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/serial.log",
+      "bytes": 2222,
+      "sha256": "1d6b55d6f6a543eb81b5acc25426ca651478a9db351bbd9d7ce531fccc944c52"
+    },
+    {
+      "path": "d982p-inputs-layout/boot-3/shutdown.json",
+      "bytes": 86,
+      "sha256": "d17d034a250b72bdf4990f57cb1909622aeee1817231489ebb041fd58e35a8e0"
+    },
+    {
+      "path": "d982p-inputs-layout/candidate-health.json",
+      "bytes": 153952,
+      "sha256": "7a55de3adfe86fcca5bcbcc64528f20c20bc69f2f6e8ab720d91cdb00b2a63ef"
+    },
+    {
+      "path": "d982p-inputs-layout/confirmed-health-1.json",
+      "bytes": 1693577,
+      "sha256": "98e8421fc2a07b0cda7f1744f28c124e908154e0cb1a07cdfa984de42682d8e5"
+    },
+    {
+      "path": "d982p-inputs-layout/confirmed-health-2.json",
+      "bytes": 2179622,
+      "sha256": "9eea4eb42ed59a1d1cb88e110456f02a06f5eee17515e83028f513f930e2a3aa"
+    },
+    {
+      "path": "d982p-inputs-layout/diagnostic-scope.json",
+      "bytes": 166,
+      "sha256": "d71c720654405b9118a0ed0a6c139b72ff2be9924acbb54076e2e2849d3b9fec"
+    },
+    {
+      "path": "d982p-inputs-layout/evidence-sha256.json",
+      "bytes": 27631,
+      "sha256": "ee7f32d002ef5eefc8ab9fc4a589a8f24b3d835d2483ebc84e24f6612811bf7d"
+    },
+    {
+      "path": "d982p-inputs-layout/inputs.json",
+      "bytes": 3174,
+      "sha256": "917981786a7d8f1e3a72c03c14cb5188be264d0c24a2d618ad672a33f1051345"
+    },
+    {
+      "path": "d982p-inputs-layout/install-operation.json",
+      "bytes": 434745,
+      "sha256": "92fa392b0bc40c9f10b381df8063cd16c126129679f6e2f8a481f49e7d2134b0"
+    },
+    {
+      "path": "d982p-inputs-layout/install-plan.json",
+      "bytes": 409965,
+      "sha256": "be32d005146a406ee6b481609ffed0ab9d4accdab08aaa05916a8e1fedd09982"
+    },
+    {
+      "path": "d982p-inputs-layout/matrix.json",
+      "bytes": 8624,
+      "sha256": "d631a2fc71c7f747d17475157f8139b6995db374c5062796317ab566a12d1ed7"
+    },
+    {
+      "path": "d982p-inputs-layout/remove-operation.json",
+      "bytes": 434586,
+      "sha256": "36bd624948560de57a47a5a4941d422487ddbc0e0d93bcf7d3434e02f7839ce2"
+    }
+  ],
+  "archive_bytes": 8934129,
+  "archive_sha256": "3dd11b1f52c7f33bc66166063096d7729121c0dc3805b402d0f47da2e43fc55b"
+}

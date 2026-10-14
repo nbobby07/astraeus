@@ -1,0 +1,223 @@
+{
+  "label": "B",
+  "time": "2026-10-14T07:19:50.876706+00:00",
+  "source": {
+    "created": "2026-10-14T05:05:26.540426+00:00",
+    "source_commit": "9825438d275c3037fcb41fbd768eebc71ef3f38c",
+    "source_sha256": "e1eec7917965b73893f013c896bb3028d819f1e362b698a398c85530b3e70c35",
+    "source_bytes": 5016480,
+    "base_sha256": "360f0fa49db6813bdc8e35bed230a2dc2ae3567b7b5ab74719c0a706e4e34e87",
+    "archived_builder_sha256": "a0e82eb49274d3dc492a469642b16f2151962d3a82fa0bf5b56cb3fa74cec2c3",
+    "host_builder_sha256": "cf529ed6f3f7624f1382e04e35df1d1e2385989adc89b438f7c9a22308e5d26d",
+    "graphics": [
+      "software"
+    ],
+    "gaming": [],
+    "memory_mib": 8192,
+    "disk_cleanup_scope": "only closed builder-A/B disk.qcow2 under this exclusive run"
+  },
+  "files": {
+    "share/evidence/B/control-center-LastTest.log": {
+      "sha256": "b57d6182b3acd32090f60f6e066887c10a3343e0aa5763f007e135702e0e614e",
+      "bytes": 4830
+    },
+    "share/evidence/B/git-head.txt": {
+      "sha256": "e000a2af1ee89f0ad516cabc7796f7f529d06e051684977cbe3f0d32c2f3b2e7",
+      "bytes": 190
+    },
+    "share/evidence/B/astraeus-dev-0.1.0-dev-x86_64.iso": {
+      "sha256": "558475af3eb219277786ded7379e1c80a12557064b2e26e245648f355011bb16",
+      "bytes": 3645478912
+    },
+    "share/evidence/B/os-release.txt": {
+      "sha256": "71ff7a6e248d9a0718344c957ec709cb6f0b18631682fa404d7cff2af3ff341d",
+      "bytes": 382
+    },
+    "share/evidence/B/iso-size.txt": {
+      "sha256": "eb344273551d278d1856c37b16a90e1aa56947c798ade26b9174122592aae9c5",
+      "bytes": 74
+    },
+    "share/evidence/B/mkarchiso-pkglist.x86_64.txt": {
+      "sha256": "b890964f8e0a6c2653ae1b1044029289b592a6915f6fe010c4fbcd6ec293ac2f",
+      "bytes": 13686
+    },
+    "share/evidence/B/SHA256SUMS": {
+      "sha256": "aaefa06dc1edc6d1b5fcf8eac369120a147c633a284b49a5a1a1a441f200e2f0",
+      "bytes": 100
+    },
+    "share/evidence/B/image-packages.txt": {
+      "sha256": "b890964f8e0a6c2653ae1b1044029289b592a6915f6fe010c4fbcd6ec293ac2f",
+      "bytes": 13686
+    },
+    "share/evidence/B/build.log": {
+      "sha256": "41c4548f25e1f273f6167ac63b615e9ba4ab116adccd028790daedff7fd20020",
+      "bytes": 393049
+    },
+    "share/evidence/B/ended.txt": {
+      "sha256": "844d42a4f3c79fa63df1f98f0d9125a41927d2630c730bb0715e4c09c8fef5cf",
+      "bytes": 21
+    },
+    "share/evidence/B/pacman.conf": {
+      "sha256": "02d59346d7a05a8019277c1167c6a7a1f8a941aceefaf49dfa10050c80412ee9",
+      "bytes": 562
+    },
+    "share/evidence/B/installed-packages.txt": {
+      "sha256": "2fc23a0683ff27ce8696225419502b0fdcfb0c2b62a3b5abe8d5ebc87512bf92",
+      "bytes": 14816
+    },
+    "share/evidence/B/source-sha256.txt": {
+      "sha256": "a5ffda718053907f9f71e7695c00a2bb68039143144279c946d99a0f5873011f",
+      "bytes": 92
+    },
+    "share/evidence/B/repository-public-key.txt": {
+      "sha256": "97ca80da3c3872f9702580f54d023664d8e49e1f0b2201659fdf3f49de4d22ae",
+      "bytes": 269
+    },
+    "share/evidence/B/closed-test-evidence.json": {
+      "sha256": "382074d916059c866661db4c074145c2033c8cbb6ef707c1b0c4716d5076e432",
+      "bytes": 1331
+    },
+    "share/evidence/B/platform-package-sha256.txt": {
+      "sha256": "f1c239e977735a6b89f5604fb9540fe3068dcc596991efc796c0998257022ecb",
+      "bytes": 628
+    },
+    "share/evidence/B/packages-before-build.txt": {
+      "sha256": "facd1ca68cc0d14184827b0fd660ecbe59add832d216d60b4b767b032adb103d",
+      "bytes": 7854
+    },
+    "share/evidence/B/binary-identities.json": {
+      "sha256": "43408af144075072498ac4f4ad3564841c7a56c98cde8d6403b04aae7e1d83b8",
+      "bytes": 896
+    },
+    "share/evidence/B/kernel.txt": {
+      "sha256": "bd850b44098647c0ecef4cb526fa1dbef014bb67046b527949a37c11db5d1495",
+      "bytes": 107
+    },
+    "share/evidence/B/started.txt": {
+      "sha256": "f52a244140df69f672c1e0fe19a71c0b84716c0e5bf97970ce98f83661e36f00",
+      "bytes": 21
+    },
+    "share/evidence/B/git-status.txt": {
+      "sha256": "70a244d0bc21a1e6e4b340ce4d3e188185b2c797bd760e15f9600f0a4c9a053b",
+      "bytes": 250
+    },
+    "share/evidence/B/exit-code": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    "share/evidence/B/inputs.json": {
+      "sha256": "c580a59e4d6f4c71a4ab3f98472ac82cba74b7ef60ba2326f8d7d970b9a192b5",
+      "bytes": 19906
+    },
+    "share/evidence/B/repository-verification.txt": {
+      "sha256": "01ef6d2488a9c0f09a7c8e556229d660dbf158ecc80c8c19c4765050a3eb1bfc",
+      "bytes": 2561
+    },
+    "share/evidence/B/command.txt": {
+      "sha256": "0fd7062e620f9ae3b1f5c3e8492205dba29dccba0106f2ac35ac7dddda7d5d22",
+      "bytes": 183
+    },
+    "share/evidence/B/repository-public-key.json": {
+      "sha256": "7ad341dc5a1d807a9f476293c065b51859147a9c8514c1e90829be41cba4104b",
+      "bytes": 469
+    },
+    "share/evidence/B/builder-packages.txt": {
+      "sha256": "facd1ca68cc0d14184827b0fd660ecbe59add832d216d60b4b767b032adb103d",
+      "bytes": 7854
+    },
+    "share/evidence/B/builder-script-sha256.txt": {
+      "sha256": "e190bfac61a142ecafc9666aca647d3ab1a03f7c35f1075ca5d6dbdb896ecb76",
+      "bytes": 89
+    },
+    "builder-B/meta-data": {
+      "sha256": "fc4d7a800a4c4984b0b153783842376ffd712411e0976943fa5e15f4b08270e0",
+      "bytes": 61
+    },
+    "builder-B/qemu-command.json": {
+      "sha256": "83dc64197aafd6e534b8922de5deb996cf0f4ec784e4ec2ec4870efdca3d2ea3",
+      "bytes": 1061
+    },
+    "builder-B/seed.img": {
+      "sha256": "3c48ef2ffe033d1b85c10504e42a954129923e9ff62e49641d817d828793e0fd",
+      "bytes": 374784
+    },
+    "builder-B/user-data": {
+      "sha256": "5e981622efe3ab1b5f2fad4ba0ba8ce9756aa1d48c78680f6f839d0eafbd56b4",
+      "bytes": 404
+    },
+    "builder-B/serial.log": {
+      "sha256": "ad962d1ed5bb877ce1b2c1e86f0f355da1b138be684a76c2928a705e0cfbc500",
+      "bytes": 658061
+    },
+    "share/repo/distro.db.tar.gz": {
+      "sha256": "8a86282c57a229d08883fdcf16a4f16e527e878075cedddb902a4cb808db8a11",
+      "bytes": 1901
+    },
+    "share/repo/calamares-3.4.3-1-x86_64.pkg.tar.zst.sig": {
+      "sha256": "3ec4ea55af979041f738195553e51766aa78762a7da18b06d920da008b8ef4e2",
+      "bytes": 119
+    },
+    "share/repo/SHA256SUMS": {
+      "sha256": "03c64cc6443c301b7aa3647ba03f82f6fdc94bc68d5b6446abefcc058f644780",
+      "bytes": 1381
+    },
+    "share/repo/repository-key.asc": {
+      "sha256": "122c3267d8b4c522adc0ce77e70c602171fb4f23217459361a9fd4f0931f75d2",
+      "bytes": 409
+    },
+    "share/repo/distro.db.tar.gz.sig": {
+      "sha256": "e58ba80ef995836579407c086e92e35118c3d073625b8f3c95cd1c4fee554353",
+      "bytes": 119
+    },
+    "share/repo/distro.files.tar.gz": {
+      "sha256": "050d3ba04b2bca9df5956464d4ababe5ea853b0b7b3e04187f09a433de15b41d",
+      "bytes": 10433
+    },
+    "share/repo/distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+      "sha256": "43ed676d95c47a63f8b338f7a856f06f8b91563413b7e146e0378149c1abf1e9",
+      "bytes": 1882920
+    },
+    "share/repo/calamares-debug-3.4.3-1-x86_64.pkg.tar.zst.sig": {
+      "sha256": "27dc5e8642d74024381439063ca434cdde6e095eae82230e416e3372ca1d3daa",
+      "bytes": 119
+    },
+    "share/repo/distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+      "sha256": "81e2336c5f461f40f6aa0bf4124e2849439956c5e1bd087c6d88f4793eb3d7fb",
+      "bytes": 2535646
+    },
+    "share/repo/astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+      "sha256": "1a8d6f291c659843873b756a0d6b2a9c7972deb019dd03901046805298d72933",
+      "bytes": 119
+    },
+    "share/repo/astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+      "sha256": "146a8c3336c8baa620d88dfdb70aad206dd5f18445ba1dd029b01f6910286f06",
+      "bytes": 132861
+    },
+    "share/repo/distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+      "sha256": "94bd0bc147fa6788d6ffaf4a2151e934425dcf1be3750752a912422f8db62c73",
+      "bytes": 119
+    },
+    "share/repo/distro.files.tar.gz.sig": {
+      "sha256": "34776db7483a4899517e76f5e3df842984f159443f62cdeb9c8e2bc0a6ae0c81",
+      "bytes": 119
+    },
+    "share/repo/calamares-3.4.3-1-x86_64.pkg.tar.zst": {
+      "sha256": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+      "bytes": 4253631
+    },
+    "share/repo/distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+      "sha256": "755b0ab4728fefdb5559e061fad2e2d8dc5779d130544cbc32f32b53b38123c7",
+      "bytes": 119
+    },
+    "share/repo/calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": {
+      "sha256": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+      "bytes": 43686681
+    }
+  },
+  "links": {
+    "share/repo/distro.db": "distro.db.tar.gz",
+    "share/repo/distro.files": "distro.files.tar.gz",
+    "share/repo/distro.files.sig": "distro.files.tar.gz.sig",
+    "share/repo/distro.db.sig": "distro.db.tar.gz.sig"
+  }
+}

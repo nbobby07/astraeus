@@ -1,0 +1,9 @@
+{
+  "scope": "maintained-installed-uki",
+  "path": "/efi/EFI/Linux/astraeus-dev-linux.efi",
+  "sha256": "4c1c36d3b92bdeda675631a088e27c74c6429e0e53128190b46f8fd578e3b718",
+  "certificate_sha256": "1eb034d33b9bb2e3d839c9bb93168619bde4eb373fc484a501c54d08c36518e2",
+  "signature_verified": true,
+  "firmware_trusted": true,
+  "provider_readiness_checked": true
+}

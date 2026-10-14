@@ -4,13 +4,17 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The current runtime candidate is `9825438d275c3037fcb41fbd768eebc71ef3f38c`.
+The latest built runtime candidate is `9825438d275c3037fcb41fbd768eebc71ef3f38c`,
+now superseded by an installed trust-input permissions defect found during CLI acceptance.
 Its source archive is 5,016,480 bytes with SHA256
 `e1eec7917965b73893f013c896bb3028d819f1e362b698a398c85530b3e70c35`.
 An independent Git archive and compression pass produced the same bytes. It fixes
 missing live repository metadata exposed by the earlier candidate's boot tests.
-Replacement build A and its full compressed-image audit passed. Independent
-build B and fresh VM acceptance remain required.
+Replacement A/B builds passed full byte comparison, package checks and the
+compressed-image audit. A fresh plain baseline passed both enforcing installed
+boots. Signed live-media acceptance subsequently passed, but installed management
+failed before mutation. Corrected-image acceptance and encrypted-installation
+acceptance remain pending.
 
 The previous `0e8bb00e3edc5382fa177bf0017b2f8595ee8229` source archive was
 4,991,208 bytes with SHA256
@@ -271,9 +275,9 @@ while it applies. Live sessions permit inspection and planning only.
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
 | Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `9825438` A build. Production startup loaded the KDE desktop style in earlier checks; replacement installed-VM backend acceptance remains pending |
-| Plain and LUKS2 installed VMs with enforced Secure Boot | Historical `0e8bb00` plain baseline passed two enforcing cold boots and real SDDM/Plasma logins. Both replacement baselines and management/recovery acceptance remain pending |
+| Plain and LUKS2 installed VMs with enforced Secure Boot | Fresh `9825438` plain baseline passed two enforcing cold boots and actual SDDM/Plasma logins. LUKS2 and management/recovery acceptance remain pending |
 | Image contents and signing-key audit | Replacement `9825438` A passed the full content/key audit and strict final compressed repository metadata/access checks in both live and installed roots |
-| Two byte-identical candidate images | Passed on historical `0e8bb00`: all five independent package archives matched and full ISO `cmp` returned zero. Replacement `9825438` A built successfully; B and comparison remain pending |
+| Two byte-identical candidate images | Passed on `9825438`: full ISO `cmp` returned zero; all five independent package archives, generated source archives, inputs and manifests match. Both builds passed 156 native, 21 controller and 13 QML tests |
 | Physical PC and USB boot | Deferred by request |
 
 The native fixture runner is `scripts/validate/native-alpm.py`. It creates a new
@@ -379,8 +383,9 @@ frozen Git objects. That receipt has SHA256
 The locally verified 52,812,027-byte evidence archive has SHA256
 `2c20b9974bb9d95cea849bee8bd1e62e17d8c82d069bb8a783842a98f41342b0`.
 Its 49 non-ISO manifest entries were independently checked. The complete local
-ISO also passed an independent whole-file hash check. Independent B and all
-replacement VM acceptance remain pending.
+ISO also passed an independent whole-file hash check. Independent B subsequently
+passed the same build gates and full equality checks; management acceptance
+remains pending.
 
 The direct ISO transfer stopped after 2,374,172,672 bytes. The complete local
 prefix matched the original image, and transfer resumed in individually checked
@@ -413,6 +418,62 @@ repository. Their complete paths are root-owned and readable by ordinary users.
 The actual decoder preflight and all five decoder and nine auditor tests passed
 before the scan. Audit scratch was removed, and the original ISO hash remained
 unchanged. Booted live behavior still requires fresh VM acceptance.
+
+Independent B completed successfully with the same 3,645,478,912-byte ISO and
+SHA256 as A. The full byte comparison returned zero. All five independently built
+package archives, generated package sources, manifests and build inputs match.
+Both builds passed 156 native Rust tests, with five normal-run fixture skips, and
+21 controller plus 13 QML tests. The comparison receipt has SHA256
+`0af85f99c0d633791e646590bccb1f85142cfd216e3e28c08be69778cce0c055`.
+After the remote comparison, identical B content was deduplicated locally through
+a read-only hardlink, with an explicit receipt. Both thin exports were verified
+and both closed builder disks retired. The
+[current build receipts](evidence/phase42-system-management/build-9825438/README.md)
+preserve these identities and limitations.
+
+The fresh plain `9825438` baseline passed two enforcing cold boots and actual
+SDDM/Plasma Wayland logins. Its accepted manifest has SHA256
+`73f4e7f972d4d7f5db52982d8f9ab32b7a45ea0631c36e530f798124eb47ded0`.
+The boot IDs were `ca6be5dc-6071-469c-8fea-129d5c036145` and
+`a307902a-849b-48be-ba68-439d97be82ac`. Both passed maintained-UKI verification,
+original desktop smoke and installed health checks. All 118 public evidence files
+were independently checked against their index; the 3,506,248-byte archive has
+SHA256 `9b18f01b35c09ae3004f5a98c293b7d02b36f340651920b53895084ecefacb5a`.
+The [plain baseline receipts](evidence/phase42-system-management/vm/plain-baseline-9825438/README.md)
+cover payload installation and boot readiness, not management or Calamares UI.
+
+The signed plain recovery medium passed all six cases: trusted, untrusted,
+tampered, unsigned, altered root filesystem, and disabled Secure Boot. The trusted
+case exercised the actual unprivileged Control Center: package search, a resolved
+KCalc/libmpc review, the live-session explanation and disabled apply action. Root
+submission was refused and management state remained unchanged. Its public
+135-file archive has SHA256
+`23887b6a13e43a2a7810bdebf7588859d7b41aebe13704a2caa25ae03e16fb68`.
+
+Installed CLI acceptance exposed root-owned but group-writable `install-inputs`
+directories and templates copied from the source archive. The production reader
+correctly refused them. The image builder now explicitly sets directories to
+0755 and files to 0644 after seeding management data, and rejects symlinks.
+The regression recreates archive permissions under a restrictive umask.
+
+A separate test-installer defect used `subvol=@` instead of the production
+installer's canonical `subvol=/@`. After correcting permissions in a disposable
+diagnostic overlay, the snapshot validator correctly refused this incoherent
+fixture before package commit. The harness now shares the production subvolume
+paths, with a regression covering plain and encrypted root sources. Neither
+production trust checks nor snapshot validation were relaxed.
+
+With both corrections applied only in a disposable diagnostic overlay, all twelve
+CLI lifecycle gates passed, including install/removal, enforcing reboot
+confirmation, pending-boot protection, history and personal-file preservation.
+This does not qualify the original image or a future replacement. The original
+failure and three diagnostic runs remain in a verified 420-file archive, SHA256
+`3dd11b1f52c7f33bc66166063096d7729121c0dc3805b402d0f47da2e43fc55b`.
+The pinned repositories do not contain the originally nominated `hello` fixture;
+the diagnostic used the available KCalc package. Windows and Linux Python suites
+each pass 209 tests, with 65 and four platform-dependent skips respectively.
+The [VM receipts](evidence/phase42-system-management/vm/cli-and-media-9825438/README.md)
+keep the image failure separate from corrected-overlay diagnostic results.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software
