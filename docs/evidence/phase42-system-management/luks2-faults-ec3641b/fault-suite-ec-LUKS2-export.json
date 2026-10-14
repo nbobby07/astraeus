@@ -1,0 +1,7 @@
+{
+  "archive": "/home/ubuntu/p42/fault-suite-ec-LUKS2-evidence.tar.gz",
+  "bytes": 25966829,
+  "sha256": "5511fe88ab53d44d8a211a7f90609a6445aac94b33acbee94ba4e011b8d395a1",
+  "files": 1126,
+  "private_keys_and_credentials_excluded": true
+}
