@@ -4,8 +4,15 @@ Status: **in progress, not qualified for release**. A required gate that fails o
 has not run leaves this milestone incomplete. This report will be updated with
 candidate identities and exported evidence after the integrated acceptance run.
 
-The current runtime candidate is `0e8bb00e3edc5382fa177bf0017b2f8595ee8229`.
-Its clean-build source archive is 4,991,208 bytes with SHA256
+The current runtime candidate is `9825438d275c3037fcb41fbd768eebc71ef3f38c`.
+Its source archive is 5,016,480 bytes with SHA256
+`e1eec7917965b73893f013c896bb3028d819f1e362b698a398c85530b3e70c35`.
+An independent Git archive and compression pass produced the same bytes. It fixes
+missing live repository metadata exposed by the earlier candidate's boot tests.
+Replacement image builds and fresh VM acceptance remain required.
+
+The previous `0e8bb00e3edc5382fa177bf0017b2f8595ee8229` source archive was
+4,991,208 bytes with SHA256
 `f0d5c0019f5e9962506dbcc7359cdc2d98ae4d143528d1ede8943238ea83b0d4`.
 Earlier stopped build attempts remain preliminary evidence and do not qualify this
 candidate. Later validation-only commits are recorded separately from runtime.
@@ -263,9 +270,9 @@ while it applies. Live sessions permit inspection and planning only.
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
 | Management publication failures | Real filesystem tests passed at the configuration, lock and ownership write boundaries; mixed state and retries are refused, and pending evidence remains available |
 | Native desktop build and tests | 21 Qt controller and 13 QML checks passed in the pinned Arch `298e12a` build; both Qt groups passed again on `0e8bb00`. Production startup loaded the KDE desktop style; installed-VM backend acceptance remains pending |
-| Plain and LUKS2 installed VMs with enforced Secure Boot | Fresh plain baseline passed two enforcing cold boots and real SDDM/Plasma logins. Management/recovery acceptance and the LUKS2 baseline remain pending |
-| Image contents and signing-key audit | Image A passed the complete payload/repository audit, with exact upstream GnuTLS test constants identified and retained in the report |
-| Two byte-identical candidate images | Passed: both clean builds exited successfully, all five independent package archives match, and full ISO `cmp` returned zero with identical hashes and sizes |
+| Plain and LUKS2 installed VMs with enforced Secure Boot | Historical `0e8bb00` plain baseline passed two enforcing cold boots and real SDDM/Plasma logins. Both replacement baselines and management/recovery acceptance remain pending |
+| Image contents and signing-key audit | Historical `0e8bb00` A passed the full content/key audit. The replacement must also pass strict final compressed repository metadata and access checks |
+| Two byte-identical candidate images | Passed on historical `0e8bb00`: all five independent package archives matched and full ISO `cmp` returned zero. Replacement `9825438` A/B builds remain pending |
 | Physical PC and USB boot | Deferred by request |
 
 The native fixture runner is `scripts/validate/native-alpm.py`. It creates a new
@@ -324,6 +331,41 @@ The [plain baseline receipts](evidence/phase42-system-management/vm/plain-baseli
 include the manifest, public trust results and actual desktop smoke observations.
 This validates production payload installation and boot readiness, not the
 Calamares UI, package management, recovery or physical graphics support.
+
+The matching signed recovery image passed its RAM-root hash and enforcing
+firmware checks, then failed the ordinary-user installed-package query because
+`/var/lib/pacman/sync` was absent. No live acceptance was claimed. Its failed
+44-file evidence archive has SHA256
+`6e6218c1092e8b464f01005850628463b834547935ef88f19b50d456caedf306`.
+The authenticated ArchISO 91 source confirms that cleanup deletes this directory
+immediately before compression. A separate diagnostic boot restored only the
+five approved public database/signature files into the ephemeral root. Ordinary
+user installed/search/details queries, a resolved KCalc plan, native Control
+Center startup and the strengthened live smoke all passed. Package inventory,
+original recovery-image bytes and baseline VARS remained unchanged. This was
+diagnostic instrumentation, not qualification of either candidate. Its evidence
+archive has SHA256
+`b521f1ee4eae602a6950d189d2a0e57487d3089f0ca10a28516d1a2f35b9e056`.
+
+Candidate `9825438` stages the verified public metadata outside the live root,
+then restores it through the existing compression hook after ArchISO cleanup.
+It verifies hashes before and after copying, sets root ownership and public read
+access, and normalizes timestamps. It does not refresh metadata at boot or copy
+a build keyring. Real compressed-image tests cover exact bytes, reproducibility,
+missing signatures, changed databases and unsafe destination paths. An older
+reproducibility fixture initially failed because it lacked the now-required
+ArchISO inputs; that failure is retained, and the fixture now supplies the real
+layout while preserving its time/cache divergence and full ISO comparison.
+The final full Python suite passed on Linux root (204 passed, four skipped) and
+Windows (143 passed, 65 skipped), 208 cases on each platform.
+
+Before replacement builds, five closed superseded cloud files were retired after
+exact path/hash/process checks and verified local exports: the two `0e8bb00`
+ISOs, the second and third plain-attempt disks, and matching recovery image.
+All small evidence, certificates, VARS and provenance keys remain. The earlier
+images remain verified on the local D drive. The retirement receipt has SHA256
+`bc91af027d87a0adcae33bd2b089ec00f8e7521de0f8bd68cc8c8859a168f75f`;
+42,711,842,816 bytes were free afterward. Original USB artifacts were untouched.
 
 Phase 4.1's normal Proton diagnostic and recorded negative tests passed. GameMode's
 full self-test and physical gaming qualification remain incomplete. Software
