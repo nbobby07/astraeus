@@ -94,6 +94,33 @@ fn plain_export_is_importable_toml_and_matches_json_export() {
 }
 
 #[test]
+fn submission_rejects_malformed_and_oversized_input_before_platform_work() {
+    for (input, diagnostic) in [
+        (b"{".to_vec(), "EOF while parsing"),
+        (vec![0xff], "system request must be UTF-8"),
+        (
+            vec![b' '; distro_config::MAX_SYSTEM_CONFIG_BYTES + 1],
+            "system request exceeds 256 KiB",
+        ),
+    ] {
+        let output = run(&["submit", "--json"], &input);
+        assert!(!output.status.success() && output.stdout.is_empty());
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        assert!(stderr.contains(diagnostic), "{stderr}");
+    }
+    let mut request = serde_json::json!({"schema_version":1,
+        "config":distro_config::SystemConfig::default(),
+        "expected_plan":format!("sha256:{}", "a".repeat(64))});
+    request["command"] = serde_json::json!("touch /x");
+    let output = run(
+        &["submit", "--json"],
+        &serde_json::to_vec(&request).unwrap(),
+    );
+    assert!(!output.status.success() && output.stdout.is_empty());
+    assert!(String::from_utf8_lossy(&output.stderr).contains("unknown field"));
+}
+
+#[test]
 fn cli_bounds_toml_and_rejects_future_configuration() {
     for input in [
         b"schema_version=2\n".to_vec(),

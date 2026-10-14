@@ -23,6 +23,10 @@ import uuid
 
 SHARE = Path('/mnt/astraeus-validation')
 STATE = Path('/var/lib/astraeus/management/state.json')
+SUBMISSIONS = Path('/run/astraeus')
+RECEIPTS = Path('/var/log/astraeus/operations')
+WORKER_TEMPLATE = 'astraeus-apply@.service'
+RUNTIME_MASK = Path('/run/systemd/system') / WORKER_TEMPLATE
 SCENARIOS = ('metadata', 'interruption', 'abandoned', 'failed-hook', 'signing-failure',
              'root-space', 'cache-space', 'esp-space')
 SECURE_LIVE_MARKER = 'ASTRAEUS_SECURE_LIVE_OK: SecureBoot=1 SetupMode=0 rootfs=verified-in-RAM'
@@ -163,7 +167,7 @@ while pid>1:
     args=path.joinpath('cmdline').read_bytes().split(b'\\0')
     chain.append({'pid':pid,'argv':[v.decode() for v in args if v]})
     if len(args)>=4 and args[1:3]==[b'system',b'worker']:
-        record={'worker_pid':pid,'operation_id':args[3].decode(),'ancestors':chain}
+        record={'worker_pid':pid,'worker_start_ticks':int(path.joinpath('stat').read_text().rsplit(')',1)[1].split()[19]),'operation_id':args[3].decode(),'ancestors':chain}
         break
     pid=int(next(line.split()[1] for line in path.joinpath('status').read_text().splitlines() if line.startswith('PPid:')))
 else: raise RuntimeError('production worker ancestor missing')
@@ -203,6 +207,260 @@ def guest_barrier():
     config = guest_guard()
     marker = barrier_paths(config)[2]
     return json.loads(marker.read_text()) if marker.exists() else None
+
+
+def entry_evidence(path):
+    if not os.path.lexists(path):
+        return None
+    info = path.lstat()
+    result = {'device': info.st_dev, 'inode': info.st_ino, 'uid': info.st_uid,
+              'mode': stat.S_IMODE(info.st_mode)}
+    if stat.S_ISLNK(info.st_mode):
+        return dict(result, kind='symlink', target=os.readlink(path))
+    if stat.S_ISDIR(info.st_mode):
+        return dict(result, kind='directory')
+    require(stat.S_ISREG(info.st_mode) and info.st_size <= 2 * 1024 * 1024, 'unsupported submission evidence file')
+    return dict(result, kind='file', sha256=digest(path))
+
+
+def directory_evidence(path):
+    if not os.path.lexists(path):
+        return None
+    require(path.is_dir() and not path.is_symlink(), 'submission inventory is not a real directory')
+    entries = sorted(path.iterdir())
+    require(len(entries) <= 4096, 'submission evidence inventory too large')
+    return {entry.name: entry_evidence(entry) for entry in entries}
+
+
+def submission_inventory():
+    return {'requests': directory_evidence(SUBMISSIONS / 'requests'),
+            'receipts': directory_evidence(RECEIPTS), 'active': entry_evidence(SUBMISSIONS / 'active'),
+            'history': json.loads(call('distroctl', 'history', '--json')['output'])}
+
+
+def require_noop(plan):
+    require(plan.get('executable') is False and not plan.get('blockers'), 'review is not a true no-op')
+    inner = plan['plan']
+    require(inner['packages']['changes'] == [] and inner['packages']['targets'] == []
+            and inner['management']['before_digest'] == inner['management']['after_digest']
+            and inner['management']['reasons_before'] == inner['management']['reasons_after']
+            and inner['snapshot_required'] is False and inner['boot']['regenerate_uki'] is False,
+            'no-op review contains a mutation')
+
+
+def json_input(arguments, value):
+    result = subprocess.run(['/usr/bin/distroctl', *arguments],
+             input=json.dumps(value, separators=(',', ':')).encode(), capture_output=True, timeout=30,
+             env={'PATH': '/usr/bin:/bin', 'LC_ALL': 'C'})
+    require(len(result.stdout) + len(result.stderr) <= 2 * 1024 * 1024, 'submission output too large')
+    return {'code': result.returncode, 'output': result.stdout.decode('utf-8', 'strict'),
+            'error': result.stderr.decode('utf-8', 'replace')}
+
+
+def envelope(name):
+    value = json.loads((SHARE / name).read_text())
+    require(isinstance(value, dict) and set(value) == {'schema_version', 'config', 'expected_plan'}
+            and type(value['schema_version']) is int and value['schema_version'] == 1
+            and re.fullmatch('sha256:[0-9a-f]{64}', value.get('expected_plan', '')), 'invalid reviewed test submission')
+    return value
+
+
+def idle_noop():
+    value = envelope('submission-noop.json')
+    status = json.loads(call('distroctl', 'system', 'status', '--json')['output'])
+    active = status.get('active_operation')
+    require(not active or active['state'] in ('succeeded', 'failed', 'rolled_back'), 'submission fixture requires an idle guest')
+    require(value['config'] == status['configuration'], 'no-op configuration is not the current configuration')
+    history = json.loads(call('distroctl', 'history', '--json')['output'])
+    require(all(item['state'] in ('succeeded', 'failed', 'rolled_back') for item in history), 'pending transaction prevents fixture')
+    units = call('systemctl', 'list-units', '--all', '--plain', '--no-legend', '--no-pager', 'astraeus-apply@*.service')['output']
+    for line in units.splitlines():
+        name = line.split()[0]
+        require(re.fullmatch('astraeus-apply@[0-9a-f]{32}\\.service', name), 'unexpected worker unit')
+        shown = call('systemctl', 'show', '--all', '--property=LoadState,ActiveState,Job', name)['output']
+        require(unit_idle(shown), 'worker unit is not idle')
+    planned = json_input(['system', 'plan', '--stdin', '--json'], value['config'])
+    require(planned['code'] == 0, 'no-op revalidation failed')
+    plan = json.loads(planned['output'])
+    require_noop(plan)
+    require(plan['plan_id'] == value['expected_plan'], 'reviewed no-op is stale')
+    return value
+
+
+def submission_fixture(config, kind):
+    parent = Path('/var/log/astraeus')
+    parent.mkdir(mode=0o755, exist_ok=True)
+    info = parent.lstat()
+    require(stat.S_ISDIR(info.st_mode) and info.st_uid == 0 and info.st_mode & 0o022 == 0, 'untrusted test evidence directory')
+    path = parent / ('phase42-submission-' + config['run_id'] + '-' + kind)
+    path.mkdir(mode=0o700)
+    sync_directory(parent)
+    return path
+
+
+def sync_directory(path):
+    if os.name == 'posix':
+        descriptor = os.open(path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        try:
+            os.fsync(descriptor)
+        finally:
+            os.close(descriptor)
+
+
+def save_submission_evidence(fixture, record):
+    descriptor = os.open(fixture / 'result.json', os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, 'w') as output:
+        json.dump(record, output, sort_keys=True)
+        output.flush()
+        os.fsync(output.fileno())
+    sync_directory(fixture)
+
+
+def unlink_owned_symlink(path, identity, target):
+    info = path.lstat()
+    require(stat.S_ISLNK(info.st_mode) and (info.st_dev, info.st_ino) == identity
+            and os.readlink(path) == str(target), 'owned test symlink changed; preserve it for inspection')
+    path.unlink()
+
+
+def guest_submission_symlink():
+    config = guest_guard()
+    value = idle_noop()
+    request_dir = SUBMISSIONS / 'requests'
+    require(not os.path.lexists(request_dir), 'symlink fixture requires absent request staging; never move existing requests')
+    SUBMISSIONS.mkdir(mode=0o755, exist_ok=True)
+    info = SUBMISSIONS.lstat()
+    require(stat.S_ISDIR(info.st_mode) and info.st_uid == 0 and info.st_mode & 0o022 == 0, 'untrusted submission parent')
+    fixture = submission_fixture(config, 'symlink')
+    canary = fixture / 'canary'
+    canary.mkdir(mode=0o700)
+    descriptor = os.open(canary / 'sentinel', os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, 'w') as output:
+        output.write(config['run_id'] + '\n')
+        output.flush()
+        os.fsync(output.fileno())
+    sync_directory(canary)
+    sync_directory(fixture)
+    before = submission_inventory()
+    original = directory_evidence(canary)
+    request_dir.symlink_to(canary, target_is_directory=True)
+    info = request_dir.lstat()
+    identity = (info.st_dev, info.st_ino)
+    record = {'passed': False, 'fixture': str(fixture), 'before': before, 'canary_before': original}
+    try:
+        record['reply'] = json_input(['system', 'submit', '--json'], value)
+        record['canary_after'] = directory_evidence(canary)
+        require(record['reply']['code'] != 0 and 'link or non-directory' in record['reply']['error'], 'symlink staging was not refused by its path guard')
+        require(record['canary_after'] == original, 'submission wrote through the staging symlink; preserve canary evidence')
+        unlink_owned_symlink(request_dir, identity, canary)
+        identity = None
+        record['after'] = submission_inventory()
+        require(record['after'] == before, 'symlink refusal changed request, receipt, active or history inventory')
+        record['passed'] = True
+        return record
+    finally:
+        try:
+            if identity is not None:
+                unlink_owned_symlink(request_dir, identity, canary)
+        except BaseException as error:
+            record.update(passed=False, cleanup_error=str(error))
+            raise
+        finally:
+            save_submission_evidence(fixture, record)
+
+
+def worker_identity(marker):
+    pid, expected = marker.get('worker_pid'), marker.get('worker_start_ticks')
+    identifier = marker.get('operation_id', '')
+    require(type(pid) is int and pid > 1 and type(expected) is int and expected > 0
+            and re.fullmatch('[0-9a-f]{32}', identifier), 'invalid observed worker identity')
+    process = Path('/proc', str(pid))
+    args = [item for item in (process / 'cmdline').read_bytes().split(b'\0') if item]
+    ticks = int((process / 'stat').read_text().rsplit(')', 1)[1].split()[19])
+    require(ticks == expected and args[1:] == [b'system', b'worker', identifier.encode()]
+            and os.path.samefile(process / 'exe', '/usr/bin/distroctl'), 'observed worker was replaced')
+    unit = 'astraeus-apply@' + identifier + '.service'
+    require(any(line.split(':', 2)[-1].rstrip().endswith('/' + unit)
+                for line in (process / 'cgroup').read_text().splitlines()), 'worker unit differs from operation')
+    return {'pid': pid, 'start_ticks': ticks, 'operation_id': identifier, 'unit': unit}
+
+
+def guest_concurrent_submit(identifier):
+    config = guest_guard()
+    marker = guest_barrier()
+    require(marker and marker['operation_id'] == identifier, 'concurrent test lacks its real worker barrier')
+    value = envelope('concurrent-submission.json')
+    operation = json.loads(call('distroctl', 'system', 'operation', identifier, '--json')['output'])
+    require(operation['state'] == 'applying'
+            and operation['transaction']['plan']['management']['after']['applied'] == value['config'], 'concurrent request differs from the applying plan')
+    fixture = submission_fixture(config, 'concurrent')
+    record = {'passed': False, 'fixture': str(fixture), 'worker_before': worker_identity(marker),
+              'before': submission_inventory(), 'state_before': guest_observe()}
+    try:
+        record['reply'] = json_input(['system', 'submit', '--json'], value)
+        record['worker_after'] = worker_identity(marker)
+        record['after'] = submission_inventory()
+        record['state_after'] = guest_observe()
+        require(record['reply']['code'] != 0 and 'another system operation is queued or running' in record['reply']['error'], 'concurrent submission was not refused for its active worker')
+        require(record['worker_before'] == record['worker_after'], 'concurrent submission replaced the actual worker')
+        require(record['before'] == record['after'], 'concurrent submission changed durable request inventories')
+        require(record['state_before'] == record['state_after'], 'concurrent submission changed package or management state')
+        record['passed'] = True
+        return record
+    finally:
+        save_submission_evidence(fixture, record)
+
+
+def guest_worker_start_failure():
+    config = guest_guard()
+    value = idle_noop()
+    require(not os.path.lexists(RUNTIME_MASK), 'runtime template override already exists; preserve it')
+    parent = RUNTIME_MASK.parent.lstat()
+    require(stat.S_ISDIR(parent.st_mode) and parent.st_uid == 0 and parent.st_mode & 0o022 == 0, 'untrusted runtime unit directory')
+    fixture = submission_fixture(config, 'worker-start')
+    record = {'passed': False, 'fixture': str(fixture), 'before': submission_inventory(), 'state_before': guest_observe()}
+    # Exclusive creation makes ownership of this one runtime mask unambiguous.
+    RUNTIME_MASK.symlink_to('/dev/null')
+    info = RUNTIME_MASK.lstat()
+    identity = (info.st_dev, info.st_ino)
+    try:
+        call('systemctl', 'daemon-reload')
+        require(call('systemctl', 'show', '--property=LoadState', '--value', 'astraeus-apply@' + config['run_id'] + '.service')['output'].strip() == 'masked', 'runtime worker template mask was not observed')
+        record['reply'] = json_input(['system', 'submit', '--json'], value)
+        require(record['reply']['code'] != 0 and 'worker did not start' in record['reply']['error']
+                and 'masked' in record['reply']['error'].lower(), 'submission did not report the injected systemd start failure')
+        identifier = (SUBMISSIONS / 'active').read_text().strip()
+        require(re.fullmatch('[0-9a-f]{32}', identifier), 'failed start lacks an operation identity')
+        operation = json.loads(call('runuser', '-u', config['user'], '--', 'distroctl', 'system', 'operation', identifier, '--json')['output'])
+        require(operation['state'] == 'failed' and operation.get('transaction') is None
+                and 'masked' in operation.get('error', '').lower(), 'failed-start receipt is not publicly inspectable and terminal')
+        record['operation'] = operation
+        after = submission_inventory()
+        for field, suffix in [('requests', '.queued.json'), ('receipts', '.json')]:
+            old = record['before'][field] or {}
+            new = after[field] or {}
+            require(set(new) - set(old) == {identifier + suffix}
+                    and all(new.get(name) == details for name, details in old.items()), 'failed start changed unexpected ' + field)
+        require(after['history'] == record['before']['history'], 'worker-start failure created a transaction')
+        shown = call('systemctl', 'show', '--all', '--property=LoadState,ActiveState,Job', 'astraeus-apply@' + identifier + '.service')['output']
+        require('LoadState=masked' in shown and unit_idle(shown, allow_masked=True), 'failed-start worker or job is still active')
+        record['replay'] = call('distroctl', 'system', 'worker', identifier, check=False)
+        require(record['replay']['code'] != 0 and 'replay refused' in record['replay']['error'], 'failed-start request was replayed')
+        require(submission_inventory() == after, 'failed-start replay changed its inventory')
+        record['after'] = after
+        record['state_after'] = guest_observe()
+        require(record['state_before'] == record['state_after'], 'failed start changed package or management state')
+        record['passed'] = True
+        return record
+    finally:
+        try:
+            unlink_owned_symlink(RUNTIME_MASK, identity, '/dev/null')
+            call('systemctl', 'daemon-reload')
+        except BaseException as error:
+            record.update(passed=False, cleanup_error=str(error))
+            raise
+        finally:
+            save_submission_evidence(fixture, record)
 
 
 def available(path):
@@ -495,7 +753,8 @@ def guest(action, value):
     functions = {'home': guest_home, 'observe': guest_observe, 'arm': guest_arm_hook,
                  'barrier': guest_barrier, 'abandoned': guest_inject_abandoned,
                  'metadata-negative': guest_metadata_negative, 'space-arm': guest_space_arm,
-                 'space-reset': guest_space_reset}
+                 'space-reset': guest_space_reset, 'submission-symlink': guest_submission_symlink,
+                 'worker-start-failure': guest_worker_start_failure}
     if action in functions:
         result = functions[action]()
     elif action == 'compete':
@@ -504,6 +763,8 @@ def guest(action, value):
         result = guest_recover(value)
     elif action == 'arm-failure':
         result = guest_arm_hook(value)
+    elif action == 'concurrent-submit':
+        result = guest_concurrent_submit(value)
     else:
         raise ValueError('unsupported guest fault action')
     print(json.dumps(result, sort_keys=True))
@@ -589,14 +850,14 @@ def transaction_boundary(record, post=False):
         require(record.get('post_snapshot') and record.get('boot_regenerated') is True, 'post-generation boot evidence missing')
 
 
-def unit_idle(text, allow_failed=False):
+def unit_idle(text, allow_failed=False, allow_masked=False):
     values = {}
     for line in text.splitlines():
         key, separator, value = line.partition('=')
         require(separator and key in ['LoadState', 'ActiveState', 'Job'] and key not in values, 'invalid worker unit observation')
         values[key] = value
     require(set(values) == {'LoadState', 'ActiveState', 'Job'}, 'incomplete worker unit observation')
-    return (values['LoadState'] in ['loaded', 'not-found']
+    return (values['LoadState'] in (['loaded', 'not-found', 'masked'] if allow_masked else ['loaded', 'not-found'])
             and values['ActiveState'] in (['inactive', 'failed'] if allow_failed else ['inactive'])
             and values['Job'] in ['', '0'])
 
@@ -890,6 +1151,15 @@ def metadata_scenario(vm, args, recovery, gate, before):
 def interruption_scenario(vm, args, recovery, gate, before):
     phase42, p2 = host_modules()
     require(args.package not in before['packages'], 'interruption package must start absent')
+    _, noop = phase42.json_command(vm, ['system', 'plan', '--stdin', '--json'], before['configuration'], args.user, label='submission-noop-review')
+    require_noop(noop)
+    p2.save(vm.share / 'submission-noop.json', {'schema_version': 1, 'config': before['configuration'], 'expected_plan': noop['plan_id']})
+    def symlink_refusal():
+        result = guest_command(vm, 'submission-symlink', label='submission-symlink-refusal')
+        require(result['passed'] is True, 'symlink submission fixture did not pass')
+        state_equal(before, guest_command(vm, 'observe', label='after-submission-symlink'))
+        return result
+    gate('submission-refuses-symlinked-request-staging', symlink_refusal)
     gate('install-posttransaction-barrier', lambda: guest_command(vm, 'arm'))
     desired = copy.deepcopy(before['configuration'])
     desired['packages'] = sorted([*desired['packages'], args.package])
@@ -899,6 +1169,7 @@ def interruption_scenario(vm, args, recovery, gate, before):
                 'request does not install the nominated fault package')
         return plan
     plan = gate('interrupted-install-plan', review_install)
+    p2.save(vm.share / 'concurrent-submission.json', {'schema_version': 1, 'config': desired, 'expected_plan': plan['plan_id']})
     identifier = submitted(vm, desired, plan, 'interrupted-install-submit')
     def at_barrier():
         deadline = time.monotonic() + args.timeout
@@ -914,6 +1185,7 @@ def interruption_scenario(vm, args, recovery, gate, before):
             time.sleep(1)
         raise TimeoutError('real worker did not reach the post-transaction barrier')
     record = gate('real-applying-boundary', at_barrier)
+    gate('concurrent-submit-preserves-applying-worker', lambda: guest_command(vm, 'concurrent-submit', identifier))
     gate('native-lock-excludes-competing-writer', lambda: guest_command(vm, 'compete', identifier))
     def kill():
         vm.command(shlex.join(['systemctl', 'kill', '--signal=SIGKILL', '--kill-whom=all', 'astraeus-apply@' + identifier + '.service']), label='sigkill-worker-service')
@@ -950,8 +1222,14 @@ def abandoned_scenario(vm, args, recovery, gate, before):
     phase42, p2 = host_modules()
     original = before['configuration']
     _, plan = phase42.json_command(vm, ['system', 'plan', '--stdin', '--json'], original, args.user, label='orphan-noop-review')
-    require(not plan['blockers'] and plan['plan']['management']['before_digest'] == plan['plan']['management']['after_digest'],
-            'abandoned boundary requires an unchanged baseline')
+    require_noop(plan)
+    p2.save(vm.share / 'submission-noop.json', {'schema_version': 1, 'config': original, 'expected_plan': plan['plan_id']})
+    def start_failure():
+        result = guest_command(vm, 'worker-start-failure', label='real-worker-start-failure')
+        require(result['passed'] is True, 'worker-start failure fixture did not pass')
+        state_equal(before, guest_command(vm, 'observe', label='after-worker-start-failure'))
+        return result
+    gate('systemd-start-failure-persists-failed-receipt', start_failure)
     p2.save(vm.share / 'orphan-submission.json', {'schema_version': 1, 'config': original, 'expected_plan': plan['plan_id']})
     injected = gate('abandoned-durable-boundary', lambda: guest_command(vm, 'abandoned'))
     identifier = injected['receipt']['operation_id']
@@ -1073,7 +1351,8 @@ def main():
     commands = parser.add_subparsers(dest='action', required=True)
     guest_parser = commands.add_parser('guest', help=argparse.SUPPRESS)
     guest_parser.add_argument('guest_action', choices=['home', 'observe', 'arm', 'barrier', 'compete', 'abandoned',
-        'recover', 'metadata-negative', 'arm-failure', 'space-arm', 'space-reset'])
+        'recover', 'metadata-negative', 'arm-failure', 'space-arm', 'space-reset',
+        'submission-symlink', 'concurrent-submit', 'worker-start-failure'])
     guest_parser.add_argument('value', nargs='?')
     host = commands.add_parser('run')
     for name in ['base', 'output', 'ovmf-code', 'recovery-image', 'recovery-manifest']:

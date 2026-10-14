@@ -159,9 +159,147 @@ class Phase42FaultsTests(unittest.TestCase):
         self.assertFalse(faults.unit_idle('LoadState=loaded\nActiveState=inactive\nJob=23 start\n'))
         self.assertFalse(faults.unit_idle('LoadState=loaded\nActiveState=failed\nJob=\n'))
         self.assertTrue(faults.unit_idle('LoadState=loaded\nActiveState=failed\nJob=\n', allow_failed=True))
+        masked = 'LoadState=masked\nActiveState=inactive\nJob=\n'
+        self.assertFalse(faults.unit_idle(masked))
+        self.assertTrue(faults.unit_idle(masked, allow_masked=True))
+        self.assertFalse(faults.unit_idle(masked.replace('Job=\n', 'Job=42 start\n'), allow_masked=True))
         for value in ['LoadState=not-found\n', 'LoadState=not-found\nActiveState=inactive\nJob=\nJob=1\n']:
             with self.assertRaises(RuntimeError):
                 faults.unit_idle(value)
+
+    def test_submission_faults_require_a_reviewed_true_noop(self):
+        plan = {'executable': False, 'blockers': [], 'plan': {'packages': {'changes': [], 'targets': []},
+                'management': {'before_digest': 'same', 'after_digest': 'same', 'reasons_before': {}, 'reasons_after': {}},
+                'snapshot_required': False, 'boot': {'regenerate_uki': False}}}
+        faults.require_noop(plan)
+        for section, key, value in [('packages', 'changes', ['install']), ('packages', 'targets', ['app']),
+                                     ('management', 'after_digest', 'changed'), ('management', 'reasons_after', {'app': 'explicit'}),
+                                     ('boot', 'regenerate_uki', True)]:
+            changed = copy.deepcopy(plan)
+            changed['plan'][section][key] = value
+            with self.subTest(key=key), self.assertRaises(RuntimeError):
+                faults.require_noop(changed)
+        for key, value in [('executable', True), ('blockers', ['pending transaction'])]:
+            with self.assertRaises(RuntimeError):
+                faults.require_noop(dict(plan, **{key: value}))
+
+    def test_concurrent_submit_requires_same_worker_inventories_and_system(self):
+        identifier = 'a' * 32
+        config = {'run_id': 'b' * 32}
+        marker = {'operation_id': identifier}
+        value = {'config': {'packages': ['hello']}}
+        operation = {'state': 'applying', 'transaction': {'plan': {'management': {'after': {'applied': value['config']}}}}}
+        identity = {'pid': 99, 'start_ticks': 123, 'operation_id': identifier}
+        inventory = {'requests': {'request': 'original'}, 'receipts': {}, 'active': identifier, 'history': ['applying']}
+        for changed in ['none', 'worker', 'inventory', 'state', 'wrong-refusal']:
+            with self.subTest(changed=changed), tempfile.TemporaryDirectory() as directory:
+                after_identity = dict(identity, start_ticks=124) if changed == 'worker' else identity
+                after_inventory = dict(inventory, active='other') if changed == 'inventory' else inventory
+                after_state = dict(observation(), management='changed') if changed == 'state' else observation()
+                reply = {'code': 1, 'output': '', 'error': 'another system operation is queued or running'}
+                if changed == 'wrong-refusal':
+                    reply['error'] = 'package lock busy'
+                with patch.object(faults, 'guest_guard', return_value=config), \
+                        patch.object(faults, 'guest_barrier', return_value=marker), \
+                        patch.object(faults, 'envelope', return_value=value), \
+                        patch.object(faults, 'call', return_value={'output': json.dumps(operation)}), \
+                        patch.object(faults, 'submission_fixture', return_value=Path(directory)), \
+                        patch.object(faults, 'worker_identity', side_effect=[identity, after_identity]), \
+                        patch.object(faults, 'submission_inventory', side_effect=[inventory, after_inventory]), \
+                        patch.object(faults, 'guest_observe', side_effect=[observation(), after_state]), \
+                        patch.object(faults, 'json_input', return_value=reply):
+                    if changed == 'none':
+                        self.assertTrue(faults.guest_concurrent_submit(identifier)['passed'])
+                    else:
+                        with self.assertRaises(RuntimeError):
+                            faults.guest_concurrent_submit(identifier)
+                self.assertEqual(json.loads((Path(directory) / 'result.json').read_text())['passed'], changed == 'none')
+
+    @unittest.skipUnless(os.name == 'posix', 'symlink identity cleanup')
+    def test_symlink_cleanup_removes_only_its_exact_owned_link_and_keeps_target_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target, link = root / 'canary', root / 'requests'
+            target.mkdir()
+            (target / 'unexpected').write_text('preserve this evidence')
+            link.symlink_to(target, target_is_directory=True)
+            info = link.lstat()
+            identity = (info.st_dev, info.st_ino)
+            with self.assertRaises(RuntimeError):
+                faults.unlink_owned_symlink(link, (identity[0], identity[1] + 1), target)
+            self.assertTrue(link.is_symlink())
+            with self.assertRaises(RuntimeError):
+                faults.unlink_owned_symlink(link, identity, root / 'wrong-target')
+            self.assertTrue(link.is_symlink())
+            faults.unlink_owned_symlink(link, identity, target)
+            self.assertFalse(os.path.lexists(link))
+            self.assertEqual((target / 'unexpected').read_text(), 'preserve this evidence')
+
+    @unittest.skipUnless(os.name == 'posix' and getattr(os, 'geteuid', lambda: -1)() == 0, 'root Linux submission fixture')
+    def test_symlink_fixture_refuses_existing_requests_and_preserves_unexpected_writes(self):
+        for writes in [False, True]:
+            with self.subTest(writes=writes), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                submissions, fixture = root / 'run', root / 'evidence'
+                fixture.mkdir()
+                value = {'schema_version': 1}
+                inventory = {'requests': None, 'receipts': None, 'active': None, 'history': []}
+                def submit(*_args):
+                    self.assertTrue((submissions / 'requests').is_symlink())
+                    if writes:
+                        (fixture / 'canary/unexpected').write_text('saved evidence')
+                    return {'code': 1, 'output': '', 'error': 'management path contains a link or non-directory'}
+                with patch.object(faults, 'guest_guard', return_value={'run_id': 'a' * 32}), \
+                        patch.object(faults, 'idle_noop', return_value=value), \
+                        patch.object(faults, 'SUBMISSIONS', submissions), \
+                        patch.object(faults, 'submission_fixture', return_value=fixture), \
+                        patch.object(faults, 'submission_inventory', return_value=inventory), \
+                        patch.object(faults, 'json_input', side_effect=submit) as invoked:
+                    if writes:
+                        with self.assertRaisesRegex(RuntimeError, 'wrote through'):
+                            faults.guest_submission_symlink()
+                        self.assertEqual((fixture / 'canary/unexpected').read_text(), 'saved evidence')
+                    else:
+                        self.assertTrue(faults.guest_submission_symlink()['passed'])
+                    self.assertFalse(os.path.lexists(submissions / 'requests'))
+                    (submissions / 'requests').mkdir()
+                    invoked.reset_mock()
+                    with self.assertRaisesRegex(RuntimeError, 'absent request staging'):
+                        faults.guest_submission_symlink()
+                    invoked.assert_not_called()
+                self.assertEqual(json.loads((fixture / 'result.json').read_text())['passed'], not writes)
+
+    def test_worker_start_fixture_preserves_an_existing_runtime_override(self):
+        with tempfile.TemporaryDirectory() as directory:
+            mask = Path(directory) / 'astraeus-apply@.service'
+            mask.write_text('existing override')
+            with patch.object(faults, 'guest_guard', return_value={}), \
+                    patch.object(faults, 'idle_noop', return_value={}), \
+                    patch.object(faults, 'RUNTIME_MASK', mask), patch.object(faults, 'call') as call:
+                with self.assertRaisesRegex(RuntimeError, 'override already exists'):
+                    faults.guest_worker_start_failure()
+                call.assert_not_called()
+            self.assertEqual(mask.read_text(), 'existing override')
+
+    @unittest.skipUnless(os.name == 'posix' and getattr(os, 'geteuid', lambda: -1)() == 0, 'root Linux runtime mask fixture')
+    def test_worker_start_fixture_unmasks_only_owned_override_after_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixture = root / 'evidence'
+            fixture.mkdir()
+            mask = root / 'astraeus-apply@.service'
+            with patch.object(faults, 'guest_guard', return_value={'run_id': 'a' * 32}), \
+                    patch.object(faults, 'idle_noop', return_value={}), \
+                    patch.object(faults, 'RUNTIME_MASK', mask), \
+                    patch.object(faults, 'submission_fixture', return_value=fixture), \
+                    patch.object(faults, 'submission_inventory', return_value={}), \
+                    patch.object(faults, 'guest_observe', return_value={}), \
+                    patch.object(faults, 'call', side_effect=[RuntimeError('injected reload failure'), {}]) as call:
+                with self.assertRaisesRegex(RuntimeError, 'injected reload failure'):
+                    faults.guest_worker_start_failure()
+                self.assertEqual(call.call_args_list, [unittest.mock.call('systemctl', 'daemon-reload')] * 2)
+            self.assertFalse(os.path.lexists(mask))
+            self.assertFalse(json.loads((fixture / 'result.json').read_text())['passed'])
 
     def test_guest_invocations_are_fixed_and_quoted(self):
         vm = Mock()

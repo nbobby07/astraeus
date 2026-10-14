@@ -45,6 +45,16 @@ state, restores the snapshot's lock-free package database, preserves home
 data, and requires explicit rollback finalization after a new installed boot.
 The temporary hook is test instrumentation retained in this disposable overlay.
 
+Before the install, this scenario submits a freshly reviewed true no-op through
+a deliberately symlinked request directory. Staging must initially be absent;
+the target is a new private evidence directory, never an existing request store.
+It requires a trusted-path refusal and unchanged request/receipt/history
+inventories and package/management state. Cleanup removes only the exact symlink
+created by the fixture. Any unexpected target writes are retained as failed
+evidence. While the genuine post-commit barrier holds, a second submission must
+be refused explicitly for the active operation. The original worker PID, kernel
+start tick, unit, operation, inventories and system state must stay unchanged.
+
 `abandoned` injects the documented durable boundary after staging a queued
 submission but before starting its unit. Its receipt explicitly calls this
 `injected-durable-submit-boundary`; it does not claim a submitting process was
@@ -52,6 +62,15 @@ actually killed. An ordinary user must see the old, inactive request as failed.
 A newly submitted reviewed no-op must finish, and a delayed worker for the old ID
 must fail the current-request identity check. Inspection and replacement must not
 change packages, reasons, configuration, ownership or home data.
+
+This scenario first verifies a real systemd start failure. On an idle guest it
+creates an exclusive runtime mask for `astraeus-apply@.service` and submits a
+reviewed true no-op. The actual start must fail because the unit is masked, with
+one publicly inspectable Failed receipt, no transaction, unchanged packages and
+management state, and refused replay. Its `finally` path removes only that exact
+owned runtime mask and reloads systemd. Existing overrides are never changed.
+The submission fixtures save success or failure records under the disposable
+guest's `/var/log/astraeus/phase42-submission-*` directories.
 
 `failed-hook` uses a real PreTransaction hook with `AbortOnFail` and a durable
 marker tied to the actual worker. It requires the native hook error, unchanged
