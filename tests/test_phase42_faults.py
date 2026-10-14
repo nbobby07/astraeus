@@ -174,15 +174,23 @@ class Phase42FaultsTests(unittest.TestCase):
     def test_metadata_only_plan_requires_real_intent_and_boot_boundary(self):
         before = observation()
         plan = {'executable': True, 'blockers': [], 'plan': {'packages': {'changes': [], 'targets': []},
-                'management': {'before': before['management'], 'before_digest': 'old', 'after_digest': 'new'},
+                'management': {'before': before['management'], 'before_digest': 'old', 'after_digest': 'new',
+                               'reasons_before': before['reasons'], 'reasons_after': before['reasons']},
                 'snapshot_required': True, 'boot': {'regenerate_uki': True}}}
         faults.metadata_plan(plan, before)
-        for kind in ['package', 'target', 'same-state', 'snapshot', 'uki', 'blocked']:
+        for kind in ['package', 'target', 'same-state', 'reason-change', 'stale-reasons',
+                     'missing-reasons-before', 'missing-reasons-after', 'snapshot', 'uki', 'blocked']:
             bad = copy.deepcopy(plan)
             if kind in ['package', 'target']:
                 bad['plan']['packages']['changes' if kind == 'package' else 'targets'] = [{'name': 'other'}]
             elif kind == 'same-state':
                 bad['plan']['management']['after_digest'] = 'old'
+            elif kind == 'reason-change':
+                bad['plan']['management']['reasons_after'] = {'app': 'dependency'}
+            elif kind == 'stale-reasons':
+                bad['plan']['management'].update(reasons_before={}, reasons_after={})
+            elif kind.startswith('missing-reasons-'):
+                del bad['plan']['management']['reasons_' + kind.removeprefix('missing-reasons-')]
             elif kind == 'snapshot':
                 bad['plan']['snapshot_required'] = False
             elif kind == 'uki':

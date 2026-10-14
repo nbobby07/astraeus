@@ -845,6 +845,8 @@ def metadata_plan(plan, before):
     require(inner['packages']['changes'] == [] and inner['packages']['targets'] == [], 'metadata fixture unexpectedly changes packages')
     managed = inner['management']
     require(managed['before'] == before['management'] and managed['before_digest'] != managed['after_digest'], 'metadata intent was not bound')
+    require(managed.get('reasons_before') == before['reasons'] and managed.get('reasons_after') == before['reasons'],
+            'metadata fixture changes or mismatches the observed package reasons')
     require(inner['snapshot_required'] is True and inner['boot']['regenerate_uki'] is True, 'metadata mutation lacks recovery/boot requirements')
 
 
