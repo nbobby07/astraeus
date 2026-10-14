@@ -226,8 +226,11 @@ def build_payload(out, profile, values, run, write, render, graphics=(), gaming=
     shutil.copytree(profile / "airootfs/opt/distro/repo", root / "opt/distro/repo")
     shutil.copytree(profile / "airootfs/usr/share/distro", root / "usr/share/distro", dirs_exist_ok=True)
     write(root / "usr/share/distro/repository-fingerprint", values["FINGERPRINT"] + "\n")
-    # Packages are authenticated with the build keyring. Initialize a fresh installed keyring in Calamares.
-    shutil.rmtree(root / "etc/pacman.d/gnupg", ignore_errors=True)
+    # pacman-conf requires GPGDir to exist. Ship no build keys; Calamares initializes fresh keys.
+    keyring = root / "etc/pacman.d/gnupg"
+    shutil.rmtree(keyring, ignore_errors=True)
+    keyring.mkdir(mode=0o755)
+    keyring.chmod(0o755)  # pacman-key preserves this directory's mode; public queries need access.
     write(root / "etc/machine-id", "")
     dbus_id = root / "var/lib/dbus/machine-id"
     dbus_id.unlink(missing_ok=True)

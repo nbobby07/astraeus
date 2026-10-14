@@ -3,6 +3,7 @@ import importlib.util
 import json
 import os
 import shutil
+import stat
 import subprocess
 from pathlib import Path
 import sys
@@ -80,9 +81,14 @@ class InstallerTests(unittest.TestCase):
             def run(*args, **kwargs):
                 calls.append(args)
                 if args[:3] == ("arch-chroot", out / "installed-root", "/usr/bin/pacman-conf"):
+                    keyring = out / "installed-root/etc/pacman.d/gnupg"
+                    self.assertTrue(keyring.is_dir())
+                    self.assertEqual(list(keyring.iterdir()), [])
+                    self.assertEqual(stat.S_IMODE(keyring.stat().st_mode), 0o755)
                     return subprocess.CompletedProcess(args, 0, stdout="[options]\nArchitecture = x86_64\n")
                 if args[0] == "pacstrap":
                     root = out / "installed-root"
+                    bootstrap.write(root / "etc/pacman.d/gnupg/private-keys-v1.d/build-only.key", "build key fixture\n")
                     bootstrap.write(root / "etc/shadow", "root:!:20100:0:99999:7:::\n")
                     bootstrap.write(root / "etc/resolv.conf", "temporary builder DNS\n")
                     bootstrap.write(root / "boot/initramfs-linux.img", "temporary build initramfs\n")
@@ -92,8 +98,12 @@ class InstallerTests(unittest.TestCase):
                                         f"%NAME%\n{name}\n\n%VERSION%\n1-1\n\n%REASON%\n0\n\n%INSTALLDATE%\n123456\n")
             def resolution(root, packages):
                 return {"distro": "sha256:" + "a" * 64}, {name: {"version": package["version"], "repository": "distro", "sha256": "b" * 64} for name, package in packages.items()}
-            with patch.object(installer, "locked_packages", side_effect=resolution):
-                installer.build_payload(out, profile, values, run, bootstrap.write, bootstrap.render, ["virtio", "software"], ["core"])
+            previous_umask = os.umask(0o077)
+            try:
+                with patch.object(installer, "locked_packages", side_effect=resolution):
+                    installer.build_payload(out, profile, values, run, bootstrap.write, bootstrap.render, ["virtio", "software"], ["core"])
+            finally:
+                os.umask(previous_umask)
             pacstrap = [call for call in calls if call[0] == "pacstrap"]
             self.assertEqual(len(pacstrap), 2)
             self.assertNotIn("steam", pacstrap[0])
@@ -113,7 +123,8 @@ class InstallerTests(unittest.TestCase):
             self.assertFalse((root / "etc/xdg/kscreenlockerrc").exists())
             self.assertFalse((root / "usr/share/distro/installer").exists())
             self.assertFalse((root / "boot/initramfs-linux.img").exists())
-            self.assertFalse((root / "etc/pacman.d/gnupg").exists())
+            self.assertTrue((root / "etc/pacman.d/gnupg").is_dir())
+            self.assertEqual(list((root / "etc/pacman.d/gnupg").iterdir()), [])
             self.assertEqual(os.readlink(root / "etc/resolv.conf"), "/run/NetworkManager/resolv.conf")
             self.assertIn("1790812800", (root / "var/lib/pacman/local/example/desc").read_text())
             self.assertIn("SigLevel = Required DatabaseRequired", (root / "etc/pacman.conf").read_text())
@@ -131,6 +142,26 @@ class InstallerTests(unittest.TestCase):
                 command[5] = str(second)
                 subprocess.run(command, env=env, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
                 self.assertEqual(bootstrap.digest(first), bootstrap.digest(second))
+
+    @unittest.skipUnless(sys.platform == "linux" and shutil.which("pacman-conf"),
+                         "requires native Linux pacman-conf")
+    def test_native_pacman_conf_requires_directory_but_no_key_material(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            keyring = root / "gnupg"
+            config = root / "pacman.conf"
+            config.write_text(f"[options]\nGPGDir = {keyring}\nArchitecture = x86_64\n")
+            command = [shutil.which("pacman-conf"), "--config", str(config)]
+            missing = subprocess.run(command, capture_output=True, text=True, timeout=10,
+                                     env=dict(os.environ, LC_ALL="C"))
+            self.assertNotEqual(missing.returncode, 0)
+            self.assertIn("GPGDir", missing.stderr)
+            keyring.mkdir(mode=0o755)
+            empty = subprocess.run(command, capture_output=True, text=True, timeout=10,
+                                   env=dict(os.environ, LC_ALL="C"))
+            self.assertEqual(empty.returncode, 0, empty.stderr)
+            self.assertIn(f"GPGDir = {keyring}", empty.stdout)
+            self.assertEqual(list(keyring.iterdir()), [])
 
     def test_installed_boot_detaches_iso_and_preserves_disk_and_firmware(self):
         install = smoke.qemu_command("code.fd", "vars.fd", "disk.qcow2", "install.log", "qmp.sock", "live.iso")
