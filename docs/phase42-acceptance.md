@@ -94,15 +94,32 @@ No completed package or ISO came from `17773af` A/r1. Its thin archive is
 `superseded-17773af-r1-A-evidence.tar.gz` (117,489 bytes), SHA256
 `86278cb1a050a0aadbafbe5aecfc04991950267cad25affb7b543ad688079dcc`.
 The `298e12a` clean Arch build passed 155 native Rust tests with five ignored
-fixtures and both Qt test groups. Its CLI, Control Center and Calamares packages
-were built and their package/database signatures verified. ISO assembly and all
-installed-VM acceptance remain pending. The packaged CLI SHA256 is
+fixtures, 21 Qt controller checks and 13 QML checks. Its CLI, Control Center and
+Calamares packages were built and their package/database signatures verified.
+Its image build failed after all 736 installed-root packages and 29 hooks:
+`pacman-conf` refused the missing `/etc/pacman.d/gnupg` directory after build-keyring
+cleanup. The exact installed binary reproduced that error on the closed failed
+root; no ISO was produced. The thin archive is
+`failed-298e12a-r1-A-evidence.tar.gz` (296,987 bytes), SHA256
+`e4c6aa314210f88ac1525988da893e57ba8f14fb8eb2716ff332ad9a52f5d48f`.
+It includes the final pacman configuration, exact stderr and pinned Qt test logs.
+Installed-VM acceptance remains pending. The packaged CLI SHA256 is
 `da09689543719261309adb0e41e796f12597e34f75d64865d6c09845e6e00e43`;
 the Control Center SHA256 is
 `a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41`.
 The disposable repository signer is
 `10A2160B80D3546E9E754A99875C9A330560CA57`, created 2026-10-14 00:50:43 UTC
 and expiring 2026-10-15 00:50:43 UTC. It is separate from the VM Secure Boot key.
+
+Commit `0e8bb00` removes the build keyring and leaves an empty directory with
+Arch's normal `0755` mode. Native checks reproduce the missing-directory error
+and prove that no key material is needed for configuration expansion. A separate
+real initialization check shows that an existing `0700` directory stays private
+and blocks ordinary-user public-key queries, while `0755` allows them and leaves
+private-key paths protected. Payload tests check that build keys are removed and
+the empty directory has the required mode even under a restrictive umask. The
+full Python suite passes on Windows (126 passed, 64 platform skips) and Linux
+root (186 passed, four skips). A new clean image is still required.
 
 The immutable VM harness is `ad3f097d9475c52d18b4095fce5fc160d8edaa04`,
 exported as a 368,640-byte archive with SHA256
@@ -157,7 +174,7 @@ while it applies. Live sessions permit inspection and planning only.
 | Gate | Current evidence |
 | --- | --- |
 | Host Rust checks | Windows workspace 140 passed; native Linux workspace 155 passed with 5 fixture/privileged tests ignored by the normal run. Native all-target Clippy passed; earlier Windows Clippy evidence is retained |
-| Python, shell and signing | Full Python suites passed: Windows 123 passed/60 skipped, Linux root 179 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
+| Python, shell and signing | Full Python suites passed on `0e8bb00`: Windows 126 passed/64 skipped, Linux root 186 passed/4 skipped. The 13 Linux file-integrity checks also passed explicitly. Shell syntax and native signing checks passed; raw logs and platform skips remain in the host evidence |
 | Linux snapshot lock tests | Passed with a real libalpm-compatible lock descriptor and isolated Btrfs/FAT loopback filesystems |
 | Native libalpm compilation | Current source passes with libalpm 16 in the Linux development environment and in the pinned Arch `298e12a` package build |
 | Signed native package fixtures | Attempt 14 passed installation, synchronized upgrades, removal, shared/manual package preservation, metadata changes, providers, signatures, corrupt archives, hooks, file conflicts, locks, changed reasons and changed file contents. It also checks named conflicts, versioned missing dependencies, provider choices retained when preparation fails, and removal after libalpm writes an empty optional URL |
