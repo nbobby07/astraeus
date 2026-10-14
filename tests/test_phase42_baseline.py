@@ -25,6 +25,19 @@ def config():
 
 
 class FreshCandidateBaseline(unittest.TestCase):
+    def test_fstab_uses_the_installer_subvolume_paths_for_snapshot_validation(self):
+        storage = json.loads((ROOT / 'distro/installer/config.json').read_text())['modules']['mount']['btrfsSubvolumes']
+        expected = {item['mountPoint']: item['subvolume'] for item in storage}
+        for source in ['UUID=' + 'a' * 36, '/dev/mapper/root']:
+            rows = [line.split() for line in baseline.installed_fstab(source, 'b' * 36).splitlines()]
+            mounts = {row[1]: row for row in rows if row[2] == 'btrfs'}
+            self.assertEqual(set(mounts), set(expected))
+            for point, subvolume in expected.items():
+                row = mounts[point]
+                self.assertEqual(row[0], source)
+                selectors = [option for option in row[3].split(',') if option.startswith(('subvol=', 'subvolid='))]
+                self.assertEqual(selectors, ['subvol=' + subvolume])
+
     def test_install_intent_rejects_ambiguous_or_unsafe_identity(self):
         baseline.configuration(config())
         for field, value in [('schema_version', True), ('schema_version', 2), ('source_commit', 'a' * 12),

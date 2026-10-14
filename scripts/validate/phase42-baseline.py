@@ -34,6 +34,13 @@ EFI_GLOBAL_GUID = '8be4df61-93ca-11d2-aa0d-00e098032b8c'
 MANAGEMENT_FIRMWARE = {'SecureBoot': True, 'SetupMode': False}
 
 
+def installed_fstab(source, esp_uuid):
+    text = ''.join(f'{source} {destination} btrfs defaults,noatime,compress=zstd:1,subvol={subvolume} 0 0\n'
+                   for destination, subvolume in SUBVOLUMES)
+    text += f'UUID={esp_uuid} /efi vfat defaults,umask=0077 0 2\n'
+    return text + 'tmpfs /tmp tmpfs defaults,nosuid,nodev,mode=1777 0 0\n'
+
+
 def require(condition, message):
     if not condition:
         raise RuntimeError(message)
@@ -218,11 +225,7 @@ def guest_install():
         if passphrase is not None:
             partition.update(luksMapperName='root', luksUuid=run('cryptsetup', 'luksUUID', '/dev/vda2'))
         source = '/dev/mapper/root' if passphrase is not None else 'UUID=' + root_uuid
-        fstab = ''.join(f'{source} {destination} btrfs defaults,noatime,compress=zstd:1,subvol={subvolume.lstrip("/")} 0 0\n'
-                        for destination, subvolume in SUBVOLUMES)
-        fstab += 'UUID=' + run('blkid', '-s', 'UUID', '-o', 'value', '/dev/vda1') + ' /efi vfat defaults,umask=0077 0 2\n'
-        fstab += 'tmpfs /tmp tmpfs defaults,nosuid,nodev,mode=1777 0 0\n'
-        write(TARGET / 'etc/fstab', fstab)
+        write(TARGET / 'etc/fstab', installed_fstab(source, run('blkid', '-s', 'UUID', '-o', 'value', '/dev/vda1')))
         write(TARGET / 'etc/crypttab', 'root UUID=' + partition['luksUuid'] + ' none luks\n' if passphrase else '')
         write(TARGET / 'etc/locale.gen', 'en_US.UTF-8 UTF-8\n')
         write(TARGET / 'etc/locale.conf', 'LANG=en_US.UTF-8\n')
