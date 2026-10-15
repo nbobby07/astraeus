@@ -5,7 +5,8 @@ It defines what must exist before any image, repository or recovery medium is
 published under an Astraeus release identity. Items marked **Decision needed**
 require an owner choice before the corresponding phase starts.
 
-Base: `8a4f1e5` (`codex/phase5-performance-baselines`). Related records:
+Originally drafted at `8a4f1e5`; reconciled with accepted runtime `c38209c`
+on 2026-10-15. See the [current handoff](release-readiness.md). Related records:
 [security](security.md), [owner Secure Boot](secure-boot.md),
 [ADR 0003](adr/0003-owner-secure-boot.md), [releases](releases.md),
 [building](building.md) and [Phase 4.2 acceptance](phase42-acceptance.md).
@@ -32,11 +33,18 @@ what exists, where, and what production lacks.
 | Reproducibility | Two independent builders produce byte-identical ISOs, but B consumes A's signed repository bytes | `docs/building.md`, `docs/validation.md` | Proves reproducibility with fixed signed inputs, not two independent signings; no attestation format |
 | ISO checksums | `bootstrap.py` writes an unsigned `iso/SHA256SUMS` | `scripts/bootstrap.py` | No release signature, fingerprint publication or user verification guide |
 
-The current validation repository key `6DA84EB479F3A2F88C2B658E17BF6CA306695F72`
+The historical Phase 4.2 repository key `6DA84EB479F3A2F88C2B658E17BF6CA306695F72`
 expires at 2026-10-15 16:18:26 UTC. After that time, the `distro` database in the
 Phase 4.2 candidate images will fail verification, as recorded for earlier keys.
 Further validation needs a fresh disposable key and rebuilt repository, which
-changes ISO bytes. This is expected and is not a production concern.
+changes ISO bytes. Production must provide a tested rotation and distribution path.
+
+The accepted Phase 5 candidate instead uses
+`27CCE96199D30A7ABA1BE86CC6722DAA8014EE89`, expiring on
+2026-10-16 at 08:55:39 UTC. Its public metadata is recorded in the
+[integration evidence](evidence/release-readiness-20261015/repository-public-key.json).
+This is also a disposable identity, not a release key. Key expiry affects package
+verification; it does not add an expiry check to the unsigned live boot chain.
 
 ## Principles
 

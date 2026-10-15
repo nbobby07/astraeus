@@ -1,8 +1,9 @@
 # Physical hardware qualification plan
 
 Status: **plan only**. No physical run has been performed. Nothing here changes a
-recorded VM result or qualifies any machine. Base: `8a4f1e5` on the Phase 5.0
-performance branch.
+recorded VM result or qualifies any machine. Originally drafted at `8a4f1e5`;
+reconciled with accepted runtime `c38209c` on 2026-10-15. See the
+[current live-boot handoff](release-readiness.md) before using a candidate.
 
 This plan extends [physical graphics qualification](phase4-physical-qualification.md).
 Its rules remain in force until the owner records the decisions below: the owner's
@@ -14,7 +15,7 @@ firmware. Items marked **Decision needed** block the phase that depends on them.
 Every acceptance result so far is x86-64 UEFI under QEMU/KVM with disposable
 overlays and test owner keys: Phases 0-3 ([roadmap](roadmap.md)), Phase 4/4.1
 ([acceptance](phase4-acceptance.md), [requalification](phase4-runtime-requalification.md)),
-Phase 4.2 ([acceptance](phase42-acceptance.md)) and Phase 5.0 in progress
+Phase 4.2 ([acceptance](phase42-acceptance.md)) and Phase 5.0 VM acceptance passed
 ([acceptance](phase5-acceptance.md)). Those harnesses rely on facts that do not
 exist on a physical PC:
 
@@ -47,10 +48,15 @@ Product facts that matter on real hardware:
 - The Phase 4.2 validation repository key `6DA84EB4...6306695F72` expires
   2026-10-15 16:18:26 UTC. An image signed with it cannot perform later package
   operations. The Phase 4.1 expired-signature failure is the precedent.
-- `capabilities.virtual_machine` is either `true` or null, never `false`
-  (`crates/hardware/src/lib.rs:624`). `performance compare` blocks on a null
-  value (`crates/distroctl/src/performance/mod.rs:143-149`). Physical baselines
-  can run, but the current product cannot compare them.
+- The newer Phase 5 candidate uses key
+  `27CCE96199D30A7ABA1BE86CC6722DAA8014EE89`, expiring at
+  2026-10-16 08:55:39 UTC. It selects software Vulkan only, with no gaming
+  features. It is not the proposed vendor-GPU image below.
+- Performance comparison now recognizes bare metal from readable CPU flags
+  without a hypervisor flag and tolerates small kernel-related memory changes.
+  Unknown classification still blocks comparison. This has unit coverage only;
+  physical comparison remains unqualified. Live sessions permit passive
+  recording, but refuse baselines.
 
 ## Goals
 
@@ -418,7 +424,7 @@ last known-good state with a new evidence directory.
 - **D7** Repository signing key refresh covering the test window.
 - **D8** Approved USB writer when no Linux host is available.
 - **D9** Signed-update source: local validation package or a real pinned-snapshot upgrade.
-- **D10** Bare-metal performance comparison: product classification change, or blocked.
+- **D10** Run physical comparison acceptance for the implemented classification and memory tolerance; no additional product change is currently required.
 - **D11** Evidence publication: which photos, journals and identities enter Git.
 - **D12** Steam account, real games and a licensed D3D11/D3D12 application.
 - **D13** Hardware budget and acquisition order.

@@ -1,8 +1,10 @@
 # Milestones and releases
 
 There is no stable release or public ISO download yet. `0.1.0-dev` now includes
-validated package updates and manual offline rollback on the recorded QEMU/KVM
-target. It does not promise production support or automatic recovery.
+validated package updates, Control Center, performance baselines and manual
+offline rollback on the recorded QEMU/KVM target. It does not promise production
+support or automatic recovery. The [current handoff](release-readiness.md) records
+the Phase 5 candidate, signing expiry, physical boot limits and outstanding work.
 
 ## Source milestones
 

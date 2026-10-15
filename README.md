@@ -5,7 +5,9 @@ installer, a Rust management backend and a native Qt/Kirigami control center.
 
 [![Checks](https://github.com/nbobby07/astraeus/actions/workflows/check.yml/badge.svg)](https://github.com/nbobby07/astraeus/actions/workflows/check.yml)
 
-**Phase 4.2 system management: VM acceptance passed, awaiting review.** Version
+**Phase 5 VM acceptance passed; physical hardware remains unqualified.** Start with
+the [current integration and live-boot handoff](docs/release-readiness.md) for the
+exact candidate, its limits, and the remaining release work. Version
 `0.1.0-dev` now includes the native libalpm management backend and
 [Astraeus Control Center](docs/control-center.md). Configuration, ownership,
 package changes and boot confirmation share the existing snapshot coordinator.
@@ -51,8 +53,8 @@ public ISO download yet.
   management, authorization, reboot and recovery acceptance passed.
 - Phase 5.0 unprivileged observations, bounded CPU/memory/filesystem baselines,
   private saved results and native comparison/export. Independent images and
-  plain/LUKS2 Secure Boot VM acceptance passed at `c38209c`; the draft remains
-  unmerged. See the [performance acceptance report](docs/phase5-acceptance.md).
+  plain/LUKS2 Secure Boot VM acceptance passed at `c38209c`.
+  See the [performance acceptance report](docs/phase5-acceptance.md).
 - Explicit offline rollback through the existing live ISO, preserving all five
   persistent subvolumes. Recovery requires manual intervention; root and ESP
   changes are not atomic, and general power-loss safety is not qualified.
