@@ -30,6 +30,8 @@ the accepted candidate. Original branches and evidence remain preserved.
 ## PR map
 
 This is the inventory before consolidation. GitHub records the final PR states.
+The combined source integration is [#14](https://github.com/nbobby07/astraeus/pull/14);
+the separate dependency candidate is [#15](https://github.com/nbobby07/astraeus/pull/15).
 
 | PR | Purpose | Integration disposition |
 | --- | --- | --- |
@@ -93,6 +95,10 @@ activation remains unsupported in this source.
    between ISO and DD modes. Verify the written bytes; an extracted ISO or another
    boot manager does not preserve this image's tested boot path. See the
    [Rufus FAQ](https://github.com/pbatard/rufus/wiki/FAQ#why-doesnt-rufus-recommend-dd-mode-over-iso-mode-for-isohybrid-images-surely-dd-is-better).
+   Windows can modify an exposed FAT partition or GPT records after a raw write;
+   DD mode alone is not proof of a matching readback. Retain and investigate a
+   mismatch rather than reporting the USB as byte-identical. Rufus documents
+   this [Windows auto-mount limitation](https://github.com/pbatard/rufus/wiki/FAQ#im-using-an-iso-with-a-checksum-validation-test-and-the-test-fails-despite-using-dd-mode-in-rufus).
 3. Use the firmware's one-time boot menu. This ISO will not boot under factory
    Secure Boot enforcement. Do not clear or enroll firmware keys to try to make
    the disposable VM keys work. Changes to the owner's Windows boot policy are
