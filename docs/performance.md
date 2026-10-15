@@ -68,8 +68,9 @@ and scratch free space, and no active package operation, pending reboot or
 recovery requirement. These conditions are checked again during execution.
 Reported temperatures within 5 C of a sensor's critical threshold stop the run.
 Missing thermal sensors remain unavailable and do not imply cool hardware.
-Passive recording is available in live sessions. The GUI also prevents applying
-package changes while its measurement is active; it never changes worker policy.
+Passive recording is available in live sessions and during package operations.
+The GUI also prevents applying package changes while its baseline is active; it
+never changes worker policy.
 
 ## Interpreting results
 
@@ -86,3 +87,4 @@ Matching CPU models do not prove two reports came from the same physical machine
 Software rendering and VM measurements never establish physical GPU performance.
 No aggregate gaming score, sustained stress qualification or automatic tuning is
 included. Exports omit hostnames, serials, usernames and process command lines.
+Peripheral power supplies, whose kernel names embed device addresses, are excluded.

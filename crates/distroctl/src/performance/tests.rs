@@ -179,6 +179,29 @@ fn temperature_and_pressure_are_bounded() {
     assert_eq!(s.pressure_avg10_percent.len(), 1);
     s.validate().unwrap();
 }
+#[cfg(unix)]
+#[test]
+fn peripheral_power_supplies_never_enter_reports() {
+    let t = Temp::new();
+    t.put("sys/class/power_supply/AC/type", "Mains\n");
+    t.put("sys/class/power_supply/AC/online", "1\n");
+    t.put("sys/class/power_supply/BAT0/type", "Battery\n");
+    t.put("sys/class/power_supply/BAT0/scope", "System\n");
+    t.put("sys/class/power_supply/BAT0/power_now", "5000000\n");
+    let peripheral = "sys/class/power_supply/hid-aa:bb:cc:dd:ee:ff-battery";
+    t.put(&format!("{peripheral}/type"), "Battery\n");
+    t.put(&format!("{peripheral}/scope"), "Device\n");
+    t.put(&format!("{peripheral}/status"), "Discharging\n");
+    t.put(&format!("{peripheral}/power_now"), "1000\n");
+    let s = collect::sample(&t.0, 0.0, None).0;
+    assert_eq!(s.power_microwatts.keys().collect::<Vec<_>>(), ["BAT0"]);
+    let sources = collect::power_sources(&t.0);
+    assert_eq!(
+        sources.keys().collect::<Vec<_>>(),
+        ["AC.online", "AC.type", "BAT0.type"]
+    );
+    assert!(!serde_json::to_string(&s).unwrap().contains("aa:bb"));
+}
 #[test]
 fn store_roundtrip_and_failed_publication_preserves_original() {
     let t = Temp::new();

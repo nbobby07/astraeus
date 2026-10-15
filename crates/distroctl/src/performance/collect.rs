@@ -349,7 +349,7 @@ pub(super) fn sample(root: &Path, elapsed: f64, previous: Option<&Counters>) -> 
             }
         }
     }
-    for name in children(root, "sys/class/power_supply", 64) {
+    for name in system_power_supplies(root) {
         if s.power_microwatts.len() >= 64 {
             break;
         }
@@ -395,6 +395,33 @@ pub(super) fn sample(root: &Path, elapsed: f64, previous: Option<&Counters>) -> 
     )
 }
 
+fn system_power_supplies(root: &Path) -> Vec<String> {
+    children(root, "sys/class/power_supply", 64)
+        .into_iter()
+        .filter(|name| {
+            let field = |f: &str| {
+                read(root, &format!("sys/class/power_supply/{name}/{f}"))
+                    .map(|v| v.trim().to_owned())
+            };
+            field("scope").as_deref() != Some("Device")
+                && matches!(field("type").as_deref(), Some("Mains" | "Battery" | "USB"))
+        })
+        .collect()
+}
+pub(super) fn power_sources(root: &Path) -> BTreeMap<String, String> {
+    let mut sources = BTreeMap::new();
+    for name in system_power_supplies(root) {
+        for field in ["type", "status", "online"] {
+            if let Some(v) = read(root, &format!("sys/class/power_supply/{name}/{field}")) {
+                sources.insert(
+                    format!("{name}.{field}"),
+                    v.trim().chars().take(80).collect(),
+                );
+            }
+        }
+    }
+    sources
+}
 pub(super) fn context() -> Context {
     let root = Path::new("/");
     let observed = crate::status();
@@ -410,17 +437,7 @@ pub(super) fn context() -> Context {
     }
     governors.sort();
     governors.dedup();
-    let mut power_sources = BTreeMap::new();
-    for name in children(root, "sys/class/power_supply", 64) {
-        for field in ["type", "status", "online"] {
-            if let Some(v) = read(root, &format!("sys/class/power_supply/{name}/{field}")) {
-                power_sources.insert(
-                    format!("{name}.{field}"),
-                    v.trim().chars().take(80).collect(),
-                );
-            }
-        }
-    }
+    let power_sources = power_sources(root);
     let graphics = distro_graphics::probe(false);
     // Only classification, never device serials, hostnames or user paths, enters a report.
     let mut renderer = vec![format!(
