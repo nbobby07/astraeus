@@ -13,7 +13,7 @@ distro-snapshots = { path = "../snapshots" }
 distro-transactions = { path = "../transactions" }
 serde.workspace = true
 serde_json = { workspace = true, features = ["float_roundtrip"] }
-sha2 = "0.10"
+sha2 = "0.11"
 
 [features]
 native-alpm = ["distro-transactions/native-alpm"]

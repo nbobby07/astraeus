@@ -22,8 +22,10 @@ pub struct IntegrityReport {
 impl IntegrityReport {
     pub fn digest(&self) -> String {
         format!(
-            "sha256:{:x}",
-            Sha256::digest(serde_json::to_vec(self).expect("integrity report serializes"))
+            "sha256:{}",
+            crate::hex(&Sha256::digest(
+                serde_json::to_vec(self).expect("integrity report serializes")
+            ))
         )
     }
 }

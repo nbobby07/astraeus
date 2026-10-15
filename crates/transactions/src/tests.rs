@@ -1238,3 +1238,12 @@ fn post_snapshot_failure_retains_pre_snapshot_and_requires_rollback() {
     assert!(packages.calls.contains(&"apply"));
     assert!(record.failure.unwrap().message.contains("post-snapshot"));
 }
+
+#[test]
+fn digest_hex_matches_persisted_format() {
+    use sha2::{Digest, Sha256};
+    assert_eq!(
+        crate::hex(&Sha256::digest(b"abc")),
+        "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    );
+}

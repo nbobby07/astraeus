@@ -469,10 +469,9 @@ pub(super) fn context() -> Context {
     }
     let binary_sha256 = std::env::current_exe().ok().and_then(|p| {
         let file = fs::File::open(p).ok()?;
-        let mut hash = Sha256::new();
-        let mut source = file.take(128 * 1024 * 1024);
-        std::io::copy(&mut source, &mut hash).ok()?;
-        Some(format!("{:x}", hash.finalize()))
+        let mut bytes = Vec::new();
+        file.take(128 * 1024 * 1024).read_to_end(&mut bytes).ok()?;
+        Some(distro_transactions::hex(&Sha256::digest(bytes)))
     });
     Context {
         architecture: hw.cpu.architecture,

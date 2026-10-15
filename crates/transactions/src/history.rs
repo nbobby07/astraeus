@@ -401,10 +401,9 @@ fn records_digest(db: &Connection) -> Result<String> {
     let json = rows
         .collect::<std::result::Result<Vec<_>, _>>()
         .map_err(|e| e.to_string())?;
-    Ok(format!(
-        "{:x}",
-        Sha256::digest(format!("[{}]", json.join(",")).as_bytes())
-    ))
+    Ok(crate::hex(&Sha256::digest(
+        format!("[{}]", json.join(",")).as_bytes(),
+    )))
 }
 
 fn snapshot(
@@ -535,7 +534,7 @@ mod migration_tests {
         assert_eq!(expected.len(), 1);
         assert_eq!(expected[0].schema_version, 1);
         assert_eq!(fs::read(&public).unwrap(), before);
-        let digest = format!("{:x}", Sha256::digest(format!("[{raw}]").as_bytes()));
+        let digest = crate::hex(&Sha256::digest(format!("[{raw}]").as_bytes()));
         let db = Connection::open(&public).unwrap();
         db.execute_batch("CREATE TABLE astraeus_publication (digest TEXT NOT NULL)")
             .unwrap();
