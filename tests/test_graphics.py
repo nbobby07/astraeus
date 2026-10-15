@@ -108,14 +108,35 @@ class GraphicsPackages(unittest.TestCase):
     def test_live_installed_and_signature_boundaries(self):
         live = (ROOT / "distro/archiso/packages.x86_64").read_text().split()
         installed = (ROOT / "distro/installed/packages.x86_64").read_text().split()
-        self.assertIn("vulkan-nouveau", live)
-        self.assertNotIn("vulkan-nouveau", installed)
+        self.assertEqual(len(live), len(set(live)))
+        self.assertTrue(set(installer.graphics_packages(["amd", "intel", "nouveau"]))
+                        - {"linux-firmware-amdgpu", "linux-firmware-intel", "linux-firmware-nvidia"}
+                        <= set(live))
+        self.assertIn("linux-firmware", live)
+        self.assertTrue({"mesa-utils", "lib32-mesa-utils"} <= set(live))
+        for family in ("radeon", "intel", "nouveau", "swrast"):
+            self.assertNotIn("vulkan-" + family, installed)
+            self.assertNotIn("lib32-vulkan-" + family, installed)
+        for name in ("nvidia-open", "nvidia-utils", "lib32-nvidia-utils", "nvidia-prime",
+                     "vulkan-swrast", "lib32-vulkan-swrast"):
+            self.assertNotIn(name, live)
         self.assertIn("lib32-vulkan-icd-loader", installed)
         config = (ROOT / "distro/archiso/pacman.conf.in").read_text()
         self.assertEqual(config.count("https://archive.archlinux.org/repos/@@ARCHIVE@@/$repo/os/$arch"), 3)
         self.assertIn("SigLevel = Required DatabaseRequired", config)
         self.assertIn("LocalFileSigLevel = Required", config)
         self.assertNotIn("TrustAll", config)
+
+    def test_physical_payload_selection_is_explicit_and_keeps_amd_fallback(self):
+        selected = set(installer.graphics_packages(["amd", "nouveau"]))
+        self.assertTrue({"vulkan-radeon", "lib32-vulkan-radeon", "vulkan-nouveau",
+                         "lib32-vulkan-nouveau", "linux-firmware-amdgpu",
+                         "linux-firmware-nvidia"} <= selected)
+        self.assertTrue(selected.isdisjoint({"nvidia-open", "nvidia-utils", "lib32-nvidia-utils",
+                                            "vulkan-swrast", "lib32-vulkan-swrast"}))
+        software = set(installer.graphics_packages(["software"]))
+        self.assertNotIn("vulkan-radeon", software)
+        self.assertNotIn("vulkan-nouveau", software)
 
     @unittest.skipUnless(os.name == "posix" and shutil.which("cc") and Path("/usr/include/vulkan/vulkan.h").exists(),
                          "requires C compiler and Vulkan headers; isolated native check also documented")
