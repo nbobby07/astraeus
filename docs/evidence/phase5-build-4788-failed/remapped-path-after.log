@@ -1,0 +1,110 @@
+UpdateCTestConfiguration  from :/home/noel/.cache/astraeus-4788-remap-qt/DartConfiguration.tcl
+Parse Config file:/home/noel/.cache/astraeus-4788-remap-qt/DartConfiguration.tcl
+Test project /home/noel/.cache/astraeus-4788-remap-qt
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: control-center-controller
+
+1: Test command: /home/noel/.cache/astraeus-4788-remap-qt/control-center-tests
+1: Working Directory: /home/noel/astraeus-4788-qt/apps/control-center/tests
+1: Environment variables: 
+1:  QT_QPA_PLATFORM=offscreen
+1:  QT_QUICK_BACKEND=software
+1: Test timeout computed to be: 1500
+1: ********* Start testing of ControllerTest *********
+1: Config: Using QtTest library 6.10.2, Qt 6.10.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 15.2.0), ubuntu 26.04
+1: PASS   : ControllerTest::initTestCase()
+1: PASS   : ControllerTest::discardDraftDuringBaselineClosesWindow()
+1: PASS   : ControllerTest::missingExecutableIsReported()
+1: PASS   : ControllerTest::unavailableConfigurationPreservesObservedOverview()
+1: PASS   : ControllerTest::startupIsReadOnlyAndDraftInvalidatesPlan()
+1: PASS   : ControllerTest::packageSelectionDoesNotDiscardRemovalProtection()
+1: PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(invalid-json)
+1: PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(future-schema)
+1: PASS   : ControllerTest::authenticationCancellationAndDenial(cancel)
+1: PASS   : ControllerTest::authenticationCancellationAndDenial(deny)
+1: PASS   : ControllerTest::liveSessionCannotSubmit()
+1: PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-missing)
+1: PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-false)
+1: PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-missing)
+1: PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-false)
+1: PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(reasons-missing)
+1: PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(targets-missing)
+1: PASS   : ControllerTest::validBlockedPlanRemainsReviewableWithoutAuthentication()
+1: PASS   : ControllerTest::requestAndOperationSurviveFrontendState()
+1: PASS   : ControllerTest::reopenPendingBootDoesNotRestartPollingOrSubmit()
+1: PASS   : ControllerTest::importValidationPreservesDraftAndExportIsAtomic()
+1: PASS   : ControllerTest::cleanupTestCase()
+1: Totals: 22 passed, 0 failed, 0 skipped, 0 blacklisted, 3619ms
+1: ********* Finished testing of ControllerTest *********
+1/3 Test #1: control-center-controller ........   Passed    3.66 sec
+test 2
+    Start 2: control-center-performance
+
+2: Test command: /home/noel/.cache/astraeus-4788-remap-qt/performance-tests
+2: Working Directory: /home/noel/.cache/astraeus-4788-remap-qt
+2: Test timeout computed to be: 1500
+2: ********* Start testing of PerformanceTest *********
+2: Config: Using QtTest library 6.10.2, Qt 6.10.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 15.2.0), ubuntu 26.04
+2: PASS   : PerformanceTest::initTestCase()
+2: PASS   : PerformanceTest::statusAndCompletedRecording()
+2: QWARN  : PerformanceTest::malformedEventsNeverComplete() QProcess: Destroyed while process ("/tmp/performance-tests-BYCcwM/backend-malformed") is still running.
+2: QWARN  : PerformanceTest::malformedEventsNeverComplete() QProcess: Destroyed while process ("/tmp/performance-tests-BYCcwM/backend-malformed") is still running.
+2: PASS   : PerformanceTest::malformedEventsNeverComplete()
+2: PASS   : PerformanceTest::futureStatusCannotEnableBaseline()
+2: PASS   : PerformanceTest::refusalBeforeStartShowsBackendReason()
+2: QWARN  : PerformanceTest::missingFinalRecordIsIncomplete() QProcess: Destroyed while process ("/tmp/performance-tests-BYCcwM/backend-missing-result") is still running.
+2: QWARN  : PerformanceTest::missingFinalRecordIsIncomplete() QProcess: Destroyed while process ("/tmp/performance-tests-BYCcwM/backend-missing-result") is still running.
+2: PASS   : PerformanceTest::missingFinalRecordIsIncomplete()
+2: PASS   : PerformanceTest::trailingGarbageCannotLeaveCompletedState()
+2: QWARN  : PerformanceTest::emptySuccessCannotComplete() QProcess: Destroyed while process ("/tmp/performance-tests-BYCcwM/backend-false-success") is still running.
+2: PASS   : PerformanceTest::emptySuccessCannotComplete()
+2: PASS   : PerformanceTest::cancellationPreservesCancelledResult()
+2: PASS   : PerformanceTest::managementBlockStopsOnlyBaselines()
+2: PASS   : PerformanceTest::exportAndIdentifiersAreBounded()
+2: PASS   : PerformanceTest::destructorStopsItsMeasurement()
+2: PASS   : PerformanceTest::cleanupTestCase()
+2: Totals: 13 passed, 0 failed, 0 skipped, 0 blacklisted, 1038ms
+2: ********* Finished testing of PerformanceTest *********
+2/3 Test #2: control-center-performance .......   Passed    1.04 sec
+test 3
+    Start 3: control-center-qml
+
+3: Test command: /home/noel/.cache/astraeus-4788-remap-qt/control-center-qml-tests
+3: Working Directory: /home/noel/.cache/astraeus-4788-remap-qt
+3: Environment variables: 
+3:  QT_QPA_PLATFORM=offscreen
+3:  QT_QUICK_BACKEND=software
+3:  QT_QUICK_CONTROLS_STYLE=org.kde.desktop
+3:  QT_STYLE_OVERRIDE=Breeze
+3: Test timeout computed to be: 1500
+3: ********* Start testing of astraeus_control_center *********
+3: Config: Using QtTest library 6.10.2, Qt 6.10.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 15.2.0), ubuntu 26.04
+3: PASS   : astraeus_control_center::ControlCenter::initTestCase()
+3: PASS   : astraeus_control_center::ControlCenter::test_applyRequiresInstalledIdleReviewedSystem()
+3: PASS   : astraeus_control_center::ControlCenter::test_cancelledCloseKeepsMeasurementRunning()
+3: PASS   : astraeus_control_center::ControlCenter::test_errorCanReappearAfterDismiss()
+3: PASS   : astraeus_control_center::ControlCenter::test_existingAppsCanBeSelectedWithoutRemovingProtection()
+3: PASS   : astraeus_control_center::ControlCenter::test_inconsistentFlagsNeverEnableAuthentication()
+3: PASS   : astraeus_control_center::ControlCenter::test_labelsPreservePendingAndUnknownStates()
+3: PASS   : astraeus_control_center::ControlCenter::test_metadataChangesStillExplainVerifiedRestart()
+3: PASS   : astraeus_control_center::ControlCenter::test_overviewReviewsUpdatesWithoutDiscardingDrafts()
+3: PASS   : astraeus_control_center::ControlCenter::test_performanceBaselineReviewDialog()
+3: PASS   : astraeus_control_center::ControlCenter::test_performanceKeyboardStopAndUnavailableMeasurements()
+3: PASS   : astraeus_control_center::ControlCenter::test_populatedPagesRender()
+3: PASS   : astraeus_control_center::ControlCenter::test_reviewGroupsUseResolvedKindsAndRecordedOwnership()
+3: PASS   : astraeus_control_center::ControlCenter::test_reviewIsKeyboardAccessible()
+3: PASS   : astraeus_control_center::ControlCenter::test_validatedTextBecomesCleanWithoutDiscardingLaterEdits()
+3: PASS   : astraeus_control_center::ControlCenter::cleanupTestCase()
+3: Totals: 16 passed, 0 failed, 0 skipped, 0 blacklisted, 1426ms
+3: ********* Finished testing of astraeus_control_center *********
+3/3 Test #3: control-center-qml ...............   Passed    1.75 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =   6.45 sec

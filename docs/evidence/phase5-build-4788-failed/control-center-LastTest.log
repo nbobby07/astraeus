@@ -1,0 +1,132 @@
+Start testing: Oct 15 05:10 UTC
+----------------------------------------------------------
+1/3 Testing: control-center-controller
+1/3 Test: control-center-controller
+Command: "/build/operating-system/.build/package/src/platform/target/control-center/control-center-tests"
+Directory: /build/operating-system/.build/package/src/platform/target/control-center
+"control-center-controller" start time: Oct 15 05:10 UTC
+Output:
+----------------------------------------------------------
+********* Start testing of ControllerTest *********
+Config: Using QtTest library 6.11.2, Qt 6.11.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 16.2.1 20260810), arch unknown
+PASS   : ControllerTest::initTestCase()
+WARNING: ControllerTest::discardDraftDuringBaselineClosesWindow() testdata ../Main.qml could not be located!
+   Loc: [/usr/src/debug/distroctl/platform/apps/control-center/tests/controller_test.cpp(94)]
+FAIL!  : ControllerTest::discardDraftDuringBaselineClosesWindow() 'component.isReady()' returned FALSE. (<Unknown File>: Invalid empty URL
+)
+   Loc: [/usr/src/debug/distroctl/platform/apps/control-center/tests/controller_test.cpp(95)]
+PASS   : ControllerTest::missingExecutableIsReported()
+PASS   : ControllerTest::unavailableConfigurationPreservesObservedOverview()
+PASS   : ControllerTest::startupIsReadOnlyAndDraftInvalidatesPlan()
+PASS   : ControllerTest::packageSelectionDoesNotDiscardRemovalProtection()
+PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(invalid-json)
+PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(future-schema)
+PASS   : ControllerTest::authenticationCancellationAndDenial(cancel)
+PASS   : ControllerTest::authenticationCancellationAndDenial(deny)
+PASS   : ControllerTest::liveSessionCannotSubmit()
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-false)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-false)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(reasons-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(targets-missing)
+PASS   : ControllerTest::validBlockedPlanRemainsReviewableWithoutAuthentication()
+PASS   : ControllerTest::requestAndOperationSurviveFrontendState()
+PASS   : ControllerTest::reopenPendingBootDoesNotRestartPollingOrSubmit()
+PASS   : ControllerTest::importValidationPreservesDraftAndExportIsAtomic()
+PASS   : ControllerTest::cleanupTestCase()
+Totals: 21 passed, 1 failed, 0 skipped, 0 blacklisted, 2299ms
+********* Finished testing of ControllerTest *********
+<end of output>
+Test time =   2.37 sec
+----------------------------------------------------------
+Test Failed.
+"control-center-controller" end time: Oct 15 05:10 UTC
+"control-center-controller" time elapsed: 00:00:02
+----------------------------------------------------------
+
+2/3 Testing: control-center-performance
+2/3 Test: control-center-performance
+Command: "/build/operating-system/.build/package/src/platform/target/control-center/performance-tests"
+Directory: /build/operating-system/.build/package/src/platform/target/control-center
+"control-center-performance" start time: Oct 15 05:10 UTC
+Output:
+----------------------------------------------------------
+********* Start testing of PerformanceTest *********
+Config: Using QtTest library 6.11.2, Qt 6.11.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 16.2.1 20260810), arch unknown
+PASS   : PerformanceTest::initTestCase()
+QWARN  : PerformanceTest::statusAndCompletedRecording() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-normal") is still running.
+QWARN  : PerformanceTest::statusAndCompletedRecording() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-normal") is still running.
+PASS   : PerformanceTest::statusAndCompletedRecording()
+QWARN  : PerformanceTest::malformedEventsNeverComplete() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-malformed") is still running.
+QWARN  : PerformanceTest::malformedEventsNeverComplete() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-malformed") is still running.
+PASS   : PerformanceTest::malformedEventsNeverComplete()
+PASS   : PerformanceTest::futureStatusCannotEnableBaseline()
+QWARN  : PerformanceTest::refusalBeforeStartShowsBackendReason() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-refused") is still running.
+QWARN  : PerformanceTest::refusalBeforeStartShowsBackendReason() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-refused") is still running.
+PASS   : PerformanceTest::refusalBeforeStartShowsBackendReason()
+QWARN  : PerformanceTest::missingFinalRecordIsIncomplete() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-missing-result") is still running.
+QWARN  : PerformanceTest::missingFinalRecordIsIncomplete() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-missing-result") is still running.
+PASS   : PerformanceTest::missingFinalRecordIsIncomplete()
+QWARN  : PerformanceTest::trailingGarbageCannotLeaveCompletedState() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-trailing") is still running.
+QWARN  : PerformanceTest::trailingGarbageCannotLeaveCompletedState() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-trailing") is still running.
+PASS   : PerformanceTest::trailingGarbageCannotLeaveCompletedState()
+QWARN  : PerformanceTest::emptySuccessCannotComplete() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-false-success") is still running.
+QWARN  : PerformanceTest::emptySuccessCannotComplete() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-false-success") is still running.
+PASS   : PerformanceTest::emptySuccessCannotComplete()
+QWARN  : PerformanceTest::cancellationPreservesCancelledResult() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-cancel") is still running.
+QWARN  : PerformanceTest::cancellationPreservesCancelledResult() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-cancel") is still running.
+PASS   : PerformanceTest::cancellationPreservesCancelledResult()
+QWARN  : PerformanceTest::managementBlockStopsOnlyBaselines() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-cancel") is still running.
+QWARN  : PerformanceTest::managementBlockStopsOnlyBaselines() QProcess: Destroyed while process ("/tmp/performance-tests-UPgMNb/backend-cancel") is still running.
+PASS   : PerformanceTest::managementBlockStopsOnlyBaselines()
+PASS   : PerformanceTest::exportAndIdentifiersAreBounded()
+PASS   : PerformanceTest::destructorStopsItsMeasurement()
+PASS   : PerformanceTest::cleanupTestCase()
+Totals: 13 passed, 0 failed, 0 skipped, 0 blacklisted, 792ms
+********* Finished testing of PerformanceTest *********
+<end of output>
+Test time =   0.80 sec
+----------------------------------------------------------
+Test Passed.
+"control-center-performance" end time: Oct 15 05:10 UTC
+"control-center-performance" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: control-center-qml
+3/3 Test: control-center-qml
+Command: "/build/operating-system/.build/package/src/platform/target/control-center/control-center-qml-tests"
+Directory: /build/operating-system/.build/package/src/platform/target/control-center
+"control-center-qml" start time: Oct 15 05:10 UTC
+Output:
+----------------------------------------------------------
+********* Start testing of astraeus_control_center *********
+Config: Using QtTest library 6.11.2, Qt 6.11.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 16.2.1 20260810), arch unknown
+QWARN  : astraeus_control_center::ControlCenter::initTestCase() kf.iconthemes: Icon theme "breeze-internal" not found.
+PASS   : astraeus_control_center::ControlCenter::initTestCase()
+PASS   : astraeus_control_center::ControlCenter::test_applyRequiresInstalledIdleReviewedSystem()
+PASS   : astraeus_control_center::ControlCenter::test_cancelledCloseKeepsMeasurementRunning()
+PASS   : astraeus_control_center::ControlCenter::test_errorCanReappearAfterDismiss()
+PASS   : astraeus_control_center::ControlCenter::test_existingAppsCanBeSelectedWithoutRemovingProtection()
+PASS   : astraeus_control_center::ControlCenter::test_inconsistentFlagsNeverEnableAuthentication()
+PASS   : astraeus_control_center::ControlCenter::test_labelsPreservePendingAndUnknownStates()
+PASS   : astraeus_control_center::ControlCenter::test_metadataChangesStillExplainVerifiedRestart()
+PASS   : astraeus_control_center::ControlCenter::test_overviewReviewsUpdatesWithoutDiscardingDrafts()
+PASS   : astraeus_control_center::ControlCenter::test_performanceBaselineReviewDialog()
+PASS   : astraeus_control_center::ControlCenter::test_performanceKeyboardStopAndUnavailableMeasurements()
+PASS   : astraeus_control_center::ControlCenter::test_populatedPagesRender()
+PASS   : astraeus_control_center::ControlCenter::test_reviewGroupsUseResolvedKindsAndRecordedOwnership()
+PASS   : astraeus_control_center::ControlCenter::test_reviewIsKeyboardAccessible()
+PASS   : astraeus_control_center::ControlCenter::test_validatedTextBecomesCleanWithoutDiscardingLaterEdits()
+PASS   : astraeus_control_center::ControlCenter::cleanupTestCase()
+Totals: 16 passed, 0 failed, 0 skipped, 0 blacklisted, 1997ms
+********* Finished testing of astraeus_control_center *********
+<end of output>
+Test time =   2.09 sec
+----------------------------------------------------------
+Test Passed.
+"control-center-qml" end time: Oct 15 05:10 UTC
+"control-center-qml" time elapsed: 00:00:02
+----------------------------------------------------------
+
+End testing: Oct 15 05:10 UTC

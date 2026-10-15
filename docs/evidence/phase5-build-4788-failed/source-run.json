@@ -1,0 +1,15 @@
+{
+  "created": "2026-10-15T04:58:45.183892+00:00",
+  "source_commit": "4788cb295a89bcb27d96db940c24507e9b1a27d1",
+  "source_sha256": "b0d7419f93d31f2afd03c1f83028d591e7e467e027dde93c9327168208af89de",
+  "source_bytes": 17240044,
+  "base_sha256": "360f0fa49db6813bdc8e35bed230a2dc2ae3567b7b5ab74719c0a706e4e34e87",
+  "archived_builder_sha256": "a0e82eb49274d3dc492a469642b16f2151962d3a82fa0bf5b56cb3fa74cec2c3",
+  "host_builder_sha256": "cf529ed6f3f7624f1382e04e35df1d1e2385989adc89b438f7c9a22308e5d26d",
+  "graphics": [
+    "software"
+  ],
+  "gaming": [],
+  "memory_mib": 8192,
+  "disk_cleanup_scope": "only closed builder-A/B disk.qcow2 under this exclusive run"
+}

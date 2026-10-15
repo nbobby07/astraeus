@@ -1,0 +1,20 @@
+{
+  "runtime_source_commit": "4788cb295a89bcb27d96db940c24507e9b1a27d1",
+  "controlled_failure_reproduced": true,
+  "correction": "CTest controller WORKING_DIRECTORY set to the source tests directory",
+  "executable_rebuilt_between_runs": false,
+  "controller_test_binary_sha256": "afcd0a80b82e8cfe3b57caf5515eff5e1ef5126c3c070034ff54120185b21a03",
+  "all_three_qt_suites_passed": true,
+  "qml_tests_passed": 16,
+  "logs": {
+    "remapped-path-before.log": {
+      "sha256": "65861f7f9958570ca657f1dae420031d496f43fd920e2b4d6116e90fccc8d68a",
+      "bytes": 2526
+    },
+    "remapped-path-after.log": {
+      "sha256": "29d2f11c3bc0f2519a1c550a7fab6e6dda28f0268df58912a3e07b7f34d68bac",
+      "bytes": 7364
+    }
+  },
+  "limitation": "Local Qt proof. Clean Arch rebuild and all new candidate VM acceptance remain pending."
+}
