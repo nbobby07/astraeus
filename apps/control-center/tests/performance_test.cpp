@@ -25,6 +25,7 @@ elif action in ('show','export'): print(json.dumps(report))
 elif action=='compare': print(json.dumps(dict(schema_version=1,comparable=False,blockers=['incompatible'],measurements=[],context_changes={})))
 elif action in ('record','baseline'):
  if mode=='malformed': print('{malformed',flush=True);time.sleep(30)
+ elif mode=='refused': sys.stderr.write('another measurement is running for this user\n');sys.exit(1)
  else:
   emit('started',dict(id='a'*32,kind=action,requested_seconds=60))
   emit('sample',sample)
@@ -52,6 +53,10 @@ private slots:
     }
     void futureStatusCannotEnableBaseline() {
         Performance p(fixture("future"));p.refresh();QTRY_VERIFY(!p.loading());QVERIFY(p.status().isEmpty());p.start("baseline");QVERIFY(!p.running());
+    }
+    void refusalBeforeStartShowsBackendReason() {
+        Performance p(fixture("refused"));p.start("record");QTRY_VERIFY(!p.running());QVERIFY(p.result().isEmpty());
+        QCOMPARE(p.error(),QString("another measurement is running for this user"));
     }
     void missingFinalRecordIsIncomplete() {
         Performance p(fixture("missing-result"));p.start("record");QTRY_VERIFY(!p.running());QVERIFY(p.result().isEmpty());QVERIFY(!p.error().isEmpty());

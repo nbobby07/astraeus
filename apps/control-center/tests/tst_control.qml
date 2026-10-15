@@ -250,7 +250,9 @@ TestCase {
         tryCompare(record, "enabled", true);
         record.forceActiveFocus(); keyClick(Qt.Key_Space);
         tryCompare(perf, "starts", 1); tryCompare(stop, "enabled", true);
-        stop.forceActiveFocus(); keyClick(Qt.Key_Space); tryCompare(perf, "running", false);
+        tryVerify(function() { return stop.activeFocus; });
+        keyClick(Qt.Key_Space); tryCompare(perf, "running", false);
+        tryVerify(function() { return record.activeFocus; });
         perf.status = {schema_version: 1, context: {}, baseline_blockers: ["Live session"]};
         tryCompare(findChild(app, "baselinePerformance"), "enabled", false);
         perf.status = {schema_version: 1, context: {}, baseline_blockers: []};
@@ -278,6 +280,7 @@ TestCase {
         compare(perf.starts, 0);
         keyClick(Qt.Key_Space);
         tryCompare(perf, "starts", 1);
+        tryVerify(function() { return findChild(app, "stopPerformance").activeFocus; });
         perf.stop();
     }
 }

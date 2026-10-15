@@ -13,6 +13,8 @@ ScrollView {
     contentWidth: availableWidth
     function metric(value, unit) { return value === undefined || value === null ? qsTr("Unavailable") : Number(value).toFixed(1) + " " + unit; }
     function runName(run) { return (run.kind || qsTr("Unknown")) + " · " + run.state + " · " + run.id.slice(0, 8); }
+    readonly property bool measuring: backend.running
+    onMeasuringChanged: if (visible) Qt.callLater(function() { (page.measuring ? stopButton : recordButton).forceActiveFocus(); })
     onVisibleChanged: if (visible) backend.refresh()
     Timer { interval: 3000; repeat: true; running: page.visible && !page.backend.running; onTriggered: page.backend.observe() }
     FileDialog {
@@ -34,6 +36,7 @@ ScrollView {
         onOpened: standardButton(Dialog.Ok).forceActiveFocus()
         contentItem: Label { wrapMode: Text.WordWrap; text: qsTr("Allow roughly two minutes. The tests use at most 4 CPU threads, 128 MiB of memory and one 128 MiB scratch file. Close demanding applications for a useful comparison. You can stop at any time. Results include filesystem caching and are development measurements.") }
         onAccepted: page.backend.start("baseline")
+        onClosed: if (page.backend.running) stopButton.forceActiveFocus()
     }
     ColumnLayout {
         width: parent.width
@@ -60,9 +63,9 @@ ScrollView {
         Repeater { model: page.backend.status.baseline_blockers || []; delegate: Label { required property string modelData; Layout.fillWidth: true; wrapMode: Text.WordWrap; text: modelData; textFormat: Text.PlainText } }
         RowLayout {
             Layout.fillWidth: true
-            Button { objectName: "recordPerformance"; text: qsTr("Record 60 seconds"); enabled: !page.backend.running; onClicked: page.backend.start("record") }
+            Button { id: recordButton; objectName: "recordPerformance"; text: qsTr("Record 60 seconds"); enabled: !page.backend.running; onClicked: page.backend.start("record") }
             Button { objectName: "baselinePerformance"; text: qsTr("Run baseline…"); enabled: !page.backend.running && !page.backend.blocked && !!page.backend.status.schema_version && !(page.backend.status.baseline_blockers || []).length; onClicked: baselineDialog.open() }
-            Button { objectName: "stopPerformance"; text: qsTr("Stop"); enabled: page.backend.running; onClicked: page.backend.stop() }
+            Button { id: stopButton; objectName: "stopPerformance"; text: qsTr("Stop"); enabled: page.backend.running; onClicked: page.backend.stop() }
         }
         ProgressBar { Layout.fillWidth: true; visible: page.backend.running; indeterminate: true; Accessible.name: qsTr("Measurement in progress") }
         Label { Layout.fillWidth: true; wrapMode: Text.WordWrap; text: page.backend.phase; textFormat: Text.PlainText; visible: text.length > 0 }
