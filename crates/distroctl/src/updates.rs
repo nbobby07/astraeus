@@ -95,7 +95,10 @@ pub fn update() -> Result<()> {
     crate::system::update(false, true)
 }
 
-fn automatic_confirmation_id(records: &[TransactionRecord]) -> Result<Option<i64>> {
+fn automatic_confirmation_id(
+    records: &[TransactionRecord],
+    restored: impl FnOnce(&TransactionRecord) -> bool,
+) -> Result<Option<i64>> {
     let pending: Vec<_> = records
         .iter()
         .filter(|r| r.state == TransactionState::AwaitingBoot)
@@ -105,7 +108,14 @@ fn automatic_confirmation_id(records: &[TransactionRecord]) -> Result<Option<i64
         [record] => record,
         _ => return Err("ambiguous pending boot transactions".into()),
     };
-    // Equal package maps also occur in metadata-only changes; verify the actual boot below.
+    // Equal package maps also occur in metadata-only changes, so restoration is detected by root lineage.
+    if restored(record) {
+        println!(
+            "Restored pre-update root detected; transaction {} remains pending. Run distroctl finalize-rollback {} after recovery.",
+            record.id, record.id
+        );
+        return Ok(None);
+    }
     Ok(Some(record.id))
 }
 
@@ -141,7 +151,14 @@ pub fn confirm_boot(id: Option<i64>, rollback: bool) -> Result<()> {
     let id = match id {
         Some(id) => id,
         None => {
-            let Some(id) = automatic_confirmation_id(&session.records()?)? else {
+            let Some(id) = automatic_confirmation_id(&session.records()?, |record| {
+                record
+                    .snapshot
+                    .as_deref()
+                    .and_then(|s| distro_snapshots::SnapshotId::parse(s).ok())
+                    .is_some_and(|pre| manager.verify_booted(&pre, true).is_ok())
+            })?
+            else {
                 return Ok(());
             };
             id
@@ -310,7 +327,7 @@ mod confirmation_tests {
     use super::*;
 
     #[test]
-    fn automatic_confirmation_selects_pending_identity_without_inferring_rollback() {
+    fn automatic_confirmation_leaves_verified_restoration_pending() {
         let previous = CurrentSystemState::new([("fixture".into(), "1".into())].into());
         let mut record = TransactionRecord::new(ExecutionPlan::new(
             previous.clone(),
@@ -329,14 +346,31 @@ mod confirmation_tests {
         record.state = TransactionState::AwaitingBoot;
         record.outcome = TransactionOutcome::AwaitingBoot;
         let records = [record.clone()];
-        assert_eq!(automatic_confirmation_id(&records).unwrap(), Some(17));
+        assert_eq!(
+            automatic_confirmation_id(&records, |_| false).unwrap(),
+            Some(17)
+        );
+        for _ in 0..2 {
+            assert_eq!(automatic_confirmation_id(&records, |_| true).unwrap(), None);
+            assert_eq!(records[0], record);
+        }
         // An unchanged package map cannot suppress metadata-only boot confirmation.
         record.plan.packages.changes.clear();
         assert_eq!(
-            automatic_confirmation_id(&[record.clone()]).unwrap(),
+            automatic_confirmation_id(&[record.clone()], |_| false).unwrap(),
             Some(17)
         );
-        assert!(automatic_confirmation_id(&[record.clone(), record]).is_err());
-        assert_eq!(automatic_confirmation_id(&[]).unwrap(), None);
+        assert_eq!(
+            automatic_confirmation_id(&[record.clone()], |_| true).unwrap(),
+            None
+        );
+        assert!(automatic_confirmation_id(&[record.clone(), record], |_| {
+            panic!("ambiguous history must be rejected first")
+        })
+        .is_err());
+        assert_eq!(
+            automatic_confirmation_id(&[], |_| unreachable!()).unwrap(),
+            None
+        );
     }
 }
