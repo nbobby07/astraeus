@@ -416,13 +416,13 @@ last known-good state with a new evidence directory.
 ## Owner decisions
 
 - **D1** Authorize disposable-machine testing and amend the "never enroll" rule for those machines only.
-- **D2** Owner desktop (7800X3D/RTX 5070): excluded, or live-USB read-only only. Even live boot needs Secure Boot disabled, which affects BitLocker.
+- **D2** Owner confirmed live-USB testing only on the 7800X3D/RTX 5070 on 2026-10-15. No installation or firmware-key change is authorized. Current Secure Boot and BitLocker states still need checking before choosing the boot procedure.
 - **D3** Enrollment mode per round: A, B, or C (C not recommended).
 - **D4** Physical test owner key generation, offline custody, and whether `db.key` may leave the installed machine to build recovery media.
 - **D5** Dual-boot policy: unsupported (recommended), separate-disk later, or same-disk.
 - **D6** Union or per-vendor graphics image.
 - **D7** Repository signing key refresh covering the test window.
-- **D8** Approved USB writer when no Linux host is available.
+- **D8** Owner selected Rufus for today's live USB. Use DD Image mode to preserve the candidate's layout and verify the written bytes.
 - **D9** Signed-update source: local validation package or a real pinned-snapshot upgrade.
 - **D10** Run physical comparison acceptance for the implemented classification and memory tolerance; no additional product change is currently required.
 - **D11** Evidence publication: which photos, journals and identities enter Git.

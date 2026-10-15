@@ -75,10 +75,12 @@ needs refreshed signed inputs and a newly qualified image.
 
 ## Today's live session
 
-Record the PC, GPU, firmware Secure Boot state and intended USB writer before
-choosing the boot procedure. The previously documented owner desktop is a
-Ryzen 7 7800X3D with RTX 5070; that does not establish which machine is in use
-today. NVIDIA open-module activation remains unsupported in this source.
+The owner confirmed a Ryzen 7 7800X3D and RTX 5070, using Rufus for a live-only
+USB session, with no disk installation. Read-only Windows inventory reports an
+ASUS B650E MAX GAMING WIFI motherboard and both RTX 5070 and AMD Radeon graphics.
+Windows denied this session's Secure Boot and BitLocker status queries; those
+states remain unknown until checked in Windows or firmware. NVIDIA open-module
+activation remains unsupported in this source.
 
 1. Verify the ISO before writing. In PowerShell:
 
@@ -87,12 +89,18 @@ today. NVIDIA open-module activation remains unsupported in this source.
    ```
 
 2. Select the USB by its actual model and capacity. Writing an image erases the
-   selected USB. Use a raw-image write and verify the written bytes; an extracted
-   ISO or another boot manager does not preserve this image's tested boot path.
+   selected USB. In Rufus, select this ISO and choose **DD Image mode** if prompted
+   between ISO and DD modes. Verify the written bytes; an extracted ISO or another
+   boot manager does not preserve this image's tested boot path. See the
+   [Rufus FAQ](https://github.com/pbatard/rufus/wiki/FAQ#why-doesnt-rufus-recommend-dd-mode-over-iso-mode-for-isohybrid-images-surely-dd-is-better).
 3. Use the firmware's one-time boot menu. This ISO will not boot under factory
    Secure Boot enforcement. Do not clear or enroll firmware keys to try to make
    the disposable VM keys work. Changes to the owner's Windows boot policy are
-   a separate decision, including any BitLocker recovery consequences.
+   a separate decision, including any BitLocker recovery consequences. Check
+   **Secure Boot State** in `msinfo32` and the Windows drive's encryption status
+   before changing anything. If encryption is enabled, make sure the recovery
+   key is available privately before a firmware-policy change; do not paste it
+   into a chat or report. See [Microsoft's BitLocker FAQ](https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/faq).
 4. Keep this session live-only. Do not start Calamares, mount personal Windows
    volumes, apply packages, or run the VM-only installation/recovery harnesses.
    Record whether Plasma, display output, keyboard/mouse, network and audio work.
