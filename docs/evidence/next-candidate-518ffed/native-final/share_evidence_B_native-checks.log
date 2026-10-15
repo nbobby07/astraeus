@@ -1,0 +1,6 @@
+rustc 1.98.1 (48a229cea 2026-09-01) (Arch Linux rust 1:1.98.1-2)
+cargo 1.98.1 (797e8a9bc 2026-08-05) (Arch Linux rust 1:1.98.1-2)
+├── serde_json feature "float_roundtrip"
+   Compiling distro-transactions v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/transactions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.95s
+DEPENDENCIES_NATIVE_CHECKS_PASS

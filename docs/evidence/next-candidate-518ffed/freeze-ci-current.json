@@ -1,0 +1,95 @@
+{
+  "headRefOid": "518ffede377615357cc7f86660fb57c75fce872d",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-15T20:10:14Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nbobby07/astraeus/actions/runs/38799554902/job/116644711487",
+      "name": "Host checks (ubuntu-24.04)",
+      "startedAt": "2026-10-15T20:08:38Z",
+      "status": "COMPLETED",
+      "workflowName": "Checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-15T20:28:25Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nbobby07/astraeus/actions/runs/38801997056/job/116653124664",
+      "name": "Host checks (ubuntu-24.04)",
+      "startedAt": "2026-10-15T20:26:47Z",
+      "status": "COMPLETED",
+      "workflowName": "Checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-15T20:10:26Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nbobby07/astraeus/actions/runs/38799548580/job/116644690080",
+      "name": "Host checks (ubuntu-24.04)",
+      "startedAt": "2026-10-15T20:08:36Z",
+      "status": "COMPLETED",
+      "workflowName": "Checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-15T20:11:14Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nbobby07/astraeus/actions/runs/38799554902/job/116644711735",
+      "name": "Host checks (windows-2025)",
+      "startedAt": "2026-10-15T20:08:38Z",
+      "status": "COMPLETED",
+      "workflowName": "Checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-15T20:29:51Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nbobby07/astraeus/actions/runs/38801997056/job/116653124877",
+      "name": "Host checks (windows-2025)",
+      "startedAt": "2026-10-15T20:26:47Z",
+      "status": "COMPLETED",
+      "workflowName": "Checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-15T20:11:45Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nbobby07/astraeus/actions/runs/38799548580/job/116644689978",
+      "name": "Host checks (windows-2025)",
+      "startedAt": "2026-10-15T20:08:35Z",
+      "status": "COMPLETED",
+      "workflowName": "Checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-15T20:08:42Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nbobby07/astraeus/actions/runs/38799554902/job/116644711483",
+      "name": "PR title",
+      "startedAt": "2026-10-15T20:08:38Z",
+      "status": "COMPLETED",
+      "workflowName": "Checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-15T20:26:53Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nbobby07/astraeus/actions/runs/38801997056/job/116653124423",
+      "name": "PR title",
+      "startedAt": "2026-10-15T20:26:47Z",
+      "status": "COMPLETED",
+      "workflowName": "Checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-15T20:08:41Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nbobby07/astraeus/actions/runs/38799548580/job/116644690061",
+      "name": "PR title",
+      "startedAt": "2026-10-15T20:08:35Z",
+      "status": "COMPLETED",
+      "workflowName": "Checks"
+    }
+  ]
+}

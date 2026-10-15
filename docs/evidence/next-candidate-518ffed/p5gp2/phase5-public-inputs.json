@@ -1,0 +1,14 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "no_secrets_staged": true,
+  "files": {
+    "phase42-faults.py": "5404ab2c45c9653b94f173820c5ac23d76ef1d8ed6d751d561ebe793545d308a",
+    "performance-observe.py": "9f7eb66360cfdf8b1e00c9d72629969adcdac044cdb3b0c82d9f00eaf55a57b5",
+    "fault-config.json": "6a91283966648acdc86aa73a31629891bc728dfd80a6495f54eead9cae346eab",
+    "phase2-guest.py": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f",
+    "phase5-config.json": "09eab5cd3ee272f467b52376b9fa9dbc6ea3a0a46a78fcc8decb563b05fb748c",
+    "phase42_trust.py": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be",
+    "phase5.py": "904f78a5b30bc5f7043615d353ee0436c93c7318a36e969c9a0736a5289c60a3",
+    "gui-barrier.py": "1ac4093c764851f90363d89490878db73e71e9cf44ddaf88533badc409be9b1a"
+  }
+}

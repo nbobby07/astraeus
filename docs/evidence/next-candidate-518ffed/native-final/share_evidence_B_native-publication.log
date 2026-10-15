@@ -1,0 +1,13 @@
+   Compiling serde_json v1.0.154
+   Compiling distro-config v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/config)
+   Compiling distro-graphics v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/graphics)
+   Compiling distro-snapshots v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/snapshots)
+   Compiling distro-transactions v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/transactions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.49s
+     Running tests/management_publication.rs (/build/next-native-518ffed/target/debug/deps/management_publication-06a1760b2f7806ab)
+
+running 1 test
+test every_management_publication_boundary_retains_evidence_and_blocks_mixed_state ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s
+

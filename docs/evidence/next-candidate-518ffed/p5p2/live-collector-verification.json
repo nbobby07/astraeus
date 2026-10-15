@@ -1,0 +1,59 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "ordinary_desktop_user_uid": 1000,
+  "modes": [
+    "1000:700",
+    "1000:600",
+    "1000:700"
+  ],
+  "collector_exit_code": 0,
+  "public_sha256": "386b33680cad2d7c645927d53deec827871bb79f2cd247247f7273ff2683d789",
+  "physical_acceptance": false,
+  "observations": {
+    "info": {
+      "outcome": "ok",
+      "exit_code": 0,
+      "probe_status": null
+    },
+    "status": {
+      "outcome": "partial_output",
+      "exit_code": 0,
+      "probe_status": null
+    },
+    "hardware": {
+      "outcome": "ok",
+      "exit_code": 0,
+      "probe_status": null
+    },
+    "graphics": {
+      "outcome": "partial_output",
+      "exit_code": 0,
+      "probe_status": null
+    },
+    "performance": {
+      "outcome": "ok",
+      "exit_code": 0,
+      "probe_status": null
+    },
+    "probe64": {
+      "outcome": "partial_output",
+      "exit_code": 0,
+      "probe_status": "failed"
+    },
+    "probe32": {
+      "outcome": "partial_output",
+      "exit_code": 0,
+      "probe_status": "failed"
+    },
+    "packages": {
+      "outcome": "nonzero_exit",
+      "exit_code": 1,
+      "probe_status": null
+    },
+    "services": {
+      "outcome": "ok",
+      "exit_code": 0,
+      "probe_status": null
+    }
+  }
+}

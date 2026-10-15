@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T23:15:13.454952+00:00",
+  "request": "0016.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"armed\": true, \"helper_sha256\": \"1ac4093c764851f90363d89490878db73e71e9cf44ddaf88533badc409be9b1a\", \"hook\": \"/etc/pacman.d/hooks/00-astraeus-phase42-gui-9c73f6ad59864c4b92716ed7d48c10ca.hook\", \"marker\": \"/var/log/astraeus/phase42-gui-9c73f6ad59864c4b92716ed7d48c10ca.json\", \"operation\": \"install\", \"package_before\": null, \"run_id\": \"9c73f6ad59864c4b92716ed7d48c10ca\", \"trust_helper_sha256\": \"804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be\"}\n",
+    "id": "8cf7ff5e765a48d988f2681096cfc7b8",
+    "boot_id": "38357e32-41e1-4308-8bbc-98368030dc87"
+  },
+  "finished": "2026-10-15T23:15:16.055223+00:00"
+}

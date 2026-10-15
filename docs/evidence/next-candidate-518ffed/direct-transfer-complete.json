@@ -1,0 +1,22 @@
+{
+  "source_vm": "vm-a30caad091aa4b339d8171aaa10f4b03",
+  "state": "paused",
+  "time": "2026-10-15T21:55:29.171Z",
+  "listener_stopped": true,
+  "removed_rules": [
+    "fw-f5416fbb4e2743868e3ebbc31d68e43d",
+    "fw-e8227892a171465d87def52c1b4f342b"
+  ],
+  "files": [
+    {
+      "name": "serve-image-518-ready.json",
+      "sha256": "5f401e1bf7b3a73571f17989becf21441c6b717b0ba07e14625173dc83be8f78"
+    },
+    {
+      "name": "direct-transfer-server.log",
+      "sha256": "44a46617bce512c98edf2c4f5561e394155cb21177eb38f78a8117b002a3fb33"
+    }
+  ],
+  "totalRunSeconds": 5639,
+  "disks_retained": true
+}

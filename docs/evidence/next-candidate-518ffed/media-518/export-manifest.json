@@ -1,0 +1,620 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "modes": [
+    "disabled",
+    "root-tampered",
+    "tampered",
+    "trusted",
+    "unsigned",
+    "untrusted"
+  ],
+  "passed": true,
+  "private_material_excluded": true,
+  "original_media_and_disks_retained": true,
+  "files": {
+    "disabled/boot-1/process.json": {
+      "bytes": 82,
+      "sha256": "1fcbe979af254b4ea1ea40d8a729bd91999a66ab7fec3ef4343530c661bd57dd"
+    },
+    "disabled/boot-1/qemu-command.json": {
+      "bytes": 1265,
+      "sha256": "76422d9640625570e0ee3ce75aad44af4f5d01ec004ed68219fab24d613055e9"
+    },
+    "disabled/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "disabled/boot-1/qmp-verdict.json": {
+      "bytes": 3273,
+      "sha256": "4b420e7b7e93255482ca2cd1fd67e3ea57c61e310aa509d9e9e31c8827f4b809"
+    },
+    "disabled/boot-1/serial.log": {
+      "bytes": 1228,
+      "sha256": "be4bfef1bb81a316162608a18ef1003af250320870b31920eeef9b282452a3b6"
+    },
+    "disabled/evidence-sha256.json": {
+      "bytes": 829,
+      "sha256": "11dbbbb55d58e02a07cd432bc318f740cd305b1bcdfab8d247f4a2effe1f0144"
+    },
+    "disabled/firmware-before.json": {
+      "bytes": 41,
+      "sha256": "77faff918e2e4d53b17274210065a2224247dce370b2afe65ce9b2929d2abc4f"
+    },
+    "disabled/result.json": {
+      "bytes": 2655,
+      "sha256": "9f492371668f8fee74e47681039a1bf00007aaf235f4da3bdf06b72ef330b9ac"
+    },
+    "disabled/screen.ppm": {
+      "bytes": 3072016,
+      "sha256": "8c75d226316c53b4f9d941d1cb48cd06628cfd51932c2b2898bcc7337013662d"
+    },
+    "disabled-host.log": {
+      "bytes": 277,
+      "sha256": "f52220a12461d33c972d680c1a13cf579eb9fbde1b596fda5a4862f5ac2f025e"
+    },
+    "disabled-launch.json": {
+      "bytes": 762,
+      "sha256": "4ab28bd18e75b919247273454b97d95771983baff96aa6193a5d738599e6d908"
+    },
+    "root-tampered/boot-1/process.json": {
+      "bytes": 82,
+      "sha256": "e5deb992786ae2b79aad67d4ccc4e2fd5175e7e07eb90951ad9a885953538605"
+    },
+    "root-tampered/boot-1/qemu-command.json": {
+      "bytes": 1305,
+      "sha256": "ed2023891c0a385f2531cd69374553c8efb5bf755bab3e55f39deeda2bb2d9e3"
+    },
+    "root-tampered/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "root-tampered/boot-1/qmp-verdict.json": {
+      "bytes": 3313,
+      "sha256": "0f43dfcb71c0ce5575c1289013b7bf4fd33cf12a0efb206cae365fc655899f66"
+    },
+    "root-tampered/boot-1/serial.log": {
+      "bytes": 1293,
+      "sha256": "e6416c5eb1c24c725eff53af3a0d2f8b1900ad4343d419effc8fc328a579fc9b"
+    },
+    "root-tampered/evidence-sha256.json": {
+      "bytes": 916,
+      "sha256": "d814936b2153a97bf40b865874a2fd1e970299378d9fe307dfe0ac26f3b60670"
+    },
+    "root-tampered/firmware-before.json": {
+      "bytes": 28871,
+      "sha256": "b47fa5d6d74368e1307f0369cc0d65072a0c05764d447ff68b3c5fd7468b9346"
+    },
+    "root-tampered/mutation.json": {
+      "bytes": 302,
+      "sha256": "597c8cfd05fd0de7ee0d161d459220ece9499997f7a2518b4cbeb96dc91fa98d"
+    },
+    "root-tampered/result.json": {
+      "bytes": 2660,
+      "sha256": "fc84e9a8a9544649bcd6fc4e398102d75d48d12cdb976b6fa881d08110e4d188"
+    },
+    "root-tampered/screen.ppm": {
+      "bytes": 3072016,
+      "sha256": "35857860a5206eafffc9460b54c26395be209868e3246d87625bc1f058aa5858"
+    },
+    "root-tampered-host.log": {
+      "bytes": 292,
+      "sha256": "5a498a8508a901bca44765708b6edec054582788db0085d8a7d4ff58cfb52262"
+    },
+    "root-tampered-launch.json": {
+      "bytes": 772,
+      "sha256": "4e281388e1f1c1c4c791c264e36dd6a827bf9c4920cea1cd1917dd9f494bd0d0"
+    },
+    "tampered/boot-1/process.json": {
+      "bytes": 82,
+      "sha256": "c502b790e06c940d111e55d8fc11300222a36cd2046f6336a4581d5fc4927e87"
+    },
+    "tampered/boot-1/qemu-command.json": {
+      "bytes": 1275,
+      "sha256": "47ff8b03746050ff5b2c49681c91c0af4b6f176221d247b46ed59224eebb50d4"
+    },
+    "tampered/boot-1/qemu.log": {
+      "bytes": 95,
+      "sha256": "8f1f4d3cb15072c8743b116ac23412f836cb73d127bd8a27ae77aa21078e2de2"
+    },
+    "tampered/boot-1/qmp-verdict.json": {
+      "bytes": 3293,
+      "sha256": "98f6dd5978b22804b6806a9060ab75169ead213780301607e199a0fea1f13005"
+    },
+    "tampered/boot-1/serial.log": {
+      "bytes": 345,
+      "sha256": "9f59f0e6bae72e793fa91e20003303d8534a21ff5ff5c12cf1259ea1b951b1d6"
+    },
+    "tampered/boot-1/shutdown.json": {
+      "bytes": 87,
+      "sha256": "d95ae210636ce72a845bbd043417b3eaee31d761520211428ca2f9cc42266752"
+    },
+    "tampered/evidence-sha256.json": {
+      "bytes": 1106,
+      "sha256": "574f45d3efd7c41f6e73cee36fc1283457da95d60657e23aeea30bab336bb3ec"
+    },
+    "tampered/firmware-before.json": {
+      "bytes": 28871,
+      "sha256": "b47fa5d6d74368e1307f0369cc0d65072a0c05764d447ff68b3c5fd7468b9346"
+    },
+    "tampered/fixture-signature.json": {
+      "bytes": 285,
+      "sha256": "d9a2193d23ef27f6a3d11f51234b401bc455c1063ce5c42788ff2ca65d4c94b8"
+    },
+    "tampered/mutation.json": {
+      "bytes": 292,
+      "sha256": "55b6045a134ded73b2964eb94327c3ce02980da26ce6b2a06793b2124a2776b7"
+    },
+    "tampered/result.json": {
+      "bytes": 2655,
+      "sha256": "50491491b5dc875f4cf661ee9faf125da3d94378a3b639f79dc8f5b3423682c5"
+    },
+    "tampered/screen.ppm": {
+      "bytes": 3072016,
+      "sha256": "a3d60c81fc01fd9b73cf78651103c3b20ecee5875b564342150995cfaf36b165"
+    },
+    "tampered-host.log": {
+      "bytes": 277,
+      "sha256": "10129b8527fa78ff217f11208e779b6891dff43a8355a102a8238b99e15a2938"
+    },
+    "tampered-launch.json": {
+      "bytes": 762,
+      "sha256": "f4f999de5c636caf983567d6b8fa458e6735383185d6b72966754b638f91e48e"
+    },
+    "trusted/attention.json": {
+      "bytes": 498,
+      "sha256": "ff440d8c41e76ed92ff418eba1d0983625462e2f701702e59a7d4db04e66091b"
+    },
+    "trusted/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "dc73398e0a60777179ad90c55c79709b93909c7ae723fe3392e5f4f45243ef71"
+    },
+    "trusted/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "9e43829b586deadc2940e536055b17a02500b84d21701d66c4f3b925ee746914"
+    },
+    "trusted/boot-1/003-ready.json": {
+      "bytes": 219,
+      "sha256": "5b10c497b6805be0e80bdf24559c04613bd1c6e53e17cb81faeac858528ed341"
+    },
+    "trusted/boot-1/004-ready.json": {
+      "bytes": 219,
+      "sha256": "5dc6c4fc80ef39bddd57f0919ff6a75377fd85152809b57011b63ea7ea953a91"
+    },
+    "trusted/boot-1/005-ready.json": {
+      "bytes": 219,
+      "sha256": "04be5f0c3a943711bfd34784ad108fe99386f6007f7bd65bc515150f2b22ebca"
+    },
+    "trusted/boot-1/006-ready.json": {
+      "bytes": 219,
+      "sha256": "65ccff87da2977e70747514736b129bd4533831ffc7587b078456c5415a7cfa6"
+    },
+    "trusted/boot-1/007-ready.json": {
+      "bytes": 219,
+      "sha256": "607daeeb9441b9dc60e790463a50194d2b58ea3152ef35c0a14f186e2fea7ff1"
+    },
+    "trusted/boot-1/008-ready.json": {
+      "bytes": 219,
+      "sha256": "179e3c00f948eb3f5813603d5c9fcba0200fc5efecb719cc10b7fcb0bab4dfb7"
+    },
+    "trusted/boot-1/009-ready.json": {
+      "bytes": 219,
+      "sha256": "75927220a5357e7c8163467d0458fc7161a11e189842a584acdffa6672f975c1"
+    },
+    "trusted/boot-1/010-ready.json": {
+      "bytes": 219,
+      "sha256": "6f2df9dc98c6a30461a8fff851c67cb162d059f6ec15ec4806e3c400207d3fb6"
+    },
+    "trusted/boot-1/011-ready.json": {
+      "bytes": 219,
+      "sha256": "2475700347e7adb2bcd6495f7994dcf55cfe32fcf8dd6152cbcd6093a2d5e5f5"
+    },
+    "trusted/boot-1/012-ready.json": {
+      "bytes": 219,
+      "sha256": "07a875b9b86a550d50b428f16d420048f3c03481911e8ed93fff6a9e5b89245a"
+    },
+    "trusted/boot-1/013-ready.json": {
+      "bytes": 219,
+      "sha256": "c503a6784cb558e3259cd5e209d3644e8ae2b997e54d84c989c14ddbfad45922"
+    },
+    "trusted/boot-1/014-ready.json": {
+      "bytes": 219,
+      "sha256": "9684861108e53faadc50882dde31de88fccb176a9535d9ccbcdddd851e63e061"
+    },
+    "trusted/boot-1/015-ready.json": {
+      "bytes": 219,
+      "sha256": "d87221627ca95745d8f636773b33edc75dcf08d52249b4038fac4acb37808987"
+    },
+    "trusted/boot-1/016-ready.json": {
+      "bytes": 219,
+      "sha256": "6fc9e204efa24986ad76415345a131a875ef67849ab9aa20581fc5a026c7963f"
+    },
+    "trusted/boot-1/017-ready.json": {
+      "bytes": 219,
+      "sha256": "9234a18f9e00ee330330d4a9e56acc5c7630abcdeb16bec4a1c229451290fcc8"
+    },
+    "trusted/boot-1/018-ready.json": {
+      "bytes": 219,
+      "sha256": "13305d2510a7cdb585a94563ebfbcefe4e3082c30606ba7c766921a5d93f1a65"
+    },
+    "trusted/boot-1/019-ready.json": {
+      "bytes": 219,
+      "sha256": "695601701add96e8a0e4e10194fbf8a499d8c6f10f74728bbaf712bd5e4de19d"
+    },
+    "trusted/boot-1/020-ready.json": {
+      "bytes": 219,
+      "sha256": "a7514b41467063b89dc99f62c407c0c445eadea4424ebd611834964baf94d596"
+    },
+    "trusted/boot-1/021-ready.json": {
+      "bytes": 219,
+      "sha256": "f2828c7b0cfc473fc7f81ffd3f53426dbb75003a394432a1a7efe8795deda75c"
+    },
+    "trusted/boot-1/022-ready.json": {
+      "bytes": 219,
+      "sha256": "ea7f4466af3e0368b6a133d2b757c2b17c0ef701f347abda22246b24809ea535"
+    },
+    "trusted/boot-1/023-ready.json": {
+      "bytes": 219,
+      "sha256": "ef9dd45302d637a1b2a752a329988e39c42d163a720b1c36a975eb80a4124f9e"
+    },
+    "trusted/boot-1/024-ready.json": {
+      "bytes": 356,
+      "sha256": "dfe571d642da07705c316f06b08da9e54dbb943fd2195acc35f0bb66651fbcbb"
+    },
+    "trusted/boot-1/025-actual-recovery-firmware.json": {
+      "bytes": 2374,
+      "sha256": "a7c75304f059d177bbbfb934dafffcbe27df9152db89c9c1d247e9b37bc11c16"
+    },
+    "trusted/boot-1/026-actual-distroctl.json": {
+      "bytes": 404,
+      "sha256": "aff728290395be74f427c922b0f54f45b47fb5889b449b4b8874dff576568fdf"
+    },
+    "trusted/boot-1/027-actual-astraeus-control-center.json": {
+      "bytes": 432,
+      "sha256": "d6d2644f9be4d9a9beafb708707f83713eedd0d10e187a60d714e46fabf5c882"
+    },
+    "trusted/boot-1/028-actual-airootfs.sfs.json": {
+      "bytes": 438,
+      "sha256": "9b32b638772a0fd4eb4182ef01d038ab876688a1f607c58b783be55e04d32ff5"
+    },
+    "trusted/boot-1/029-ephemeral-live-root.json": {
+      "bytes": 360,
+      "sha256": "c7d62ac823a5cff11ccdb6caf95b99546f4c053db905042cc683bd4878208d46"
+    },
+    "trusted/boot-1/030-live-before-status.json": {
+      "bytes": 2641,
+      "sha256": "5becfacc30a27b2155d556f487cf66a7b43d16d78506b48cb26984df6dd377b5"
+    },
+    "trusted/boot-1/031-live-before-history.json": {
+      "bytes": 325,
+      "sha256": "180476cec93134c00777781efe7c1962fe82673f6104c4c03fb4a3681051f33a"
+    },
+    "trusted/boot-1/032-live-before-packages.json": {
+      "bytes": 16217,
+      "sha256": "81209e8c0a299ab3d959f244b669dba3ca25c71f06e94fecf3fe3ece4ad47724"
+    },
+    "trusted/boot-1/033-live-before-reasons.json": {
+      "bytes": 1192,
+      "sha256": "2f23039d62c1157ae9d06719bbda64a2be2f5b05c7a115366066b91918c7297f"
+    },
+    "trusted/boot-1/034-live-before-files.json": {
+      "bytes": 1238,
+      "sha256": "d27cd150e099d687105baa43a42666f0f41846aa487e0cb8cf246f62a23fdc94"
+    },
+    "trusted/boot-1/035-live-user-status.json": {
+      "bytes": 2669,
+      "sha256": "c560e9e24e8f22ffd0e99f31348bf0f040aa4a9406858bef54ce4a8134398735"
+    },
+    "trusted/boot-1/036-live-user-features.json": {
+      "bytes": 1901,
+      "sha256": "257077f4b54c81b02d118ae01fd310dbbf5bbc614614de60cfbe32ccbd9b080c"
+    },
+    "trusted/boot-1/037-live-user-packages.json": {
+      "bytes": 247531,
+      "sha256": "a79f584d9260de74206f218aaf24e5d67d7e6573dcdcf061def4390e20295a3a"
+    },
+    "trusted/boot-1/038-live-user-plan.json": {
+      "bytes": 279340,
+      "sha256": "4672739975b5b42af4802bc8e31b55fb01eeae9a59d6375b19a49e24140b35ad"
+    },
+    "trusted/boot-1/039-live-root-submit-refusal.json": {
+      "bytes": 606,
+      "sha256": "b654d41e1e9d030e2141db41512b656f19158c8e636492cf09505ecf3c97d270"
+    },
+    "trusted/boot-1/040-live-after-status.json": {
+      "bytes": 2641,
+      "sha256": "abd7010660b378d8ae58da62ac2def7d6fef4082513f42a49b75fb823eb8fedc"
+    },
+    "trusted/boot-1/041-live-after-history.json": {
+      "bytes": 325,
+      "sha256": "82e541b0bd8021165c43762fbcdce4effc1e80b0aac107d8f9bd2308de58921b"
+    },
+    "trusted/boot-1/042-live-after-packages.json": {
+      "bytes": 16217,
+      "sha256": "04b2d7c6d67237cb4d6f0a0ef07ee3e94039cfd646c968b895d608d6b878f055"
+    },
+    "trusted/boot-1/043-live-after-reasons.json": {
+      "bytes": 1192,
+      "sha256": "4cfafd3d1780cd6d006f6e4ee764c363873e5bf88117c7ec6e20eee5fae15109"
+    },
+    "trusted/boot-1/044-live-after-files.json": {
+      "bytes": 1238,
+      "sha256": "b1fce6e1db46a308b16d0d749c58c85e7d4bcc499dc6498c9401b95b07c183c1"
+    },
+    "trusted/boot-1/045-gui-before-status.json": {
+      "bytes": 2641,
+      "sha256": "ee86072eefc35023305b3719b27c5e72a147a6798fc371a18bb4c5f57a043be3"
+    },
+    "trusted/boot-1/046-gui-before-history.json": {
+      "bytes": 325,
+      "sha256": "dad251510720ab5fd3741792e355f522108bb87dacbea9e03a2d8f95d2c6d037"
+    },
+    "trusted/boot-1/047-gui-before-packages.json": {
+      "bytes": 16217,
+      "sha256": "303a64df6b2e762fbe4ca05962a6d902db0ebac715ded1bd5ef6f5ac878822c2"
+    },
+    "trusted/boot-1/048-gui-before-reasons.json": {
+      "bytes": 1192,
+      "sha256": "31d60731a703c2f6d3238bb8593d92e7cd1b303b260be518aaa0a732bf56c4b3"
+    },
+    "trusted/boot-1/049-gui-before-files.json": {
+      "bytes": 1238,
+      "sha256": "d19961ca0ab5082b296e7c4ad0f9dce0513530c451401399c166a4e1848cf6d6"
+    },
+    "trusted/boot-1/050-gui-after-status.json": {
+      "bytes": 2641,
+      "sha256": "90b654f517903795ab89f036b8172eda2cbe276f3063a831da8fa7fdedbdaec3"
+    },
+    "trusted/boot-1/051-gui-after-history.json": {
+      "bytes": 325,
+      "sha256": "75dca77214af242c0aa65e5a6a9a3e39b7bfb0e1502a6772a0cb4bbef85d9b98"
+    },
+    "trusted/boot-1/052-gui-after-packages.json": {
+      "bytes": 16217,
+      "sha256": "f9a443c8662d647aa3e06a6bc91fb55eb208a8866988d4c9cd92e29079c95ad0"
+    },
+    "trusted/boot-1/053-gui-after-reasons.json": {
+      "bytes": 1192,
+      "sha256": "25b111bb38302d08115f0ab441d07a88b54acb2a3dba0adfb91adf2a351ca2e1"
+    },
+    "trusted/boot-1/054-gui-after-files.json": {
+      "bytes": 1238,
+      "sha256": "1ffd35b6e5af441d094b3c0fedfaf0958f054efa38b5b186ea20d5a87d044d53"
+    },
+    "trusted/boot-1/055-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "f86e1047f9a79d5ed96396e0b5b72f5511f3178208f6d696e41a6eafd5889e2c"
+    },
+    "trusted/boot-1/process.json": {
+      "bytes": 82,
+      "sha256": "9aa4652b3da0b7f49be620d5f02ee37c1d69c886af26200fcf64f57cf4bceeb8"
+    },
+    "trusted/boot-1/qemu-command.json": {
+      "bytes": 1260,
+      "sha256": "1c4ec241669af622b3844fc0b95a88c5ec3d7b7d22b8d147238bcefdaf2f370c"
+    },
+    "trusted/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "trusted/boot-1/qmp-ready.json": {
+      "bytes": 3271,
+      "sha256": "095501745e9ca0050ad1312c24a1e27dc4f4cc44ddb16befe5969db0c15752f6"
+    },
+    "trusted/boot-1/qmp-verdict.json": {
+      "bytes": 3271,
+      "sha256": "095501745e9ca0050ad1312c24a1e27dc4f4cc44ddb16befe5969db0c15752f6"
+    },
+    "trusted/boot-1/serial.log": {
+      "bytes": 27128,
+      "sha256": "e11af3748cadeeec8b95bec18d7eb92fe1fffe22a708b04f6d161072f55160b6"
+    },
+    "trusted/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "8716ed1eb1fd4452d0c788adf2f4d1a7be75735b37b8d6c669b8093b2c9c1369"
+    },
+    "trusted/evidence-sha256.json": {
+      "bytes": 8802,
+      "sha256": "593929313e15437567b5842b459d49105ff4c6c316346276bb5c6de1537cd030"
+    },
+    "trusted/firmware-before.json": {
+      "bytes": 28871,
+      "sha256": "b47fa5d6d74368e1307f0369cc0d65072a0c05764d447ff68b3c5fd7468b9346"
+    },
+    "trusted/gui-complete.json": {
+      "bytes": 1205,
+      "sha256": "e895922ead46cab6a60c7cb4323d35540e1ca8f7809b8038b29530e58192f597"
+    },
+    "trusted/result.json": {
+      "bytes": 320937,
+      "sha256": "4b2a6b89c476d03fb93db668bbeca2b02566f2b6cc5b832c9f05b06168d4b601"
+    },
+    "trusted/screen.ppm": {
+      "bytes": 3072016,
+      "sha256": "463083aa3efa6e578e85860fc96cb0e2bcbec5ae6e0c35fd6e1dbb5134d25e32"
+    },
+    "trusted/screenshots/live-apply-disabled.png": {
+      "bytes": 227982,
+      "sha256": "fe976a19d815bce7d64e271c556ab3c1df474a7337d72ddccba836712cc6c939"
+    },
+    "trusted/screenshots/live-apply-disabled.ppm": {
+      "bytes": 3072016,
+      "sha256": "7e47ecc93818b872b89f0d2f148420f16fa00615381edabd020e5eae1fd2e938"
+    },
+    "trusted/screenshots/live-inspection-warning.png": {
+      "bytes": 277298,
+      "sha256": "b5e96edf308eaca6ada0c340db91a0fc007f76a0926e3846fab46045ade4119a"
+    },
+    "trusted/screenshots/live-inspection-warning.ppm": {
+      "bytes": 3072016,
+      "sha256": "eceb53811f619da0ae19bb56e7c18ede517820fc38b578622fe52fc4c7368da6"
+    },
+    "trusted/screenshots/live-kcalc-search.png": {
+      "bytes": 188651,
+      "sha256": "1923525e15acbc4b4a778792e806700c8c0a4a8240a659623912a381000443f8"
+    },
+    "trusted/screenshots/live-kcalc-search.ppm": {
+      "bytes": 3072016,
+      "sha256": "419da1aab4a2783936ae48733f7e51c098d7a8225f9bc2f9f30f5c474548afa6"
+    },
+    "trusted/screenshots/live-packages-search.png": {
+      "bytes": 227783,
+      "sha256": "bc049bb44b52a90dd1ee48ee3f2cfb835891a8ae6886acc6a77c9fefddfb31d8"
+    },
+    "trusted/screenshots/live-packages-search.ppm": {
+      "bytes": 3072016,
+      "sha256": "a6d5d5c01e7a17d5fac969d29d412485842b272779b7f90a2dc67f963bf793ea"
+    },
+    "trusted/screenshots/live-review-blocked.png": {
+      "bytes": 234742,
+      "sha256": "900ca13f912528749bcbe24df5350d84e6da03e03dcf44bc60bdd81e01637300"
+    },
+    "trusted/screenshots/live-review-blocked.ppm": {
+      "bytes": 3072016,
+      "sha256": "afcf547da5fbab9004b70e41c9330915cc0befca649b0b8cbfc611822691b8ee"
+    },
+    "trusted/screenshots/live-software.png": {
+      "bytes": 209493,
+      "sha256": "b40bf76abec6d40e5b2d14fbee7ee85ed89337f292f9b9629fb92e565e6f2835"
+    },
+    "trusted/screenshots/live-software.ppm": {
+      "bytes": 3072016,
+      "sha256": "9a6c7f336f66d7db9f66867db6eaafc8e6c29d60b339e6c5ee5ed4646182381c"
+    },
+    "trusted/screenshots/trusted-channel-command.png": {
+      "bytes": 280981,
+      "sha256": "7d65fd19a6eeff094ccd0e16eb32f2c4575d4f685be73387d312870ce98d52ad"
+    },
+    "trusted/screenshots/trusted-channel-command.ppm": {
+      "bytes": 3072016,
+      "sha256": "0bfc5c2b69785187f59624511e3891aa5c1594e0b28c1b042a7f6f6af1ac9a77"
+    },
+    "trusted/screenshots/trusted-live-ready.png": {
+      "bytes": 554262,
+      "sha256": "ec415d45933ea4e7f7891b0b58e41be470634a808f2e7fb039c6583541717d08"
+    },
+    "trusted/screenshots/trusted-live-ready.ppm": {
+      "bytes": 3072016,
+      "sha256": "003019f30b9cdf4835dd8426b38bf3f59246db80dabc41c51f468bda5feb1926"
+    },
+    "trusted/screenshots/trusted-terminal-ready.png": {
+      "bytes": 275106,
+      "sha256": "024a218206b074a49cac01dee568a35f45fac3d8b53770d46084607ab0eb17b6"
+    },
+    "trusted/screenshots/trusted-terminal-ready.ppm": {
+      "bytes": 3072016,
+      "sha256": "02399cbb5809516b2f2f8de159477e2ab32a51b11b415900051cdb3389beff55"
+    },
+    "trusted-host.log": {
+      "bytes": 479,
+      "sha256": "d5fbb39ca22ff1a4bb163914d82df617f71313230f30899fd011877b5b0f7f7d"
+    },
+    "trusted-launch.json": {
+      "bytes": 782,
+      "sha256": "029c6892aa855de63ec4cfb284cea6b44c23ba79f657703603f0701160de1162"
+    },
+    "unsigned/boot-1/process.json": {
+      "bytes": 82,
+      "sha256": "10462d2b1ed319afd5f6db4dfaaaf67d40faaddc5050d9241990378c8b612649"
+    },
+    "unsigned/boot-1/qemu-command.json": {
+      "bytes": 1275,
+      "sha256": "aeb12d0a830d62c335f2d3e59bcad403c4da531a0832d03557cbb0714a380e27"
+    },
+    "unsigned/boot-1/qemu.log": {
+      "bytes": 95,
+      "sha256": "aa94f10147c42ef55623c7c29aae156a55e152a93d895987d6b0ce60b9efdc1b"
+    },
+    "unsigned/boot-1/qmp-verdict.json": {
+      "bytes": 3293,
+      "sha256": "234bd6cd7a377908e76711fcdabf1e22ae3eb3917437f32b4e805da169a4d74d"
+    },
+    "unsigned/boot-1/serial.log": {
+      "bytes": 345,
+      "sha256": "9f59f0e6bae72e793fa91e20003303d8534a21ff5ff5c12cf1259ea1b951b1d6"
+    },
+    "unsigned/boot-1/shutdown.json": {
+      "bytes": 87,
+      "sha256": "6df1e71b30bc9a9db827051c71e44e777306ef17d7bc7e3339a05e1dcb181c28"
+    },
+    "unsigned/evidence-sha256.json": {
+      "bytes": 1106,
+      "sha256": "575fc1fa4074cbd51669dbc9615f0c26e4e260d2746bed97b7136577c9a86b1b"
+    },
+    "unsigned/firmware-before.json": {
+      "bytes": 28871,
+      "sha256": "b47fa5d6d74368e1307f0369cc0d65072a0c05764d447ff68b3c5fd7468b9346"
+    },
+    "unsigned/fixture-signature.json": {
+      "bytes": 107,
+      "sha256": "2ac5ce6bc647633a4d11d5c9dc215dd14ed62bf019dac4e1d61b6a1ccc0f3517"
+    },
+    "unsigned/mutation.json": {
+      "bytes": 290,
+      "sha256": "534b199651aa92174f5b930fba7762fb5d108cdcc9b334fb4cf787432c9d59ca"
+    },
+    "unsigned/result.json": {
+      "bytes": 2655,
+      "sha256": "9f4e6036ab3f0507db2ddb48206d7653b1d017438cd0c3bc05943d5dd7207997"
+    },
+    "unsigned/screen.ppm": {
+      "bytes": 3072016,
+      "sha256": "a3d60c81fc01fd9b73cf78651103c3b20ecee5875b564342150995cfaf36b165"
+    },
+    "unsigned-host.log": {
+      "bytes": 277,
+      "sha256": "c1fed040eb3cb461c56fe7e05f1268840eed71543876ced76c32db0117f9473c"
+    },
+    "unsigned-launch.json": {
+      "bytes": 762,
+      "sha256": "39c14cf0471a005e38c73a7c8985adcf77e09aedb13e836e780dbf2b776d3fa4"
+    },
+    "untrusted/boot-1/process.json": {
+      "bytes": 82,
+      "sha256": "b2e43f57227d81c49fcda3c4aa06daa3954dd17e6322214ecb438ec9c932994e"
+    },
+    "untrusted/boot-1/qemu-command.json": {
+      "bytes": 1270,
+      "sha256": "61bc84f89885aff2ee7dd6abf9e148ccaa32b08a4e301f80094be13f8be0bee4"
+    },
+    "untrusted/boot-1/qemu.log": {
+      "bytes": 95,
+      "sha256": "48e73065d8c41ed46a913e87ffaeb0361c7d7ff721f53b80b335807160f722ab"
+    },
+    "untrusted/boot-1/qmp-verdict.json": {
+      "bytes": 3275,
+      "sha256": "8a785fd78bc50500dd6104259198eae343a6c2ade4300c03a48e3f93a73244e6"
+    },
+    "untrusted/boot-1/serial.log": {
+      "bytes": 345,
+      "sha256": "9f59f0e6bae72e793fa91e20003303d8534a21ff5ff5c12cf1259ea1b951b1d6"
+    },
+    "untrusted/boot-1/shutdown.json": {
+      "bytes": 87,
+      "sha256": "a376bcd15b524789c746bf4c1352bb2ad809a5021b2d5c57fabbb59c9a9a256e"
+    },
+    "untrusted/evidence-sha256.json": {
+      "bytes": 923,
+      "sha256": "67c0dd4fc4fc4afcc844bfdc9bba52a1f725a75dd96489b20a8de4cbc94cc023"
+    },
+    "untrusted/firmware-before.json": {
+      "bytes": 6573,
+      "sha256": "c78a35defa0c1177ea95edfe2bd3e7cd7d036e59df429b37785c9eb45aafa642"
+    },
+    "untrusted/result.json": {
+      "bytes": 2656,
+      "sha256": "6f3efbe59ba65864973f84dfea78b96c40a5361cc2d1f053d0f4ad7d82f0b3d6"
+    },
+    "untrusted/screen.ppm": {
+      "bytes": 3072016,
+      "sha256": "a3d60c81fc01fd9b73cf78651103c3b20ecee5875b564342150995cfaf36b165"
+    },
+    "untrusted-host.log": {
+      "bytes": 965,
+      "sha256": "61ed45e594d6c3afaa01a4ece7b5f74c6e7c84d14f2b995e30e1c355e5c830ab"
+    },
+    "untrusted-launch.json": {
+      "bytes": 764,
+      "sha256": "7aefaeb2acf7da9ae763c5ba31808c2e95c9c9d3dfedbf9758f27a64a35d2f34"
+    }
+  }
+}

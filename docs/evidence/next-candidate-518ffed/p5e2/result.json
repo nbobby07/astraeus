@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "accepted": true,
+  "calamares_ui": true,
+  "started": "2026-10-15T21:55:41.918900+00:00",
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "calamares_observation": {
+    "schema_version": 1,
+    "observed_finished": true,
+    "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+    "image_sha256": "8c8a9f5a2627ab7ce4cdd8910e804d1b5d2b0fd17a824895c3add9f833ef94a9",
+    "encryption": "LUKS2",
+    "serial": "AS42d6bae4664637ed69",
+    "sha256": {
+      "calamares-welcome.png": "ca4709513249c3e45cbd2c9e0eb1fdd54df4441ea8098e36f6c767931425e603",
+      "calamares-summary.png": "671a3c1ca39f69a01e2ce7a0a30d6e5b32b499613f33c50f44b37c3b72b04070",
+      "calamares-finished.png": "544e8c3ed8039a65981f84d271c84efe27f12d111953435149f094bbf5c38bff",
+      "calamares.log": "5a03afa3e36ff7871ce5344ee6ba0a3ba01b67610c6620563fefc8ef04b8d730"
+    },
+    "scope": "Operator observed actual native pages; adapter must independently verify the installed result without replaying provision"
+  },
+  "boot_ids": [
+    "07e3accc-6b39-4960-994a-611f9358c18f",
+    "adbd8ed1-9ee4-4538-bdff-2b97052068e3"
+  ],
+  "finished": "2026-10-15T22:24:09.795502+00:00"
+}

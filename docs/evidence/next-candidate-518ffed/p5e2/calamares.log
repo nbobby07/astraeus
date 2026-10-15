@@ -1,0 +1,822 @@
+=== START CALAMARES 3.4.3
+2026-10-15 - 22:04:12 [6]: void CalamaresApplication::init()
+2026-10-15 - 22:04:12 [6]:     Calamares version: 3.4.3 
+2026-10-15 - 22:04:12 [6]:     .. Using Qt version: 6.11.2 
+2026-10-15 - 22:04:12 [6]:     .. Build type: Release 
+2026-10-15 - 22:04:12 [6]:     .. Using PyBind11 
+2026-10-15 - 22:04:12 [6]:     .. Using settings: "/etc/calamares/settings.conf" 
+2026-10-15 - 22:04:12 [6]:     .. Using log file: "/root/.cache/calamares/session.log" 
+2026-10-15 - 22:04:12 [6]:     .. Languages: QList("ar", "as", "ast", "az", "az_AZ", "be", "bg", "bn", "ca", "ca@valencia", "cs_CZ", "da", "de", "el", "en", "en_GB", "eo", "es", "es_AR", "es_MX", "et", "eu", "fa", "fi_FI", "fr", "fur", "gl", "he", "hi", "hr", "hu", "ia", "id", "is", "it_IT", "ja", "ka", "kk", "ko", "lg", "lt", "ml", "mr", "nb", "nl", "oc", "pl", "pt_BR", "pt_PT", "ro", "ru", "si", "sk", "sl", "sq", "sr", "sr@latin", "sv", "tg", "th", "tr_TR", "uk", "uz", "vi", "zh_CN", "zh_TW") 
+2026-10-15 - 22:04:12 [6]: bool Calamares::initQmlModulesDir()
+2026-10-15 - 22:04:12 [6]:     Using Calamares QML directory "/usr/share/calamares/qml" 
+2026-10-15 - 22:04:12 [6]: Calamares::Branding::Branding(const QString&, QObject*, qreal)
+2026-10-15 - 22:04:12 [6]:     Using Calamares branding file at "/etc/calamares/branding/astraeus/branding.desc" 
+2026-10-15 - 22:04:12 [2]: void Calamares::Branding::initSimpleSettings(const YAML::Node&)
+2026-10-15 - 22:04:12 [2]:     WARNING: Branding module-setting *windowExpanding* interpreted as "normal" 
+2026-10-15 - 22:04:12 [2]: void Calamares::flavorAndSide(const YAML::Node&, const char*, Branding::PanelFlavor&, Branding::PanelSide&)
+2026-10-15 - 22:04:12 [2]:     WARNING: Branding setting for sidebar is missing, using "widget" "left" 
+2026-10-15 - 22:04:12 [2]: void Calamares::flavorAndSide(const YAML::Node&, const char*, Branding::PanelFlavor&, Branding::PanelSide&)
+2026-10-15 - 22:04:12 [2]:     WARNING: Branding setting for navigation is missing, using "widget" "bottom" 
+2026-10-15 - 22:04:12 [2]: Calamares::Branding::Branding(const QString&, QObject*, qreal)
+2026-10-15 - 22:04:12 [2]:     WARNING: the branding component "/etc/calamares/branding/astraeus" does not ship translations. 
+2026-10-15 - 22:04:12 [6]: Calamares::Branding::Branding(const QString&, QObject*, qreal)
+2026-10-15 - 22:04:12 [6]:     Loaded branding component "astraeus" 
+2026-10-15 - 22:04:12 [6]:     .. Loaded QRC translation "tz_" "en_US" 
+2026-10-15 - 22:04:12 [6]:     .. Loaded QRC translation "calamares_" "en_US" 
+2026-10-15 - 22:04:12 [6]:     .. STARTUP: initSettings, initQmlPath, initBranding done 
+2026-10-15 - 22:04:12 [6]:     .. STARTUP: initModuleManager: module init started 
+2026-10-15 - 22:04:12 [6]: void Calamares::ModuleManager::doInit()
+2026-10-15 - 22:04:12 [6]:     Found 15 modules 
+2026-10-15 - 22:04:12 [6]: void CalamaresApplication::initView()
+2026-10-15 - 22:04:12 [6]:     STARTUP: initModuleManager: all modules init done 
+2026-10-15 - 22:04:12 [6]: void CalamaresApplication::initView()
+2026-10-15 - 22:04:12 [6]:     STARTUP: initJobQueue done 
+2026-10-15 - 22:04:12 [6]: CalamaresWindow::CalamaresWindow(QWidget*)
+2026-10-15 - 22:04:12 [6]:     Available desktop QSize(1280, 754) minimum size QSize(1024, 520) 
+2026-10-15 - 22:04:12 [6]:     .. Proposed window size: 1024 620 
+2026-10-15 - 22:04:13 [2]: QString Calamares::_stylesheet(const QDir&)
+2026-10-15 - 22:04:13 [2]:     WARNING: The branding component "/etc/calamares/branding/astraeus" does not ship stylesheet.qss. 
+2026-10-15 - 22:04:13 [6]: void CalamaresApplication::initView()
+2026-10-15 - 22:04:13 [6]:     STARTUP: CalamaresWindow created; loadModules started 
+2026-10-15 - 22:04:13 [6]: void Config::initLanguages()
+2026-10-15 - 22:04:13 [6]:     Trying to match locale "en_US" 
+2026-10-15 - 22:04:13 [6]: void Config::initLanguages()
+2026-10-15 - 22:04:13 [6]:     Trying to match locale QLocale::system()/* English, Latin, United States */ 
+2026-10-15 - 22:04:13 [6]: void Config::setLocaleIndex(int)
+2026-10-15 - 22:04:13 [6]:     Index 14 Selected locale "en" 
+2026-10-15 - 22:04:13 [6]:     .. Loaded QRC translation "tz_" "en" 
+2026-10-15 - 22:04:13 [6]:     .. Loaded QRC translation "calamares_" "en" 
+2026-10-15 - 22:04:13 [2]: bool getCheckInternetUrls(const QVariantMap&)
+2026-10-15 - 22:04:13 [2]:     WARNING: GeneralRequirements entry 'internetCheckUrl' is undefined in welcome.conf, reverting to default ( "http://example.com" ). 
+2026-10-15 - 22:04:13 [2]: void GeneralRequirements::setConfigurationMap(const QVariantMap&)
+2026-10-15 - 22:04:13 [2]:     WARNING: GeneralRequirements configuration map: 
+     check :   storage, ram, root 
+     required :   storage, ram, root 
+     requiredRam :   2 
+     requiredStorage :   20 
+2026-10-15 - 22:04:13 [6]: virtual void Calamares::ViewModule::loadSelf()
+2026-10-15 - 22:04:13 [6]:     ViewModule "welcome@welcome" loading complete. 
+2026-10-15 - 22:04:13 [6]: QStringList loadLocales(const QString&)
+2026-10-15 - 22:04:13 [6]:     Loading locales from "/usr/share/i18n/SUPPORTED" 
+2026-10-15 - 22:04:13 [6]: QStringList loadLocales(const QString&)
+2026-10-15 - 22:04:13 [6]:     Read 503 lines 
+2026-10-15 - 22:04:13 [6]: QStringList loadLocales(const QString&)
+2026-10-15 - 22:04:13 [6]:     After filtering 328 lines 
+2026-10-15 - 22:04:13 [6]: virtual void Calamares::ViewModule::loadSelf()
+2026-10-15 - 22:04:13 [6]:     ViewModule "locale@locale" loading complete. 
+2026-10-15 - 22:04:13 [6]: KeyboardModelsModel::KeyboardModelsModel(QObject*)
+2026-10-15 - 22:04:13 [6]:     Loaded 183 keyboard models 
+2026-10-15 - 22:04:13 [6]: KeyboardGroupsSwitchersModel::KeyboardGroupsSwitchersModel(QObject*)
+2026-10-15 - 22:04:13 [6]:     Loaded 45 keyboard groups 
+2026-10-15 - 22:04:13 [6]: KeyboardPage::KeyboardPage(Config*, QWidget*)
+2026-10-15 - 22:04:13 [6]:     Variants now total= 0 selected= -1 
+2026-10-15 - 22:04:13 [6]: KeyboardPage::KeyboardPage(Config*, QWidget*)
+2026-10-15 - 22:04:13 [6]:     Groups now total= 45 selected= -1 
+2026-10-15 - 22:04:13 [6]:     .. Loaded QRC translation "kb_" "en" 
+2026-10-15 - 22:04:13 [6]: void Config::getCurrentKeyboardLayoutXkb(QString&, QString&, QString&)
+2026-10-15 - 22:04:13 [6]:     QList("pc", "us", "inet(evdev)\"") 
+2026-10-15 - 22:04:13 [2]: bool KeyBoardPreview::loadCodes()
+2026-10-15 - 22:04:13 [2]:     WARNING: ckbcomp not found , keyboard preview disabled 
+2026-10-15 - 22:04:13 [6]: virtual void Calamares::ViewModule::loadSelf()
+2026-10-15 - 22:04:13 [6]:     ViewModule "keyboard@keyboard" loading complete. 
+2026-10-15 - 22:04:13 [6]: Calamares::Partition::InternalManager::InternalManager()
+2026-10-15 - 22:04:13 [6]:     KPMCore backend starting .. 
+2026-10-15 - 22:04:13 [6]: DEBUG (Qt): Loaded backend plugin:  "pmsfdiskbackendplugin"
+2026-10-15 - 22:04:13 [6]:     .. Backend @0x55b67df92970 "pmsfdiskbackendplugin" "1" 
+2026-10-15 - 22:04:13 [6]: virtual void Calamares::ViewModule::loadSelf()
+2026-10-15 - 22:04:13 [6]:     ViewModule "partition@partition" loading complete. 
+2026-10-15 - 22:04:13 [6]:     .. minLength set to 8 
+2026-10-15 - 22:04:13 [6]: virtual void Calamares::ViewModule::loadSelf()
+2026-10-15 - 22:04:13 [6]:     ViewModule "users@users" loading complete. 
+2026-10-15 - 22:04:13 [6]: virtual void Calamares::ViewModule::loadSelf()
+2026-10-15 - 22:04:13 [6]:     ViewModule "summary@summary" loading complete. 
+2026-10-15 - 22:04:13 [2]: void Calamares::Module::loadConfigurationFile(const QString&)
+2026-10-15 - 22:04:13 [2]:     WARNING: No config file for "astraeus-preflight" found anywhere at 
+     "/etc/calamares/modules/astraeus-preflight.conf" 
+     "/usr/share/calamares/modules/astraeus-preflight.conf" 
+2026-10-15 - 22:04:13 [6]: void Calamares::ModuleManager::loadModules()
+2026-10-15 - 22:04:13 [6]:     Module "partition@partition" already loaded. 
+2026-10-15 - 22:04:13 [6]: virtual void Calamares::CppJobModule::loadSelf()
+2026-10-15 - 22:04:13 [6]:     CppJobModule "machineid@machineid" loading complete. 
+2026-10-15 - 22:04:13 [6]: void Calamares::ModuleManager::loadModules()
+2026-10-15 - 22:04:13 [6]:     Module "locale@locale" already loaded. 
+2026-10-15 - 22:04:13 [6]: void Calamares::ModuleManager::loadModules()
+2026-10-15 - 22:04:13 [6]:     Module "keyboard@keyboard" already loaded. 
+2026-10-15 - 22:04:13 [6]: void Calamares::ModuleManager::loadModules()
+2026-10-15 - 22:04:13 [6]:     Module "users@users" already loaded. 
+2026-10-15 - 22:04:13 [2]: void Calamares::Module::loadConfigurationFile(const QString&)
+2026-10-15 - 22:04:13 [2]:     WARNING: No config file for "astraeus" found anywhere at 
+     "/etc/calamares/modules/astraeus.conf" 
+     "/usr/share/calamares/modules/astraeus.conf" 
+2026-10-15 - 22:04:13 [2]: void Calamares::Module::loadConfigurationFile(const QString&)
+2026-10-15 - 22:04:13 [2]:     WARNING: No config file for "umount" found anywhere at 
+     "/etc/calamares/modules/umount.conf" 
+     "/usr/share/calamares/modules/umount.conf" 
+2026-10-15 - 22:04:13 [6]: virtual void Calamares::CppJobModule::loadSelf()
+2026-10-15 - 22:04:13 [6]:     CppJobModule "umount@umount" loading complete. 
+2026-10-15 - 22:04:13 [6]: virtual void Calamares::ViewModule::loadSelf()
+2026-10-15 - 22:04:13 [6]:     ViewModule "finished@finished" loading complete. 
+2026-10-15 - 22:04:13 [6]:     .. Loaded QRC translation "kb_" "en" 
+2026-10-15 - 22:04:13 [6]: void CalamaresApplication::initViewSteps()
+2026-10-15 - 22:04:13 [6]:     STARTUP: loadModules for all modules done 
+2026-10-15 - 22:04:13 [6]: void Calamares::ModuleManager::checkRequirements()
+2026-10-15 - 22:04:13 [6]:     Checking module requirements .. 
+2026-10-15 - 22:04:13 [6]: void CalamaresApplication::initViewSteps()
+2026-10-15 - 22:04:13 [6]:     STARTUP: Window now visible and ProgressTreeView populated 
+2026-10-15 - 22:04:13 [6]:     .. 8 view steps loaded. 
+2026-10-15 - 22:04:13 [6]: Calamares::RequirementsList GeneralRequirements::checkRequirements()
+2026-10-15 - 22:04:13 [6]:     GeneralRequirements output: 
+     storage :   21474836480 
+     enoughStorage :   true 
+     RAM :   2147483648 
+     enoughRam :   true 
+     hasPower :   unchecked 
+     hasInternet :   unchecked 
+     isRoot :   true 
+2026-10-15 - 22:04:13 [6]: void Calamares::RequirementsChecker::addCheckedRequirements(Calamares::Module*)
+2026-10-15 - 22:04:13 [6]:     Got 3 requirement results from "welcome" 
+2026-10-15 - 22:04:14 [6]: void applyXkb(const BasicLayoutInfo&, AdditionalLayoutInfo&)
+2026-10-15 - 22:04:14 [6]:     xkbmap selection changed to:  "us" - "" 
+2026-10-15 - 22:04:14 [6]: DEBUG (Qt): smartctl initialization failed for  "/dev/vda" :  No such file or directory
+2026-10-15 - 22:04:14 [6]: DEBUG (Qt): error during smart output parsing for  "/dev/vda" :  No such file or directory
+2026-10-15 - 22:04:14 [2]: WARNING (Qt): unknown file system type  ""  on  "/dev/vda"
+2026-10-15 - 22:04:14 [6]: QList<Device*> PartUtils::getDevices(DeviceType)
+2026-10-15 - 22:04:14 [6]:     Removing unsuitable devices: 1 candidates. 
+2026-10-15 - 22:04:14 [6]:     .. Running QList("blkid", "/dev/vda") 
+2026-10-15 - 22:04:14 [6]:     .. Target cmd: QList("blkid", "/dev/vda") Exit code: 2 (no output) 
+2026-10-15 - 22:04:14 [6]:     .. there are 1 devices left. 
+2026-10-15 - 22:04:14 [6]: void PartitionCoreModule::doInit()
+2026-10-15 - 22:04:14 [6]:     LIST OF DETECTED DEVICES: 
+2026-10-15 - 22:04:14 [6]:     .. node	capacity	name	prettyName 
+2026-10-15 - 22:04:14 [6]:     .. "/dev/vda" 34359738368 DevName$4452992f DevNamePretty$f9777f7 
+2026-10-15 - 22:04:14 [6]:     .. 1 devices detected. 
+2026-10-15 - 22:04:14 [1]: OsproberEntryList PartUtils::runOsprober(DeviceModel*)
+2026-10-15 - 22:04:14 [1]:     ERROR: os-prober cannot start. 
+2026-10-15 - 22:04:14 [6]: OsproberEntryList PartUtils::runOsprober(DeviceModel*)
+2026-10-15 - 22:04:14 [6]:     os-prober gave no output. 
+2026-10-15 - 22:04:14 [2]: WARNING (Qt): beginResetModel called on BootLoaderModel(0x55b67df93640) without calling endResetModel first
+2026-10-15 - 22:04:14 [2]: WARNING (Qt): endResetModel called on BootLoaderModel(0x55b67df93640) without calling beginResetModel first
+2026-10-15 - 22:04:14 [2]: void PartitionCoreModule::scanForEfiSystemPartitions()
+2026-10-15 - 22:04:14 [2]:     WARNING: system is EFI but no EFI system partitions found. 
+2026-10-15 - 22:04:14 [6]: void Calamares::RequirementsChecker::addCheckedRequirements(Calamares::Module*)
+2026-10-15 - 22:04:14 [6]:     Got 1 requirement results from "partition" 
+2026-10-15 - 22:04:14 [2]: void ChoicePage::updateActionDescriptionsTr()
+2026-10-15 - 22:04:14 [2]:     WARNING: Invalid osprober count, labels and buttons not updated. 
+2026-10-15 - 22:04:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:04:14 [6]:     No partitioning choice has been made yet 
+2026-10-15 - 22:04:14 [6]: void ChoicePage::updateDeviceStatePreview()
+2026-10-15 - 22:04:14 [6]:     Updating partitioning state widgets. 
+2026-10-15 - 22:04:14 [6]: void ChoicePage::setupActions()
+2026-10-15 - 22:04:14 [6]:     Setting up actions for "/dev/vda" with 0 entries. 
+2026-10-15 - 22:04:14 [6]: void ChoicePage::updateActionDescriptionsTr()
+2026-10-15 - 22:04:14 [6]:     Setting texts for 0 osprober entries 
+2026-10-15 - 22:04:14 [6]: void ChoicePage::setupActions()
+2026-10-15 - 22:04:14 [6]:     No partitions available for replace-action. 
+2026-10-15 - 22:04:14 [6]: void ChoicePage::setupActions()
+2026-10-15 - 22:04:14 [6]:     No partitions available for resize-action. 
+2026-10-15 - 22:04:14 [2]: void ChoicePage::setupActions()
+2026-10-15 - 22:04:14 [2]:     WARNING: System is EFI but there's no EFI system partition, DISABLING alongside and replace features. 
+2026-10-15 - 22:04:14 [6]: void ChoicePage::continueApplyDeviceChoice()
+2026-10-15 - 22:04:14 [6]:     Previous device -1 new device 0 
+2026-10-15 - 22:04:14 [6]: void ChoicePage::applyActionChoice(InstallChoice)
+2026-10-15 - 22:04:14 [6]:     InstallChoice Config::NoChoice "none" 
+2026-10-15 - 22:04:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:04:14 [6]:     No partitioning choice has been made yet 
+2026-10-15 - 22:04:14 [6]: void ChoicePage::updateActionChoicePreview(InstallChoice)
+2026-10-15 - 22:04:14 [6]:     Updating partitioning preview widgets. 
+2026-10-15 - 22:04:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:04:14 [6]:     No partitioning choice has been made yet 
+2026-10-15 - 22:04:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:04:14 [6]:     No partitioning choice has been made yet 
+2026-10-15 - 22:04:14 [6]: void Calamares::RequirementsChecker::finished()
+2026-10-15 - 22:04:14 [6]:     All requirements have been checked. 
+2026-10-15 - 22:04:14 [6]: void Calamares::RequirementsModel::describe() const
+2026-10-15 - 22:04:14 [6]:     Requirements model has 4 items 
+2026-10-15 - 22:04:14 [6]:     .. requirement 0 "storage" satisfied? true mandatory? true 
+2026-10-15 - 22:04:14 [6]:     .. requirement 1 "ram" satisfied? true mandatory? true 
+2026-10-15 - 22:04:14 [6]:     .. requirement 2 "root" satisfied? true mandatory? true 
+2026-10-15 - 22:04:14 [6]:     .. requirement 3 "partitions" satisfied? true mandatory? true 
+2026-10-15 - 22:04:53 [6]: static LocaleConfiguration LocaleConfiguration::fromLanguageAndLocation(const QString&, const QStringList&, const QString&)
+2026-10-15 - 22:04:53 [6]:     Mapping "en" in "US" to locale. 
+2026-10-15 - 22:04:53 [6]:     .. Got best match for "en" as "en_BW.UTF-8" 
+2026-10-15 - 22:04:53 [6]:     .. Got best match for "en_US" as "en_US.UTF-8" 
+2026-10-15 - 22:04:53 [6]: static LocaleConfiguration LocaleConfiguration::fromLanguageAndLocation(const QString&, const QStringList&, const QString&)
+2026-10-15 - 22:04:53 [6]:     Mapping "en" in "US" to locale. 
+2026-10-15 - 22:04:53 [6]:     .. Got best match for "en" as "en_BW.UTF-8" 
+2026-10-15 - 22:04:53 [6]:     .. Got best match for "en_US" as "en_US.UTF-8" 
+2026-10-15 - 22:04:53 [6]: static LocaleConfiguration LocaleConfiguration::fromLanguageAndLocation(const QString&, const QStringList&, const QString&)
+2026-10-15 - 22:04:53 [6]:     Mapping "en" in "US" to locale. 
+2026-10-15 - 22:04:53 [6]:     .. Got best match for "en" as "en_BW.UTF-8" 
+2026-10-15 - 22:04:53 [6]:     .. Got best match for "en_US" as "en_US.UTF-8" 
+2026-10-15 - 22:05:12 [6]: void Config::guessLocaleKeyboardLayout()
+2026-10-15 - 22:05:12 [6]:     Got locale language "en_US.UTF-8" 
+2026-10-15 - 22:05:12 [6]:     .. looking for locale part "US" 
+2026-10-15 - 22:05:12 [6]:     .. matched "us" 
+2026-10-15 - 22:05:12 [6]: void guessLayout(const QStringList&, KeyboardLayoutModel*, KeyboardVariantsModel*)
+2026-10-15 - 22:05:12 [6]:     Next level: "en" 
+2026-10-15 - 22:05:45 [6]: void ChoicePage::applyActionChoice(InstallChoice)
+2026-10-15 - 22:05:45 [6]:     InstallChoice Config::Erase "erase" 
+2026-10-15 - 22:05:45 [6]: PartitionTable* CreatePartitionTableJob::createTable()
+2026-10-15 - 22:05:45 [6]:     CreatePartitionTableJob::createTable trying to make table for device "/dev/vda" 
+2026-10-15 - 22:05:45 [2]: WARNING (Qt): beginResetModel called on BootLoaderModel(0x55b67df93640) without calling endResetModel first
+2026-10-15 - 22:05:45 [2]: WARNING (Qt): endResetModel called on BootLoaderModel(0x55b67df93640) without calling beginResetModel first
+2026-10-15 - 22:05:45 [2]: void PartitionCoreModule::scanForEfiSystemPartitions()
+2026-10-15 - 22:05:45 [2]:     WARNING: system is EFI but no EFI system partitions found. 
+2026-10-15 - 22:05:45 [2]: WARNING (Qt): beginResetModel called on BootLoaderModel(0x55b67df93640) without calling endResetModel first
+2026-10-15 - 22:05:45 [2]: WARNING (Qt): endResetModel called on BootLoaderModel(0x55b67df93640) without calling beginResetModel first
+2026-10-15 - 22:05:45 [6]: void PartitionCoreModule::scanForEfiSystemPartitions()
+2026-10-15 - 22:05:45 [6]:     system is EFI and new EFI system partition has been found. 
+2026-10-15 - 22:05:45 [2]: WARNING (Qt): beginResetModel called on BootLoaderModel(0x55b67df93640) without calling endResetModel first
+2026-10-15 - 22:05:45 [2]: WARNING (Qt): endResetModel called on BootLoaderModel(0x55b67df93640) without calling beginResetModel first
+2026-10-15 - 22:05:45 [6]: void PartitionCoreModule::dumpQueue() const
+2026-10-15 - 22:05:45 [6]:     # Queue: 
+2026-10-15 - 22:05:45 [6]:     .. ## Device: "/dev/vda" 
+2026-10-15 - 22:05:45 [6]:     .. - CreatePartitionTableJob 
+2026-10-15 - 22:05:45 [6]:     .. - CreatePartitionJob 
+2026-10-15 - 22:05:45 [6]:     .. - SetPartFlagsJob 
+2026-10-15 - 22:05:45 [6]:     .. - CreatePartitionJob 
+2026-10-15 - 22:05:45 [6]: void ChoicePage::updateActionChoicePreview(InstallChoice)
+2026-10-15 - 22:05:45 [6]:     Updating partitioning preview widgets. 
+2026-10-15 - 22:05:45 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:05:45 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:05:45 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:05:45 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:05:45 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:05:45 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:07 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:07 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:07 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:07 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:08 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:08 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:09 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:09 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:10 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:10 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:14 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:14 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:15 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:15 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: bool ChoicePage::calculateNextEnabled() const
+2026-10-15 - 22:06:16 [6]:     No passphrase provided or passphrase mismatch. 
+2026-10-15 - 22:06:16 [6]: void ChoicePage::applyActionChoice(InstallChoice)
+2026-10-15 - 22:06:16 [6]:     InstallChoice Config::Erase "erase" 
+2026-10-15 - 22:06:16 [6]: void ChoicePage::updateActionChoicePreview(InstallChoice)
+2026-10-15 - 22:06:16 [6]:     Updating partitioning preview widgets. 
+2026-10-15 - 22:06:17 [6]: DEBUG (Qt): smartctl initialization failed for  "/dev/vda" :  No such file or directory
+2026-10-15 - 22:06:17 [6]: DEBUG (Qt): error during smart output parsing for  "/dev/vda" :  No such file or directory
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): unknown file system type  ""  on  "/dev/vda"
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): beginResetModel called on BootLoaderModel(0x55b67df93640) without calling endResetModel first
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): endResetModel called on BootLoaderModel(0x55b67df93640) without calling beginResetModel first
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): beginResetModel called on BootLoaderModel(0x55b67df93640) without calling endResetModel first
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): endResetModel called on BootLoaderModel(0x55b67df93640) without calling beginResetModel first
+2026-10-15 - 22:06:17 [2]: void PartitionCoreModule::scanForEfiSystemPartitions()
+2026-10-15 - 22:06:17 [2]:     WARNING: system is EFI but no EFI system partitions found. 
+2026-10-15 - 22:06:17 [6]: PartitionTable* CreatePartitionTableJob::createTable()
+2026-10-15 - 22:06:17 [6]:     CreatePartitionTableJob::createTable trying to make table for device "/dev/vda" 
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): beginResetModel called on BootLoaderModel(0x55b67df93640) without calling endResetModel first
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): endResetModel called on BootLoaderModel(0x55b67df93640) without calling beginResetModel first
+2026-10-15 - 22:06:17 [2]: void PartitionCoreModule::scanForEfiSystemPartitions()
+2026-10-15 - 22:06:17 [2]:     WARNING: system is EFI but no EFI system partitions found. 
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): beginResetModel called on BootLoaderModel(0x55b67df93640) without calling endResetModel first
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): endResetModel called on BootLoaderModel(0x55b67df93640) without calling beginResetModel first
+2026-10-15 - 22:06:17 [6]: void PartitionCoreModule::scanForEfiSystemPartitions()
+2026-10-15 - 22:06:17 [6]:     system is EFI and new EFI system partition has been found. 
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): beginResetModel called on BootLoaderModel(0x55b67df93640) without calling endResetModel first
+2026-10-15 - 22:06:17 [2]: WARNING (Qt): endResetModel called on BootLoaderModel(0x55b67df93640) without calling beginResetModel first
+2026-10-15 - 22:06:17 [6]: void PartitionCoreModule::dumpQueue() const
+2026-10-15 - 22:06:17 [6]:     # Queue: 
+2026-10-15 - 22:06:17 [6]:     .. ## Device: "/dev/vda" 
+2026-10-15 - 22:06:17 [6]:     .. - CreatePartitionTableJob 
+2026-10-15 - 22:06:17 [6]:     .. - CreatePartitionJob 
+2026-10-15 - 22:06:17 [6]:     .. - SetPartFlagsJob 
+2026-10-15 - 22:06:17 [6]:     .. - CreatePartitionJob 
+2026-10-15 - 22:08:24 [2]: WARNING (Qt): QObject::setParent: Cannot set parent, new parent is in a different thread
+2026-10-15 - 22:08:24 [6]: virtual QString PartitionViewStep::prettyStatus() const
+2026-10-15 - 22:08:24 [6]:     Summary for Partition 1 Config::Erase 
+2026-10-15 - 22:08:24 [6]: QStringList findEssentialLVs(const QList<PartitionCoreModule::DeviceInfo*>&)
+2026-10-15 - 22:08:24 [6]:     Checking LVM use on 1 devices 
+2026-10-15 - 22:08:24 [6]: QVariantList FillGlobalStorageJob::createPartitionList() const
+2026-10-15 - 22:08:24 [6]:     Building partition information map 
+2026-10-15 - 22:08:24 [6]:     .. partitions on "/dev/vda" 
+2026-10-15 - 22:08:24 [6]:     ..  mapping for "" "unallocated" 
+     partlabel :   "" 
+     partition-uuid (partuuid) :   "PartUUID$d0481e4b" 
+     parttype :   "" 
+     partattrs :   "0" 
+     mountPoint: :   "" 
+     fs: :   "unknown" 
+     fsName :   "unknown" 
+     filesystem-uuid (uuid) :   "FSUUID$4435a0e1" 
+     claimed :   "false" 
+2026-10-15 - 22:08:24 [6]:     ..  mapping for "" "New Partition" 
+     partlabel :   "EFI" 
+     partition-uuid (partuuid) :   "PartUUID$d0481e4b" 
+     parttype :   "" 
+     partattrs :   "0" 
+     mountPoint: :   "/efi" 
+     fs: :   "fat32" 
+     fsName :   "fat32" 
+     filesystem-uuid (uuid) :   "FSUUID$4435a0e1" 
+     claimed :   "true" 
+2026-10-15 - 22:08:24 [6]:     ..  mapping for "" "New Partition" 
+     partlabel :   "Project Astraeus" 
+     partition-uuid (partuuid) :   "PartUUID$d0481e4b" 
+     parttype :   "" 
+     partattrs :   "0" 
+     mountPoint: :   "/" 
+     fs: :   "btrfs" 
+     fsName :   "luks2" 
+     filesystem-uuid (uuid) :   "FSUUID$4435a0e1" 
+     claimed :   "true" 
+     luksMapperName: :   "" 
+2026-10-15 - 22:08:24 [2]: WARNING (Qt): QLayout: Attempting to add QLayout "" to QWidget "", which already has a layout
+2026-10-15 - 22:08:24 [2]: WARNING (Qt): QObject::setParent: Cannot set parent, new parent is in a different thread
+2026-10-15 - 22:08:24 [6]: QStringList findEssentialLVs(const QList<PartitionCoreModule::DeviceInfo*>&)
+2026-10-15 - 22:08:24 [6]:     Checking LVM use on 1 devices 
+2026-10-15 - 22:08:24 [6]: QVariantList FillGlobalStorageJob::createPartitionList() const
+2026-10-15 - 22:08:24 [6]:     Building partition information map 
+2026-10-15 - 22:08:24 [6]:     .. partitions on "/dev/vda" 
+2026-10-15 - 22:08:24 [6]:     ..  mapping for "" "unallocated" 
+     partlabel :   "" 
+     partition-uuid (partuuid) :   "PartUUID$d0481e4b" 
+     parttype :   "" 
+     partattrs :   "0" 
+     mountPoint: :   "" 
+     fs: :   "unknown" 
+     fsName :   "unknown" 
+     filesystem-uuid (uuid) :   "FSUUID$4435a0e1" 
+     claimed :   "false" 
+2026-10-15 - 22:08:24 [6]:     ..  mapping for "" "New Partition" 
+     partlabel :   "EFI" 
+     partition-uuid (partuuid) :   "PartUUID$d0481e4b" 
+     parttype :   "" 
+     partattrs :   "0" 
+     mountPoint: :   "/efi" 
+     fs: :   "fat32" 
+     fsName :   "fat32" 
+     filesystem-uuid (uuid) :   "FSUUID$4435a0e1" 
+     claimed :   "true" 
+2026-10-15 - 22:08:24 [6]:     ..  mapping for "" "New Partition" 
+     partlabel :   "Project Astraeus" 
+     partition-uuid (partuuid) :   "PartUUID$d0481e4b" 
+     parttype :   "" 
+     partattrs :   "0" 
+     mountPoint: :   "/" 
+     fs: :   "btrfs" 
+     fsName :   "luks2" 
+     filesystem-uuid (uuid) :   "FSUUID$4435a0e1" 
+     claimed :   "true" 
+     luksMapperName: :   "" 
+2026-10-15 - 22:08:24 [6]: void ensureSize(QWidget*, QScrollArea*, Calamares::ViewStep*)
+2026-10-15 - 22:08:24 [6]:     Summary widget is larger than viewport, enlarge by 13 to QSize(834, 602) 
+2026-10-15 - 22:09:04 [6]: QStringList findEssentialLVs(const QList<PartitionCoreModule::DeviceInfo*>&)
+2026-10-15 - 22:09:04 [6]:     Checking LVM use on 1 devices 
+2026-10-15 - 22:09:04 [6]: void Calamares::JobThread::finalize()
+2026-10-15 - 22:09:04 [6]:     There are 25 jobs, total weight 23 
+2026-10-15 - 22:09:04 [6]:     .. Job 1 "astraeus-preflight" +wt 1 tot.wt 1 
+2026-10-15 - 22:09:04 [6]:     .. Job 2 "Managing auto-mount settings…" +wt 0.111111 tot.wt 1.11111 
+2026-10-15 - 22:09:04 [6]:     .. Job 3 "Clearing all temporary mounts…" +wt 0.111111 tot.wt 1.22222 
+2026-10-15 - 22:09:04 [6]:     .. Job 4 "Clear mounts for partitioning operations on /dev/vda" +wt 0.111111 tot.wt 1.33333 
+2026-10-15 - 22:09:04 [6]:     .. Job 5 "Creating new gpt partition table on /dev/vda…" +wt 0.111111 tot.wt 1.44444 
+2026-10-15 - 22:09:04 [6]:     .. Job 6 "Create new 1024MiB partition on /dev/vda (vda) with entries EFI" +wt 0.111111 tot.wt 1.55556 
+2026-10-15 - 22:09:04 [6]:     .. Job 7 "Set flags on 1024MiB fat32 partition" +wt 0.111111 tot.wt 1.66667 
+2026-10-15 - 22:09:04 [6]:     .. Job 8 "Create new 31741MiB partition on /dev/vda (vda) with entries Project Astraeus" +wt 0.111111 tot.wt 1.77778 
+2026-10-15 - 22:09:04 [6]:     .. Job 9 "Set partition information" +wt 0.111111 tot.wt 1.88889 
+2026-10-15 - 22:09:04 [6]:     .. Job 10 "Managing auto-mount settings…" +wt 0.111111 tot.wt 2 
+2026-10-15 - 22:09:04 [6]:     .. Job 11 "mount" +wt 1 tot.wt 3 
+2026-10-15 - 22:09:04 [6]:     .. Job 12 "unpackfs" +wt 12 tot.wt 15 
+2026-10-15 - 22:09:04 [6]:     .. Job 13 "Generate machine-id." +wt 1 tot.wt 16 
+2026-10-15 - 22:09:04 [6]:     .. Job 14 "Setting timezone to America/Los_Angeles…" +wt 1 tot.wt 17 
+2026-10-15 - 22:09:04 [6]:     .. Job 15 "Setting keyboard model to pc105, layout as us-…" +wt 1 tot.wt 18 
+2026-10-15 - 22:09:04 [6]:     .. Job 16 "localecfg" +wt 1 tot.wt 19 
+2026-10-15 - 22:09:04 [6]:     .. Job 17 "fstab" +wt 1 tot.wt 20 
+2026-10-15 - 22:09:04 [6]:     .. Job 18 "Configuring <pre>sudo</pre> users…" +wt 0.166667 tot.wt 20.1667 
+2026-10-15 - 22:09:04 [6]:     .. Job 19 "Preparing groups…" +wt 0.166667 tot.wt 20.3333 
+2026-10-15 - 22:09:04 [6]:     .. Job 20 "Create user tester" +wt 0.166667 tot.wt 20.5 
+2026-10-15 - 22:09:04 [6]:     .. Job 21 "Set password for user tester" +wt 0.166667 tot.wt 20.6667 
+2026-10-15 - 22:09:04 [6]:     .. Job 22 "Set password for user root" +wt 0.166667 tot.wt 20.8333 
+2026-10-15 - 22:09:04 [6]:     .. Job 23 "Set hostname tester-astraeus" +wt 0.166667 tot.wt 21 
+2026-10-15 - 22:09:04 [6]:     .. Job 24 "astraeus" +wt 1 tot.wt 22 
+2026-10-15 - 22:09:04 [6]:     .. Job 25 "Unmounting file systems…" +wt 1 tot.wt 23 
+2026-10-15 - 22:09:04 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:09:04 [6]:     Starting job "astraeus-preflight" ( 1 / 25 ) 
+2026-10-15 - 22:09:05 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:09:05 [6]:     Starting job "Managing auto-mount settings…" ( 2 / 25 ) 
+2026-10-15 - 22:09:05 [6]: virtual Calamares::JobResult AutoMountManagementJob::exec()
+2026-10-15 - 22:09:05 [6]:     Set automount to disable 
+2026-10-15 - 22:09:05 [6]: void Calamares::Partition::querySolidAutoMount(QDBusConnection&, AutoMountInfo&)
+2026-10-15 - 22:09:05 [6]:     Solid not available: "Not connected to D-Bus server" 
+2026-10-15 - 22:09:05 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:09:05 [6]:     Starting job "Clearing all temporary mounts…" ( 3 / 25 ) 
+2026-10-15 - 22:09:05 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:09:05 [6]:     Starting job "Clear mounts for partitioning operations on /dev/vda" ( 4 / 25 ) 
+2026-10-15 - 22:09:05 [2]: QStringList getLVMVolumes()
+2026-10-15 - 22:09:05 [2]:     WARNING: this system does not seem to have LVM2 tools. 
+2026-10-15 - 22:09:05 [2]: QStringList getPVGroups(const QString&)
+2026-10-15 - 22:09:05 [2]:     WARNING: this system does not seem to have LVM2 tools. 
+2026-10-15 - 22:09:05 [6]: QStringList getPartitionsForDevice(const QString&)
+2026-10-15 - 22:09:05 [6]:     Reading from "/proc/partitions" looking for "vda" 
+2026-10-15 - 22:09:05 [6]: virtual Calamares::JobResult ClearMountsJob::exec()
+2026-10-15 - 22:09:05 [6]:     ClearMountsJob finished. Here's what was done: 
+2026-10-15 - 22:09:05 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:09:05 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:09:05 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:09:05 [6]:     Starting job "Creating new gpt partition table on /dev/vda…" ( 5 / 25 ) 
+2026-10-15 - 22:09:05 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:09:05 [6]:     Starting job "Create new 1024MiB partition on /dev/vda (vda) with entries EFI" ( 6 / 25 ) 
+2026-10-15 - 22:09:08 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:09:08 [6]:     Starting job "Set flags on partition /dev/vda1" ( 7 / 25 ) 
+2026-10-15 - 22:09:08 [6]: virtual Calamares::JobResult SetPartFlagsJob::exec()
+2026-10-15 - 22:09:08 [6]:     Setting flags on "/dev/vda" partition "/dev/vda1" 
+     "boot" 
+2026-10-15 - 22:09:09 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:09:09 [6]:     Starting job "Create new 31741MiB partition on /dev/vda (vda) with entries Project Astraeus" ( 8 / 25 ) 
+2026-10-15 - 22:10:02 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:10:02 [6]:     Starting job "Set partition information" ( 9 / 25 ) 
+2026-10-15 - 22:10:02 [6]: QVariantList FillGlobalStorageJob::createPartitionList() const
+2026-10-15 - 22:10:02 [6]:     Building partition information map 
+2026-10-15 - 22:10:02 [6]:     .. partitions on "/dev/vda" 
+2026-10-15 - 22:10:02 [6]:     ..  mapping for "" "unallocated" 
+     partlabel :   "" 
+     partition-uuid (partuuid) :   "PartUUID$d0481e4b" 
+     parttype :   "" 
+     partattrs :   "0" 
+     mountPoint: :   "" 
+     fs: :   "unknown" 
+     fsName :   "unknown" 
+     filesystem-uuid (uuid) :   "FSUUID$4435a0e1" 
+     claimed :   "false" 
+2026-10-15 - 22:10:02 [6]:     ..  mapping for "/dev/vda1" "/dev/vda1" 
+     partlabel :   "EFI" 
+     partition-uuid (partuuid) :   "PartUUID$886e1903" 
+     parttype :   "" 
+     partattrs :   "0" 
+     mountPoint: :   "/efi" 
+     fs: :   "fat32" 
+     fsName :   "fat32" 
+     filesystem-uuid (uuid) :   "FSUUID$dd8de05e" 
+     claimed :   "true" 
+2026-10-15 - 22:10:02 [6]:     ..  mapping for "/dev/vda2" "/dev/vda2" 
+     partlabel :   "Project Astraeus" 
+     partition-uuid (partuuid) :   "PartUUID$10b0bc75" 
+     parttype :   "" 
+     partattrs :   "0" 
+     mountPoint: :   "/" 
+     fs: :   "btrfs" 
+     fsName :   "luks2" 
+     filesystem-uuid (uuid) :   "FSUUID$4f4c5e98" 
+     claimed :   "true" 
+     luksMapperName: :   "luks-66ba858e-8209-4b53-8699-8d8356a8e447" 
+2026-10-15 - 22:10:02 [6]: virtual Calamares::JobResult FillGlobalStorageJob::exec()
+2026-10-15 - 22:10:02 [6]:     Saving partition information map to GlobalStorage["partitions"] 
+2026-10-15 - 22:10:02 [6]: virtual Calamares::JobResult FillGlobalStorageJob::exec()
+2026-10-15 - 22:10:02 [6]:     FillGlobalStorageJob writing empty bootLoader value 
+2026-10-15 - 22:10:02 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:10:02 [6]:     Starting job "Managing auto-mount settings…" ( 10 / 25 ) 
+2026-10-15 - 22:10:02 [6]: virtual Calamares::JobResult AutoMountManagementJob::exec()
+2026-10-15 - 22:10:02 [6]:     Restore automount settings 
+2026-10-15 - 22:10:02 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:10:02 [6]:     Starting job "mount" ( 11 / 25 ) 
+2026-10-15 - 22:10:02 [6]: [PYTHON JOB]: Found gettext "en_US" in "/usr/share/locale/en_US" 
+2026-10-15 - 22:10:02 [2]: WARNING: [PYTHON JOB]: "[Errno 2] No such file or directory: 'chcon'" 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "btrfs", "-o", "defaults,noatime,compress=zstd:1", "/dev/mapper/luks-66ba858e-8209-4b53-8699-8d8356a8e447", "/tmp/calamares-root-yt1dzb5v/") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "btrfs", "-o", "subvol=/@,defaults,noatime,compress=zstd:1", "/dev/mapper/luks-66ba858e-8209-4b53-8699-8d8356a8e447", "/tmp/calamares-root-yt1dzb5v/") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "btrfs", "-o", "subvol=/@home,defaults,noatime,compress=zstd:1", "/dev/mapper/luks-66ba858e-8209-4b53-8699-8d8356a8e447", "/tmp/calamares-root-yt1dzb5v/home") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "btrfs", "-o", "subvol=/@snapshots,defaults,noatime,compress=zstd:1", "/dev/mapper/luks-66ba858e-8209-4b53-8699-8d8356a8e447", "/tmp/calamares-root-yt1dzb5v/.snapshots") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "btrfs", "-o", "subvol=/@log,defaults,noatime,compress=zstd:1", "/dev/mapper/luks-66ba858e-8209-4b53-8699-8d8356a8e447", "/tmp/calamares-root-yt1dzb5v/var/log") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "btrfs", "-o", "subvol=/@cache,defaults,noatime,compress=zstd:1", "/dev/mapper/luks-66ba858e-8209-4b53-8699-8d8356a8e447", "/tmp/calamares-root-yt1dzb5v/var/cache") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "btrfs", "-o", "subvol=/@containers,defaults,noatime,compress=zstd:1", "/dev/mapper/luks-66ba858e-8209-4b53-8699-8d8356a8e447", "/tmp/calamares-root-yt1dzb5v/var/lib/containers") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [2]: WARNING: [PYTHON JOB]: "[Errno 2] No such file or directory: 'chcon'" 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-o", "bind", "/dev", "/tmp/calamares-root-yt1dzb5v/dev") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [2]: WARNING: [PYTHON JOB]: "[Errno 2] No such file or directory: 'chcon'" 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "vfat", "-o", "defaults,umask=0077", "/dev/vda1", "/tmp/calamares-root-yt1dzb5v/efi") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [2]: WARNING: [PYTHON JOB]: "[Errno 2] No such file or directory: 'chcon'" 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "proc", "-o", "defaults", "proc", "/tmp/calamares-root-yt1dzb5v/proc") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [2]: WARNING: [PYTHON JOB]: "[Errno 2] No such file or directory: 'chcon'" 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "tmpfs", "-o", "defaults", "tmpfs", "/tmp/calamares-root-yt1dzb5v/run") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [2]: WARNING: [PYTHON JOB]: "[Errno 2] No such file or directory: 'chcon'" 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-o", "bind", "/run/udev", "/tmp/calamares-root-yt1dzb5v/run/udev") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [2]: WARNING: [PYTHON JOB]: "[Errno 2] No such file or directory: 'chcon'" 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "sysfs", "-o", "defaults", "sys", "/tmp/calamares-root-yt1dzb5v/sys") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:02 [2]: WARNING: [PYTHON JOB]: "[Errno 2] No such file or directory: 'chcon'" 
+2026-10-15 - 22:10:02 [6]:     .. Running QList("mount", "-t", "efivarfs", "-o", "defaults", "efivarfs", "/tmp/calamares-root-yt1dzb5v/sys/firmware/efi/efivars") 
+2026-10-15 - 22:10:03 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:03 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:03 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:10:03 [6]:     Starting job "unpackfs" ( 12 / 25 ) 
+2026-10-15 - 22:10:03 [6]: [PYTHON JOB]: Found gettext "en_US" in "/usr/share/locale/en_US" 
+2026-10-15 - 22:10:03 [6]:     .. Running QList("mount", "-t", "squashfs", "-o", "loop", "/run/archiso/airootfs/opt/distro/install-root.sfs", "/tmp/tmpx6b9d81s/install-root") 
+2026-10-15 - 22:10:07 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:10:07 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:10:07 [6]:     .. Running QList("unsquashfs", "-l", "/run/archiso/airootfs/opt/distro/install-root.sfs") 
+2026-10-15 - 22:10:07 [6]:     .. Running QList("rsync", "-aHAXSr", "--filter=-x trusted.overlay.*", "--exclude", "/proc/", "--exclude", "/sys/", "--exclude", "/dev/", "--exclude", "/run/", "--exclude", "/run/udev/", "--exclude", "/sys/firmware/efi/efivars/", "--progress", "/tmp/tmpx6b9d81s/install-root/", "/tmp/calamares-root-yt1dzb5v") 
+2026-10-15 - 22:14:38 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:38 [6]:     Starting job "Generate machine-id." ( 13 / 25 ) 
+2026-10-15 - 22:14:38 [6]:     .. Running QList("systemd-machine-id-setup", "--root=/tmp/calamares-root-yt1dzb5v") 
+2026-10-15 - 22:14:38 [6]:     .. Running QList("dbus-uuidgen", "--ensure") 
+2026-10-15 - 22:14:38 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:38 [6]:     Starting job "Setting timezone to America/Los_Angeles…" ( 14 / 25 ) 
+2026-10-15 - 22:14:38 [6]:     .. Running QList("rm", "-f", "/etc/localtime") 
+2026-10-15 - 22:14:38 [6]:     .. Running QList("ln", "-s", "/usr/share/zoneinfo/America/Los_Angeles", "/etc/localtime") 
+2026-10-15 - 22:14:38 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:38 [6]:     Starting job "Setting keyboard model to pc105, layout as us-…" ( 15 / 25 ) 
+2026-10-15 - 22:14:38 [6]: virtual Calamares::JobResult SetKeyboardLayoutJob::exec()
+2026-10-15 - 22:14:38 [6]:     Executing SetKeyboardLayoutJob 
+2026-10-15 - 22:14:38 [6]: bool SetKeyboardLayoutJob::writeVConsoleData(const QString&, const QString&) const
+2026-10-15 - 22:14:38 [6]:     Writing vconsole data to "/tmp/calamares-root-yt1dzb5v/etc/vconsole.conf" 
+2026-10-15 - 22:14:38 [6]: QString SetKeyboardLayoutJob::findConvertedKeymap(const QString&) const
+2026-10-15 - 22:14:38 [6]:     Looking for converted keymap in "/tmp/calamares-root-yt1dzb5v/usr/share/kbd/keymaps/xkb" 
+2026-10-15 - 22:14:38 [6]: QString findLegacyKeymap(const QString&, const QString&, const QString&)
+2026-10-15 - 22:14:38 [6]:     Looking for legacy keymap "us" "pc105" "" in QRC 
+2026-10-15 - 22:14:38 [6]:     .. Found legacy keymap "us" with score 11 
+2026-10-15 - 22:14:38 [6]:     .. Found legacy keymap "us-acentos" with score 11 
+2026-10-15 - 22:14:38 [6]:     .. Found legacy keymap "dvorak" with score 11 
+2026-10-15 - 22:14:38 [6]:     .. Found legacy keymap "dvorak" with score 11 
+2026-10-15 - 22:14:38 [6]:     .. Written KEYMAP= "us" to vconsole.conf 0 
+2026-10-15 - 22:14:38 [6]: bool SetKeyboardLayoutJob::writeX11Data(const QString&) const
+2026-10-15 - 22:14:38 [6]:     Writing X11 configuration to "/tmp/calamares-root-yt1dzb5v/etc/X11/xorg.conf.d/00-keyboard.conf" 
+2026-10-15 - 22:14:38 [6]:     .. Written XkbLayout "us" ; XkbModel "pc105" ; XkbVariant "" to X.org file "/tmp/calamares-root-yt1dzb5v/etc/X11/xorg.conf.d/00-keyboard.conf" 0 
+2026-10-15 - 22:14:38 [6]: bool SetKeyboardLayoutJob::writeDefaultKeyboardData(const QString&) const
+2026-10-15 - 22:14:38 [6]:     Writing default keyboard data to "/tmp/calamares-root-yt1dzb5v/etc/default/keyboard" 
+2026-10-15 - 22:14:38 [6]:     .. Written XKBMODEL "pc105" ; XKBLAYOUT "us" ; XKBVARIANT "" to /etc/default/keyboard file "/tmp/calamares-root-yt1dzb5v/etc/default/keyboard" 0 
+2026-10-15 - 22:14:38 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:38 [6]:     Starting job "localecfg" ( 16 / 25 ) 
+2026-10-15 - 22:14:38 [6]: [PYTHON JOB]: Found gettext "en_US" in "/usr/share/locale/en_US" 
+2026-10-15 - 22:14:38 [6]:     .. Running QList("locale-gen") 
+2026-10-15 - 22:14:40 [6]: [PYTHON JOB]: "/tmp/calamares-root-yt1dzb5v/etc/locale.gen done" 
+2026-10-15 - 22:14:40 [6]: [PYTHON JOB]: "/tmp/calamares-root-yt1dzb5v/etc/locale.conf done" 
+2026-10-15 - 22:14:40 [6]: [PYTHON JOB]: "/tmp/calamares-root-yt1dzb5v/etc/default done" 
+2026-10-15 - 22:14:40 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:40 [6]:     Starting job "fstab" ( 17 / 25 ) 
+2026-10-15 - 22:14:40 [6]: [PYTHON JOB]: Found gettext "en_US" in "/usr/share/locale/en_US" 
+2026-10-15 - 22:14:40 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:40 [6]:     Starting job "Configuring <pre>sudo</pre> users…" ( 18 / 25 ) 
+2026-10-15 - 22:14:40 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:40 [6]:     Starting job "Preparing groups…" ( 19 / 25 ) 
+2026-10-15 - 22:14:40 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:40 [6]:     Starting job "Create user tester" ( 20 / 25 ) 
+2026-10-15 - 22:14:40 [6]: virtual Calamares::JobResult CreateUserJob::exec()
+2026-10-15 - 22:14:40 [6]:     [CREATEUSER]: creating user 
+2026-10-15 - 22:14:40 [6]:     .. Running QList("useradd", "-m", "-U", "-s", "/bin/bash", "-c", "tester", "-K", "UMASK=077", "tester") 
+2026-10-15 - 22:14:40 [6]:     .. Running "usermod" "-aG" "wheel" "tester" 
+2026-10-15 - 22:14:40 [6]:     .. Running QList("chown", "-R", "tester:tester", "/home/tester") 
+2026-10-15 - 22:14:40 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:40 [6]:     Starting job "Set password for user tester" ( 21 / 25 ) 
+2026-10-15 - 22:14:40 [6]:     .. Running "usermod" "-p" "$y$j9T$UJY7mrbQ8HwLf8JciV/eN1$6dDxzJmLsCpLj5pb1UOZ7yu1J6ymx4VdSbsx/KSlrrB" "tester" 
+2026-10-15 - 22:14:40 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:40 [6]:     Starting job "Set password for user root" ( 22 / 25 ) 
+2026-10-15 - 22:14:40 [6]:     .. Running "usermod" "-p" "!" "root" 
+2026-10-15 - 22:14:40 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:40 [6]:     Starting job "Set hostname tester-astraeus" ( 23 / 25 ) 
+2026-10-15 - 22:14:40 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:14:40 [6]:     Starting job "astraeus" ( 24 / 25 ) 
+2026-10-15 - 22:15:00 [6]: virtual void Calamares::JobThread::run()
+2026-10-15 - 22:15:00 [6]:     Starting job "Unmounting file systems…" ( 25 / 25 ) 
+2026-10-15 - 22:15:00 [6]: Calamares::JobResult unmountTargetMounts(const QString&)
+2026-10-15 - 22:15:00 [6]:     Read 12 entries from "/tmp/calamares-root-yt1dzb5v/" 
+2026-10-15 - 22:15:00 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/var/log") 
+2026-10-15 - 22:15:00 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:00 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/var/lib/containers") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/var/cache") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/sys/firmware/efi/efivars") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/sys") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/run/udev") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/run") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/proc") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/home") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/efi") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/dev") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v/.snapshots") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:04 [6]:     .. Running QList("umount", "-lv", "/tmp/calamares-root-yt1dzb5v") 
+2026-10-15 - 22:15:05 [6]:     .. Running QList("udevadm", "settle") 
+2026-10-15 - 22:15:05 [6]:     .. Running QList("sync") 
+2026-10-15 - 22:15:05 [6]: void Config::doNotify(bool, bool)
+2026-10-15 - 22:15:05 [6]:     Notification not sent; completion: succeeded 
+2026-10-15 - 22:15:05 [6]: void {anonymous}::PowerManagementInterface::uninhibitSleep()
+2026-10-15 - 22:15:05 [6]:     Sleep was never inhibited. 
+2026-10-15 - 22:17:47 [6]: void Config::doRestart(bool)
+2026-10-15 - 22:17:47 [6]:     mode= "user-unchecked"  user wants restart? false force restart? false 

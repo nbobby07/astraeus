@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "physical_acceptance": false,
+  "identity": {
+    "collector_sha256": "911eecaac58139f89fc094e1e3b919ef0f8e6dbfda298437ac9606f15ac5bf2c",
+    "image_source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+    "image_sha256": "8c8a9f5a2627ab7ce4cdd8910e804d1b5d2b0fd17a824895c3add9f833ef94a9",
+    "image_identity_origin": "operator_supplied_unverified"
+  },
+  "observations": {
+    "info": {
+      "exit_code": 0,
+      "outcome": "ok",
+      "seconds": 0.019,
+      "command": [
+        "/usr/bin/distroctl",
+        "info",
+        "--json"
+      ],
+      "data": {
+        "schema_version": 1,
+        "identity": {
+          "id": "astraeus-dev",
+          "name": "Project Astraeus",
+          "version": "0.1.0-dev"
+        },
+        "build": {
+          "architecture": "x86_64",
+          "archive_date": "2026/10/01",
+          "source_date_epoch": 1790812800,
+          "archiso_version": "91-1",
+          "rust_version": "1.98.1"
+        }
+      },
+      "unavailable": []
+    },
+    "status": {
+      "exit_code": 0,
+      "outcome": "partial_output",
+      "seconds": 0.028,
+      "command": [
+        "/usr/bin/distroctl",
+        "status",
+        "--json"
+      ],
+      "data": {
+        "schema_version": 1,
+        "version": "0.1.0-dev",
+        "kernel": "7.2.7-arch1-1",
+        "boot": {
+          "firmware": "UEFI"
+        },
+        "filesystem": {
+          "root_type": "overlay",
+          "encryption": null
+        },
+        "desktop": {
+          "session_type": "wayland"
+        }
+      },
+      "unavailable": [
+        "data.filesystem.encryption"
+      ]
+    },
+    "hardware": {
+      "exit_code": 0,
+      "outcome": "ok",
+      "seconds": 0.017,
+      "command": [
+        "/usr/bin/distroctl",
+        "hardware",
+        "--json"
+      ],
+      "data": {
+        "schema_version": 1,
+        "cpu": {
+          "architecture": "x86_64",
+          "logical_count": 4,
+          "physical_core_count": 4
+        },
+        "memory_bytes": 8278142976,
+        "memory_available_bytes": 7057149952,
+        "gpus": [
+          {
+            "vendor_id": "0x1af4",
+            "device_id": "0x1050",
+            "driver": "virtio-pci",
+            "boot_vga": true
+          }
+        ],
+        "capabilities": {
+          "uefi": true,
+          "virtual_machine": true
+        }
+      },
+      "unavailable": []
+    },
+    "graphics": {
+      "exit_code": 0,
+      "outcome": "partial_output",
+      "seconds": 0.046,
+      "command": [
+        "/usr/bin/distroctl",
+        "graphics",
+        "--json"
+      ],
+      "data": {
+        "schema_version": 1,
+        "archive_date": "2026/10/01",
+        "gpus": [
+          {
+            "hardware": {
+              "vendor_id": "0x1af4",
+              "device_id": "0x1050",
+              "driver": "virtio-pci",
+              "boot_vga": true
+            },
+            "firmware_package": "unknown",
+            "firmware_loaded": "unknown",
+            "wayland": "unknown",
+            "rendering": "untested"
+          }
+        ],
+        "boot_gpu": 0,
+        "multi_gpu": false,
+        "activation": "unsupported",
+        "wayland": {
+          "session_type": "wayland",
+          "active": true,
+          "vrr": "unknown",
+          "hdr": "unknown"
+        },
+        "native": {
+          "bits": 64,
+          "loader": "present",
+          "enumeration": "untested"
+        },
+        "compat32": {
+          "bits": 32,
+          "loader": "present",
+          "enumeration": "untested"
+        },
+        "nvidia_module": {
+          "loaded_version": null,
+          "disk_version": null,
+          "modeset": null,
+          "trusted": "unknown",
+          "activation": "unsupported"
+        }
+      },
+      "unavailable": [
+        "data.nvidia_module.loaded_version",
+        "data.nvidia_module.disk_version",
+        "data.nvidia_module.modeset"
+      ]
+    },
+    "performance": {
+      "exit_code": 0,
+      "outcome": "ok",
+      "seconds": 0.3,
+      "command": [
+        "/usr/bin/distroctl",
+        "performance",
+        "status",
+        "--json"
+      ],
+      "data": {
+        "schema_version": 1,
+        "context": {
+          "architecture": "x86_64",
+          "logical_cpus": 4,
+          "memory_bytes": 8278142976,
+          "virtual_machine": true,
+          "kernel": "7.2.7-arch1-1",
+          "binary_sha256": "329003201bba21dd44db3f28eb730a319f79346bbd7b7e0f090059356eb587c6"
+        },
+        "sample": {
+          "memory_available_bytes": 7057149952,
+          "swap_used_bytes": 0
+        }
+      },
+      "unavailable": []
+    },
+    "probe64": {
+      "exit_code": 0,
+      "outcome": "partial_output",
+      "seconds": 0.066,
+      "command": [
+        "/usr/lib/distroctl/graphics-probe64"
+      ],
+      "data": {
+        "schema_version": 1,
+        "architecture": 64,
+        "loader_version": null,
+        "status": "failed",
+        "devices": []
+      },
+      "unavailable": [
+        "data.loader_version"
+      ]
+    },
+    "probe32": {
+      "exit_code": 0,
+      "outcome": "partial_output",
+      "seconds": 1.296,
+      "command": [
+        "/usr/lib/distroctl/graphics-probe32"
+      ],
+      "data": {
+        "schema_version": 1,
+        "architecture": 32,
+        "loader_version": null,
+        "status": "failed",
+        "devices": []
+      },
+      "unavailable": [
+        "data.loader_version"
+      ]
+    },
+    "packages": {
+      "exit_code": 1,
+      "outcome": "nonzero_exit",
+      "seconds": 0.09,
+      "command": [
+        "/usr/bin/pacman",
+        "-Q",
+        "distroctl",
+        "astraeus-control-center",
+        "linux",
+        "linux-firmware",
+        "mesa",
+        "lib32-mesa",
+        "vulkan-icd-loader",
+        "lib32-vulkan-icd-loader",
+        "vulkan-swrast",
+        "lib32-vulkan-swrast",
+        "vulkan-radeon",
+        "vulkan-intel",
+        "vulkan-nouveau",
+        "lib32-vulkan-radeon",
+        "lib32-vulkan-intel",
+        "lib32-vulkan-nouveau",
+        "linux-firmware-amdgpu",
+        "linux-firmware-intel",
+        "linux-firmware-nvidia",
+        "nvidia-open",
+        "nvidia-utils",
+        "plasma-workspace",
+        "kwin"
+      ],
+      "data": {
+        "distroctl": "0.1.0.dev-1",
+        "astraeus-control-center": "0.1.0.dev-1",
+        "linux": "7.2.7.arch1-1",
+        "linux-firmware": "20260916-1",
+        "mesa": "1:26.2.3-2",
+        "lib32-mesa": "1:26.2.3-2",
+        "vulkan-icd-loader": "1.4.357.0-1",
+        "lib32-vulkan-icd-loader": "1.4.357.0-1",
+        "vulkan-radeon": "1:26.2.3-2",
+        "vulkan-intel": "1:26.2.3-2",
+        "vulkan-nouveau": "1:26.2.3-2",
+        "lib32-vulkan-radeon": "1:26.2.3-2",
+        "lib32-vulkan-intel": "1:26.2.3-2",
+        "lib32-vulkan-nouveau": "1:26.2.3-2",
+        "linux-firmware-amdgpu": "20260916-1",
+        "linux-firmware-intel": "20260916-1",
+        "linux-firmware-nvidia": "20260916-1",
+        "plasma-workspace": "6.7.5-1",
+        "kwin": "6.7.5-1"
+      },
+      "unavailable": [
+        "packages.vulkan-swrast",
+        "packages.lib32-vulkan-swrast",
+        "packages.nvidia-open",
+        "packages.nvidia-utils"
+      ]
+    },
+    "services": {
+      "exit_code": 0,
+      "outcome": "ok",
+      "seconds": 0.007,
+      "command": [
+        "/usr/bin/systemctl",
+        "--failed",
+        "--type=service",
+        "--plain",
+        "--no-legend",
+        "--no-pager"
+      ],
+      "data": {
+        "known_failed": [],
+        "withheld_names": 0,
+        "malformed_rows": 0
+      },
+      "unavailable": []
+    }
+  },
+  "unavailable": []
+}

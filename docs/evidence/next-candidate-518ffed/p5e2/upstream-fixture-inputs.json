@@ -1,0 +1,10 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "files": {
+    "metadata.json": "5bd5647360858364de46173c4abebcca25b15ddff821ad288c1502ea25fb4be1",
+    "tree-2.3.2-1-x86_64.pkg.tar.zst": "8a6230468cc31a2c984a41c092035dd16bf97e737ec3241490724a5419903739",
+    "tree-2.3.2-1-x86_64.pkg.tar.zst.sig": "0438397747363045fef0cbf859d35f363f8c0ddb195c55b1e0b3b778602e8788",
+    "warm-tree-fixture.py": "3480c671a7d102b748e89111d9a125de7c6fe1166d079ad1ce8a987eba673ea7"
+  },
+  "package_checks_unchanged": true
+}

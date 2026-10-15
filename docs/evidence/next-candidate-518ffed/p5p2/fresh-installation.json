@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "method": "calamares-ui",
+  "calamares_ui": true,
+  "payload_sha256": "3a81cca07381df87ea1bccb88184eee320084c904643954242675cbb0ce51f73",
+  "provision_sha256": "913f42f7c19096dc2bc90854fc202336c891d367c7ae65e1a2e5a60c7bca45ee",
+  "configuration": {
+    "gaming": [],
+    "packages": [],
+    "providers": {},
+    "schema_version": 1
+  },
+  "signing": {
+    "bootloader": {
+      "artifact_sha256": "09f58a784b5c1d297fd0b77fe4851250ca83a8c0ef1675c01ef51d6f32f316ec",
+      "certificate_sha256": "9577f676b2e5a40559293f6bc4aebadf51b4dfd54e2e209110f73c611d166490",
+      "firmware_trust": "not-evaluated",
+      "input_sha256": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1",
+      "kind": "bootloader",
+      "purpose": "disposable-ovmf",
+      "schema_version": 1
+    },
+    "uki": {
+      "artifact_sha256": "34d444ba7315bc5dea03258848ed6ad2cf5c4144ec8be2d227ec0947bec1a8b5",
+      "certificate_sha256": "9577f676b2e5a40559293f6bc4aebadf51b4dfd54e2e209110f73c611d166490",
+      "firmware_trust": "not-evaluated",
+      "input_sha256": "0902366f7bdd3173d9358ffd69c7265bccd39fc3641827a680556dbc478eaabc",
+      "kind": "uki",
+      "purpose": "disposable-ovmf",
+      "schema_version": 1
+    }
+  },
+  "disk_serial": "AS42a1fba955bb9f8ba6",
+  "preexisting_application": {
+    "name": "tree",
+    "version": "2.3.2-1",
+    "reason": "explicit",
+    "unmanaged": true,
+    "installed_before_initial_signing": true,
+    "management_sha256": {
+      "etc/astraeus/system.toml": "08920fb9f95ed219b631340b947b149ee8acc4c89bfd54f3c53c4f940a80fff3",
+      "var/lib/astraeus/management/state.json": "7e016a9f2436f89c10884b43296233f8ff41dcc830dcea8aef6613b3b2e0d7d9",
+      "var/lib/astraeus/management/system.lock": "f2ac3fb6433380bad3fb7bb756887f61a6cbfca3cfcdf9d5ede2ca09d5728ae8"
+    }
+  },
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "calamares_storage_sha256": "99dc928f2362c361d51f9451ea35c75a6c1b5ed55c864a08f143ffe3b16c52d8",
+  "provisioner_replayed": false
+}

@@ -1,0 +1,26 @@
+{
+  "time": "2026-10-15T21:22:04.058932+00:00",
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "parent_disk_sha256": "302ea87358fb99ffe8582a92ecbd7498fbb3243f4b7f5f59bedbde2351e843df",
+  "parent_disk_retained": true,
+  "native_fixture_uses_guest_local_filesystem": true,
+  "command": [
+    "python3",
+    "/home/ubuntu/next-r4/candidate-518ffede3776-r1/source-tree/operating-system/scripts/validate/host-builder.py",
+    "B",
+    "--base",
+    "/home/ubuntu/next-r4/candidate-518ffede3776-r1/builder-A/disk.qcow2",
+    "--share",
+    "/home/ubuntu/next-r4/native-final-518ffed/share",
+    "--output",
+    "/home/ubuntu/next-r4/native-final-518ffed/guest",
+    "--ovmf-code",
+    "/usr/share/OVMF/OVMF_CODE_4M.fd",
+    "--ovmf-vars",
+    "/usr/share/OVMF/OVMF_VARS_4M.fd",
+    "--memory-mib",
+    "8192"
+  ],
+  "final_build": false,
+  "validation_launcher_waits_for_guest_exit": true
+}

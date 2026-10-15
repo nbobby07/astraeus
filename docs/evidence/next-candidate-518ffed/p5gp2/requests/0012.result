@@ -1,0 +1,7 @@
+{
+  "started": "2026-10-15T22:56:55.020868+00:00",
+  "request": "0012.json",
+  "boot_id": "f67770af-7ef1-49f2-91a2-6ac076fc6e71",
+  "qmp": "/home/ubuntu/next-r4/p5gp2/boot-2/qmp.sock",
+  "finished": "2026-10-15T22:57:12.326402+00:00"
+}

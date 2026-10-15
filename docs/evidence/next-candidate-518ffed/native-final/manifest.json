@@ -1,0 +1,140 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "native_checks_passed": true,
+  "boot_content_check_passed": true,
+  "physical_gpu_qualified": false,
+  "files": [
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/launch.json",
+      "file": "launch.json",
+      "bytes": 903,
+      "sha256": "d6e6ae01282bdbc88bc5cdd1d207d7b00e801fff49447dcb4ed0d7574171ca92"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/host-result.json",
+      "file": "host-result.json",
+      "bytes": 62,
+      "sha256": "79195efd9ece25c1555ed61dabbe9fe77000fa4e29b76d7a61ce7bf5bc9acdbc"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-checks.log",
+      "file": "share_evidence_B_native-checks.log",
+      "bytes": 400,
+      "sha256": "2466f2fbbfaf80392306b9be785016c661665a87f758a0563fed81da9bb63230"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-snapshot-locks.log",
+      "file": "share_evidence_B_native-snapshot-locks.log",
+      "bytes": 725,
+      "sha256": "94a44c465f4cb8518357824f2d0e262be4fdfaff5061720c934ad3285b2cdbdc"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-workspace-tests.log",
+      "file": "share_evidence_B_native-workspace-tests.log",
+      "bytes": 21915,
+      "sha256": "9ce07542064c453cee4e80f841a8d50a431d4c788fde5469ca224d09c712ed63"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-Cargo.lock.sha256",
+      "file": "share_evidence_B_native-Cargo.lock.sha256",
+      "bytes": 77,
+      "sha256": "e176c89336afa21ec9f969af4e3a447f221dbe1d24fc09a739aa75d37a597f9c"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-pacman.conf",
+      "file": "share_evidence_B_native-pacman.conf",
+      "bytes": 562,
+      "sha256": "02d59346d7a05a8019277c1167c6a7a1f8a941aceefaf49dfa10050c80412ee9"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/snapshot-source.sha256",
+      "file": "share_evidence_B_snapshot-source.sha256",
+      "bytes": 270,
+      "sha256": "d8848278fa1459ef3db23ee5967561d8c85a38737244b898e5418e242790266e"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-publication.log",
+      "file": "share_evidence_B_native-publication.log",
+      "bytes": 886,
+      "sha256": "08ff0e5096bedba29e0cda171e1c24b302bbba42c068c41279253664f44b5a33"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/build.log",
+      "file": "share_evidence_B_build.log",
+      "bytes": 4902,
+      "sha256": "7ce37b37c741c7f3fa4b1335dbf6eb5c0c3c292ab0e761f5ae35132756e02bc2"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/ended.txt",
+      "file": "share_evidence_B_ended.txt",
+      "bytes": 21,
+      "sha256": "95907fb5de02da0468f7e0c673538da7b257df7bd835e5940e4946d452187e69"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/signed-native.log",
+      "file": "share_evidence_B_signed-native.log",
+      "bytes": 600,
+      "sha256": "f20ae753450695b22462b2fb671d467196427cc4069c1d2d69395ab8c9a9dd51"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-exit-code",
+      "file": "share_evidence_B_native-exit-code",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/boot-content.json",
+      "file": "share_evidence_B_boot-content.json",
+      "bytes": 2329,
+      "sha256": "7ca32cb0092b0fcb74e747bb17507177a422451129e0dc7ff680971b1a7065a1"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-packages.txt",
+      "file": "share_evidence_B_native-packages.txt",
+      "bytes": 7854,
+      "sha256": "facd1ca68cc0d14184827b0fd660ecbe59add832d216d60b4b767b032adb103d"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/started.txt",
+      "file": "share_evidence_B_started.txt",
+      "bytes": 21,
+      "sha256": "6b35d2b50282d91cc1f04fa15212c1692ece12cf0371326c54cf1953c4c5cb06"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/exit-code",
+      "file": "share_evidence_B_exit-code",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/fixture-filesystem.txt",
+      "file": "share_evidence_B_fixture-filesystem.txt",
+      "bytes": 18,
+      "sha256": "e85ef7ef8a572c21f7d8371a1363cc11c46a2e585bf30639eb5dc29e146643e4"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-serde-json-features.txt",
+      "file": "share_evidence_B_native-serde-json-features.txt",
+      "bytes": 2149,
+      "sha256": "ebf61a6469bd24f93b30f385b122dadcfc0d2c3eaa9451621ffdb39aa8186818"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-native-signed-runner.log",
+      "file": "share_evidence_B_native-native-signed-runner.log",
+      "bytes": 1557,
+      "sha256": "3c8e3851e591470a534e23048acf64f3e6149d0177517e91840b76f1537cf72b"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/native-native-test-binary.sha256",
+      "file": "share_evidence_B_native-native-test-binary.sha256",
+      "bytes": 148,
+      "sha256": "460de8113bc0bcf99ffd693e12dea5816490c5eaa3bf0eb2c7f1f8db7864e99c"
+    },
+    {
+      "remote_path": "/home/ubuntu/next-r4/native-final-518ffed/share/evidence/B/signed-result.json",
+      "file": "share_evidence_B_signed-result.json",
+      "bytes": 317,
+      "sha256": "e29fb08db2051cef484a76739dbca33dc8786f817f3054afc5feed58d27b9290"
+    }
+  ]
+}

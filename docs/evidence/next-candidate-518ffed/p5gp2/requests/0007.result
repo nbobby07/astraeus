@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T22:44:51.537055+00:00",
+  "request": "0007.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"ordinary_user_lock_fixture_completed\": true, \"id\": \"3ddd5baec6a4de26473ce57bd474b88f\", \"elapsed_seconds\": 60.013504999}\n",
+    "id": "9cd4e02269544db3a1bb2945ff0cbc0d",
+    "boot_id": "99e645f6-be71-4264-81e1-961a3fb91fca"
+  },
+  "finished": "2026-10-15T22:45:51.788643+00:00"
+}

@@ -1,0 +1,15 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "parallel_independent_builds": true,
+  "overlap_seconds": 2330.0,
+  "guest_build_times": {
+    "A": {
+      "started": "2026-10-15T20:21:29Z",
+      "ended": "2026-10-15T21:20:06Z"
+    },
+    "B": {
+      "started": "2026-10-15T20:41:16Z",
+      "ended": "2026-10-15T21:38:42Z"
+    }
+  }
+}

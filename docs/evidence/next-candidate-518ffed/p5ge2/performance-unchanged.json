@@ -1,0 +1,29 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "passed": true,
+  "all_recorded_state_equal": true,
+  "compared_fields": [
+    "boot_id",
+    "config_toml",
+    "configuration",
+    "esp_uuid",
+    "firmware",
+    "history",
+    "home",
+    "maintained_uki_verification",
+    "management",
+    "package_lock_present",
+    "packages",
+    "protected_files",
+    "reasons",
+    "root_uuid",
+    "schema_version",
+    "snapshots",
+    "system_lock"
+  ],
+  "request_sha256": {
+    "0002": "bdfd2616342e134745a595d36b2d8019f738125f6da4850d374aa1feb0c5081a",
+    "0008": "563e7645c9471c1b0fe42859c8f6bac43bba8ea72181decbc025dad41d232b91"
+  },
+  "scope": "CPU/memory/filesystem observations, CLI and actual GUI performance lifecycle before any management mutation"
+}

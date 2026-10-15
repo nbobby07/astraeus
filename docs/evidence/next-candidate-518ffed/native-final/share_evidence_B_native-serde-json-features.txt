@@ -1,0 +1,23 @@
+serde_json v1.0.154
+├── serde_json feature "default"
+│   ├── distro-config v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/config)
+│   │   └── distro-config feature "default" (command-line)
+│   │       ├── distro-transactions v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/transactions)
+│   │       │   └── distro-transactions feature "default" (command-line)
+│   │       │       └── distroctl v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/distroctl)
+│   │       │           └── distroctl feature "default" (command-line)
+│   │       └── distroctl v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/distroctl) (*)
+│   ├── distro-graphics v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/graphics)
+│   │   └── distro-graphics feature "default" (command-line)
+│   │       ├── distro-transactions v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/transactions) (*)
+│   │       └── distroctl v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/distroctl) (*)
+│   ├── distro-snapshots v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/snapshots)
+│   │   └── distro-snapshots feature "default" (command-line)
+│   │       ├── distro-transactions v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/transactions) (*)
+│   │       └── distroctl v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/distroctl) (*)
+│   ├── distro-transactions v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/transactions) (*)
+│   └── distroctl v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/distroctl) (*)
+├── serde_json feature "float_roundtrip"
+│   └── distroctl v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/distroctl) (*)
+└── serde_json feature "std"
+    └── serde_json feature "default" (*)

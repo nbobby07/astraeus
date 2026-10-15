@@ -26,7 +26,14 @@ failures, screenshots and qualification limits.
 Phase 5.0 VM acceptance passed at runtime `c38209c` and is included in that same
 integration. Historical acceptance reports retain their original PR states and
 source identities. The [current handoff](release-readiness.md) records the merged
-source, separate dependency candidate, signing expiry and physical-test limits.
+source, unified dependency/graphics/diagnostics candidate, signing expiry and
+physical-test limits.
+
+The [next candidate](next-candidate-acceptance.md) passed fresh VM acceptance at
+`518ffed`, including independent matching builds, real Calamares UI installs,
+plain/LUKS2 desktop and management checks, signed-media refusals and focused
+restored-root recovery. This is release groundwork through PR #16, not a new
+performance-tuning phase or physical qualification.
 
 | Phase | State | Deliverable | Evidence needed to close |
 | --- | --- | --- | --- |

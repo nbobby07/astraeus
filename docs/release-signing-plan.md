@@ -1,12 +1,15 @@
 # Release signing and distribution plan
 
-Status: **plan only**. Nothing here is implemented, provisioned or qualified.
+Status: **production plan only**. Release-key custody, distribution and signing
+ceremonies remain unimplemented. The development controls in the inventory
+below already exist and have their own recorded validation.
 It defines what must exist before any image, repository or recovery medium is
 published under an Astraeus release identity. Items marked **Decision needed**
 require an owner choice before the corresponding phase starts.
 
-Originally drafted at `8a4f1e5`; reconciled with accepted runtime `c38209c`
-on 2026-10-15. See the [current handoff](release-readiness.md). Related records:
+Originally drafted at `8a4f1e5`; reconciled with the accepted Phase 5 baseline
+and the next candidate at `518ffed` on 2026-10-15. See the
+[current handoff](release-readiness.md). Related records:
 [security](security.md), [owner Secure Boot](secure-boot.md),
 [ADR 0003](adr/0003-owner-secure-boot.md), [releases](releases.md),
 [building](building.md) and [Phase 4.2 acceptance](phase42-acceptance.md).
@@ -45,6 +48,14 @@ The accepted Phase 5 candidate instead uses
 [integration evidence](evidence/release-readiness-20261015/repository-public-key.json).
 This is also a disposable identity, not a release key. Key expiry affects package
 verification; it does not add an expiry check to the unsigned live boot chain.
+
+The next candidate uses development repository signer
+`08AA130849B706CDB20AAA4484BD7DFCF71254F6`, expiring at
+`2026-10-22T20:29:47Z`. Its build checks require more than 72 hours of
+remaining key lifetime before compilation and ISO assembly. See the
+[next-candidate report](next-candidate-acceptance.md) for the exact image and
+validation status. These checks do not implement production rotation or
+trusted distribution.
 
 ## Principles
 
@@ -276,8 +287,9 @@ Each release publishes:
 The published `release-key.asc` is a convenience copy. Users must verify its
 fingerprint independently.
 
-- **Hosting.** The ISO is about 3.5 GB. GitHub release assets are limited to
-  2 GiB per file, so it cannot be a release asset. **Decision needed:** object
+- **Hosting.** The next candidate ISO is about 3.9 GB. GitHub requires each
+  [release asset](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases#storage-and-bandwidth-quotas)
+  to be under 2 GiB, so this ISO cannot be a single release asset. **Decision needed:** object
   storage/CDN, mirrors and/or BitTorrent, plus who pays and how mirrors are
   admitted. Mirrors are untrusted; only the signature matters.
 - **Fingerprint channels.** Publish in `SECURITY.md` and the docs (via a signed
@@ -357,9 +369,9 @@ Phases are gated. Each needs review and evidence, as with existing phases.
       fails when a revoked key still verifies.
 - [ ] Remote `distro` repository and `Server` configuration, if decided.
       Installed `pacman.conf` stops using only `file:///opt/distro/repo`.
-- [ ] Three-stage A/B build with builder attestations. Extend
-      `arch-builder.sh` so B also compiles packages and its hashes are compared
-      before signing.
+- [ ] Three-stage A/B build with builder attestations. Preserve the existing
+      independent package compilation and comparison; move the comparison before
+      offline repository signing and add separately signed builder attestations.
 - [ ] Release manifest and `SHA256SUMS.sig` generation, plus a user
       verification script and guide.
 - [ ] Signing ledger format and a check that every published signature is

@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T22:32:37.324462+00:00",
+  "request": "0001.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"path\": \"/home/tester/.astraeus-phase42-fault-7213cdd5b3884dc9b4396b411b0d3564\", \"sha256\": \"096556c723ac2d670fe28c7187f875838017edb948a32b01157782c8d5a93a5f\", \"uid\": 1000}\n{\"installed_boot_unit_source_hashes_verified\": {\"/usr/lib/systemd/system/astraeus-confirm-boot.service\": \"0ff896721966a7c3d93c6e93c28a1b83abec9919aa692592b87eafd3a30c8a4a\", \"/usr/lib/systemd/system/systemd-bless-boot.service.d/astraeus.conf\": \"c32e6829bdae169762a7f0831d7a10db0b1a041d73c83070fe5918e4ad1bbd43\"}, \"actual_tester_plasma_present\": true}\n",
+    "id": "f0f0d9e8e09b42a6b4b5e4fcc35fbc10",
+    "boot_id": "a1481bcf-c56a-46d9-8b6c-ce0342564490"
+  },
+  "finished": "2026-10-15T22:32:44.592555+00:00"
+}

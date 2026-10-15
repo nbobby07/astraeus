@@ -1,160 +1,112 @@
-# Integration and first physical boot, 2026-10-15
+# Current candidate and release readiness
 
-The completed development stack has passed its recorded VM acceptance. It is
-not a production release. The existing ISO can support an exploratory live
-desktop session on compatible hardware with non-enforcing UEFI. It cannot
-establish factory Secure Boot compatibility, accelerated vendor Vulkan, gaming
-readiness, or installation support on a physical PC.
+The next candidate is built at `518ffede377615357cc7f86660fb57c75fce872d`.
+Independent packages and full A/B ISO bytes match. Windows/Linux CI, image
+auditing and packaged/native checks passed. Fresh plain/LUKS2 Calamares UI,
+enforcing cold boots, installed desktop and management acceptance passed.
+Signed-media and focused restored-root recovery acceptance also passed.
+Physical hardware is unqualified.
 
-## What was completed overnight
+The [next-candidate report](next-candidate-acceptance.md) records its exact gates,
+retained failures, artifacts and costs. Historical reports continue to describe
+their original source revisions. This is development work, not a public release.
 
-- Phase 5 added ordinary-user observations, bounded CPU/memory/filesystem
-  baselines, private results, exact export and comparison in Control Center.
-- Follow-up fixes covered physical-machine comparison classification, peripheral
-  power-supply privacy, management conflicts, keyboard focus, close/discard,
-  packaged Qt tests, and exact floating-point JSON round trips.
-- Restored pre-update roots now remain pending until explicit rollback
-  finalization, and automatic boot confirmation requests the blessing service.
-- Runtime `c38209c523e308d23ff622b32d9cd0ed42682962` passed two independent
-  byte-identical builds and plain/LUKS2 enforcing VM acceptance, including the
-  changed restored-root case. Report commit: `33d15a6`.
-- Separate local commits prepared a physical qualification plan (`aa492c8`), a
-  release-signing plan (`3aef36b`), and the SHA-2 migration fix (`b8ccd07`). The
-  plans are incorporated here, with stale statements corrected. Dependency
-  changes belong to a separate candidate and do not describe the accepted ISO.
+## PR disposition
 
-The [Phase 5 report](phase5-acceptance.md) preserves the full results and failed
-attempts. The older `08713df` image failed required gates and must not be used as
-the accepted candidate. Original branches and evidence remain preserved.
-
-## PR map
-
-This is the inventory before consolidation. GitHub records the final PR states.
-The combined source integration is [#14](https://github.com/nbobby07/astraeus/pull/14);
-the separate dependency candidate is [#15](https://github.com/nbobby07/astraeus/pull/15).
-
-| PR | Purpose | Integration disposition |
+| PR | Purpose | Current disposition |
 | --- | --- | --- |
-| [#7](https://github.com/nbobby07/astraeus/pull/7) | Graphics detection, gaming diagnostics and pinned image selections | Included through the complete feature stack; its original Proton limitations were subsequently addressed in Phase 4.1 |
-| [#8](https://github.com/nbobby07/astraeus/pull/8) | Control Center, reviewed package/configuration changes, background worker and recovery | Included, together with Phase 5's restored-root corrections |
-| [#13](https://github.com/nbobby07/astraeus/pull/13) | Performance workspace and final overnight VM evidence | Accepted runtime baseline for this integration |
-| [#1](https://github.com/nbobby07/astraeus/pull/1) | Pinned GitHub checkout action v7.0.1 | Included; CI tooling only |
-| [#9](https://github.com/nbobby07/astraeus/pull/9) | TOML parser 0.8 to 1.1 | Separate dependency integration; changes runtime build inputs |
-| [#10](https://github.com/nbobby07/astraeus/pull/10) | serde_json 1.0.151 to 1.0.154 | Separate dependency integration; retain the float_roundtrip correction |
-| [#11](https://github.com/nbobby07/astraeus/pull/11) | SHA-2 0.10 to 0.11 | Original PR fails both host checks; local migration fix must accompany the upgrade |
-| [#12](https://github.com/nbobby07/astraeus/pull/12) | rusqlite 0.38 to 0.40.2 and bundled SQLite | Separate dependency integration; transaction storage needs fresh candidate qualification |
+| [#14](https://github.com/nbobby07/astraeus/pull/14) | Consolidate the previously accepted Phase 4.2/5.0 stack and release plans | Merged; starting main is `fbb5562c1fc418d26be7d7cc6de63ab9976cb488` |
+| [#15](https://github.com/nbobby07/astraeus/pull/15) | TOML, serde_json, SHA-2 and SQLite upgrades, preserving report precision and stored formats | Included and qualified in #16; do not merge independently |
+| [#16](https://github.com/nbobby07/astraeus/pull/16) | Fresh AMD/Nouveau candidate, live diagnostics, signing preflight, clock-collision fixes and renewed acceptance | Unified integration; candidate VM gates passed, final repository checks govern merge |
+| #1, #7, #8, #9, #10, #11, #12, #13 | Original CI, graphics, management, dependency and performance branches | Closed during consolidation; original branches and evidence retained |
 
-Source consolidation preserves the runtime, package recipes, installer, lockfile
-and test code from `c38209c`. Documentation and CI updates do not rebuild the
-ISO. Any later dependency, driver, signing or package-selection change needs its
-own build identity and acceptance; the old ISO hash cannot qualify new bytes.
+Phase 5.0's accepted runtime remains `c38209c523e308d23ff622b32d9cd0ed42682962`.
+Its [acceptance report](phase5-acceptance.md) records the byte-identical builds,
+plain/LUKS2 enforcing VM tests and restored-root recovery. Report commit
+`33d15a6` is preserved. The new candidate has its own acceptance because its
+runtime, package selection and signatures differ.
 
-## Exact available candidate
+## Fresh artifact identity
 
 | Field | Value |
 | --- | --- |
-| Local path | `C:/Astraeus-Phase5-Performance/candidate-c38209c523e3/candidate-A.iso` |
-| Runtime source | `c38209c523e308d23ff622b32d9cd0ed42682962` |
-| Length | 3,785,349,120 bytes |
-| SHA-256 | `174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c` |
-| Installed payload selections | `graphics_bundles = ["software"]`, `gaming_features = []` |
-| Live graphics packages | Native `vulkan-intel`, `vulkan-radeon`, `vulkan-nouveau`, each `1:26.2.3-2` |
-| Repository key | `27CCE96199D30A7ABA1BE86CC6722DAA8014EE89` |
-| Repository key expires | October 16, 2026, 08:55:39 UTC, or 01:55:39 Pacific |
-| Boot | Unsigned x86-64 UEFI setup ISO, no factory-trusted shim |
+| Local A | `C:/Astraeus-Next-Candidate/candidate-518ffede3776-r1/candidate-A.iso` |
+| Local B | `C:/Astraeus-Next-Candidate/candidate-518ffede3776-r1/candidate-B.iso` |
+| Runtime source | `518ffede377615357cc7f86660fb57c75fce872d` |
+| Length, each | 3,925,192,704 bytes |
+| SHA-256, both | `8c8a9f5a2627ab7ce4cdd8910e804d1b5d2b0fd17a824895c3add9f833ef94a9` |
+| Archive pin | `2026/10/01` |
+| Installed selections | `graphics_bundles = ["amd", "nouveau"]`, `gaming_features = []` |
+| Live selection | Native and 32-bit AMD, Intel and Nouveau Vulkan packages, Mesa/Zink and diagnostics |
+| Development repository signer | `08AA130849B706CDB20AAA4484BD7DFCF71254F6` |
+| Signer expiry | `2026-10-22T20:29:47Z` |
+| Setup boot policy | Unsigned x86-64 UEFI ISO; no factory-trusted shim |
 
-The local ISO hash and all 178 members of the committed Phase 5 evidence manifest
-were rechecked during this integration. See [build inputs](evidence/phase5-build-c38209c/build-A/inputs.json),
-[package list](evidence/phase5-build-c38209c/build-A/image-packages.txt), and
-[public key metadata](evidence/release-readiness-20261015/repository-public-key.json).
-The latter was extracted from the retained A build evidence archive, not inferred
-from the older Phase 4.2 key.
+A and B compiled their own five package archives from the frozen source. B used
+A's verified signed repository for image assembly. Complete package archives,
+manifests, repository inputs and ISO bytes match. This does not claim that two
+independent signing operations produce identical bytes.
 
-Repository-key expiry can block package and database verification. Do not change
-the clock, disable signature checks or substitute another image while retaining
-this one's acceptance claim. An already built live desktop does not cease to boot
-because its package key expires. Installation or management beyond that window
-needs refreshed signed inputs and a newly qualified image.
+The accepted older Phase 5 LIVE image already contained native AMD, Intel and
+Nouveau Vulkan packages. Only its separate installed payload selected software
+Vulkan. The new installed AMD/Nouveau selection does not establish that the
+RTX 5070 works. Neither image activates NVIDIA's `nvidia-open` stack.
 
-## Today's live session
+## Owner's first physical session
 
-The owner confirmed a Ryzen 7 7800X3D and RTX 5070, using Rufus for a live-only
-USB session, with no disk installation. Read-only Windows inventory reports an
-ASUS B650E MAX GAMING WIFI motherboard and both RTX 5070 and AMD Radeon graphics.
-Windows denied this session's Secure Boot and BitLocker status queries. The owner
-corrected an initial misclick and reported **Secure Boot on and BitLocker off**.
-This is an owner-reported preflight result, not an automated firmware check.
-The current unsigned ISO will be refused under that policy. Today's live boot
-therefore requires the owner to choose a temporary manual disable of Secure Boot
-enforcement, restoring it afterward, or to postpone the boot. Keep factory keys
-intact; no enrollment or key clearing is needed. NVIDIA open-module activation
-remains unsupported in this source.
+The owner reports a Ryzen 7 7800X3D and RTX 5070, with **Secure Boot on** and
+**BitLocker off**. Intended use is a Rufus-written live USB, with no installation.
+Read-only Windows inventory also identified the Raphael integrated GPU and an
+ASUS B650E MAX GAMING WIFI board. Firmware/encryption status is owner-reported.
 
-1. Verify the ISO before writing. In PowerShell:
+The setup ISO is not bootable under the reported factory Secure Boot policy.
+Installed VMs enforcing their disposable owner keys do not change that fact.
+Rufus cannot grant firmware trust to an unsigned image. No firmware change,
+enrollment, reboot, raw disk write, flashing or physical test is authorized in
+this development window. The physical boot remains pending a separately chosen
+boot-policy path; do not enroll the disposable VM keys on the owner's machine.
 
-   ```powershell
-   Get-FileHash -Algorithm SHA256 -LiteralPath 'C:/Astraeus-Phase5-Performance/candidate-c38209c523e3/candidate-A.iso'
-   ```
+Once a physical session is separately authorized and its boot prerequisite is
+resolved, start with display, keyboard/mouse, network and audio observations.
+Keep internal volumes unmounted and do not start Calamares or apply packages.
+The new packaged collector runs as the ordinary live desktop user:
 
-2. Select the USB by its actual model and capacity. Writing an image erases the
-   selected USB. In Rufus, select this ISO and choose **DD Image mode** if prompted
-   between ISO and DD modes. Verify the written bytes; an extracted ISO or another
-   boot manager does not preserve this image's tested boot path. See the
-   [Rufus FAQ](https://github.com/pbatard/rufus/wiki/FAQ#why-doesnt-rufus-recommend-dd-mode-over-iso-mode-for-isohybrid-images-surely-dd-is-better).
-   Windows can modify an exposed FAT partition or GPT records after a raw write;
-   DD mode alone is not proof of a matching readback. Retain and investigate a
-   mismatch rather than reporting the USB as byte-identical. Rufus documents
-   this [Windows auto-mount limitation](https://github.com/pbatard/rufus/wiki/FAQ#im-using-an-iso-with-a-checksum-validation-test-and-the-test-fails-despite-using-dd-mode-in-rufus).
-3. Use the firmware's one-time boot menu. This ISO will not boot under factory
-   Secure Boot enforcement. Do not clear or enroll firmware keys to try to make
-   the disposable VM keys work. Changes to the owner's Windows boot policy are
-   a separate decision, including any BitLocker recovery consequences. Check
-   **Secure Boot State** in `msinfo32` and the Windows drive's encryption status
-   before changing anything. If encryption is enabled, make sure the recovery
-   key is available privately before a firmware-policy change; do not paste it
-   into a chat or report. See [Microsoft's BitLocker FAQ](https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/faq).
-4. Keep this session live-only. Do not start Calamares, mount personal Windows
-   volumes, apply packages, or run the VM-only installation/recovery harnesses.
-   Record whether Plasma, display output, keyboard/mouse, network and audio work.
-5. Run the existing ordinary-user observations below. A failed or unavailable
-   probe is evidence, not a reason to weaken a guard:
+```sh
+astraeus-collect-live-evidence --output /home/live/first-boot-evidence \
+  --image-source-commit 518ffede377615357cc7f86660fb57c75fce872d \
+  --image-sha256 8c8a9f5a2627ab7ce4cdd8910e804d1b5d2b0fd17a824895c3add9f833ef94a9
+```
 
-   ```sh
-   distroctl info --json
-   distroctl status --json
-   distroctl hardware --json
-   distroctl graphics --probe --json
-   distroctl performance status --json
-   distroctl performance record --duration 30 --json
-   systemctl --failed --no-pager
-   ```
+The output directory must be new. Its `public.json` records typed observations;
+review it before sharing. Keep `private/` private. The supplied source/hash fields
+are operator declarations, not proof that the running USB matches the ISO.
+A failed or unavailable rendering probe remains a failed or unavailable probe,
+even when collection succeeds. Live sessions permit passive recording and refuse
+performance baselines. Copy evidence only to an explicitly chosen destination.
 
-6. Photograph or save results to an explicitly chosen evidence location before
-   shutdown. Live session state is temporary. Review logs for personal identifiers
-   before publishing them. Shut down and remove the USB to return to the normal
-   boot device.
+Verify the ISO before a later authorized USB write:
 
-The live environment and installed payload have different package manifests.
-The accepted live environment already contains native AMD, Intel and Nouveau
-Vulkan packages. The separate installed payload selected the software bundle,
-including native and 32-bit software Vulkan; that selection does not describe
-the live root. Neither manifest includes NVIDIA's `nvidia-open` driver stack.
-Package presence does not prove that the RTX 5070 renders correctly: record the
-actual device, kernel driver and probe results during the physical test. Live
-sessions allow passive performance recording and intentionally refuse baselines.
+```powershell
+Get-FileHash -Algorithm SHA256 -LiteralPath 'C:/Astraeus-Next-Candidate/candidate-518ffede3776-r1/candidate-A.iso'
+```
 
-## Work remaining before production
+USB identity, Rufus mode and readback verification remain part of the
+[physical plan](physical-qualification-plan.md). An ISO hash does not verify the
+written USB. A live-only observation does not qualify disk installation.
 
-| Work | Completion needed |
+## Work still required for production
+
+| Area | Remaining evidence or decision |
 | --- | --- |
-| Physical image | Choose the actual GPU path, build with its pinned packages and a key valid for the test window, then repeat independent image and VM acceptance |
-| Physical qualification | Real USB boot, display, networking, audio, input and GPU observations on named hardware; full GameMode and actual gaming tests where selected |
-| Installation | Fresh Calamares UI acceptance for the final candidate, then separately authorized spare-disk physical installation and recovery |
-| Dependency integration | Review the combined upgrades, pass Windows/Linux checks, rebuild and qualify the resulting candidate before attributing any ISO acceptance to it |
-| Signing and updates | Decide release-key custody and rotation, trustworthy distribution, update/key-revocation delivery and the physical Secure Boot strategy |
-| Release | Publish verified artifacts, signed checksums, provenance and an honest supported-hardware scope only after those gates pass |
+| Broader VM regression scope | Current candidate gates passed; the full historical 70-scenario fault matrix was not rerun |
+| Physical compatibility | Real USB boot and both GPU architectures on named hardware; display, audio, networking and input observations |
+| Physical installation | Separately authorized disposable disk, real firmware behavior, plain/LUKS2 install/update/rollback/recovery |
+| Gaming/performance | Full GameMode self-test where selected, physical graphics/game tests, repeatable thermal/power-aware measurements |
+| Signing | Release-key custody, rotation, revocation delivery, trustworthy distribution and a physical Secure Boot strategy |
+| Release | Reviewed supported-hardware scope, signed checksums and provenance, final checks, and explicit publication authorization |
 
-The [physical plan](physical-qualification-plan.md) and
-[signing plan](release-signing-plan.md) contain the detailed work. They are plans,
-not completed controls. The preserved acceptance reports remain historical records
-of their exact revisions even after their PRs are consolidated or closed.
+The [signing plan](release-signing-plan.md) describes production work that remains
+unimplemented. The current signing-lifetime preflight and disposable validation
+keys are development controls. No production identity or public release was
+created. Repository-key expiry affects package verification, not the unsigned
+live boot chain; never change clocks or disable signature checks to bypass it.

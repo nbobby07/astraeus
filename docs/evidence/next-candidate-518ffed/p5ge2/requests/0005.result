@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T22:55:55.089206+00:00",
+  "request": "0005.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"confirmed_close_passed\": true, \"latest\": {\"created_unix_seconds\": 1792104879, \"elapsed_seconds\": 73.372845627, \"failure\": \"cancelled by caller\", \"id\": \"da85976d9864d9264defd3d48ed74ce6\", \"kind\": \"baseline\", \"state\": \"cancelled\"}, \"native_export_exact\": true, \"export_id\": \"225272ab9e253be2172d9b468c14eea5\", \"export_sha256\": \"d098e9ba63157a70628da52571a13d373ed9141f4d9895168436957455d1b6dd\", \"export_bytes\": 37675, \"export_uid\": 1000, \"runs\": [{\"created_unix_seconds\": 1792104879, \"elapsed_seconds\": 73.372845627, \"failure\": \"cancelled by caller\", \"id\": \"da85976d9864d9264defd3d48ed74ce6\", \"kind\": \"baseline\", \"state\": \"cancelled\"}, {\"created_unix_seconds\": 1792104294, \"elapsed_seconds\": 98.693178524, \"failure\": null, \"id\": \"225272ab9e253be2172d9b468c14eea5\", \"kind\": \"baseline\", \"state\": \"completed\"}, {\"created_unix_seconds\": 1792104176, \"elapsed_seconds\": 22.693976147, \"failure\": \"cancelled by caller\", \"id\": \"70bff2f092c3c45f58c0921c3c33c1f5\", \"kind\": \"record\", \"state\": \"cancelled\"}, {\"created_unix_seconds\": 1792103866, \"elapsed_seconds\": 0.050901586, \"failure\": \"cancelled by caller\", \"id\": \"75434a0658164d304a694d5d5b09ac58\", \"kind\": \"record\", \"state\": \"cancelled\"}, {\"created_unix_seconds\": 1792103767, \"elapsed_seconds\": 98.558530787, \"failure\": null, \"id\": \"ed5b49588c243f4083709efac634c8ec\", \"kind\": \"baseline\", \"state\": \"completed\"}, {\"created_unix_seconds\": 1792103664, \"elapsed_seconds\": 102.884847389, \"failure\": null, \"id\": \"239837c9562df2597f7fd6a7b4cb4b5b\", \"kind\": \"baseline\", \"state\": \"completed\"}, {\"created_unix_seconds\": 1792103662, \"elapsed_seconds\": 2.015043776, \"failure\": null, \"id\": \"fdc61f623a1bb846a7121a8adcfb5c63\", \"kind\": \"record\", \"state\": \"completed\"}]}\n",
+    "id": "2d07dc88daba4692948e69bf98f14de2",
+    "boot_id": "a1481bcf-c56a-46d9-8b6c-ce0342564490"
+  },
+  "finished": "2026-10-15T22:55:55.449066+00:00"
+}

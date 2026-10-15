@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "live": true,
+  "distroctl_sha256": "329003201bba21dd44db3f28eb730a319f79346bbd7b7e0f090059356eb587c6",
+  "desktop_sha256": "3382576d5a609f4ae7df0a36dc646b835ab6b529936dd29f0c45cbc645f8b757",
+  "firmware": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "checks": {
+    "inspection_visible": true,
+    "live_warning_visible": true,
+    "review_blocked": true,
+    "apply_disabled": true
+  },
+  "evidence": [
+    {
+      "path": "screenshots/live-inspection-warning.png",
+      "sha256": "b5e96edf308eaca6ada0c340db91a0fc007f76a0926e3846fab46045ade4119a"
+    },
+    {
+      "path": "screenshots/live-review-blocked.png",
+      "sha256": "900ca13f912528749bcbe24df5350d84e6da03e03dcf44bc60bdd81e01637300"
+    },
+    {
+      "path": "screenshots/live-apply-disabled.png",
+      "sha256": "fe976a19d815bce7d64e271c556ab3c1df474a7337d72ddccba836712cc6c939"
+    }
+  ],
+  "observation": "Actual ordinary-user Control Center: inspected system, searched and selected kcalc, reviewed its resolved plan, observed live blocker and disabled Authenticate and apply button. No application was attempted through the UI."
+}

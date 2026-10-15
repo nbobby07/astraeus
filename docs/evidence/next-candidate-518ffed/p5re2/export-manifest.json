@@ -1,0 +1,909 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "kind": "phase5-awaiting-boot-recovery",
+  "milestone_complete": false,
+  "private_material_excluded": true,
+  "disks_retained": true,
+  "files": {
+    "awaiting-boot-restore/attention.json": {
+      "bytes": 286,
+      "sha256": "d6fd11b3a89a10ea50e7e8856a46b026c807dd6ac9a89913561ee6d2c1236c8d"
+    },
+    "awaiting-boot-restore/automatic-restored-pending.json": {
+      "bytes": 435803,
+      "sha256": "4cc8379f6c7f2aa0f1a0c1c92695948ca9ac407e72b62cbdae129c66d93b1b6e"
+    },
+    "awaiting-boot-restore/awaiting-boot-offline-restore.json": {
+      "bytes": 416120,
+      "sha256": "9b68ffb7caf31b3e25477a94d6a038942244370fc76846b0deb591032011c7a2"
+    },
+    "awaiting-boot-restore/awaiting-boot-plan.json": {
+      "bytes": 410323,
+      "sha256": "9876345e72edacf24adff114aa254ed8025ce1d23b5e8e1a2c8cc35f8b81dfae"
+    },
+    "awaiting-boot-restore/awaiting-boot-restore-baseline-health.json": {
+      "bytes": 152863,
+      "sha256": "026b6961908f4781a281017ce0aab0beab7cb842ee4c2c2750c6be4ac45d56cb"
+    },
+    "awaiting-boot-restore/baseline-reference.json": {
+      "bytes": 2944,
+      "sha256": "4c2c36b198a92f7f2a99dd9a48ca2e8d188dcb9bb4ae1729ec4be97f87a37bc5"
+    },
+    "awaiting-boot-restore/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "6b555c026464b9751a8b85898f3b08c16de309eb49c56b7529f1cb5ba1eeabf3"
+    },
+    "awaiting-boot-restore/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "dbc6da705e5191f7e4af28e28622076ba4d413e49963a9d24e9e84f38f092b19"
+    },
+    "awaiting-boot-restore/boot-1/003-ready.json": {
+      "bytes": 219,
+      "sha256": "f9835f3a00c186fa5e639f76d2267613f4020045e5373de5f45c6daaab401ecd"
+    },
+    "awaiting-boot-restore/boot-1/004-ready.json": {
+      "bytes": 219,
+      "sha256": "e354fa0e2e86d13a2588fe979f998bcead5d68d1c5f22fedbfbb54b501d81607"
+    },
+    "awaiting-boot-restore/boot-1/005-ready.json": {
+      "bytes": 219,
+      "sha256": "77bcae7f1fb2c16e4fcc68f03fd8ebc4c293b42a1282e57037c8cee8ed03d724"
+    },
+    "awaiting-boot-restore/boot-1/006-ready.json": {
+      "bytes": 219,
+      "sha256": "0437257df0851b9034acb5864e81e2867786710e61ef8719e3c0119b024626b4"
+    },
+    "awaiting-boot-restore/boot-1/007-ready.json": {
+      "bytes": 219,
+      "sha256": "553a621b013f36fc62c1254a5589858efa9d7e1a6664e2edaa942206d2cce5d5"
+    },
+    "awaiting-boot-restore/boot-1/008-ready.json": {
+      "bytes": 356,
+      "sha256": "ce3092a88625681ea6633d75a83148a1ee864df5f85f9c0cdaff41b469accd00"
+    },
+    "awaiting-boot-restore/boot-1/009-home.json": {
+      "bytes": 535,
+      "sha256": "844e2d580fef4d0532b861ca1bdd367170d27d0ab04ccba38399c732f84709bc"
+    },
+    "awaiting-boot-restore/boot-1/010-observe.json": {
+      "bytes": 287240,
+      "sha256": "b684748e53e3ca36f8db9a7aa79c5ae1b9198599c6be392b46a6798d1cfa6552"
+    },
+    "awaiting-boot-restore/boot-1/011-awaiting-boot-restore-baseline-health-status.json": {
+      "bytes": 3309,
+      "sha256": "405acca85d99c43525bd39611b2435b579b82dd047c678840542b7214334e50d"
+    },
+    "awaiting-boot-restore/boot-1/012-awaiting-boot-restore-baseline-health-packages.json": {
+      "bytes": 15904,
+      "sha256": "14c20ffd66516e614c5f14099667d3558b43395ccec005ae569cf9732fd413ce"
+    },
+    "awaiting-boot-restore/boot-1/013-awaiting-boot-restore-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "75e0be1b09258877241ef9b4fdfd945771535f4ef41c0c780df7958a5bed7073"
+    },
+    "awaiting-boot-restore/boot-1/014-awaiting-boot-restore-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "3836abdd2f2bdc1dc0e9bcb9dc828c141c7d60660c2071366047d3da2ad04986"
+    },
+    "awaiting-boot-restore/boot-1/015-awaiting-boot-restore-baseline-health-mounts.json": {
+      "bytes": 8960,
+      "sha256": "ef26e1fb5bcb914ca1e23fbd80e343f9117d47c528d700d12e613b1906619a3f"
+    },
+    "awaiting-boot-restore/boot-1/016-awaiting-boot-restore-baseline-health-subvolumes.json": {
+      "bytes": 547,
+      "sha256": "0c129af2b5808e07d1dfe1c1d29842174992534e1b0eaa6030917c2bfad6d50b"
+    },
+    "awaiting-boot-restore/boot-1/017-awaiting-boot-restore-baseline-health-boot.json": {
+      "bytes": 4085,
+      "sha256": "df404956dcf6ff01cbc580005e39a8bd2aab8d3b936349402eda11e6f841141d"
+    },
+    "awaiting-boot-restore/boot-1/018-awaiting-boot-restore-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "3e679d635c9adad55075f31d9cd215c818854cc145694b451b0faa9cacdd5069"
+    },
+    "awaiting-boot-restore/boot-1/019-awaiting-boot-restore-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "9391606a5d17edf88c86eacd0d9813c7030649db8d0ee6900f5c5b8761e5e6f9"
+    },
+    "awaiting-boot-restore/boot-1/020-awaiting-boot-restore-baseline-health-journal.json": {
+      "bytes": 7554,
+      "sha256": "fc3d183c90cdae1db2bdb1faa0eff072ce33c51574f6d1e56665f471d9152bf1"
+    },
+    "awaiting-boot-restore/boot-1/021-awaiting-boot-restore-baseline-health-boot-journal.json": {
+      "bytes": 110876,
+      "sha256": "54a349ef1d45d5ef7a3b554135927b09e98bc018cee4a8fd061ffd0750c511c7"
+    },
+    "awaiting-boot-restore/boot-1/022-awaiting-boot-restore-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "96bc1eb649d21b385f2bb997fb8501afb86ffd99c4dedb0768d5a09e13e904a7"
+    },
+    "awaiting-boot-restore/boot-1/023-awaiting-boot-restore-baseline-health-kernel-command-line.json": {
+      "bytes": 455,
+      "sha256": "4141f3df14afea15dec23c701589b591272e215198eaee65d0e77c8e500095f3"
+    },
+    "awaiting-boot-restore/boot-1/024-awaiting-boot-restore-baseline-health-pacman-log.json": {
+      "bytes": 728,
+      "sha256": "1ba96749a850bdd1f1b1a5ee81acaea9737e95fbb8a001892a3bc2a395338a73"
+    },
+    "awaiting-boot-restore/boot-1/025-awaiting-boot-restore-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "01bdaf8e52bb9581b09fd5b45b89efb6cd178c8545f89aef3df9fcd0fc7348bf"
+    },
+    "awaiting-boot-restore/boot-1/026-awaiting-boot-restore-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "02783521882e80cc95ce164c06293d3b8527dd961b66cdd05571aed4cc6ebae9"
+    },
+    "awaiting-boot-restore/boot-1/027-awaiting-boot-restore-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "18b96751e5913ddb2f313e8b53bff8b664bc8fb243ce939330158e8670d540a5"
+    },
+    "awaiting-boot-restore/boot-1/028-awaiting-boot-plan.json": {
+      "bytes": 454696,
+      "sha256": "c0d5de5f62578ecf557dbdc581662c4ffda62ff9ca0c7122a23ef2ecf5a733f9"
+    },
+    "awaiting-boot-restore/boot-1/029-awaiting-boot-submit.json": {
+      "bytes": 714,
+      "sha256": "009810e134d0083a4a414b35082c15a2cfdae564ebd7f7ed97d10b49271b7912"
+    },
+    "awaiting-boot-restore/boot-1/030-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 528,
+      "sha256": "21a2e9050ad1b0a29e93f740d2aa84ad725475045a635220a799610bdf0a6edd"
+    },
+    "awaiting-boot-restore/boot-1/031-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477277,
+      "sha256": "7cd84b412f4fa316a6a3377c1b0fed13aac3395f89d86202f02a5d1afe90a49e"
+    },
+    "awaiting-boot-restore/boot-1/032-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477277,
+      "sha256": "0cb11c3ca799d69f8599e034d09ad119132427b30d305607b3cf4cd55f5999f8"
+    },
+    "awaiting-boot-restore/boot-1/033-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477313,
+      "sha256": "4f409ad58082f804a3e268dbc83615624bad0bba52ba7c28d8b986d2d05beda3"
+    },
+    "awaiting-boot-restore/boot-1/034-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477405,
+      "sha256": "738e398f41141e0afd59ec55afba0e24f2f2aef48fcb0812672c18280539a413"
+    },
+    "awaiting-boot-restore/boot-1/035-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477513,
+      "sha256": "e9d103007fd3ad9308b2e05f258b7bb3fedb8f6287cf29b889b779cbd875dd5d"
+    },
+    "awaiting-boot-restore/boot-1/036-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477513,
+      "sha256": "630f493ef1d9b12b097f4c7dbbc6d4b32eb4b676c0d588bb0055caa01c6a81ba"
+    },
+    "awaiting-boot-restore/boot-1/037-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477705,
+      "sha256": "d8ff22eabd9753d6473f8cb1a9f3f5d7f8650e3dfe38c8f3e91076be7347eb5b"
+    },
+    "awaiting-boot-restore/boot-1/038-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477705,
+      "sha256": "0f349eefe023a372f968d7aae7105cd2b6c51c5c80a0a8cb748b22d5bedec361"
+    },
+    "awaiting-boot-restore/boot-1/039-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477705,
+      "sha256": "05b1300a76bb4a2efe871ba0ac70a066f02ee20988bbf60b72355d586db053c0"
+    },
+    "awaiting-boot-restore/boot-1/040-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477705,
+      "sha256": "22cb9eca5b9ce853f7da0496e4e9b2feda61a0c6baf5ba1f0cdaed6714ef88ec"
+    },
+    "awaiting-boot-restore/boot-1/041-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477705,
+      "sha256": "f81213196a020c9b625f46b97b5f8a5c1fa2656bbcd7a845e2c288524c121ad8"
+    },
+    "awaiting-boot-restore/boot-1/042-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477705,
+      "sha256": "1ca057175ac95dcbdd0b25d29052cb5c37d97e6f8cae6ec61eed0a45c6c7b566"
+    },
+    "awaiting-boot-restore/boot-1/043-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477705,
+      "sha256": "f1642a8e1862a86a1e20e335c29ffc18a43dabe517655ef344b8eccddba5e040"
+    },
+    "awaiting-boot-restore/boot-1/044-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477799,
+      "sha256": "ff62abe8d46d4025f0d6e039e91e8adc82e46b460845ea4a0b5e9392807149ac"
+    },
+    "awaiting-boot-restore/boot-1/045-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477799,
+      "sha256": "b0fa4fc8ca0ed3c4ca99d64c1ed6c643622766e06739e85c5c38b2cdadcc2628"
+    },
+    "awaiting-boot-restore/boot-1/046-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477799,
+      "sha256": "d9216f7e3d353aaccbefb403d4ee21a02555025fd06b4968c08988998a24519f"
+    },
+    "awaiting-boot-restore/boot-1/047-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477799,
+      "sha256": "e5485c5b062f5b7de7d0aefe74f26e3eb1300e4ed23966bb229506d8178b2aa5"
+    },
+    "awaiting-boot-restore/boot-1/048-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477799,
+      "sha256": "a7cf1054c03c4d62fe8b34a51b29b2d191ab1c423e472d6f1d20172f59fbe12d"
+    },
+    "awaiting-boot-restore/boot-1/049-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477799,
+      "sha256": "3867791d7c2a093dae3d1af842f028161cb4247f217f0593e3fe6cca192293f3"
+    },
+    "awaiting-boot-restore/boot-1/050-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477799,
+      "sha256": "5d4cd5ecddf85ff799817b114b4464e4030b3888c3dbc2382689e271d4906997"
+    },
+    "awaiting-boot-restore/boot-1/051-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 477822,
+      "sha256": "258b66a3dbd596a94a2e31f0852bac638593ba67e8a2dabb0cbf8f7fe48b4a88"
+    },
+    "awaiting-boot-restore/boot-1/052-operation-3002674756d9a964564f0fb14960bb0e.json": {
+      "bytes": 479753,
+      "sha256": "fdb44cb6c0c2c265eba2c81ad6a5172b8d613c1a41e97309a227627350fcbbc4"
+    },
+    "awaiting-boot-restore/boot-1/053-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "63c6ce4d44219117bc28fb7a4ca9a332e223ab318bb9e67823197b5c2cea8057"
+    },
+    "awaiting-boot-restore/boot-1/054-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "168ddef907cee214640d9019992587f6c2e711c178a8d9acc7c846e302345168"
+    },
+    "awaiting-boot-restore/boot-1/055-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "81504751bbf4193ceb4c9bb83e04c7235952a97807993781a807fb6f6d604e66"
+    },
+    "awaiting-boot-restore/boot-1/056-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "d25026b11ba429be20b06562a6c0242f7d827a33007cad199f1395719a0bcb59"
+    },
+    "awaiting-boot-restore/boot-1/057-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "b276fd22c2dc76ac82748cbdf2ba62416be816bb494955334810a7dee1e150c3"
+    },
+    "awaiting-boot-restore/boot-1/058-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "34b5ec0edc1ade90a1a177d05b6c4497ff6b2a68138878df91fb3d753c9b5ed4"
+    },
+    "awaiting-boot-restore/boot-1/059-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "a4434ad558e34f87c502e4b00d01c49394a2e243cff4696870e4789f19376f38"
+    },
+    "awaiting-boot-restore/boot-1/060-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "f9b9f7084ab4bb724cfb51858289cdcfbaf00c91d10d0c943c1700e0bf7147f8"
+    },
+    "awaiting-boot-restore/boot-1/061-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "18fae8fe37b6cb438027fe4a2481d7a793df5acf6cd13832cdbb1915cd9319f9"
+    },
+    "awaiting-boot-restore/boot-1/062-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "edc3e2ce9f7285553ddce9812486ba70ded4d7d939bcbfc9643239f44e955512"
+    },
+    "awaiting-boot-restore/boot-1/063-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "3849f4c02cb303fedf325077decd2579715b6b19b7a9f865cd98d8c2114298fd"
+    },
+    "awaiting-boot-restore/boot-1/064-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "988ebe121a830863f096492101b1ed4a823a28226a77f7c801a0d2ec44072221"
+    },
+    "awaiting-boot-restore/boot-1/065-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "d45f8f366169e61b5ce3e116a65eae09dade3228dd943f271a944dbc20df62d5"
+    },
+    "awaiting-boot-restore/boot-1/066-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "9345660969c73faa027ca6993a5c85068266e3637e667db925f8105355623808"
+    },
+    "awaiting-boot-restore/boot-1/067-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "901dd52589d913e14059a9ac3f3d8f6c6d192f709afd4d98beb5f98f315b9788"
+    },
+    "awaiting-boot-restore/boot-1/068-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "46589faaa00726d0e0ccc857b18b7fb5652a2bef759768c15e4ab4ff521653d2"
+    },
+    "awaiting-boot-restore/boot-1/069-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "296f25d64f21bda1370de459b8cf6cd21827255c658ec78f084dbedc3a9d4942"
+    },
+    "awaiting-boot-restore/boot-1/070-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "3d1a3c07f43ca65946b15c33b7254324e1e198ab87d40b32f858c9f24714657a"
+    },
+    "awaiting-boot-restore/boot-1/071-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "712e4f4cac505fca4d594536baece38a62927c32ba66ade4502f4740b7b3807d"
+    },
+    "awaiting-boot-restore/boot-1/072-awaiting-boot-applied.json": {
+      "bytes": 288453,
+      "sha256": "b3e91cd9ae188f5d04c1970e75dd281c2825e9154f1e1fe97b2dedd2fce159cf"
+    },
+    "awaiting-boot-restore/boot-1/073-before-offline-history.json": {
+      "bytes": 479554,
+      "sha256": "6d6c4a44744ed8295f0ce0ead08d790d17b9e595425fef03a58202d807e5575c"
+    },
+    "awaiting-boot-restore/boot-1/074-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "4da4d3bc0d9a2968c66e9625b61262a1739a4e1241080f4e30194e5847b5d200"
+    },
+    "awaiting-boot-restore/boot-1/process.json": {
+      "bytes": 82,
+      "sha256": "66b69adc64500d48f62d14709503cc2bb77758fa4536f115945f7c618725cdae"
+    },
+    "awaiting-boot-restore/boot-1/qemu-command.json": {
+      "bytes": 1321,
+      "sha256": "ee9f486db7edf5ec504580d6e02c6a3097b0b335134e20d3760310975226bb3d"
+    },
+    "awaiting-boot-restore/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "awaiting-boot-restore/boot-1/qmp-awaiting-boot-restore-baseline-health.json": {
+      "bytes": 4569,
+      "sha256": "cd7553ed9d5349ed61d8e96daeb0a85fb8c56866244eb5430112fb61b0f54919"
+    },
+    "awaiting-boot-restore/boot-1/qmp-ready.json": {
+      "bytes": 4569,
+      "sha256": "65ff154f1e16c683e0447812c0b2eec85de8a79284287b109570ba434d269be8"
+    },
+    "awaiting-boot-restore/boot-1/serial.log": {
+      "bytes": 2086,
+      "sha256": "292eb3f1e1e788131845143e90202b524409018395baa71495e73ad355d3e378"
+    },
+    "awaiting-boot-restore/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "e56e8eaf2fa6285f4597ec2dd72a10010da5e200a32b41edd764cef34946f5b6"
+    },
+    "awaiting-boot-restore/boot-2/075-ready.json": {
+      "bytes": 219,
+      "sha256": "d7980b7b000f465bf906edb8495e10c7fd3215d7b587b952ecab333074db7720"
+    },
+    "awaiting-boot-restore/boot-2/076-ready.json": {
+      "bytes": 219,
+      "sha256": "ff02350db17463c512c780104a7813aae40425a7cc16e806ff1221379bec8f60"
+    },
+    "awaiting-boot-restore/boot-2/077-ready.json": {
+      "bytes": 219,
+      "sha256": "b03f9d02916e5d86f6b17a0cc8416d7af9246aae624d7f8d37b4251cae69e7a7"
+    },
+    "awaiting-boot-restore/boot-2/078-ready.json": {
+      "bytes": 219,
+      "sha256": "ce9f390aae068fc54fe42e475b5018c647d9bc7c47bf59f8930bdbc682161dc3"
+    },
+    "awaiting-boot-restore/boot-2/079-ready.json": {
+      "bytes": 219,
+      "sha256": "4ea8ddb6ac56666b16e734507a5258dfb55ed5a6d72f6b013945b352fc9f038f"
+    },
+    "awaiting-boot-restore/boot-2/080-ready.json": {
+      "bytes": 219,
+      "sha256": "16bb30c466d8f49e621760e5d8cc24abc92c8e9d18df1c529faac8646ccdf95a"
+    },
+    "awaiting-boot-restore/boot-2/081-ready.json": {
+      "bytes": 219,
+      "sha256": "80cebc92c2dfff6e78e9a73731d9b12535406fcad0870b55ed66e3eca7bac919"
+    },
+    "awaiting-boot-restore/boot-2/082-ready.json": {
+      "bytes": 219,
+      "sha256": "b4373eca7e6344b2af6285da2ac26e8a770601895b125593792a655dec58b4b0"
+    },
+    "awaiting-boot-restore/boot-2/083-ready.json": {
+      "bytes": 219,
+      "sha256": "103ac7ec3fb0e6dcc948320f3fa5a4fc91161adf30c8f411ca3e6ed4544d41ef"
+    },
+    "awaiting-boot-restore/boot-2/084-ready.json": {
+      "bytes": 219,
+      "sha256": "05dfd16d70898472493ddef468af153a86751c60b14f242b3f79c9b0841fd42f"
+    },
+    "awaiting-boot-restore/boot-2/085-ready.json": {
+      "bytes": 219,
+      "sha256": "68945850d7739e4a9d302a975d6ac8d9a1737e752ac149338bbedcfc5f795b33"
+    },
+    "awaiting-boot-restore/boot-2/086-ready.json": {
+      "bytes": 219,
+      "sha256": "90b44caefdcb2ba014a07b9cafc09e788cfcca4ccf9cb7562285213700adfa3f"
+    },
+    "awaiting-boot-restore/boot-2/087-ready.json": {
+      "bytes": 219,
+      "sha256": "bb49a40cdf9834af719fdbf22edf1d2079c63865d72b5055987f78edc8f11c69"
+    },
+    "awaiting-boot-restore/boot-2/088-ready.json": {
+      "bytes": 219,
+      "sha256": "bf3f908729383363c8133fef89d51bb70232284ad6167e2a0cf56197e3dfcca0"
+    },
+    "awaiting-boot-restore/boot-2/089-ready.json": {
+      "bytes": 219,
+      "sha256": "cbb1465539e4fbac0936c34e929649218986d39073f5d1e83915283dfb79bbc0"
+    },
+    "awaiting-boot-restore/boot-2/090-ready.json": {
+      "bytes": 219,
+      "sha256": "25c82e317cce1695481ae860addac55d6101356be0ae98f73293ab36f232a90b"
+    },
+    "awaiting-boot-restore/boot-2/091-ready.json": {
+      "bytes": 219,
+      "sha256": "7adb213beaf215af25b74592c247606de8f7e275ce9b09a805d5c1fa74a265b2"
+    },
+    "awaiting-boot-restore/boot-2/092-ready.json": {
+      "bytes": 219,
+      "sha256": "092ccb8a775f417f1c19a35479cfaac564af4ce63f411a516f48a5f0af7965b8"
+    },
+    "awaiting-boot-restore/boot-2/093-ready.json": {
+      "bytes": 219,
+      "sha256": "0456bac945e89232d370f86641f7455f533ab0a2269420644f19d1429383fd02"
+    },
+    "awaiting-boot-restore/boot-2/094-ready.json": {
+      "bytes": 219,
+      "sha256": "4a52d7117082814db1e24598c02cb516ef8835643bab626347fe77ab1eece27e"
+    },
+    "awaiting-boot-restore/boot-2/095-ready.json": {
+      "bytes": 219,
+      "sha256": "d9d08789c7793c8b54f34fc1982714b758241b126a9cc86c253bfdc465e5dc72"
+    },
+    "awaiting-boot-restore/boot-2/096-ready.json": {
+      "bytes": 219,
+      "sha256": "40ec201fa4cb469e05dcb69fd64373c1f0a2821e3d5ba733e7e7d580c20cb538"
+    },
+    "awaiting-boot-restore/boot-2/097-ready.json": {
+      "bytes": 219,
+      "sha256": "c20c2a5398156a3a27ec25d282b78556b66c39fe537a00326ff1305f78a2c1b6"
+    },
+    "awaiting-boot-restore/boot-2/098-ready.json": {
+      "bytes": 219,
+      "sha256": "a50dc2362faa855b381beb77170942f3b02fe10f074e279bd360b38b04ec6ce4"
+    },
+    "awaiting-boot-restore/boot-2/099-ready.json": {
+      "bytes": 219,
+      "sha256": "9d52dd3e348f6bfef75143f682a70d5d2a3b8c4203e39f137484b35e58347f64"
+    },
+    "awaiting-boot-restore/boot-2/100-ready.json": {
+      "bytes": 219,
+      "sha256": "557cecd00769c4355ddabad0ecbb69f17f6f2954a7984dc99c1886c2304c217c"
+    },
+    "awaiting-boot-restore/boot-2/101-ready.json": {
+      "bytes": 219,
+      "sha256": "d40a2cd560d032bd53b20840e903da33a2a26cd96a0a7eaba4081f62e052e66d"
+    },
+    "awaiting-boot-restore/boot-2/102-ready.json": {
+      "bytes": 219,
+      "sha256": "a26a7e45af8cf1e73216ab4ff01fa983d7c732d4ccd276ac565e8b0baceb7060"
+    },
+    "awaiting-boot-restore/boot-2/103-ready.json": {
+      "bytes": 219,
+      "sha256": "85e6a1892d2fb667639c778aa799b9b5c514b6b36ee23f15387b050b57c33d86"
+    },
+    "awaiting-boot-restore/boot-2/104-ready.json": {
+      "bytes": 219,
+      "sha256": "c93f41b55c73baebcea5413ad79d8f832a3fedd546bada8c81ed337eff0004eb"
+    },
+    "awaiting-boot-restore/boot-2/105-ready.json": {
+      "bytes": 219,
+      "sha256": "dd75e78dc399a74d90e5855fb13cc0e8bd4412b3d2de8784e2b0db863c1e5e4c"
+    },
+    "awaiting-boot-restore/boot-2/106-ready.json": {
+      "bytes": 219,
+      "sha256": "c7ccdabb640ccac176732c4c13067c984b1cb26b17f0d0cde7ec2fbaeb31dd60"
+    },
+    "awaiting-boot-restore/boot-2/107-ready.json": {
+      "bytes": 219,
+      "sha256": "cb93ef9dfeea583a24e84c08645585f102145040aea4887b67cb17a06180a8d5"
+    },
+    "awaiting-boot-restore/boot-2/108-ready.json": {
+      "bytes": 219,
+      "sha256": "c74c93e1dd5cbc7549e6983c0dc6e96bcd5d8f5ea09368c5422fccb5567aa89e"
+    },
+    "awaiting-boot-restore/boot-2/109-ready.json": {
+      "bytes": 219,
+      "sha256": "92276ddfacf2b7bc8a9166018d868fbd184ac02c26aee0a43cbe459c579cff64"
+    },
+    "awaiting-boot-restore/boot-2/110-ready.json": {
+      "bytes": 219,
+      "sha256": "4e356039b88cf9a85f0ac15d1660a0bf74ff028d805b31007f8b7ef4fcf0a24b"
+    },
+    "awaiting-boot-restore/boot-2/111-ready.json": {
+      "bytes": 219,
+      "sha256": "38d8538d158c5c05b13045017eb02d870a1e866a4ae64b4c8a0c9adfed00f52f"
+    },
+    "awaiting-boot-restore/boot-2/112-ready.json": {
+      "bytes": 219,
+      "sha256": "7535d49cd3540b51aa6e904039d0b1dfe20cdbaffdbb67adf95b63f5aefeec51"
+    },
+    "awaiting-boot-restore/boot-2/113-ready.json": {
+      "bytes": 219,
+      "sha256": "68835c382cd3add7cd538a5369e74d5391d74ba93509f4f477ed01e0023d1c18"
+    },
+    "awaiting-boot-restore/boot-2/114-ready.json": {
+      "bytes": 219,
+      "sha256": "29c8fc831540016a8ee533e125a5880654076d705a7d19689fae2a55cc9fdd9c"
+    },
+    "awaiting-boot-restore/boot-2/115-ready.json": {
+      "bytes": 219,
+      "sha256": "fe828faf4328b4987cde925583689634d4ff85bfe1843d935d12b142d24c4a06"
+    },
+    "awaiting-boot-restore/boot-2/116-ready.json": {
+      "bytes": 219,
+      "sha256": "078c526624fd0cc6d93e950b89415fadf8613b58ca0d402c2f3c86e78b8dfe73"
+    },
+    "awaiting-boot-restore/boot-2/117-ready.json": {
+      "bytes": 219,
+      "sha256": "a5483cd0bbc9d89070b052b40ec2db67c7cc2f512d2084a557b4722bdd91b411"
+    },
+    "awaiting-boot-restore/boot-2/118-ready.json": {
+      "bytes": 219,
+      "sha256": "5b2e08a4f59b4540bf918e5e66ef3ccdfa408a938d1a238a9627c12d0681ef1c"
+    },
+    "awaiting-boot-restore/boot-2/119-ready.json": {
+      "bytes": 219,
+      "sha256": "bf4ce45a5e2ca98e51c32d77fa934d1111cda3eb56741c3897c95885a5e93f31"
+    },
+    "awaiting-boot-restore/boot-2/120-ready.json": {
+      "bytes": 219,
+      "sha256": "31a34b49b828fe371f816f06cf566561bbb366e7a7c1c0ecee79f628642d7811"
+    },
+    "awaiting-boot-restore/boot-2/121-ready.json": {
+      "bytes": 219,
+      "sha256": "da7353f923acd43602c0cb97ab61334841e435cbfdcf8f4d64bf0b05c6129e7c"
+    },
+    "awaiting-boot-restore/boot-2/122-ready.json": {
+      "bytes": 219,
+      "sha256": "68a41ac7f67d2c8401d4bf80c1557ddcb176f8ef557c707ea34c40e1bb6544c1"
+    },
+    "awaiting-boot-restore/boot-2/123-ready.json": {
+      "bytes": 219,
+      "sha256": "b3acb7ad0c64789c572636f97820e414db7b7b6cc9dd2cac4b66303e0fac9e12"
+    },
+    "awaiting-boot-restore/boot-2/124-ready.json": {
+      "bytes": 219,
+      "sha256": "2216352fedac0363d646c92f367aea892c539fcf870ec9e0ba4fb4b14799174a"
+    },
+    "awaiting-boot-restore/boot-2/125-ready.json": {
+      "bytes": 219,
+      "sha256": "b09ea13c46bb922ff0a1fecad9ee54e964535aa74bb335995e679687816f696e"
+    },
+    "awaiting-boot-restore/boot-2/126-ready.json": {
+      "bytes": 219,
+      "sha256": "bfb5a7a356884f1287f0dbdcc46c2020982380e9f26a9b8dc5c62202b62c781e"
+    },
+    "awaiting-boot-restore/boot-2/127-ready.json": {
+      "bytes": 219,
+      "sha256": "af649aaaf18220109bebecdf60f697a8ef104eaead127edd1be5c2ad014a9be1"
+    },
+    "awaiting-boot-restore/boot-2/128-ready.json": {
+      "bytes": 219,
+      "sha256": "56636c28bb2e8489a758441bc664f2b88258f82d41dbf26333d64b7aee6202f6"
+    },
+    "awaiting-boot-restore/boot-2/129-ready.json": {
+      "bytes": 219,
+      "sha256": "d31e431560197e0117e2a1b61978516e6befa069be9b5af8f64dccfbbe74b9c9"
+    },
+    "awaiting-boot-restore/boot-2/130-ready.json": {
+      "bytes": 219,
+      "sha256": "a0d834a8cf5b8e123ff1ecf11b326a1f4e460888542c58efa9ba57b4d557c5b1"
+    },
+    "awaiting-boot-restore/boot-2/131-ready.json": {
+      "bytes": 219,
+      "sha256": "97d4f9b5fef0f07f53ccf5292370f0cbecc0f8c6fed8d1d7923206c0f821dec6"
+    },
+    "awaiting-boot-restore/boot-2/132-ready.json": {
+      "bytes": 219,
+      "sha256": "0d5f42c6df52750d39f00e9282392d9b0eaace7c0b29c692566a90c462739b4c"
+    },
+    "awaiting-boot-restore/boot-2/133-ready.json": {
+      "bytes": 356,
+      "sha256": "e5db28ee562aafacdfabe78872c771b57c99e789814323d113ffe37f3e4058a0"
+    },
+    "awaiting-boot-restore/boot-2/134-offline-restore.json": {
+      "bytes": 4816,
+      "sha256": "2fad3bf7f30a82deb8416da4a2da09f786a0a97b47f3a0937b94f926e0f742fd"
+    },
+    "awaiting-boot-restore/boot-2/135-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "28820007e6e77bffded79a413a62907b3a6de9174d91930ff48b832105b2cf42"
+    },
+    "awaiting-boot-restore/boot-2/process.json": {
+      "bytes": 82,
+      "sha256": "0e5c2a3eb65788951a00a1f06f98e9f67635b421a7ac10bd2136464eb63949ab"
+    },
+    "awaiting-boot-restore/boot-2/qemu-command.json": {
+      "bytes": 1485,
+      "sha256": "9c05e34d791f96b7c301aa18741c87405eae5c6c3f1f7411bc8e95dc47a63a0c"
+    },
+    "awaiting-boot-restore/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "awaiting-boot-restore/boot-2/qmp-ready.json": {
+      "bytes": 5532,
+      "sha256": "ece9ae324ebc17ce0fa47b0f90ad3c4cceb57c6284a76ebc0ea7d42678a2762a"
+    },
+    "awaiting-boot-restore/boot-2/serial.log": {
+      "bytes": 28716,
+      "sha256": "32eab1360dfc8224e0cf76b9cbda46524a1459dc38324a0189fa786e6213908e"
+    },
+    "awaiting-boot-restore/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "9f602eb52b7bd5b93980894397d76425f95fd9df8e751c36caa52b936203bb9c"
+    },
+    "awaiting-boot-restore/boot-3/136-ready.json": {
+      "bytes": 219,
+      "sha256": "8bb4720cc2852e4b4105bfe8e8bc43dc57f38243bd75ff72b6c965112d57abc3"
+    },
+    "awaiting-boot-restore/boot-3/137-ready.json": {
+      "bytes": 219,
+      "sha256": "a2786ffd18dba4f4fdf843ce1815405a10049c48a54c5ab8fb41040add079823"
+    },
+    "awaiting-boot-restore/boot-3/138-ready.json": {
+      "bytes": 219,
+      "sha256": "cb5dbf834b20aef5f9c55d2f7ad01349ad7518b5dc59a052b02d456e45b1a493"
+    },
+    "awaiting-boot-restore/boot-3/139-ready.json": {
+      "bytes": 219,
+      "sha256": "6ace4712abbbcb43613d1286e22ecb43fbfde52d945c1ec48498413a1c3da150"
+    },
+    "awaiting-boot-restore/boot-3/140-ready.json": {
+      "bytes": 219,
+      "sha256": "a2d63bbe03afc5a1c24eb03d26b7b8e56439ee87d56c51d1304e55151be3dd3e"
+    },
+    "awaiting-boot-restore/boot-3/141-ready.json": {
+      "bytes": 219,
+      "sha256": "a06a2792096cf194becf11360b64080fa2495eb8c635fbdb23aedc235cc8a6d3"
+    },
+    "awaiting-boot-restore/boot-3/142-ready.json": {
+      "bytes": 219,
+      "sha256": "b37a844f35cda8e1adf22bbad162e609f9d5945323b53392b1f571f05297daa9"
+    },
+    "awaiting-boot-restore/boot-3/143-ready.json": {
+      "bytes": 219,
+      "sha256": "d5c17cd0feb3ff0c4017b5fe653312e92a3e1f64c9ad70d12cfae6f0c559bc28"
+    },
+    "awaiting-boot-restore/boot-3/144-ready.json": {
+      "bytes": 219,
+      "sha256": "1c97fe11ef7fae28273c01b99f6b965b020fbbca996a0d6bc1ab5663f5619215"
+    },
+    "awaiting-boot-restore/boot-3/145-ready.json": {
+      "bytes": 219,
+      "sha256": "e103faffa1ff0bcae83af212d85c2fbef638c1fca6408fb3d2bab5162ab458f1"
+    },
+    "awaiting-boot-restore/boot-3/146-ready.json": {
+      "bytes": 219,
+      "sha256": "f6689144e2591a27cae493a1937166ca2ca94967457b52646bf56dd44466c2f4"
+    },
+    "awaiting-boot-restore/boot-3/147-ready.json": {
+      "bytes": 219,
+      "sha256": "ae3146e10fbd8afb7f4adfd3fc72645f012159c9d8f9a9bef435f9b85c19ce6a"
+    },
+    "awaiting-boot-restore/boot-3/148-ready.json": {
+      "bytes": 356,
+      "sha256": "a108e981b450eaa627f770d414b7b7bccc9685f9014c0cebfb22066ad2135587"
+    },
+    "awaiting-boot-restore/boot-3/149-automatic-astraeus-confirm-boot.json": {
+      "bytes": 624,
+      "sha256": "76d24298bb5c637d9a672b0aeb741e30b14b2c5b2d47c712ce4155f31ddcdcac"
+    },
+    "awaiting-boot-restore/boot-3/150-automatic-astraeus-confirm-boot.json": {
+      "bytes": 626,
+      "sha256": "cc7b46aaaaa385d14f706f694b834e18dbdb6b1e470340cbf3b38fedbf8e910f"
+    },
+    "awaiting-boot-restore/boot-3/151-automatic-journal-astraeus-confirm-boot.json": {
+      "bytes": 6925,
+      "sha256": "8b3a5733e92bf1bb0b3a5e11c51fa347500be87d0eefdad92c2dd82224abe398"
+    },
+    "awaiting-boot-restore/boot-3/152-automatic-systemd-bless-boot.json": {
+      "bytes": 621,
+      "sha256": "85ff43183cf75abc9db7cce9aac54f9fca1cd1b17781dd598233eeabc081a781"
+    },
+    "awaiting-boot-restore/boot-3/153-automatic-journal-systemd-bless-boot.json": {
+      "bytes": 4185,
+      "sha256": "647d7d039e63d5a696035a26dc16f36345d1322f095f1539c01b3b9d6bb9ed99"
+    },
+    "awaiting-boot-restore/boot-3/154-automatic-restored-pending-history.json": {
+      "bytes": 479554,
+      "sha256": "661830fd1f1eecdd3092baee7c8dc7f07f54f72d6f17a69d45608b1389bcae54"
+    },
+    "awaiting-boot-restore/boot-3/155-before-explicit-finalization.json": {
+      "bytes": 479554,
+      "sha256": "6268dfcc6b3a5c3307051ee0093bcdc9b07c35b9fbde2d98e263f7322c542108"
+    },
+    "awaiting-boot-restore/boot-3/156-before-rollback-finalization.json": {
+      "bytes": 287240,
+      "sha256": "0de8c059dde08987cc3976b32611dcebff44c62b53a2de019718e5b570ae942e"
+    },
+    "awaiting-boot-restore/boot-3/157-finalize-rollback.json": {
+      "bytes": 461198,
+      "sha256": "cb058dddee355d4dec911c473e8d36ea2651f9748c632149cc636add2e3e33df"
+    },
+    "awaiting-boot-restore/boot-3/158-restored-state.json": {
+      "bytes": 287240,
+      "sha256": "2b55f1b83abd9d1ff03a232e524ab0c19f4d7527b31c52ca4df910252ed4c874"
+    },
+    "awaiting-boot-restore/boot-3/159-restored-signing-identity.json": {
+      "bytes": 397,
+      "sha256": "8fdd6889bbbd1945fc60b53fe5da156ef2c0c38dcf919f0203dc154c8cb82ee2"
+    },
+    "awaiting-boot-restore/boot-3/160-restored-snapshots.json": {
+      "bytes": 2729,
+      "sha256": "d412f751183babbd54eba750b15159a487a8ccc4d0bc4f1ad6b74c1367193f8d"
+    },
+    "awaiting-boot-restore/boot-3/161-restored-health-status.json": {
+      "bytes": 3309,
+      "sha256": "ce8beedbbc47406352353bb16b74e46ab884dfd28bbb60cbb82ba96456889d7f"
+    },
+    "awaiting-boot-restore/boot-3/162-restored-health-packages.json": {
+      "bytes": 15904,
+      "sha256": "098a1599268eb62e413dba4626e1fd38ed35f71639da15c64d6753929bca5f28"
+    },
+    "awaiting-boot-restore/boot-3/163-restored-health-database.json": {
+      "bytes": 337,
+      "sha256": "c00de462448c04ba89405120b0cf4dfa748e8eeecd9e21b547f92c48b78450a9"
+    },
+    "awaiting-boot-restore/boot-3/164-restored-health-failed.json": {
+      "bytes": 328,
+      "sha256": "14ede13ed4047cbd07c7daf40f7f48bcac4aa2ffeeb6a927924e88b1dee21b4d"
+    },
+    "awaiting-boot-restore/boot-3/165-restored-health-mounts.json": {
+      "bytes": 8961,
+      "sha256": "21727c81251e16f30a5d7051eb3e5dd061e91dae1706be2da7e999cb7bc4e829"
+    },
+    "awaiting-boot-restore/boot-3/166-restored-health-subvolumes.json": {
+      "bytes": 903,
+      "sha256": "333193ed26107b123693bb29bc0d1d42a5a601cc6f6220c598656d5763ef64f3"
+    },
+    "awaiting-boot-restore/boot-3/167-restored-health-boot.json": {
+      "bytes": 4085,
+      "sha256": "f73f5031669db858446e0fc28947a5691cfd0959c7301d22ac2bfd17b3725002"
+    },
+    "awaiting-boot-restore/boot-3/168-restored-health-root.json": {
+      "bytes": 376,
+      "sha256": "03cb057ed6adc32950a1b68f1e79cba3800e67d525a8acc0083f75a852cb4b42"
+    },
+    "awaiting-boot-restore/boot-3/169-restored-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "557b8c1767702fa795da21f8718aa6c5fa84c46150b3facfb14e7bfb98bb4e4b"
+    },
+    "awaiting-boot-restore/boot-3/170-restored-health-journal.json": {
+      "bytes": 7624,
+      "sha256": "ce25065ab3073f249c65663591781262046dd70b4d2e27f68d08419c13850b14"
+    },
+    "awaiting-boot-restore/boot-3/171-restored-health-boot-journal.json": {
+      "bytes": 111439,
+      "sha256": "081b65cdf8e4c839d7572d478809b753b18e9ddd5d866e1c57fe173e63ad5284"
+    },
+    "awaiting-boot-restore/boot-3/172-restored-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "f789a0f617e193bbe9f1abac0b2e6c5c4ecfe1c8d3eb1c1fe344e3ba1bb64d97"
+    },
+    "awaiting-boot-restore/boot-3/173-restored-health-kernel-command-line.json": {
+      "bytes": 455,
+      "sha256": "788f465fa982b6e9cfe718775d8c4d0dfe4b1f8e71ba37e3eb7b95047a1fdd43"
+    },
+    "awaiting-boot-restore/boot-3/174-restored-health-pacman-log.json": {
+      "bytes": 1190,
+      "sha256": "0d71ff7cb277ab03267c46e9229483e670a95324ded6907cf3b34c62870af38e"
+    },
+    "awaiting-boot-restore/boot-3/175-restored-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "6932f03ccd99a6af73dd84541f127466a6ffd88a27dfc6a959f0f1c3ecb33799"
+    },
+    "awaiting-boot-restore/boot-3/176-restored-health-history.json": {
+      "bytes": 484119,
+      "sha256": "c73ebdb9fd5b4d0162f1690b2da4430f40069e442163916a28695172cf8683a9"
+    },
+    "awaiting-boot-restore/boot-3/177-restored-health-snapshots.json": {
+      "bytes": 2720,
+      "sha256": "a1698f14082ee47b4b934686146293904758296beea68156e2cd52ab65efc1cb"
+    },
+    "awaiting-boot-restore/boot-3/178-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "297e9a93bbbf4bcbb965824298ea682fe53a6dfa03bcec4e07086ec939ff5dfe"
+    },
+    "awaiting-boot-restore/boot-3/process.json": {
+      "bytes": 82,
+      "sha256": "e8331bc210bd6cfb43f84169f26036a459eb39feae329b8493022a15b4b7d3d7"
+    },
+    "awaiting-boot-restore/boot-3/qemu-command.json": {
+      "bytes": 1321,
+      "sha256": "2a4f788480850a4fb337fa9d3aaffcad613c11a5f3dd95bd4c973f52de2a7760"
+    },
+    "awaiting-boot-restore/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "awaiting-boot-restore/boot-3/qmp-ready.json": {
+      "bytes": 4570,
+      "sha256": "bcde7c36f005799a0601910352730eda0c9755a9fe523658398700981f099397"
+    },
+    "awaiting-boot-restore/boot-3/qmp-restored-health.json": {
+      "bytes": 4570,
+      "sha256": "5e80d8e55d64d58ad7f31f0e3b35f7de3c1252bbd5908b3e1987cc7710aa055d"
+    },
+    "awaiting-boot-restore/boot-3/reboot.json": {
+      "bytes": 110,
+      "sha256": "c28adcb0c70bc3d243660e561d3968d97919d3fa4e245847949f6c256ea25656"
+    },
+    "awaiting-boot-restore/boot-3/serial.log": {
+      "bytes": 2131,
+      "sha256": "3dff66c8da8cce9daea82513fb57d4d877fdebf8b2ee2cd2f3b3e2b13926585e"
+    },
+    "awaiting-boot-restore/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "5671802859ad9c45cb3f8631d6caa9c2aa73f456cd473a68437a7ad125b5e7f2"
+    },
+    "awaiting-boot-restore/candidate-identity-and-state.json": {
+      "bytes": 325298,
+      "sha256": "2df025dea9d7b85e2e3e4e1fc5b2afdad4c90876bf4b98e48073437e2b4de956"
+    },
+    "awaiting-boot-restore/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "a36eafa12e80e6356ce102223b9987a670288ff0c52df7e72c60c7f0ecc99255"
+    },
+    "awaiting-boot-restore/offline-restore.json": {
+      "bytes": 5096,
+      "sha256": "6d3ef301f71a2045d7a31f8d98e870e0f69a67a67fd5e37aa5101ec42463f033"
+    },
+    "awaiting-boot-restore/restored-health.json": {
+      "bytes": 640514,
+      "sha256": "b87f40bd10d4acaa3e32c52185694a6c567aa816a822634a8c349602706bf061"
+    },
+    "awaiting-boot-restore/screenshots/initial-unlock.png": {
+      "bytes": 25576,
+      "sha256": "179e3e6b62f4e77672cd8367a62ca81cf2dd8856d75767eb01f7c0b3f71d4b7c"
+    },
+    "awaiting-boot-restore/screenshots/live-baseline-refusal.png": {
+      "bytes": 223864,
+      "sha256": "fa72569886d1bfc1fdbe079c11bd3930b6feed1b415b19b4292a8947d12708a5"
+    },
+    "awaiting-boot-restore/screenshots/live-control-center.png": {
+      "bytes": 277382,
+      "sha256": "ad1901d7ab62b73bf8ebf699c8b8a9ebc99b87faa10dc49ab9e8039dd6ae7d8c"
+    },
+    "awaiting-boot-restore/screenshots/live-keyboard-stop.png": {
+      "bytes": 227140,
+      "sha256": "cd304589bd81abe2a5cf7a1269a9db4f12c094a6e41bf845fb7b3ce3dd761cb6"
+    },
+    "awaiting-boot-restore/screenshots/live-recording.png": {
+      "bytes": 223949,
+      "sha256": "bc2245b9f02e7c74414afe4b8708e786f53a98031884a58674660c08435ae920"
+    },
+    "awaiting-boot-restore/screenshots/recovery-channel-command.png": {
+      "bytes": 296945,
+      "sha256": "409bc43ddc8c7091d385d1676073354fa9ef714df0d2f9b0bf83d2e925400ba3"
+    },
+    "awaiting-boot-restore/screenshots/recovery-luks-open.png": {
+      "bytes": 284830,
+      "sha256": "4ff8d2abf46c66894582410fe443a60f2153e6d0b34da1855b9bcae889e0b3b0"
+    },
+    "awaiting-boot-restore/screenshots/recovery-luks-prompt.png": {
+      "bytes": 284788,
+      "sha256": "cbfc854d8dda7288e6e8eaf3239624d96018e67757a40dcccb2018393b38c872"
+    },
+    "awaiting-boot-restore/screenshots/recovery-terminal-ready.png": {
+      "bytes": 281645,
+      "sha256": "0c970331fbb10f7113323db25b868a18c349954c59f460a90ac417376d681fc2"
+    },
+    "awaiting-boot-restore/screenshots/recovery-unlocked-terminal.png": {
+      "bytes": 286369,
+      "sha256": "63aa66eb8b03261ee0b9484bb2adeaa94ba5fee780de28b8f162099c4906a064"
+    },
+    "awaiting-boot-restore/screenshots/restored-root-unlock.png": {
+      "bytes": 25010,
+      "sha256": "14e88fe81a279c309488f272790bd5d0a83c3d84f47c11f9d931c6fc35a0a8ca"
+    },
+    "awaiting-boot-restore/screenshots/signed-recovery-desktop.png": {
+      "bytes": 554403,
+      "sha256": "0c48856683d32e7c80c7ebec7e80d5c462fe2423ede67151306ebfa1d8f4ab72"
+    },
+    "awaiting-boot-restore/update-awaiting-boot.json": {
+      "bytes": 412372,
+      "sha256": "cf1ebd5944d77991c6ce05df0d20848fd5832b84103cb893018a5e520dbfba65"
+    },
+    "evidence-sha256.json": {
+      "bytes": 31054,
+      "sha256": "ee06e4e7cb4d8094d08e749d25324845ff80124f4995f950981ed39d25122f98"
+    },
+    "inputs.json": {
+      "bytes": 4069,
+      "sha256": "b2b23c7f3e6197de049b4a8866c464834cde098cf0c0ca7194fe3ae9451373ad"
+    },
+    "matrix.json": {
+      "bytes": 5209,
+      "sha256": "d93567b1c6270b587025a04083af60c4ebfc51786a4f6f4ef087da2d8f064b7f"
+    }
+  }
+}

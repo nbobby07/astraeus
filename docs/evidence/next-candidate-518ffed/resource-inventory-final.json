@@ -1,0 +1,274 @@
+{
+  "checked_utc": "2026-10-15T23:44:39.905Z",
+  "new_resources": [
+    {
+      "id": "vm-6326e08aca2e4fb6b2c0943675ca35e1",
+      "slug": "astraeus-next-20261015-a",
+      "state": "paused",
+      "resources": {
+        "cpu": 8,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 7044,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 900
+    },
+    {
+      "id": "vm-46a327b9fa744b11a7c5c91a22e615d0",
+      "slug": "astraeus-next-20261015-b",
+      "state": "paused",
+      "resources": {
+        "cpu": 8,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 10460,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 900
+    },
+    {
+      "id": "vm-0405633a7e114f4f907404615f5eee91",
+      "slug": "astraeus-next-20261015-c",
+      "state": "paused",
+      "resources": {
+        "cpu": 8,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 5073,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 900
+    },
+    {
+      "id": "vm-ce52bb5dae3b45dcac7a1f782a8e7b8b",
+      "slug": "astraeus-next-20261015-d",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 10198,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 900
+    },
+    {
+      "id": "vm-0240acb6bb7540cfa61bfd05eb317c83",
+      "slug": "astraeus-next-20261015-e",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 11028,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 900
+    },
+    {
+      "id": "vm-a30caad091aa4b339d8171aaa10f4b03",
+      "slug": "astraeus-next-20261015-f",
+      "state": "paused",
+      "resources": {
+        "cpu": 8,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 5639,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 900
+    },
+    {
+      "id": "vm-350bd14005144e769d3e06c693e43048",
+      "slug": "astraeus-next-20261015-g",
+      "state": "paused",
+      "resources": {
+        "cpu": 8,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 4485,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 900
+    }
+  ],
+  "prior_astraeus_resources": [
+    {
+      "id": "vm-bed64b6e1eaa4bd98cbd7d0d309f934c",
+      "slug": "astraeus-p5-c38209c-b",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 6383,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 3600
+    },
+    {
+      "id": "vm-a20f2a0bf652450dbe14dbf25aa37f4c",
+      "slug": "astraeus-p5-c38209c-a",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 4290,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 3600
+    },
+    {
+      "id": "vm-777bd3d45634463482a7931727635f20",
+      "slug": "astraeus-phase5-luks2-tests",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 14275,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 3600
+    },
+    {
+      "id": "vm-2522219a90d843388cb120130215bd5f",
+      "slug": "astraeus-phase5-plain-tests",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 14430,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 3600
+    },
+    {
+      "id": "vm-566ea9de35f94e22a81b805620a8d67b",
+      "slug": "astraeus-phase5-builder-b",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 4811,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 3600
+    },
+    {
+      "id": "vm-675b0245f2d0430ebfb3a49fa4cc84b8",
+      "slug": "astraeus-phase5-validator",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 12378,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 3600
+    },
+    {
+      "id": "vm-3614c8ea177748e8952c562250e9ce09",
+      "slug": "astraeus-phase42-validator",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 36181,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 600
+    },
+    {
+      "id": "vm-9350aa5ae5534cc0a68551e6e040bcf2",
+      "slug": "astraeus-phase41-validator",
+      "state": "paused",
+      "resources": {
+        "cpu": 4,
+        "memory": 16384,
+        "storage": 65536
+      },
+      "totalRunSeconds": 55511,
+      "automaticRestart": false,
+      "idleTimeoutSeconds": 600
+    }
+  ],
+  "all_15_astraeus_resources_paused": true,
+  "prior_compute_unchanged": true,
+  "temporary_transfer_rules_absent": true,
+  "remaining_new_resource_rules": [
+    {
+      "id": "fw-52437a7db9714d208fc3388c27a3a78a",
+      "source": {
+        "vmId": "vm-350bd14005144e769d3e06c693e43048"
+      },
+      "destination": {
+        "public": true
+      }
+    },
+    {
+      "id": "fw-7a1906e6919a4a57945f8147e8ba8763",
+      "source": {
+        "vmId": "vm-a30caad091aa4b339d8171aaa10f4b03"
+      },
+      "destination": {
+        "public": true
+      }
+    },
+    {
+      "id": "fw-b011c3a64b8a48ab9f5f8f794f8b24a5",
+      "source": {
+        "vmId": "vm-0240acb6bb7540cfa61bfd05eb317c83"
+      },
+      "destination": {
+        "public": true
+      }
+    },
+    {
+      "id": "fw-d36e2486929d4a5c839e1307d73c3285",
+      "source": {
+        "vmId": "vm-ce52bb5dae3b45dcac7a1f782a8e7b8b"
+      },
+      "destination": {
+        "public": true
+      }
+    },
+    {
+      "id": "fw-1168898f03614867be732db98cb0e5a2",
+      "source": {
+        "vmId": "vm-0405633a7e114f4f907404615f5eee91"
+      },
+      "destination": {
+        "public": true
+      }
+    },
+    {
+      "id": "fw-b947c5f7784144d79680655d921312fe",
+      "source": {
+        "vmId": "vm-46a327b9fa744b11a7c5c91a22e615d0"
+      },
+      "destination": {
+        "public": true
+      }
+    },
+    {
+      "id": "fw-43be562a37f64af4af830db72ba76f5f",
+      "source": {
+        "vmId": "vm-6326e08aca2e4fb6b2c0943675ca35e1"
+      },
+      "destination": {
+        "public": true
+      }
+    }
+  ],
+  "new_paused_storage_gib": 448,
+  "prior_paused_storage_gib": 512,
+  "prior_paused_storage_during_window_usd": 0.3761055047111111,
+  "unrelated_resources_not_changed": true
+}

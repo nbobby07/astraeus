@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "packaged_files": {
+    "usr/lib/systemd/system/astraeus-apply@.service": "ec5d55f92b588a6fbd7d6a945794cdb96dde4eae7baa99de3a18797e25d4de13",
+    "usr/share/polkit-1/actions/org.astraeus.system.policy": "8a06872fc36e73c59c35de84332bfed679fed472dc4e076ccbc5ff9e5afe0000",
+    "usr/bin/astraeus-collect-live-evidence": "911eecaac58139f89fc094e1e3b919ef0f8e6dbfda298437ac9606f15ac5bf2c",
+    "usr/share/doc/distroctl/live-diagnostics.md": "2d283b53c87ce363f5d42273f589f4b5303ba7bc1893a5031c23930e01b5580b"
+  },
+  "archive_databases": {
+    "core": "48984a2b5a339954dc1a7c21bce7ff651b6b0c7747d0545c36ca454bee005a73",
+    "extra": "b2c0d01420d9bc1da17589c622fbf12c49af15d60e54f46cad8f6c307b5497ba",
+    "multilib": "17e1a87e6ecd932e053e6553187a468820c9dbc2e3a0954162f7ca349c4d47cf"
+  },
+  "build_inputs_sha256": "0e643e76ae23ba02bad7d8dd5add5b045fa551b8856dfb8f1bf7fcb1e1baf74f",
+  "public_test_material_sha256": "752cea37a86fa58ed3c1be369e70334e9a78a23d3d9e15facbaf0693584874a7"
+}
