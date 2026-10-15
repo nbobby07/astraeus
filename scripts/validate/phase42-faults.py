@@ -28,7 +28,7 @@ SUBMISSIONS = Path('/run/astraeus')
 RECEIPTS = Path('/var/log/astraeus/operations')
 WORKER_TEMPLATE = 'astraeus-apply@.service'
 RUNTIME_MASK = Path('/run/systemd/system') / WORKER_TEMPLATE
-SCENARIOS = ('metadata', 'interruption', 'abandoned', 'failed-hook', 'signing-failure',
+SCENARIOS = ('metadata', 'awaiting-boot-restore', 'interruption', 'abandoned', 'failed-hook', 'signing-failure',
              'root-space', 'cache-space', 'esp-space')
 SECURE_LIVE_MARKER = 'ASTRAEUS_SECURE_LIVE_OK: SecureBoot=1 SetupMode=0 rootfs=verified-in-RAM'
 LIVE_DESKTOP_MARKER = 'DISTRO_BOOT_OK: uefi plasma wayland pipewire networkmanager distroctl'
@@ -938,6 +938,42 @@ def start_recovery(vm, args, recovery):
     vm.ready()
 
 
+def restored_boot_service(text):
+    values = dict(line.split('=', 1) for line in text.splitlines())
+    require(set(values) == {'Result', 'ExecMainCode', 'ExecMainStatus', 'ExecMainStartTimestampMonotonic',
+                           'ExecMainExitTimestampMonotonic', 'ActiveState', 'Job'}, 'incomplete boot service observation')
+    start, end = (int(values[key]) for key in ['ExecMainStartTimestampMonotonic', 'ExecMainExitTimestampMonotonic'])
+    return (values['ActiveState'] in ['inactive', 'active'] and values['Job'] in ['', '0'] and values['Result'] == 'success'
+            and values['ExecMainCode'] == '1' and values['ExecMainStatus'] == '0' and end >= start > 0)
+
+
+def pending_restored_boot(vm, record, timeout):
+    phase42, _ = host_modules()
+    require(record['state'] == 'awaiting_boot' and record.get('confirmation') is None and record.get('failure') is None,
+            'pending restore requires an unconfirmed successful update')
+    services = {}
+    for unit in ['astraeus-confirm-boot.service', 'systemd-bless-boot.service']:
+        deadline = time.monotonic() + min(timeout, 120)
+        while True:
+            result = vm.command(shlex.join(['systemctl', 'show', '--all',
+                '--property=Result,ExecMainCode,ExecMainStatus,ExecMainStartTimestampMonotonic,ExecMainExitTimestampMonotonic,ActiveState,Job',
+                unit]), label='automatic-' + unit.removesuffix('.service'))
+            if restored_boot_service(result['output']):
+                break
+            require(time.monotonic() < deadline, 'automatic restored-root boot service did not succeed: ' + unit)
+            time.sleep(0.5)
+        journal = vm.command(shlex.join(['journalctl', '-b', '--no-pager', '--output=json', '--unit=' + unit]),
+                             label='automatic-journal-' + unit.removesuffix('.service'))
+        entries = [json.loads(line) for line in journal['output'].splitlines() if line.strip()]
+        require(entries and all(entry.get('_BOOT_ID') == vm.boot_id.replace('-', '') for entry in entries),
+                'automatic service evidence is missing or from another boot')
+        services[unit] = result
+    _, records = phase42.json_command(vm, ['history', '--json'], label='automatic-restored-pending-history')
+    require(next((item for item in records if item['id'] == record['id']), None) == record,
+            'automatic restored-root confirmation changed the pending transaction')
+    return {'services': services, 'transaction': record, 'boot_id': vm.boot_id}
+
+
 def offline_restore(vm, args, recovery, before, record, metadata_after=None):
     phase42, p2 = host_modules()
     _, old_history = phase42.json_command(vm, ['history', '--json'], label='before-offline-history')
@@ -948,7 +984,10 @@ def offline_restore(vm, args, recovery, before, record, metadata_after=None):
     result = guest_command(vm, 'recover', record['snapshot'], label='offline-restore')
     p2.save(vm.out / 'offline-restore.json', result)
     installed_boot(vm, args, reboot=True)
-    vm.command('systemctl start astraeus-confirm-boot.service', timeout=120, label='wait-automatic-confirmation')
+    if record['state'] == 'awaiting_boot':
+        p2.save(vm.out / 'automatic-restored-pending.json', pending_restored_boot(vm, record, args.timeout))
+    else:
+        vm.command('systemctl start astraeus-confirm-boot.service', timeout=120, label='wait-automatic-confirmation')
     _, records = phase42.json_command(vm, ['history', '--json'], label='before-explicit-finalization')
     require(len(records) == len(expected_ids) and {item['id'] for item in records} == expected_ids,
             'recovery boot replayed or lost a durable transaction')
@@ -1121,6 +1160,30 @@ def reject_same_boot(vm, record):
     require(current['state'] == 'awaiting_boot' and not any(
         event['state'] == 'succeeded' for event in current['events']),
         'same-boot confirmation blessed the transaction')
+
+
+def awaiting_boot_restore_scenario(vm, args, recovery, gate, before):
+    phase42, _ = host_modules()
+    require(args.package not in before['packages'], 'pending restore package must start absent')
+    desired = copy.deepcopy(before['configuration'])
+    desired['packages'] = sorted([*desired['packages'], args.package])
+    plan = gate('awaiting-boot-plan', lambda: reviewed(vm, desired, args.user, 'awaiting-boot-plan'))
+    require(any(change.get('kind') == 'install' and change.get('name') == args.package
+                for change in plan['plan']['packages']['changes']), 'pending restore must apply a real package update')
+    def apply():
+        identifier = submitted(vm, desired, plan, 'awaiting-boot-submit')
+        operation = phase42.wait_operation(vm, identifier, args.timeout)
+        require(operation['state'] == 'awaiting_boot', 'update did not reach pending boot')
+        wait_worker_exit(vm, identifier, args.timeout)
+        record = operation['transaction']
+        transaction_boundary(record, post=True)
+        require(record.get('confirmation') is None and record.get('failure') is None, 'update was already confirmed or failed')
+        observed = guest_command(vm, 'observe', label='awaiting-boot-applied')
+        require(args.package in observed['packages'] and observed['configuration'] == desired
+                and observed['management'] == record['plan']['management']['after'], 'reviewed update was not applied')
+        return record
+    record = gate('update-awaiting-boot', apply)
+    gate('awaiting-boot-offline-restore', lambda: offline_restore(vm, args, recovery, before, record))
 
 
 def metadata_scenario(vm, args, recovery, gate, before):
@@ -1338,7 +1401,8 @@ def run(args):
                 gate('home-sentinel', lambda: guest_command(vm, 'home'))
                 before = gate('candidate-identity-and-state', lambda: guest_command(vm, 'observe'))
                 gate('baseline-health', lambda: p2.healthy(p2.observe(vm, scenario + '-baseline-health'), args.encryption))
-                {'metadata': metadata_scenario, 'interruption': interruption_scenario,
+                {'metadata': metadata_scenario, 'awaiting-boot-restore': awaiting_boot_restore_scenario,
+                 'interruption': interruption_scenario,
                  'abandoned': abandoned_scenario, 'failed-hook': failure_scenario,
                  'signing-failure': failure_scenario, 'root-space': space_scenario,
                  'cache-space': space_scenario, 'esp-space': space_scenario}[scenario](vm, args, recovery, gate, before)

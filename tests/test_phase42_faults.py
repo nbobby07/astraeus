@@ -46,6 +46,37 @@ def observation():
 
 
 class Phase42FaultsTests(unittest.TestCase):
+    def test_restored_boot_requires_executed_successful_services_and_unchanged_pending_record(self):
+        properties = ('Result=success\nExecMainCode=1\nExecMainStatus=0\n'
+                      'ExecMainStartTimestampMonotonic=100\nExecMainExitTimestampMonotonic=200\n'
+                      'ActiveState=inactive\nJob=\n')
+        self.assertTrue(faults.restored_boot_service(properties))
+        self.assertTrue(faults.restored_boot_service(properties.replace('ActiveState=inactive', 'ActiveState=active')))
+        for old, new in [('Result=success', 'Result=exit-code'), ('ExecMainStatus=0', 'ExecMainStatus=1'),
+                         ('ExecMainCode=1', 'ExecMainCode=0'), ('Monotonic=100', 'Monotonic=0'),
+                         ('Monotonic=200', 'Monotonic=99'), ('Job=\n', 'Job=42 start\n'),
+                         ('ActiveState=inactive', 'ActiveState=activating')]:
+            self.assertFalse(faults.restored_boot_service(properties.replace(old, new)))
+        with self.assertRaises(RuntimeError):
+            faults.restored_boot_service(properties.replace('Result=success\n', ''))
+        record = dict(id=1, state='awaiting_boot', confirmation=None, failure=None, events=[{'state': 'awaiting_boot'}])
+        backend = SimpleNamespace(json_command=Mock(return_value=(None, [record])))
+        vm = SimpleNamespace(boot_id='a' * 32, command=Mock(side_effect=lambda command, **options:
+            {'code': 0, 'output': json.dumps({'_BOOT_ID': 'a' * 32}) if command.startswith('journalctl') else properties}))
+        with patch.object(faults, 'host_modules', return_value=(backend, None)):
+            result = faults.pending_restored_boot(vm, record, 1)
+            self.assertEqual(set(result['services']), {'astraeus-confirm-boot.service', 'systemd-bless-boot.service'})
+            self.assertTrue(all('start ' not in call.args[0] for call in vm.command.call_args_list))
+            for changed in [dict(record, confirmation={'error': 'failed'}), dict(record, state='succeeded'),
+                            dict(record, events=[*record['events'], {'state': 'failed'}])]:
+                backend.json_command.return_value = (None, [changed])
+                with self.assertRaisesRegex(RuntimeError, 'changed the pending transaction'):
+                    faults.pending_restored_boot(vm, record, 1)
+            vm.command.side_effect = lambda command, **options: {'code': 0,
+                'output': json.dumps({'_BOOT_ID': 'b' * 32}) if command.startswith('journalctl') else properties}
+            with self.assertRaisesRegex(RuntimeError, 'another boot'):
+                faults.pending_restored_boot(vm, record, 1)
+
     def test_same_boot_refusal_checks_initial_and_managed_boot_errors_and_durable_state(self):
         record = {'id': 1, 'state': 'awaiting_boot', 'events': [{'state': 'awaiting_boot'}]}
         backend = SimpleNamespace(json_command=Mock(return_value=(None, [record])))

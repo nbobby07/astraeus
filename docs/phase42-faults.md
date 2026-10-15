@@ -1,6 +1,6 @@
 # Phase 4.2 fault acceptance
 
-`scripts/validate/phase42-faults.py` exercises eight destructive scenarios in
+`scripts/validate/phase42-faults.py` exercises nine destructive scenarios in
 separate disposable KVM overlays. It requires a sealed fresh Phase 4.2 baseline,
 the exact runtime candidate source and binary hashes, and a signed RAM-verified
 recovery image made for that baseline by `phase42-recovery.py`.
@@ -20,6 +20,15 @@ as a separate USB device. Baseline and recovery-image hashes are checked again
 after execution.
 
 ## Executed scenarios
+
+`awaiting-boot-restore` applies a real package update and restores its pre-update
+root offline before confirming the update. On the restored boot it observes both
+`astraeus-confirm-boot.service` and `systemd-bless-boot.service` without starting
+them manually. Both must have executed successfully in the current boot. History
+must retain the exact pending transaction, including its events and absent failed
+confirmation. Only explicit `finalize-rollback` may complete the rollback. The
+usual package, reason, configuration, ownership and personal-file checks apply.
+This describes the assertions; a passing VM run is still required for acceptance.
 
 `metadata` first checks a true no-op. It then adds an already installed package to
 the saved explicit choices, requires an empty package change list, and applies
