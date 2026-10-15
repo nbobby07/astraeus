@@ -142,7 +142,7 @@ pub fn compare(a: &Report, b: &Report) -> Result<serde_json::Value> {
         || a.context.logical_cpus != b.context.logical_cpus
         || a.context.virtual_machine != b.context.virtual_machine
         || a.context.virtualization != b.context.virtualization
-        || a.context.memory_bytes != b.context.memory_bytes
+        || !same_memory_class(a.context.memory_bytes, b.context.memory_bytes)
         || a.context.cpu_model.is_none()
         || a.context.virtual_machine.is_none()
     {
@@ -158,6 +158,7 @@ pub fn compare(a: &Report, b: &Report) -> Result<serde_json::Value> {
     let mut changes = BTreeMap::new();
     for key in [
         "kernel",
+        "memory_bytes",
         "binary_sha256",
         "version",
         "governors",
@@ -182,6 +183,12 @@ pub fn compare(a: &Report, b: &Report) -> Result<serde_json::Value> {
     Ok(
         serde_json::json!({"schema_version":1,"before":a.id,"after":b.id,"comparable":blockers.is_empty(),"blockers":blockers,"context_changes":changes,"conditions":{"before":conditions(a),"after":conditions(b)},"measurements":rows,"warning":"Three repetitions are descriptive; background load, thermal conditions and filesystem caching affect results. Matching models do not prove the same physical machine."}),
     )
+}
+fn same_memory_class(a: Option<u64>, b: Option<u64>) -> bool {
+    match (a, b) {
+        (Some(a), Some(b)) => a.abs_diff(b) <= a.max(b) / 64,
+        (a, b) => a == b,
+    }
 }
 fn conditions(r: &Report) -> serde_json::Value {
     let cpus: Vec<_> = r

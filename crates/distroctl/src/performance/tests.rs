@@ -99,6 +99,31 @@ fn comparison_rejects_different_workload_and_execution_class() {
     assert_eq!(compare(&a, &b).unwrap()["comparable"], false);
 }
 #[test]
+fn bare_metal_and_kernel_memory_changes_remain_comparable() {
+    let mut a = fixture();
+    a.context.virtual_machine = Some(false);
+    a.context.virtualization = None;
+    let mut b = a.clone();
+    b.id = "b".repeat(32);
+    b.context.memory_bytes = Some(8 * 1024 * 1024 * 1024 - 48 * 1024 * 1024);
+    let v = compare(&a, &b).unwrap();
+    assert_eq!(v["comparable"], true);
+    assert!(v["context_changes"].get("memory_bytes").is_some());
+    b.context.memory_bytes = Some(4 * 1024 * 1024 * 1024);
+    assert_eq!(compare(&a, &b).unwrap()["comparable"], false);
+    b.context.memory_bytes = None;
+    assert_eq!(compare(&a, &b).unwrap()["comparable"], false);
+    let t = Temp::new();
+    assert_eq!(collect::hypervisor_flag(&t.0), None);
+    t.put("proc/cpuinfo", "processor\t: 0\nflags\t\t: fpu sse2 avx2\n");
+    assert_eq!(collect::hypervisor_flag(&t.0), Some(false));
+    t.put(
+        "proc/cpuinfo",
+        "processor\t: 0\nflags\t\t: fpu hypervisor\n",
+    );
+    assert_eq!(collect::hypervisor_flag(&t.0), Some(true));
+}
+#[test]
 fn zero_denominator_is_unavailable() {
     let mut a = fixture();
     a.measurements[0].values = vec![0.0; 3];

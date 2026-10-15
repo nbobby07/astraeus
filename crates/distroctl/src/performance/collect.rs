@@ -395,6 +395,19 @@ pub(super) fn sample(root: &Path, elapsed: f64, previous: Option<&Counters>) -> 
     )
 }
 
+pub(super) fn hypervisor_flag(root: &Path) -> Option<bool> {
+    let mut text = String::new();
+    fs::File::open(root.join("proc/cpuinfo"))
+        .ok()?
+        .take(64 * 1024)
+        .read_to_string(&mut text)
+        .ok()?;
+    let (_, flags) = text
+        .lines()
+        .filter_map(|line| line.split_once(':'))
+        .find(|(key, _)| key.trim() == "flags")?;
+    Some(flags.split_whitespace().any(|f| f == "hypervisor"))
+}
 fn system_power_supplies(root: &Path) -> Vec<String> {
     children(root, "sys/class/power_supply", 64)
         .into_iter()
@@ -466,7 +479,10 @@ pub(super) fn context() -> Context {
         cpu_model: hw.cpu.model,
         logical_cpus: hw.cpu.logical_count,
         memory_bytes: hw.memory_bytes,
-        virtual_machine: hw.capabilities.virtual_machine,
+        virtual_machine: hw
+            .capabilities
+            .virtual_machine
+            .or_else(|| hypervisor_flag(root)),
         virtualization: hw.capabilities.virtualization_type,
         kernel: observed.kernel,
         version: env!("CARGO_PKG_VERSION").into(),

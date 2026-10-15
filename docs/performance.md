@@ -75,10 +75,13 @@ never changes worker policy.
 ## Interpreting results
 
 Comparisons require completed baseline runs with the same workload definitions,
-architecture, CPU model/count, memory capacity and virtualization class. Unknown
-CPU model or virtualization classification blocks comparison. Different kernels,
-binaries, governors, power context and graphics observations are shown alongside
-results, since these differences may be the subject of an experiment.
+architecture, CPU model/count, memory capacity and virtualization class. Memory
+capacity matches within 1/64, since kernel reservations change the reported
+total. Bare-metal classification needs readable CPU flags without a hypervisor
+flag. Unknown CPU model or virtualization classification blocks comparison.
+Different kernels, memory totals, binaries, governors, power context and graphics
+observations are shown alongside results, since these differences may be the
+subject of an experiment.
 
 Three repetitions provide descriptive medians and spreads, not statistical proof
 of improvement. Zero denominators yield unavailable percentages. Background
