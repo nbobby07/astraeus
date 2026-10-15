@@ -34,7 +34,9 @@ elif action in ('record','baseline'):
    signal.signal(signal.SIGTERM,cancel);time.sleep(30)
   elif mode=='missing-result': pass
   elif mode=='false-success': report.update(state='completed',samples=[]);emit('result',report)
-  else: emit('result',report)
+  else:
+   emit('result',report)
+   if mode=='trailing': print('unparsed garbage',end='',flush=True)
 )PY";
         source.replace("MODE", mode.toUtf8()); f.write(source); f.close();
         f.setPermissions(QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner); return path;
@@ -52,7 +54,10 @@ private slots:
         Performance p(fixture("future"));p.refresh();QTRY_VERIFY(!p.loading());QVERIFY(p.status().isEmpty());p.start("baseline");QVERIFY(!p.running());
     }
     void missingFinalRecordIsIncomplete() {
-        Performance p(fixture("missing-result"));p.start("record");QTRY_VERIFY(!p.running());QVERIFY(p.result().isEmpty());QVERIFY(p.error().contains("incomplete"));
+        Performance p(fixture("missing-result"));p.start("record");QTRY_VERIFY(!p.running());QVERIFY(p.result().isEmpty());QVERIFY(!p.error().isEmpty());
+    }
+    void trailingGarbageCannotLeaveCompletedState() {
+        Performance p(fixture("trailing"));p.start("record");QTRY_VERIFY(!p.running());QVERIFY(p.result().isEmpty());QVERIFY(p.phase()!="completed");QVERIFY(!p.error().isEmpty());
     }
     void emptySuccessCannotComplete() {
         Performance p(fixture("false-success"));p.start("record");QTRY_VERIFY(!p.running());QVERIFY(p.result().isEmpty());QVERIFY(!p.error().isEmpty());

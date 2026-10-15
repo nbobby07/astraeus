@@ -129,7 +129,10 @@ void Performance::start(const QString &kind) {
     connect(p, &QProcess::errorOccurred, this, [this,p](auto error) { if (error == QProcess::FailedToStart) { m_run = nullptr; p->deleteLater(); fail("Could not start the measurement backend."); } });
     connect(p, &QProcess::finished, this, [this,p](int code, auto exit) {
         consume(); m_diagnostic.append(p->readAllStandardError()); m_run = nullptr; p->deleteLater();
-        if (!m_gotResult || !m_buffer.trimmed().isEmpty()) { if (m_error.isEmpty()) m_error = "Measurement stopped without a final result. Its saved record remains incomplete."; }
+        if (!m_gotResult || !m_buffer.trimmed().isEmpty()) {
+            m_result.clear(); m_gotResult = false;
+            if (m_error.isEmpty()) m_error = "Measurement stopped without a valid final result. Inspect its saved record before using it.";
+        }
         else if ((code != 0 || exit != QProcess::NormalExit) && m_result.value("state") == "completed") { m_result.clear(); m_error = "Backend failure contradicts its completion result."; }
         else if (m_error.isEmpty() && m_result.value("state") != "completed") m_error = m_result.value("failure").toString();
         m_phase = m_result.isEmpty() ? "Incomplete" : m_result.value("state").toString(); emit changed(); refresh();
