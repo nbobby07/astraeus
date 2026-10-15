@@ -184,6 +184,11 @@ mod tests {
         )
         .is_err());
         for input in [
+            "schema_version = 1\nschema_version = 1",
+            "schema_version = 1\npackages = [1]",
+            "schema_version = 1\npackages = [",
+            "schema_version = 1\n[providers]\nlibgl = 'mesa'\nlibgl = 'mesa'",
+            "schema_version = 1\n[providers]\n[providers]",
             "schema_version = 2",
             "schema_version = 1\ncommand = 'echo yes'",
             "schema_version = 1\npackages = ['steam', 'steam']",

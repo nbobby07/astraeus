@@ -17,7 +17,7 @@ impl CurrentSystemState {
     pub fn new(packages: BTreeMap<String, String>) -> Self {
         let bytes = serde_json::to_vec(&packages).expect("string map serializes");
         Self {
-            id: format!("sha256:{:x}", Sha256::digest(bytes)),
+            id: format!("sha256:{}", crate::hex(&Sha256::digest(bytes))),
             packages,
         }
     }
@@ -269,7 +269,7 @@ impl ExecutionPlan {
             .sort_by(|a, b| a.name.cmp(&b.name));
         canonical.notes.clear();
         let bytes = serde_json::to_vec(&canonical).expect("execution plan serializes");
-        format!("sha256:{:x}", Sha256::digest(bytes))
+        format!("sha256:{}", crate::hex(&Sha256::digest(bytes)))
     }
 
     pub fn expected_state(&self) -> CurrentSystemState {

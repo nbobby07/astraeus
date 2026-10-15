@@ -1238,3 +1238,60 @@ fn post_snapshot_failure_retains_pre_snapshot_and_requires_rollback() {
     assert!(packages.calls.contains(&"apply"));
     assert!(record.failure.unwrap().message.contains("post-snapshot"));
 }
+
+#[test]
+fn digest_hex_matches_persisted_format() {
+    use sha2::{Digest, Sha256};
+    assert_eq!(
+        crate::hex(&Sha256::digest(b"abc")),
+        "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    );
+}
+
+#[test]
+fn dependency_compatibility_vectors() {
+    // Frozen from fbb5562 with SHA-2 0.10.9 and serde_json 1.0.151.
+    let plan = plan();
+    let mut management = ManagementState::default();
+    management.applied.packages.insert("example-app".into());
+    management.packages.insert(
+        "example-app".into(),
+        ManagedPackage {
+            version: "1:2.0-3".into(),
+            reason: InstallReason::Explicit,
+            owners: ["package:example-app".into()].into(),
+        },
+    );
+    let integrity = crate::package_integrity::IntegrityReport {
+        schema_version: 1,
+        packages: [(
+            "example-app".into(),
+            crate::package_integrity::PackageIntegrity {
+                removable: false,
+                digest: format!("sha256:{}", "a".repeat(64)),
+                detail: "changed file: /etc/example.conf".into(),
+            },
+        )]
+        .into(),
+    };
+    assert_eq!(
+        plan.current.id,
+        "sha256:dbb860499928338ce4872be163804878d2f12f88dd459bd3500cd86164325aaa"
+    );
+    assert_eq!(
+        plan.fingerprint(),
+        "sha256:043d24479b6487d8dec0366db3b545ef90af8c65c4a06a8d7f6d12f03a897999"
+    );
+    assert_eq!(
+        management_digest(None),
+        "sha256:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+    );
+    assert_eq!(
+        management.digest(),
+        "sha256:0626c31f60edf49d4e07276bd0005a4f855758f14ebda11d43a7fce24da0529e"
+    );
+    assert_eq!(
+        integrity.digest(),
+        "sha256:985f248d190d9ec6c7889933edd5ccb5db531040aecb3cc1261626a65d7f4469"
+    );
+}

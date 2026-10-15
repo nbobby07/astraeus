@@ -401,10 +401,9 @@ fn records_digest(db: &Connection) -> Result<String> {
     let json = rows
         .collect::<std::result::Result<Vec<_>, _>>()
         .map_err(|e| e.to_string())?;
-    Ok(format!(
-        "{:x}",
-        Sha256::digest(format!("[{}]", json.join(",")).as_bytes())
-    ))
+    Ok(crate::hex(&Sha256::digest(
+        format!("[{}]", json.join(",")).as_bytes(),
+    )))
 }
 
 fn snapshot(
@@ -493,6 +492,8 @@ mod migration_tests {
         ));
         record.id = 1;
         record.schema_version = 1;
+        record.timestamp = 1;
+        record.events[0].timestamp = 1;
         record
     }
     fn legacy(path: &Path) -> String {
@@ -535,7 +536,12 @@ mod migration_tests {
         assert_eq!(expected.len(), 1);
         assert_eq!(expected[0].schema_version, 1);
         assert_eq!(fs::read(&public).unwrap(), before);
-        let digest = format!("{:x}", Sha256::digest(format!("[{raw}]").as_bytes()));
+        let digest = crate::hex(&Sha256::digest(format!("[{raw}]").as_bytes()));
+        // Publication bytes produced by fbb5562, before the dependency upgrades.
+        assert_eq!(
+            digest,
+            "5ba53588761a8a83f64bba4be6096e2e14a7d2e48165a859fb17833ba63d259f"
+        );
         let db = Connection::open(&public).unwrap();
         db.execute_batch("CREATE TABLE astraeus_publication (digest TEXT NOT NULL)")
             .unwrap();
