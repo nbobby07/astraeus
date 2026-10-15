@@ -18,7 +18,9 @@ PACKAGES = (
     'distroctl', 'astraeus-control-center', 'linux', 'linux-firmware', 'mesa',
     'lib32-mesa', 'vulkan-icd-loader', 'lib32-vulkan-icd-loader',
     'vulkan-swrast', 'lib32-vulkan-swrast', 'vulkan-radeon', 'vulkan-intel',
-    'vulkan-nouveau', 'nvidia-open', 'nvidia-utils', 'plasma-workspace', 'kwin',
+    'vulkan-nouveau', 'lib32-vulkan-radeon', 'lib32-vulkan-intel', 'lib32-vulkan-nouveau',
+    'linux-firmware-amdgpu', 'linux-firmware-intel', 'linux-firmware-nvidia',
+    'nvidia-open', 'nvidia-utils', 'plasma-workspace', 'kwin',
 )
 SERVICES = {'sddm.service', 'NetworkManager.service', 'systemd-udevd.service',
             'dbus.service', 'pipewire.service', 'wireplumber.service',
