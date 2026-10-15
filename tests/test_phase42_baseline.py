@@ -25,6 +25,117 @@ def config():
 
 
 class FreshCandidateBaseline(unittest.TestCase):
+    def test_ui_adoption_accepts_only_serial_pinned_unmounted_expected_storage(self):
+        cfg = config()
+        disk = dict(path='/dev/vda', type='disk', size=baseline.DISK_BYTES,
+                    serial=cfg['serial'], mountpoints=[None], children=[
+                        dict(path='/dev/vda1', type='part', fstype='vfat', mountpoints=[None]),
+                        dict(path='/dev/vda2', type='part', fstype='crypto_LUKS', mountpoints=[None])])
+        self.assertIsNone(baseline.installed_disk({'blockdevices': [disk]}, cfg))
+        mapper = dict(path='/dev/mapper/luks-test', type='crypt', fstype='btrfs', mountpoints=[None])
+        disk['children'][1]['children'] = [mapper]
+        self.assertEqual(baseline.installed_disk({'blockdevices': [disk]}, cfg), mapper['path'])
+        for target, field, value in [(disk, 'serial', 'wrong'), (disk, 'size', 1),
+                (disk['children'][0], 'fstype', 'ext4'), (disk['children'][1], 'mountpoints', ['/']),
+                (mapper, 'path', '/dev/sda'), (mapper, 'mountpoints', ['/']), (mapper, 'type', 'part')]:
+            original = target[field]
+            target[field] = value
+            with self.subTest(field=field, value=value), self.assertRaises(RuntimeError):
+                baseline.installed_disk({'blockdevices': [disk]}, cfg)
+            target[field] = original
+        disk['children'][1].pop('children')
+        disk['children'][1]['fstype'] = 'btrfs'
+        with self.assertRaises(RuntimeError):
+            baseline.installed_disk({'blockdevices': [disk]}, cfg)
+        self.assertEqual(baseline.installed_disk({'blockdevices': [disk]}, {**cfg, 'encryption': 'none'}), '/dev/vda2')
+
+    def test_ui_observation_binds_exact_candidate_and_capture_bytes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            names = ['calamares-welcome.png', 'calamares-summary.png', 'calamares-finished.png', 'calamares.log']
+            for name in names:
+                (out / name).write_bytes(b'\x89PNG\r\n\x1a\nfixture' if name.endswith('.png') else b'native installer fixture')
+            value = {key: config()[key] for key in ['source_commit', 'image_sha256', 'encryption', 'serial']}
+            value.update(schema_version=1, observed_finished=True, sha256={name: baseline.sha256(out / name) for name in names})
+            receipt = out / 'calamares-ui.json'
+            receipt.write_text(json.dumps(value))
+            self.assertEqual(baseline.ui_evidence(out, config()), value)
+            for field, invalid in [('serial', 'wrong'), ('image_sha256', 'a' * 64), ('observed_finished', False),
+                                    ('sha256', {}), ('encryption', 'none')]:
+                receipt.write_text(json.dumps({**value, field: invalid}))
+                with self.subTest(field=field), self.assertRaises(RuntimeError):
+                    baseline.ui_evidence(out, config())
+            receipt.write_text(json.dumps(value))
+            (out / names[0]).write_bytes(b'changed')
+            with self.assertRaisesRegex(RuntimeError, 'missing or changed'):
+                baseline.ui_evidence(out, config())
+
+    def test_ui_adoption_rejects_wrong_disk_before_mounts_or_signing(self):
+        with patch.object(baseline, 'guest_guard', return_value=config()), \
+                patch.object(baseline, 'installation_firmware', return_value={}), \
+                patch.object(baseline.subprocess, 'run', return_value=SimpleNamespace(returncode=1)), \
+                patch.object(baseline, 'run', return_value='{"blockdevices":[]}') as command, \
+                patch.object(baseline, 'finish_install') as finish:
+            with self.assertRaises(RuntimeError):
+                baseline.guest_adopt_ui()
+            self.assertEqual(command.call_count, 1)
+            self.assertEqual(command.call_args.args[0], 'lsblk')
+            finish.assert_not_called()
+
+    def test_ui_adoption_checks_receipt_without_replaying_installer(self):
+        for encryption in ['none', 'LUKS2']:
+            for corrupt in [False, True]:
+                with self.subTest(encryption=encryption, corrupt=corrupt), tempfile.TemporaryDirectory() as directory:
+                    target = Path(directory) / 'adopt'
+                    cfg = {**config(), 'encryption': encryption}
+                    storage = {'root': dict(device='/dev/vda2', fs='btrfs', mountPoint='/',
+                                uuid='wrong' if corrupt else 'root-uuid', luksUuid='luks-uuid' if encryption == 'LUKS2' else None),
+                               'subvolumes': [{'mountPoint': point, 'subvolume': sub} for point, sub in baseline.SUBVOLUMES],
+                               'luks': {'uuid': 'luks-uuid'} if encryption == 'LUKS2' else None}
+                    commands = []
+
+                    def command(*args, **kwargs):
+                        commands.append(args)
+                        if args[0] == 'lsblk':
+                            return '{}'
+                        if args[:2] == ('cryptsetup', 'luksDump'):
+                            return '{"keyslots":{"0":{"kdf":{"type":"argon2id"}}}}'
+                        if args[:2] == ('cryptsetup', 'luksUUID'):
+                            return 'luks-uuid'
+                        if args[0] == 'mount' and args[-1] == target:
+                            path = target / 'var/log/installer/storage.json'
+                            path.parent.mkdir(parents=True)
+                            path.write_text(json.dumps(storage))
+                        if args[0] == 'findmnt':
+                            relative = '/' if args[3] == target else '/' + args[3].relative_to(target).as_posix()
+                            return 'btrfs ' + dict(baseline.SUBVOLUMES)[relative]
+                        if args[0] == 'blkid':
+                            return 'root-uuid'
+                        if args[:3] == ('arch-chroot', target, 'id'):
+                            return '1000'
+                        return ''
+
+                    with patch.object(baseline, 'TARGET', target), \
+                            patch.object(baseline, 'guest_guard', return_value=cfg), \
+                            patch.object(baseline, 'installation_firmware', return_value={}), \
+                            patch.object(baseline.subprocess, 'run', return_value=SimpleNamespace(returncode=1)), \
+                            patch.object(baseline, 'installed_disk', return_value=None if encryption == 'LUKS2' else '/dev/vda2'), \
+                            patch.object(baseline, 'secret', return_value=b'a' * 48), \
+                            patch.object(baseline, 'run', side_effect=command), \
+                            patch.object(baseline, 'sha256', side_effect=['c' * 64, 'd' * 64, 'e' * 64]), \
+                            patch.object(baseline, 'finish_install') as finish:
+                        if corrupt:
+                            with self.assertRaisesRegex(RuntimeError, 'storage receipt differs'):
+                                baseline.guest_adopt_ui()
+                            finish.assert_not_called()
+                        else:
+                            baseline.guest_adopt_ui()
+                            finish.assert_called_once_with(cfg, {}, 'calamares-ui', 'e' * 64)
+                    self.assertFalse(any(args[0] in ['sfdisk', 'mkfs.fat', 'mkfs.btrfs', 'unsquashfs'] for args in commands))
+                    self.assertIn(('umount', '--recursive', target), commands)
+                    if encryption == 'LUKS2':
+                        self.assertIn(('cryptsetup', 'close', 'astraeus-validation-root'), commands)
+
     def test_fstab_uses_the_installer_subvolume_paths_for_snapshot_validation(self):
         storage = json.loads((ROOT / 'distro/installer/config.json').read_text())['modules']['mount']['btrfsSubvolumes']
         expected = {item['mountPoint']: item['subvolume'] for item in storage}
