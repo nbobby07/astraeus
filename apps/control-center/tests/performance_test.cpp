@@ -65,8 +65,13 @@ private slots:
     void cancellationPreservesCancelledResult() {
         Performance p(fixture("cancel"));p.start("record");QTRY_VERIFY(!p.sample().isEmpty());p.stop();QTRY_VERIFY(!p.running());QCOMPARE(p.result().value("state").toString(),"cancelled");
     }
-    void managementBlockRefusesStart() {
-        Performance p(fixture());p.setBlocked(true);p.start("record");QVERIFY(!p.running());QVERIFY(!p.error().isEmpty());
+    void managementBlockStopsOnlyBaselines() {
+        Performance p(fixture("cancel"));p.refresh();QTRY_VERIFY(!p.loading());
+        p.start("record");QTRY_VERIFY(!p.sample().isEmpty());p.setBlocked(true);QVERIFY(p.running());QVERIFY(p.phase()!="Stopping");
+        p.stop();QTRY_VERIFY(!p.running());
+        p.start("baseline");QVERIFY(!p.running());QVERIFY(!p.error().isEmpty());
+        QTRY_VERIFY(!p.loading());p.setBlocked(false);p.start("baseline");QVERIFY(p.baselineRunning());
+        p.setBlocked(true);QCOMPARE(p.phase(),QString("Stopping"));QTRY_VERIFY(!p.running());
     }
     void exportAndIdentifiersAreBounded() {
         Performance p(fixture());p.show("../escape");QVERIFY(p.result().isEmpty());p.exportFile(QString(32,'a'),QUrl::fromLocalFile(directory.filePath("export.json")));QTRY_VERIFY(!p.loading());QFile f(directory.filePath("export.json"));QVERIFY(f.open(QIODevice::ReadOnly));QVERIFY(f.readAll().contains("completed"));

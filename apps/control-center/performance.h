@@ -28,6 +28,7 @@ public:
     QString phase() const { return m_phase; }
     QString error() const { return m_error; }
     bool running() const { return m_run != nullptr; }
+    bool baselineRunning() const { return running() && m_kind == "baseline"; }
     bool loading() const { return !m_queries.isEmpty(); }
     bool blocked() const { return m_blocked; }
     void setBlocked(bool blocked);
@@ -44,7 +45,7 @@ private:
     void query(const QString &channel, const QStringList &arguments, const QUrl &exportUrl = {});
     void consume();
     void fail(const QString &error);
-    QString m_executable, m_phase, m_error, m_runId;
+    QString m_executable, m_phase, m_error, m_runId, m_kind;
     QVariantMap m_status, m_result, m_comparison, m_sample;
     QVariantList m_runs;
     QSet<QString> m_queries;

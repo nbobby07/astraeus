@@ -58,7 +58,7 @@ Performance::~Performance() {
     if (m_run) { m_run->disconnect(this); m_run->terminate(); if (!m_run->waitForFinished(3000)) { m_run->kill(); m_run->waitForFinished(1000); } }
 }
 void Performance::fail(const QString &error) { m_error = error; emit changed(); }
-void Performance::setBlocked(bool blocked) { if (m_blocked == blocked) return; m_blocked = blocked; if (blocked && running()) stop(); emit changed(); }
+void Performance::setBlocked(bool blocked) { if (m_blocked == blocked) return; m_blocked = blocked; if (blocked && baselineRunning()) stop(); emit changed(); }
 void Performance::refresh() { query("status", {"status"}); query("list", {"list"}); }
 void Performance::observe() { if (!running()) query("status", {"status"}); }
 void Performance::show(const QString &id) { if (validId(id)) query("show", {"show", id}); else fail("Invalid saved run identifier."); }
@@ -120,9 +120,10 @@ void Performance::query(const QString &channel, const QStringList &arguments, co
     p->setProgram(m_executable); p->setArguments(args); p->start(); p->closeWriteChannel(); timer->start(20000);
 }
 void Performance::start(const QString &kind) {
-    if (running() || blocked() || (kind != "record" && kind != "baseline")) { fail("A measurement cannot start while another operation is active."); return; }
+    if (running() || (kind != "record" && kind != "baseline")) { fail("Another measurement is already running."); return; }
+    if (kind == "baseline" && blocked()) { fail("A baseline cannot start while another operation is active."); return; }
     if (kind == "baseline" && (m_status.isEmpty() || !m_status.value("baseline_blockers").toList().isEmpty())) { fail("Resolve the baseline blockers first."); return; }
-    m_buffer.clear(); m_diagnostic.clear(); m_received = 0; m_gotResult = false; m_runId.clear(); m_error.clear(); m_result.clear(); m_phase = "Starting";
+    m_kind = kind; m_buffer.clear(); m_diagnostic.clear(); m_received = 0; m_gotResult = false; m_runId.clear(); m_error.clear(); m_result.clear(); m_phase = "Starting";
     m_run = new QProcess(this); auto *p = m_run;
     connect(p, &QProcess::readyReadStandardOutput, this, [this] { consume(); });
     connect(p, &QProcess::readyReadStandardError, this, [this,p] { m_diagnostic.append(p->readAllStandardError()); m_diagnostic.truncate(4096); });

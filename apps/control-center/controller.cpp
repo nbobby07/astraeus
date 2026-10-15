@@ -124,7 +124,7 @@ Controller::Controller(QString executable, QString authenticator, QObject *paren
 }
 bool Controller::busy() const
 {
-    if (m_performance && m_performance->running()) return true;
+    if (m_performance && m_performance->baselineRunning()) return true;
     for (const auto &key : {"plan", "submit", "parse", "adopt", "export"})
         if (m_pending.contains(key)) return true;
     return false;

@@ -43,6 +43,7 @@ ApplicationWindow {
     }
     Dialog {
         id: closeDialog
+        objectName: "closeDialog"
         title: qsTr("Discard your draft?")
         anchors.centerIn: parent
         standardButtons: Dialog.Discard | Dialog.Cancel
@@ -50,8 +51,8 @@ ApplicationWindow {
         onDiscarded: { window.backend.discard(); window.editorDirty = false; window.close(); }
     }
     onClosing: function(close) {
+        if ((window.backend.dirty || window.editorDirty) && !window.backend.active) { close.accepted = false; closeDialog.open(); return; }
         if (window.backend.performance.running) window.backend.performance.stop();
-        if ((window.backend.dirty || window.editorDirty) && !window.backend.active) { close.accepted = false; closeDialog.open(); }
     }
     header: ToolBar {
         RowLayout {

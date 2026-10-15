@@ -253,7 +253,18 @@ TestCase {
         stop.forceActiveFocus(); keyClick(Qt.Key_Space); tryCompare(perf, "running", false);
         perf.status = {schema_version: 1, context: {}, baseline_blockers: ["Live session"]};
         tryCompare(findChild(app, "baselinePerformance"), "enabled", false);
-        perf.blocked = true; tryCompare(record, "enabled", false);
+        perf.status = {schema_version: 1, context: {}, baseline_blockers: []};
+        perf.blocked = true; tryCompare(findChild(app, "baselinePerformance"), "enabled", false);
+        compare(record.enabled, true);
+    }
+    function test_cancelledCloseKeepsMeasurementRunning() {
+        perf.running = true; fake.dirty = true;
+        app.close();
+        const dialog = findChild(app, "closeDialog");
+        tryCompare(dialog, "opened", true);
+        compare(perf.running, true);
+        dialog.reject(); tryCompare(dialog, "visible", false);
+        perf.running = false; fake.dirty = false;
     }
     function test_performanceBaselineReviewDialog() {
         app.section = 4;

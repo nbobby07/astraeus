@@ -60,7 +60,7 @@ ScrollView {
         Repeater { model: page.backend.status.baseline_blockers || []; delegate: Label { required property string modelData; Layout.fillWidth: true; wrapMode: Text.WordWrap; text: modelData; textFormat: Text.PlainText } }
         RowLayout {
             Layout.fillWidth: true
-            Button { objectName: "recordPerformance"; text: qsTr("Record 60 seconds"); enabled: !page.backend.running && !page.backend.blocked; onClicked: page.backend.start("record") }
+            Button { objectName: "recordPerformance"; text: qsTr("Record 60 seconds"); enabled: !page.backend.running; onClicked: page.backend.start("record") }
             Button { objectName: "baselinePerformance"; text: qsTr("Run baseline…"); enabled: !page.backend.running && !page.backend.blocked && !!page.backend.status.schema_version && !(page.backend.status.baseline_blockers || []).length; onClicked: baselineDialog.open() }
             Button { objectName: "stopPerformance"; text: qsTr("Stop"); enabled: page.backend.running; onClicked: page.backend.stop() }
         }
