@@ -52,4 +52,5 @@ automatic source archives are source downloads, not installation media. Host CI
 success alone cannot authorize an image release.
 
 Do not create production signing automation until custody, review, rotation,
-revocation and recovery are defined. See the [signing model](security.md).
+revocation and recovery are defined. See the [signing model](security.md) and
+the [release signing plan](release-signing-plan.md).
