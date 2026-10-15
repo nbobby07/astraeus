@@ -1,0 +1,229 @@
+{
+  "read_only": true,
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "label": "B",
+  "test_log_sha256": "2d096b16777ea3919accef805c6f331fc3d40766ca41aad8890bddb0a78ecfe5",
+  "platform_source_sha256": "30dec5dd0beeb365d1429a231012c135e7544b1edf23fff4028c8474b3df0f60",
+  "platform_source_bytes": 11152000,
+  "recipe_sha256": "0210456225872412337ade1a27efa10a50da41eabddb5b7e04ec980a9efcafdb",
+  "totals": [
+    "Totals: 22 passed, 0 failed, 0 skipped, 0 blacklisted, 4210ms",
+    "Totals: 13 passed, 0 failed, 0 skipped, 0 blacklisted, 950ms",
+    "Totals: 16 passed, 0 failed, 0 skipped, 0 blacklisted, 1745ms"
+  ],
+  "manifest_completeness": {
+    "image": {
+      "local_records": 751,
+      "manifest_lines": 751,
+      "manifest_sha256": "5ff3396a027be0f7526525551b429a9c22420e6f05db9f7aebcea7f5eb09e70d",
+      "exact_match": true,
+      "missing": [],
+      "extra": []
+    },
+    "installed": {
+      "local_records": 736,
+      "manifest_lines": 736,
+      "manifest_sha256": "2924bf219a7ca1526bf6a5e523f0cbb5ae9fa4805cda4a1cb9d94c217e8de471",
+      "exact_match": true,
+      "missing": [],
+      "extra": []
+    }
+  },
+  "graphics_file_identities": {
+    "live": {
+      "files": {
+        "usr/share/vulkan/icd.d/radeon_icd.json": {
+          "sha256": "bca32a660ca32a42b598d53cdc63b3e3e917ea40c0b3b1e00fdbd3115280b51d",
+          "library_path": "libvulkan_radeon.so"
+        },
+        "usr/lib/libvulkan_radeon.so": {
+          "resolved": "usr/lib/libvulkan_radeon.so",
+          "sha256": "80559fd2792032a4da0c6c7a083766fe53f6e9d6ad699adaa14d39d8f3ded4bb",
+          "bits": 64
+        },
+        "usr/lib32/libvulkan_radeon.so": {
+          "resolved": "usr/lib32/libvulkan_radeon.so",
+          "sha256": "45416dcdbe0cf8c79d3ac9d1df460044e5a505aa3cc7fe03ed2cb6c6a9fce9a0",
+          "bits": 32
+        },
+        "usr/share/vulkan/icd.d/nouveau_icd.json": {
+          "sha256": "c5928e200b60ff90b250e2c5e05b7faf3d7afc279b98f047aebf55035dc43b0d",
+          "library_path": "libvulkan_nouveau.so"
+        },
+        "usr/lib/libvulkan_nouveau.so": {
+          "resolved": "usr/lib/libvulkan_nouveau.so",
+          "sha256": "a8ad716156782ccebe6b509d41dd51bd551c3c2af2186438568a7b0a10d2addf",
+          "bits": 64
+        },
+        "usr/lib32/libvulkan_nouveau.so": {
+          "resolved": "usr/lib32/libvulkan_nouveau.so",
+          "sha256": "f34378daef26de54b92171ceb2d38a09b26ecafb1a02af5d91d437c13bd722e4",
+          "bits": 32
+        },
+        "usr/share/vulkan/icd.d/intel_icd.json": {
+          "sha256": "9b4eb13de4990a7123419af1a8303e7cb3c0d541e75af6a787eac83beca06cce",
+          "library_path": "libvulkan_intel.so"
+        },
+        "usr/lib/libvulkan_intel.so": {
+          "resolved": "usr/lib/libvulkan_intel.so",
+          "sha256": "e105a45fc00e36c21c33c5635b975f636db6375e9fa1868638063efb7f2cb48b",
+          "bits": 64
+        },
+        "usr/lib32/libvulkan_intel.so": {
+          "resolved": "usr/lib32/libvulkan_intel.so",
+          "sha256": "cfa661b532f9e666582c3a308e3a2da50c01cff0f98878a5856f2e4deadccfe6",
+          "bits": 32
+        },
+        "usr/lib/libvulkan.so.1": {
+          "resolved": "usr/lib/libvulkan.so.1.4.357",
+          "sha256": "7d9f8ced1fae1d02ee7953a5a22e4efae74545e83333eedc41c53a50f51ebab6",
+          "bits": 64
+        },
+        "usr/lib/dri/zink_dri.so": {
+          "resolved": "usr/lib/dri/libdril_dri.so",
+          "sha256": "241e00cb8772d0dedfd77668196f07b86ffd057556d83a00f325c19412802dc2",
+          "bits": 64
+        },
+        "usr/lib/distroctl/graphics-probe64": {
+          "resolved": "usr/lib/distroctl/graphics-probe64",
+          "sha256": "51e61a9c710d2b6f2745aae96cdfa1dd025e6a8eae478a229819ecaeea977099",
+          "bits": 64
+        },
+        "usr/bin/glxinfo": {
+          "resolved": "usr/bin/glxinfo",
+          "sha256": "f7978232329b1a9eee3f67148ca5cc24bb1d7facfab8e54bd0fd5328c7c95702",
+          "bits": 64
+        },
+        "usr/bin/eglinfo": {
+          "resolved": "usr/bin/eglinfo",
+          "sha256": "5140e7686f8fb6c8d13d4848945b7911498b4a40903c4efa6f8fdbd28e5e0fde",
+          "bits": 64
+        },
+        "usr/lib32/libvulkan.so.1": {
+          "resolved": "usr/lib32/libvulkan.so.1.4.357",
+          "sha256": "de6884b20f52cf670a7b314cf3c043c2e6dea952c0bb8352d14a19c44b327521",
+          "bits": 32
+        },
+        "usr/lib32/dri/zink_dri.so": {
+          "resolved": "usr/lib32/dri/libdril_dri.so",
+          "sha256": "56e1058c948aa6f30a9a4d1c2502b48080aadbb78c6adfca167e8f33e2516f88",
+          "bits": 32
+        },
+        "usr/lib/distroctl/graphics-probe32": {
+          "resolved": "usr/lib/distroctl/graphics-probe32",
+          "sha256": "f2731cf93ab406518c76eb674cef06ded5c2e57865d1e4c8c921475edbb7cd07",
+          "bits": 32
+        },
+        "usr/bin/glxinfo32": {
+          "resolved": "usr/bin/glxinfo32",
+          "sha256": "d518a48fcc02acc7c0b63bf3ae164f2751f10b12e0523966a4d850b8f8781b55",
+          "bits": 32
+        },
+        "usr/bin/eglinfo32": {
+          "resolved": "usr/bin/eglinfo32",
+          "sha256": "d6d8db4445addfb269fd004e4ee6f2211a0079ba42976a3888be9c335527f107",
+          "bits": 32
+        },
+        "usr/lib/firmware/nvidia/gb205/gsp/fmc-570.144.bin.zst": {
+          "resolved": "usr/lib/firmware/nvidia/gb202/gsp/fmc-570.144.bin.zst",
+          "sha256": "7cc18911246663e838f7ce25baacc00945cf09001e8c4873d9f287ae03491409"
+        },
+        "usr/lib/firmware/nvidia/gb205/gsp/bootloader-570.144.bin.zst": {
+          "resolved": "usr/lib/firmware/nvidia/gb202/gsp/bootloader-570.144.bin.zst",
+          "sha256": "a4f1c63e7710e893e0551a167b6f0d646d5f79fbaed9724f79450e9132beed05"
+        },
+        "usr/lib/firmware/nvidia/gb205/gsp/gsp-570.144.bin.zst": {
+          "resolved": "usr/lib/firmware/nvidia/ga102/gsp/gsp-570.144.bin.zst",
+          "sha256": "1aa965fb408b9c4cafba902cae621b3b74c62710180357afecd156e59adfa505"
+        }
+      },
+      "physical_gpu_qualified": false,
+      "runtime_rendering_pass": false
+    },
+    "installed": {
+      "files": {
+        "usr/share/vulkan/icd.d/radeon_icd.json": {
+          "sha256": "bca32a660ca32a42b598d53cdc63b3e3e917ea40c0b3b1e00fdbd3115280b51d",
+          "library_path": "libvulkan_radeon.so"
+        },
+        "usr/lib/libvulkan_radeon.so": {
+          "resolved": "usr/lib/libvulkan_radeon.so",
+          "sha256": "80559fd2792032a4da0c6c7a083766fe53f6e9d6ad699adaa14d39d8f3ded4bb",
+          "bits": 64
+        },
+        "usr/lib32/libvulkan_radeon.so": {
+          "resolved": "usr/lib32/libvulkan_radeon.so",
+          "sha256": "45416dcdbe0cf8c79d3ac9d1df460044e5a505aa3cc7fe03ed2cb6c6a9fce9a0",
+          "bits": 32
+        },
+        "usr/share/vulkan/icd.d/nouveau_icd.json": {
+          "sha256": "c5928e200b60ff90b250e2c5e05b7faf3d7afc279b98f047aebf55035dc43b0d",
+          "library_path": "libvulkan_nouveau.so"
+        },
+        "usr/lib/libvulkan_nouveau.so": {
+          "resolved": "usr/lib/libvulkan_nouveau.so",
+          "sha256": "a8ad716156782ccebe6b509d41dd51bd551c3c2af2186438568a7b0a10d2addf",
+          "bits": 64
+        },
+        "usr/lib32/libvulkan_nouveau.so": {
+          "resolved": "usr/lib32/libvulkan_nouveau.so",
+          "sha256": "f34378daef26de54b92171ceb2d38a09b26ecafb1a02af5d91d437c13bd722e4",
+          "bits": 32
+        },
+        "usr/lib/libvulkan.so.1": {
+          "resolved": "usr/lib/libvulkan.so.1.4.357",
+          "sha256": "7d9f8ced1fae1d02ee7953a5a22e4efae74545e83333eedc41c53a50f51ebab6",
+          "bits": 64
+        },
+        "usr/lib/dri/zink_dri.so": {
+          "resolved": "usr/lib/dri/libdril_dri.so",
+          "sha256": "241e00cb8772d0dedfd77668196f07b86ffd057556d83a00f325c19412802dc2",
+          "bits": 64
+        },
+        "usr/lib/distroctl/graphics-probe64": {
+          "resolved": "usr/lib/distroctl/graphics-probe64",
+          "sha256": "51e61a9c710d2b6f2745aae96cdfa1dd025e6a8eae478a229819ecaeea977099",
+          "bits": 64
+        },
+        "usr/lib32/libvulkan.so.1": {
+          "resolved": "usr/lib32/libvulkan.so.1.4.357",
+          "sha256": "de6884b20f52cf670a7b314cf3c043c2e6dea952c0bb8352d14a19c44b327521",
+          "bits": 32
+        },
+        "usr/lib32/dri/zink_dri.so": {
+          "resolved": "usr/lib32/dri/libdril_dri.so",
+          "sha256": "56e1058c948aa6f30a9a4d1c2502b48080aadbb78c6adfca167e8f33e2516f88",
+          "bits": 32
+        },
+        "usr/lib/distroctl/graphics-probe32": {
+          "resolved": "usr/lib/distroctl/graphics-probe32",
+          "sha256": "f2731cf93ab406518c76eb674cef06ded5c2e57865d1e4c8c921475edbb7cd07",
+          "bits": 32
+        },
+        "usr/lib/firmware/nvidia/gb205/gsp/fmc-570.144.bin.zst": {
+          "resolved": "usr/lib/firmware/nvidia/gb202/gsp/fmc-570.144.bin.zst",
+          "sha256": "7cc18911246663e838f7ce25baacc00945cf09001e8c4873d9f287ae03491409"
+        },
+        "usr/lib/firmware/nvidia/gb205/gsp/bootloader-570.144.bin.zst": {
+          "resolved": "usr/lib/firmware/nvidia/gb202/gsp/bootloader-570.144.bin.zst",
+          "sha256": "a4f1c63e7710e893e0551a167b6f0d646d5f79fbaed9724f79450e9132beed05"
+        },
+        "usr/lib/firmware/nvidia/gb205/gsp/gsp-570.144.bin.zst": {
+          "resolved": "usr/lib/firmware/nvidia/ga102/gsp/gsp-570.144.bin.zst",
+          "sha256": "1aa965fb408b9c4cafba902cae621b3b74c62710180357afecd156e59adfa505"
+        }
+      },
+      "physical_gpu_qualified": false,
+      "runtime_rendering_pass": false
+    }
+  },
+  "mkarchiso_package_lists": [
+    {
+      "path": "work/iso/arch/pkglist.x86_64.txt",
+      "bytes": 15142,
+      "lines": 751,
+      "sha256": "5ff3396a027be0f7526525551b429a9c22420e6f05db9f7aebcea7f5eb09e70d"
+    }
+  ],
+  "nbd_disconnected": true
+}

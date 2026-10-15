@@ -1,5 +1,9 @@
 use super::*;
-use std::{fs, path::PathBuf};
+use std::{
+    fs,
+    path::PathBuf,
+    sync::atomic::{AtomicU64, Ordering},
+};
 pub(super) fn fixture() -> Report {
     Report {
         schema_version: 1,
@@ -46,13 +50,11 @@ pub(super) fn fixture() -> Report {
 struct Temp(PathBuf);
 impl Temp {
     fn new() -> Self {
+        static NEXT: AtomicU64 = AtomicU64::new(0);
         let p = std::env::temp_dir().join(format!(
             "astraeus-performance-{}-{}",
             std::process::id(),
-            std::time::SystemTime::now()
-                .duration_since(std::time::UNIX_EPOCH)
-                .unwrap()
-                .as_nanos()
+            NEXT.fetch_add(1, Ordering::Relaxed)
         ));
         fs::create_dir(&p).unwrap();
         #[cfg(unix)]
@@ -73,6 +75,49 @@ impl Drop for Temp {
         let _ = fs::remove_dir_all(&self.0);
     }
 }
+#[test]
+fn binary_digest_streams_short_reads_and_propagates_failure() {
+    use std::io::{self, Read};
+    struct Source {
+        remaining: usize,
+        interrupted: bool,
+        fail: bool,
+    }
+    impl Read for Source {
+        fn read(&mut self, buffer: &mut [u8]) -> io::Result<usize> {
+            assert!(buffer.len() <= 64 * 1024);
+            if !self.interrupted {
+                self.interrupted = true;
+                return Err(io::ErrorKind::Interrupted.into());
+            }
+            if self.remaining == 0 && self.fail {
+                return Err(io::ErrorKind::PermissionDenied.into());
+            }
+            let count = self.remaining.min(buffer.len()).min(997);
+            buffer[..count].fill(b'a');
+            self.remaining -= count;
+            Ok(count)
+        }
+    }
+    let source = |fail| Source {
+        remaining: 1_000_000,
+        interrupted: false,
+        fail,
+    };
+    assert_eq!(
+        collect::binary_digest(source(false)).unwrap(),
+        "cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0"
+    );
+    assert_eq!(
+        collect::binary_digest(source(true)).unwrap_err().kind(),
+        io::ErrorKind::PermissionDenied
+    );
+    assert_eq!(
+        collect::binary_digest(io::empty()).unwrap(),
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    );
+}
+
 #[test]
 fn comparison_is_compatible_and_does_not_claim_significance() {
     let a = fixture();
@@ -237,8 +282,19 @@ fn store_roundtrip_and_failed_publication_preserves_original() {
     r.measurements[2].values[2] = 921.9176614809459;
     store.create(&r.id).unwrap();
     store.write(&r).unwrap();
+    let saved = store.read(&r.id).unwrap();
+    for (actual, expected) in [
+        (
+            saved.samples[0].cpu_busy_percent.unwrap(),
+            13.165680473372781_f64,
+        ),
+        (saved.measurements[1].values[2], 14696.678710017999_f64),
+        (saved.measurements[2].values[2], 921.9176614809459_f64),
+    ] {
+        assert_eq!(actual.to_bits(), expected.to_bits());
+    }
     assert_eq!(
-        serde_json::to_value(store.read(&r.id).unwrap()).unwrap(),
+        serde_json::to_value(saved).unwrap(),
         serde_json::to_value(&r).unwrap()
     );
     fs::write(

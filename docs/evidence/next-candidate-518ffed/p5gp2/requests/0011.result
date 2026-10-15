@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T22:54:37.100254+00:00",
+  "request": "0011.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"metadata_awaiting_boot\": true, \"operation_id\": \"c1afbbbd436b0de42e1526e594eee25d\", \"transaction_id\": 1, \"baseline_stopped_by_management\": {\"created_unix_seconds\": 1792104595, \"elapsed_seconds\": 6.060342056, \"failure\": \"A system operation is queued or running\", \"id\": \"602db23cae0c9041a931751658589b08\", \"kind\": \"baseline\", \"state\": \"failed\"}, \"baseline_failure\": \"A system operation is queued or running\", \"passive_record_completed_during_management\": {\"created_unix_seconds\": 1792104732, \"elapsed_seconds\": 60.029682261, \"failure\": null, \"id\": \"d503b644d7089cca032f390e8d7c08ac\", \"kind\": \"record\", \"state\": \"completed\"}, \"performance_status\": {\"baseline_blockers\": [\"A transaction requires completion, reboot or recovery\"], \"context\": {\"architecture\": \"x86_64\", \"binary_sha256\": \"329003201bba21dd44db3f28eb730a319f79346bbd7b7e0f090059356eb587c6\", \"cpu_model\": \"19/01\", \"governors\": [], \"kernel\": \"7.2.7-arch1-1\", \"logical_cpus\": 4, \"memory_bytes\": 4056580096, \"power_sources\": {}, \"renderer\": [\"Graphics activation: Unsupported; physical performance unqualified\", \"Virtio: virtio-pci\"], \"version\": \"0.1.0-dev\", \"virtual_machine\": true, \"virtualization\": \"qemu\"}, \"sample\": {\"cpu_busy_percent\": 8.910891089108912, \"cpu_frequency_khz\": {}, \"disk_read_bytes_per_second\": 0.0, \"disk_write_bytes_per_second\": 0.0, \"elapsed_seconds\": 0.250597213, \"load_average\": [0.4, 0.72, 0.86], \"memory_available_bytes\": 2614456320, \"power_microwatts\": {}, \"pressure_avg10_percent\": {\"cpu.full\": 0.0, \"cpu.some\": 0.0, \"io.full\": 0.18, \"io.some\": 0.18, \"memory.full\": 0.0, \"memory.some\": 0.0}, \"swap_in_pages_per_second\": 0.0, \"swap_out_pages_per_second\": 0.0, \"swap_used_bytes\": 0, \"temperatures\": [], \"unavailable\": [\"Readable thermal zones\", \"Readable instantaneous power sensors\", \"CPU frequency policies\"]}, \"schema_version\": 1}}\n",
+    "id": "5cc382f7f10341979bd1b8e6c81ebdbb",
+    "boot_id": "99e645f6-be71-4264-81e1-961a3fb91fca"
+  },
+  "finished": "2026-10-15T22:54:37.912572+00:00"
+}

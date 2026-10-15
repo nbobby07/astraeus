@@ -1,12 +1,15 @@
 # Release signing and distribution plan
 
-Status: **plan only**. Nothing here is implemented, provisioned or qualified.
+Status: **production plan only**. Release-key custody, distribution and signing
+ceremonies remain unimplemented. The development controls in the inventory
+below already exist and have their own recorded validation.
 It defines what must exist before any image, repository or recovery medium is
 published under an Astraeus release identity. Items marked **Decision needed**
 require an owner choice before the corresponding phase starts.
 
-Originally drafted at `8a4f1e5`; reconciled with accepted runtime `c38209c`
-on 2026-10-15. See the [current handoff](release-readiness.md). Related records:
+Originally drafted at `8a4f1e5`; reconciled with the accepted Phase 5 baseline
+and the next candidate at `518ffed` on 2026-10-15. See the
+[current handoff](release-readiness.md). Related records:
 [security](security.md), [owner Secure Boot](secure-boot.md),
 [ADR 0003](adr/0003-owner-secure-boot.md), [releases](releases.md),
 [building](building.md) and [Phase 4.2 acceptance](phase42-acceptance.md).
@@ -18,7 +21,7 @@ what exists, where, and what production lacks.
 
 | Area | Implemented today | Source | Production gap |
 | --- | --- | --- | --- |
-| Repository key creation | Validator A runs `gpg --quick-generate-key ... ed25519 sign 1d` with an empty passphrase inside the disposable builder | `scripts/validate/arch-builder.sh` | No long-lived identity, offline primary, subkeys, backup or revocation certificate |
+| Repository key creation | Validator A creates a seven-day disposable primary; preflight requires more than 72 hours remaining before compilation and ISO assembly | `scripts/validate/arch-builder.sh`, `scripts/validate/repository-key.py` | No long-lived identity, offline primary, subkeys, backup or revocation certificate |
 | Package and database signing | `makepkg --sign`; `publish-repo.sh` verifies each detached signature against a supplied 40-hex primary fingerprint (subkey `VALIDSIG` accepted), then `repo-add --sign` and writes `SHA256SUMS` | `scripts/publish-repo.sh`, `docs/building.md` | Signing happens on the build host; no token, ledger or two-person check |
 | Build-time trust | `bootstrap.py iso` checks the exported key has exactly the supplied primary, then `pacman-key --add`/`--lsign-key` in an isolated keyring; `[distro]` is `SigLevel = Required DatabaseRequired` | `scripts/bootstrap.py`, `distro/archiso/pacman.conf.in` | Sound; the fingerprint source is the operator, not a published release identity |
 | Live and installed trust | Live: `live-keyring.service` lsigns the baked-in fingerprint. Installed: provisioning reads `/usr/share/distro/repository-fingerprint` and lsigns it in a fresh keyring | `distro/archiso/airootfs/etc/systemd/system/live-keyring.service.in`, `scripts/provision.py`, `scripts/installer.py` | No keyring package, so installed systems cannot receive new subkeys, expiry extensions or revocations |
@@ -45,6 +48,14 @@ The accepted Phase 5 candidate instead uses
 [integration evidence](evidence/release-readiness-20261015/repository-public-key.json).
 This is also a disposable identity, not a release key. Key expiry affects package
 verification; it does not add an expiry check to the unsigned live boot chain.
+
+The next candidate uses development repository signer
+`08AA130849B706CDB20AAA4484BD7DFCF71254F6`, expiring at
+`2026-10-22T20:29:47Z`. Its build checks require more than 72 hours of
+remaining key lifetime before compilation and ISO assembly. See the
+[next-candidate report](next-candidate-acceptance.md) for the exact image and
+validation status. These checks do not implement production rotation or
+trusted distribution.
 
 ## Principles
 
@@ -276,8 +287,9 @@ Each release publishes:
 The published `release-key.asc` is a convenience copy. Users must verify its
 fingerprint independently.
 
-- **Hosting.** The ISO is about 3.5 GB. GitHub release assets are limited to
-  2 GiB per file, so it cannot be a release asset. **Decision needed:** object
+- **Hosting.** The next candidate ISO is about 3.9 GB. GitHub requires each
+  [release asset](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases#storage-and-bandwidth-quotas)
+  to be under 2 GiB, so this ISO cannot be a single release asset. **Decision needed:** object
   storage/CDN, mirrors and/or BitTorrent, plus who pays and how mirrors are
   admitted. Mirrors are untrusted; only the signature matters.
 - **Fingerprint channels.** Publish in `SECURITY.md` and the docs (via a signed
@@ -357,9 +369,9 @@ Phases are gated. Each needs review and evidence, as with existing phases.
       fails when a revoked key still verifies.
 - [ ] Remote `distro` repository and `Server` configuration, if decided.
       Installed `pacman.conf` stops using only `file:///opt/distro/repo`.
-- [ ] Three-stage A/B build with builder attestations. Extend
-      `arch-builder.sh` so B also compiles packages and its hashes are compared
-      before signing.
+- [ ] Three-stage A/B build with builder attestations. Preserve the existing
+      independent package compilation and comparison; move the comparison before
+      offline repository signing and add separately signed builder attestations.
 - [ ] Release manifest and `SHA256SUMS.sig` generation, plus a user
       verification script and guide.
 - [ ] Signing ledger format and a check that every published signature is

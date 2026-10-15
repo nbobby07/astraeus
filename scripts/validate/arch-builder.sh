@@ -59,6 +59,18 @@ pacman -Q > "$evidence/packages-before-build.txt"
 python3 scripts/bootstrap.py verify-archive
 useradd --create-home --shell /bin/bash builder
 chown -R builder:builder /build/operating-system
+if [[ $label == A ]]; then
+    [[ ! -e $share/repo ]]
+    runuser -u builder -- gpg --batch --pinentry-mode loopback --passphrase '' \
+        --quick-generate-key 'Astraeus disposable candidate signing' ed25519 sign 7d
+    key=$(runuser -u builder -- gpg --batch --with-colons --list-keys | awk -F: '$1 == "fpr" {print $10; exit}')
+    runuser -u builder -- gpg --batch --armor --export "$key" > "$evidence/repository-key.asc"
+    public_key="$evidence/repository-key.asc"
+else
+    key=$(cat "$share/repository-fingerprint.txt")
+    public_key="$share/repo/repository-key.asc"
+fi
+python3 scripts/validate/repository-key.py "$public_key" "$key" > "$evidence/repository-key-before-build.json"
 epoch=$(python3 -c 'import tomllib; print(tomllib.load(open("distro/branding/project.toml","rb"))["build"]["source_date_epoch"])')
 runuser -u builder -- env SOURCE_DATE_EPOCH="$epoch" PACKAGER='Distribution developers' \
     bash -c 'python3 scripts/bootstrap.py package --output .build/package && cd .build/package && makepkg --config /etc/makepkg.conf --cleanbuild --noconfirm'
@@ -68,9 +80,6 @@ cp .build/package/calamares/*.pkg.tar.zst .build/package/
 sha256sum .build/package/*.pkg.tar.zst > "$evidence/platform-package-sha256.txt"
 if [[ $label == A ]]; then
     [[ ! -e $share/repo ]]
-    runuser -u builder -- gpg --batch --pinentry-mode loopback --passphrase '' \
-        --quick-generate-key 'Phase 0 disposable package signing' ed25519 sign 1d
-    key=$(runuser -u builder -- gpg --batch --with-colons --list-keys | awk -F: '$1 == "fpr" {print $10; exit}')
     for package in /build/operating-system/.build/package/*.pkg.tar.zst; do
         runuser -u builder -- gpg --batch --local-user "$key" --detach-sign "$package"
     done
@@ -84,6 +93,7 @@ fi
 key=$(cat "$share/repository-fingerprint.txt")
 # Both independent images consume identical signed repository bytes.
 repo=/build/operating-system/out/repo
+python3 scripts/validate/repository-key.py "$repo/repository-key.asc" "$key" > "$evidence/repository-key-before-iso.json"
 printf '%q ' python3 scripts/bootstrap.py iso --repo "$repo" --fingerprint "$key" --output /build/iso-build "$@" > "$evidence/command.txt"
 python3 scripts/bootstrap.py iso --repo "$repo" --fingerprint "$key" --output /build/iso-build "$@"
 cp /build/iso-build/{builder-packages.txt,image-packages.txt,inputs.json} "$evidence/"

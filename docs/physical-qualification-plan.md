@@ -50,8 +50,10 @@ Product facts that matter on real hardware:
   operations. The Phase 4.1 expired-signature failure is the precedent.
 - The newer Phase 5 candidate uses key
   `27CCE96199D30A7ABA1BE86CC6722DAA8014EE89`, expiring at
-  2026-10-16 08:55:39 UTC. It selects software Vulkan only, with no gaming
-  features. It is not the proposed vendor-GPU image below.
+  2026-10-16 08:55:39 UTC. Its installed payload selects software Vulkan, with
+  no gaming features. Its live root already includes native AMD, Intel and
+  Nouveau Vulkan packages. Neither package inventory qualifies physical GPUs.
+  It is not the proposed candidate with matching vendor selections below.
 - Performance comparison now recognizes bare metal from readable CPU flags
   without a hypervisor flag and tolerates small kernel-related memory changes.
   Unknown classification still blocks comparison. This has unit coverage only;

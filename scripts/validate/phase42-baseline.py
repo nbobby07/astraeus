@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fresh candidate payload installations in disposable KVM guests, never host disks.
 
-This exercises the shipped payload and production provision.py, not Calamares UI.
+Default mode exercises the payload/provisioner; --calamares-ui waits for a real UI install.
 QMP login/unlock remains explicit. Secrets live only in a separate private directory.
 """
 import argparse
@@ -204,10 +204,149 @@ def initial_signing(root, config):
     return receipts
 
 
+def finish_install(config, firmware, method, storage_sha256=None):
+    preexisting = preexisting_application(TARGET, config)
+    receipts = initial_signing(TARGET, config)
+    # Test instrumentation only, not an installed-smoke acceptance marker.
+    write(TARGET / 'var/lib/astraeus-validation/guest.py', (SHARE / 'phase2-guest.py').read_text())
+    write(TARGET / 'etc/systemd/system/astraeus-validation.service', '''[Unit]
+Description=Disposable candidate validation command channel
+ConditionPathExists=/dev/virtio-ports/org.astraeus.validation
+After=local-fs.target
+[Service]
+ExecStart=/usr/bin/python3 /var/lib/astraeus-validation/guest.py serve
+Restart=on-failure
+RestartSec=1
+[Install]
+WantedBy=multi-user.target
+''')
+    run('arch-chroot', TARGET, 'systemctl', 'enable', 'astraeus-validation.service')
+    exported = json.loads(run('arch-chroot', TARGET, 'distroctl', 'system', 'export', '--json'))
+    require(exported.get('schema_version') == 1 and exported.get('configuration'), 'seeded configuration unreadable')
+    result = {'schema_version': 1, 'method': method, 'calamares_ui': method == 'calamares-ui',
+              'payload_sha256': sha256('/opt/distro/install-root.sfs'),
+              'provision_sha256': sha256('/usr/share/distro/installer/provision.py'),
+              'configuration': exported['configuration'], 'signing': receipts, 'disk_serial': config['serial'],
+              'preexisting_application': preexisting, 'installation_firmware': firmware,
+              'management_firmware_required': MANAGEMENT_FIRMWARE}
+    if storage_sha256 is not None:
+        result['calamares_storage_sha256'] = storage_sha256
+        result['provisioner_replayed'] = False
+    write(TARGET / 'var/log/installer/phase42-adapter.json', json.dumps(result, indent=2) + '\n')
+    os.sync()
+    print(json.dumps(result))
+
+
+def installed_disk(inventory, config):
+    """Only the just-installed, serial-pinned disposable disk can receive test keys."""
+    disks = inventory.get('blockdevices', [])
+    require(len(disks) == 1, 'expected one installed validation disk')
+    disk = disks[0]
+    require(disk.get('path') == '/dev/vda' and disk.get('type') == 'disk'
+            and disk.get('serial') == config['serial'] and disk.get('size') == DISK_BYTES
+            and disk.get('mountpoints') in ([], [None]), 'installed disk identity or mounts differ')
+    parts = disk.get('children', [])
+    require([part.get('path') for part in parts] == ['/dev/vda1', '/dev/vda2'], 'unexpected installed partitions')
+    require(all(part.get('type') == 'part' and part.get('mountpoints') in ([], [None]) for part in parts),
+            'installed partitions remain mounted')
+    esp, root = parts
+    require(esp.get('fstype') == 'vfat' and not esp.get('children'), 'unexpected ESP')
+    expected = 'crypto_LUKS' if config['encryption'] == 'LUKS2' else 'btrfs'
+    require(root.get('fstype') == expected, 'installed encryption differs')
+    children = root.get('children', [])
+    if not children:
+        return None if expected == 'crypto_LUKS' else '/dev/vda2'
+    require(expected == 'crypto_LUKS' and len(children) == 1, 'unexpected root mapping')
+    child = children[0]
+    require(child.get('type') == 'crypt' and child.get('fstype') == 'btrfs'
+            and child.get('mountpoints') in ([], [None]) and not child.get('children')
+            and re.fullmatch(r'/dev/mapper/[a-zA-Z0-9_-]+', child.get('path', '')),
+            'unexpected or mounted encrypted root')
+    return child['path']
+
+
+def guest_adopt_ui():
+    config = guest_guard(live=True)
+    firmware = installation_firmware()
+    require(subprocess.run(['pgrep', '-x', 'calamares'], capture_output=True).returncode == 1,
+            'close Calamares after observing its successful finished page')
+    inventory = json.loads(run('lsblk', '--tree', '--json', '--bytes', '--output',
+                               'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS,FSTYPE', '/dev/vda'))
+    device = installed_disk(inventory, config)
+    require(not TARGET.exists(), 'adoption target already exists; do not retry on a modified disk')
+    opened, mounted = False, False
+    try:
+        if config['encryption'] == 'LUKS2':
+            run('cryptsetup', 'isLuks', '--type', 'luks2', '/dev/vda2')
+            metadata = json.loads(run('cryptsetup', 'luksDump', '--dump-json-metadata', '/dev/vda2'))
+            slots = metadata.get('keyslots', {})
+            require(slots and all(slot.get('kdf', {}).get('type') == 'argon2id' for slot in slots.values()),
+                    'installed LUKS2 keyslots must use Argon2id')
+            if device is None:
+                device = '/dev/mapper/astraeus-validation-root'
+                require(not Path(device).exists(), 'validation mapper already exists')
+                run('cryptsetup', 'open', '--key-file', '-', '/dev/vda2', 'astraeus-validation-root',
+                    data=secret('luks-passphrase'))
+                opened = True
+        TARGET.mkdir(mode=0o700)
+        run('mount', '-o', 'subvol=@', device, TARGET)
+        mounted = True
+        for destination, subvolume in SUBVOLUMES[1:]:
+            run('mount', '-o', 'subvol=' + subvolume.lstrip('/'), device, TARGET / destination.lstrip('/'))
+        run('mount', '-o', 'umask=0077', '/dev/vda1', TARGET / 'efi')
+        for destination, subvolume in SUBVOLUMES:
+            require(run('findmnt', '-rn', '-M', TARGET / destination.lstrip('/'), '-o', 'FSTYPE,FSROOT')
+                    == 'btrfs ' + subvolume, 'installed subvolume differs')
+        storage_path = TARGET / 'var/log/installer/storage.json'
+        storage = json.loads(storage_path.read_text())
+        root = storage['root']
+        # Calamares records the containing LUKS device's UUID for encrypted roots.
+        require(root['device'] == '/dev/vda2' and root['fs'] == 'btrfs' and root['mountPoint'] == '/'
+                and root['uuid'] == run('blkid', '-s', 'UUID', '-o', 'value', '/dev/vda2'),
+                'Calamares storage receipt differs from installed root')
+        require(storage['subvolumes'] == [{'mountPoint': point, 'subvolume': sub} for point, sub in SUBVOLUMES],
+                'Calamares subvolume receipt differs')
+        if config['encryption'] == 'LUKS2':
+            require(root['luksUuid'] == storage['luks']['uuid'] == run('cryptsetup', 'luksUUID', '/dev/vda2'),
+                    'Calamares LUKS identity differs')
+        else:
+            require(storage['luks'] is None and root['luksUuid'] is None, 'unexpected encrypted storage receipt')
+        for name, expected in [('distroctl', config['distroctl_sha256']),
+                               ('astraeus-control-center', config['desktop_sha256'])]:
+            require(sha256(TARGET / 'usr/bin' / name) == expected, 'Calamares installed binary differs: ' + name)
+        require(run('arch-chroot', TARGET, 'id', '-u', config['user']) == '1000', 'Calamares user differs')
+        # Do not replay provisioning or repair the UI installation before acceptance.
+        finish_install(config, firmware, 'calamares-ui', sha256(storage_path))
+    finally:
+        if mounted:
+            run('umount', '--recursive', TARGET)
+        if opened:
+            run('cryptsetup', 'close', 'astraeus-validation-root')
+
+
+def ui_evidence(out, config):
+    value = json.loads((out / 'calamares-ui.json').read_text())
+    require(value.get('schema_version') == 1 and value.get('observed_finished') is True
+            and all(value.get(name) == config[name] for name in ['source_commit', 'image_sha256', 'encryption', 'serial']),
+            'UI observation is not bound to this fresh installation')
+    files = value.get('sha256', {})
+    require(set(files) == {'calamares-welcome.png', 'calamares-summary.png', 'calamares-finished.png', 'calamares.log'},
+            'UI observation requires native pages and installer log')
+    for name, digest in files.items():
+        path = out / name
+        require(path.is_file() and not path.is_symlink() and path.stat().st_size > 0 and sha256(path) == digest,
+                'UI evidence missing or changed: ' + name)
+        if name.endswith('.png'):
+            with path.open('rb') as stream:
+                require(stream.read(8) == b'\x89PNG\r\n\x1a\n', 'UI capture is not PNG')
+    # These hashes bind operator-observed UI evidence; they do not independently prove UI interaction.
+    return value
+
+
 def guest_install():
     config = guest_guard(live=True)
     require(run('blockdev', '--getro', '/dev/vda') == '0', 'validation disk is read-only')
-    inventory = json.loads(run('lsblk', '--json', '--bytes', '--output', 'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS', '/dev/vda'))
+    inventory = json.loads(run('lsblk', '--tree', '--json', '--bytes', '--output', 'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS', '/dev/vda'))
     blank_disk(inventory, json.loads(run('wipefs', '--no-act', '--json', '/dev/vda')), config['serial'])
     firmware = installation_firmware()
     require(not TARGET.exists(), 'installation target already exists; retries require a new blank VM')
@@ -277,33 +416,7 @@ def guest_install():
         provision = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(provision)
         provision.provision(str(TARGET), [partition], keyboard=('us', ''), username=config['user'])
-        preexisting = preexisting_application(TARGET, config)
-        receipts = initial_signing(TARGET, config)
-        # This is test instrumentation only, not an installed-smoke acceptance marker.
-        agent = TARGET / 'var/lib/astraeus-validation/guest.py'
-        write(agent, (SHARE / 'phase2-guest.py').read_text())
-        write(TARGET / 'etc/systemd/system/astraeus-validation.service', '''[Unit]
-Description=Disposable candidate validation command channel
-ConditionPathExists=/dev/virtio-ports/org.astraeus.validation
-After=local-fs.target
-[Service]
-ExecStart=/usr/bin/python3 /var/lib/astraeus-validation/guest.py serve
-Restart=on-failure
-RestartSec=1
-[Install]
-WantedBy=multi-user.target
-''')
-        run('arch-chroot', TARGET, 'systemctl', 'enable', 'astraeus-validation.service')
-        exported = json.loads(run('arch-chroot', TARGET, 'distroctl', 'system', 'export', '--json'))
-        require(exported.get('schema_version') == 1 and exported.get('configuration'), 'seeded configuration unreadable')
-        result = {'schema_version': 1, 'method': 'candidate-payload-and-production-provision', 'calamares_ui': False,
-                  'payload_sha256': sha256(payload), 'provision_sha256': sha256(installer / 'provision.py'),
-                  'configuration': exported['configuration'], 'signing': receipts, 'disk_serial': config['serial'],
-                  'preexisting_application': preexisting,
-                  'installation_firmware': firmware, 'management_firmware_required': MANAGEMENT_FIRMWARE}
-        write(TARGET / 'var/log/installer/phase42-adapter.json', json.dumps(result, indent=2) + '\n')
-        os.sync()
-        print(json.dumps(result))
+        finish_install(config, firmware, 'candidate-payload-and-production-provision')
     finally:
         if mounted:
             run('umount', '--recursive', TARGET)
@@ -458,15 +571,31 @@ def host_run(args):
                               label='installation-firmware-before-writes')
         result['installation_firmware'] = json.loads(observed['output'])
         p2.save(out / 'result.json', result)
-        reply = vm.command('python3 /mnt/astraeus-validation/phase42-baseline.py guest-install',
-                           timeout=3600, label='fresh-payload-install')
+        method = 'candidate-payload-and-production-provision'
+        action = 'guest-install'
+        if getattr(args, 'calamares_ui', False):
+            vm.command('python3 /mnt/astraeus-validation/phase42-baseline.py guest-ui-ready', label='blank-ui-disk')
+            p2.save(out / 'attention.json', dict(stage='calamares-ui', qmp=str(vm.monitor),
+                    credentials=str(private), user=args.user, encryption=args.encryption,
+                    instruction='Complete Calamares through its native UI, capture welcome/summary/finished and log, '
+                                'close without rebooting, then write calamares-ui.json with observation and SHA256s.'))
+            deadline = time.monotonic() + args.timeout
+            while not (out / 'calamares-ui.json').exists():
+                vm.alive()
+                require(time.monotonic() < deadline, 'Calamares UI observation timed out')
+                time.sleep(1)
+            result['calamares_observation'] = ui_evidence(out, config)
+            method, action = 'calamares-ui', 'guest-adopt-ui'
+        reply = vm.command('python3 /mnt/astraeus-validation/phase42-baseline.py ' + action,
+                           timeout=3600, label='fresh-installation')
         installed = json.loads(reply['output'].splitlines()[-1])
-        require(installed.get('method') == 'candidate-payload-and-production-provision'
+        require(installed.get('method') == method and installed.get('calamares_ui') == (method == 'calamares-ui')
                 and installed.get('disk_serial') == config['serial'], 'fresh installation receipt differs')
         require(installed.get('installation_firmware') == result['installation_firmware']
                 and installed.get('management_firmware_required') == MANAGEMENT_FIRMWARE,
                 'installation firmware observations differ')
         p2.save(out / 'fresh-installation.json', installed)
+        result['calamares_ui'] = installed['calamares_ui']
         vm.shutdown()
         # Remove guest-accessible copies. Originals remain outside the evidence tree.
         for name in ['db.key', 'login-password', 'luks-passphrase']:
@@ -495,7 +624,7 @@ def host_run(args):
                 vm.command('distroctl boot enable', timeout=300, label='enable-managed-generations')
             vm.shutdown()
         manifest = dict(schema_version=1, kind='phase42-fresh-candidate-payload', accepted=True,
-                        method=installed['method'], calamares_ui=False, encryption=args.encryption,
+                        method=installed['method'], calamares_ui=installed['calamares_ui'], encryption=args.encryption,
                         source_commit=args.source_commit, inputs=inputs, signer_sha256=pins['db'],
                         public_fingerprints=pins, boot_ids=boots, created=p2.now(),
                         preexisting_application=installed.get('preexisting_application'),
@@ -524,6 +653,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='action', required=True)
     commands.add_parser('guest-install')
+    commands.add_parser('guest-ui-ready')
+    commands.add_parser('guest-adopt-ui')
     commands.add_parser('guest-firmware')
     commands.add_parser('guest-desktop').add_argument('--initial', action='store_true')
     host = commands.add_parser('run')
@@ -534,12 +665,20 @@ def main():
     for name in ['source-commit', 'image-sha256', 'distroctl-sha256', 'desktop-sha256']:
         host.add_argument('--' + name, required=True)
     host.add_argument('--encryption', choices=['none', 'LUKS2'], required=True)
+    host.add_argument('--calamares-ui', action='store_true', help='wait for observed native UI installation before test signing')
     host.add_argument('--preexisting-package', choices=['tree'], help='disposable GUI fixture installed before initial signing, outside management ownership')
     host.add_argument('--user', default='tester')
     host.add_argument('--timeout', type=int, default=1800)
     args = parser.parse_args()
     if args.action == 'guest-install':
         guest_install()
+    elif args.action == 'guest-ui-ready':
+        config = guest_guard(live=True)
+        inventory = json.loads(run('lsblk', '--tree', '--json', '--bytes', '--output', 'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS', '/dev/vda'))
+        blank_disk(inventory, json.loads(run('wipefs', '--no-act', '--json', '/dev/vda')), config['serial'])
+        print(json.dumps(installation_firmware()))
+    elif args.action == 'guest-adopt-ui':
+        guest_adopt_ui()
     elif args.action == 'guest-firmware':
         guest_guard(live=True)
         print(json.dumps(installation_firmware()))

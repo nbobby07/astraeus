@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "observed_finished": true,
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "image_sha256": "8c8a9f5a2627ab7ce4cdd8910e804d1b5d2b0fd17a824895c3add9f833ef94a9",
+  "encryption": "none",
+  "serial": "AS42a1fba955bb9f8ba6",
+  "sha256": {
+    "calamares-welcome.png": "6f993a376afc036ea8510e78189778f1ebedbd775947791f60d7384d95a9b51a",
+    "calamares-summary.png": "eae57401e86c278568e8d99d0693e9a901fd4277ae6eec24e9ee61402d1f1056",
+    "calamares-finished.png": "be40ab431984645ad4a1d306b4e4941462c4ab8923d6dbb1388a108865a5d7e4",
+    "calamares.log": "d8332eb231fe90b165316d60915e5bdcc778f276165ba02c33b5e3ada07ae0e9"
+  },
+  "scope": "Operator observed actual native pages; adapter must independently verify the installed result without replaying provision"
+}

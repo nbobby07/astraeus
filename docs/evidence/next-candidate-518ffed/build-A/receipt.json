@@ -1,0 +1,10 @@
+{
+  "path": "/home/ubuntu/next-r4/candidate-518ffede3776-r1/evidence-A.tar.gz",
+  "sha256": "7b7acf37539625190b4d4fcea6f93d046281a55f607f5411c1c7aa2a4c86843b",
+  "bytes": 53629974,
+  "iso": {
+    "path": "/home/ubuntu/next-r4/candidate-518ffede3776-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+    "sha256": "8c8a9f5a2627ab7ce4cdd8910e804d1b5d2b0fd17a824895c3add9f833ef94a9",
+    "bytes": 3925192704
+  }
+}

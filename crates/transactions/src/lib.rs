@@ -17,5 +17,9 @@ pub use model::*;
 
 pub type Result<T> = std::result::Result<T, String>;
 
+pub fn hex(bytes: &[u8]) -> String {
+    bytes.iter().map(|b| format!("{b:02x}")).collect()
+}
+
 #[cfg(test)]
 mod tests;

@@ -253,8 +253,14 @@ sudo python3 scripts/validate/host-builder.py A \
 
 The guest mounts the private 9p share, switches its **whole** package set to the
 project's archive, installs the builder dependencies and runs the existing package
-and ISO commands. A creates a disposable one-day signing key inside the guest and
-exports only its public key/repository. B independently prepares/builds the platform
+and ISO commands. A creates a disposable seven-day signing key inside the guest and
+exports only its public key/repository. Before compilation and again before ISO
+assembly, `scripts/validate/repository-key.py` requires the selected public primary
+to be an enabled signer with more than 72 hours of validity remaining. This check
+uses an isolated temporary GnuPG directory and does not import into the operator's
+keyring. It deliberately supports the validator's single-primary identity, not a
+production subkey hierarchy. Normal package and database signature verification
+remains required. B independently prepares/builds the platform
 package but uses A's identical signed repository bytes for ISO assembly. This keeps
 signature timestamps from becoming an accidental difference in the ISO inputs.
 
@@ -264,8 +270,11 @@ This handles archive stalls that caused pacman's default low-speed timeout to
 abort two real runs. TLS verification and package/database signature requirements
 remain enabled. The live image retains pacman's normal downloader configuration.
 
-Wait for `evidence/A/exit-code` and guest shutdown before launching B with a new
-output directory and label `B`. No public ports, SSH credentials or outer-host
+On one host, wait for `evidence/A/exit-code` and guest shutdown before launching B
+with a new output directory and label `B`. On two hosts, B can start as soon as
+A has published its signed repository and fingerprint. Verify their exact bytes
+after transfer to B; B must still compile its own packages from a fresh overlay.
+No public ports, SSH credentials or outer-host
 package-manager replacement are involved. Failed attempts require a new overlay;
 preserve their evidence under a separate attempt directory before retrying. Never
 delete or overwrite the base image or an unrelated VM.

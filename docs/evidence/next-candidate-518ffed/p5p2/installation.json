@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "image_sha256": "8c8a9f5a2627ab7ce4cdd8910e804d1b5d2b0fd17a824895c3add9f833ef94a9",
+  "distroctl_sha256": "329003201bba21dd44db3f28eb730a319f79346bbd7b7e0f090059356eb587c6",
+  "desktop_sha256": "3382576d5a609f4ae7df0a36dc646b835ab6b529936dd29f0c45cbc645f8b757",
+  "serial": "AS42a1fba955bb9f8ba6",
+  "encryption": "none",
+  "user": "tester",
+  "certificate_sha256": "9577f676b2e5a40559293f6bc4aebadf51b4dfd54e2e209110f73c611d166490",
+  "preexisting_package": "tree"
+}

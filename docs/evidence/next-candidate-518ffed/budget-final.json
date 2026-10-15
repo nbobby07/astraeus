@@ -1,0 +1,364 @@
+{
+    "schema_version":  1,
+    "started_utc":  "2026-10-15T15:12:10Z",
+    "deadline_utc":  "2026-10-16T03:12:10Z",
+    "owner":  "next/integration coordinator",
+    "cap_usd":  25,
+    "completion_reserve_usd":  5,
+    "work_allocation_usd":  20,
+    "rate_source":  "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+    "rates_verified_utc":  "2026-10-15T20:12:41.648Z",
+    "rates":  {
+                  "vcpu_hour":  0.04032,
+                  "gib_memory_hour":  0.0129,
+                  "gib_storage_hour":  0.000086,
+                  "transfer_gb_excluded":  0.02
+              },
+    "resource_intervals":  [
+                               {
+                                   "slug":  "astraeus-next-20261015-a",
+                                   "role":  "native-preflight-and-future-builder-A",
+                                   "state":  "resized",
+                                   "started_utc":  "2026-10-15T15:18:27.759Z",
+                                   "rate_per_hour":  0.373184,
+                                   "resources":  {
+                                                     "vcpu":  4,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  4.439048662595556,
+                                   "vm_id":  "vm-6326e08aca2e4fb6b2c0943675ca35e1",
+                                   "ended_utc":  "2026-10-15T16:54:59.446Z",
+                                   "seconds_upper_bound":  5792,
+                                   "compute_active_storage_upper_bound_usd":  0.6004115911111111111111111111
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-b",
+                                   "role":  "independent-builder-B-and-validation",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T15:51:40.240Z",
+                                   "rate_per_hour":  0.373184,
+                                   "resources":  {
+                                                     "vcpu":  4,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  4.2325036544,
+                                   "vm_id":  "vm-46a327b9fa744b11a7c5c91a22e615d0",
+                                   "resize_note":  "128 GiB request rejected by existing plan limit; used 64 GiB, no plan change",
+                                   "ended_utc":  "2026-10-15T16:07:31.741Z",
+                                   "reason":  "Independent host prepared; pause until native preflight clears",
+                                   "seconds_upper_bound":  952,
+                                   "compute_active_storage_upper_bound_usd":  0.0986864355555555555555555556
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-b",
+                                   "vm_id":  "vm-46a327b9fa744b11a7c5c91a22e615d0",
+                                   "role":  "independent-final-builder-B",
+                                   "state":  "resized",
+                                   "started_utc":  "2026-10-15T16:35:22.851Z",
+                                   "rate_per_hour":  0.373184,
+                                   "resources":  {
+                                                     "vcpu":  4,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  3.960637970115556,
+                                   "ended_utc":  "2026-10-15T16:55:00.574Z",
+                                   "seconds_upper_bound":  1178,
+                                   "compute_active_storage_upper_bound_usd":  0.1221140977777777777777777778
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-a",
+                                   "vm_id":  "vm-6326e08aca2e4fb6b2c0943675ca35e1",
+                                   "role":  "final-builder-eight-cpu",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T16:54:59.446Z",
+                                   "rate_per_hour":  0.5344639999999999,
+                                   "resources":  {
+                                                     "vcpu":  8,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  5.49763833696,
+                                   "ended_utc":  "2026-10-15T17:15:59.648Z",
+                                   "reason":  "Superseded first candidate retained after B test failure; replacement builds use two other hosts.",
+                                   "seconds_upper_bound":  1261,
+                                   "compute_active_storage_upper_bound_usd":  0.1872108622222221871944444444
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-b",
+                                   "vm_id":  "vm-46a327b9fa744b11a7c5c91a22e615d0",
+                                   "role":  "final-builder-eight-cpu",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T16:55:00.574Z",
+                                   "rate_per_hour":  0.5344639999999999,
+                                   "resources":  {
+                                                     "vcpu":  8,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  5.497470871573333,
+                                   "ended_utc":  "2026-10-15T19:08:05.396Z",
+                                   "reason":  "Independent build and public evidence export finished; all disks retained",
+                                   "seconds_upper_bound":  7985,
+                                   "compute_active_storage_upper_bound_usd":  1.1854708444444442226388888889
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-c",
+                                   "role":  "replacement-independent-builder-B",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T17:12:55.715Z",
+                                   "rate_per_hour":  0.5344639999999999,
+                                   "resources":  {
+                                                     "vcpu":  8,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  5.337853049511111,
+                                   "vm_id":  "vm-0405633a7e114f4f907404615f5eee91",
+                                   "ended_utc":  "2026-10-15T17:22:53.572Z",
+                                   "reason":  "Replacement B prepared; pause until replacement A publishes its verified signed repository",
+                                   "seconds_upper_bound":  598,
+                                   "compute_active_storage_upper_bound_usd":  0.0887804088888888722777777778
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-c",
+                                   "vm_id":  "vm-0405633a7e114f4f907404615f5eee91",
+                                   "role":  "replacement-independent-builder-B",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T17:54:20.986Z",
+                                   "rate_per_hour":  0.534464,
+                                   "resources":  {
+                                                     "vcpu":  8,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  4.968884194026667,
+                                   "resume_note":  "Initial start returned infrastructure-overloaded 429; interval conservatively includes retry delay",
+                                   "ended_utc":  "2026-10-15T19:10:38.228Z",
+                                   "reason":  "Independent build and public evidence export finished; all disks retained",
+                                   "seconds_upper_bound":  4578,
+                                   "compute_active_storage_upper_bound_usd":  0.6796600533333333333333333333
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-d",
+                                   "role":  "fresh-plain-UI-validator",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T18:21:08.008Z",
+                                   "rate_per_hour":  0.373184,
+                                   "resources":  {
+                                                     "vcpu":  4,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  3.302884895146667,
+                                   "vm_id":  "vm-ce52bb5dae3b45dcac7a1f782a8e7b8b",
+                                   "ended_utc":  "2026-10-15T18:27:16.258Z",
+                                   "reason":  "Fresh installation host prepared; await accepted independent images",
+                                   "seconds_upper_bound":  369,
+                                   "compute_active_storage_upper_bound_usd":  0.03825136
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-e",
+                                   "role":  "fresh-LUKS2-UI-validator",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T18:21:19.882Z",
+                                   "rate_per_hour":  0.373184,
+                                   "resources":  {
+                                                     "vcpu":  4,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  3.3016540099200005,
+                                   "vm_id":  "vm-0240acb6bb7540cfa61bfd05eb317c83",
+                                   "ended_utc":  "2026-10-15T18:27:39.594Z",
+                                   "reason":  "Fresh installation host prepared; await accepted independent images",
+                                   "seconds_upper_bound":  380,
+                                   "compute_active_storage_upper_bound_usd":  0.0393916444444444444444444444
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-d",
+                                   "vm_id":  "vm-ce52bb5dae3b45dcac7a1f782a8e7b8b",
+                                   "role":  "fresh-plain-UI-validator",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T19:14:16.095Z",
+                                   "rate_per_hour":  0.373184,
+                                   "resources":  {
+                                                     "vcpu":  4,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  2.9724007120888887,
+                                   "ended_utc":  "2026-10-15T20:03:17.213Z",
+                                   "reason":  "Plain actual-UI adapter diagnostic and two enforcing cold boots passed; wait for corrected final source builds",
+                                   "seconds_upper_bound":  2942,
+                                   "compute_active_storage_upper_bound_usd":  0.3049742577777777777777777778
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-e",
+                                   "vm_id":  "vm-0240acb6bb7540cfa61bfd05eb317c83",
+                                   "role":  "fresh-LUKS2-UI-validator",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T19:14:34.899Z",
+                                   "rate_per_hour":  0.373184,
+                                   "resources":  {
+                                                     "vcpu":  4,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  2.9704514476622226,
+                                   "ended_utc":  "2026-10-15T20:22:48.240Z",
+                                   "reason":  "Corrected LUKS2 UI adapter preflight passed on a preserved child; wait for corrected final source builds",
+                                   "seconds_upper_bound":  4094,
+                                   "compute_active_storage_upper_bound_usd":  0.4243931377777777777777777778
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-b",
+                                   "vm_id":  "vm-46a327b9fa744b11a7c5c91a22e615d0",
+                                   "role":  "bounded-ISO-transfer-source",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T19:25:17.117Z",
+                                   "rate_per_hour":  0.534464,
+                                   "resources":  {
+                                                     "vcpu":  8,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  4.158854861031111,
+                                   "ended_utc":  "2026-10-15T19:34:01.999Z",
+                                   "reason":  "Both validators verified exact ISO; bounded listener stopped and task-specific firewall rules removed",
+                                   "seconds_upper_bound":  525,
+                                   "compute_active_storage_upper_bound_usd":  0.0779426666666666666666666667
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-f",
+                                   "role":  "corrected-final-independent-builder-A",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T20:12:24.642Z",
+                                   "rate_per_hour":  0.534464,
+                                   "resources":  {
+                                                     "vcpu":  8,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  3.739074216142223,
+                                   "vm_id":  "vm-a30caad091aa4b339d8171aaa10f4b03",
+                                   "ended_utc":  "2026-10-15T21:42:40.671Z",
+                                   "reason":  "Provider idle pause observed after final A work and exports; interval conservatively closes at observation",
+                                   "seconds_upper_bound":  5417,
+                                   "compute_active_storage_upper_bound_usd":  0.8042198577777777777777777778
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-g",
+                                   "role":  "corrected-final-independent-builder-B",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T20:12:41.648Z",
+                                   "rate_per_hour":  0.534464,
+                                   "resources":  {
+                                                     "vcpu":  8,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  3.7365494675911117,
+                                   "vm_id":  "vm-350bd14005144e769d3e06c693e43048",
+                                   "ended_utc":  "2026-10-15T20:22:04.623Z",
+                                   "reason":  "Replacement B prepared; pause until replacement A publishes its verified signed repository",
+                                   "seconds_upper_bound":  563,
+                                   "compute_active_storage_upper_bound_usd":  0.0835842311111111111111111111
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-g",
+                                   "vm_id":  "vm-350bd14005144e769d3e06c693e43048",
+                                   "role":  "replacement-independent-builder-B",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T20:39:24.975Z",
+                                   "rate_per_hour":  0.534464,
+                                   "resources":  {
+                                                     "vcpu":  8,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  3.4985159782222226,
+                                   "ended_utc":  "2026-10-15T21:44:58.121Z",
+                                   "reason":  "Independent build and public evidence export finished; all disks retained",
+                                   "seconds_upper_bound":  3934,
+                                   "compute_active_storage_upper_bound_usd":  0.5840503822222222222222222222
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-d",
+                                   "vm_id":  "vm-ce52bb5dae3b45dcac7a1f782a8e7b8b",
+                                   "role":  "final-518-UI-validator-D",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T21:49:02.357Z",
+                                   "rate_per_hour":  0.373184,
+                                   "resources":  {
+                                                     "vcpu":  4,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  2.009766157031111,
+                                   "ended_utc":  "2026-10-15T23:44:02.877Z",
+                                   "reason":  "Final runtime gates finished; public evidence exported and locally hash-verified; all original and failure disks retained",
+                                   "seconds_upper_bound":  6901,
+                                   "compute_active_storage_upper_bound_usd":  0.7153729955555555555555555556
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-e",
+                                   "vm_id":  "vm-0240acb6bb7540cfa61bfd05eb317c83",
+                                   "role":  "final-518-UI-validator-E",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T21:49:16.798Z",
+                                   "rate_per_hour":  0.373184,
+                                   "resources":  {
+                                                     "vcpu":  4,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  2.0082691708800002,
+                                   "ended_utc":  "2026-10-15T23:39:23.261Z",
+                                   "reason":  "Final runtime gates finished; public evidence exported and locally hash-verified; all original and failure disks retained",
+                                   "seconds_upper_bound":  6607,
+                                   "compute_active_storage_upper_bound_usd":  0.6848963022222222222222222222
+                               },
+                               {
+                                   "slug":  "astraeus-next-20261015-f",
+                                   "vm_id":  "vm-a30caad091aa4b339d8171aaa10f4b03",
+                                   "role":  "final-518-direct-transfer-source",
+                                   "state":  "paused",
+                                   "started_utc":  "2026-10-15T21:50:52.072Z",
+                                   "rate_per_hour":  0.534464,
+                                   "resources":  {
+                                                     "vcpu":  8,
+                                                     "memory_gib":  16,
+                                                     "storage_gib":  64
+                                                 },
+                                   "reservation_to_deadline_usd":  2.8620440307200004,
+                                   "ended_utc":  "2026-10-15T21:55:29.171Z",
+                                   "reason":  "Both validators verified exact ISO; bounded listener stopped and task-specific firewall rules removed",
+                                   "seconds_upper_bound":  278,
+                                   "compute_active_storage_upper_bound_usd":  0.0412724977777777777777777778
+                               }
+                           ],
+    "new_compute_active_storage_upper_bound_usd":  6.7606836266666663932222222223,
+    "exclusions":  [
+                       "network",
+                       "model/API charges",
+                       "all paused storage",
+                       "pre-existing resources"
+                   ],
+    "status":  "complete_all_new_resources_paused",
+    "preexisting_resources":  "All eight prior VMs confirmed paused in resource-inventory-start.json; no prior VM resumed",
+    "allocation_example":  {
+                               "vcpu":  4,
+                               "memory_gib":  16,
+                               "storage_gib":  64,
+                               "usd_per_active_hour":  0.373184,
+                               "two_instances_12h_upper_bound_usd":  8.956416
+                           },
+    "checkpoint_utc":  "2026-10-15T23:44:40.2168377+00:00",
+    "cloud_finished_utc":  "2026-10-15T23:44:39.905Z",
+    "new_paused_storage_excluded_usd":  0.14093153276969603,
+    "model_charges":  "Not metered by the cloud VM API; not included",
+    "network_charges":  "Not yet reconciled; $0.02/GB for datacenter-boundary transfer before allowances"
+}

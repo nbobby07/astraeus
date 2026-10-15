@@ -1,5 +1,114 @@
 # Graphics foundation
 
+## Next physical live-USB test
+
+Target: Ryzen 7 7800X3D, NVIDIA RTX 5070 `10de:2f04`, AMD integrated
+GPU `1002:164e`. This is a live-only investigation, not physical qualification.
+Secure Boot remains on; BitLocker is off. Do not install, update drivers, change
+firmware settings or write internal disks as part of this test.
+
+### Keep the two roots separate
+
+At base `fbb5562c1fc418d26be7d7cc6de63ab9976cb488`, the recorded
+`docs/evidence/phase5-build-c38209c/build-A/image-packages.txt` already contains
+native `mesa`, `vulkan-radeon`, `vulkan-intel`, `vulkan-nouveau` and vendor
+firmware. Its `installed-packages.txt` instead contains native/32-bit software
+Vulkan, matching `graphics_bundles: ["software"]` in `inputs.json`.
+The live image was not a software-only graphics image.
+
+The live manifest now also requests `lib32-mesa`, both Vulkan loaders, the
+32-bit Radeon/Intel/Nouveau ICDs, `vulkan-tools`, `mesa-utils` and
+`lib32-mesa-utils`. This closes the live multilib and diagnostic gaps while
+retaining its existing vendor coverage. Both ELF probe helpers already ship
+in `distroctl`; the helper executables alone do not supply loaders or ICDs.
+All added packages are already locked; no version or archive-date change is needed.
+
+| Root | Recommendation |
+| --- | --- |
+| Live desktop | Use `distro/archiso/packages.x86_64`: native/32-bit Mesa, RADV, ANV, NVK, loaders and diagnostic tools; retain `linux-firmware` and its vendor dependencies |
+| Separate installed payload | If the coordinator builds it for this machine, explicitly select `--graphics amd nouveau`; this adds both architectures of RADV/NVK and both vendor firmware packages to the existing base |
+| Installed payload with software selection | Keep only for software comparison/virtual testing; `--graphics software` supplies neither RADV nor NVK and does not change the live manifest |
+
+No new build flag or automatic hardware selection is needed. `--graphics`
+still controls only the installed payload. Do not select `nvidia-open`,
+`nvidia-utils`, `lib32-nvidia-utils` or `nvidia-prime` for this investigation.
+NVIDIA activation and update refusals remain in force.
+
+### Pinned Nouveau/NVK/Zink requirements
+
+The `2026/10/01` Arch snapshot pins Linux `7.2.7.arch1-1`, Mesa and its
+native/32-bit ICDs `1:26.2.3-2`, firmware `20260916-1`, and Vulkan loaders/tools
+`1.4.357.0-1`. The diagnostic utility pins are `mesa-utils 9.0.0-7` and
+`lib32-mesa-utils 9.0.0-4`. Repository database hashes and all 118 direct
+versions were reverified; the graphics checker matched all 31 graphics inputs,
+including dependencies, filenames and archive hashes. This is metadata
+verification, not package signature, installed-content or hardware verification.
+
+The [exact Mesa 26.2.3 NVK documentation](https://gitlab.freedesktop.org/mesa/mesa/-/blob/mesa-26.2.3/docs/drivers/nvk.rst)
+includes consumer Blackwell and describes NVK+Zink as the default OpenGL path
+on Turing and newer. Its Linux 6.6 minimum is an NVK interface baseline, not
+a guarantee of Blackwell kernel support. There is no separate Zink package
+in this policy; check the native/32-bit Mesa package contents in the builder.
+
+The [Linux 7.2.7 GB20x implementation](https://github.com/gregkh/linux/blob/v7.2.7/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/gb202.c)
+requests GSP release `570.144` for GB205. Its
+[firmware declarations](https://github.com/gregkh/linux/blob/v7.2.7/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h)
+require `nvidia/gb205/gsp/{fmc,bootloader,gsp}-570.144.bin`.
+The [20260916 firmware inventory](https://gitlab.com/kernel-firmware/linux-firmware/-/blob/20260916/WHENCE)
+contains the bootloader/FMC files under `gb202`, links `gb205` to `gb202`,
+and links its GSP image to the `ga102` image. Preserve these link targets and
+compressed-firmware support in the packaged root/initramfs. Nouveau's firmware
+release is independent of the refused NVIDIA 615.71.09 driver stack.
+
+These upstream sources justify trying the pinned stack without an upgrade.
+The coordinator must still verify the signed Arch packages, actual Nouveau
+module configuration, firmware paths and initramfs contents in a disposable
+builder. Do not use `NVK_I_WANT_A_BROKEN_VULKAN_DRIVER`, force-probe options,
+global driver overrides or a replacement kernel to manufacture a pass.
+
+### Owner checks and AMD fallback
+
+Run diagnostics as the live desktop user, never through `sudo`. First preserve
+an unscoped report, kernel bindings and boot logs. Then use Mesa's
+[per-process selection](https://gitlab.freedesktop.org/mesa/mesa/-/blob/mesa-26.2.3/docs/envvars.rst)
+to test each GPU separately:
+
+```sh
+distroctl graphics --probe --json
+env DRI_PRIME='10de:2f04!' distroctl graphics --probe --json
+env DRI_PRIME='1002:164e!' distroctl graphics --probe --json
+env DRI_PRIME='1002:164e' glxinfo -B
+env DRI_PRIME='1002:164e' glxinfo32 -B
+env DRI_PRIME='10de:2f04' glxinfo -B
+env DRI_PRIME='10de:2f04' glxinfo32 -B
+```
+
+The `!` suffix limits Vulkan enumeration to the selected device. Confirm the
+reported IDs, driver, non-CPU device type and readback separately in ELF64 and
+ELF32; an environment request is not evidence that selection succeeded. Use the
+observed PCI bus address instead if IDs are not unique. `glxinfo` checks XWayland
+OpenGL in a Wayland session, not KWin's own rendering device. Record `eglinfo`
+and native Wayland presentation separately; confirm diagnostic executable names
+against the built package before the owner test.
+
+The explicit fallback is AMD `1002:164e` with observed `amdgpu`, RadeonSI and
+RADV in both architectures. The scoped commands above test it without changing
+the desktop's global environment. They cannot move an existing compositor or
+reroute a display connected to the RTX 5070. If Nouveau prevents a usable live
+desktop, stop and retain logs; an AMD-connected display or separately reviewed
+boot configuration requires owner/coordinator planning. No host display changes
+are made by this preparation.
+
+Remaining physical checks: Secure Boot accepts the approved live boot artifacts;
+Nouveau/amdgpu bind normally; the requested GSP/AMD firmware actually loads;
+both architectures enumerate and render on each intended GPU; Zink/RadeonSI
+OpenGL, Wayland presentation, shader workloads and display stability work.
+Suspend/resume and external displays remain separate checks. A clear/readback
+pass alone does not qualify performance, games, compositor acceleration or
+update/rollback safety. Secure Boot being enabled does not prove this medium's
+signer is trusted. An untrusted boot chain is a coordinator blocker, not a
+reason to disable Secure Boot or change signing infrastructure here.
+
 ## Phase 4 integration
 
 The integrated ISO at `cac8998ad7730e69ae354c3162ef4a0677cfc162` executed
@@ -145,7 +254,7 @@ No AMDGPU-PRO package is required. The pinned GCC includes its 32-bit compiler
 runtime objects; there is no `gcc-multilib` package in this snapshot.
 
 `distro/graphics/packages.lock.json` records the exact version, repository,
-filename, archive hash, dependencies, provides and conflicts of all 28 graphics,
+filename, archive hash, dependencies, provides and conflicts of all 31 graphics,
 diagnostic and build inputs. The archive lock includes these inputs too. Transitive
 dependencies remain pacman's responsibility, not a hand-maintained replacement
 solver. To verify the metadata and optionally resolve every bundle:

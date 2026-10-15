@@ -1,0 +1,40 @@
+{
+  "files": [
+    {
+      "file": "result.json",
+      "remote_path": "/home/ubuntu/next-r4/candidate-518ffede3776-r1/audit-A/result.json",
+      "bytes": 34790,
+      "sha256": "017d85d21c283efc22bdace1c7e7953a5e65c136f910daf6e54c9a2274eeb2f8"
+    },
+    {
+      "file": "public-test-material.json",
+      "remote_path": "/home/ubuntu/next-r4/audit/public-test-material-next.json",
+      "bytes": 17453,
+      "sha256": "752cea37a86fa58ed3c1be369e70334e9a78a23d3d9e15facbaf0693584874a7"
+    },
+    {
+      "file": "expected.json",
+      "remote_path": "/home/ubuntu/next-r4/audit/expected-next.json",
+      "bytes": 1066,
+      "sha256": "1f3e49a29aade9fc5efaebe6aa2406eca25ee05e36b5799949601ed9ee06da84"
+    },
+    {
+      "file": "decoder-preflight.json",
+      "remote_path": "/home/ubuntu/next-r4/audit/decoder-preflight-final.json",
+      "bytes": 618,
+      "sha256": "3af4b6eeb11c3c12df425c6d5a39d600049905291e6ef02546506f273f475593"
+    },
+    {
+      "file": "launch.json",
+      "remote_path": "/home/ubuntu/next-r4/audit/audit-next-launch.json",
+      "bytes": 1402,
+      "sha256": "d895184e96cd1463bf8d68f49359ca1977c7f0dacbdaefacae724d643285592b"
+    },
+    {
+      "file": "audit.log",
+      "remote_path": "/home/ubuntu/next-r4/audit/audit-next.log",
+      "bytes": 97,
+      "sha256": "9f9cff2c70b7f488671cc2fc7b363aab48420c78134532b2d4d8274be6367439"
+    }
+  ]
+}

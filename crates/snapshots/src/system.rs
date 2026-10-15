@@ -5,7 +5,7 @@ use std::{
     io::Write,
     process::Command,
     sync::Arc,
-    time::{SystemTime, UNIX_EPOCH},
+    time::{Duration, SystemTime, UNIX_EPOCH},
 };
 
 /// Argument-array execution boundary. Tests use captured output and injected failures.
@@ -842,6 +842,32 @@ impl<C: Commands> Manager<C> {
         self.create_inner(guard, reason, Some(transaction_id), Some(package_lock))
     }
 
+    // The store lock serializes allocation, but wall-clock timestamps can repeat.
+    fn next_store_id(&self, now: Duration, history_prefix: &str) -> Result<SnapshotId> {
+        let base = format!(
+            "{}-{}-{}",
+            now.as_secs(),
+            now.subsec_nanos(),
+            std::process::id()
+        );
+        for sequence in 0..=u64::MAX {
+            let id = SnapshotId::parse(&if sequence == 0 {
+                base.clone()
+            } else {
+                format!("{base}-{sequence}")
+            })?;
+            let entry = self.entry(&id)?;
+            let history = self
+                .store
+                .join(format!("operation-{history_prefix}{}.json", id.as_str()));
+            no_links(&history)?;
+            if !entry.try_exists()? && !history.try_exists()? {
+                return Ok(id);
+            }
+        }
+        Err("snapshot ID space exhausted".into())
+    }
+
     fn create_inner(
         &self,
         guard: &MutationGuard,
@@ -882,14 +908,8 @@ impl<C: Commands> Manager<C> {
         self.verify_uki(&self.root, &self.working_uki()?)?;
         self.verify_loader()?;
         let now = SystemTime::now().duration_since(UNIX_EPOCH)?;
-        let id = SnapshotId::parse(&format!(
-            "{}-{}-{}",
-            now.as_secs(),
-            now.subsec_nanos(),
-            std::process::id()
-        ))?;
+        let id = self.next_store_id(now, "")?;
         let entry = self.entry(&id)?;
-        require(!entry.try_exists()?, "snapshot ID collision")?;
         self.begin(&serde_json::json!({"schema_version":1,"operation":"create","id":id,"filesystem_uuid":plan.filesystem_uuid}))?;
         fs::create_dir(&entry)?;
         set_mode(&entry, 0o755)?;
@@ -1164,10 +1184,10 @@ impl<C: Commands> Manager<C> {
         let _lock = self.lock()?;
         let plan = self.plan_rollback(id)?;
         let top = self.top.as_ref().ok_or("recovery mount missing")?;
-        let stamp = SystemTime::now()
-            .duration_since(UNIX_EPOCH)?
-            .as_nanos()
-            .to_string();
+        let stamp = self
+            .next_store_id(SystemTime::now().duration_since(UNIX_EPOCH)?, "")?
+            .as_str()
+            .to_owned();
         let candidate = top.join(format!("@restore-{stamp}"));
         let previous = top.join(format!("@previous-{stamp}"));
         let old_uki = self.store.join(format!("operation-{stamp}-previous.efi"));
@@ -1271,10 +1291,10 @@ impl<C: Commands> Manager<C> {
                 )?;
             }
         }
-        let stamp = SystemTime::now()
-            .duration_since(UNIX_EPOCH)?
-            .as_nanos()
-            .to_string();
+        let stamp = self
+            .next_store_id(SystemTime::now().duration_since(UNIX_EPOCH)?, "")?
+            .as_str()
+            .to_owned();
         self.begin(&serde_json::json!({"schema_version":1,"operation":"delete","id":id,"root":snapshot.root}))?;
         self.commands.run(
             "btrfs",

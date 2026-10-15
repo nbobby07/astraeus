@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "iso_sha256": "8c8a9f5a2627ab7ce4cdd8910e804d1b5d2b0fd17a824895c3add9f833ef94a9",
+  "physical_gpu_qualified": false,
+  "configuration_probe_loaded_configs_module": false,
+  "initramfs_sha256": "47817a2bb64059eb6a78b593826c43ee7cf24f8a16d4d129339a279e9fc3c61f",
+  "kernel_sha256": "8ebc2c71271e000540f0a7545afd8e73504fcb724671f3d38c720b241842b901",
+  "kernel_version": "7.2.7-arch1-1",
+  "files": {
+    "nouveau": {
+      "path": "usr/lib/modules/7.2.7-arch1-1/kernel/drivers/gpu/drm/nouveau/nouveau.ko.zst",
+      "sha256": "fcc84c5cd44463ce72de3dd6b150a95d49a41a7f7dee59e82ccddc85fb236394",
+      "uncompressed_sha256": "f00572955a16dc3b4adb91e9f40cdab86f569026039e077198113454d641abf0",
+      "matches_pinned_module": true
+    },
+    "amdgpu": {
+      "path": "usr/lib/modules/7.2.7-arch1-1/kernel/drivers/gpu/drm/amd/amdgpu/amdgpu.ko.zst",
+      "sha256": "54a30c2ec3b595068aaad6dbefd8e7a39bbcd3ae702f558ef6ba028d48c6171a",
+      "uncompressed_sha256": "f5c3a8874fcc613c70bf68a5c00dfd1104fae5cad88e734e10f4246ff3c58377",
+      "matches_pinned_module": true
+    },
+    "fmc": {
+      "requested_path": "usr/lib/firmware/nvidia/gb205/gsp/fmc-570.144.bin",
+      "resolved_path": "usr/lib/firmware/nvidia/gb205/gsp/fmc-570.144.bin.zst",
+      "sha256": "7cc18911246663e838f7ce25baacc00945cf09001e8c4873d9f287ae03491409",
+      "uncompressed_sha256": "cb59a35c1d4bd1274d7267fd10243c29f843ff41c851b9cbd59f5af2ddd7fece",
+      "matches_live_firmware": true
+    },
+    "bootloader": {
+      "requested_path": "usr/lib/firmware/nvidia/gb205/gsp/bootloader-570.144.bin",
+      "resolved_path": "usr/lib/firmware/nvidia/gb205/gsp/bootloader-570.144.bin.zst",
+      "sha256": "a4f1c63e7710e893e0551a167b6f0d646d5f79fbaed9724f79450e9132beed05",
+      "uncompressed_sha256": "d40b48e431d1707dc77af3605db358ed7a32ebfc2830eb74de2eddb4d3025071",
+      "matches_live_firmware": true
+    },
+    "gsp": {
+      "requested_path": "usr/lib/firmware/nvidia/gb205/gsp/gsp-570.144.bin",
+      "resolved_path": "usr/lib/firmware/nvidia/ga102/gsp/gsp-570.144.bin.zst",
+      "sha256": "1aa965fb408b9c4cafba902cae621b3b74c62710180357afecd156e59adfa505",
+      "uncompressed_sha256": "a8c3ebeed280323aedb51c061f321e73379cce7a9ae643a33dd03915df027f7f",
+      "matches_live_firmware": true
+    }
+  },
+  "zstd_firmware_loader": true
+}

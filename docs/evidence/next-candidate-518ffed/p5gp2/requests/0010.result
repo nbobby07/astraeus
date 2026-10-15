@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T22:50:00.211231+00:00",
+  "request": "0010.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"metadata_apply_passed\": true, \"operation_id\": \"c1afbbbd436b0de42e1526e594eee25d\", \"transaction_id\": 1, \"state\": \"awaiting_boot\", \"packages_changed\": false, \"pre_snapshot\": \"1792104607-501658451-2145\", \"post_snapshot\": \"1792104645-925765273-2145\", \"boot_regenerated\": true}\n",
+    "id": "633921206cfc434c8a3d31157f16ec3c",
+    "boot_id": "99e645f6-be71-4264-81e1-961a3fb91fca"
+  },
+  "finished": "2026-10-15T22:50:49.928773+00:00"
+}

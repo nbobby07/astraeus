@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "receipt_sha256": "5daef020d2ddc980e9de8c4fb9d496fc9d466b35c07fbf47eaf561d599a539e9",
+  "verified_members": 57,
+  "signed_package_count": 9,
+  "wrapper": "/home/ubuntu/p50/decoder475-r3/bin/unsquashfs",
+  "wrapper_sha256": "05cdabd21851652bfd804b257c13bd75f2cd4c343214ff07be7c74bc1bf0c277",
+  "version": "unsquashfs version 4.7.5 (2026/03/01)",
+  "version_exit_code": 1,
+  "minimal_audit_environment": {
+    "PATH": "/home/ubuntu/p50/decoder475-r3/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "LANG": "C",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "host_tool_replaced": false
+}

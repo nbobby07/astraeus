@@ -100,7 +100,7 @@ fn hash(path: &Path) -> Result<String> {
         }
         digest.update(&buffer[..count]);
     }
-    Ok(format!("sha256:{:x}", digest.finalize()))
+    Ok(format!("sha256:{}", hex(&digest.finalize())))
 }
 fn conf(args: &[&str]) -> Result<String> {
     let output = Command::new("/usr/bin/pacman-conf")
@@ -138,7 +138,7 @@ impl Configuration {
         let mut out = Self {
             options: BTreeMap::new(),
             repositories: vec![],
-            digest: format!("sha256:{:x}", Sha256::digest(text.as_bytes())),
+            digest: format!("sha256:{}", hex(&Sha256::digest(text.as_bytes()))),
         };
         let mut section = "options".to_string();
         for raw in text.lines() {

@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "test_binary_sha256": "17d06b627dd086fcd99193a3322db719d72b0c6d54a18c200332afb4aa966565",
+  "command": [
+    "chroot",
+    "/build/next-native-518ffed/native-signed/root",
+    "/usr/bin/native-tests",
+    "signed_native_backend",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ]
+}

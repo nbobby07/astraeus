@@ -1,0 +1,21 @@
+{
+  "source_commits": [
+    "518ffede377615357cc7f86660fb57c75fce872d"
+  ],
+  "iso": {
+    "path": "/home/ubuntu/next-r4/candidate-518ffede3776-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+    "sha256": "8c8a9f5a2627ab7ce4cdd8910e804d1b5d2b0fd17a824895c3add9f833ef94a9"
+  },
+  "ovmf_code": {
+    "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+    "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+  },
+  "setup_ovmf_code": {
+    "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+    "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+  },
+  "pristine_ovmf_vars": {
+    "path": "/usr/share/OVMF/OVMF_VARS_4M.fd",
+    "sha256": "5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e"
+  }
+}

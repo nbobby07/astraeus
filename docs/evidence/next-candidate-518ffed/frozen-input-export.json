@@ -1,0 +1,25 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "files": {
+    "candidate-source.tar.xz": {
+      "bytes": 21287616,
+      "sha256": "8c3990ee4974374445f9d64d9378e301de6a49866439bcc641f643f846b4c42f"
+    },
+    "source-expected.json": {
+      "bytes": 19263,
+      "sha256": "839a92145bf5687e6cdc34175cbf7cd846dcb3ed6b661bbffe20022250d3ee66"
+    },
+    "candidate-source.json": {
+      "bytes": 965,
+      "sha256": "82c23cf396b5928fa4ee4db73b20427e4d45fd1cc7368ba2bf26e1beaadfa900"
+    },
+    "freeze-ci-current.json": {
+      "bytes": 3368,
+      "sha256": "9d89d73e6071db2a0ea676ca4b790f076f35930d411198e19d44b6186e105f9f"
+    },
+    "runtime-helper-binding.json": {
+      "bytes": 682,
+      "sha256": "da4fcd8df0e7eb5afd887598dd8008feb357eac05b15978d08b2d519b7052320"
+    }
+  }
+}

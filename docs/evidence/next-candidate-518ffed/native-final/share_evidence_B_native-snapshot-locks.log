@@ -1,0 +1,13 @@
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.154
+   Compiling distro-snapshots v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/snapshots)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.79s
+     Running unittests src/lib.rs (/build/next-native-518ffed/target/debug/deps/distro_snapshots-616d6cedcda321a4)
+
+running 2 tests
+test system::tests::coordinator_snapshots_seal_without_copying_the_owned_live_package_lock ... ok
+test system::tests::interruption_during_coordinator_snapshot_never_unlinks_live_lock_or_publishes_writable_root ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 35 filtered out; finished in 0.10s
+

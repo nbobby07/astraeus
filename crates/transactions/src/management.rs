@@ -125,7 +125,7 @@ impl ManagementState {
 
 pub fn management_digest(state: Option<&ManagementState>) -> String {
     let bytes = serde_json::to_vec(&state).expect("management state serializes");
-    format!("sha256:{:x}", Sha256::digest(bytes))
+    format!("sha256:{}", crate::hex(&Sha256::digest(bytes)))
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

@@ -1,0 +1,16 @@
+{
+  "source_commit": "518ffede377615357cc7f86660fb57c75fce872d",
+  "sha256": "8c3990ee4974374445f9d64d9378e301de6a49866439bcc641f643f846b4c42f",
+  "bytes": 21287616,
+  "graphics": [
+    "amd",
+    "nouveau"
+  ],
+  "gaming": [],
+  "archive": "2026/10/01",
+  "source_date_epoch": 1790812800,
+  "source_expected_sha256": "839a92145bf5687e6cdc34175cbf7cd846dcb3ed6b661bbffe20022250d3ee66",
+  "supersedes": "94f3847: native Calamares UI completed, validation adapter required actual lsblk and encrypted receipt corrections; all prior disks retained",
+  "frozen_utc": "2026-10-15T20:17:25.727099+00:00",
+  "build_authorization": "Frozen after six exact-source Windows/Linux CI checks, 21 focused adapter tests on each host OS, actual plain Calamares installation/two enforcing cold boots with the inventory correction, and corrected LUKS2 adoption on a preserved UI-installed child. Final independent builds and complete VM acceptance remain required."
+}
