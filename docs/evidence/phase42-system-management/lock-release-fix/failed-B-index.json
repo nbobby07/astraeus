@@ -1,0 +1,79 @@
+{
+  "source_commit": "0c938b94f44956fd77890d851e35650b62b1e6da",
+  "passed": false,
+  "reason": "Native confirmation test lock-retention failure before image production",
+  "files": {
+    "share/evidence/B/git-head.txt": {
+      "bytes": 190,
+      "sha256": "e000a2af1ee89f0ad516cabc7796f7f529d06e051684977cbe3f0d32c2f3b2e7"
+    },
+    "share/evidence/B/os-release.txt": {
+      "bytes": 382,
+      "sha256": "71ff7a6e248d9a0718344c957ec709cb6f0b18631682fa404d7cff2af3ff341d"
+    },
+    "share/evidence/B/build.log": {
+      "bytes": 81704,
+      "sha256": "ae123856a7e4e1f346e9263f3b50f71daed37201d603cf27981b0f8fa6f76403"
+    },
+    "share/evidence/B/ended.txt": {
+      "bytes": 21,
+      "sha256": "2af1c19f35e8a5e81a5d40f0a412f9324bc0394bd6b85428870f467fce19feda"
+    },
+    "share/evidence/B/pacman.conf": {
+      "bytes": 562,
+      "sha256": "02d59346d7a05a8019277c1167c6a7a1f8a941aceefaf49dfa10050c80412ee9"
+    },
+    "share/evidence/B/source-sha256.txt": {
+      "bytes": 92,
+      "sha256": "913f0dcabda1ade158c31744af003633fee88c975554b55b1092d2bda684ce19"
+    },
+    "share/evidence/B/packages-before-build.txt": {
+      "bytes": 7854,
+      "sha256": "facd1ca68cc0d14184827b0fd660ecbe59add832d216d60b4b767b032adb103d"
+    },
+    "share/evidence/B/kernel.txt": {
+      "bytes": 107,
+      "sha256": "bd850b44098647c0ecef4cb526fa1dbef014bb67046b527949a37c11db5d1495"
+    },
+    "share/evidence/B/started.txt": {
+      "bytes": 21,
+      "sha256": "b63289332555c92d2ccffa6f2a56fb811a1517834c6fc945a52392361a528b20"
+    },
+    "share/evidence/B/git-status.txt": {
+      "bytes": 250,
+      "sha256": "70a244d0bc21a1e6e4b340ce4d3e188185b2c797bd760e15f9600f0a4c9a053b"
+    },
+    "share/evidence/B/exit-code": {
+      "bytes": 2,
+      "sha256": "7de1555df0c2700329e815b93b32c571c3ea54dc967b89e81ab73b9972b72d1d"
+    },
+    "share/evidence/B/builder-script-sha256.txt": {
+      "bytes": 89,
+      "sha256": "e190bfac61a142ecafc9666aca647d3ab1a03f7c35f1075ca5d6dbdb896ecb76"
+    },
+    "builder-B/meta-data": {
+      "bytes": 61,
+      "sha256": "fc4d7a800a4c4984b0b153783842376ffd712411e0976943fa5e15f4b08270e0"
+    },
+    "builder-B/qemu-command.json": {
+      "bytes": 1061,
+      "sha256": "64dbdfb61c3b74a1dde0c4935fcdc2ee3b369fe92c8da2c69b6608b020e9ca44"
+    },
+    "builder-B/seed.img": {
+      "bytes": 374784,
+      "sha256": "16377e1347477ae178a75a53d087cec17120a1b321e3d1dede2bf417124d7e0c"
+    },
+    "builder-B/user-data": {
+      "bytes": 404,
+      "sha256": "5e981622efe3ab1b5f2fad4ba0ba8ce9756aa1d48c78680f6f839d0eafbd56b4"
+    },
+    "builder-B/serial.log": {
+      "bytes": 174692,
+      "sha256": "915ccaa2f921745f0b5882b0798ec34282d2c218e5c722c0cd82679f1e1aeaca"
+    },
+    "run.json": {
+      "bytes": 665,
+      "sha256": "bc09e57fe714a6f723ae4a58c5d3e45910b5e858feb82b4b3a793b8f4be28be4"
+    }
+  }
+}

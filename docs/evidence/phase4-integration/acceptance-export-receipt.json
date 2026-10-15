@@ -1,0 +1,22 @@
+{
+  "created_unix": 1791535162.8593357,
+  "files": {
+    "acceptance-public.tar.gz": {
+      "bytes": 792776880,
+      "sha256": "5fdf3389c2b6f3445f4ae75f43924ccb912ad91e11febf3cd6217d193f999f04"
+    },
+    "acceptance-private-context.tar.gz": {
+      "bytes": 794651782,
+      "sha256": "33a8b506efc0c3b14cb9d65f31d59518692a8c7c2afedbb2d425f24a50b45b0e"
+    }
+  },
+  "public_members": 3234,
+  "private_members": 3291,
+  "redactions": {
+    "install-luks/boot-1/serial.log": 1,
+    "install-luks/calamares.log": 1,
+    "install-plain/boot-1/serial.log": 1,
+    "install-plain/calamares.log": 1
+  },
+  "excluded": "Guest disks, ISO files, source/build checkouts, downloaded tool archives and signing keyrings. The unused legacy acceptance-summary.py template is only in raw private context. ISO/source/baselines and signed repository have separate verified exports; raw private context contains test keys and VARS."
+}

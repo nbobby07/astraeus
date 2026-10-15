@@ -1,0 +1,8 @@
+{
+  "started": "2026-10-14T14:03:13.713781+00:00",
+  "pid": 5829,
+  "log": "/home/ubuntu/p42/audit6d-a.log",
+  "owner": "root",
+  "script_sha256": "596a951378e95e13214a90ada51bc092fcbd75d07c8c68d9fdaf098d57572997",
+  "guest_execution": false
+}

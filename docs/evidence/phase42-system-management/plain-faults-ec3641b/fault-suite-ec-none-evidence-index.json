@@ -1,0 +1,3919 @@
+{
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "passed_trials": [
+    "fecp-metadata",
+    "fecp-interruption-r2",
+    "fecp-abandoned",
+    "fecp-failed-hook",
+    "fecp-signing-failure",
+    "fecp-root-space",
+    "fecp-cache-space",
+    "fecp-esp-space"
+  ],
+  "files": {
+    "fecp-metadata/evidence-sha256.json": {
+      "bytes": 20442,
+      "sha256": "d396a5dc17195c61495104ad763699aa097ca0fced27e7598d1a58fab326ceca"
+    },
+    "fecp-metadata/inputs.json": {
+      "bytes": 3526,
+      "sha256": "c02f715ef3209fcbccfd36dff4c1032decc95d3197f454435fa66592294533b0"
+    },
+    "fecp-metadata/matrix.json": {
+      "bytes": 5693,
+      "sha256": "a39d3957aeb0ccf3e9c4a50eb73ef8df98eaa16b65366c88fa851bc11d7f77ba"
+    },
+    "fecp-metadata/metadata/offline-restore.json": {
+      "bytes": 5078,
+      "sha256": "154fd46cb299668f4adc353e831fb86f3243887fffd338f142d42c06d984e981"
+    },
+    "fecp-metadata/metadata/restored-health.json": {
+      "bytes": 637884,
+      "sha256": "e3625cc5d282a1af8a9ec088ac4bfdb766fd30d2c6fb3e52dcd2053d0ee1cc10"
+    },
+    "fecp-metadata/metadata/metadata-plan.json": {
+      "bytes": 408419,
+      "sha256": "73e97dbd1164ca6bede53a90a69f5bfcf2005771d07866dc396484aa492ece3e"
+    },
+    "fecp-metadata/metadata/attention.json": {
+      "bytes": 276,
+      "sha256": "1cfcd634645851cb0a541e861364dcd57dc28e339c9368aaf65a141edb088db3"
+    },
+    "fecp-metadata/metadata/metadata-after-state.json": {
+      "bytes": 325241,
+      "sha256": "d3015e861178e089654d1782919a0c186557549263eaf6868bdbd1b96d77a45f"
+    },
+    "fecp-metadata/metadata/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-metadata/metadata/metadata-new-boot-confirmation.json": {
+      "bytes": 414265,
+      "sha256": "f39e86fce83d141b9ec4a479d6361157c6ec332b69f7e61ccc3f4812b5539fc0"
+    },
+    "fecp-metadata/metadata/metadata-offline-rollback.json": {
+      "bytes": 416530,
+      "sha256": "47c3453cb0ab93b955395ea8dc8d3c84f99119d9270bfb45692b46a7898837cb"
+    },
+    "fecp-metadata/metadata/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "a466bf4f222707800de7ec52a9d5e0c30c966909886d885aebbdbe7b0b4c6aac"
+    },
+    "fecp-metadata/metadata/metadata-baseline-health.json": {
+      "bytes": 149832,
+      "sha256": "298a2df385d68881cb3a485d099191e4a4e6ee1b6cb1251ebad575d17818bb2a"
+    },
+    "fecp-metadata/metadata/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "f3cfcc67041ab0a0e616db78f7f69aedb61a6e64228c6fc37dfca4cb78a2ae70"
+    },
+    "fecp-metadata/metadata/metadata-apply-and-same-boot-refusal.json": {
+      "bytes": 410468,
+      "sha256": "9945b2dee518f25f96748c4dd187e57e738b4e7d7e9bd6e1bb865ce9a3ec9f51"
+    },
+    "fecp-metadata/metadata/wrong-metadata-finalization-refusal.json": {
+      "bytes": 206,
+      "sha256": "3c29779e196b68dd09ceba98565ea53175fa92bfdc2dff3840390fce52009c92"
+    },
+    "fecp-metadata/metadata/boot-4/099-before-rollback-finalization.json": {
+      "bytes": 287139,
+      "sha256": "8631ca50f956dc412cde5ab93de3bd04118f72ce91caa61caa2d7c1c21aef458"
+    },
+    "fecp-metadata/metadata/boot-4/106-restored-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "7d24357bf1b213b1cd93174d180c01d4cc4b97d7c4cd08142c1882138967b1d5"
+    },
+    "fecp-metadata/metadata/boot-4/115-restored-health-boot-journal.json": {
+      "bytes": 110686,
+      "sha256": "e1fe03608c31421e99a81775ff36a436c5e47a7cd704cbe1dc84f7da5530083a"
+    },
+    "fecp-metadata/metadata/boot-4/094-ready.json": {
+      "bytes": 219,
+      "sha256": "8bce67dca66cb3e5995748770abb4e3cbf967128850cdcc93c64763b7ab2d9e7"
+    },
+    "fecp-metadata/metadata/boot-4/122-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "1a97c62733c4532455f0d8fbb16e5fa7280ba03599280512b88cefef86e5f82c"
+    },
+    "fecp-metadata/metadata/boot-4/120-restored-health-history.json": {
+      "bytes": 484664,
+      "sha256": "e1383a115164f1090f6b74ff05adc323190b0b44516963ff4446f761ec9a236e"
+    },
+    "fecp-metadata/metadata/boot-4/qemu-command.json": {
+      "bytes": 1267,
+      "sha256": "e0c7c043e5d4aa4d99424bb4ab130d3ccfe52050868789fd171cb211f384da4b"
+    },
+    "fecp-metadata/metadata/boot-4/qmp-ready.json": {
+      "bytes": 4518,
+      "sha256": "856545f85cd74c7fc97aa2c370c33d3b256fc2a0279931f64d8962ce0d9cf11c"
+    },
+    "fecp-metadata/metadata/boot-4/119-restored-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "54a859cd20392f39700d5d96e76bcada3aa2e9676d7eb0036eb625b038f28fc5"
+    },
+    "fecp-metadata/metadata/boot-4/109-restored-health-mounts.json": {
+      "bytes": 8644,
+      "sha256": "0e0f875f6b126280bcc72a5fdd6726307ef497ba3c7b7472e4567b915977aab0"
+    },
+    "fecp-metadata/metadata/boot-4/110-restored-health-subvolumes.json": {
+      "bytes": 896,
+      "sha256": "45a26c8149ee47725a719a324163314ad3fa1098d03c6f3e0836fb6e162fe89d"
+    },
+    "fecp-metadata/metadata/boot-4/shutdown.json": {
+      "bytes": 86,
+      "sha256": "f698fec4391e3466cffbb9c0392fcb549b6e1a41dcf84e39108ab49bc86e37f9"
+    },
+    "fecp-metadata/metadata/boot-4/117-restored-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "f317b13d69da0604d02893f8107a2e87188b0e4434e6784141e64bde7cbd726e"
+    },
+    "fecp-metadata/metadata/boot-4/116-restored-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "c20edaccd14dc70c3a81d3bcbabf7c08fdaf378709c4b1c7a157b1cf083ccbda"
+    },
+    "fecp-metadata/metadata/boot-4/105-restored-health-status.json": {
+      "bytes": 3055,
+      "sha256": "fcbaf272d926ab3ce2dfb0149e05bfa94f9249867402f60b4869fade3532cb3f"
+    },
+    "fecp-metadata/metadata/boot-4/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-metadata/metadata/boot-4/101-finalize-rollback.json": {
+      "bytes": 461685,
+      "sha256": "ecb238db5e87be357ac5fd6e8bfb01e026352b7c0720bf60fe093b5ce4051598"
+    },
+    "fecp-metadata/metadata/boot-4/100-wrong-metadata-finalization-refusal.json": {
+      "bytes": 574,
+      "sha256": "b4f64d12f9b45e43f77d6146740086170485a74007ed3dc9d064de28ae293170"
+    },
+    "fecp-metadata/metadata/boot-4/112-restored-health-root.json": {
+      "bytes": 376,
+      "sha256": "6002ed41bc54f167db37461dcec56980b62bdade9186c13bd0d20b3242b2f914"
+    },
+    "fecp-metadata/metadata/boot-4/reboot.json": {
+      "bytes": 110,
+      "sha256": "8f7975410fa9fda035ec45cddeb553c9a079f5be396beab9f8f2582b5af118bc"
+    },
+    "fecp-metadata/metadata/boot-4/serial.log": {
+      "bytes": 2040,
+      "sha256": "92a4839b908f24dd9ec65b3e5aaa3cb5bcd3fe2eb430b7150ffc93fc38059101"
+    },
+    "fecp-metadata/metadata/boot-4/118-restored-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "0d403972b5a8b9d73972972dfab621e2941f075638223aab109ea1d1a35d0bab"
+    },
+    "fecp-metadata/metadata/boot-4/103-restored-signing-identity.json": {
+      "bytes": 397,
+      "sha256": "cf61e3f429242eae915eedfb5827cb51c51b6572aff176e869def9a0c0cc04dd"
+    },
+    "fecp-metadata/metadata/boot-4/113-restored-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "d0b9e21755edb7b11e9cb98b6d87ed664756af645b451c2deeec2fdee105ddb2"
+    },
+    "fecp-metadata/metadata/boot-4/096-ready.json": {
+      "bytes": 356,
+      "sha256": "bc8ea793917e5f6a01a01aaf93e09ac7ba9e3feb2ad05d47403413f3fef022dc"
+    },
+    "fecp-metadata/metadata/boot-4/qmp-restored-health.json": {
+      "bytes": 4518,
+      "sha256": "964d1f94d771b6b860bebdd1dfccc8228ced3573d63425cadb76794a7129414b"
+    },
+    "fecp-metadata/metadata/boot-4/114-restored-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "1f3d1a061f9ce60763dee7bd5333d546ea5ff331de050d679323e33cf44ac8f9"
+    },
+    "fecp-metadata/metadata/boot-4/121-restored-health-snapshots.json": {
+      "bytes": 2775,
+      "sha256": "1a2ff499ea84994fe27f46f869323377af237d726a043cfff358ae107289bc8c"
+    },
+    "fecp-metadata/metadata/boot-4/095-ready.json": {
+      "bytes": 219,
+      "sha256": "77640b08b19b205d7d62386b828565e69422114f7a1c7db890ffa5a24c82f098"
+    },
+    "fecp-metadata/metadata/boot-4/107-restored-health-database.json": {
+      "bytes": 337,
+      "sha256": "89c4d75a137c890071bd798276bdc8cb9455166494923fa6e8406c73af053e5b"
+    },
+    "fecp-metadata/metadata/boot-4/process.json": {
+      "bytes": 83,
+      "sha256": "46330c6d53632c5d1fb7cbb63554fc116ee9c1e5861972a5b1732be1ea2356cd"
+    },
+    "fecp-metadata/metadata/boot-4/108-restored-health-failed.json": {
+      "bytes": 328,
+      "sha256": "106e16f9ab04277490a1fa392e487b0fbc9baf5fcd3d968167270702c8d4f89c"
+    },
+    "fecp-metadata/metadata/boot-4/097-wait-automatic-confirmation.json": {
+      "bytes": 335,
+      "sha256": "07eca066cb8c9dcb475573e7d96e14176db95437186fe148f7d7627db9389cd5"
+    },
+    "fecp-metadata/metadata/boot-4/111-restored-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "65a5c3bb0be21413d0be32733c57ce77c3621e7f6a10891b45c79202351f1849"
+    },
+    "fecp-metadata/metadata/boot-4/102-restored-state.json": {
+      "bytes": 287139,
+      "sha256": "a4bf34b54eb198a619ecc85dfdd641dc67f4e6d440549a9d2e9424c621217c53"
+    },
+    "fecp-metadata/metadata/boot-4/098-before-explicit-finalization.json": {
+      "bytes": 481955,
+      "sha256": "b0119370d498d7fd2b4011ea0051ad0de2a92c80e268be210a6ab210b1bf2eb7"
+    },
+    "fecp-metadata/metadata/boot-4/104-restored-snapshots.json": {
+      "bytes": 2784,
+      "sha256": "a7d41c88b7865a6f27ab7e8d4b191d8bd205abc2ebe38fa69b647f95666f3274"
+    },
+    "fecp-metadata/metadata/boot-2/072-metadata-confirmed.json": {
+      "bytes": 287163,
+      "sha256": "58e26bf634fcc70b0380c08b08682f4c7d9c67312adef2e0434bfe97e2b72f29"
+    },
+    "fecp-metadata/metadata/boot-2/qemu-command.json": {
+      "bytes": 1267,
+      "sha256": "59f052ad7f786fdbc45c09a95c2bca0e9ab486f38f25c07a85f689f62d01648a"
+    },
+    "fecp-metadata/metadata/boot-2/qmp-ready.json": {
+      "bytes": 4518,
+      "sha256": "8d8ec9a240dabca7044142f0f130c9c6548b0cf0d3a2249b18229e7d450c83ec"
+    },
+    "fecp-metadata/metadata/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "0aac0b01ed5a884f82791432c1008216a9afe6675e2ad77bb50453b46621af1f"
+    },
+    "fecp-metadata/metadata/boot-2/074-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "41930fa0bee2aaa206ed02b491b3cdb9afa4be834069b75b1a0b68645865ec9b"
+    },
+    "fecp-metadata/metadata/boot-2/065-ready.json": {
+      "bytes": 219,
+      "sha256": "01ef54a7eb7fefc3bf5bbd927c816c916bd55b320b01dd5ea806f3bc61c85bc2"
+    },
+    "fecp-metadata/metadata/boot-2/066-ready.json": {
+      "bytes": 356,
+      "sha256": "cec3bf66cb433ff0b4b71471d9c41bf70931da88fc1531a804870ad0041667fc"
+    },
+    "fecp-metadata/metadata/boot-2/067-boot-confirmation-history.json": {
+      "bytes": 477310,
+      "sha256": "62b586f384ba77c3afae3a51482823938966fe3e494dfe2fe2148a1f72587a74"
+    },
+    "fecp-metadata/metadata/boot-2/070-boot-confirmation-history.json": {
+      "bytes": 481874,
+      "sha256": "6ec404fa22591011f85684c279019c4a4d628d189c3c1bb6045c4af2d849134d"
+    },
+    "fecp-metadata/metadata/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-metadata/metadata/boot-2/068-boot-confirmation-history.json": {
+      "bytes": 477310,
+      "sha256": "0a17ab23cac5c387c6a043655c45b016f6fb9e5f7b1225bcada46dcdaac2a5a3"
+    },
+    "fecp-metadata/metadata/boot-2/069-boot-confirmation-history.json": {
+      "bytes": 477310,
+      "sha256": "1346d17e7477d0196bdcbc46d48d7c5ba37e1e719588a2307c2f1efce3b9761e"
+    },
+    "fecp-metadata/metadata/boot-2/071-boot-confirmation-history.json": {
+      "bytes": 481955,
+      "sha256": "37b230fab22ad5a150e88da41ce2d4ef87aaf4dd7988d4130110640e1d463f51"
+    },
+    "fecp-metadata/metadata/boot-2/reboot.json": {
+      "bytes": 110,
+      "sha256": "e176efba0d0c23e6c1260248b0fc287a6a158ccd74b8a908906bbd44d3358aa9"
+    },
+    "fecp-metadata/metadata/boot-2/064-ready.json": {
+      "bytes": 219,
+      "sha256": "006f33b25837adda1e35f146035bd0875d33b0d12d50672dae250c132edeb40e"
+    },
+    "fecp-metadata/metadata/boot-2/serial.log": {
+      "bytes": 2175,
+      "sha256": "9d305a828a2ad4ef37848c317d5f15f4c55ed81a43ea0982a545a097016b851b"
+    },
+    "fecp-metadata/metadata/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "9fef7da6c805c2560db1c5af5ea9e36669ad35384efac33eaef28254c2504f1b"
+    },
+    "fecp-metadata/metadata/boot-2/073-before-offline-history.json": {
+      "bytes": 481955,
+      "sha256": "763c6123494f1c1249e8253bfe68169d97b881d6c95397cb64627cafec4ef04d"
+    },
+    "fecp-metadata/metadata/share/phase42-faults.py": {
+      "bytes": 82604,
+      "sha256": "438028c0b8c4ecab8af72e734d497f526022ae9dfddfb7ac07fbe58d45658000"
+    },
+    "fecp-metadata/metadata/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "05157a95c3b4a5fd7fb932d727f94d5eb53717fe4e3ec234427feea4e781dcc5"
+    },
+    "fecp-metadata/metadata/share/metadata-negative.json": {
+      "bytes": 689061,
+      "sha256": "d3779dbd5545319bc1053663817ca8c58a2ef31e800e55f70aa707e3c5ee54a7"
+    },
+    "fecp-metadata/metadata/share/recovery-target.json": {
+      "bytes": 175,
+      "sha256": "1eeb9c0af86999682bf2b01d7958bd358e72e6cdb7d1fdc9585680cd4bc6298f"
+    },
+    "fecp-metadata/metadata/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-metadata/metadata/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-metadata/metadata/boot-1/056-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "0c703a5d08a68e443a965949fdc52ea62cc7c74f18f7f631a669d8bc42f32490"
+    },
+    "fecp-metadata/metadata/boot-1/034-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "ea1eddbbe5baccb371b21136e6714cc4e6bd4a845bb7275ea868e4e1a6de296c"
+    },
+    "fecp-metadata/metadata/boot-1/049-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "0f00ac8011d47dde7b6decba6151f3d0122540e244814ac17661e186e26dbbed"
+    },
+    "fecp-metadata/metadata/boot-1/012-metadata-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "ad625db6b3400523c843c13c0f3dea1f07cec660aa5cca10315af15a29984071"
+    },
+    "fecp-metadata/metadata/boot-1/024-after-noop-plan.json": {
+      "bytes": 287139,
+      "sha256": "cf139612915da44e20edbfaa124a242489c3b0335f3e4465a533ba594c7fabc0"
+    },
+    "fecp-metadata/metadata/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "a703babac0fcb7fe73e5af116abd2627caca9ff8d9a0da4158f04385f1caf2d7"
+    },
+    "fecp-metadata/metadata/boot-1/050-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "6292f5b94f20967c7d31b8ca643a809236665aef1fa17ef47d34207e0abc615c"
+    },
+    "fecp-metadata/metadata/boot-1/011-metadata-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "f74056534a6f1c27a31aa2112ae5905f78028d0ca869c68cf68b8a4edc2e22d5"
+    },
+    "fecp-metadata/metadata/boot-1/033-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "f02cf483ea5491492ca68a85f1cf018b2e209ea2fd6b37b1ae8a1af7a944f918"
+    },
+    "fecp-metadata/metadata/boot-1/038-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "262867419831083486ab1d975339d2d4245a09d9ee03af7103eb28b0b16c8004"
+    },
+    "fecp-metadata/metadata/boot-1/028-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475033,
+      "sha256": "93c846cbf0b3f41b23e51c5a2a1b1a1dd34524da60a9662abf4ebdb364836b9b"
+    },
+    "fecp-metadata/metadata/boot-1/054-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "d68ffa16e1737fc722a85e333e3e7b5637901422e9038c1c7bd3cc4449e6debd"
+    },
+    "fecp-metadata/metadata/boot-1/063-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "60b89b4abe26e024cfb39ee0ef1275d1ec60ff708db4fcf8b6c05eb22ca22de6"
+    },
+    "fecp-metadata/metadata/boot-1/058-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "bb797f0199acb855e69999423776dc83f45d361f10f3aee2e5fb1842d492f1f7"
+    },
+    "fecp-metadata/metadata/boot-1/qemu-command.json": {
+      "bytes": 1267,
+      "sha256": "062b243b08258f7363eb9f45c1592d84cc6ca468200f1565cd1a8e3d3ea42cd2"
+    },
+    "fecp-metadata/metadata/boot-1/016-metadata-baseline-health-boot-journal.json": {
+      "bytes": 109783,
+      "sha256": "81cdd844de0b3e6348fde384787348b498452f8991649a395339d4c05100d429"
+    },
+    "fecp-metadata/metadata/boot-1/qmp-ready.json": {
+      "bytes": 4517,
+      "sha256": "00ac66353156a58e127568bd18adbff99ada3862dfd6fac883cf35183993c7f8"
+    },
+    "fecp-metadata/metadata/boot-1/030-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475161,
+      "sha256": "9a5df1e9c3bb9e427df53e0717249913dc98764406500c6eca0acbe568e13932"
+    },
+    "fecp-metadata/metadata/boot-1/017-metadata-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "8041569a003d94ff0b90696fdbeec0ba8f9a245d794258b8487d8681829bcc0e"
+    },
+    "fecp-metadata/metadata/boot-1/026-metadata-submit.json": {
+      "bytes": 713,
+      "sha256": "c86a0649bf5236451cffa5a608baf392fe78b4aaf1542b036fab35a0e16d3c84"
+    },
+    "fecp-metadata/metadata/boot-1/053-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "10a4178d3185a55a5f1c8222a2e2e3182f20d40f52a8886725f9b426530b29f1"
+    },
+    "fecp-metadata/metadata/boot-1/036-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "79d3932819edd1134de4fc3c13ab745bb9ac7f4603c674d2eb5c9b756f1b1f59"
+    },
+    "fecp-metadata/metadata/boot-1/031-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475269,
+      "sha256": "d272de8d95de4bad18119926ec76497ab2a0653fefea20e77c640afd0737e9ea"
+    },
+    "fecp-metadata/metadata/boot-1/022-metadata-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "f5c768801da1e839f5dc5c89522d123c110375525c81624bea55d7a28e6e6bf2"
+    },
+    "fecp-metadata/metadata/boot-1/019-metadata-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "375bf2137a852b0ce8aad745318b189c4a9c36e85fed0d970cd7b5090718c18c"
+    },
+    "fecp-metadata/metadata/boot-1/029-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475033,
+      "sha256": "f9e6c224d3a77817ee3ae3bef8d4345ac6d499ea35463df37264affd73678537"
+    },
+    "fecp-metadata/metadata/boot-1/018-metadata-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "d7fae122ce6e138ec305dca18c86551e20ded6bb683092bc515bb858c0b0db33"
+    },
+    "fecp-metadata/metadata/boot-1/051-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "3abf2b2e0c62a023c5fcb01513621a34be56097ac7c53327328777ba7d58271c"
+    },
+    "fecp-metadata/metadata/boot-1/014-metadata-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "699186289c3f87d6ff9ab5e2a61fcfda34b1aa2f0809bbd8146e76d2d28e1275"
+    },
+    "fecp-metadata/metadata/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "c7b71eadb38981e4aab982526e1e07f029217572dbb1a5697bc5471ff0237add"
+    },
+    "fecp-metadata/metadata/boot-1/045-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475554,
+      "sha256": "5b419a234dd128c4c32c20785b0fd4e02df2e945f63a18b6749c6e9df8577df9"
+    },
+    "fecp-metadata/metadata/boot-1/046-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475578,
+      "sha256": "cce9bdcdb674245505fca2efdc88729f0aea168bbbf45adf6c3e8c63e9227205"
+    },
+    "fecp-metadata/metadata/boot-1/032-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "255b4d97672f05dae6cc1ce793a6c3b8b30b4cc2f9e95626e594d34250c74fd1"
+    },
+    "fecp-metadata/metadata/boot-1/040-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "4dbbdecc271873782006003885b5542e5bab317e2e9b8062976761cccf296923"
+    },
+    "fecp-metadata/metadata/boot-1/044-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "40bc630245af274afee663e2b9976d51bbfeb6734f7811eb349962bce478d8b1"
+    },
+    "fecp-metadata/metadata/boot-1/047-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 477509,
+      "sha256": "8c25daae05c8a6e3bbfeed9d611e005ca578e073473055da24c896fa164b0f68"
+    },
+    "fecp-metadata/metadata/boot-1/013-metadata-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "1c9dc1007006dbbdea4f93425c2e14ce991235ab55da04be525f07ab29babd30"
+    },
+    "fecp-metadata/metadata/boot-1/043-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "8556b13d2b5e2c87e15ba0e44a5166b651e44090ac35a304f42886f50dcf1e14"
+    },
+    "fecp-metadata/metadata/boot-1/027-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 528,
+      "sha256": "340343c73a60e4d7afecfd2dce4938e766be3afe6db1feb388f616b52db4f261"
+    },
+    "fecp-metadata/metadata/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "0635b92d14b1239fb6119e6a40a359de0a30b60bb90b4cf27896c40e20b025f1"
+    },
+    "fecp-metadata/metadata/boot-1/037-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "aff41c0558b8d55d51f3483192f3d20ad0bdc8e6856abba384125ba95eb72cf3"
+    },
+    "fecp-metadata/metadata/boot-1/007-metadata-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "370f907532c30e77b09083f5f9666123716a1c6136f12e2dacecb366e22890d5"
+    },
+    "fecp-metadata/metadata/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "04deec2a6aa320ffb19f5fe4a33bf9d9506a90672be2856eaf88566ddf3016bd"
+    },
+    "fecp-metadata/metadata/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-metadata/metadata/boot-1/039-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "6837f3a5dd647822d1bfaaff1731e78a72a6a61e70073d9c43300f730bccabfb"
+    },
+    "fecp-metadata/metadata/boot-1/015-metadata-baseline-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "c2432651f6ce3bfb45816ad044cc6eb1034b959bbd703e513f7fcd747db3d2b5"
+    },
+    "fecp-metadata/metadata/boot-1/035-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475461,
+      "sha256": "c6bbcb65df6e3034b2c3e07db1ce279c2158dbbbdf5cbbfed32b8a0dedd387b1"
+    },
+    "fecp-metadata/metadata/boot-1/062-same-boot-refusal-history.json": {
+      "bytes": 477310,
+      "sha256": "515f4c6efd31df5228a46d509d12d349e2af75e03bd001047e2fe577630315b4"
+    },
+    "fecp-metadata/metadata/boot-1/060-metadata-applied.json": {
+      "bytes": 287163,
+      "sha256": "181bcb9bf5cece86c8a0c1ab45066c3cd77d00e7af6f6e656b4a522150569aa7"
+    },
+    "fecp-metadata/metadata/boot-1/qmp-metadata-baseline-health.json": {
+      "bytes": 4517,
+      "sha256": "bc129039ab664b97bb2041db398741c85dab0f2a1d9a35955970b83769db905b"
+    },
+    "fecp-metadata/metadata/boot-1/025-metadata-plan.json": {
+      "bytes": 452575,
+      "sha256": "6760636005f7d829688cdf17a67c67dfcfe5660d204ef1e53bae9c0b9a7710d1"
+    },
+    "fecp-metadata/metadata/boot-1/021-metadata-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "bfa8cee4376180288ac02204bc6ff5d6f441659ef5f6eef99b15fa1b4e942698"
+    },
+    "fecp-metadata/metadata/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "3283916070f775fb1a631cf820e58fde66a2c0b28ec028f3c132e1934a2fbea7"
+    },
+    "fecp-metadata/metadata/boot-1/061-reject-same-boot.json": {
+      "bytes": 373,
+      "sha256": "58e296f470d5455abdbe390c4b55275656efb666bc2c9efb9ec9c2e16d8052fb"
+    },
+    "fecp-metadata/metadata/boot-1/023-true-noop-plan.json": {
+      "bytes": 452586,
+      "sha256": "866c8d45e29902c85d913be46bf2ae1057d760aec6d21ab80a121f5e4ef1f1f9"
+    },
+    "fecp-metadata/metadata/boot-1/020-metadata-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "9827cc45e6f70b461014ddc7d465db11688844c55ce042d643d4370c661b4bbf"
+    },
+    "fecp-metadata/metadata/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "b0ecc8c8d24346d0cbe15fa9b8b37e93a5a85cfc3779469b80baa007d16c6669"
+    },
+    "fecp-metadata/metadata/boot-1/041-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "f082cc55adf3e3ac81106330e6a405ecbd262c9d867760d0a3c6f58e156b13c4"
+    },
+    "fecp-metadata/metadata/boot-1/serial.log": {
+      "bytes": 2041,
+      "sha256": "5a34c26b944da9872bed2e1c92cb414d3297328a70e336d6cef38ff0a2bb45ce"
+    },
+    "fecp-metadata/metadata/boot-1/008-metadata-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "cd99ec68b484a8b6e0f4beb9a5d1d314b637ccdd9fa1b195e2409393d0696462"
+    },
+    "fecp-metadata/metadata/boot-1/042-operation-f3be59dad323443d77bdbfc162614d3b.json": {
+      "bytes": 475555,
+      "sha256": "1f6721059b21c4c458577f5c4e06808553630237fb745dd0f66973d079be722e"
+    },
+    "fecp-metadata/metadata/boot-1/052-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "95b7ede66f12d592f0d1a931a3c30eca3b505fc5e27ae3e85b0b7760eb7e7ab8"
+    },
+    "fecp-metadata/metadata/boot-1/006-metadata-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "1adaed8728f6fab1030ce7d535bd6186d122366331f4ca363fd623e04a83c6ab"
+    },
+    "fecp-metadata/metadata/boot-1/009-metadata-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "b0916f194c074ef20482e85083d11750bee699669867ccc6cff5dffbe517b7e4"
+    },
+    "fecp-metadata/metadata/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "ba985577500570477109757d8cacf5d646b501916d541c49f7ab5e5bf06746bc"
+    },
+    "fecp-metadata/metadata/boot-1/057-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "ced8b1311132312fe9cca466e473e160c94c77bb9f84fd837fcaef347a4a91a5"
+    },
+    "fecp-metadata/metadata/boot-1/059-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "3e9bb3d62280489ad27626973d88c9d2828d75a8970a1dbd2a69223d8baa33f7"
+    },
+    "fecp-metadata/metadata/boot-1/010-metadata-baseline-health-mounts.json": {
+      "bytes": 8644,
+      "sha256": "2c433734bf87bb0a101b114f59bbaa02e98d49a60e6952a533e667ae0798eac4"
+    },
+    "fecp-metadata/metadata/boot-1/048-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "85ea7e57cec3a69f0ab2e7c817bf96b1b40243b969d967538646298a22209f0e"
+    },
+    "fecp-metadata/metadata/boot-1/055-wait-worker-exit.json": {
+      "bytes": 447,
+      "sha256": "1714d6b7ceea25c1a8dadf3d38c8a58b11543c7fdfc3fadcba8f4665c8ce1b3f"
+    },
+    "fecp-metadata/metadata/screenshots/recovery-terminal.png": {
+      "bytes": 272587,
+      "sha256": "b8d47044ff042f36031a269b6b7a3afd5bd7e4d75ef65e96b21cfd1d789db096"
+    },
+    "fecp-metadata/metadata/screenshots/recovery-desktop.png": {
+      "bytes": 554254,
+      "sha256": "7e4319b293ecf4cd3c1254c2b1329c1cb8e8441135bbfa4c7f1b58259a9a9ef2"
+    },
+    "fecp-metadata/metadata/boot-3/084-ready.json": {
+      "bytes": 219,
+      "sha256": "fdaac6034b423385f01cb127fb67966bb39e61fe51e3262516dc09113cca49b9"
+    },
+    "fecp-metadata/metadata/boot-3/086-ready.json": {
+      "bytes": 219,
+      "sha256": "2bba59b088ccc1c5e48953f94a8472b7ba20f4410a651ec1477435e29dd4fdac"
+    },
+    "fecp-metadata/metadata/boot-3/089-ready.json": {
+      "bytes": 219,
+      "sha256": "8128dcbbc18db209e02e457d53a6effc12cba1f65a58eb9bcfe8d0f1a3760ce9"
+    },
+    "fecp-metadata/metadata/boot-3/082-ready.json": {
+      "bytes": 219,
+      "sha256": "995deb67da6cb930ed40cd5362b769264f4c8e826daad344c5a278b45904ca20"
+    },
+    "fecp-metadata/metadata/boot-3/087-ready.json": {
+      "bytes": 219,
+      "sha256": "dd293fc169fede9d9927cba9066c62ca4231697e9ccca6951a501709a60c9d25"
+    },
+    "fecp-metadata/metadata/boot-3/qemu-command.json": {
+      "bytes": 1424,
+      "sha256": "bf39f7109c3ae3f3038c0b8371323911b41d76842add1534f7b877e0ceb390c6"
+    },
+    "fecp-metadata/metadata/boot-3/qmp-ready.json": {
+      "bytes": 5466,
+      "sha256": "8003bf114d96ea9f503ba0dcb80603ac8352af58f39fac3e0033d20aabd2b686"
+    },
+    "fecp-metadata/metadata/boot-3/091-ready.json": {
+      "bytes": 356,
+      "sha256": "76be96a158f6d31bbdc84ec0544edb3102bc0242b2b7633a99e04095e1d639e8"
+    },
+    "fecp-metadata/metadata/boot-3/077-ready.json": {
+      "bytes": 219,
+      "sha256": "71e445b90a87756301e1c0d9880fe59910806cc86f71039931989eb5dae1b8f1"
+    },
+    "fecp-metadata/metadata/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "40a71d4d64268a2427c1da944d8ee56fed1adc19173d1adbb825c2102ca20476"
+    },
+    "fecp-metadata/metadata/boot-3/088-ready.json": {
+      "bytes": 219,
+      "sha256": "3f841afc258a24b065d98ef71c6eb09062ab315349537dfbf3ddca60f6635b01"
+    },
+    "fecp-metadata/metadata/boot-3/079-ready.json": {
+      "bytes": 219,
+      "sha256": "55e0f9fa0c87640d223757ac6ca7f48931757c522604ca5f56921dce18ca3641"
+    },
+    "fecp-metadata/metadata/boot-3/083-ready.json": {
+      "bytes": 219,
+      "sha256": "a6f8965f33485712143b5d5d7e64a6bdb9d78d947f7f22e8cb0972561dcc1e0d"
+    },
+    "fecp-metadata/metadata/boot-3/093-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "176ef9b901fbd819cb782939837954245167f95041f4571952e5bc676d88df50"
+    },
+    "fecp-metadata/metadata/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-metadata/metadata/boot-3/092-offline-restore.json": {
+      "bytes": 4798,
+      "sha256": "71fa12c0ea1ba47a1ea064fa97edb2064c1db0eac328fbbc4ad9900a4acf20a1"
+    },
+    "fecp-metadata/metadata/boot-3/076-ready.json": {
+      "bytes": 219,
+      "sha256": "a63dbd509ca4e42357e9bf0ec8dde07a5eef2ca23d19ff5a59604228cd2c0236"
+    },
+    "fecp-metadata/metadata/boot-3/075-ready.json": {
+      "bytes": 219,
+      "sha256": "75226b22f449aa51cebb3c394402ff80db8c419e86323665e3d53bf5752af030"
+    },
+    "fecp-metadata/metadata/boot-3/080-ready.json": {
+      "bytes": 219,
+      "sha256": "cbc40af065536a03e9a26107ffb461b16c5db3f3a7b6490e9c85db5cf500aa51"
+    },
+    "fecp-metadata/metadata/boot-3/085-ready.json": {
+      "bytes": 219,
+      "sha256": "732dee38539c873918144d072f536a751a295e9ad6c65e4f67672d32040472c5"
+    },
+    "fecp-metadata/metadata/boot-3/081-ready.json": {
+      "bytes": 219,
+      "sha256": "ccb0b451f2992bd5283db71751f3a85fb04e118aefb96be51877224e7df18ab9"
+    },
+    "fecp-metadata/metadata/boot-3/serial.log": {
+      "bytes": 27107,
+      "sha256": "9374b02eba4e95faf1064cf184c75c7ecfc74445e4bd8072fc71e3a51284e320"
+    },
+    "fecp-metadata/metadata/boot-3/078-ready.json": {
+      "bytes": 219,
+      "sha256": "658d4eb0e8709cb510f9969e56a44368364b80fe3f8325e37823ca866b560486"
+    },
+    "fecp-metadata/metadata/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "76d8e4ad750417204681a20f54d02452cfea1cc54cdd40c7d3c9422871d74df5"
+    },
+    "fecp-metadata/metadata/boot-3/090-ready.json": {
+      "bytes": 219,
+      "sha256": "eabedbcd3da5c01d6c3b4e2302ec7ea63200cd699287551ae6e34e7523782d37"
+    },
+    "fecp-interruption-r2/evidence-sha256.json": {
+      "bytes": 19023,
+      "sha256": "b0a5d7bf73eb492332fd3baa103e056a38b8970f14e461da466bd1157e9e30be"
+    },
+    "fecp-interruption-r2/inputs.json": {
+      "bytes": 3526,
+      "sha256": "50ad07f29111319ddf96f29fd8beab97e919e61e66a6f47c0dc6515d4122009b"
+    },
+    "fecp-interruption-r2/matrix.json": {
+      "bytes": 7280,
+      "sha256": "2ba1f2e839f4533b49734f21d64e249afeed87dca0fa42bee2d41cdd7b42da5e"
+    },
+    "fecp-interruption-r2/interruption/real-applying-boundary.json": {
+      "bytes": 410366,
+      "sha256": "6225927926ca287f61079e15d6c45891d0214ab81408db63a727b528d456b7a9"
+    },
+    "fecp-interruption-r2/interruption/offline-restore.json": {
+      "bytes": 5078,
+      "sha256": "1d4b0d1e558cdc96a7ff85494ca9d0ea9d09c906bcb0fbcc9cfe28c42636ee0b"
+    },
+    "fecp-interruption-r2/interruption/restored-health.json": {
+      "bytes": 633103,
+      "sha256": "f66b28867422916a705a615b1227da43735fa346224cedffae6f6e64a4fa294a"
+    },
+    "fecp-interruption-r2/interruption/attention.json": {
+      "bytes": 287,
+      "sha256": "0d3b6edaaedad06a217184fe0a1b2940baad30bea174f3e6147881e740b14231"
+    },
+    "fecp-interruption-r2/interruption/sigkill-durable-recovery.json": {
+      "bytes": 410620,
+      "sha256": "f021c4e7136a29565917de31da42284ec3e9b63b9e8ff595672d5cb8b8f27103"
+    },
+    "fecp-interruption-r2/interruption/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-interruption-r2/interruption/native-lock-excludes-competing-writer.json": {
+      "bytes": 223,
+      "sha256": "f1e7cf0d1a82e2bff6c96f5f73c26bc11f853703f86a710c7680ad6d9c97e982"
+    },
+    "fecp-interruption-r2/interruption/interrupted-offline-rollback.json": {
+      "bytes": 414281,
+      "sha256": "bc0668b34cc9912f4bf0fafcbc5a594a98795bb5b68880965b9ea246352b7420"
+    },
+    "fecp-interruption-r2/interruption/submission-refuses-symlinked-request-staging.json": {
+      "bytes": 903,
+      "sha256": "fb5313746618514193d96c88e7ca18c890b2c7e2af9747b12494beb6685b046a"
+    },
+    "fecp-interruption-r2/interruption/interrupted-install-plan.json": {
+      "bytes": 409965,
+      "sha256": "49d94fe5b6018d1444e0d0cc84dc58ea666031d6e206346d84e0b65f725ddc58"
+    },
+    "fecp-interruption-r2/interruption/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "5ca5c799a987a7de6bc602f30955658fc5aa6a8f89d5f8038c0256b1db7d1a7c"
+    },
+    "fecp-interruption-r2/interruption/concurrent-submit-preserves-applying-worker.json": {
+      "bytes": 1646802,
+      "sha256": "88c30fded0ddcd02e7a6210b75dba41fe42851fb8d84beb38b199331667806bd"
+    },
+    "fecp-interruption-r2/interruption/install-posttransaction-barrier.json": {
+      "bytes": 322,
+      "sha256": "12b48d4b9d066590f7e2ab2637dedc95c4f09782903fa19702f77ef99fc01b4d"
+    },
+    "fecp-interruption-r2/interruption/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "e2c909a29ab2610643ee1b9cd123ca286f81b0be1cf9f3501de9c4160a1f5eb0"
+    },
+    "fecp-interruption-r2/interruption/interruption-baseline-health.json": {
+      "bytes": 149599,
+      "sha256": "f6c9ee88c93413dfd2a04ae9e548843b93f62b6a99ca8dc56d3f1866abec6a0c"
+    },
+    "fecp-interruption-r2/interruption/boot-2/qemu-command.json": {
+      "bytes": 1490,
+      "sha256": "2e0e14059a15c549b09f459f9ec3e62bcbc48083f8c49f85f297e7966dc1eb54"
+    },
+    "fecp-interruption-r2/interruption/boot-2/qmp-ready.json": {
+      "bytes": 5510,
+      "sha256": "729cf5a3dc8ff8afacaa3a025a9fefb88328ae13fb6e588ecc36520cd611b22e"
+    },
+    "fecp-interruption-r2/interruption/boot-2/069-ready.json": {
+      "bytes": 219,
+      "sha256": "8a2609e9c655bc36b6616eaaa39d7362bbf4566b1589fc00ef2637541cf71674"
+    },
+    "fecp-interruption-r2/interruption/boot-2/077-ready.json": {
+      "bytes": 219,
+      "sha256": "cbe72e4be7eec6aedad53313b6a29b85ebd8ed11cfb10c5b2e261010f3a845b0"
+    },
+    "fecp-interruption-r2/interruption/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "665c7c1ceee47e64364a1bc906d833d7c829575da57348e678c39d29e5450f17"
+    },
+    "fecp-interruption-r2/interruption/boot-2/081-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "876fca720f06f8ebd15ce09a4d5705a8d90d5b547ad60dfab8467cc58900f827"
+    },
+    "fecp-interruption-r2/interruption/boot-2/079-ready.json": {
+      "bytes": 356,
+      "sha256": "e508acf7d6d766731441a4e81e190f496e44ba743c4b56ceda2fb5da16af16b5"
+    },
+    "fecp-interruption-r2/interruption/boot-2/067-ready.json": {
+      "bytes": 219,
+      "sha256": "67897f594fff9d024592ce3e8a377a4d866fe37a9bf1a9acede1f7cb6dcb9253"
+    },
+    "fecp-interruption-r2/interruption/boot-2/074-ready.json": {
+      "bytes": 219,
+      "sha256": "0faa1254f7bc829c6956e44882b776be7f9a39dced66c0eaebe9c066d560b1a8"
+    },
+    "fecp-interruption-r2/interruption/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-interruption-r2/interruption/boot-2/076-ready.json": {
+      "bytes": 219,
+      "sha256": "880ea3ca74eec34d011b47964c53b112d2d391c226de841a2b47800072ac526e"
+    },
+    "fecp-interruption-r2/interruption/boot-2/075-ready.json": {
+      "bytes": 219,
+      "sha256": "2a85e0551f8da58175dc73285572a249783c7ea576a7a1f1684a4e1b5cb63c57"
+    },
+    "fecp-interruption-r2/interruption/boot-2/070-ready.json": {
+      "bytes": 219,
+      "sha256": "9a721aa25d68fe4117dfa70db630defbfcd0a868bbba35d672ac267c91ea5196"
+    },
+    "fecp-interruption-r2/interruption/boot-2/072-ready.json": {
+      "bytes": 219,
+      "sha256": "c644fb928b14d64123b8b681e27a9c6c492548dd4b7f29bdc55d8ede7af99826"
+    },
+    "fecp-interruption-r2/interruption/boot-2/068-ready.json": {
+      "bytes": 219,
+      "sha256": "c945675aa439fb2eb4adaae63932d4da95d4a1cb0f53aba5af968116f9f2dee3"
+    },
+    "fecp-interruption-r2/interruption/boot-2/serial.log": {
+      "bytes": 26857,
+      "sha256": "a1cf2c8563dd3165da5a37bc55d332c904fe76756b9689adf1421a9311450141"
+    },
+    "fecp-interruption-r2/interruption/boot-2/073-ready.json": {
+      "bytes": 219,
+      "sha256": "33106ddfd24a7fb315fa6f6c30d7657563fcbfe52cad0cbaa510db5945783699"
+    },
+    "fecp-interruption-r2/interruption/boot-2/078-ready.json": {
+      "bytes": 219,
+      "sha256": "c68756c1736b42d4d60e000ba6df0560aebd10b472c65475e7082ce9558691b8"
+    },
+    "fecp-interruption-r2/interruption/boot-2/080-offline-restore.json": {
+      "bytes": 4798,
+      "sha256": "8c5c0c55718da63c188c2034c3c8019e071ea320a47ce69c1bfa126e5c4e391c"
+    },
+    "fecp-interruption-r2/interruption/boot-2/071-ready.json": {
+      "bytes": 219,
+      "sha256": "c065bc1836f21d77475439a5bf8f83706f01117f176f498fa87ccdd1ce832acd"
+    },
+    "fecp-interruption-r2/interruption/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "0be5ce3b9cf992d2bf6f9ff841fcf14756bb1804454464d0907f3a69b5e85d1b"
+    },
+    "fecp-interruption-r2/interruption/share/phase42-faults.py": {
+      "bytes": 82696,
+      "sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b"
+    },
+    "fecp-interruption-r2/interruption/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "edb366d668678484c9ba7e432b75cecaf6ce125f805e643b10a2a6dc75f90df7"
+    },
+    "fecp-interruption-r2/interruption/share/recovery-target.json": {
+      "bytes": 175,
+      "sha256": "3fbb730bb071efae1a2f3db7a63595f4adde9c2de4f135ff2525375bf8fafccb"
+    },
+    "fecp-interruption-r2/interruption/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-interruption-r2/interruption/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-interruption-r2/interruption/share/submission-noop.json": {
+      "bytes": 222,
+      "sha256": "4a67ef9b956c47595e3591920aefb4e1f4b2215b1562fd9535fb48e8237d3f2e"
+    },
+    "fecp-interruption-r2/interruption/share/concurrent-submission.json": {
+      "bytes": 241,
+      "sha256": "b9fe5471b2afc125b8087584591b6fec8f9991c20dea8dd93b0a1e5c6e25d1c6"
+    },
+    "fecp-interruption-r2/interruption/boot-1/040-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "58379b703b4bd196ab4c4cd40389f4a747792f406c80b433fd107685aa06caf8"
+    },
+    "fecp-interruption-r2/interruption/boot-1/053-compete.json": {
+      "bytes": 607,
+      "sha256": "e8d9f1d5210c87322aed8863d9a1afaf2897b67b63b6101291374c6ef00bcb25"
+    },
+    "fecp-interruption-r2/interruption/boot-1/049-wait-posttransaction-barrier.json": {
+      "bytes": 623,
+      "sha256": "a4c9493d1d423ab57879f0b7667d8a7d4f3995f3bbd59ffbfd674fc28af5599c"
+    },
+    "fecp-interruption-r2/interruption/boot-1/023-submission-noop-review.json": {
+      "bytes": 452586,
+      "sha256": "e8f30b8d413406f5e5e2cc0db2d4f0c1f8fcac63465c150322b76d06884e3005"
+    },
+    "fecp-interruption-r2/interruption/boot-1/052-concurrent-submit.json": {
+      "bytes": 1224117,
+      "sha256": "9fdde18e415af264db60349e241b0bd96e09dae5dcb75233529d9554c95d4d22"
+    },
+    "fecp-interruption-r2/interruption/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "5fc69adbed29d935d20069fb2abdf1d5cf9e3bc8f56f0171b59439d2ed927a47"
+    },
+    "fecp-interruption-r2/interruption/boot-1/056-operation-16ff0df0b8ddf57b4b7feb714927c023.json": {
+      "bytes": 477689,
+      "sha256": "e49946eb7a26a94bfd6460e9379f2c6dadd73e7573fa3665e0467969741cf015"
+    },
+    "fecp-interruption-r2/interruption/boot-1/025-after-submission-symlink.json": {
+      "bytes": 287139,
+      "sha256": "c930abb624e59a75f864eaab9c9bfd7d2121744258bb98c24103b7abbc57c769"
+    },
+    "fecp-interruption-r2/interruption/boot-1/065-before-offline-history.json": {
+      "bytes": 477392,
+      "sha256": "9e86ba5b2b5896522d66b63b23439eb880da59f2f6b38941ee45910e9ebd2b97"
+    },
+    "fecp-interruption-r2/interruption/boot-1/048-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "8bdc4d74a83b745dfabd31d69a156f4a6dcaee1cf7dc8b4405f5528d7ace8824"
+    },
+    "fecp-interruption-r2/interruption/boot-1/035-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "55d275c70a26042058ea1d88d0f8ec95960dbe0adb37dc90a2f08e5515f0f2d3"
+    },
+    "fecp-interruption-r2/interruption/boot-1/055-operation-16ff0df0b8ddf57b4b7feb714927c023.json": {
+      "bytes": 477292,
+      "sha256": "33dde144d5eebf21e71c5dd74be4d48f9ad494db4d764b590d04f313f0f3ce2b"
+    },
+    "fecp-interruption-r2/interruption/boot-1/024-submission-symlink-refusal.json": {
+      "bytes": 1176,
+      "sha256": "56b81d20c4e8929310c9bf85cc6aa694f79701e56256e13db0f2a43c216cb1d7"
+    },
+    "fecp-interruption-r2/interruption/boot-1/047-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "487f02d5fa0bcdbe01ad5451ed0aaca98c898dc77accf170d0488682edd45a07"
+    },
+    "fecp-interruption-r2/interruption/boot-1/054-sigkill-worker-service.json": {
+      "bytes": 394,
+      "sha256": "be515f2d4bab4204758d3c48404ad85cda7a90018ad9ecdc1eaa6ccdfa5ec772"
+    },
+    "fecp-interruption-r2/interruption/boot-1/qemu-command.json": {
+      "bytes": 1333,
+      "sha256": "1642a01d03f335885d52812b1b9bcf35e8599ab0f6592a0efdd8d48f9d346671"
+    },
+    "fecp-interruption-r2/interruption/boot-1/034-barrier-operation.json": {
+      "bytes": 476900,
+      "sha256": "c5df7fa63b1251c41db19b1d64c0e25066f26c1f6b8ec3215f09c8bd508f1d8e"
+    },
+    "fecp-interruption-r2/interruption/boot-1/qmp-ready.json": {
+      "bytes": 4561,
+      "sha256": "b1209b383c686093a52671d46ee15a41c419456e644c18aa427a88311e909753"
+    },
+    "fecp-interruption-r2/interruption/boot-1/007-interruption-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "c15f7ca0dcc2d212dbad055545dfd099277c0b2109adfe077819216fb3e331c8"
+    },
+    "fecp-interruption-r2/interruption/boot-1/063-reject-worker-replay.json": {
+      "bytes": 419,
+      "sha256": "437fecc84bf866afb3dd82c698726b463987534ca35cbcbec2561e6f33b613a1"
+    },
+    "fecp-interruption-r2/interruption/boot-1/043-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "7e412357eb5512689d1a6cfaa85fedd9a063f12a9cd80d1ebe555b3a391a117e"
+    },
+    "fecp-interruption-r2/interruption/boot-1/051-mutated-at-barrier.json": {
+      "bytes": 287238,
+      "sha256": "84c11d834dad43a6191b373bdec89876be0080e0c90438e06a9130ab25c77961"
+    },
+    "fecp-interruption-r2/interruption/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "e010658b1b3f58497c3c8e8f2310732a65d0fce2e4079c22e3dfe6fa6bae7e32"
+    },
+    "fecp-interruption-r2/interruption/boot-1/011-interruption-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "e1c036cbd63c6a622b843e06c0b47d7804e21c91dbbcf09819b0de29818da3cd"
+    },
+    "fecp-interruption-r2/interruption/boot-1/021-interruption-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "5e807a817e111217b44fad6bd68759f9da360a836cbcccbe35ac664588ffb84d"
+    },
+    "fecp-interruption-r2/interruption/boot-1/026-arm.json": {
+      "bytes": 681,
+      "sha256": "d4fce6d636ba00ec4d5ccbd31e1ac0d11aef70cfc12657c9cd5eb9d557083271"
+    },
+    "fecp-interruption-r2/interruption/boot-1/027-interrupted-install-plan.json": {
+      "bytes": 454301,
+      "sha256": "169d960bc01199676cd9c6469ee0336eedfa4b958c3d849a8e7cc006a8db987f"
+    },
+    "fecp-interruption-r2/interruption/boot-1/009-interruption-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "d10a4614101989c6ef93fef6efdb8368998788a3cd9596fa54a24f2a930609e1"
+    },
+    "fecp-interruption-r2/interruption/boot-1/029-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "a9a9a48cfed5ba841e3bf540144efce288cb1493835dd20500683507def6b1e5"
+    },
+    "fecp-interruption-r2/interruption/boot-1/008-interruption-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "0d6ff492cb8315478e73e040a15fadf6b83c75a742b47786f0512871d0209f1d"
+    },
+    "fecp-interruption-r2/interruption/boot-1/010-interruption-baseline-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "83df2b14772b279fb92d8ac384578cd158d6c57eb40455837d9427c430cc67ff"
+    },
+    "fecp-interruption-r2/interruption/boot-1/036-barrier-operation.json": {
+      "bytes": 476992,
+      "sha256": "c3520b1dbf9500080392b0782fdc573be26944473d75e39cf5a4233ec2ec2915"
+    },
+    "fecp-interruption-r2/interruption/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "dcbd2553c0628bb4f830582b8c194139e869de323c49b57843f1666f50d472e2"
+    },
+    "fecp-interruption-r2/interruption/boot-1/066-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "43660e3c8873c74d01549ffa75c8f2a715634f432bb1477b506f7cd69247df88"
+    },
+    "fecp-interruption-r2/interruption/boot-1/016-interruption-baseline-health-boot-journal.json": {
+      "bytes": 109550,
+      "sha256": "384d3a381163a88680daf28dcac8aeecc36d84a95939a04af914ea77aed92b72"
+    },
+    "fecp-interruption-r2/interruption/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "7ff62afe185de83f2a8aba40a5714437f70e52d607c154b900ba1ef85a6fecaa"
+    },
+    "fecp-interruption-r2/interruption/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-interruption-r2/interruption/boot-1/039-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "770815a68569d1fe2a4068b0ad66a0efa0e7db9effe4d7bc86ed88e202781930"
+    },
+    "fecp-interruption-r2/interruption/boot-1/032-barrier-operation.json": {
+      "bytes": 476900,
+      "sha256": "0cc9dd5cfb185d9e98997d1e67fe11bde18de2302e30cd864c00409bca6f867e"
+    },
+    "fecp-interruption-r2/interruption/boot-1/017-interruption-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "7836d1403103daec79826f30baee3762aec72c03d0c7ce3d7c73587205d26fb9"
+    },
+    "fecp-interruption-r2/interruption/boot-1/015-interruption-baseline-health-journal.json": {
+      "bytes": 6677,
+      "sha256": "6dd69ecadc5c1917aa9124ed4b4f310a68c40b42ddae11610bbd1ab8894be6e1"
+    },
+    "fecp-interruption-r2/interruption/boot-1/044-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "b245f0e18a7ea919ed03143fc35e06123c24b272b2a2f357016a57b3ab1864fb"
+    },
+    "fecp-interruption-r2/interruption/boot-1/046-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "183f7f567666ca967eca1227a0c36551a5fac7b6054ffbf20a6f09521a874193"
+    },
+    "fecp-interruption-r2/interruption/boot-1/058-killed-service-result.json": {
+      "bytes": 462,
+      "sha256": "586ef482f3623c72d80da76952240143907e9536ef3cb5e8271d6ebc4b4d4e73"
+    },
+    "fecp-interruption-r2/interruption/boot-1/060-killed-worker-identity.json": {
+      "bytes": 623,
+      "sha256": "35157315c76ba383b2c483b47c90d0020227b781e1aa6e0576f57427e3307c66"
+    },
+    "fecp-interruption-r2/interruption/boot-1/045-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "79d24559ea96b99e551808959979afc49407f96d3eeed71b62323de8d89e46ae"
+    },
+    "fecp-interruption-r2/interruption/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "03916936e28fdfe80498c390d2702e83ff85c68b91a50c4d8fe4a61782b863bd"
+    },
+    "fecp-interruption-r2/interruption/boot-1/062-before-worker-replay.json": {
+      "bytes": 287238,
+      "sha256": "8c0980c89eccaf47b210f6e6dd236ddf7a7c2abfa48e91f6c77a174cab47dc71"
+    },
+    "fecp-interruption-r2/interruption/boot-1/028-interrupted-install-submit.json": {
+      "bytes": 714,
+      "sha256": "d4c34fd2f5d36b4e98c0756f5effc35231ef7c3d72dfd6d103f4a9d4efddf822"
+    },
+    "fecp-interruption-r2/interruption/boot-1/064-after-worker-replay.json": {
+      "bytes": 287238,
+      "sha256": "ca099dac08d95268cf6a4e041918e8f6d68a46126a9dc99fa537232411f763bc"
+    },
+    "fecp-interruption-r2/interruption/boot-1/030-barrier-operation.json": {
+      "bytes": 476864,
+      "sha256": "544d5d8210c063af66c639462b8a19ddae7fb6894d3304330f77b4c56bbd1efa"
+    },
+    "fecp-interruption-r2/interruption/boot-1/041-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "d81bdf43d1117408156132e0254a85c34e7a25273c507d98c9ad292602531a5c"
+    },
+    "fecp-interruption-r2/interruption/boot-1/020-interruption-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "5d4e74823fa1baee7499bc8bebb1645be19773133702456863c8098df80a7a54"
+    },
+    "fecp-interruption-r2/interruption/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "08beafeb9320a4913c771fed96540c564e1c4bfda0c816fa7d5b42d9c4b408f0"
+    },
+    "fecp-interruption-r2/interruption/boot-1/042-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "0f48cb96bdbbe5b94136f9ad616174af84505e15cb002eccb05d8ce897d29553"
+    },
+    "fecp-interruption-r2/interruption/boot-1/serial.log": {
+      "bytes": 1996,
+      "sha256": "8e5be62986824319b8ecf6f49a3fc69a66c7fa13292794d5d33b30872cb44369"
+    },
+    "fecp-interruption-r2/interruption/boot-1/012-interruption-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "4c70467b7269430b12e9189a7ed116072d2d38ae35090ccae11033313707cd16"
+    },
+    "fecp-interruption-r2/interruption/boot-1/059-killed-service-journal.json": {
+      "bytes": 8802,
+      "sha256": "10e9658e7529a254cfea3fac4e5fc5397395a0c7efe923cdaa9a452b4c972874"
+    },
+    "fecp-interruption-r2/interruption/boot-1/006-interruption-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "0652ba576a937ca368ae7977ea828718be7d947bed4ab29a763265c905995060"
+    },
+    "fecp-interruption-r2/interruption/boot-1/014-interruption-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "19f8881bc722ef09f33352500a1bd363e592ee4038bcf1208f60c9fa68dafd51"
+    },
+    "fecp-interruption-r2/interruption/boot-1/013-interruption-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "c9882ce1cd70797062a0dcdd8a489715d67eb9ad21184a4a6f63b9b13dd21b6a"
+    },
+    "fecp-interruption-r2/interruption/boot-1/050-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "b0eb5036a802ba357b101f9286569d4f45e14bd37680fa3a3dd444add6372db6"
+    },
+    "fecp-interruption-r2/interruption/boot-1/qmp-interruption-baseline-health.json": {
+      "bytes": 4561,
+      "sha256": "1a20d7fa842743f50aab8a6eac09ab081f3fe6916cd6c444de0d571e51337696"
+    },
+    "fecp-interruption-r2/interruption/boot-1/038-barrier-operation.json": {
+      "bytes": 477100,
+      "sha256": "a2221c76b784226fcb3331a631dcdd209d87bb3580959b8c59df6dfe5ef085c2"
+    },
+    "fecp-interruption-r2/interruption/boot-1/031-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "f6fa53913f9a88bc5f6a160a14e37da4fd4cbb751d7f304ee2c605391424e927"
+    },
+    "fecp-interruption-r2/interruption/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "8cff216f20e6f9b8b8dc2d35feab2c385fcc96f46c2cd0a6dbf0f6f74416ac77"
+    },
+    "fecp-interruption-r2/interruption/boot-1/019-interruption-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "657aa24160da1180c064a1bf265248b895dcd14459e2983e9798f90e54e71ed7"
+    },
+    "fecp-interruption-r2/interruption/boot-1/057-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "e176f469def101d4161b1432eff63e8e17bc76f2796f4666d5dcc4696fa4d1b6"
+    },
+    "fecp-interruption-r2/interruption/boot-1/061-killed-worker-process-gone.json": {
+      "bytes": 307,
+      "sha256": "59d2e76fc548f9369da042b80f5b605db3399d2924aa866c8ea8bff981a66551"
+    },
+    "fecp-interruption-r2/interruption/boot-1/037-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "0e9743fc68d60895c98cf915e87a6d58c28a48aaed273c47756a0a48f4ed617c"
+    },
+    "fecp-interruption-r2/interruption/boot-1/033-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "3a29fdda93d82a11242db53fb596f705f39ba1e314dc00eb71ca722b9121b37e"
+    },
+    "fecp-interruption-r2/interruption/boot-1/018-interruption-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "85a91c9ad362674c2c9189a8f449a98298a3426bd45888fdbefcf221893b1e32"
+    },
+    "fecp-interruption-r2/interruption/boot-1/022-interruption-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "226d21732610e96ef5a3f2bc2a7832162bc1badb353fe03b7d352fbe0c8b2997"
+    },
+    "fecp-interruption-r2/interruption/screenshots/live-terminal.png": {
+      "bytes": 272942,
+      "sha256": "8dc33888cfcbf4d989ce3f1832bbd9dbb2d987829d866445a5792d44ebbfe886"
+    },
+    "fecp-interruption-r2/interruption/screenshots/live-desktop.png": {
+      "bytes": 554429,
+      "sha256": "5f0f2a8709a8771f1cfd5b9d8b920a156c15832023111802f60a642861e5e2b0"
+    },
+    "fecp-interruption-r2/interruption/boot-3/093-restored-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "3245984c1ed48511b4d25775c2504f03f26121059cae8e87bb0c0e315c6cc1d6"
+    },
+    "fecp-interruption-r2/interruption/boot-3/086-before-explicit-finalization.json": {
+      "bytes": 477392,
+      "sha256": "b0c3c0e465401a976d958e0342e6663d0ab66cb025b8ce0fe31c785c2de346c5"
+    },
+    "fecp-interruption-r2/interruption/boot-3/084-ready.json": {
+      "bytes": 356,
+      "sha256": "ccbb519f56bc27673f1d888a2d94ef6fe7657942d0ba359dabcd141875e29104"
+    },
+    "fecp-interruption-r2/interruption/boot-3/101-restored-health-journal.json": {
+      "bytes": 6677,
+      "sha256": "c4db3f4e4eefb2b1d02f7f10a29f29ddd2705251f8f9507e890036f77752bddb"
+    },
+    "fecp-interruption-r2/interruption/boot-3/090-restored-signing-identity.json": {
+      "bytes": 397,
+      "sha256": "853ff7c49da5a10a267a3f8b25ee789e816bbf03f72cbca430d761aed9f6419a"
+    },
+    "fecp-interruption-r2/interruption/boot-3/106-restored-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "a199ead5a8e5862c099b5159226078f109babe581d0287c977e226119978af52"
+    },
+    "fecp-interruption-r2/interruption/boot-3/097-restored-health-subvolumes.json": {
+      "bytes": 804,
+      "sha256": "ea3d63cf9a6fc3dde0919cf7a9f701316f8b0e72d3886f670a6e4c9403a3b2dc"
+    },
+    "fecp-interruption-r2/interruption/boot-3/082-ready.json": {
+      "bytes": 219,
+      "sha256": "93d96f71d136201cb628e72daa24527df02509eed602fdbbd66a87db3c6fe24c"
+    },
+    "fecp-interruption-r2/interruption/boot-3/qemu-command.json": {
+      "bytes": 1333,
+      "sha256": "887c89f32f50ea4af67b2224846d2406cc7c7819156065c86dd671c0d2006e4b"
+    },
+    "fecp-interruption-r2/interruption/boot-3/095-restored-health-failed.json": {
+      "bytes": 328,
+      "sha256": "1c6084feb8e4659282a26af9d41cf71ff8d091ecf702e73ac15028f93d982f1f"
+    },
+    "fecp-interruption-r2/interruption/boot-3/qmp-ready.json": {
+      "bytes": 4562,
+      "sha256": "a2adfcb61bc616655efde08f6f723e4e1ceee11df9f1ca0b6905a7ed862210af"
+    },
+    "fecp-interruption-r2/interruption/boot-3/085-wait-automatic-confirmation.json": {
+      "bytes": 335,
+      "sha256": "c056374afd60a3539829540c9fff0054c3c82b3651095137f697cce8112e7678"
+    },
+    "fecp-interruption-r2/interruption/boot-3/100-restored-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "bdfd192ee8e8feaaddb2c9004f55a8565d61283e570c9d161b96ab20318e315c"
+    },
+    "fecp-interruption-r2/interruption/boot-3/108-restored-health-snapshots.json": {
+      "bytes": 1556,
+      "sha256": "b3bc67a156a6292715ba219dfde94c7cf0e58295f3180bdb37db9b0421dd0177"
+    },
+    "fecp-interruption-r2/interruption/boot-3/099-restored-health-root.json": {
+      "bytes": 376,
+      "sha256": "9cdc1230d896d24c96233846d91c46620a11581ad4a58e3283d50dd2103571ef"
+    },
+    "fecp-interruption-r2/interruption/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "c67e21986ddc7f438804050155abc8e2b77d86578a049823fab123ddd0df245a"
+    },
+    "fecp-interruption-r2/interruption/boot-3/089-restored-state.json": {
+      "bytes": 287139,
+      "sha256": "cabbe69467a14add0e520a656f36861c4f6a955365eff1b9c87f7be0cc5780db"
+    },
+    "fecp-interruption-r2/interruption/boot-3/083-ready.json": {
+      "bytes": 219,
+      "sha256": "754b03a5237cf4775e364e57bdd31265e9caae7abd25265386b4b8c9f669e529"
+    },
+    "fecp-interruption-r2/interruption/boot-3/091-restored-snapshots.json": {
+      "bytes": 1565,
+      "sha256": "239016bd9daf718b84041f072633ba44cf22c745735d2666aa955d60eba89411"
+    },
+    "fecp-interruption-r2/interruption/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-interruption-r2/interruption/boot-3/092-restored-health-status.json": {
+      "bytes": 3055,
+      "sha256": "6ddb90f19e38aafa1123d235690103ee2cec6d17e449c2c60af41f02c886bfca"
+    },
+    "fecp-interruption-r2/interruption/boot-3/105-restored-health-pacman-log.json": {
+      "bytes": 745,
+      "sha256": "4308b9c172633dcc56538af4c0f4f2c912149c6a74cf46354d5e9eaa54d86bc2"
+    },
+    "fecp-interruption-r2/interruption/boot-3/109-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "a993125b157a3bf87ad7b68e172d69706ac3f0798d29d09f7ab2eb3eeac9ea93"
+    },
+    "fecp-interruption-r2/interruption/boot-3/102-restored-health-boot-journal.json": {
+      "bytes": 109608,
+      "sha256": "76d458155cdbbb431518a1ebc4a579c533dcbffe5ef9033d1ea13a050f098462"
+    },
+    "fecp-interruption-r2/interruption/boot-3/096-restored-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "1ae467606fd7e4273ef43178ea5bcd20e59705857c2b5cc4c7c04a552f64525a"
+    },
+    "fecp-interruption-r2/interruption/boot-3/reboot.json": {
+      "bytes": 110,
+      "sha256": "202693bb90bb3619b1de300fbb66a88818052dab6e7dd31c047af607bfe5e406"
+    },
+    "fecp-interruption-r2/interruption/boot-3/088-finalize-rollback.json": {
+      "bytes": 459091,
+      "sha256": "1c37baf6b5279d90a433fa06071baea22fda7bf5ce9f3d1904458a0370bd419a"
+    },
+    "fecp-interruption-r2/interruption/boot-3/107-restored-health-history.json": {
+      "bytes": 481852,
+      "sha256": "4eb3e1dabeb4b4240eb433b84730bde3e5fb0e26e6d41dfe73f08047f7c2da37"
+    },
+    "fecp-interruption-r2/interruption/boot-3/098-restored-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "8682a742a1d03e4179bbace14714964445499e53d87855d89145891c5531ca8d"
+    },
+    "fecp-interruption-r2/interruption/boot-3/serial.log": {
+      "bytes": 1996,
+      "sha256": "58ff71d134f3296192b48c59863bc1fb4ff215b1b6ab290fdd6c1156ffeae209"
+    },
+    "fecp-interruption-r2/interruption/boot-3/103-restored-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "71a09491e19ac498b14355c4af8365b9c57c3f9f0981ccaded10dffe90e9257c"
+    },
+    "fecp-interruption-r2/interruption/boot-3/094-restored-health-database.json": {
+      "bytes": 337,
+      "sha256": "8712495f3054b9d93ebc2692dcc704d23abdbbf551248bed72714f5b9fd199fd"
+    },
+    "fecp-interruption-r2/interruption/boot-3/qmp-restored-health.json": {
+      "bytes": 4562,
+      "sha256": "c5513b96c341d85ee7d30ff3a17c10d9ef57e37c73d6975ed60e10c21720f59d"
+    },
+    "fecp-interruption-r2/interruption/boot-3/087-before-rollback-finalization.json": {
+      "bytes": 287139,
+      "sha256": "cd7b8bc3cb74b2f2c692182c92ebba98f9395b8eb29eb4c6517ae89a101d48db"
+    },
+    "fecp-interruption-r2/interruption/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "6c242965a90014229f6e3114b00d9ed7d3d5967e508220537ca424e7b1fd8142"
+    },
+    "fecp-interruption-r2/interruption/boot-3/104-restored-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "0c29a000ddb2d3b976d2a6f743e777d6124345e9364090f4342d9879d051b013"
+    },
+    "fecp-abandoned/evidence-sha256.json": {
+      "bytes": 6922,
+      "sha256": "5d72ad045a9359ea8cf87c53cf158a1e35452626e34e32e95b8573ec8d1b4686"
+    },
+    "fecp-abandoned/inputs.json": {
+      "bytes": 3526,
+      "sha256": "8f1b22d7318ccd7f4493c24ac332bb8196ffca95fa254b4406f9eeeb01adfe69"
+    },
+    "fecp-abandoned/matrix.json": {
+      "bytes": 5430,
+      "sha256": "7ba881059e4f809d15c59a270c469f9d4c59bd0c112c49079699f595108bf53b"
+    },
+    "fecp-abandoned/abandoned/systemd-start-failure-persists-failed-receipt.json": {
+      "bytes": 690736,
+      "sha256": "08b6e0345514787b44b6aa36a5d3aaee6a9684b5e896925391f8541548be0269"
+    },
+    "fecp-abandoned/abandoned/attention.json": {
+      "bytes": 278,
+      "sha256": "731318a07e8495433d77e02ba7c998fb670b29e31420d5b4740141edf9b9dc86"
+    },
+    "fecp-abandoned/abandoned/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-abandoned/abandoned/abandoned-baseline-health.json": {
+      "bytes": 149739,
+      "sha256": "bb635994ba00881a9859e3a1f6e07c3ac4ed9b93442f61fb5bbe9c6f505ad0e7"
+    },
+    "fecp-abandoned/abandoned/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "6c2ed550fe360c26d69652e3d22c7737910478202b564c0a53c1df88ee40f03e"
+    },
+    "fecp-abandoned/abandoned/replacement-request-and-old-claim-refusal.json": {
+      "bytes": 127,
+      "sha256": "cc1b0f8a79b049ebf457efe87f5445571183587368de776bf9de1b9989a5b73b"
+    },
+    "fecp-abandoned/abandoned/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "8710ff9f00fd7b2ccfbf361036c579559e63f686e0e3a8c894a81527457c6c47"
+    },
+    "fecp-abandoned/abandoned/abandoned-durable-boundary.json": {
+      "bytes": 404,
+      "sha256": "38f92f4713c591ee33edfc8e75ab41089e196d159187c3d2b9e3fbda7222aa89"
+    },
+    "fecp-abandoned/abandoned/share/phase42-faults.py": {
+      "bytes": 82696,
+      "sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b"
+    },
+    "fecp-abandoned/abandoned/share/orphan-submission.json": {
+      "bytes": 222,
+      "sha256": "4a67ef9b956c47595e3591920aefb4e1f4b2215b1562fd9535fb48e8237d3f2e"
+    },
+    "fecp-abandoned/abandoned/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "28ed533b1032e37497f81a48b33c3e9c2fb58d22269e402789fb61a1d766b753"
+    },
+    "fecp-abandoned/abandoned/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-abandoned/abandoned/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-abandoned/abandoned/share/submission-noop.json": {
+      "bytes": 222,
+      "sha256": "4a67ef9b956c47595e3591920aefb4e1f4b2215b1562fd9535fb48e8237d3f2e"
+    },
+    "fecp-abandoned/abandoned/boot-1/027-unprivileged-orphan-status.json": {
+      "bytes": 686,
+      "sha256": "d0f615a017854315a118d805dc248fddf5328bd228368847600c7530ed40c2d4"
+    },
+    "fecp-abandoned/abandoned/boot-1/014-abandoned-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "0f2dc707c999ab419e97bb87745c8b65a0acd031652cb3a499432647246711f7"
+    },
+    "fecp-abandoned/abandoned/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "d1b5ca44bef9eab9486b58758c4cb75268bf53463c493786e1ac6a3acee152a5"
+    },
+    "fecp-abandoned/abandoned/boot-1/017-abandoned-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "d3deb4ff0479b80e1a18223bbbdab7f7b7205382d425a543180ca369514820fe"
+    },
+    "fecp-abandoned/abandoned/boot-1/028-after-orphan-inspection.json": {
+      "bytes": 287139,
+      "sha256": "7e56a99ab0ebba971d2867e2e5acd49a87e864cdbad9b9dd1ef9e5cbc9dd5875"
+    },
+    "fecp-abandoned/abandoned/boot-1/qemu-command.json": {
+      "bytes": 1279,
+      "sha256": "9a7c045490831cad9b443a66ecd3a82c0f13f74fc1d733974c961dae5df26de8"
+    },
+    "fecp-abandoned/abandoned/boot-1/016-abandoned-baseline-health-boot-journal.json": {
+      "bytes": 109689,
+      "sha256": "ef0f9e9fa3ed430ac2e3333554be4cab952af2f6e79cdeb20d6e6b7a1422eb87"
+    },
+    "fecp-abandoned/abandoned/boot-1/qmp-ready.json": {
+      "bytes": 4525,
+      "sha256": "bcee47a8472791bb9e0952d723e0b7a5a3c1e988fc305ce7d927627424401971"
+    },
+    "fecp-abandoned/abandoned/boot-1/020-abandoned-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "42275ca2565faf08206eedc6fa1c617e462d7ba747740283edac422230db956b"
+    },
+    "fecp-abandoned/abandoned/boot-1/031-operation-6921d6dd455d6a822a638109f38805bb.json": {
+      "bytes": 475066,
+      "sha256": "1b7b9694896a98e974a949d8446ea05232fb5b391b6a3b704f519a89926d7510"
+    },
+    "fecp-abandoned/abandoned/boot-1/035-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "c88844d4436762261a1c72d539eab1869ebaea78d6396068bf1a9722d6aaa282"
+    },
+    "fecp-abandoned/abandoned/boot-1/qmp-abandoned-baseline-health.json": {
+      "bytes": 4525,
+      "sha256": "17a25c18fd55f40e92afeffc7fb0f66882623ab11bcaeb18b3cc4d4d89e237f1"
+    },
+    "fecp-abandoned/abandoned/boot-1/023-orphan-noop-review.json": {
+      "bytes": 452586,
+      "sha256": "084c79e683bdaeff9193ac5b2792532fb0de79556cc2c963670f708d96a411ef"
+    },
+    "fecp-abandoned/abandoned/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "9c4aebd74be7e7e50c0bd125cb9a514d31019a94af2240fed0c4b23a39b4de4a"
+    },
+    "fecp-abandoned/abandoned/boot-1/032-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "6c8a3d64db71d07c73e7224adfddd3c5bbdff27ad5ef967e37fd5f75efc5ecd7"
+    },
+    "fecp-abandoned/abandoned/boot-1/022-abandoned-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "efcdc418ce811f8a0060a7ce3709fd9f716caded727b48e0488383f24b35de06"
+    },
+    "fecp-abandoned/abandoned/boot-1/018-abandoned-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "b5dc591de5465489a483d6a3e57b55a55fc9016ba7ba5046a5eb8b4e45f1830a"
+    },
+    "fecp-abandoned/abandoned/boot-1/026-abandoned.json": {
+      "bytes": 751,
+      "sha256": "65cd3f06ba545d0ce741aed0c93e9c91011a273229318420a85fc6a93ec4acf1"
+    },
+    "fecp-abandoned/abandoned/boot-1/034-after-orphan-replacement.json": {
+      "bytes": 287139,
+      "sha256": "fd08b22a7f445d5ecbd06a1f573c0c80f896c2d2246e451748c2e0e24e1f33fb"
+    },
+    "fecp-abandoned/abandoned/boot-1/013-abandoned-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "117a6dd75b399874bad59d97de1974e13ef32acdacbc68096c767241836787f2"
+    },
+    "fecp-abandoned/abandoned/boot-1/019-abandoned-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "f843acdda9890a4de4d6b34b063220dc6db2db4a0f9f642fb3fd8eb4b003d5f6"
+    },
+    "fecp-abandoned/abandoned/boot-1/007-abandoned-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "8d8f7310d9536c2f47213e9f479c2dd09187368043fc5f8844de9b3ba4aa7f5f"
+    },
+    "fecp-abandoned/abandoned/boot-1/008-abandoned-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "ad12904b00ce2d16018954dd3bbff4fe900976ce3bbecd496cee5a300aed7f81"
+    },
+    "fecp-abandoned/abandoned/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "a759690da01bb23eae84b59b1179046a41c2870bf0da18ea12ae1d16c2a5ed03"
+    },
+    "fecp-abandoned/abandoned/boot-1/012-abandoned-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "1efa6263fd8d241302c6021a13c6cc8cadbc5acae48251a7e77e2e16e7f34585"
+    },
+    "fecp-abandoned/abandoned/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "b46a77a12f9f84a66471a72237662728bfe549195d3548870e828d49a5162fa7"
+    },
+    "fecp-abandoned/abandoned/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-abandoned/abandoned/boot-1/006-abandoned-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "c6785d57b64ec16bc8ee4d79790342f185dae61fc82e99a39f6433ae586709db"
+    },
+    "fecp-abandoned/abandoned/boot-1/015-abandoned-baseline-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "f781314e516ac26974346dabb68d67c0f72c14307f9f8f89ab31b7938430577a"
+    },
+    "fecp-abandoned/abandoned/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "9c8961fd2baeeffc1d59e679e206110326418d271d337a3719834024ef1b6e00"
+    },
+    "fecp-abandoned/abandoned/boot-1/011-abandoned-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "c7910f876e7997a993a54d04eb7545910a46af4881836edc7699dddbe4976c74"
+    },
+    "fecp-abandoned/abandoned/boot-1/033-reject-delayed-original-worker.json": {
+      "bytes": 405,
+      "sha256": "aaa9b7152d364b826d3d8b7558c648aea18fda40e309c7129e6b190da89a9f57"
+    },
+    "fecp-abandoned/abandoned/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "a73acacd4366a7f1903adf6d78bef4d9f4aef8a416835eb5a335770714d1978b"
+    },
+    "fecp-abandoned/abandoned/boot-1/021-abandoned-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "a4046e5a8e49099faf4fdc68236536aed974f6412a2e1327b308d1da7ce031e7"
+    },
+    "fecp-abandoned/abandoned/boot-1/serial.log": {
+      "bytes": 2041,
+      "sha256": "71f86da94d6e48f9037e95181fbe7424b79960a2e912a8c609c387aa0d979480"
+    },
+    "fecp-abandoned/abandoned/boot-1/030-operation-6921d6dd455d6a822a638109f38805bb.json": {
+      "bytes": 528,
+      "sha256": "a5f22379b747f53db9b7717d08eef967980d9e43bd99d56d0151037da2f52a44"
+    },
+    "fecp-abandoned/abandoned/boot-1/010-abandoned-baseline-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "8ba1052629e936d3e903d795e54114d30e651b11658daff6756e45d95b845703"
+    },
+    "fecp-abandoned/abandoned/boot-1/024-real-worker-start-failure.json": {
+      "bytes": 575548,
+      "sha256": "4312440fa641e2fa0b8a51043d5819f93e640229a534de5e6d5544cfd3b00bb5"
+    },
+    "fecp-abandoned/abandoned/boot-1/025-after-worker-start-failure.json": {
+      "bytes": 287139,
+      "sha256": "77aa66d18f7950b1e411e4af70de10e74969df60aaac59af1bbbf9d6e8b2312d"
+    },
+    "fecp-abandoned/abandoned/boot-1/009-abandoned-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "927221affecbedfa727c02b99c427bdfe6e7ac4357b73a1e3993769dd65124a1"
+    },
+    "fecp-abandoned/abandoned/boot-1/029-replacement-noop-submit.json": {
+      "bytes": 705,
+      "sha256": "6a95389da2b8d406724d73f277bd2f172c74a61054dfbc69b2053e92d863a725"
+    },
+    "fecp-abandoned/abandoned/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "ce97ad4a7366148564e7f4b28d312fe000d74f3b6b9a75d2a5ceda98dc3b1ae4"
+    },
+    "fecp-failed-hook/evidence-sha256.json": {
+      "bytes": 17345,
+      "sha256": "b49e48272bd6b1d3546079acb5aae31616b65a1922c309ab6fd23b44c97b03e2"
+    },
+    "fecp-failed-hook/inputs.json": {
+      "bytes": 3526,
+      "sha256": "2cf57ab5b07c104d0e877e2a44096e6f3156dccb751fd857ce525dfef93c2257"
+    },
+    "fecp-failed-hook/matrix.json": {
+      "bytes": 5760,
+      "sha256": "df9daa2fcb1ce0cd95d88570433bbe20f7717ee3369bb986bc7a817ee921b221"
+    },
+    "fecp-failed-hook/failed-hook/offline-restore.json": {
+      "bytes": 5078,
+      "sha256": "cc890ba5868a05a3904a5ce82d82522eda8e2c586ea2e974693033dd4ca60e36"
+    },
+    "fecp-failed-hook/failed-hook/restored-health.json": {
+      "bytes": 632998,
+      "sha256": "f30563ae0b897f4b70cca6077d86cb341d531c1ff9187399e5a57c302b37874f"
+    },
+    "fecp-failed-hook/failed-hook/attention.json": {
+      "bytes": 282,
+      "sha256": "b8dd5d2246e3ef63fe6bdbe9f194f63743cbedc60f9fdcadaad6237612fbe2a3"
+    },
+    "fecp-failed-hook/failed-hook/arm-failed-hook.json": {
+      "bytes": 320,
+      "sha256": "e471332ba9c1adc3fa1602590c6ba98ffb210fa1c5c8914c081fa9f4f9d166bf"
+    },
+    "fecp-failed-hook/failed-hook/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-failed-hook/failed-hook/failed-hook-durable-recovery.json": {
+      "bytes": 410595,
+      "sha256": "f74ce6503a84d6766435d9311b5550320805e18777f71693510b6db3e1dd9bea"
+    },
+    "fecp-failed-hook/failed-hook/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "adef4e99c014654160ef730ffe198fc6a170091050b976913e93700c79e356e6"
+    },
+    "fecp-failed-hook/failed-hook/failed-hook-baseline-health.json": {
+      "bytes": 149496,
+      "sha256": "f9e17fcff433188d9bb2c81ad0ad7081999e73ef34d5797802f0d154c8c883d5"
+    },
+    "fecp-failed-hook/failed-hook/failed-hook-plan.json": {
+      "bytes": 409965,
+      "sha256": "49d94fe5b6018d1444e0d0cc84dc58ea666031d6e206346d84e0b65f725ddc58"
+    },
+    "fecp-failed-hook/failed-hook/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "37a8c92aac72cf5bafe257aa452b8ae036ec34cb94dc9d714014c87403f1ec42"
+    },
+    "fecp-failed-hook/failed-hook/failed-hook-offline-rollback.json": {
+      "bytes": 414256,
+      "sha256": "1b4e4186e360e4628e22b26620e6a3f728ce3d77efa3b4b4c22e1f99adf2e3d3"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/062-ready.json": {
+      "bytes": 219,
+      "sha256": "7cc3104d497177f0476e845e3fd68441ef642dd4b1dd7ba853b84980ca5aa941"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/qemu-command.json": {
+      "bytes": 1460,
+      "sha256": "5c55d1a424b5696b6331a0a83b94a8e45ccce0afc6cd03c91f08d9a7762ec9eb"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/qmp-ready.json": {
+      "bytes": 5490,
+      "sha256": "419c6e0372706fdb949e969c1d88f4d33e6005cece65cb8ce9925892dc53cb0b"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/069-ready.json": {
+      "bytes": 219,
+      "sha256": "99fff8e7be7253d31a23270d99a08998e36a8c7e150d099a432f539ad726d18e"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "c425ca7592f7217a2b1828cd8fa2eb8e899ccda46d20ac5c0ed11eac909499ec"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/063-ready.json": {
+      "bytes": 219,
+      "sha256": "edf37c11c34f8cd57cfab96f5b088be869bb4d2fad3886215cdc4c00ed6d30dc"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/072-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "c52a5cfb33c18d80fb5b067f3a2f0f0a39b9be07ddf44e730f9d01b18e4600ec"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/065-ready.json": {
+      "bytes": 219,
+      "sha256": "5bc6ddc1d96ca29d9f616af3f70850cf21e107ec0ada24a8fcaff870811ae796"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/067-ready.json": {
+      "bytes": 219,
+      "sha256": "eb65b13bc87c7e0182c7ffc796faeb765b86d87b8caa378a9db2c101f2fa69f2"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/066-ready.json": {
+      "bytes": 219,
+      "sha256": "1fa6f0ad83402bcbb8d04ebe0072524934098cfeb765b4592695c7dcb86db2f0"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/070-ready.json": {
+      "bytes": 356,
+      "sha256": "f901d40404695901a3dc9cde047912436caa0e954cd868d2d562f2770f1de9e7"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/064-ready.json": {
+      "bytes": 219,
+      "sha256": "f80b213f02786dfd05d494c124ab778a14b9152ad3cc78712ba27d97852ad447"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/068-ready.json": {
+      "bytes": 219,
+      "sha256": "324a1090a89b3bb618e13f554f722abe0c3d356a0be2fbd8a215da0f4923089d"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/serial.log": {
+      "bytes": 28440,
+      "sha256": "a41c11c1a9dcb868ff7866d7c7d212a49b1e4221b324c2963079f2b6143d460c"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/071-offline-restore.json": {
+      "bytes": 4798,
+      "sha256": "3e18d8f3ba3742fdd0cb276c460baf556188bedb3e2c7dfb6219c9570342abbf"
+    },
+    "fecp-failed-hook/failed-hook/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "17d99341b6641e6507e17bbe3bbff0a6f05f30bd8b9a7ceaa17db51b5172c227"
+    },
+    "fecp-failed-hook/failed-hook/share/phase42-faults.py": {
+      "bytes": 82696,
+      "sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b"
+    },
+    "fecp-failed-hook/failed-hook/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "52eecc5ced1d4b2043d9eb1f78f3a8aa7078ed915f9c5e37b3cf4ea32c6f8646"
+    },
+    "fecp-failed-hook/failed-hook/share/recovery-target.json": {
+      "bytes": 175,
+      "sha256": "7662806953c3ed2c199b6cd2f522400e274d6ee36145936d404ce9af216f1149"
+    },
+    "fecp-failed-hook/failed-hook/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-failed-hook/failed-hook/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/034-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477100,
+      "sha256": "002aca628b2d46a69fccf4f7cc39f1aabac4787796e40abdd7e74e853a52c52d"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/049-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "1123eb7a6fc54ac947ebdc20793bd3df0e20ffeb8815998d307da2f27e6f1dc6"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/046-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "7d4e705d26c3d930f246aac6d676a1c7b5d6c1688673510dfbd328e45a3e6445"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/027-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 476864,
+      "sha256": "6aeb25f86cd8cb9e3ec59b0e992ae52ceafa8853089bdc326209ab12cf0447d4"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/018-failed-hook-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "fc6f91d9d15ca4f7e1228874d9a5bf958372e6527f5842960cac9de310ac53db"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/058-failed-hook-replay-refusal.json": {
+      "bytes": 419,
+      "sha256": "545480b5e8b10ee69fb3643ca1fcfdefc8c5e03982fbd95f9997c62e54367905"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/039-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477292,
+      "sha256": "4b424df4db50c3e3581e638d0acd1484571ca0746853a7bef2ca92075b40bc3d"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "31895954d1ce890dbd688bd15767580e19438bd29d3c3ec7acf7e4e3fea5e1b2"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/016-failed-hook-baseline-health-boot-journal.json": {
+      "bytes": 109448,
+      "sha256": "d822956dd369f059c39cb9ac627def4cbe5c9cc5a52bdcc36345f1d5c094c4a7"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/050-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "7669c971ff86b40f8a559dc3592f938195e95fb04a463939f9416abfd29fc89e"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/031-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 476992,
+      "sha256": "a5e688e426d36a6bedfbcda9087ddc982926c3326034b7a310c4178c84f13439"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/011-failed-hook-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "5eadb5e565b24b40414522274d87fc366c28876db0d244b28d7b9be3e5e01e5d"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/025-failed-hook-submit.json": {
+      "bytes": 714,
+      "sha256": "05f0a55b9fabed198d4eac5a3d50f859fdb4c4e9a91823d0cc30ec18e09a07a0"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/qmp-failed-hook-baseline-health.json": {
+      "bytes": 4541,
+      "sha256": "f13d4b65b28df461cf9c57d5ce0ac74b431a3d55427ba09c3588ddadcdd744fa"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/qemu-command.json": {
+      "bytes": 1303,
+      "sha256": "961df69569ff0442b0f573763418b886c59038799e90d1ed9318f1d74fc25aa1"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/014-failed-hook-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "1156331f77326347b9d373bf4bfc7985629bf3687b7f25fd8907c7eb0dd26ba6"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/061-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "f1986260888a5ab3d698826f545b5d0692d348b3d6bb3f6e02cdbcbe497180b6"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/024-failed-hook-plan.json": {
+      "bytes": 454301,
+      "sha256": "9efad24f30bb269b5ef164a10f4fdb2020b226abadc3a397866b99cf48a92b75"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/qmp-ready.json": {
+      "bytes": 4541,
+      "sha256": "0c845a351cf47d6bebc4ccd991bcbaaafc3c7346f1a4d01bd59300f131349d1a"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/053-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "0d984ae2a66578e2fd6dcfe92f0dd8ebdadcba70b6123c0a2d6f1c26e0674042"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/036-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477292,
+      "sha256": "e098167efbacfe8d705d5bffc4a680c404372d9113fb32500f85c927aad2d0da"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/051-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "e9e4cf40d58e08b6d49b90bf9232fa5fc8a33287e1a5bc84dbccbc2ad677865b"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/047-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "72ffea5798b30a272183020747891c11334f90286064f5eea8779dd5c4f61f4a"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/040-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477292,
+      "sha256": "8ccae1f8d380bf2d8829bcc0f813ce41882d67a5e3f66e8db577883e7172d3e9"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "7fedb14117fce76b06c6820f505c5f7b0b159de96b8ccd0176eeac122aab8e44"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/035-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477292,
+      "sha256": "6e67cd632a8096f041dd9a59e342ce35c05fa5fbb6db85e1eb7944e0bb88384c"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/012-failed-hook-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "b7b51214df6ebde057a79bda40a19992111f3191d05526ae717f55398eaad38d"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/013-failed-hook-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "8717c1674992382edffc10806215c7a697c79801ce49bb7f8fcc7ee0509912ac"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/042-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477292,
+      "sha256": "49ea82539892a50193b8c83d3b8edcd28d2031296baf1bbbade437db68c68e07"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/019-failed-hook-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "081ae797191b80cb40f1da39bbff45f7c129c6b9778890200e4659ff421361be"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/008-failed-hook-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "ad8bd0f5e7f16d2ef20f4c230ba00b7aa72d5a04f6d0a504cc7391b58b8be0e9"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/030-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 476900,
+      "sha256": "8ee66c023997a59065d6ee58d74d955d627ce368462e73766e7c13e1ae157def"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "0cf1793ebe2e2086aa8ca9aa5df0ef8f155b92f992e1aa620bbe708f2f186d64"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/038-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477292,
+      "sha256": "398127912bc7542ca60ae86fe5675e9aa76652290adee954bdbf8d05886d7427"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/026-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 528,
+      "sha256": "712633a3367c66f8459ab2083e92b10ad1b0b48765678cf103b41cf3aeeacb49"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "8e7403320005dc06bfd9f6f240c3c81b2f61a3f23df1adb2263e02ec43736cf1"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/060-before-offline-history.json": {
+      "bytes": 477367,
+      "sha256": "983b60c031dba867ed031963d16aa1e08431af926ca673e3c119fc8fccc60864"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/044-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "2578b8010685387ffecfcafc191c04a3ccd2928d575ee880a72b02bad531816d"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/054-failed-hook-actual-fault.json": {
+      "bytes": 622,
+      "sha256": "a62e21d5689030dd67114cd0790cc59307ee7df5280293399ff5552490296dc1"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/007-failed-hook-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "1906180fb33a0fd69b75c8a500af54f2808334a599f3dfff288195bcb1df6f0c"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/022-failed-hook-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "2e302d73a0ae0db06553e508228ac3ef432c13e1eafca2f5e41c4640d00ab399"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/017-failed-hook-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "503acdb96afbc89a5a87f8263211e67a6fc154aefb39ed54864336c299464bbc"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/021-failed-hook-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "a3867072eb3757313a85217bdccc2c6eeeba9a888b4860827e7b87d37238a25d"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/057-failed-hook-replay-refusal-before.json": {
+      "bytes": 287135,
+      "sha256": "f1f57d1fafed69f4808e6c41fc393b3d76c115a0fde17ecee9e78cdd881b379f"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/043-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477638,
+      "sha256": "bea38229c3fc14a880bfa3eabc8d92bd9bbe42138fdefb0c90ac9ce081affb2e"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "1c26d7ab50f6a3665cd79a77ac116a25a2bd7639a0e675d4d1d345164bb93b42"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/059-failed-hook-replay-refusal-after.json": {
+      "bytes": 287135,
+      "sha256": "f0140b849f68c6e858650e4e25b2aa379987ba321a2f8e9106877fb28839b0be"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/032-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477100,
+      "sha256": "d0f8b83dfa7d875ae64b2e017702651ba1b3f46065b82dce3a3ecbe6836d0381"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/006-failed-hook-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "edacf01a9cc93cffcd13574784e13beaf8fa52c801c873e5101a39bde5c1eb29"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "0186c211a372596b1090088d30235319b8bf7306c7c621c91db980759e80b797"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/serial.log": {
+      "bytes": 2041,
+      "sha256": "2854e45fc175eb62966dac0d2e049046033862dbc5482726395db6d2bf989504"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/055-failed-hook-resulting-state.json": {
+      "bytes": 287135,
+      "sha256": "2725f0c78ea2d015616f3283790fc28bc635413af46be5e7185c7901e8656275"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/009-failed-hook-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "18b2dff9e8bfdf00ded59f4827d6db3f771b0cc9996ce385568d44a0ac13c491"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/056-failed-hook-worker-journal.json": {
+      "bytes": 1058,
+      "sha256": "197e5bbf9905bde0ebe80a3379c09d26e5324ed174dc4ee6eb57a7d270ba9521"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/045-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "bfb6ce1d5832541b6357f209e8c109f5565d92ef5b078d062cffd8f6698affa3"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/037-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477292,
+      "sha256": "3be1db620f36de263f1853a0866e219034ba5519d13f477f76c0551fa1481027"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/010-failed-hook-baseline-health-mounts.json": {
+      "bytes": 8644,
+      "sha256": "ff0b2aff04d43441816fbf8bcdbaed0cd1b1f6c10fc4aa877936a5b6f028b371"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/033-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477100,
+      "sha256": "09f30d479db88ece1b577247fe5529662fe4ec1f63c08f1aae3898af908dcebd"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/052-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "decd3cb5a617e859d270023f2056bb88d02880662f040b4c530babd9d7644230"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/015-failed-hook-baseline-health-journal.json": {
+      "bytes": 6677,
+      "sha256": "fd9b830ae4424e6f70e36ef570769f44ea7f0560a164e9f6c26bc0b4b1f12956"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/020-failed-hook-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "01ba842b629a2000d2db7c14e269a9c5c4c6cd6db330351de328ac98f014fa57"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/028-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 476864,
+      "sha256": "8847b937fdcb0960827f3dfcee2bd5b83917cdc769c8d24001e93b76e2083b83"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/041-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 477292,
+      "sha256": "7dcab192c93881fdd4c58958aa3e50288aa1dc26de8b9a3980a37e2dbd108896"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/029-operation-344390ec136042af5857ad1c1f251d3c.json": {
+      "bytes": 476900,
+      "sha256": "cc69173c16d7c46da6d7bc7d632089009b7682e2b93d801433b58d20e707ae78"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "35ad14ebdcd97796d8d20ac04f4111628b6049ed54ca0575a39a3244a3aaaba0"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/023-arm-failure.json": {
+      "bytes": 699,
+      "sha256": "525af69a3282889379afc45a0d23182ecd3c0d53a54c2c7ea6b6256afc702265"
+    },
+    "fecp-failed-hook/failed-hook/boot-1/048-wait-worker-exit.json": {
+      "bytes": 453,
+      "sha256": "d72c1b88bdc254f6e335a9e2347cff195ab154f25f2505a954f61aa9915e0386"
+    },
+    "fecp-failed-hook/failed-hook/screenshots/live-terminal.png": {
+      "bytes": 273000,
+      "sha256": "9c4e07d9fc2d3834ccaf9b6b8b177af76e8ba4aedb7e7dcd8ed028019ba98a34"
+    },
+    "fecp-failed-hook/failed-hook/screenshots/live-desktop.png": {
+      "bytes": 554526,
+      "sha256": "7ce9b1d9a548b0de90e1398ccdcce53e149ac01a91ba81aef81337352c5534cf"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/079-finalize-rollback.json": {
+      "bytes": 459066,
+      "sha256": "ae5b84041d8e3e5996c478bceb158dc7e81afde2995bedea692ccbef06124572"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/081-restored-signing-identity.json": {
+      "bytes": 397,
+      "sha256": "c9a306fb4df0e96987281b919ff1769516dabf304fc7f5684072ad56eab73256"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/qemu-command.json": {
+      "bytes": 1303,
+      "sha256": "d0d8a3126110c11081ed8ed701b30475e2d742d3046eb39ff5aaef8eb56d0770"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/083-restored-health-status.json": {
+      "bytes": 3055,
+      "sha256": "b9e29a70c875b5deec828ea83f1c031e91d4b22062800071ebe7926829531123"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/090-restored-health-root.json": {
+      "bytes": 376,
+      "sha256": "8642e9a788e0143788b81f5d2fad312f4f57f3313bc34dc5dbbc883c5492280c"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/077-before-explicit-finalization.json": {
+      "bytes": 477367,
+      "sha256": "267e3a7e61ac0b47bb793d56ac060bb884cc7a5fa1966637c8b1eb3192798d52"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/qmp-ready.json": {
+      "bytes": 4542,
+      "sha256": "d1c6a9947209f26d0658484da892c55cce157f61453ac8a72c17c9558d0795a9"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/091-restored-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "1524cf45a231d9b370ea471543c27fb7e1453826d9ddc95613e10b9cd924cd38"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/088-restored-health-subvolumes.json": {
+      "bytes": 804,
+      "sha256": "80f4b675e3b255f5259a4cfb5cd450f63882136a35b3ad6b54af8f2d2753052d"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/080-restored-state.json": {
+      "bytes": 287139,
+      "sha256": "46656f9a4c2e5438f82e5e7c7c8c5fa819fa77f06757f0ae9d7d97a949fd508d"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/092-restored-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "a37712d5d9aed49cc3b74bafd8f5930bed8df0ab9b94e6d0a50d0ce7784c33e1"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/096-restored-health-pacman-log.json": {
+      "bytes": 431,
+      "sha256": "1939ff3574505cd0040f9384e23417d535cf7f66f8558eb1b13cdf5cca087ee1"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/085-restored-health-database.json": {
+      "bytes": 337,
+      "sha256": "4adb94c42d0ee38cbc375415f7b4124503d1fe679df39fb7e77199cde3c03ec2"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/095-restored-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "1df0cd58123814a16616041935c640c3564add8ee428e7fb083ef1b98095aceb"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "50508c992673e22dd02f04e83291e9dfba12160e00866f6c39fb736467a892a1"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/097-restored-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "adca6c4b22169d6c6a7ee02bf6b485c712ac273940f33481927e0577a3986bde"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/074-ready.json": {
+      "bytes": 219,
+      "sha256": "c6c0aa82b879cb6bdd7597603b2b3c00985793f9ac4b102c75c3455ff745b398"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/076-wait-automatic-confirmation.json": {
+      "bytes": 335,
+      "sha256": "92db45f0a313e27db8c9499af75d5f94b92138be633111c5078ffa37163f430e"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/098-restored-health-history.json": {
+      "bytes": 481827,
+      "sha256": "b70cd35b6095b3522661e3b65e8caf76c801c2a9ece50701e361476edff193f4"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/099-restored-health-snapshots.json": {
+      "bytes": 1556,
+      "sha256": "b5e588de07f1bf386e0eb65fdf1ddb5863c80dafb904e327b87569bdbf63321a"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/075-ready.json": {
+      "bytes": 356,
+      "sha256": "b0ee21cb1014de643cac8dec877d14adf1b7da5818e3654b6d1207949e622892"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/094-restored-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "54374c2ac409542b6ec13355f4842e97a613c0ed308452892e89ac731e61aa9b"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/087-restored-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "97af30e103c36411903b632d547b9ef89273ed16126f9f51231b01c47fbdad3c"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/reboot.json": {
+      "bytes": 110,
+      "sha256": "e7d2cc62fd587b1f55763b73e657a0466bd383be10a663b68ce9f6450c330cf4"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/082-restored-snapshots.json": {
+      "bytes": 1565,
+      "sha256": "723be4f2a2d63f229b16f327cb9632f3960207b8cd10b91e17265b0a60645535"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/serial.log": {
+      "bytes": 2041,
+      "sha256": "3bb65a44d0d768f09af8048093d136af8926b033a49e7a350ea8316d5d02ba5d"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/073-ready.json": {
+      "bytes": 219,
+      "sha256": "914b954d80439b3a6d604f1d77ee86b703ad1ae9a884173436fcd28e65bc07a1"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/078-before-rollback-finalization.json": {
+      "bytes": 287139,
+      "sha256": "8aa43395b47158ba3279cce20582b641fa19d41e1bcc1b4cf7a62240cb2f2640"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/qmp-restored-health.json": {
+      "bytes": 4542,
+      "sha256": "42fcfe823a8a153f2ec31df47365eb755dcd327c71ce7eaf0adfe3464c5300c9"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/084-restored-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "7deb82c94f00a33be5ea060c10f65cd6b25ab0dc2381c70330ed3db62f855f08"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "2367cf8c622ea24d9a682330d85481e517ef2d90aaae20ba5c92e763b87e0efb"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/089-restored-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "b698122aa8df8964b5f8bb98353c8bec89cceafb65410aba4056fc86a92922f9"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/100-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "422c8d17b5bbc090e5367806d47e3afd04e4d6ab8cad9858c0d5f5ea40a61d9f"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/093-restored-health-boot-journal.json": {
+      "bytes": 109841,
+      "sha256": "61a05bd3f928aabac2e5ae7eed6a75480e4fb4f060e57d1d46834bafe839349f"
+    },
+    "fecp-failed-hook/failed-hook/boot-3/086-restored-health-failed.json": {
+      "bytes": 328,
+      "sha256": "ebc4a48db58b3d484931f1d3d1f8293f84378887c227d91b0b281c8eae71715e"
+    },
+    "fecp-signing-failure/evidence-sha256.json": {
+      "bytes": 17554,
+      "sha256": "1cc731d43d7dcc38944806ea496ff56971919c02758af06069d9140057c77043"
+    },
+    "fecp-signing-failure/inputs.json": {
+      "bytes": 3526,
+      "sha256": "7f7f42dbe22968d9e66ec178de69ce3832c08c846a829d0b5c5fd29b2c93a482"
+    },
+    "fecp-signing-failure/matrix.json": {
+      "bytes": 5876,
+      "sha256": "0b65b84218d478c46ff9904bc9ab68533bae9debdc0d6775f9a18fef7e91316c"
+    },
+    "fecp-signing-failure/signing-failure/offline-restore.json": {
+      "bytes": 5078,
+      "sha256": "7f7a25e56dbf0a27513033acd36404a6b1545c9be7ac20567c51129aa8eedbcf"
+    },
+    "fecp-signing-failure/signing-failure/restored-health.json": {
+      "bytes": 634058,
+      "sha256": "e9554595db482ce6f9d8bbe4ba68f4e2e46d78297329b0244ed037c58704378a"
+    },
+    "fecp-signing-failure/signing-failure/attention.json": {
+      "bytes": 290,
+      "sha256": "fdff1efa2432cdfcdee829e85683a9166069f601c4c693173b9b326d7139754b"
+    },
+    "fecp-signing-failure/signing-failure/signing-failure-baseline-health.json": {
+      "bytes": 149798,
+      "sha256": "071bad0f6a42856f8e6306fa2f131f147681e0031172ea4c88214e28b5058733"
+    },
+    "fecp-signing-failure/signing-failure/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-signing-failure/signing-failure/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "b5bbca80149fb400ef79ec255aa939017f75643f8dafdd46eeb3171e71f54bef"
+    },
+    "fecp-signing-failure/signing-failure/signing-failure-plan.json": {
+      "bytes": 409965,
+      "sha256": "49d94fe5b6018d1444e0d0cc84dc58ea666031d6e206346d84e0b65f725ddc58"
+    },
+    "fecp-signing-failure/signing-failure/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "b0d8acf9270b65f536eafda4e2e30edbd71635911daf978940617cd8b37e59f8"
+    },
+    "fecp-signing-failure/signing-failure/signing-failure-offline-rollback.json": {
+      "bytes": 414653,
+      "sha256": "8a9bc35f68e3490233ca4f0b48fc16cf7359135d04b82ee2acfc1fb6eea02ac3"
+    },
+    "fecp-signing-failure/signing-failure/arm-signing-failure.json": {
+      "bytes": 325,
+      "sha256": "556515d19e2a6c582369f420cbd8866c3add1d13f1c7e40dbdcb5dec9301a215"
+    },
+    "fecp-signing-failure/signing-failure/signing-failure-durable-recovery.json": {
+      "bytes": 410992,
+      "sha256": "e0cbcac9a5e109ffcffbaffc052f12d18304486da5576f091cdd293a7b9254c1"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/062-ready.json": {
+      "bytes": 219,
+      "sha256": "ea15d7e76e465dc0029529b160fc880c35fc6d89ea7c6c9600de6c3c7ccfa09d"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/056-ready.json": {
+      "bytes": 219,
+      "sha256": "d4ffc012e277e13ca160a3a8f5ab211a7f93fd25e877f97a989b4fb49a01d35b"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/060-ready.json": {
+      "bytes": 219,
+      "sha256": "f1ee8e4bd68d95008e00b887cf1be005e0425b95be21d059eb6e3fb7379ab4e6"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/qemu-command.json": {
+      "bytes": 1508,
+      "sha256": "125b94a96d70ad961977725ad7a32df1165f172cf1e85b2a247a0e9ced1a35ba"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/qmp-ready.json": {
+      "bytes": 5522,
+      "sha256": "3660346f0bc2d5e50fe5b8e361fd9e3959157f764ba539583e75ebc4e8bd84ad"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/059-ready.json": {
+      "bytes": 219,
+      "sha256": "9dff63d26f9a60f83b64f79c0bdc84fc5690ea91fe2161cb72640b2724215c37"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "6d1c7f8ef368b09e31d4888c9dafbadfd63380c2daa7ddcd218ff154411a9943"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/063-ready.json": {
+      "bytes": 219,
+      "sha256": "446fcbc355650a4c8845d42d33857e1269183e5083a75b5d4c55a3d0cd769680"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/055-ready.json": {
+      "bytes": 219,
+      "sha256": "d6d6a5aaa691efd9eb02ee4b7ba8a3ef14301c371ca588648501263bbf9d7999"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/065-ready.json": {
+      "bytes": 219,
+      "sha256": "6d7f538d965ed68fbb3f20b78fe95686fe371197ced6de448bca657cf6c380bd"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/057-ready.json": {
+      "bytes": 219,
+      "sha256": "8ad04149e9892b01960e8a0c4d933b35488c6c5bf9e23d33605690e6c1715aeb"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/066-ready.json": {
+      "bytes": 356,
+      "sha256": "d10e391feb696af2e095d768ed887d3baefb18106388c2cb2bcf0e0b0b99ce98"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/061-ready.json": {
+      "bytes": 219,
+      "sha256": "cd0a437afe91bf59fccd3c9a91dfc65e7b0b56320395eeb91238b26e73e22e8a"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/067-offline-restore.json": {
+      "bytes": 4798,
+      "sha256": "d6eb599404d2b35df2ae70f526c1b14c985ff52d336f35ab90839b432ac2d551"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/068-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "bcc6b15747ace34219c32298b32319b67ca2f72e5132316e328d6a1b69e104c9"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/064-ready.json": {
+      "bytes": 219,
+      "sha256": "658745a90c8b1796aea99c15aa35623fb4de3fc3ac0fe95cce58847d80e04330"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/serial.log": {
+      "bytes": 28347,
+      "sha256": "127da5990b9e08e7e3929c1a89102dc4a9f55876ed0a5893107b586e295791e6"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "a0dd0d95e21493f2989667d8f11b75dd32859650a357a90b207ff1f2f59bd1a6"
+    },
+    "fecp-signing-failure/signing-failure/boot-2/058-ready.json": {
+      "bytes": 219,
+      "sha256": "5847b40d17e1039d3566e2ef919cac3cb97f4371a97bfe6e50aab9fd461f7382"
+    },
+    "fecp-signing-failure/signing-failure/share/phase42-faults.py": {
+      "bytes": 82696,
+      "sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b"
+    },
+    "fecp-signing-failure/signing-failure/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "bcde32b32e6218bcce81cb487a8ffadeda398dc0440707be807dad2fd438b6fe"
+    },
+    "fecp-signing-failure/signing-failure/share/recovery-target.json": {
+      "bytes": 175,
+      "sha256": "9e72bdd649bbeea665549053c7339888d53a7ae5db71ec1880d3888437040e86"
+    },
+    "fecp-signing-failure/signing-failure/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-signing-failure/signing-failure/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/047-signing-failure-resulting-state.json": {
+      "bytes": 288048,
+      "sha256": "75745ad00feb1249be4617fac70abeed73859eff80a6777520250b5613a14118"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "ca5dc4012a306686d86f2f533a49c9328e7684aa21e8ed0a1052dfb0b55cd1a0"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/015-signing-failure-baseline-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "076d2621f16e6baf3e6a5c358f4ab3482b47da9e830b911530f9ba8f6dc29993"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/032-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477100,
+      "sha256": "7dca1d410f7aef4a5217b7b11e4d9ce87be3ce51de5e8ecf004c320b1dd8a5c9"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/034-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477292,
+      "sha256": "8901a27e3f877d6b8e26fc59e4cd4c1ac06d0415a444399f9bafc2ca42a85dd8"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/014-signing-failure-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "7f67bf7d45d7ba32c45fbcc10d331ddc9e4c50ae1f90ffc0d7308f8f6edbafee"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/037-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477292,
+      "sha256": "90448e3968d00da375e87d1176249bbc409488ac07a79e9764da1671002c164f"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/038-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477292,
+      "sha256": "0bda764d2b32781a4ea43995eb0c9de6ed9fb1a5b313a138c0886d156b13d33f"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/026-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 528,
+      "sha256": "991d41a4e77127ba3b5f0eb218047b01d68c94760ecf31fa4ad003009a6ff426"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/qemu-command.json": {
+      "bytes": 1351,
+      "sha256": "eb444bccb14b58b9b9cbbda64c8dd06e16273bee7cbc832fc232aba6cd0d3bd3"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/qmp-ready.json": {
+      "bytes": 4573,
+      "sha256": "c6ea2adc7fe76fffa33bfe01974638a228de32670ee8a4284bd87e20f57b4313"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/020-signing-failure-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "1044586952844910c8f5f22f91d0e5592fd784e6b93ac014aba3f741d42af933"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/030-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 476992,
+      "sha256": "62b41b743d321c104d5ea1857663baae717a29d49601d845fbddf8f50bf8fe37"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/039-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477292,
+      "sha256": "cb8141a50bb6bf31d02af6ce86935ddfc83135e7e464bd84d7bca3e9fa90313b"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/035-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477292,
+      "sha256": "e016810a92c1e3f8af2b8b9326af26c48d11e734ea793660dd31fbeb1f29411d"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "7707155a368b8ee4353ac90d5aea2ed45ecba5efe5f28025ae9133d05a612852"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/053-before-offline-history.json": {
+      "bytes": 477786,
+      "sha256": "75119a9e70de4618251a1d25375d617aa728133919225e7d6fb44613e04eede0"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/006-signing-failure-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "5a42f5b3a889629b84470870704ecd98b5ce0cf15833edae68206dba4624bd96"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/007-signing-failure-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "37b88e65589abfe8a828dcfcbb9b1024ad82053869409744ef7b1435159c04b4"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/008-signing-failure-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "a88708e1ab2b7a4aeb0e9dc4c162515d05b2b9370e36f04fb9e54c3776247089"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/041-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477386,
+      "sha256": "d8602723477dd5b91c4a3d8058a3f6504ca85f9422fbe92f4811131fc06401c7"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/048-actual-disabled-signing-provider.json": {
+      "bytes": 415,
+      "sha256": "292c1fb370f2bc1703e2d9439f6bfc7bd04a6bbfe6f19b62dd6bb45ab95f91c1"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/021-signing-failure-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "44219c54f2409965fa2de6e1ce37ebe54e4e0a53fc467b44c59d67d74259b310"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/036-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477292,
+      "sha256": "0e99d09118f16b3e8ad136f74b62a027856af4dfc36053049267da7d62052a5a"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/044-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 478384,
+      "sha256": "cbffe0b4ee22ca89806d02bc36316df8df313d57d8e4b72367b38fc1fe585a88"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/031-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477100,
+      "sha256": "e52067c3f6313d454350b68696e07cafa08c914d0117970adef3defc691b79c3"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/022-signing-failure-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "f57f5ef040235aa28620063093ab9eb2deee113f0f08f14423c7ef2e8f868974"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/043-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477386,
+      "sha256": "2136ef59c60360f29c56cb9dfebaa823b3150dfcda8966fd41d4b5a8a9d6cf95"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "ea6dc4835d11450eb6f571a8d60960759963137f83429d4c7ef56e9770bb57b2"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "0acc68d962646c80d0eeb9a1af8ca8a70ec405c6ad7e6187aa987e5f230a0a99"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/qmp-signing-failure-baseline-health.json": {
+      "bytes": 4573,
+      "sha256": "79014db8d89f4a94992d34b556378c81a81cd60bbe022e1e637a28053b51dc7d"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/025-signing-failure-submit.json": {
+      "bytes": 714,
+      "sha256": "5c72cd88777437f4f5ec37d3fb3299433a9fa2ce70eda583ef230a975ac9b3dd"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/028-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 476864,
+      "sha256": "63c86ae4fdbc8bbf59843e2ab04c0d353ded33c458b01cb2cf78656321682d41"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/051-signing-failure-replay-refusal.json": {
+      "bytes": 419,
+      "sha256": "ecddec43229fd02dab39df7cf6a644f5d7717abc978c591f492b0372d630cbfe"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/009-signing-failure-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "aaadaea46e3530baf45ee6235cd28c46fb5dc6cdf566e6643d0cb00590dc83b7"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/010-signing-failure-baseline-health-mounts.json": {
+      "bytes": 8644,
+      "sha256": "7c4d2cb2f10dd009cc2143564bc481f68134c53bf1c75275ef818ae7029c2373"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/050-signing-failure-replay-refusal-before.json": {
+      "bytes": 288048,
+      "sha256": "1235e100794176568c3cff98178045f67b4a772bbcedd4df1ab20bb8ca33844d"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/027-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 476864,
+      "sha256": "6ff6e6de622f907a417948f7bd775bbd3e00827a20b86f801336a73cfa713217"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/042-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477386,
+      "sha256": "28021ea636503da162a815701df9b1b4061df8b0baaaec4a9dd71c07717a5eb1"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/019-signing-failure-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "4429c85d0bc23f1d42f7beb319a5ab6386a49e86ea5da05f79b6a840be678d0e"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "5f2ecf7165b463a784d21d868ac40b03c7cd59fc228ca4a748a621ea7d02ca12"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/016-signing-failure-baseline-health-boot-journal.json": {
+      "bytes": 109749,
+      "sha256": "37844040b383491c2fa248e792fa9b83cbde9c5ce3b25e8e8c459b35f17ec3d2"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "b0ae0d31dcf06bde4544cb268441d0637183742d3f19b60f325248cc2b686d3b"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/049-signing-failure-worker-journal.json": {
+      "bytes": 961,
+      "sha256": "ea047211d7bc83c2432e155c6b5dcbd239f3be4bddc9b9bc4049e0549fee0e2b"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/013-signing-failure-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "4c27fc1c845f8f540e69b8c16aba7a0b95185610acd8f819007ea2932f2acdbc"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/serial.log": {
+      "bytes": 1994,
+      "sha256": "09b83c5a7b9160944525130334b4775a24ae7b446b811061ca4fbb1488544bab"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/024-signing-failure-plan.json": {
+      "bytes": 454301,
+      "sha256": "4c6aa380af8d71880da2e06e411aca9f1e95cffb0d87a7ca73f27bc32ee9f479"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/045-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "9276f7305eaf0884eb319d60f3fc27937f4b855885fed9e1b7cf0cc70ec464a7"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/011-signing-failure-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "4a6a6c763007aee6df40768a1d3634d57b0acb0b0a909f48c04b7fede4462550"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/033-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477292,
+      "sha256": "353afa70c48e578cf9b107cc51e8b642a735faf654ef274444b1641aea1a55ee"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/040-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 477386,
+      "sha256": "89dac631c10c444c24ed5a12918c71c9da175641fad01d638196425c6f848ae4"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/029-operation-12bde1d26f161e4f5fe90665c5e5c0d1.json": {
+      "bytes": 476900,
+      "sha256": "ac42bf77a7184d2d739e3cb9f29451708c634eb10d3ffb96f0414658af4a4e9d"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/018-signing-failure-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "e28bf3bec5a7a673e47e9f465212d91a3ad79148bf3801f8f12921d77dc33ed8"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "4da1d9ac1b37eb220e3d1fad47e7db79f63ccc5086154198e65d906b0bc4d0fd"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/052-signing-failure-replay-refusal-after.json": {
+      "bytes": 288048,
+      "sha256": "8e58fac0b776bfa2c7c2877bf4d5d08a83f8072787799d4b57bb3c6030856490"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/054-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "b2d2d81091248d4aad17c78b81ef4a59fabb605705cd77dda57d87b49a2afb45"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/023-arm-failure.json": {
+      "bytes": 708,
+      "sha256": "e8435d02a946dfd0b6f4fb6791402d68ef81d7e484bd4f8eb442967aa083b205"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/012-signing-failure-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "789d8937f19a69bec5c8191df4a398ab408d3734adf8b69a20ea0f9080d9ff1c"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/046-signing-failure-actual-fault.json": {
+      "bytes": 666,
+      "sha256": "239b300027af0f22e05fc4362f1ada0f55d479bd9cae34986026af183a449c0b"
+    },
+    "fecp-signing-failure/signing-failure/boot-1/017-signing-failure-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "e750e1c9b674c05fb0e1d7cab1e447e1d7bbf26913612e19dae6acbdfab5cc2b"
+    },
+    "fecp-signing-failure/signing-failure/screenshots/live-terminal.png": {
+      "bytes": 272989,
+      "sha256": "74a6e6275f92f6d679f2dbb9a1c0e773b8a84a2e5157f9210f6fadc69c343e22"
+    },
+    "fecp-signing-failure/signing-failure/screenshots/live-desktop.png": {
+      "bytes": 554509,
+      "sha256": "b988418b236de91737040ef44a1f61047bd00872774462afeb23f0c6eb9e513f"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/096-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "56ed2747195773e2d33a5106f56beaaec0c6669cc36a7eb8393ac5e986198a9f"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/091-restored-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "b8d380e128ba862bd33e801ab1809af96158f92b90db2e98a61db6fa698e1e66"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/083-restored-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "a8bd5b129ef83163c63688e30294c489d9684881859a828c62bb61d4e881d01b"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/qemu-command.json": {
+      "bytes": 1351,
+      "sha256": "26b56813a1f14edc9b14bd9ef4c4931929ff96cf96d9fc90e2e1ba3b54b52384"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/076-restored-state.json": {
+      "bytes": 287139,
+      "sha256": "ea4be773a1f8a31e406f5a74520da12c8fbee072b0fc530cd0ebdd87de7da9ff"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/086-restored-health-root.json": {
+      "bytes": 376,
+      "sha256": "232585624e40f5b858c2b412af70acf747ed862846efa80a98d020b2a60a72b3"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/qmp-ready.json": {
+      "bytes": 4574,
+      "sha256": "0c1cdd938b6a3d61e3dbcfa047d441b516030917d025e62968518ebdc9e015dc"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/078-restored-snapshots.json": {
+      "bytes": 1565,
+      "sha256": "4179544241fee2388c4dea7ce551ddcab2c1cbba8b49b660c1f42e6437b73d9e"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/069-ready.json": {
+      "bytes": 219,
+      "sha256": "620b650ee790d9c50da478e0c56c1d916fecb3e5610a5c68a4728a7e5a3c8222"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/074-before-rollback-finalization.json": {
+      "bytes": 287139,
+      "sha256": "59d1cf779f39759b42f59b065be47daf3e237e6a8aec8f916ef9b6862b102731"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/079-restored-health-status.json": {
+      "bytes": 3055,
+      "sha256": "b93fa3e45d734308d0b312095c9bb8c8eec450cbabd9d00cea281eee4c2faa1a"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "ed8580bde63a1d72f16381e9a222d6a978d0e4b490d55e65be1b2ffb57650f2b"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/094-restored-health-history.json": {
+      "bytes": 482246,
+      "sha256": "e758e622764a05cab562378342ea7bba633cca8bcc587fe244af0bc3d98c264b"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/089-restored-health-boot-journal.json": {
+      "bytes": 110021,
+      "sha256": "b178df482001881a17d2bf689f5e66c586034d3bdc492667593da24b1dc3a2c0"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/080-restored-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "2fa64dae3932a8852c92145591a508c0e1841f912db66e08426f2aa065c64b0e"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/087-restored-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "20a2e718d8031df80e96020efbf636972aeb99abfa3bdd8c1e357a31a0e2e44d"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/072-wait-automatic-confirmation.json": {
+      "bytes": 335,
+      "sha256": "45b30d57aae5a92890b990a7d1bfee949777d6233c379c75764128609c340cf6"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/093-restored-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "bd4b01bb69a369e95f7c15a6688fe45411a5cfb6e8d5eff58f4667366d558285"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/073-before-explicit-finalization.json": {
+      "bytes": 477786,
+      "sha256": "844d5fe30509097e917c6b71a6e6c7d9e03c846448089f8679dc730901101d80"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/084-restored-health-subvolumes.json": {
+      "bytes": 804,
+      "sha256": "ff8bf64980d03d3dc4abe4e48e40ea9210496a45adb76c76e60e0a7844ff2fc3"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/075-finalize-rollback.json": {
+      "bytes": 459477,
+      "sha256": "96c413db89605b14924d7081dd8a231de07bfbc96cf9f2543cb52c590f41c340"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/reboot.json": {
+      "bytes": 110,
+      "sha256": "d0faff60440d22ad71f079e5408d5d65e80026444fb49521fb1ad4b05f9be8a4"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/070-ready.json": {
+      "bytes": 219,
+      "sha256": "715dc53a0568de46ddb0658a4512d26b87611443b724bfc08099faed011b3a58"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/085-restored-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "1d0d0f83ec6b90c046255b70f53bc1ff4c1605dd927c53ba363c064427a9b84a"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/serial.log": {
+      "bytes": 2041,
+      "sha256": "439218126fbed963e5ab104982b4bbd08715fda92a768ee32d45a53e1c92ab4c"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/077-restored-signing-identity.json": {
+      "bytes": 397,
+      "sha256": "f1068221e4fb89739be9edffe4239ece74de61f992a6f52bd7a12592c48f1d91"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/095-restored-health-snapshots.json": {
+      "bytes": 1556,
+      "sha256": "318c3010862381602e61fe7de00c926e96f95d2f47b80338bc5d4e1f17d8e553"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/qmp-restored-health.json": {
+      "bytes": 4574,
+      "sha256": "352211e4088b7f55285737a55fd0d70f0ebe422a718ccc105e23c5c45c44761d"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/092-restored-health-pacman-log.json": {
+      "bytes": 893,
+      "sha256": "e29c28bf04f5061626c10645e2ec332da3a36cb958248b8b85a66d4437ec87ed"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/081-restored-health-database.json": {
+      "bytes": 337,
+      "sha256": "8d58d1657b44a4d9aba3897c2c88acac37ea0c4abc19e4bbe7b65de3e8377114"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/082-restored-health-failed.json": {
+      "bytes": 328,
+      "sha256": "1adee7c704b22ab3b4b933f122778efb5f637b36d9eb74ec7b11b60d87e58b10"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/071-ready.json": {
+      "bytes": 356,
+      "sha256": "221d8034d10b4864e2ebf3ab481ff2d61290839f9992f42463e3b3fe97bbc0ac"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "d5c37a097d627c1408344a16fe124a6881b096684228b2258b232951f6eb58a6"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/090-restored-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "40c61523f7000d7876a82ca5f111f2c6062a4e909113c7a60ca4511264da9234"
+    },
+    "fecp-signing-failure/signing-failure/boot-3/088-restored-health-journal.json": {
+      "bytes": 6677,
+      "sha256": "4a29fbce052df30fea00c6dc7969177a3b5fbe8c4c1324aed27f611592016a92"
+    },
+    "fecp-root-space/evidence-sha256.json": {
+      "bytes": 11786,
+      "sha256": "d02cfcd2d9a8dbdcea030f9c5f7cac2217f54d05e88389bd4d3466a6f19bc525"
+    },
+    "fecp-root-space/inputs.json": {
+      "bytes": 3526,
+      "sha256": "925e05a88a62940bd4847654a8b75d6f4632f1450fbe0399bc6441a70329abbe"
+    },
+    "fecp-root-space/matrix.json": {
+      "bytes": 6109,
+      "sha256": "46772080df20e1676774bff74d8085f415472ae8f0d0eec1ec94d7267bb6d946"
+    },
+    "fecp-root-space/root-space/root-space-remove-only-owned-fixture.json": {
+      "bytes": 113,
+      "sha256": "50c59c8e4d42f8854527a259850f21743864362d9b06765461697e5944351d73"
+    },
+    "fecp-root-space/root-space/attention.json": {
+      "bytes": 280,
+      "sha256": "59630fba1009323a903c1c8f8abad6e3ff0bed269fefa0fed170347a89bae374"
+    },
+    "fecp-root-space/root-space/root-space-preflight-refusal.json": {
+      "bytes": 410234,
+      "sha256": "130930c19708e7475fb4b429b370a13ee3bf13be148b806445c230cd94005961"
+    },
+    "fecp-root-space/root-space/capacity-host-budget.json": {
+      "bytes": 125,
+      "sha256": "aa1716704ce9bd1b702efd25413d45062a53a02360165a1ec95db0ff1c1cfd56"
+    },
+    "fecp-root-space/root-space/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-root-space/root-space/root-space-actual-shortfall.json": {
+      "bytes": 459,
+      "sha256": "c636b6b64159ba138736c4657b3e44cf9a7785187c5d1f2cbedb25a6e8396d85"
+    },
+    "fecp-root-space/root-space/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "9abe6b838377ea3a97dc4bf732b8f390cf6b8b2033c727d0e55a63dfa5fc4fa8"
+    },
+    "fecp-root-space/root-space/root-space-recovered-health.json": {
+      "bytes": 626354,
+      "sha256": "aaf22fbfbdf2afdcac2fa53e10e767cdfd46ac49a5463a78daf5b49f2d54e92d"
+    },
+    "fecp-root-space/root-space/root-space-plan.json": {
+      "bytes": 409965,
+      "sha256": "49d94fe5b6018d1444e0d0cc84dc58ea666031d6e206346d84e0b65f725ddc58"
+    },
+    "fecp-root-space/root-space/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "5f54b1e040af787d9cece6e4ed6c268bb4b7ec1016aa18559bfac90d46e72c0e"
+    },
+    "fecp-root-space/root-space/root-space-baseline-health.json": {
+      "bytes": 149832,
+      "sha256": "f584bf2323a32adb7d75778d7ca7d9da47ca8fd7ce91b353041e1260ec6b0e81"
+    },
+    "fecp-root-space/root-space/boot-2/059-root-space-recovered-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "12db1bb3f145e5b69c78b1698d95851efaa865f958ac2a2b729c505a31aea3a5"
+    },
+    "fecp-root-space/root-space/boot-2/058-root-space-recovered-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "fe683429c59ee45fc735dc12cdadf9cef24721b3f8d354ca7269d08ed25d7543"
+    },
+    "fecp-root-space/root-space/boot-2/063-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "d05479e807b0fe952487d1d9cacc383d9634f2e068c817a73d3d0d873b7641d2"
+    },
+    "fecp-root-space/root-space/boot-2/048-root-space-recovered-health-database.json": {
+      "bytes": 337,
+      "sha256": "4bc2abc0a18f7ee2155584d0edf7d0729d70a5494710c1623096ef6f226a0360"
+    },
+    "fecp-root-space/root-space/boot-2/qemu-command.json": {
+      "bytes": 1291,
+      "sha256": "0e3fb9533d9f973763ba7f44438ad31ca80259e35510c1c72613af00b4dd4439"
+    },
+    "fecp-root-space/root-space/boot-2/qmp-ready.json": {
+      "bytes": 4533,
+      "sha256": "96ec96b66b447aef43cfc9746c70bf9040d5844aa668caf54186290e8dbc1461"
+    },
+    "fecp-root-space/root-space/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "8b7655c7ce48c3737bfa695b80b0786a7c8993864b08f3aa3f9bfa02fec34c85"
+    },
+    "fecp-root-space/root-space/boot-2/042-ready.json": {
+      "bytes": 356,
+      "sha256": "caddcbde154ebeb9aec1a7b9422f4c546c47f0f4c3d5a764bf16ecfdc93bf503"
+    },
+    "fecp-root-space/root-space/boot-2/041-ready.json": {
+      "bytes": 219,
+      "sha256": "5adb733c4a1de9f32c25ef60f28557ede83672fd55a2d0715942d7bb4a06b4b9"
+    },
+    "fecp-root-space/root-space/boot-2/045-root-space-after-reboot-state.json": {
+      "bytes": 287139,
+      "sha256": "fc554728d15a967d0abe9d363709450bf02da27af1ff2f87839339f7bbfcd4b2"
+    },
+    "fecp-root-space/root-space/boot-2/054-root-space-recovered-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "7c582f859fb2c2616ba986676b57217a74b057b4282dad773e2c50859fcd54a6"
+    },
+    "fecp-root-space/root-space/boot-2/qmp-root-space-recovered-health.json": {
+      "bytes": 4533,
+      "sha256": "947153ea79246e96e7e9fc3288ab9bfb6466e24d7dc90d9035fdf5845626039f"
+    },
+    "fecp-root-space/root-space/boot-2/044-root-space-history-after-reboot.json": {
+      "bytes": 476930,
+      "sha256": "1a0b017a94cbf820bc97401013882bbeab3c8d2076708e93552d54378d759cad"
+    },
+    "fecp-root-space/root-space/boot-2/062-root-space-recovered-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "a4190fa3e3e86306a4647c474f0976c3a7d3e8bbf888143e639f2fdd161793f6"
+    },
+    "fecp-root-space/root-space/boot-2/056-root-space-recovered-health-boot-journal.json": {
+      "bytes": 109700,
+      "sha256": "258b93bd97400e35588bcb36c43f7139e3c71d674e66349bfef25a6667f97486"
+    },
+    "fecp-root-space/root-space/boot-2/040-ready.json": {
+      "bytes": 219,
+      "sha256": "f5e6d7e72d0590c128fc4268f0d0047d3e75033ee3ccc68cf70ac550d5e65dd4"
+    },
+    "fecp-root-space/root-space/boot-2/057-root-space-recovered-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "5281b9117da4309d65deed2da25fbec3f5fcacb818a1811f6130b01b1610a61f"
+    },
+    "fecp-root-space/root-space/boot-2/047-root-space-recovered-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "63af64525d05501efa49f1f6bdfa8d4d6df49db4532698062b419e729394dc62"
+    },
+    "fecp-root-space/root-space/boot-2/051-root-space-recovered-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "bdee9e7c588f08b6d23975fbde62ee6e1dc2c39cc5d8c398588b4509f4463613"
+    },
+    "fecp-root-space/root-space/boot-2/049-root-space-recovered-health-failed.json": {
+      "bytes": 328,
+      "sha256": "af3caec7fde212e70a44e020f5615f880332ca6669a8237b20efd2ee9ad18161"
+    },
+    "fecp-root-space/root-space/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-root-space/root-space/boot-2/052-root-space-recovered-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "731837e98b6b58711310d85ca7d061f647591d7fc2a360c6be0afea5bffad7df"
+    },
+    "fecp-root-space/root-space/boot-2/053-root-space-recovered-health-root.json": {
+      "bytes": 376,
+      "sha256": "a0ba3cfb37785bc91ea52a524f11169dad5fb5f4dd54ab2994cb16d307a66d67"
+    },
+    "fecp-root-space/root-space/boot-2/061-root-space-recovered-health-history.json": {
+      "bytes": 476921,
+      "sha256": "009b4e4a30fd6a1290be06eb83c8e20dbff5a7748fc9c247f33d7015d107ee3d"
+    },
+    "fecp-root-space/root-space/boot-2/reboot.json": {
+      "bytes": 110,
+      "sha256": "640b80209ae3f8742af009b6975a8390fc7826846d36ded00a030ef47c8d523e"
+    },
+    "fecp-root-space/root-space/boot-2/050-root-space-recovered-health-mounts.json": {
+      "bytes": 8644,
+      "sha256": "923cb198023782326920b3817f0686abbaed089e27475b3be6cd2ace0d7802d4"
+    },
+    "fecp-root-space/root-space/boot-2/060-root-space-recovered-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "a37bc066ec683e28354f26b7d59b632a2c0cffdc5f585497252829a06ae3b480"
+    },
+    "fecp-root-space/root-space/boot-2/serial.log": {
+      "bytes": 1996,
+      "sha256": "a2ea0c32347720eeca2266217fb6798769c7635a68f72ffb1ead542abf2e0c49"
+    },
+    "fecp-root-space/root-space/boot-2/055-root-space-recovered-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "37e71d05442e14518372661b870993e5984d37f831cf924125edb92c7e87c3ad"
+    },
+    "fecp-root-space/root-space/boot-2/043-root-space-boot-confirmation.json": {
+      "bytes": 335,
+      "sha256": "f1f14f36ffcfad8cf4b2df0374fe8143973a97ea491bdc6db46caa45f6c086c1"
+    },
+    "fecp-root-space/root-space/boot-2/046-root-space-recovered-health-status.json": {
+      "bytes": 3055,
+      "sha256": "4d83f4dd094b1c6194fc9200cb9367d17b74199b7faaeb9cf552fa2f8c2c2e4e"
+    },
+    "fecp-root-space/root-space/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "9fbc708ca600bc0f15d39fb73045db44b4bd6e55faab34bff84a34622f25418c"
+    },
+    "fecp-root-space/root-space/share/phase42-faults.py": {
+      "bytes": 82696,
+      "sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b"
+    },
+    "fecp-root-space/root-space/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "104f3db11ece242cb06cc2b747dd9fe38936e9fdbf7c13c424ee5f412da108cd"
+    },
+    "fecp-root-space/root-space/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-root-space/root-space/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-root-space/root-space/share/space-target.json": {
+      "bytes": 140,
+      "sha256": "33d6ba270defc0af7eef965a99fdbbbbeaacb2f72146ede21826017475fcdead"
+    },
+    "fecp-root-space/root-space/boot-1/028-operation-62fb80392840be58054ac7c789c8e2ed.json": {
+      "bytes": 476864,
+      "sha256": "96c7d2916bfe911f15dee812ff26a9b7fad7e1c1277d552d13ae9efae4011d63"
+    },
+    "fecp-root-space/root-space/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "1df025b75e09466c384bfa894a60f320ba600eb2093186bdc652eed1e5166895"
+    },
+    "fecp-root-space/root-space/boot-1/022-root-space-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "1c69d3455fb5148f4fcfe28b7ae8a941eda37372b8e2a186457c0f0a0504d3d6"
+    },
+    "fecp-root-space/root-space/boot-1/030-operation-62fb80392840be58054ac7c789c8e2ed.json": {
+      "bytes": 476864,
+      "sha256": "f3410ac1da3f45337bcf5f299ec961eca5ab429402ed26b8038fd733cb9595dc"
+    },
+    "fecp-root-space/root-space/boot-1/038-root-space-history-before-reboot.json": {
+      "bytes": 476930,
+      "sha256": "5678f4cef7613b530d29e1aab95b9f1a883135ee8d53bf9b22c271040739f820"
+    },
+    "fecp-root-space/root-space/boot-1/035-root-space-replay-refusal.json": {
+      "bytes": 419,
+      "sha256": "aed246efae0d19276401f2b8f402ba21e71ae0de06883a6a8797b60d1f54f42d"
+    },
+    "fecp-root-space/root-space/boot-1/qemu-command.json": {
+      "bytes": 1291,
+      "sha256": "f01503002b519aa142512ffe74078e65b1d7a5509089aa58aa0a4285d037fb58"
+    },
+    "fecp-root-space/root-space/boot-1/qmp-ready.json": {
+      "bytes": 4532,
+      "sha256": "7a82534be13f19108ad67ae48ff1afc94b055e83a57da5b4bdffdd07b6215117"
+    },
+    "fecp-root-space/root-space/boot-1/025-root-space-submit.json": {
+      "bytes": 714,
+      "sha256": "74614f79459fa4aa9a86983216549ac498c11fe22cd7df5c8c92a276238a33b9"
+    },
+    "fecp-root-space/root-space/boot-1/034-root-space-replay-refusal-before.json": {
+      "bytes": 287139,
+      "sha256": "536f2faf860534139258b03f59ea2d7b34e43e460e27078d55796d8fb5d81494"
+    },
+    "fecp-root-space/root-space/boot-1/007-root-space-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "b79d56579d0d9214ff292b3cb76bd4c20e64a179f0945b310893ce62895d03dc"
+    },
+    "fecp-root-space/root-space/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "42ceb69a82bb9f81c714fba084ce2ebafbd1b3caa9191b93cb32ef666fe10237"
+    },
+    "fecp-root-space/root-space/boot-1/010-root-space-baseline-health-mounts.json": {
+      "bytes": 8644,
+      "sha256": "d9884c7c50184bbb736baa4f05b963fb983b0b4c41126ac479442d6da1a51d0d"
+    },
+    "fecp-root-space/root-space/boot-1/015-root-space-baseline-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "38a2ef50a1f4c369fc9d2ee21cb7e273aad5074197337ed50f71a40121944f74"
+    },
+    "fecp-root-space/root-space/boot-1/032-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "69e0710957dedb4fd07b7227dc6ab0a3666edd92299d2d376906065fe060d7ac"
+    },
+    "fecp-root-space/root-space/boot-1/027-operation-62fb80392840be58054ac7c789c8e2ed.json": {
+      "bytes": 528,
+      "sha256": "91c1d1f327c2f91becfbca540102856079cc24f5ac1d168649449b690503ee48"
+    },
+    "fecp-root-space/root-space/boot-1/036-root-space-replay-refusal-after.json": {
+      "bytes": 287139,
+      "sha256": "d386a6e5fae0e781ff808f7499e6ad74d28dff08a004e8079399fd7da6da095a"
+    },
+    "fecp-root-space/root-space/boot-1/020-root-space-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "4b6077e87fe462a73be692984c9e90f2f1a58ec1bb5882e81e7bf17a6801c214"
+    },
+    "fecp-root-space/root-space/boot-1/008-root-space-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "638f34db2c3111ffcf58586a1fc092dfab8fbb2c06adec7804161330202e7063"
+    },
+    "fecp-root-space/root-space/boot-1/024-space-arm.json": {
+      "bytes": 826,
+      "sha256": "985175fbff80fe2bd73b2dc6a19e581b85d42e354df2451178c2a3867b058b40"
+    },
+    "fecp-root-space/root-space/boot-1/009-root-space-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "ab3eb99dee36b7ef92003e44dcbaf54d18517cdfa84beac8ccbc0000751d9e0d"
+    },
+    "fecp-root-space/root-space/boot-1/018-root-space-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "fae3d389925d68a92933f14f567d9a14116f11d8d4a5a5dfbabd9d71a4558849"
+    },
+    "fecp-root-space/root-space/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "94d30fae44e27946c748a10c3142d7c963745cb2ad096edb21790eb558f07dc3"
+    },
+    "fecp-root-space/root-space/boot-1/016-root-space-baseline-health-boot-journal.json": {
+      "bytes": 109783,
+      "sha256": "af80ab4c385bf6b33c3448400e528611db571b064de5e84cfe61241431c3cc8f"
+    },
+    "fecp-root-space/root-space/boot-1/011-root-space-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "804cbf7e05e99890d0509b35711947134ef9ae14f49e24282bdc151921bc2044"
+    },
+    "fecp-root-space/root-space/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "966629206fd1b93fd41adbd8a664a2ef449bfe70524df139f61fa8ce6bc445e0"
+    },
+    "fecp-root-space/root-space/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-root-space/root-space/boot-1/031-operation-62fb80392840be58054ac7c789c8e2ed.json": {
+      "bytes": 477215,
+      "sha256": "70938f544c7e0fb3074996438bcfb3fae8fbea9b12a6190466336862942b177b"
+    },
+    "fecp-root-space/root-space/boot-1/012-root-space-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "b03885d811c0d90c8f237ab4e7e7d21218646679d31571c39128bfd449d99345"
+    },
+    "fecp-root-space/root-space/boot-1/037-space-reset.json": {
+      "bytes": 474,
+      "sha256": "1eb3b22ad38a5d8438dbe6beb279bbb376ce8f4fe0ef984e63b6e3194179d094"
+    },
+    "fecp-root-space/root-space/boot-1/014-root-space-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "11b220ed9c6b09d495d1c0968259a03a87f45b98b5f4db1b7200d962717cff21"
+    },
+    "fecp-root-space/root-space/boot-1/023-root-space-plan.json": {
+      "bytes": 454301,
+      "sha256": "51283bcf5fa4e91da808a81033599c1cbee32ba4d30d163971a9f0227fc12bf7"
+    },
+    "fecp-root-space/root-space/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "2db75dbdf7f63aedc1558b93b8e904dabb47974169b4f451a5e2909e9c04a914"
+    },
+    "fecp-root-space/root-space/boot-1/033-root-space-unchanged-state.json": {
+      "bytes": 287139,
+      "sha256": "a2c6f6b279cf43616e2fb67fa8753253b78b79dd2122669c3a499692a3f02c39"
+    },
+    "fecp-root-space/root-space/boot-1/029-operation-62fb80392840be58054ac7c789c8e2ed.json": {
+      "bytes": 476864,
+      "sha256": "c721f58c6b35801c25ab78000d92a90b4d3327edda1a9b1c75d845801e18aec5"
+    },
+    "fecp-root-space/root-space/boot-1/026-operation-62fb80392840be58054ac7c789c8e2ed.json": {
+      "bytes": 527,
+      "sha256": "defcb969872772e198f8f0dd111ac0b3ea6edb856b4c7f0922ceccb6832a9911"
+    },
+    "fecp-root-space/root-space/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "707c0aa210309338c8ef4aaac1247c92a15695a98b1afd4305ee1857334b7c6e"
+    },
+    "fecp-root-space/root-space/boot-1/serial.log": {
+      "bytes": 2041,
+      "sha256": "36ee4b9ea056ef53e42682cd2d4605643d0d817991fe5cc708bedce60841f920"
+    },
+    "fecp-root-space/root-space/boot-1/021-root-space-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "bb91a4fc79e424d0a92cdc902c210bc48cf3259f531058fd847455c2fd468831"
+    },
+    "fecp-root-space/root-space/boot-1/013-root-space-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "edb8ce065ab220ea32da476573d17020592d8be037e7d0eadc0760ba214098a7"
+    },
+    "fecp-root-space/root-space/boot-1/039-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "d197c5fe15f8f8f8c521f40d01f2b477e4823046229e157088b44225764dd2c7"
+    },
+    "fecp-root-space/root-space/boot-1/017-root-space-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "5eaf686fd838a45ad38994df282cbc7aaeda8f777bf8ba6f72fabad65f4fa5a5"
+    },
+    "fecp-root-space/root-space/boot-1/qmp-root-space-baseline-health.json": {
+      "bytes": 4532,
+      "sha256": "f50a5e73e50199996dea61adbdf13a66ce134fc8d9715c1c399100772522957b"
+    },
+    "fecp-root-space/root-space/boot-1/006-root-space-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "efca98d6663e1985318009730c6540d1536e891d0add68cc6d850a8bea2d00dd"
+    },
+    "fecp-root-space/root-space/boot-1/019-root-space-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "98571b054c3f30817cac56a271691ae0da76b9a1513a85f38a11f26acf1f44fd"
+    },
+    "fecp-root-space/root-space/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "66958c81a3a0deff3e483018b3f21e6db4bd405198dae020bb9f907483ac46c3"
+    },
+    "fecp-cache-space/evidence-sha256.json": {
+      "bytes": 11644,
+      "sha256": "f1c88a7af4a6eefc2340242c81c70d1a1d75182c3b9f2db2df8b83911472563f"
+    },
+    "fecp-cache-space/inputs.json": {
+      "bytes": 3526,
+      "sha256": "42d11aa9c088f4d35e8ea310f10bfd4c8587a74fc511e89e0afa66063fb00d44"
+    },
+    "fecp-cache-space/matrix.json": {
+      "bytes": 6142,
+      "sha256": "891b6fd0e68314e2cec7c540e9e640ba1fd30b99c0182b6d7803fcdf8c66ad5a"
+    },
+    "fecp-cache-space/cache-space/cache-space-plan.json": {
+      "bytes": 409965,
+      "sha256": "49d94fe5b6018d1444e0d0cc84dc58ea666031d6e206346d84e0b65f725ddc58"
+    },
+    "fecp-cache-space/cache-space/attention.json": {
+      "bytes": 282,
+      "sha256": "ba518483c71f22f6f8dfeb574a5d2f1afc05790d4a4942fe9a2128a46f020681"
+    },
+    "fecp-cache-space/cache-space/cache-space-preflight-refusal.json": {
+      "bytes": 410226,
+      "sha256": "2c430c38bf09aec3b643456f095708aa841d956c83e340cbf69a37ca21317af8"
+    },
+    "fecp-cache-space/cache-space/capacity-host-budget.json": {
+      "bytes": 126,
+      "sha256": "2385b9af8225f3dbbea6ff633e8f6ae22bcfd08849ed41fd802db4c4f90c3e70"
+    },
+    "fecp-cache-space/cache-space/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-cache-space/cache-space/cache-space-recovered-health.json": {
+      "bytes": 626282,
+      "sha256": "73488f1fcdd903abbf00d67f285bc95b576b5df713ae4822b97d3841e95dab35"
+    },
+    "fecp-cache-space/cache-space/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "e0f29aa479540fb184c2482f52679f49d7fdd58dded0b4281c4eb3039288c1a2"
+    },
+    "fecp-cache-space/cache-space/cache-space-remove-only-owned-fixture.json": {
+      "bytes": 114,
+      "sha256": "d79e09f65105fb110e832f2c94173490e7b092639b8138d549eb1f7be3168045"
+    },
+    "fecp-cache-space/cache-space/cache-space-baseline-health.json": {
+      "bytes": 149739,
+      "sha256": "c41149dd00e859fb27f34c39f9f6c25bce3a8f0d38284132f8da04b853912810"
+    },
+    "fecp-cache-space/cache-space/cache-space-actual-shortfall.json": {
+      "bytes": 417,
+      "sha256": "52824f9ba552a4c15261a14bb602ce14fcd40aba6d107c1ef38348d6548d9456"
+    },
+    "fecp-cache-space/cache-space/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "55fe842e56cb9aef61765b3745ae8e8d59dbab442403e2a47decb673a6dc0545"
+    },
+    "fecp-cache-space/cache-space/boot-2/043-cache-space-after-reboot-state.json": {
+      "bytes": 287139,
+      "sha256": "a4c8278fd8855fc239ba780f116682b5532ccff73301c82e8ff7d4e6ee9bc570"
+    },
+    "fecp-cache-space/cache-space/boot-2/049-cache-space-recovered-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "ada0b576ca29f4cefa56935b3c8e6778286cf9c168b25f66e3d0401b0d4facb4"
+    },
+    "fecp-cache-space/cache-space/boot-2/039-ready.json": {
+      "bytes": 219,
+      "sha256": "85fcfe4e59a2437ed68728ba7b281512560943d24db6e5999e49db876cc0dedb"
+    },
+    "fecp-cache-space/cache-space/boot-2/041-cache-space-boot-confirmation.json": {
+      "bytes": 335,
+      "sha256": "1897bc26604bb8ea0d78d24fb702a2526c21a6f20428eb972711a6a9c6cdf1dd"
+    },
+    "fecp-cache-space/cache-space/boot-2/057-cache-space-recovered-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "5aafc10b45380c7219e9b8566620d43424c66fff76cb1a6958e27e57be152ff0"
+    },
+    "fecp-cache-space/cache-space/boot-2/044-cache-space-recovered-health-status.json": {
+      "bytes": 3055,
+      "sha256": "e1acb7ebeea618ee33372de6aa13dbf331c6b1ef73292097350388b67f15a5a8"
+    },
+    "fecp-cache-space/cache-space/boot-2/qemu-command.json": {
+      "bytes": 1303,
+      "sha256": "acf6a01f3c587da6e3dcca4a48b5f3437d4dd1cf7501ade1f32ecfd6ec37de0f"
+    },
+    "fecp-cache-space/cache-space/boot-2/061-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "2870743ec0f9a19bed9229384a99e80dfa146f5d2fe81ac110f32149306bb99c"
+    },
+    "fecp-cache-space/cache-space/boot-2/qmp-ready.json": {
+      "bytes": 4541,
+      "sha256": "14cae36f259607eb2a5244c2056897853576fcccbc8fd294618d5f2df831c8a4"
+    },
+    "fecp-cache-space/cache-space/boot-2/056-cache-space-recovered-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "c19ca45ef0bcf05eb8fcdf60401b32519402053b93cd3f722817133371ad5b09"
+    },
+    "fecp-cache-space/cache-space/boot-2/059-cache-space-recovered-health-history.json": {
+      "bytes": 476913,
+      "sha256": "d1de5910e775cec5544367074dd0c8ae6e9e935902c1f2df18b98f623c807403"
+    },
+    "fecp-cache-space/cache-space/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "4347ef70299b6891822ba33b444f6f27b2aeca3a9f7043837c2f7093c32f852b"
+    },
+    "fecp-cache-space/cache-space/boot-2/038-ready.json": {
+      "bytes": 219,
+      "sha256": "3dcb450af66f3fe197927329d524bc9d1a49846dd715ccfd97bc17506202ae97"
+    },
+    "fecp-cache-space/cache-space/boot-2/qmp-cache-space-recovered-health.json": {
+      "bytes": 4541,
+      "sha256": "866283de55c9f4f2d057fea98f245cf69336fc78d8293130351803964b3b59b6"
+    },
+    "fecp-cache-space/cache-space/boot-2/053-cache-space-recovered-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "ec56c6898dd2449e2c4f071741435e94a42e3b1c53ef72058a889a88f95a0471"
+    },
+    "fecp-cache-space/cache-space/boot-2/058-cache-space-recovered-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "d1e6638215d76df384af300040f425c4c3f58520f32efa6cc66580b52fa486e0"
+    },
+    "fecp-cache-space/cache-space/boot-2/047-cache-space-recovered-health-failed.json": {
+      "bytes": 328,
+      "sha256": "0c3033698a1a89c30a54e92ec60dc065f6c51bb296312a0825a5afae45b3f1c2"
+    },
+    "fecp-cache-space/cache-space/boot-2/040-ready.json": {
+      "bytes": 356,
+      "sha256": "2b55917efd5b9b0ccec5fdb6a8308feb75d1678ec32d4e436c48f74fb3d71dfc"
+    },
+    "fecp-cache-space/cache-space/boot-2/054-cache-space-recovered-health-boot-journal.json": {
+      "bytes": 109635,
+      "sha256": "fce2158acba29d5678f6a518a0fc7ccd29eda6e761e9ecf33c5199fdc6e9e692"
+    },
+    "fecp-cache-space/cache-space/boot-2/055-cache-space-recovered-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "459f9cb2a9a4726f144989ace141e5ac3a2916855b62f99b5a4ebfbe04841b3d"
+    },
+    "fecp-cache-space/cache-space/boot-2/051-cache-space-recovered-health-root.json": {
+      "bytes": 376,
+      "sha256": "c0b8a1169984211b1472de6123f18420085171c749de2eb7381c3656d14aaeb5"
+    },
+    "fecp-cache-space/cache-space/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-cache-space/cache-space/boot-2/046-cache-space-recovered-health-database.json": {
+      "bytes": 337,
+      "sha256": "a3add65065122c35be83d49f2f6cffaaccafb5788dccd13d9c0c3448a0ad81dc"
+    },
+    "fecp-cache-space/cache-space/boot-2/048-cache-space-recovered-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "c1942b908fbbc49d5d600ef1742d9d6dc830c6a5fe193b0a0d3745ca17b51c1b"
+    },
+    "fecp-cache-space/cache-space/boot-2/042-cache-space-history-after-reboot.json": {
+      "bytes": 476922,
+      "sha256": "83781705af41b6b530baa263ee9b7ca54de80cfe56559e2d9fbbcdd10988cad9"
+    },
+    "fecp-cache-space/cache-space/boot-2/045-cache-space-recovered-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "b4497a1c40aac8bf673aae2a8d6255a21ce7d021bec391effe76ff7eeee63678"
+    },
+    "fecp-cache-space/cache-space/boot-2/reboot.json": {
+      "bytes": 110,
+      "sha256": "351db7cd55f4f03c844ecd10f3479305d9bd0decd3bf16a7c765d8b3965ebbca"
+    },
+    "fecp-cache-space/cache-space/boot-2/serial.log": {
+      "bytes": 2028,
+      "sha256": "3528c7be8aee50b54fedc1badea011cc2af7dd8c24c50b0e7ffe1337ab7e6be7"
+    },
+    "fecp-cache-space/cache-space/boot-2/052-cache-space-recovered-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "13da5771153546b60bd3ba2fa91abcaef4fca67400935caaa5935469028cc644"
+    },
+    "fecp-cache-space/cache-space/boot-2/050-cache-space-recovered-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "5b25a0f2fe8ea896d5d281723c6cf21c877ea2fa62bed3a2c5dc9401e09bd884"
+    },
+    "fecp-cache-space/cache-space/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "d183f7ab83c877027671ec67510f9d1798a6fafe451504505804f5701ab6988c"
+    },
+    "fecp-cache-space/cache-space/boot-2/060-cache-space-recovered-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "2588f97e79db22fb5c63f611d4b9491e9117811ae2507d4efd8d6349c23ad47f"
+    },
+    "fecp-cache-space/cache-space/share/phase42-faults.py": {
+      "bytes": 82696,
+      "sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b"
+    },
+    "fecp-cache-space/cache-space/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "b30f8cc916f56d4df7345a922628699a244c9d8502bbbb26251aded1cb05e511"
+    },
+    "fecp-cache-space/cache-space/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-cache-space/cache-space/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-cache-space/cache-space/share/space-target.json": {
+      "bytes": 141,
+      "sha256": "16fe16e7b6d07bd2551b361f3f67742c9c8e5a0a24a30c28db0499dc23be3057"
+    },
+    "fecp-cache-space/cache-space/boot-1/018-cache-space-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "5cc2c1f003ab0245337c4fac187a3b491d6510f37304127f8c87832b6d79ea5b"
+    },
+    "fecp-cache-space/cache-space/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "8279d41200d1131a0d6c01264df266651933aa42c705ec37ca103a44f1f93fe0"
+    },
+    "fecp-cache-space/cache-space/boot-1/025-cache-space-submit.json": {
+      "bytes": 714,
+      "sha256": "595d3b3131ced4f35db5b48846d112bc091744deb38c60356a3d04e3567a4db4"
+    },
+    "fecp-cache-space/cache-space/boot-1/006-cache-space-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "547687797f02ce114dfb9cf1763db9d3501326ec0ebb3f04e75f714db02ee233"
+    },
+    "fecp-cache-space/cache-space/boot-1/014-cache-space-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "45675d7472dbcc7ce088e3e3aa8a419ca97f9395d8ba34b8dbb4ba66ccaddc5d"
+    },
+    "fecp-cache-space/cache-space/boot-1/qmp-cache-space-baseline-health.json": {
+      "bytes": 4541,
+      "sha256": "d2c2967abc82a418adb59977b8a459baa07b477de82db645ee405341bd34dd57"
+    },
+    "fecp-cache-space/cache-space/boot-1/009-cache-space-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "5a4ba7874644c5d8ea72d79875a6c353a0587a5ea2a31c9d9488f6e58f2ab6d5"
+    },
+    "fecp-cache-space/cache-space/boot-1/qemu-command.json": {
+      "bytes": 1303,
+      "sha256": "b1fb0ab9e16af2ab329976a63d9b39cd3482d8d11936ff7c00d9f685d5b6d301"
+    },
+    "fecp-cache-space/cache-space/boot-1/qmp-ready.json": {
+      "bytes": 4541,
+      "sha256": "0074b219ebb1d69b51d1091030f49c94c1eaf0e941fe5f9959a74b295ecea391"
+    },
+    "fecp-cache-space/cache-space/boot-1/032-cache-space-replay-refusal-before.json": {
+      "bytes": 287139,
+      "sha256": "d7912dc45713569322bd3b31b10da49ff7cbf28eeb8a6b8c6240de54a3d69c1a"
+    },
+    "fecp-cache-space/cache-space/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "cc1476e00d38309371fc4d66fa366cddc7702be6b1e853a5582d034c0263bf31"
+    },
+    "fecp-cache-space/cache-space/boot-1/026-operation-068351289bd3fdb3d0f45a5569b781f1.json": {
+      "bytes": 528,
+      "sha256": "077ae9a5e27ea6786603c3cd5c9b3561eaf554e744c292e2be991a03c3704d0d"
+    },
+    "fecp-cache-space/cache-space/boot-1/011-cache-space-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "fcb8fe5ff37e895453afaf183cf6ffaaf5dd7166ed3abb2da5eb4c114f3a6f50"
+    },
+    "fecp-cache-space/cache-space/boot-1/031-cache-space-unchanged-state.json": {
+      "bytes": 287139,
+      "sha256": "a3a4ef1b83c4edea0f960c61b165a4fe36c716baa1c4b153400b33cc58b714d6"
+    },
+    "fecp-cache-space/cache-space/boot-1/035-space-reset.json": {
+      "bytes": 475,
+      "sha256": "49a0e98cd7a2af47620171ef999c3f40f957ea31c3edadf3749b4ba37aff3827"
+    },
+    "fecp-cache-space/cache-space/boot-1/019-cache-space-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "88de8771b99eb3dfaa9bc662245ace3bcb1ccc3fe9e753c33099e8abda09d782"
+    },
+    "fecp-cache-space/cache-space/boot-1/037-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "1504f0a79eff9bc1fe42ccb63378b18f0b254f23eb60fdfc88b499c1b6a78d37"
+    },
+    "fecp-cache-space/cache-space/boot-1/020-cache-space-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "22de9f268bb30a0ff161e502cb54c3b4caeef421607ecbf91b1ec2afe56b0483"
+    },
+    "fecp-cache-space/cache-space/boot-1/010-cache-space-baseline-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "e7f6210739cf2713f859178e0b084b1870b522caf7876d34e304c20559e1f680"
+    },
+    "fecp-cache-space/cache-space/boot-1/024-space-arm.json": {
+      "bytes": 784,
+      "sha256": "3545a9c0a136ded31d3ddd9493ebc2dc0e4830fa89ae12ba9ff74bb52d6da84b"
+    },
+    "fecp-cache-space/cache-space/boot-1/034-cache-space-replay-refusal-after.json": {
+      "bytes": 287139,
+      "sha256": "938beda84637d7992b974a59b23ef4596bcb4e0700921d060c8ba52563afe47c"
+    },
+    "fecp-cache-space/cache-space/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "3252a36233ab343272ffa251f43991737a363f058c9e225abb39d04d25dcc401"
+    },
+    "fecp-cache-space/cache-space/boot-1/016-cache-space-baseline-health-boot-journal.json": {
+      "bytes": 109689,
+      "sha256": "2fd451480c3c325b1f71c6bb2ba5cb92c2f9e58c7fe94f4b09d76831c43e63ac"
+    },
+    "fecp-cache-space/cache-space/boot-1/033-cache-space-replay-refusal.json": {
+      "bytes": 419,
+      "sha256": "0792abf9702f7daeda23a4b24cac6dc01bf9ffb444d81c1c9b0b0d52ce2b9d11"
+    },
+    "fecp-cache-space/cache-space/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "e22437cdb18ca68a1bea225e8ed9361c92c0d70f328077af25d85b9adc0fb36e"
+    },
+    "fecp-cache-space/cache-space/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-cache-space/cache-space/boot-1/023-cache-space-plan.json": {
+      "bytes": 454301,
+      "sha256": "2de7aaf87645a9683ae53a0953d874c68bb01d480c90d3dbcb315778c528e8dd"
+    },
+    "fecp-cache-space/cache-space/boot-1/017-cache-space-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "221d76920fc3557821fbc587b71cc5bf02be4210b417a883647f6cf608279603"
+    },
+    "fecp-cache-space/cache-space/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "cfdac6a79daaf9e31170d71f2e296ba842693fb4e8e5eac9ac57d72309dc573e"
+    },
+    "fecp-cache-space/cache-space/boot-1/022-cache-space-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "f877700afdbaec203783c9b4c297e6340a9d7220bd158f236614df6ae3aebd28"
+    },
+    "fecp-cache-space/cache-space/boot-1/036-cache-space-history-before-reboot.json": {
+      "bytes": 476922,
+      "sha256": "a283058ade7a9afdf8377053278dfcd6d01b25d58ca62de890915a8fa0ebeba7"
+    },
+    "fecp-cache-space/cache-space/boot-1/030-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "18549ef64cd88e1df96873f915667ffa5df48eb9ddfb695469146fdc3590f491"
+    },
+    "fecp-cache-space/cache-space/boot-1/027-operation-068351289bd3fdb3d0f45a5569b781f1.json": {
+      "bytes": 476864,
+      "sha256": "f755bf34e32c79b69658d897ce01537956be22be66169ae49544c187961618bd"
+    },
+    "fecp-cache-space/cache-space/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "a881652d44e60b7a217279a6e8a93e36fe39b23ee598cedc8d1f7e43121b6a0b"
+    },
+    "fecp-cache-space/cache-space/boot-1/serial.log": {
+      "bytes": 1997,
+      "sha256": "67778ce0af7f9b7975be65b599449e6c31ca6c7371a8e50c35cf636306647e46"
+    },
+    "fecp-cache-space/cache-space/boot-1/028-operation-068351289bd3fdb3d0f45a5569b781f1.json": {
+      "bytes": 476864,
+      "sha256": "fda1f1d9e80f59339411c7a4c7fedf4138e9c6b351912980e8eb98f6e67ac743"
+    },
+    "fecp-cache-space/cache-space/boot-1/013-cache-space-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "97017225520ba5475995b4fe8698856ed2ecd808c9d1913176c81d952e128fc7"
+    },
+    "fecp-cache-space/cache-space/boot-1/015-cache-space-baseline-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "c7f1458989081d0d0bb8c391427fbdaa3cbfb5ec8b391c75732a5d8855becc41"
+    },
+    "fecp-cache-space/cache-space/boot-1/008-cache-space-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "77f9d280576dd3b78c35688956fc9212b6c0be41e3f3e1e73741f37824d73914"
+    },
+    "fecp-cache-space/cache-space/boot-1/012-cache-space-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "249c180984bead6272eb3d3fb9988e271ba64434b4baf03ef6476c9abaa0e304"
+    },
+    "fecp-cache-space/cache-space/boot-1/029-operation-068351289bd3fdb3d0f45a5569b781f1.json": {
+      "bytes": 477199,
+      "sha256": "816358093de75e1d877892a1926c782f8ebef131b1c298e97e282797015adec2"
+    },
+    "fecp-cache-space/cache-space/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "5c102646127cbb8f73f15c3e62518bcd33fbcdaca9ff7cce414fe188c5c1185b"
+    },
+    "fecp-cache-space/cache-space/boot-1/021-cache-space-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "c3942f1d5963b5ddd7c3efc05461b350eb5633ba6c219c43dd556e48ba654725"
+    },
+    "fecp-cache-space/cache-space/boot-1/007-cache-space-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "31add1f35427dc22d94c92042ad1b2b85db84d80e935df6e21ff2c798db8ec01"
+    },
+    "fecp-esp-space/evidence-sha256.json": {
+      "bytes": 11356,
+      "sha256": "c514679691dc269989836761328fd864178da5ce9e3c3e03f948a6009c29e09c"
+    },
+    "fecp-esp-space/inputs.json": {
+      "bytes": 3526,
+      "sha256": "cdc0c7be7f388a86f7c9dd36d9c423ceef5c85aaa69426b1973153026bde021c"
+    },
+    "fecp-esp-space/matrix.json": {
+      "bytes": 6076,
+      "sha256": "69ff0a7d3e3f368650a01d0c720439fe15dffd904b24533df7e63fa153a1b086"
+    },
+    "fecp-esp-space/esp-space/esp-space-preflight-refusal.json": {
+      "bytes": 410234,
+      "sha256": "b87d7f49fca680a8cd643a1358704d2a70a3c1f8a99c02ba5aa45994c140c2f1"
+    },
+    "fecp-esp-space/esp-space/esp-space-plan.json": {
+      "bytes": 409965,
+      "sha256": "49d94fe5b6018d1444e0d0cc84dc58ea666031d6e206346d84e0b65f725ddc58"
+    },
+    "fecp-esp-space/esp-space/attention.json": {
+      "bytes": 278,
+      "sha256": "f476bd547e12a1cccc9502963dd7dde225745a1256a4ff1a60528e457f664333"
+    },
+    "fecp-esp-space/esp-space/esp-space-recovered-health.json": {
+      "bytes": 626529,
+      "sha256": "aabed6b6fb2339ce686c2e04bb633a2000f1d2d7f97c24bb627f7e98f1b979f3"
+    },
+    "fecp-esp-space/esp-space/capacity-host-budget.json": {
+      "bytes": 128,
+      "sha256": "18876766a7d21e219c315ebc247d5fc568d64e18e97d64197f3ff800eab225d1"
+    },
+    "fecp-esp-space/esp-space/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-esp-space/esp-space/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "6a99ca042eb2cd216dad44d449d0f35dbbe8ff151316bb16f68fe3568b03ddd4"
+    },
+    "fecp-esp-space/esp-space/esp-space-actual-shortfall.json": {
+      "bytes": 412,
+      "sha256": "2f1c840eb0d06ca9dfa919dd31eb91292605a1bd853b50b01270431416eaf7f1"
+    },
+    "fecp-esp-space/esp-space/esp-space-remove-only-owned-fixture.json": {
+      "bytes": 111,
+      "sha256": "c17828eaf364b09ef37ca0df0d6c7ee3522526953eaa576b07cc8cf0f84e8f72"
+    },
+    "fecp-esp-space/esp-space/esp-space-baseline-health.json": {
+      "bytes": 150016,
+      "sha256": "7bd0bab53c450b8d51db58a1cdff13bbba5e642c3dfdd3586c13f2f829433990"
+    },
+    "fecp-esp-space/esp-space/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "c7e99c77fb060f877ad2cd0d6ca5f6d3952390063305d5b0b1171dc4bb571e5d"
+    },
+    "fecp-esp-space/esp-space/boot-2/044-esp-space-recovered-health-status.json": {
+      "bytes": 3055,
+      "sha256": "b61ec3dfd67476e4e0895c0bd555f6c57b0e95b8fc7963904d9eafcc134a1b5d"
+    },
+    "fecp-esp-space/esp-space/boot-2/050-esp-space-recovered-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "2b074fcd69f5e76a612b2bab128615552bda35a6144ea7d8580e78b393817e45"
+    },
+    "fecp-esp-space/esp-space/boot-2/039-ready.json": {
+      "bytes": 219,
+      "sha256": "3b7ade026dadb727c6b78238d39e46a41396458e26854af59134565d72dc9a72"
+    },
+    "fecp-esp-space/esp-space/boot-2/046-esp-space-recovered-health-database.json": {
+      "bytes": 337,
+      "sha256": "37720eb7ee7f22285982406de9795756561ca7e4f78ceefb21c0d0f10b9a44f5"
+    },
+    "fecp-esp-space/esp-space/boot-2/qemu-command.json": {
+      "bytes": 1279,
+      "sha256": "09e8bf5f9703dbb57f6983061ec0474f2f74c7a62c680c097eaca39240ada6b4"
+    },
+    "fecp-esp-space/esp-space/boot-2/061-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "037ed5b776f4e917c9418d0529d225c51b8f438990d9b1c7a9c4a865905d5eac"
+    },
+    "fecp-esp-space/esp-space/boot-2/qmp-ready.json": {
+      "bytes": 4526,
+      "sha256": "0a0e7c9ed793fbcadfe3f2ecb163a065828cf21a99be9319b095de7f3f9341a8"
+    },
+    "fecp-esp-space/esp-space/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "1206df541c2b45337cf83d4f4e71b37b2640fda96b86a0abb9aea8c22f3f3ec0"
+    },
+    "fecp-esp-space/esp-space/boot-2/038-ready.json": {
+      "bytes": 219,
+      "sha256": "c4e31520aa1629c136603d04d59a342e14496a7b3e1c485a5d0661f0064a7f93"
+    },
+    "fecp-esp-space/esp-space/boot-2/045-esp-space-recovered-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "54f456f190cd2ab1292185120c748955ca5bdf2bd97c96a6a9d824c013ecfb18"
+    },
+    "fecp-esp-space/esp-space/boot-2/060-esp-space-recovered-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "1ef227b49e660e91d55c588b76ccb46c6bd85e319f90345e0f4b4adb59b75d63"
+    },
+    "fecp-esp-space/esp-space/boot-2/049-esp-space-recovered-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "d85497c52892502b8c7d89e1d4ea81a2164e24e0ab114602825d9d13c5c6a7e7"
+    },
+    "fecp-esp-space/esp-space/boot-2/040-ready.json": {
+      "bytes": 356,
+      "sha256": "7941d6b33ab41892671291f8745a956f5b9a381e886330ea9ef16a80e9fe2eb4"
+    },
+    "fecp-esp-space/esp-space/boot-2/048-esp-space-recovered-health-mounts.json": {
+      "bytes": 8644,
+      "sha256": "1d41124e9a01bba025c982291ca027cd44b59e9933cdedb1f7985dcf3727b270"
+    },
+    "fecp-esp-space/esp-space/boot-2/042-esp-space-history-after-reboot.json": {
+      "bytes": 476930,
+      "sha256": "6da9adbd83d9b97978b9dec7f198b866d02a266d1bb6c39a6ec7f50006cb4686"
+    },
+    "fecp-esp-space/esp-space/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-esp-space/esp-space/boot-2/059-esp-space-recovered-health-history.json": {
+      "bytes": 476921,
+      "sha256": "545e167e6ed711e4f65ffffc774877ca743b8608657d9d0ecb73737846db5826"
+    },
+    "fecp-esp-space/esp-space/boot-2/054-esp-space-recovered-health-boot-journal.json": {
+      "bytes": 109875,
+      "sha256": "c15d99b0af0bef7502c97369f93e14bf62246be009a68d334381b3608aff9991"
+    },
+    "fecp-esp-space/esp-space/boot-2/041-esp-space-boot-confirmation.json": {
+      "bytes": 335,
+      "sha256": "39b4438d87362f74d9badf05f3eaac5176756b04b8c2760e892141f1c25b755e"
+    },
+    "fecp-esp-space/esp-space/boot-2/052-esp-space-recovered-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "8098439341c045b7e4a5bc0f25fcd0157c3a93c870bb2eb3ac880863fbcc918f"
+    },
+    "fecp-esp-space/esp-space/boot-2/058-esp-space-recovered-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "8900dd98b92827e32d18de8956042d1da5e23b243f3e32158cff7d95717e2d5f"
+    },
+    "fecp-esp-space/esp-space/boot-2/055-esp-space-recovered-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "6c57f765b9fbc537f3dfb931d3c0640d560ed8e5b92a402fd959d4216c5b9ca2"
+    },
+    "fecp-esp-space/esp-space/boot-2/reboot.json": {
+      "bytes": 110,
+      "sha256": "dd1b956459c941b7187d3ca18950537dab1fb8ee1bda9294b5ba81989a4423e7"
+    },
+    "fecp-esp-space/esp-space/boot-2/043-esp-space-after-reboot-state.json": {
+      "bytes": 287139,
+      "sha256": "63f51d6c93766b361695249690250fa06d5d8b171c38757adbbedb4654aa326e"
+    },
+    "fecp-esp-space/esp-space/boot-2/serial.log": {
+      "bytes": 1996,
+      "sha256": "c961c7b46f04c1f7281b5197d1034025d4005d5a41d47a5916904ee8cea6ecdb"
+    },
+    "fecp-esp-space/esp-space/boot-2/056-esp-space-recovered-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "a228ab0bb6b71306a40d31833bbd525a2ae130add610e324a9158b5234ec76ac"
+    },
+    "fecp-esp-space/esp-space/boot-2/051-esp-space-recovered-health-root.json": {
+      "bytes": 376,
+      "sha256": "748a507279dcb83cd5e64ec68cc53c272bb1777bcbcf33246d3717d459b794d8"
+    },
+    "fecp-esp-space/esp-space/boot-2/047-esp-space-recovered-health-failed.json": {
+      "bytes": 328,
+      "sha256": "7ba83f9c7feae6bc1f2f2c309d8c603bd1dc19238713cf2ac26f7bac9caff88a"
+    },
+    "fecp-esp-space/esp-space/boot-2/qmp-esp-space-recovered-health.json": {
+      "bytes": 4526,
+      "sha256": "2974547d005ebbcd732a23e14904554d8142d7116c3bd46ec80fd66de5816934"
+    },
+    "fecp-esp-space/esp-space/boot-2/053-esp-space-recovered-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "9dca8f8cb108077b495aea30b798c88fceccbd6381e87120583629c824d4beeb"
+    },
+    "fecp-esp-space/esp-space/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "4280e522629643db16e5e991147584ed7b30a35fd9bb181f1013e48785cb4f82"
+    },
+    "fecp-esp-space/esp-space/boot-2/057-esp-space-recovered-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "cd631652393fb068f9c6e69e16cea6d28374bb49cc60a7bf0b848fc60daf9275"
+    },
+    "fecp-esp-space/esp-space/share/phase42-faults.py": {
+      "bytes": 82696,
+      "sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b"
+    },
+    "fecp-esp-space/esp-space/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "f614eb52a050c4c4614a2e62e8d6c925cee9bfae556fab7b56e092138ad0cab1"
+    },
+    "fecp-esp-space/esp-space/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-esp-space/esp-space/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-esp-space/esp-space/share/space-target.json": {
+      "bytes": 139,
+      "sha256": "a6a0e3888d4dcbbae88e542d5c780e79513d4ed3e09ee073dfd0033a90c54581"
+    },
+    "fecp-esp-space/esp-space/boot-1/010-esp-space-baseline-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "e54f68d6cbf05116b7ecafa2cbc8149b1990dfbc07c66c155c2358565484070c"
+    },
+    "fecp-esp-space/esp-space/boot-1/031-esp-space-unchanged-state.json": {
+      "bytes": 287139,
+      "sha256": "3e2698a61e44d4fafecdaba1860bb28d18055ca41e37e019b0f41e62673fa237"
+    },
+    "fecp-esp-space/esp-space/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "d8f2b3ec86a65941f8999d266e8e203d6a45b8b60b63eb62c713c90f821a4723"
+    },
+    "fecp-esp-space/esp-space/boot-1/018-esp-space-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "f5ad40e26a6666bf1463b39d9271b5a65b55a0b81e4ba7efb13189f82bb8db3e"
+    },
+    "fecp-esp-space/esp-space/boot-1/021-esp-space-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "e1637ecc0947324fd13685b8406a2ddc731da93b07e4813775dd9653e527c17d"
+    },
+    "fecp-esp-space/esp-space/boot-1/qemu-command.json": {
+      "bytes": 1279,
+      "sha256": "d0e8a7e3e122e982257b8fd6b8c36567a51f88d8e50f64841570f97df6590963"
+    },
+    "fecp-esp-space/esp-space/boot-1/026-operation-402e02225ad1edda12e0028583947dc4.json": {
+      "bytes": 528,
+      "sha256": "d6021303820c014c3ad0f0930627ed2ab55c029e39c6b70af52e6d16418c3f58"
+    },
+    "fecp-esp-space/esp-space/boot-1/013-esp-space-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "732d65bc07f66d0462dc3528e715ba3995f51a2bde24eb8b46756236f42cfafd"
+    },
+    "fecp-esp-space/esp-space/boot-1/014-esp-space-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "d24d6d93351f8979b7809e4f52b439839fc6639357453a62ec146d91d8656f41"
+    },
+    "fecp-esp-space/esp-space/boot-1/qmp-ready.json": {
+      "bytes": 4525,
+      "sha256": "a9e4a9a24dc87b7b32df090f2a3bb2f0d77433b75d962279b6c4a535b1795610"
+    },
+    "fecp-esp-space/esp-space/boot-1/036-esp-space-history-before-reboot.json": {
+      "bytes": 476930,
+      "sha256": "43ca4062de9e1dafc169f6d19aa1d39adb5202aaf466dc12c3301ca174166546"
+    },
+    "fecp-esp-space/esp-space/boot-1/006-esp-space-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "717d65b30ec8d5b18c3006b930eeb1976fef2021870878a2ff9efb2ff9f2dbff"
+    },
+    "fecp-esp-space/esp-space/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "4dfc0646f2335efb5c7c3a6ad0df0562bc9ae488e80147639f40a2b9011e6ecc"
+    },
+    "fecp-esp-space/esp-space/boot-1/020-esp-space-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "80ec5ba89af47555eb86e8ee887fe1689b96ee653a6eea918a62e655263cb668"
+    },
+    "fecp-esp-space/esp-space/boot-1/035-space-reset.json": {
+      "bytes": 472,
+      "sha256": "9371c791d4adb9545464d62c52e0ad0196ce29eb3e8ed3d6334c0e157283fb79"
+    },
+    "fecp-esp-space/esp-space/boot-1/025-esp-space-submit.json": {
+      "bytes": 714,
+      "sha256": "9b9c0c58f2120ab94f5e518b40d5a094385f1e8c2462d3d600be4e2151d0e4ee"
+    },
+    "fecp-esp-space/esp-space/boot-1/037-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "f8570dbace9f82120b6dfaa7517d90c37f390b50d02d61d498b5ffe8217d2211"
+    },
+    "fecp-esp-space/esp-space/boot-1/027-operation-402e02225ad1edda12e0028583947dc4.json": {
+      "bytes": 476864,
+      "sha256": "64c46ef656072dadc6f6ab08cdaadc74855ab08a20f129ff268d77a0089c4cad"
+    },
+    "fecp-esp-space/esp-space/boot-1/016-esp-space-baseline-health-boot-journal.json": {
+      "bytes": 109966,
+      "sha256": "b24682c2d312f2b2449ee27b320ada8bd724dfa769e2104ee9aac5b9fca7b780"
+    },
+    "fecp-esp-space/esp-space/boot-1/024-space-arm.json": {
+      "bytes": 779,
+      "sha256": "20dc2d4f24200da2c86a7df3040aeef4addd0eda31838ebdc964b5c49b16c9d9"
+    },
+    "fecp-esp-space/esp-space/boot-1/009-esp-space-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "cf53ff1b7d3d09e881dddd8317daa33a3cfc2887bf998100c6fe76f76308eb35"
+    },
+    "fecp-esp-space/esp-space/boot-1/029-operation-402e02225ad1edda12e0028583947dc4.json": {
+      "bytes": 477215,
+      "sha256": "18d2bacc26d739bdf02572fc30963c7eda12ef987286f47c9dbbf2adcf049105"
+    },
+    "fecp-esp-space/esp-space/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "d27e76a8f65e869153290fcaa592fdd16111d56a5a4d75021d3f4e7ce6a566a5"
+    },
+    "fecp-esp-space/esp-space/boot-1/022-esp-space-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "27a0a4053c92233d363a2849015b824ca0e6cb2b5817f27070d8a9ae317306d8"
+    },
+    "fecp-esp-space/esp-space/boot-1/qmp-esp-space-baseline-health.json": {
+      "bytes": 4525,
+      "sha256": "2cfe20048f4cfbbaaf491d8591a50e5015123c29d75a3411842e6ca34ad1d1a0"
+    },
+    "fecp-esp-space/esp-space/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "0287e3fc9ee42fb7156d1b986bba7686d15492247ea657bef4a7f1d32ec565bc"
+    },
+    "fecp-esp-space/esp-space/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-esp-space/esp-space/boot-1/015-esp-space-baseline-health-journal.json": {
+      "bytes": 6678,
+      "sha256": "2c70dedc7f9d5a252d53ea93a7eb124100f2191f9ef606e4006b6edca9954ec6"
+    },
+    "fecp-esp-space/esp-space/boot-1/019-esp-space-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "a859d5be40aadb3c954cda473654f5c2f211d58223354e15043f4d11e5c12577"
+    },
+    "fecp-esp-space/esp-space/boot-1/008-esp-space-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "0c2210c0f416695924b768faa8bff285cfbfb55f47b3b5573eb7c0b74aa28013"
+    },
+    "fecp-esp-space/esp-space/boot-1/012-esp-space-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "764557e2bf703eb3fc832043a15dca2ee204e82ea6cb2100b4998377e4d727eb"
+    },
+    "fecp-esp-space/esp-space/boot-1/017-esp-space-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "8c427a07a552da46a75a02210596bfba4fc63620ced678ee66b208ed85facb7c"
+    },
+    "fecp-esp-space/esp-space/boot-1/011-esp-space-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "0cfdff40d4e0e3fa0082c1b82751fa284856e10dfd39d75144293309690f1343"
+    },
+    "fecp-esp-space/esp-space/boot-1/007-esp-space-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "0321158b7067565707efdcc4988465e8e6dbe387125ebbd98fb782ae338bc1c2"
+    },
+    "fecp-esp-space/esp-space/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "7ed0202facd8828341f75d57c0c91ee806251165d5f72c4c61cd6e3d4814e2fc"
+    },
+    "fecp-esp-space/esp-space/boot-1/033-esp-space-replay-refusal.json": {
+      "bytes": 419,
+      "sha256": "bfa8cbed5145e3698c61a56a2915b5a8efc9fe7d035b1fffec110c3086ed9411"
+    },
+    "fecp-esp-space/esp-space/boot-1/030-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "803e8cc9b3c742b0add2abe1c62511aa058726c84887879c6980e7fc38d94836"
+    },
+    "fecp-esp-space/esp-space/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "9c30b94c56e0d79f6238ce6a5a394383abb6a19d00864d3ae3fafca41ad63e09"
+    },
+    "fecp-esp-space/esp-space/boot-1/serial.log": {
+      "bytes": 1995,
+      "sha256": "05e05e7dcb4966305e8a8b1ce3b6f229d3237737c943fd5995fc91d543bc9284"
+    },
+    "fecp-esp-space/esp-space/boot-1/032-esp-space-replay-refusal-before.json": {
+      "bytes": 287139,
+      "sha256": "152e5b1dfb6960a2ba8750c25e583d16ad07db101efbc08fe14d12ff28a2d325"
+    },
+    "fecp-esp-space/esp-space/boot-1/028-operation-402e02225ad1edda12e0028583947dc4.json": {
+      "bytes": 476864,
+      "sha256": "0bf37a32c397a28b3bc979673052001f75cf2ff99b1ebe3c88e4b2f9d8448ecc"
+    },
+    "fecp-esp-space/esp-space/boot-1/034-esp-space-replay-refusal-after.json": {
+      "bytes": 287139,
+      "sha256": "90255fe29e21ba85d8fbba406d5627925f67d99ca38b44186407fc367b64ca18"
+    },
+    "fecp-esp-space/esp-space/boot-1/023-esp-space-plan.json": {
+      "bytes": 454301,
+      "sha256": "f103dcac852c939d2c37b60130eaa5af030922512bc4236ad89d0dd5fcfe11e0"
+    },
+    "fecp-esp-space/esp-space/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "a2e3b1558751e63cfe8fc47d5c13c55638d7d94795abaf3d4b1718be9614a0e6"
+    },
+    "fecp-metadata-control/output.log": {
+      "bytes": 691,
+      "sha256": "6ff040325e358469a0278b06b20143c16662db575e83bb7a7cae3dd3bd196106"
+    },
+    "fecp-metadata-control/launch.json": {
+      "bytes": 923,
+      "sha256": "cbef1a22e73fb69aaf49de470ecc0dce177766cfc99d15ba433b776d3eaa0d19"
+    },
+    "fecp-interruption-r2-control/output.log": {
+      "bytes": 570,
+      "sha256": "7e575d5ecd38e14d54a0857b07894efc957846d1799458519fc4ca6145bc703b"
+    },
+    "fecp-interruption-r2-control/launch.json": {
+      "bytes": 934,
+      "sha256": "d8555888ccf014839dcbe987f5b67a019ad09c3442d6d6290c594c724dd21b61"
+    },
+    "fecp-abandoned-control/output.log": {
+      "bytes": 180,
+      "sha256": "dd6c0349f7e9e3e10fea262f7476a50aaa535e53188d6cf6362c4434c280eea8"
+    },
+    "fecp-abandoned-control/launch.json": {
+      "bytes": 925,
+      "sha256": "85eb4caa234b0f9da88976ce78e6aca7ab3392c370b06c5ae1fca62966e46ed5"
+    },
+    "fecp-failed-hook-control/output.log": {
+      "bytes": 545,
+      "sha256": "a229c091614b2fe2bc0bfe529cf5d323445f98852b47c2c1429bf888d3180bec"
+    },
+    "fecp-failed-hook-control/launch.json": {
+      "bytes": 929,
+      "sha256": "051ef546891b1c2a3d4219459730ebf9c0ba7fed226f64a3a7760f09ad241fb4"
+    },
+    "fecp-signing-failure-control/output.log": {
+      "bytes": 585,
+      "sha256": "28da118e85d6398e8633bc2f65e2ab57eaebe6873a3c831204524d309b9b30f6"
+    },
+    "fecp-signing-failure-control/launch.json": {
+      "bytes": 937,
+      "sha256": "d3133d5a92cf9ef694391997b36a0d05c6287def8128bffaf58b69c9adb5b3c8"
+    },
+    "fecp-root-space-control/output.log": {
+      "bytes": 368,
+      "sha256": "125eb3b76d1b9a77f52c4bc67a8151a7394e19f938db5f19289e06a87427512b"
+    },
+    "fecp-root-space-control/launch.json": {
+      "bytes": 927,
+      "sha256": "42348ba6807c79349403e411fce239d460c352087451d9eeaf65878982a7b970"
+    },
+    "fecp-cache-space-control/output.log": {
+      "bytes": 376,
+      "sha256": "7e128ff03c827c085258ab0c84acdd9140c5221e69126dfda63c7fbea95508e6"
+    },
+    "fecp-cache-space-control/launch.json": {
+      "bytes": 929,
+      "sha256": "7516956ecd54ad0048b24f160233b4d26fffc5ef36dbc2e43d02a9f17016f802"
+    },
+    "fecp-esp-space-control/output.log": {
+      "bytes": 360,
+      "sha256": "460ff82fcb05055244dd9b942e035b0138fe5680eb5a76d4522ee7e9dce4c4ab"
+    },
+    "fecp-esp-space-control/launch.json": {
+      "bytes": 925,
+      "sha256": "f98ae90693cb90c2ad4e107403a925bdb7e8fb5d656a84ef8d7c6d29c2aeee41"
+    },
+    "fault-sequence-ca-none.json": {
+      "bytes": 1178,
+      "sha256": "3ef155ec5a4d5508ed027b49ba2202ae5945b2da2f84a9ed80e4faafbd7e5a25"
+    },
+    "fault-sequence-ca-none.log": {
+      "bytes": 1641,
+      "sha256": "3c573e099770acd49f803e77412205e3fd8a9ceeffb09c10e4b44fb419e9eec3"
+    },
+    "fault-sequence-ca-none-launch.json": {
+      "bytes": 55,
+      "sha256": "f861412f4002c5fa24895bf8ba52727f7ecbc3659f1d59cdecad203ec90dab3b"
+    }
+  }
+}

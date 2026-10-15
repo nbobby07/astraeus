@@ -1,0 +1,14 @@
+{
+  "accepted": true,
+  "retained_failure": "result.json",
+  "started": "2026-10-14T21:37:15.586498+00:00",
+  "before": {
+    "disk.qcow2": "7ca36e81158bc02eb724c320a22e99dbd599a903228c4fbcd0a59e08c7cea622",
+    "vars.fd": "e17068ee69afabfe65d756d90f221a26aaed394718571a15cb28d78ded16fa15"
+  },
+  "boot_ids": [
+    "6838c501-aff4-41e2-bdde-3ac4635f65b6",
+    "b585e01e-0012-4335-82df-3fae8c4092b7"
+  ],
+  "finished": "2026-10-14T21:42:33.310134+00:00"
+}

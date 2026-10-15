@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "scope": "Actual signed Calamares3.4.3 fstab formatter and configured six subvolume paths; not installer UI acceptance",
+  "package_sha256": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+  "packaged_fstab_source_sha256": "d9f6e5f455c783f18d17ee07383807d41b5dc6a097b024d4c97ddc9c0ae51a17",
+  "rows": [
+    {
+      "encrypted": false,
+      "mount": "/",
+      "source": "UUID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "options": "subvol=/@,defaults"
+    },
+    {
+      "encrypted": false,
+      "mount": "/home",
+      "source": "UUID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "options": "subvol=/@home,defaults"
+    },
+    {
+      "encrypted": false,
+      "mount": "/.snapshots",
+      "source": "UUID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "options": "subvol=/@snapshots,defaults"
+    },
+    {
+      "encrypted": false,
+      "mount": "/var/log",
+      "source": "UUID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "options": "subvol=/@log,defaults"
+    },
+    {
+      "encrypted": false,
+      "mount": "/var/cache",
+      "source": "UUID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "options": "subvol=/@cache,defaults"
+    },
+    {
+      "encrypted": false,
+      "mount": "/var/lib/containers",
+      "source": "UUID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "options": "subvol=/@containers,defaults"
+    },
+    {
+      "encrypted": true,
+      "mount": "/",
+      "source": "/dev/mapper/root",
+      "options": "subvol=/@,defaults"
+    },
+    {
+      "encrypted": true,
+      "mount": "/home",
+      "source": "/dev/mapper/root",
+      "options": "subvol=/@home,defaults"
+    },
+    {
+      "encrypted": true,
+      "mount": "/.snapshots",
+      "source": "/dev/mapper/root",
+      "options": "subvol=/@snapshots,defaults"
+    },
+    {
+      "encrypted": true,
+      "mount": "/var/log",
+      "source": "/dev/mapper/root",
+      "options": "subvol=/@log,defaults"
+    },
+    {
+      "encrypted": true,
+      "mount": "/var/cache",
+      "source": "/dev/mapper/root",
+      "options": "subvol=/@cache,defaults"
+    },
+    {
+      "encrypted": true,
+      "mount": "/var/lib/containers",
+      "source": "/dev/mapper/root",
+      "options": "subvol=/@containers,defaults"
+    }
+  ]
+}

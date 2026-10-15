@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "source_commit": "9825438d275c3037fcb41fbd768eebc71ef3f38c",
+  "live": true,
+  "distroctl_sha256": "da09689543719261309adb0e41e796f12597e34f75d64865d6c09845e6e00e43",
+  "desktop_sha256": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+  "firmware": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "checks": {
+    "inspection_visible": true,
+    "live_warning_visible": true,
+    "review_blocked": true,
+    "apply_disabled": true
+  },
+  "evidence": [
+    {
+      "path": "boot-1/observed-1791963716780849539.png",
+      "sha256": "aa1256e6fe2359f6dd36a1a1cb8abc3427ef900ee0d18c36536701a7edae72a9"
+    },
+    {
+      "path": "boot-1/observed-1791963850588368295.png",
+      "sha256": "3c5aa510aaa1cbce119ee8b57db554a9d06db558dfbbb71ccf804c31b95819f6"
+    },
+    {
+      "path": "boot-1/observed-1791963893475966202.png",
+      "sha256": "e918d6f646779cfb6d67da120662fb36cc5f9912581162fb1a5116caf15b4128"
+    },
+    {
+      "path": "boot-1/observed-1791964007940645459.png",
+      "sha256": "42b876228ff57941bac9362ba7a656ffbbdfa272f4ab952adb337d7046356905"
+    }
+  ]
+}

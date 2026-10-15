@@ -1,0 +1,27 @@
+{
+  "checkpoint_utc": "2026-10-14T12:31:19.938642+00:00",
+  "active_vm": "vm-9350aa5ae5534cc0a68551e6e040bcf2",
+  "active_vm_state": "paused",
+  "provider_total_run_seconds": 55511,
+  "initial_total_run_seconds": 3486,
+  "conservative_closed_new_seconds": 55340.0,
+  "current_interval_started_utc": null,
+  "reset_accounting_note": "Includes full wall interval21:51:52..22:53:21 and22:55:53..23:11:55 because provider omitted pre-reset runtime.",
+  "replacement_vm": "vm-3614c8ea177748e8952c562250e9ce09",
+  "replacement_last_observed_state": "paused",
+  "replacement_run_seconds_already_in_closed_bound": 58,
+  "conservative_compute_and_active_storage_rate_per_hour": 0.373184,
+  "combined_new_run_seconds_upper_bound": 55340.0,
+  "compute_and_active_storage_estimate_usd": 5.736667377777778,
+  "task_budget_usd": 10,
+  "network_and_paused_storage_not_in_compute_estimate": true,
+  "candidate_build_status": "6d source frozen. Resume immediately reverted to paused; subsequent start timed out and idle-timeout update returned INTERNAL_ERROR. No source transfer or new builder launched. Both validators confirmed paused.",
+  "last_closed_interval": {
+    "started_utc": "2026-10-14T00:29:36.542636+00:00",
+    "paused_utc": "2026-10-14T12:11:22.591881+00:00",
+    "conservative_seconds": 42107,
+    "provider_total_after": 55510
+  },
+  "replacement_read_only_check_utc": "2026-10-13T19:39:18.5862023-07:00",
+  "lifecycle_owner": "root exclusively owns cloud and budget; no other active agents"
+}

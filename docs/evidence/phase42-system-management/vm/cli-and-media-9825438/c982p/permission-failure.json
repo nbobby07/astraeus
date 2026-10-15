@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-14T08:00:04.472519+00:00",
+  "finished": "2026-10-14T08:00:04.775212+00:00",
+  "command": "/usr/bin/distroctl system packages details hello --json",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "distroctl: untrusted directory /usr/share/distro/install-inputs\n",
+    "id": "e2a4b6c6ee2e4c0cb382d077e6fa5a6a",
+    "boot_id": "274dbe46-0fb0-45c8-83fd-695973600fad"
+  }
+}

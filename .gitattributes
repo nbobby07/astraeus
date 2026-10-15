@@ -1,3 +1,13 @@
 * text=auto eol=lf
 *.png binary
 *.iso binary
+docs/evidence/phase4/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase4-integration/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase4-runtime-remediation/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase4-runtime-requalification/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase4-signed-fixture-refresh/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase42-system-management/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase5-build-08713df/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase5-json-roundtrip/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase5-restored-root-startup/** -text whitespace=-trailing-space,cr-at-eol
+docs/evidence/phase5-build-c38209c/** -text whitespace=-trailing-space,cr-at-eol

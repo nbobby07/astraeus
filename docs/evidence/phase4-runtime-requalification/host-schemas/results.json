@@ -1,0 +1,51 @@
+[
+  {
+    "command": [
+      "gaming",
+      "status",
+      "--json"
+    ],
+    "code": 0,
+    "schema": "status",
+    "status": "PASS",
+    "environment": "WSL host CLI, not installed Astraeus acceptance"
+  },
+  {
+    "command": [
+      "gaming",
+      "doctor",
+      "--probe",
+      "--json"
+    ],
+    "code": 0,
+    "schema": "status",
+    "status": "PASS",
+    "environment": "WSL host CLI, not installed Astraeus acceptance"
+  },
+  {
+    "command": [
+      "gaming",
+      "enable",
+      "core",
+      "--dry-run",
+      "--json"
+    ],
+    "code": 0,
+    "schema": "plan",
+    "status": "PASS",
+    "environment": "WSL host CLI, not installed Astraeus acceptance"
+  },
+  {
+    "command": [
+      "gaming",
+      "disable",
+      "tools",
+      "--dry-run",
+      "--json"
+    ],
+    "code": 0,
+    "schema": "plan",
+    "status": "PASS",
+    "environment": "WSL host CLI, not installed Astraeus acceptance"
+  }
+]

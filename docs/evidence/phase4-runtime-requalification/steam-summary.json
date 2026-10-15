@@ -1,0 +1,34 @@
+{
+  "command": [
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=10s",
+    "900s",
+    "runuser",
+    "-u",
+    "tester",
+    "--",
+    "env",
+    "DISPLAY=:0",
+    "XAUTHORITY=/run/user/1000/xauth_KDwOVu",
+    "WAYLAND_DISPLAY=wayland-0",
+    "XDG_RUNTIME_DIR=/run/user/1000",
+    "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+    "XDG_SESSION_TYPE=wayland",
+    "XDG_CURRENT_DESKTOP=KDE",
+    "env",
+    "HOME=/home/tester/phase4-session/steam-home",
+    "steam",
+    "-nochatui",
+    "-nofriendsui"
+  ],
+  "started": 1791692225.5687554,
+  "exit": {
+    "code": 0,
+    "finished": 1791692992.5028489
+  },
+  "lifetime_seconds": 766.9340934753418,
+  "authentication": "NOT RUN",
+  "window_inspection": "Initial screen capture was the locked desktop; no new login-window qualification",
+  "scope": "Actual client runtime diagnostics and normal shutdown; no authenticated game launch"
+}

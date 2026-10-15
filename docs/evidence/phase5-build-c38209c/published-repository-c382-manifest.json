@@ -1,0 +1,76 @@
+{
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "repository_fingerprint": "27CCE96199D30A7ABA1BE86CC6722DAA8014EE89",
+  "files": {
+    "SHA256SUMS": {
+      "bytes": 1381,
+      "sha256": "c15c362d940b8b95eb1e5a7cd547472d94b0dbec55fe8ff81c01cff03dd4552a"
+    },
+    "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+      "bytes": 185711,
+      "sha256": "d26b37cfd4ee373ed4c37791bf9bee79f76ef261cdeab3e956782832546d98ee"
+    },
+    "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+      "bytes": 119,
+      "sha256": "3a07bff089b77eba899b1cebbae8645dae4100095e2813bf97a1f5d27cb32a5c"
+    },
+    "calamares-3.4.3-1-x86_64.pkg.tar.zst": {
+      "bytes": 4253631,
+      "sha256": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33"
+    },
+    "calamares-3.4.3-1-x86_64.pkg.tar.zst.sig": {
+      "bytes": 119,
+      "sha256": "1591223c079d54637e52a126c5e0d41d36d70523fb4eff9136e0a7e6198b5572"
+    },
+    "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": {
+      "bytes": 43686681,
+      "sha256": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900"
+    },
+    "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst.sig": {
+      "bytes": 119,
+      "sha256": "483bebf7e86690df8d4a4a0d8924cc4b9bc3ba18bee7fa59a64f967bdcf4fefe"
+    },
+    "distro.db.tar.gz": {
+      "bytes": 1910,
+      "sha256": "a5991279087b62611b05a292cd111086afb07b1e161aa0756f0e7a4d1e0aad9f"
+    },
+    "distro.db.tar.gz.sig": {
+      "bytes": 119,
+      "sha256": "0119473542cdc70b9a1d946d24869c56d3553ab645def7c3235625e724827fa7"
+    },
+    "distro.files.tar.gz": {
+      "bytes": 10469,
+      "sha256": "1bfcd26bda9986490c5c91e145bb1da061d7fd8e4ee5a810ddeb2b5273661b9c"
+    },
+    "distro.files.tar.gz.sig": {
+      "bytes": 119,
+      "sha256": "f93f89c081f757a09c32382f2f8de10bf59c7d85bca06cc08c8dbc9d27359d9f"
+    },
+    "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+      "bytes": 2724558,
+      "sha256": "b32cd21d92141964ff7e1d67b3ea98da3e04279c9b018c878947168e8155db19"
+    },
+    "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+      "bytes": 119,
+      "sha256": "413ff03092afd76d222e52349cea800fbb97edc627c05c0380996d67c0c5efec"
+    },
+    "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+      "bytes": 2513966,
+      "sha256": "4b66f5b2cb91320edb7f0172c0a1bfcd1d4a894be2891d28305389303b47842e"
+    },
+    "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+      "bytes": 119,
+      "sha256": "e71b4328ee3a99ad6eb7de4a94828f17948d790687d537cd2a3c6a55b290c242"
+    },
+    "repository-key.asc": {
+      "bytes": 409,
+      "sha256": "1cc2be4bcba471128f53728f3b6f018b37721db4657e0c5bee5c006a3c0c568b"
+    }
+  },
+  "links": {
+    "distro.db": "distro.db.tar.gz",
+    "distro.db.sig": "distro.db.tar.gz.sig",
+    "distro.files": "distro.files.tar.gz",
+    "distro.files.sig": "distro.files.tar.gz.sig"
+  }
+}

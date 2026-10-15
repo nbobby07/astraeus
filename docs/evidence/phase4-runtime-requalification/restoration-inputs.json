@@ -1,0 +1,18 @@
+{
+  "iso": {
+    "path": "D:\\Astraeus-Phase4-Integration-Evidence\\astraeus-cac8998-A.iso",
+    "bytes": 3707426816,
+    "sha256": "bbc3a397dbd34672994e97405e70a5d441b206820b905cfa4f6b4bd36e69905f"
+  },
+  "disk": {
+    "path": "D:\\Astraeus-Phase4-Integration-Evidence\\private\\phase4-base-plain.qcow2",
+    "bytes": 3305373696,
+    "sha256": "eafebca45776fca62b848c77dfbb40dd3189b616727fe0bc9b8c9cb03eaa67a9"
+  },
+  "vars": {
+    "path": "D:\\Astraeus-Phase4-Integration-Evidence\\private\\context\\base-plain\\vars.fd",
+    "bytes": 540672,
+    "sha256": "ea6d7892aa8d2416a1314975eab29547c0d56454ae3cc6949c1b24b8a0947620"
+  },
+  "verified_at": "2026-10-11T03:43:11.186428+00:00"
+}

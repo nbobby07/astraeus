@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "integrated_acceptance": true,
+  "started": "2026-10-09T07:45:04.403695+00:00",
+  "scenario": "rejected-update",
+  "fault": "payload",
+  "encryption": "none",
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "finished": "2026-10-09T07:46:15.420560+00:00"
+}

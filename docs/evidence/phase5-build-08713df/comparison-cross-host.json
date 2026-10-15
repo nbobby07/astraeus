@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "builder_vms": {
+    "A": "vm-675b0245f2d0430ebfb3a49fa4cc84b8",
+    "B": "vm-566ea9de35f94e22a81b805620a8d67b"
+  },
+  "source_commit": "08713dfa7f2096217710ef4f6311e2d6bb264db5",
+  "source_archive_sha256": "79440623e5d46c37292e35ebffc81324fe4dc709cf8692f2be1a519114812d88",
+  "comparison_sha256": "b0c22afd0c86eab1373fa34d6c4017a54a7b47bb076c2f402693e2e1de83c13e",
+  "export_archive_sha256": {
+    "A": "2b23605d524961f7a1799c2bbc69d8aadd7699191ef1ce220d92a61dc5698862",
+    "B": "058673e4a0c29fbc81611072942cfeb147cffc41d10b80a3f054bdc663627eda"
+  },
+  "repository_archive_sha256": "5d89cc287d845a93d48166daea8edc3351abbbae0d0d56d90b6299360920527c",
+  "A_builder_disk_retained": true,
+  "physical_hardware_qualified": false,
+  "bare_metal_comparison": "unit tests only"
+}

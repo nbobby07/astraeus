@@ -1,0 +1,31 @@
+{
+  "trusted": "PASS",
+  "negative_results": {
+    "untrusted": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:48:31.841335+00:00"
+    },
+    "tampered": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:49:05.294932+00:00"
+    },
+    "unsigned": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:49:41.772842+00:00"
+    },
+    "root-tampered": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:52:33.138196+00:00"
+    },
+    "disabled": {
+      "passed": true,
+      "error": null,
+      "finished": "2026-10-14T18:53:32.825211+00:00"
+    }
+  },
+  "complete": true
+}

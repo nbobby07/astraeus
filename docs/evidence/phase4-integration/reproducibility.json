@@ -1,0 +1,32 @@
+{
+  "source": {
+    "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+    "bytes": 1033160,
+    "sha256": "779a0065f6469727f237e637c14932542e84bc55cef25b84393a5af787440068",
+    "format": "git archive tar prefix operating-system; Python XZ preset 6"
+  },
+  "isos": {
+    "A": {
+      "path": "/home/ubuntu/p4i/r2/build/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "bytes": 3707426816,
+      "sha256": "bbc3a397dbd34672994e97405e70a5d441b206820b905cfa4f6b4bd36e69905f"
+    },
+    "B": {
+      "path": "/home/ubuntu/p4i/r2/build/evidence/B/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "bytes": 3707426816,
+      "sha256": "bbc3a397dbd34672994e97405e70a5d441b206820b905cfa4f6b4bd36e69905f"
+    }
+  },
+  "manifests": {
+    "builder-packages.txt": "a8bc2c83ae9607522f1ac5eb8f40769659689637fd88935542a8f5fdec586fd5",
+    "image-packages.txt": "141384799067083341d5c96597225a4b7e3a4514218b03a89a48b9440d103ddf",
+    "installed-packages.txt": "26a853ba2cbd9d1d9f0f6f1db6c29236a45dd48afeb7396a4acd7746aa866482",
+    "platform-package-sha256.txt": "a0ac7d8cf138b55327d602c8ea6daa5c608cf2137e37c51449f5fe137a767c24",
+    "source-sha256.txt": "870fa34e3acb2c53aa42ee6477f82ee7c875a8cc91367ef25c37e8e263309d3e"
+  },
+  "inputs_equal": true,
+  "full_file_cmp_exit_code": 0,
+  "byte_identical": true,
+  "independent_clean_guests": true,
+  "shared_inputs": "same signed repository and immutable upstream package downloads; independently rebuilt custom package bytes match"
+}

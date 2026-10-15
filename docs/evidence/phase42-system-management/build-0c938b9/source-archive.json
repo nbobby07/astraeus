@@ -1,0 +1,7 @@
+{
+  "source_commit": "0c938b94f44956fd77890d851e35650b62b1e6da",
+  "bytes": 5597568,
+  "sha256": "e195fd75d140b0ac045d4292c59c181fd9acea746064d8b9ff3bb10283749899",
+  "archive_from_immutable_git_object_only": true,
+  "independent_compression_bytes_equal": true
+}

@@ -1,0 +1,105 @@
+{
+  "iso": {
+    "path": "/home/ubuntu/p4i/r2/build/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+    "bytes": 3707426816,
+    "sha256": "bbc3a397dbd34672994e97405e70a5d441b206820b905cfa4f6b4bd36e69905f"
+  },
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "payloads": {
+    "live": {
+      "sha256": "9de70c7330d733f7a8dbb90fe924dd48a32dfd6a4280bfb76b349b4667375978",
+      "bytes": 3220643840,
+      "files_sha256": "5331a365e774d09e03c2c13b406f7bfd13e1851b9848f19313b879c8b89d6686",
+      "binaries": {
+        "/usr/bin/distroctl": "19f5474c80db3a7a50c2d92cf50d725f562a39bd7d772139e9462219da12af73",
+        "/usr/bin/astraeus-secure-boot": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+        "/usr/bin/astraeus-boot-artifact": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+        "/usr/lib/distroctl/graphics-probe64": "51e61a9c710d2b6f2745aae96cdfa1dd025e6a8eae478a229819ecaeea977099",
+        "/usr/lib/distroctl/graphics-probe32": "f2731cf93ab406518c76eb674cef06ded5c2e57865d1e4c8c921475edbb7cd07"
+      },
+      "absent_paths": [
+        "var/lib/astraeus/keys",
+        "var/lib/astraeus/secure-boot",
+        "etc/astraeus/secure-boot/policy.json",
+        "var/lib/astraeus-validation",
+        "mnt/astraeus-validation",
+        "private-keys-v1.d",
+        "db.key",
+        "PK.key",
+        "KEK.key",
+        "phase2-guest.py",
+        "integrated-guest.py"
+      ]
+    },
+    "installed": {
+      "sha256": "b95e98d040980ce5b39a8b0f33a8d96b9bf7c8c0044d5bfcaf3f64e51e833bcb",
+      "bytes": 1693532160,
+      "files_sha256": "ede26fc5a9c6f118fa71e788db1a8b332a5731637e847303d8e2fd10ccc2594c",
+      "binaries": {
+        "/usr/bin/distroctl": "19f5474c80db3a7a50c2d92cf50d725f562a39bd7d772139e9462219da12af73",
+        "/usr/bin/astraeus-secure-boot": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+        "/usr/bin/astraeus-boot-artifact": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+        "/usr/lib/distroctl/graphics-probe64": "51e61a9c710d2b6f2745aae96cdfa1dd025e6a8eae478a229819ecaeea977099",
+        "/usr/lib/distroctl/graphics-probe32": "f2731cf93ab406518c76eb674cef06ded5c2e57865d1e4c8c921475edbb7cd07"
+      },
+      "absent_paths": [
+        "var/lib/astraeus/keys",
+        "var/lib/astraeus/secure-boot",
+        "etc/astraeus/secure-boot/policy.json",
+        "var/lib/astraeus-validation",
+        "mnt/astraeus-validation",
+        "private-keys-v1.d",
+        "db.key",
+        "PK.key",
+        "KEK.key",
+        "phase2-guest.py",
+        "integrated-guest.py"
+      ]
+    }
+  },
+  "passed": true,
+  "installed_test_accounts_absent": true,
+  "image_selections": {
+    "graphics": {
+      "schema_version": 1,
+      "bundles": [
+        "software",
+        "virtio"
+      ],
+      "packages": [
+        "lib32-mesa",
+        "lib32-mesa-utils",
+        "lib32-vulkan-icd-loader",
+        "lib32-vulkan-swrast",
+        "lib32-vulkan-virtio",
+        "mesa",
+        "mesa-utils",
+        "vulkan-icd-loader",
+        "vulkan-swrast",
+        "vulkan-tools",
+        "vulkan-virtio"
+      ]
+    },
+    "gaming": {
+      "schema_version": 1,
+      "features": [
+        "core",
+        "tools"
+      ],
+      "packages": [
+        "gamemode",
+        "gamescope",
+        "lib32-alsa-plugins",
+        "lib32-gamemode",
+        "lib32-gcc-libs",
+        "lib32-glibc",
+        "lib32-mangohud",
+        "lib32-pipewire",
+        "mangohud",
+        "steam",
+        "steam-devices",
+        "xorg-xwayland"
+      ]
+    }
+  }
+}

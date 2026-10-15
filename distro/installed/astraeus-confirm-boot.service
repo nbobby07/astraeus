@@ -1,5 +1,6 @@
 [Unit]
 Description=Confirm the pending Astraeus boot using observed health
+Wants=systemd-bless-boot.service
 After=local-fs.target NetworkManager.service sddm.service systemd-logind.service
 ConditionPathExists=!/run/archiso
 ConditionPathExists=|/var/log/astraeus/transactions.sqlite

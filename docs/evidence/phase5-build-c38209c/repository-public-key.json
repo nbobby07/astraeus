@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "fingerprint": "27CCE96199D30A7ABA1BE86CC6722DAA8014EE89",
+  "public_key_sha256": "1cc2be4bcba471128f53728f3b6f018b37721db4657e0c5bee5c006a3c0c568b",
+  "algorithm": "22",
+  "key_id": "C6722DAA8014EE89",
+  "created_unix": 1792054539,
+  "expires_unix": 1792140939,
+  "created_utc": "2026-10-15T08:55:39+00:00",
+  "expires_utc": "2026-10-16T08:55:39+00:00",
+  "scope": "Disposable candidate repository signing identity; public metadata only."
+}

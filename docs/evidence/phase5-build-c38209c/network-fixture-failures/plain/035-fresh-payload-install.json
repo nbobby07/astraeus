@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T10:24:39.974242+00:00",
+  "finished": "2026-10-15T10:26:31.628163+00:00",
+  "command": "python3 /mnt/astraeus-validation/phase42-baseline.py guest-install",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "Traceback (most recent call last):\n  File \"/mnt/astraeus-validation/phase42-baseline.py\", line 556, in <module>\n    main()\n    ~~~~^^\n  File \"/mnt/astraeus-validation/phase42-baseline.py\", line 542, in main\n    guest_install()\n    ~~~~~~~~~~~~~^^\n  File \"/mnt/astraeus-validation/phase42-baseline.py\", line 280, in guest_install\n    preexisting = preexisting_application(TARGET, config)\n  File \"/mnt/astraeus-validation/phase42-baseline.py\", line 158, in preexisting_application\n    run('arch-chroot', root, 'pacman', '-S', '--noconfirm', '--needed', 'tree')\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/astraeus-validation/phase42-baseline.py\", line 58, in run\n    require(result.returncode == 0, f'{arguments[0]} failed ({result.returncode}): '\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            + result.stderr.decode('utf-8', 'replace')[-4096:])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/astraeus-validation/phase42-baseline.py\", line 46, in require\n    raise RuntimeError(message)\nRuntimeError: arch-chroot failed (1): error: failed retrieving file 'tree-2.3.2-1-x86_64.pkg.tar.zst' from archive.archlinux.org : Connection timed out after 10001 milliseconds\nwarning: failed to retrieve some files\nerror: failed to commit transaction (download library error)\n\n",
+    "id": "9ef800063b214df2b6e6d50500da0891",
+    "boot_id": "28b3a0f1-c2b1-4438-a6e5-f9c1e6255afa"
+  }
+}

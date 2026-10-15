@@ -1,0 +1,8 @@
+{
+  "started": "2026-10-14T16:51:16.927708+00:00",
+  "pid": 13315,
+  "log": "/home/ubuntu/p42/auditec-a.log",
+  "owner": "root",
+  "script_sha256": "d727ab779de9f560502a055c97f5f70c9ec07f4a22720a20ac23407a7129c583",
+  "guest_execution": false
+}

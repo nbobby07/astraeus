@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T11:45:50.226751+00:00",
+  "request": "0018.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"fault\": \"signing-failure\", \"hook\": \"/etc/pacman.d/hooks/00-astraeus-phase42-5cd7ec54e7ce4188871bbc88805ddab9.hook\", \"hook_sha256\": \"aac027b0262c520088fab2fad5368bd6605c229fa975a58e10e2fcc0b0611af4\", \"marker\": \"/var/log/astraeus/phase42-barrier-5cd7ec54e7ce4188871bbc88805ddab9.json\", \"when\": \"PostTransaction\"}\n",
+    "id": "0568cd16682c41588d22f626b96c7e17",
+    "boot_id": "c4c83612-e313-4d98-a7d1-0905cf05db95"
+  },
+  "finished": "2026-10-15T11:45:52.764245+00:00"
+}

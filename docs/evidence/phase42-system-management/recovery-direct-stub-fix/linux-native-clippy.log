@@ -1,0 +1,4 @@
+    Checking distro-snapshots v0.1.0-dev (/mnt/c/Users/Noel/.codex/worktrees/phase4-system-management/operating-system/crates/snapshots)
+    Checking distro-transactions v0.1.0-dev (/mnt/c/Users/Noel/.codex/worktrees/phase4-system-management/operating-system/crates/transactions)
+    Checking distroctl v0.1.0-dev (/mnt/c/Users/Noel/.codex/worktrees/phase4-system-management/operating-system/crates/distroctl)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.68s

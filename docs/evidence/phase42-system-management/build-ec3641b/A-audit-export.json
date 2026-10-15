@@ -1,0 +1,47 @@
+{
+  "time": "2026-10-14T16:58:07.933069+00:00",
+  "passed": true,
+  "label": "A",
+  "archive": "/home/ubuntu/p42/auditec-A-evidence.tar.gz",
+  "bytes": 8925,
+  "sha256": "2fac72cce3587e0b9ecf7e9fa6a322a0d8389b87a7bd791cffe2c1dac2fae1dd",
+  "files": {
+    "result.json": {
+      "path": "/home/ubuntu/p42/iaec-a/result.json",
+      "sha256": "7ea90d8ea46ffed217900218d2186207dcde4cfd501ccfc272070493b29c4141",
+      "bytes": 32167
+    },
+    "execution.json": {
+      "path": "/home/ubuntu/p42/auditec-a-execution.json",
+      "sha256": "d7b31cfcfaacd82322e07a075ec2bd6d03ff7c6ffc48fe8a49afe69930588dcd",
+      "bytes": 395
+    },
+    "launch.json": {
+      "path": "/home/ubuntu/p42/auditec-a-launch.json",
+      "sha256": "6187d95b1880d3f41414202c543913bb302b5323f92abfa2aecdc36a94189d4d",
+      "bytes": 245
+    },
+    "audit.log": {
+      "path": "/home/ubuntu/p42/auditec-a.log",
+      "sha256": "db1043412350939281cfdc41788fec880c06732d908077b4c2f0860a4b52b26b",
+      "bytes": 2975
+    },
+    "decoder-preflight.json": {
+      "path": "/home/ubuntu/p42/image-audit-ec3641b/decoder-preflight-A.json",
+      "sha256": "72760ff0c93d5400079417272aad286c2aec27ac60de510bba34b1b2db1eead7",
+      "bytes": 618
+    },
+    "input-manifest.json": {
+      "path": "/home/ubuntu/p42/image-audit-ec3641b/manifest.json",
+      "sha256": "09d07ee37ff37d1e465b5be3452c6e004929a957cdc2b5debcc3b0274f8dc515",
+      "bytes": 1867
+    },
+    "audit-command.json": {
+      "path": "/home/ubuntu/p42/image-audit-ec3641b/audit-command.json",
+      "sha256": "2cc50a369c2f484580cfd3bb6f3e7deba98d50409c54ea02ad0ef79ba42a0c6d",
+      "bytes": 2526
+    }
+  },
+  "free_bytes": 34459537408,
+  "scratch_removed": true
+}

@@ -1,0 +1,8 @@
+{
+  "archive": "/home/ubuntu/p42/luks2-cli-ec-evidence.tar.gz",
+  "bytes": 8443963,
+  "sha256": "15cd7ff090efe1b0a5b3f2b337535a5d581224a6822f6c0eeb18551ed0e69216",
+  "files": 285,
+  "private_keys_and_credentials_excluded": true,
+  "base_disks_retained_for_remaining_tests": true
+}

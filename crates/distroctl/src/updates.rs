@@ -1,7 +1,4 @@
-use distro_transactions::{
-    pacman::{require_root, NativeRunner, Pacman, SystemBoot, SystemHealth},
-    *,
-};
+use distro_transactions::{pacman::require_root, *};
 use std::{fmt::Write, fs, path::Path};
 
 pub fn format_plan(plan: &ExecutionPlan) -> String {
@@ -75,7 +72,7 @@ pub fn history(path: &Path, json: bool) -> Result<String> {
     Ok(text)
 }
 
-fn session() -> Result<UpdateSession> {
+pub(crate) fn session() -> Result<UpdateSession> {
     require_root()?;
     fs::create_dir_all(Path::new(HISTORY_PATH).parent().unwrap()).map_err(|e| e.to_string())?;
     #[cfg(unix)]
@@ -95,47 +92,12 @@ fn session() -> Result<UpdateSession> {
 }
 
 pub fn update() -> Result<()> {
-    let mut session = session()?;
-    session.ensure_ready()?;
-    let mut snapshots = integration::BtrfsSnapshots::new(distro_snapshots::Manager::online(
-        distro_snapshots::Native,
-    ))?;
-    let mut packages = Pacman::default();
-    let plan = packages.resolve()?;
-    print!("{}", format_plan(&plan));
-    let project = distro_config::parse_toml(distro_config::BUNDLED).map_err(|e| e.to_string())?;
-    project.validate()?;
-    let record = execute(
-        &mut session,
-        plan,
-        &mut packages,
-        &mut snapshots,
-        &mut SystemBoot {
-            runner: NativeRunner,
-        },
-        &mut SystemHealth {
-            runner: NativeRunner,
-            uki_path: format!("/efi/EFI/Linux/{}-linux.efi", project.identity.id),
-        },
-        || false,
-    )?;
-    println!("Transaction {}: {:?}", record.id, record.state);
-    match record.outcome {
-        TransactionOutcome::Succeeded => Ok(()),
-        TransactionOutcome::AwaitingBoot => {
-            println!("Live checks passed; boot confirmation is still required.");
-            Ok(())
-        }
-        _ => Err(record
-            .failure
-            .map(|f| f.message)
-            .unwrap_or_else(|| "transaction did not complete".into())),
-    }
+    crate::system::update(false, true)
 }
 
 fn automatic_confirmation_id(
     records: &[TransactionRecord],
-    current: impl FnOnce() -> Result<CurrentSystemState>,
+    restored: impl FnOnce(&TransactionRecord) -> bool,
 ) -> Result<Option<i64>> {
     let pending: Vec<_> = records
         .iter()
@@ -146,10 +108,10 @@ fn automatic_confirmation_id(
         [record] => record,
         _ => return Err("ambiguous pending boot transactions".into()),
     };
-    if current()? == record.plan.current {
-        // Restored packages cannot authorize rollback finalization.
+    // Equal package maps also occur in metadata-only changes, so restoration is detected by root lineage.
+    if restored(record) {
         println!(
-            "Restored package state detected; transaction {} remains pending. Run distroctl finalize-rollback {} after recovery.",
+            "Restored pre-update root detected; transaction {} remains pending. Run distroctl finalize-rollback {} after recovery.",
             record.id, record.id
         );
         return Ok(None);
@@ -189,8 +151,12 @@ pub fn confirm_boot(id: Option<i64>, rollback: bool) -> Result<()> {
     let id = match id {
         Some(id) => id,
         None => {
-            let Some(id) = automatic_confirmation_id(&session.records()?, || {
-                Pacman::default().current_state()
+            let Some(id) = automatic_confirmation_id(&session.records()?, |record| {
+                record
+                    .snapshot
+                    .as_deref()
+                    .and_then(|s| distro_snapshots::SnapshotId::parse(s).ok())
+                    .is_some_and(|pre| manager.verify_booted(&pre, true).is_ok())
             })?
             else {
                 return Ok(());
@@ -361,7 +327,7 @@ mod confirmation_tests {
     use super::*;
 
     #[test]
-    fn automatic_confirmation_leaves_restoration_pending() {
+    fn automatic_confirmation_leaves_verified_restoration_pending() {
         let previous = CurrentSystemState::new([("fixture".into(), "1".into())].into());
         let mut record = TransactionRecord::new(ExecutionPlan::new(
             previous.clone(),
@@ -380,30 +346,30 @@ mod confirmation_tests {
         record.state = TransactionState::AwaitingBoot;
         record.outcome = TransactionOutcome::AwaitingBoot;
         let records = [record.clone()];
+        assert_eq!(
+            automatic_confirmation_id(&records, |_| false).unwrap(),
+            Some(17)
+        );
         for _ in 0..2 {
-            assert_eq!(
-                automatic_confirmation_id(&records, || Ok(previous.clone())).unwrap(),
-                None
-            );
+            assert_eq!(automatic_confirmation_id(&records, |_| true).unwrap(), None);
             assert_eq!(records[0], record);
         }
+        // An unchanged package map cannot suppress metadata-only boot confirmation.
+        record.plan.packages.changes.clear();
         assert_eq!(
-            automatic_confirmation_id(&records, || Ok(record.plan.expected_state())).unwrap(),
+            automatic_confirmation_id(&[record.clone()], |_| false).unwrap(),
             Some(17)
         );
-        // Unknown packages still go through full confirmation and its refusal checks.
         assert_eq!(
-            automatic_confirmation_id(&records, || Ok(CurrentSystemState::new(Default::default())))
-                .unwrap(),
-            Some(17)
+            automatic_confirmation_id(&[record.clone()], |_| true).unwrap(),
+            None
         );
-        assert!(automatic_confirmation_id(&records, || Err("unreadable packages".into())).is_err());
-        assert!(automatic_confirmation_id(&[record.clone(), record], || {
+        assert!(automatic_confirmation_id(&[record.clone(), record], |_| {
             panic!("ambiguous history must be rejected first")
         })
         .is_err());
         assert_eq!(
-            automatic_confirmation_id(&[], || panic!("no pending confirmation")).unwrap(),
+            automatic_confirmation_id(&[], |_| unreachable!()).unwrap(),
             None
         );
     }

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "candidate_source_commit": "08713dfa7f2096217710ef4f6311e2d6bb264db5",
+  "candidate_accepted": false,
+  "failure": "Saved floating-point values change when read by the production JSON parser",
+  "correction": "Enable serde_json float_roundtrip for distroctl; preserve exact saved values without relaxing acceptance assertions",
+  "controlled_regression_failed_before_fix": true,
+  "controlled_regression_passed_after_fix": true,
+  "windows_workspace_tests_passed": true,
+  "windows_clippy_passed": true,
+  "linux_distroctl_tests_passed": true,
+  "linux_clippy_passed": true,
+  "new_candidate_image_validation": "not run",
+  "bare_metal_comparison": "unit tests only",
+  "protected_OS_state_unchanged_in_both_VMs": true,
+  "evidence_sha256": {
+    "after.log": "f7e46eae8417a1e10af121e279d5e1e1f7203257577f1beda2bb29190e976e13",
+    "before.log": "81d89d36417710e654469c61281fd38f3c28d8dd6bfaf9899473c0c37bf6c778",
+    "diagnosis.json": "972bbaaa150bbdef414f638c75f6fae6171a4244056643cd224915e58a01c93b",
+    "linux-clippy.log": "100c9a569f92f859a2dd60530632dfee06e8264123a1127ad80e95a09930775c",
+    "linux.log": "974ae5fd209e138f0213753ff1d7230c4635fd32a241256ce701d44bf33d5292",
+    "luks2-cli-failure.json": "685ebd16e3d66b384497b3d38c7f1f059499d3c23ee18d777fea3a77a4bae760",
+    "plain-cli-failure.json": "ae95dfae993460f5c93d7ed04c896b68a95c13b39fced302743a66b3f05bc6c9",
+    "windows-clippy.log": "d5794d2deee1c10c6fa913516d36285638ec5e46d9293b7327f3e6c22491be16",
+    "workspace.log": "5504bffefa54cb01d035415f29d6d536de26966d9b552b6ab89b268d23270dc6"
+  }
+}

@@ -1,0 +1,644 @@
+{
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "passed_trials": [
+    "fecp-interruption-r2"
+  ],
+  "files": {
+    "fecp-interruption-r2/evidence-sha256.json": {
+      "bytes": 19023,
+      "sha256": "b0a5d7bf73eb492332fd3baa103e056a38b8970f14e461da466bd1157e9e30be"
+    },
+    "fecp-interruption-r2/inputs.json": {
+      "bytes": 3526,
+      "sha256": "50ad07f29111319ddf96f29fd8beab97e919e61e66a6f47c0dc6515d4122009b"
+    },
+    "fecp-interruption-r2/matrix.json": {
+      "bytes": 7280,
+      "sha256": "2ba1f2e839f4533b49734f21d64e249afeed87dca0fa42bee2d41cdd7b42da5e"
+    },
+    "fecp-interruption-r2/interruption/real-applying-boundary.json": {
+      "bytes": 410366,
+      "sha256": "6225927926ca287f61079e15d6c45891d0214ab81408db63a727b528d456b7a9"
+    },
+    "fecp-interruption-r2/interruption/offline-restore.json": {
+      "bytes": 5078,
+      "sha256": "1d4b0d1e558cdc96a7ff85494ca9d0ea9d09c906bcb0fbcc9cfe28c42636ee0b"
+    },
+    "fecp-interruption-r2/interruption/restored-health.json": {
+      "bytes": 633103,
+      "sha256": "f66b28867422916a705a615b1227da43735fa346224cedffae6f6e64a4fa294a"
+    },
+    "fecp-interruption-r2/interruption/attention.json": {
+      "bytes": 287,
+      "sha256": "0d3b6edaaedad06a217184fe0a1b2940baad30bea174f3e6147881e740b14231"
+    },
+    "fecp-interruption-r2/interruption/sigkill-durable-recovery.json": {
+      "bytes": 410620,
+      "sha256": "f021c4e7136a29565917de31da42284ec3e9b63b9e8ff595672d5cb8b8f27103"
+    },
+    "fecp-interruption-r2/interruption/baseline-reference.json": {
+      "bytes": 2398,
+      "sha256": "7e464546d0bcb8f5861ce35763d13fd8fb32b4f1f08c7c225ef8c5d733931bd0"
+    },
+    "fecp-interruption-r2/interruption/native-lock-excludes-competing-writer.json": {
+      "bytes": 223,
+      "sha256": "f1e7cf0d1a82e2bff6c96f5f73c26bc11f853703f86a710c7680ad6d9c97e982"
+    },
+    "fecp-interruption-r2/interruption/interrupted-offline-rollback.json": {
+      "bytes": 414281,
+      "sha256": "bc0668b34cc9912f4bf0fafcbc5a594a98795bb5b68880965b9ea246352b7420"
+    },
+    "fecp-interruption-r2/interruption/submission-refuses-symlinked-request-staging.json": {
+      "bytes": 903,
+      "sha256": "fb5313746618514193d96c88e7ca18c890b2c7e2af9747b12494beb6685b046a"
+    },
+    "fecp-interruption-r2/interruption/interrupted-install-plan.json": {
+      "bytes": 409965,
+      "sha256": "49d94fe5b6018d1444e0d0cc84dc58ea666031d6e206346d84e0b65f725ddc58"
+    },
+    "fecp-interruption-r2/interruption/candidate-identity-and-state.json": {
+      "bytes": 325197,
+      "sha256": "5ca5c799a987a7de6bc602f30955658fc5aa6a8f89d5f8038c0256b1db7d1a7c"
+    },
+    "fecp-interruption-r2/interruption/concurrent-submit-preserves-applying-worker.json": {
+      "bytes": 1646802,
+      "sha256": "88c30fded0ddcd02e7a6210b75dba41fe42851fb8d84beb38b199331667806bd"
+    },
+    "fecp-interruption-r2/interruption/install-posttransaction-barrier.json": {
+      "bytes": 322,
+      "sha256": "12b48d4b9d066590f7e2ab2637dedc95c4f09782903fa19702f77ef99fc01b4d"
+    },
+    "fecp-interruption-r2/interruption/home-sentinel.json": {
+      "bytes": 181,
+      "sha256": "e2c909a29ab2610643ee1b9cd123ca286f81b0be1cf9f3501de9c4160a1f5eb0"
+    },
+    "fecp-interruption-r2/interruption/interruption-baseline-health.json": {
+      "bytes": 149599,
+      "sha256": "f6c9ee88c93413dfd2a04ae9e548843b93f62b6a99ca8dc56d3f1866abec6a0c"
+    },
+    "fecp-interruption-r2/interruption/boot-2/qemu-command.json": {
+      "bytes": 1490,
+      "sha256": "2e0e14059a15c549b09f459f9ec3e62bcbc48083f8c49f85f297e7966dc1eb54"
+    },
+    "fecp-interruption-r2/interruption/boot-2/qmp-ready.json": {
+      "bytes": 5510,
+      "sha256": "729cf5a3dc8ff8afacaa3a025a9fefb88328ae13fb6e588ecc36520cd611b22e"
+    },
+    "fecp-interruption-r2/interruption/boot-2/069-ready.json": {
+      "bytes": 219,
+      "sha256": "8a2609e9c655bc36b6616eaaa39d7362bbf4566b1589fc00ef2637541cf71674"
+    },
+    "fecp-interruption-r2/interruption/boot-2/077-ready.json": {
+      "bytes": 219,
+      "sha256": "cbe72e4be7eec6aedad53313b6a29b85ebd8ed11cfb10c5b2e261010f3a845b0"
+    },
+    "fecp-interruption-r2/interruption/boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "665c7c1ceee47e64364a1bc906d833d7c829575da57348e678c39d29e5450f17"
+    },
+    "fecp-interruption-r2/interruption/boot-2/081-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "876fca720f06f8ebd15ce09a4d5705a8d90d5b547ad60dfab8467cc58900f827"
+    },
+    "fecp-interruption-r2/interruption/boot-2/079-ready.json": {
+      "bytes": 356,
+      "sha256": "e508acf7d6d766731441a4e81e190f496e44ba743c4b56ceda2fb5da16af16b5"
+    },
+    "fecp-interruption-r2/interruption/boot-2/067-ready.json": {
+      "bytes": 219,
+      "sha256": "67897f594fff9d024592ce3e8a377a4d866fe37a9bf1a9acede1f7cb6dcb9253"
+    },
+    "fecp-interruption-r2/interruption/boot-2/074-ready.json": {
+      "bytes": 219,
+      "sha256": "0faa1254f7bc829c6956e44882b776be7f9a39dced66c0eaebe9c066d560b1a8"
+    },
+    "fecp-interruption-r2/interruption/boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-interruption-r2/interruption/boot-2/076-ready.json": {
+      "bytes": 219,
+      "sha256": "880ea3ca74eec34d011b47964c53b112d2d391c226de841a2b47800072ac526e"
+    },
+    "fecp-interruption-r2/interruption/boot-2/075-ready.json": {
+      "bytes": 219,
+      "sha256": "2a85e0551f8da58175dc73285572a249783c7ea576a7a1f1684a4e1b5cb63c57"
+    },
+    "fecp-interruption-r2/interruption/boot-2/070-ready.json": {
+      "bytes": 219,
+      "sha256": "9a721aa25d68fe4117dfa70db630defbfcd0a868bbba35d672ac267c91ea5196"
+    },
+    "fecp-interruption-r2/interruption/boot-2/072-ready.json": {
+      "bytes": 219,
+      "sha256": "c644fb928b14d64123b8b681e27a9c6c492548dd4b7f29bdc55d8ede7af99826"
+    },
+    "fecp-interruption-r2/interruption/boot-2/068-ready.json": {
+      "bytes": 219,
+      "sha256": "c945675aa439fb2eb4adaae63932d4da95d4a1cb0f53aba5af968116f9f2dee3"
+    },
+    "fecp-interruption-r2/interruption/boot-2/serial.log": {
+      "bytes": 26857,
+      "sha256": "a1cf2c8563dd3165da5a37bc55d332c904fe76756b9689adf1421a9311450141"
+    },
+    "fecp-interruption-r2/interruption/boot-2/073-ready.json": {
+      "bytes": 219,
+      "sha256": "33106ddfd24a7fb315fa6f6c30d7657563fcbfe52cad0cbaa510db5945783699"
+    },
+    "fecp-interruption-r2/interruption/boot-2/078-ready.json": {
+      "bytes": 219,
+      "sha256": "c68756c1736b42d4d60e000ba6df0560aebd10b472c65475e7082ce9558691b8"
+    },
+    "fecp-interruption-r2/interruption/boot-2/080-offline-restore.json": {
+      "bytes": 4798,
+      "sha256": "8c5c0c55718da63c188c2034c3c8019e071ea320a47ce69c1bfa126e5c4e391c"
+    },
+    "fecp-interruption-r2/interruption/boot-2/071-ready.json": {
+      "bytes": 219,
+      "sha256": "c065bc1836f21d77475439a5bf8f83706f01117f176f498fa87ccdd1ce832acd"
+    },
+    "fecp-interruption-r2/interruption/boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "0be5ce3b9cf992d2bf6f9ff841fcf14756bb1804454464d0907f3a69b5e85d1b"
+    },
+    "fecp-interruption-r2/interruption/share/phase42-faults.py": {
+      "bytes": 82696,
+      "sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b"
+    },
+    "fecp-interruption-r2/interruption/share/fault-config.json": {
+      "bytes": 559,
+      "sha256": "edb366d668678484c9ba7e432b75cecaf6ce125f805e643b10a2a6dc75f90df7"
+    },
+    "fecp-interruption-r2/interruption/share/recovery-target.json": {
+      "bytes": 175,
+      "sha256": "3fbb730bb071efae1a2f3db7a63595f4adde9c2de4f135ff2525375bf8fafccb"
+    },
+    "fecp-interruption-r2/interruption/share/phase2-guest.py": {
+      "bytes": 8108,
+      "sha256": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f"
+    },
+    "fecp-interruption-r2/interruption/share/phase42_trust.py": {
+      "bytes": 4200,
+      "sha256": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+    },
+    "fecp-interruption-r2/interruption/share/submission-noop.json": {
+      "bytes": 222,
+      "sha256": "4a67ef9b956c47595e3591920aefb4e1f4b2215b1562fd9535fb48e8237d3f2e"
+    },
+    "fecp-interruption-r2/interruption/share/concurrent-submission.json": {
+      "bytes": 241,
+      "sha256": "b9fe5471b2afc125b8087584591b6fec8f9991c20dea8dd93b0a1e5c6e25d1c6"
+    },
+    "fecp-interruption-r2/interruption/boot-1/040-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "58379b703b4bd196ab4c4cd40389f4a747792f406c80b433fd107685aa06caf8"
+    },
+    "fecp-interruption-r2/interruption/boot-1/053-compete.json": {
+      "bytes": 607,
+      "sha256": "e8d9f1d5210c87322aed8863d9a1afaf2897b67b63b6101291374c6ef00bcb25"
+    },
+    "fecp-interruption-r2/interruption/boot-1/049-wait-posttransaction-barrier.json": {
+      "bytes": 623,
+      "sha256": "a4c9493d1d423ab57879f0b7667d8a7d4f3995f3bbd59ffbfd674fc28af5599c"
+    },
+    "fecp-interruption-r2/interruption/boot-1/023-submission-noop-review.json": {
+      "bytes": 452586,
+      "sha256": "e8f30b8d413406f5e5e2cc0db2d4f0c1f8fcac63465c150322b76d06884e3005"
+    },
+    "fecp-interruption-r2/interruption/boot-1/052-concurrent-submit.json": {
+      "bytes": 1224117,
+      "sha256": "9fdde18e415af264db60349e241b0bd96e09dae5dcb75233529d9554c95d4d22"
+    },
+    "fecp-interruption-r2/interruption/boot-1/005-observe.json": {
+      "bytes": 287139,
+      "sha256": "5fc69adbed29d935d20069fb2abdf1d5cf9e3bc8f56f0171b59439d2ed927a47"
+    },
+    "fecp-interruption-r2/interruption/boot-1/056-operation-16ff0df0b8ddf57b4b7feb714927c023.json": {
+      "bytes": 477689,
+      "sha256": "e49946eb7a26a94bfd6460e9379f2c6dadd73e7573fa3665e0467969741cf015"
+    },
+    "fecp-interruption-r2/interruption/boot-1/025-after-submission-symlink.json": {
+      "bytes": 287139,
+      "sha256": "c930abb624e59a75f864eaab9c9bfd7d2121744258bb98c24103b7abbc57c769"
+    },
+    "fecp-interruption-r2/interruption/boot-1/065-before-offline-history.json": {
+      "bytes": 477392,
+      "sha256": "9e86ba5b2b5896522d66b63b23439eb880da59f2f6b38941ee45910e9ebd2b97"
+    },
+    "fecp-interruption-r2/interruption/boot-1/048-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "8bdc4d74a83b745dfabd31d69a156f4a6dcaee1cf7dc8b4405f5528d7ace8824"
+    },
+    "fecp-interruption-r2/interruption/boot-1/035-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "55d275c70a26042058ea1d88d0f8ec95960dbe0adb37dc90a2f08e5515f0f2d3"
+    },
+    "fecp-interruption-r2/interruption/boot-1/055-operation-16ff0df0b8ddf57b4b7feb714927c023.json": {
+      "bytes": 477292,
+      "sha256": "33dde144d5eebf21e71c5dd74be4d48f9ad494db4d764b590d04f313f0f3ce2b"
+    },
+    "fecp-interruption-r2/interruption/boot-1/024-submission-symlink-refusal.json": {
+      "bytes": 1176,
+      "sha256": "56b81d20c4e8929310c9bf85cc6aa694f79701e56256e13db0f2a43c216cb1d7"
+    },
+    "fecp-interruption-r2/interruption/boot-1/047-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "487f02d5fa0bcdbe01ad5451ed0aaca98c898dc77accf170d0488682edd45a07"
+    },
+    "fecp-interruption-r2/interruption/boot-1/054-sigkill-worker-service.json": {
+      "bytes": 394,
+      "sha256": "be515f2d4bab4204758d3c48404ad85cda7a90018ad9ecdc1eaa6ccdfa5ec772"
+    },
+    "fecp-interruption-r2/interruption/boot-1/qemu-command.json": {
+      "bytes": 1333,
+      "sha256": "1642a01d03f335885d52812b1b9bcf35e8599ab0f6592a0efdd8d48f9d346671"
+    },
+    "fecp-interruption-r2/interruption/boot-1/034-barrier-operation.json": {
+      "bytes": 476900,
+      "sha256": "c5df7fa63b1251c41db19b1d64c0e25066f26c1f6b8ec3215f09c8bd508f1d8e"
+    },
+    "fecp-interruption-r2/interruption/boot-1/qmp-ready.json": {
+      "bytes": 4561,
+      "sha256": "b1209b383c686093a52671d46ee15a41c419456e644c18aa427a88311e909753"
+    },
+    "fecp-interruption-r2/interruption/boot-1/007-interruption-baseline-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "c15f7ca0dcc2d212dbad055545dfd099277c0b2109adfe077819216fb3e331c8"
+    },
+    "fecp-interruption-r2/interruption/boot-1/063-reject-worker-replay.json": {
+      "bytes": 419,
+      "sha256": "437fecc84bf866afb3dd82c698726b463987534ca35cbcbec2561e6f33b613a1"
+    },
+    "fecp-interruption-r2/interruption/boot-1/043-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "7e412357eb5512689d1a6cfaa85fedd9a063f12a9cd80d1ebe555b3a391a117e"
+    },
+    "fecp-interruption-r2/interruption/boot-1/051-mutated-at-barrier.json": {
+      "bytes": 287238,
+      "sha256": "84c11d834dad43a6191b373bdec89876be0080e0c90438e06a9130ab25c77961"
+    },
+    "fecp-interruption-r2/interruption/boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "e010658b1b3f58497c3c8e8f2310732a65d0fce2e4079c22e3dfe6fa6bae7e32"
+    },
+    "fecp-interruption-r2/interruption/boot-1/011-interruption-baseline-health-subvolumes.json": {
+      "bytes": 546,
+      "sha256": "e1c036cbd63c6a622b843e06c0b47d7804e21c91dbbcf09819b0de29818da3cd"
+    },
+    "fecp-interruption-r2/interruption/boot-1/021-interruption-baseline-health-history.json": {
+      "bytes": 316,
+      "sha256": "5e807a817e111217b44fad6bd68759f9da360a836cbcccbe35ac664588ffb84d"
+    },
+    "fecp-interruption-r2/interruption/boot-1/026-arm.json": {
+      "bytes": 681,
+      "sha256": "d4fce6d636ba00ec4d5ccbd31e1ac0d11aef70cfc12657c9cd5eb9d557083271"
+    },
+    "fecp-interruption-r2/interruption/boot-1/027-interrupted-install-plan.json": {
+      "bytes": 454301,
+      "sha256": "169d960bc01199676cd9c6469ee0336eedfa4b958c3d849a8e7cc006a8db987f"
+    },
+    "fecp-interruption-r2/interruption/boot-1/009-interruption-baseline-health-failed.json": {
+      "bytes": 328,
+      "sha256": "d10a4614101989c6ef93fef6efdb8368998788a3cd9596fa54a24f2a930609e1"
+    },
+    "fecp-interruption-r2/interruption/boot-1/029-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "a9a9a48cfed5ba841e3bf540144efce288cb1493835dd20500683507def6b1e5"
+    },
+    "fecp-interruption-r2/interruption/boot-1/008-interruption-baseline-health-database.json": {
+      "bytes": 337,
+      "sha256": "0d6ff492cb8315478e73e040a15fadf6b83c75a742b47786f0512871d0209f1d"
+    },
+    "fecp-interruption-r2/interruption/boot-1/010-interruption-baseline-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "83df2b14772b279fb92d8ac384578cd158d6c57eb40455837d9427c430cc67ff"
+    },
+    "fecp-interruption-r2/interruption/boot-1/036-barrier-operation.json": {
+      "bytes": 476992,
+      "sha256": "c3520b1dbf9500080392b0782fdc573be26944473d75e39cf5a4233ec2ec2915"
+    },
+    "fecp-interruption-r2/interruption/boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "dcbd2553c0628bb4f830582b8c194139e869de323c49b57843f1666f50d472e2"
+    },
+    "fecp-interruption-r2/interruption/boot-1/066-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "43660e3c8873c74d01549ffa75c8f2a715634f432bb1477b506f7cd69247df88"
+    },
+    "fecp-interruption-r2/interruption/boot-1/016-interruption-baseline-health-boot-journal.json": {
+      "bytes": 109550,
+      "sha256": "384d3a381163a88680daf28dcac8aeecc36d84a95939a04af914ea77aed92b72"
+    },
+    "fecp-interruption-r2/interruption/boot-1/003-ready.json": {
+      "bytes": 356,
+      "sha256": "7ff62afe185de83f2a8aba40a5714437f70e52d607c154b900ba1ef85a6fecaa"
+    },
+    "fecp-interruption-r2/interruption/boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-interruption-r2/interruption/boot-1/039-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "770815a68569d1fe2a4068b0ad66a0efa0e7db9effe4d7bc86ed88e202781930"
+    },
+    "fecp-interruption-r2/interruption/boot-1/032-barrier-operation.json": {
+      "bytes": 476900,
+      "sha256": "0cc9dd5cfb185d9e98997d1e67fe11bde18de2302e30cd864c00409bca6f867e"
+    },
+    "fecp-interruption-r2/interruption/boot-1/017-interruption-baseline-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "7836d1403103daec79826f30baee3762aec72c03d0c7ce3d7c73587205d26fb9"
+    },
+    "fecp-interruption-r2/interruption/boot-1/015-interruption-baseline-health-journal.json": {
+      "bytes": 6677,
+      "sha256": "6dd69ecadc5c1917aa9124ed4b4f310a68c40b42ddae11610bbd1ab8894be6e1"
+    },
+    "fecp-interruption-r2/interruption/boot-1/044-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "b245f0e18a7ea919ed03143fc35e06123c24b272b2a2f357016a57b3ab1864fb"
+    },
+    "fecp-interruption-r2/interruption/boot-1/046-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "183f7f567666ca967eca1227a0c36551a5fac7b6054ffbf20a6f09521a874193"
+    },
+    "fecp-interruption-r2/interruption/boot-1/058-killed-service-result.json": {
+      "bytes": 462,
+      "sha256": "586ef482f3623c72d80da76952240143907e9536ef3cb5e8271d6ebc4b4d4e73"
+    },
+    "fecp-interruption-r2/interruption/boot-1/060-killed-worker-identity.json": {
+      "bytes": 623,
+      "sha256": "35157315c76ba383b2c483b47c90d0020227b781e1aa6e0576f57427e3307c66"
+    },
+    "fecp-interruption-r2/interruption/boot-1/045-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "79d24559ea96b99e551808959979afc49407f96d3eeed71b62323de8d89e46ae"
+    },
+    "fecp-interruption-r2/interruption/boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "03916936e28fdfe80498c390d2702e83ff85c68b91a50c4d8fe4a61782b863bd"
+    },
+    "fecp-interruption-r2/interruption/boot-1/062-before-worker-replay.json": {
+      "bytes": 287238,
+      "sha256": "8c0980c89eccaf47b210f6e6dd236ddf7a7c2abfa48e91f6c77a174cab47dc71"
+    },
+    "fecp-interruption-r2/interruption/boot-1/028-interrupted-install-submit.json": {
+      "bytes": 714,
+      "sha256": "d4c34fd2f5d36b4e98c0756f5effc35231ef7c3d72dfd6d103f4a9d4efddf822"
+    },
+    "fecp-interruption-r2/interruption/boot-1/064-after-worker-replay.json": {
+      "bytes": 287238,
+      "sha256": "ca099dac08d95268cf6a4e041918e8f6d68a46126a9dc99fa537232411f763bc"
+    },
+    "fecp-interruption-r2/interruption/boot-1/030-barrier-operation.json": {
+      "bytes": 476864,
+      "sha256": "544d5d8210c063af66c639462b8a19ddae7fb6894d3304330f77b4c56bbd1efa"
+    },
+    "fecp-interruption-r2/interruption/boot-1/041-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "d81bdf43d1117408156132e0254a85c34e7a25273c507d98c9ad292602531a5c"
+    },
+    "fecp-interruption-r2/interruption/boot-1/020-interruption-baseline-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "5d4e74823fa1baee7499bc8bebb1645be19773133702456863c8098df80a7a54"
+    },
+    "fecp-interruption-r2/interruption/boot-1/004-home.json": {
+      "bytes": 535,
+      "sha256": "08beafeb9320a4913c771fed96540c564e1c4bfda0c816fa7d5b42d9c4b408f0"
+    },
+    "fecp-interruption-r2/interruption/boot-1/042-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "0f48cb96bdbbe5b94136f9ad616174af84505e15cb002eccb05d8ce897d29553"
+    },
+    "fecp-interruption-r2/interruption/boot-1/serial.log": {
+      "bytes": 1996,
+      "sha256": "8e5be62986824319b8ecf6f49a3fc69a66c7fa13292794d5d33b30872cb44369"
+    },
+    "fecp-interruption-r2/interruption/boot-1/012-interruption-baseline-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "4c70467b7269430b12e9189a7ed116072d2d38ae35090ccae11033313707cd16"
+    },
+    "fecp-interruption-r2/interruption/boot-1/059-killed-service-journal.json": {
+      "bytes": 8802,
+      "sha256": "10e9658e7529a254cfea3fac4e5fc5397395a0c7efe923cdaa9a452b4c972874"
+    },
+    "fecp-interruption-r2/interruption/boot-1/006-interruption-baseline-health-status.json": {
+      "bytes": 3055,
+      "sha256": "0652ba576a937ca368ae7977ea828718be7d947bed4ab29a763265c905995060"
+    },
+    "fecp-interruption-r2/interruption/boot-1/014-interruption-baseline-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "19f8881bc722ef09f33352500a1bd363e592ee4038bcf1208f60c9fa68dafd51"
+    },
+    "fecp-interruption-r2/interruption/boot-1/013-interruption-baseline-health-root.json": {
+      "bytes": 376,
+      "sha256": "c9882ce1cd70797062a0dcdd8a489715d67eb9ad21184a4a6f63b9b13dd21b6a"
+    },
+    "fecp-interruption-r2/interruption/boot-1/050-barrier-operation.json": {
+      "bytes": 477292,
+      "sha256": "b0eb5036a802ba357b101f9286569d4f45e14bd37680fa3a3dd444add6372db6"
+    },
+    "fecp-interruption-r2/interruption/boot-1/qmp-interruption-baseline-health.json": {
+      "bytes": 4561,
+      "sha256": "1a20d7fa842743f50aab8a6eac09ab081f3fe6916cd6c444de0d571e51337696"
+    },
+    "fecp-interruption-r2/interruption/boot-1/038-barrier-operation.json": {
+      "bytes": 477100,
+      "sha256": "a2221c76b784226fcb3331a631dcdd209d87bb3580959b8c59df6dfe5ef085c2"
+    },
+    "fecp-interruption-r2/interruption/boot-1/031-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "f6fa53913f9a88bc5f6a160a14e37da4fd4cbb751d7f304ee2c605391424e927"
+    },
+    "fecp-interruption-r2/interruption/boot-1/process.json": {
+      "bytes": 83,
+      "sha256": "8cff216f20e6f9b8b8dc2d35feab2c385fcc96f46c2cd0a6dbf0f6f74416ac77"
+    },
+    "fecp-interruption-r2/interruption/boot-1/019-interruption-baseline-health-pacman-log.json": {
+      "bytes": 325,
+      "sha256": "657aa24160da1180c064a1bf265248b895dcd14459e2983e9798f90e54e71ed7"
+    },
+    "fecp-interruption-r2/interruption/boot-1/057-wait-worker-exit.json": {
+      "bytes": 449,
+      "sha256": "e176f469def101d4161b1432eff63e8e17bc76f2796f4666d5dcc4696fa4d1b6"
+    },
+    "fecp-interruption-r2/interruption/boot-1/061-killed-worker-process-gone.json": {
+      "bytes": 307,
+      "sha256": "59d2e76fc548f9369da042b80f5b605db3399d2924aa866c8ea8bff981a66551"
+    },
+    "fecp-interruption-r2/interruption/boot-1/037-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "0e9743fc68d60895c98cf915e87a6d58c28a48aaed273c47756a0a48f4ed617c"
+    },
+    "fecp-interruption-r2/interruption/boot-1/033-wait-posttransaction-barrier.json": {
+      "bytes": 360,
+      "sha256": "3a29fdda93d82a11242db53fb596f705f39ba1e314dc00eb71ca722b9121b37e"
+    },
+    "fecp-interruption-r2/interruption/boot-1/018-interruption-baseline-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "85a91c9ad362674c2c9189a8f449a98298a3426bd45888fdbefcf221893b1e32"
+    },
+    "fecp-interruption-r2/interruption/boot-1/022-interruption-baseline-health-snapshots.json": {
+      "bytes": 324,
+      "sha256": "226d21732610e96ef5a3f2bc2a7832162bc1badb353fe03b7d352fbe0c8b2997"
+    },
+    "fecp-interruption-r2/interruption/screenshots/live-terminal.png": {
+      "bytes": 272942,
+      "sha256": "8dc33888cfcbf4d989ce3f1832bbd9dbb2d987829d866445a5792d44ebbfe886"
+    },
+    "fecp-interruption-r2/interruption/screenshots/live-desktop.png": {
+      "bytes": 554429,
+      "sha256": "5f0f2a8709a8771f1cfd5b9d8b920a156c15832023111802f60a642861e5e2b0"
+    },
+    "fecp-interruption-r2/interruption/boot-3/093-restored-health-packages.json": {
+      "bytes": 15876,
+      "sha256": "3245984c1ed48511b4d25775c2504f03f26121059cae8e87bb0c0e315c6cc1d6"
+    },
+    "fecp-interruption-r2/interruption/boot-3/086-before-explicit-finalization.json": {
+      "bytes": 477392,
+      "sha256": "b0c3c0e465401a976d958e0342e6663d0ab66cb025b8ce0fe31c785c2de346c5"
+    },
+    "fecp-interruption-r2/interruption/boot-3/084-ready.json": {
+      "bytes": 356,
+      "sha256": "ccbb519f56bc27673f1d888a2d94ef6fe7657942d0ba359dabcd141875e29104"
+    },
+    "fecp-interruption-r2/interruption/boot-3/101-restored-health-journal.json": {
+      "bytes": 6677,
+      "sha256": "c4db3f4e4eefb2b1d02f7f10a29f29ddd2705251f8f9507e890036f77752bddb"
+    },
+    "fecp-interruption-r2/interruption/boot-3/090-restored-signing-identity.json": {
+      "bytes": 397,
+      "sha256": "853ff7c49da5a10a267a3f8b25ee789e816bbf03f72cbca430d761aed9f6419a"
+    },
+    "fecp-interruption-r2/interruption/boot-3/106-restored-health-transaction-log.json": {
+      "bytes": 445,
+      "sha256": "a199ead5a8e5862c099b5159226078f109babe581d0287c977e226119978af52"
+    },
+    "fecp-interruption-r2/interruption/boot-3/097-restored-health-subvolumes.json": {
+      "bytes": 804,
+      "sha256": "ea3d63cf9a6fc3dde0919cf7a9f701316f8b0e72d3886f670a6e4c9403a3b2dc"
+    },
+    "fecp-interruption-r2/interruption/boot-3/082-ready.json": {
+      "bytes": 219,
+      "sha256": "93d96f71d136201cb628e72daa24527df02509eed602fdbbd66a87db3c6fe24c"
+    },
+    "fecp-interruption-r2/interruption/boot-3/qemu-command.json": {
+      "bytes": 1333,
+      "sha256": "887c89f32f50ea4af67b2224846d2406cc7c7819156065c86dd671c0d2006e4b"
+    },
+    "fecp-interruption-r2/interruption/boot-3/095-restored-health-failed.json": {
+      "bytes": 328,
+      "sha256": "1c6084feb8e4659282a26af9d41cf71ff8d091ecf702e73ac15028f93d982f1f"
+    },
+    "fecp-interruption-r2/interruption/boot-3/qmp-ready.json": {
+      "bytes": 4562,
+      "sha256": "a2adfcb61bc616655efde08f6f723e4e1ceee11df9f1ca0b6905a7ed862210af"
+    },
+    "fecp-interruption-r2/interruption/boot-3/085-wait-automatic-confirmation.json": {
+      "bytes": 335,
+      "sha256": "c056374afd60a3539829540c9fff0054c3c82b3651095137f697cce8112e7678"
+    },
+    "fecp-interruption-r2/interruption/boot-3/100-restored-health-persistent.json": {
+      "bytes": 414,
+      "sha256": "bdfd192ee8e8feaaddb2c9004f55a8565d61283e570c9d161b96ab20318e315c"
+    },
+    "fecp-interruption-r2/interruption/boot-3/108-restored-health-snapshots.json": {
+      "bytes": 1556,
+      "sha256": "b3bc67a156a6292715ba219dfde94c7cf0e58295f3180bdb37db9b0421dd0177"
+    },
+    "fecp-interruption-r2/interruption/boot-3/099-restored-health-root.json": {
+      "bytes": 376,
+      "sha256": "9cdc1230d896d24c96233846d91c46620a11581ad4a58e3283d50dd2103571ef"
+    },
+    "fecp-interruption-r2/interruption/boot-3/shutdown.json": {
+      "bytes": 86,
+      "sha256": "c67e21986ddc7f438804050155abc8e2b77d86578a049823fab123ddd0df245a"
+    },
+    "fecp-interruption-r2/interruption/boot-3/089-restored-state.json": {
+      "bytes": 287139,
+      "sha256": "cabbe69467a14add0e520a656f36861c4f6a955365eff1b9c87f7be0cc5780db"
+    },
+    "fecp-interruption-r2/interruption/boot-3/083-ready.json": {
+      "bytes": 219,
+      "sha256": "754b03a5237cf4775e364e57bdd31265e9caae7abd25265386b4b8c9f669e529"
+    },
+    "fecp-interruption-r2/interruption/boot-3/091-restored-snapshots.json": {
+      "bytes": 1565,
+      "sha256": "239016bd9daf718b84041f072633ba44cf22c745735d2666aa955d60eba89411"
+    },
+    "fecp-interruption-r2/interruption/boot-3/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fecp-interruption-r2/interruption/boot-3/092-restored-health-status.json": {
+      "bytes": 3055,
+      "sha256": "6ddb90f19e38aafa1123d235690103ee2cec6d17e449c2c60af41f02c886bfca"
+    },
+    "fecp-interruption-r2/interruption/boot-3/105-restored-health-pacman-log.json": {
+      "bytes": 745,
+      "sha256": "4308b9c172633dcc56538af4c0f4f2c912149c6a74cf46354d5e9eaa54d86bc2"
+    },
+    "fecp-interruption-r2/interruption/boot-3/109-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "a993125b157a3bf87ad7b68e172d69706ac3f0798d29d09f7ab2eb3eeac9ea93"
+    },
+    "fecp-interruption-r2/interruption/boot-3/102-restored-health-boot-journal.json": {
+      "bytes": 109608,
+      "sha256": "76d458155cdbbb431518a1ebc4a579c533dcbffe5ef9033d1ea13a050f098462"
+    },
+    "fecp-interruption-r2/interruption/boot-3/096-restored-health-mounts.json": {
+      "bytes": 8645,
+      "sha256": "1ae467606fd7e4273ef43178ea5bcd20e59705857c2b5cc4c7c04a552f64525a"
+    },
+    "fecp-interruption-r2/interruption/boot-3/reboot.json": {
+      "bytes": 110,
+      "sha256": "202693bb90bb3619b1de300fbb66a88818052dab6e7dd31c047af607bfe5e406"
+    },
+    "fecp-interruption-r2/interruption/boot-3/088-finalize-rollback.json": {
+      "bytes": 459091,
+      "sha256": "1c37baf6b5279d90a433fa06071baea22fda7bf5ce9f3d1904458a0370bd419a"
+    },
+    "fecp-interruption-r2/interruption/boot-3/107-restored-health-history.json": {
+      "bytes": 481852,
+      "sha256": "4eb3e1dabeb4b4240eb433b84730bde3e5fb0e26e6d41dfe73f08047f7c2da37"
+    },
+    "fecp-interruption-r2/interruption/boot-3/098-restored-health-boot.json": {
+      "bytes": 4055,
+      "sha256": "8682a742a1d03e4179bbace14714964445499e53d87855d89145891c5531ca8d"
+    },
+    "fecp-interruption-r2/interruption/boot-3/serial.log": {
+      "bytes": 1996,
+      "sha256": "58ff71d134f3296192b48c59863bc1fb4ff215b1b6ab290fdd6c1156ffeae209"
+    },
+    "fecp-interruption-r2/interruption/boot-3/103-restored-health-uki-sha256.json": {
+      "bytes": 442,
+      "sha256": "71a09491e19ac498b14355c4af8365b9c57c3f9f0981ccaded10dffe90e9257c"
+    },
+    "fecp-interruption-r2/interruption/boot-3/094-restored-health-database.json": {
+      "bytes": 337,
+      "sha256": "8712495f3054b9d93ebc2692dcc704d23abdbbf551248bed72714f5b9fd199fd"
+    },
+    "fecp-interruption-r2/interruption/boot-3/qmp-restored-health.json": {
+      "bytes": 4562,
+      "sha256": "c5513b96c341d85ee7d30ff3a17c10d9ef57e37c73d6975ed60e10c21720f59d"
+    },
+    "fecp-interruption-r2/interruption/boot-3/087-before-rollback-finalization.json": {
+      "bytes": 287139,
+      "sha256": "cd7b8bc3cb74b2f2c692182c92ebba98f9395b8eb29eb4c6517ae89a101d48db"
+    },
+    "fecp-interruption-r2/interruption/boot-3/process.json": {
+      "bytes": 83,
+      "sha256": "6c242965a90014229f6e3114b00d9ed7d3d5967e508220537ca424e7b1fd8142"
+    },
+    "fecp-interruption-r2/interruption/boot-3/104-restored-health-kernel-command-line.json": {
+      "bytes": 425,
+      "sha256": "0c29a000ddb2d3b976d2a6f743e777d6124345e9364090f4342d9879d051b013"
+    },
+    "fecp-interruption-r2-control/output.log": {
+      "bytes": 570,
+      "sha256": "7e575d5ecd38e14d54a0857b07894efc957846d1799458519fc4ca6145bc703b"
+    },
+    "fecp-interruption-r2-control/launch.json": {
+      "bytes": 934,
+      "sha256": "d8555888ccf014839dcbe987f5b67a019ad09c3442d6d6290c594c724dd21b61"
+    }
+  }
+}

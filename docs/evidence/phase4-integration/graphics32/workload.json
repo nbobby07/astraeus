@@ -1,0 +1,50 @@
+{
+  "desktop": {
+    "DISPLAY": ":0",
+    "XAUTHORITY": "/run/user/1000/xauth_rSxKbM",
+    "WAYLAND_DISPLAY": "wayland-0",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "XDG_SESSION_TYPE": "wayland",
+    "XDG_CURRENT_DESKTOP": "KDE"
+  },
+  "package_files": {
+    "command": [
+      "pacman",
+      "-Qlq",
+      "lib32-mesa-utils"
+    ],
+    "code": 0,
+    "output": "/usr/\n/usr/bin/\n/usr/bin/eglinfo32\n/usr/bin/glxgears32\n/usr/bin/glxinfo32\n/usr/share/\n/usr/share/licenses/\n/usr/share/licenses/lib32-mesa-utils/\n/usr/share/licenses/lib32-mesa-utils/LICENSE\n",
+    "error": null,
+    "seconds": 0.101
+  },
+  "gears": "/usr/bin/glxgears32",
+  "info": "/usr/bin/glxinfo32",
+  "scope": "Actual installed ELF32 OpenGL presentation; no hardware or Vulkan WSI qualification",
+  "execution": {
+    "command": [
+      "runuser",
+      "-u",
+      "tester",
+      "--",
+      "env",
+      "DISPLAY=:0",
+      "XAUTHORITY=/run/user/1000/xauth_rSxKbM",
+      "WAYLAND_DISPLAY=wayland-0",
+      "XDG_RUNTIME_DIR=/run/user/1000",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+      "XDG_SESSION_TYPE=wayland",
+      "XDG_CURRENT_DESKTOP=KDE",
+      "env",
+      "MANGOHUD_CONFIG=fps,frametime",
+      "mangohud",
+      "--dlsym",
+      "/usr/bin/glxgears32"
+    ],
+    "code": 143,
+    "output": "[2026-10-09 01:33:22.113] [MANGOHUD] [warning] [gpu.cpp:43] node \"renderD128\" is using driver \"virtio-pci\" which is unsupported by MangoHud. Skipping...\n[2026-10-09 01:33:22.139] [MANGOHUD] [error] [cpu.cpp:632] Could not find cpu temp sensor location\n1693 frames in 5.0 seconds = 338.537 FPS\n1547 frames in 5.0 seconds = 309.234 FPS\n1766 frames in 5.0 seconds = 353.171 FPS\n1871 frames in 5.0 seconds = 374.033 FPS\n1811 frames in 5.0 seconds = 362.152 FPS\n1796 frames in 5.0 seconds = 359.159 FPS\n1816 frames in 5.0 seconds = 363.057 FPS\n1886 frames in 5.0 seconds = 377.190 FPS\n1874 frames in 5.0 seconds = 374.597 FPS\n1870 frames in 5.0 seconds = 373.874 FPS\n1867 frames in 5.0 seconds = 373.305 FPS\n1812 frames in 5.0 seconds = 362.283 FPS\n1851 frames in 5.0 seconds = 370.151 FPS\n1883 frames in 5.0 seconds = 376.482 FPS\n1900 frames in 5.0 seconds = 379.943 FPS\n1928 frames in 5.0 seconds = 385.575 FPS\n1912 frames in 5.0 seconds = 382.330 FPS\n1902 frames in 5.0 seconds = 380.226 FPS\n1940 frames in 5.0 seconds = 387.937 FPS\n1800 frames in 5.0 seconds = 359.943 FPS\n1851 frames in 5.0 seconds = 370.183 FPS\n1919 frames in 5.0 seconds = 383.713 FPS\n1898 frames in 5.0 seconds = 379.485 FPS\nTerminated\n",
+    "error": null,
+    "seconds": 118.337
+  }
+}

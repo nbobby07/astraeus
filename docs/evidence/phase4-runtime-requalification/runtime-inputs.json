@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton11-7/GE-Proton11-7-x86_64.tar.gz",
+    "sha256": "c5448b76a230384e2d7bc6beb5ccb97bafb7e2c3b6c527cb03a1a546bbcb00a0",
+    "bytes": 563784602,
+    "publisher_signature_verified": false
+  },
+  {
+    "url": "https://repo.steampowered.com/steamrt4/images/4.0.20260805.254769/SteamLinuxRuntime_4.tar.xz",
+    "sha256": "3226d8234e7c0542ee767837832bfb1dad5e5e2dc944ec97eb221b437f6b9349",
+    "bytes": 164895128,
+    "publisher_signature_verified": false
+  }
+]

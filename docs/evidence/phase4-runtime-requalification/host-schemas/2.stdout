@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "feature": "core",
+  "operation": "enable",
+  "archive_date": "2026/10/01",
+  "executable": false,
+  "dependency_resolution": "unresolved; direct feature requests only; use the future transaction resolver for full dependencies, conflicts, providers and sizes",
+  "requests": [
+    {
+      "name": "lib32-alsa-plugins",
+      "pinned": {
+        "repository": "multilib",
+        "version": "1.2.12-1",
+        "sha256": "bed31e16e7484c3d136448a946ebbddf8c19bd48510b44d68926af89e53197ed",
+        "depends": [
+          "alsa-plugins=1:1.2.12",
+          "lib32-glibc",
+          "lib32-alsa-lib",
+          "libasound.so=2-32"
+        ],
+        "provides": []
+      },
+      "installed_version": null,
+      "action": "unknown"
+    },
+    {
+      "name": "lib32-gcc-libs",
+      "pinned": {
+        "repository": "core",
+        "version": "16.2.1+r23+gd564253eb6c8-1",
+        "sha256": "21fde8d5c5fda174b0277515fb6e49a450763a9c8a05f1956f719779e459465a",
+        "depends": [
+          "lib32-glibc>=2.27"
+        ],
+        "provides": [
+          "libasan.so=8-32",
+          "libatomic.so=1-32",
+          "libgdruntime.so=7-32",
+          "libgfortran.so=5-32",
+          "libgo.so=25-32",
+          "libgomp.so=1-32",
+          "libgphobos.so=7-32",
+          "libitm.so=1-32",
+          "libobjc.so=4-32",
+          "libquadmath.so=0-32",
+          "libubsan.so=1-32"
+        ]
+      },
+      "installed_version": null,
+      "action": "unknown"
+    },
+    {
+      "name": "lib32-glibc",
+      "pinned": {
+        "repository": "core",
+        "version": "2.44+r50+g1848099f063e-1",
+        "sha256": "a977f9a6a405ab85e594aa9f1230a0b7dddfc33e3de5f2cb66931c92a48931d8",
+        "depends": [
+          "glibc=2.44+r50+g1848099f063e"
+        ],
+        "provides": []
+      },
+      "installed_version": null,
+      "action": "unknown"
+    },
+    {
+      "name": "lib32-pipewire",
+      "pinned": {
+        "repository": "multilib",
+        "version": "1:1.6.9-1",
+        "sha256": "f08f71311d7897e1b44dfaaaee7ee5084ff295b7990a325f0ea242b12b3dfcab",
+        "depends": [
+          "lib32-libpipewire=1:1.6.9-1",
+          "libpipewire-0.3.so=0-32",
+          "lib32-alsa-lib",
+          "libasound.so=2-32",
+          "lib32-gcc-libs",
+          "lib32-glibc",
+          "lib32-opus",
+          "libopus.so=0-32",
+          "lib32-systemd",
+          "libudev.so=1-32",
+          "pipewire"
+        ],
+        "provides": []
+      },
+      "installed_version": null,
+      "action": "unknown"
+    },
+    {
+      "name": "steam",
+      "pinned": {
+        "repository": "multilib",
+        "version": "1.0.0.87-3",
+        "sha256": "3b59b784d238b6087d38bafa30ae38f4c9e656fb4330860575391c1bf37046ea",
+        "depends": [
+          "bash",
+          "coreutils",
+          "curl",
+          "dbus",
+          "desktop-file-utils",
+          "diffutils",
+          "freetype2",
+          "gdk-pixbuf2",
+          "glibc",
+          "hicolor-icon-theme",
+          "libgcc",
+          "libxcrypt",
+          "libxcrypt-compat",
+          "libxkbcommon-x11",
+          "lsb-release",
+          "lsof",
+          "nss",
+          "python",
+          "ttf-font",
+          "usbutils",
+          "vulkan-driver",
+          "vulkan-icd-loader",
+          "xdg-user-dirs",
+          "xorg-xrandr",
+          "xz",
+          "zenity",
+          "steam-devices",
+          "lib32-alsa-plugins",
+          "lib32-fontconfig",
+          "lib32-gcc-libs",
+          "lib32-glibc",
+          "lib32-libgl",
+          "lib32-libgpg-error",
+          "lib32-libnm",
+          "lib32-libva",
+          "lib32-libx11",
+          "lib32-libxcrypt",
+          "lib32-libxcrypt-compat",
+          "lib32-libxinerama",
+          "lib32-libxss",
+          "lib32-nss",
+          "lib32-pipewire",
+          "lib32-systemd",
+          "lib32-vulkan-driver",
+          "lib32-vulkan-icd-loader"
+        ],
+        "provides": []
+      },
+      "installed_version": null,
+      "action": "unknown"
+    },
+    {
+      "name": "steam-devices",
+      "pinned": {
+        "repository": "multilib",
+        "version": "1.0.0.87-3",
+        "sha256": "7cf62beb007a28cdd0d714cf8b987529d848f22b6b2af06ddf5cc8c8beb11475",
+        "depends": [
+          "udev"
+        ],
+        "provides": []
+      },
+      "installed_version": null,
+      "action": "unknown"
+    },
+    {
+      "name": "xorg-xwayland",
+      "pinned": {
+        "repository": "extra",
+        "version": "24.1.13-1",
+        "sha256": "ab05d419318ec1b4e901f45de5c141ef51f6be0541c9dfba6f2917cc0a0fe658",
+        "depends": [
+          "nettle",
+          "libepoxy",
+          "libxfont2",
+          "pixman",
+          "xorg-server-common",
+          "libxcvt",
+          "mesa",
+          "libglvnd",
+          "libxau",
+          "wayland",
+          "libdrm",
+          "libtirpc",
+          "libei",
+          "libxshmfence",
+          "libdecor",
+          "glibc"
+        ],
+        "provides": [
+          "xorg-server-xwayland"
+        ]
+      },
+      "installed_version": null,
+      "action": "unknown"
+    }
+  ],
+  "graphics_requirements": [
+    "vulkan64",
+    "vulkan32",
+    "graphics_acceleration"
+  ],
+  "flatpak_requests": [],
+  "blockers": [
+    "The transaction backend only supports synchronized upgrades. Targeted install/remove needs dependency resolution, install-reason tracking, snapshot/boot preservation and rollback integration. No changes were made.",
+    "Installed package state unavailable; requested actions are unknown.",
+    "Repository multilib is absent or unknown; pinned configuration/signature verification belongs to repository integration.",
+    "Repository core is absent or unknown; pinned configuration/signature verification belongs to repository integration.",
+    "Repository extra is absent or unknown; pinned configuration/signature verification belongs to repository integration.",
+    "Graphics prerequisite vulkan64 is missing, unsupported, failed or unknown; the graphics owner must resolve vendor ICDs and 32-bit graphics dependencies.",
+    "Graphics prerequisite vulkan32 is missing, unsupported, failed or unknown; the graphics owner must resolve vendor ICDs and 32-bit graphics dependencies.",
+    "Graphics prerequisite graphics_acceleration is missing, unsupported, failed or unknown; the graphics owner must resolve vendor ICDs and 32-bit graphics dependencies."
+  ]
+}

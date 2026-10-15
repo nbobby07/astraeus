@@ -1,0 +1,54 @@
+{
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "all_qemu_stopped": true,
+  "no_nbd_pids": true,
+  "disks_retained": true,
+  "files": {
+    "p5p2/disk.qcow2": {
+      "bytes": 3153330176,
+      "mtime_ns": 1792061589302502666
+    },
+    "p5gp2/disk.qcow2": {
+      "bytes": 994050048,
+      "mtime_ns": 1792065218914594811
+    },
+    "p5rp2/awaiting-boot-restore/disk.qcow2": {
+      "bytes": 694288384,
+      "mtime_ns": 1792065741118065514
+    },
+    "p5p2-network-failed/disk.qcow2": {
+      "bytes": 3044737024,
+      "mtime_ns": 1792059990507103952
+    },
+    "p5p/disk.qcow2": {
+      "bytes": 3224698880,
+      "mtime_ns": 1792049006803132095
+    },
+    "p5gp/disk.qcow2": {
+      "bytes": 125435904,
+      "mtime_ns": 1792052899103301042
+    },
+    "p5recp2/recovery.img": {
+      "bytes": 4294967296,
+      "mtime_ns": 1792061738499243210
+    }
+  },
+  "public_exports": [
+    {
+      "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+      "path": "/home/ubuntu/p50/c382-p5gp2-public.tar.gz",
+      "bytes": 16210087,
+      "sha256": "9bb9397b12ce044982ac6edc281c9408b01efaebe1dbe9d30fe75b00884d24d0",
+      "files": 129,
+      "private_material_excluded": true
+    },
+    {
+      "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+      "path": "/home/ubuntu/p50/c382-p5rp2-public.tar.gz",
+      "bytes": 4947557,
+      "sha256": "9169c0bb9ae45da1a3dce69a1c36a8362d5d29b9ae25d04f541f58f54639cae1",
+      "files": 173,
+      "private_material_excluded": true
+    }
+  ]
+}

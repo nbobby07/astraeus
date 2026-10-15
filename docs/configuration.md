@@ -20,13 +20,35 @@ or readiness values. All CLI failures return nonzero and write context to stderr
 `archive.lock.json` records the complete repository database hashes and selected
 direct package versions, including the image builder/compiler. Database hashes
 pin the dependency universe; the real build resolves the transitive closure with
-pacman and records `image-packages.txt`. This file is not the future `system.lock`.
+pacman and records `image-packages.txt`. This build lock is separate from the
+installed system's `system.lock`.
 Changing dates requires a reviewed lock refresh, package availability check and
 new clean build. Do not fall back to current mirrors on archive failure.
 
-Future user `system.toml`, desired state, diff/apply/adopt and lockfile formats are
-deferred to Phase 6. Their architectural boundary is documented, but no parser
-pretends that enabling encryption or Secure Boot in a file already configures it.
+Phase 4.2 implements `SystemConfig` schema 1 for a selected subset: named
+`packages`, supported `gaming` features and explicit `providers`. Omitted
+collections default to empty; unknown fields, duplicate requests and unsupported
+versions are rejected. Omitting a package does not request removal of everything
+outside the selection. Pre-existing applications remain protected, and adoption
+produces a draft without taking removal ownership or changing package reasons.
+
+The CLI implements `system plan`, `diff`, `apply`, `adopt` and `export`. Apply
+requires the reviewed plan digest, which the native backend rechecks under its
+locks. The [Control Center](control-center.md) uses the same backend and adds
+configuration import, review and authenticated submission. Live sessions support
+inspection and planning only. Installed-VM acceptance is still pending; see the
+[Phase 4.2 report](phase42-acceptance.md).
+
+Applied configuration lives at `/etc/astraeus/system.toml`. Ownership state and
+`system.lock` live under `/var/lib/astraeus/management` in the snapshotted root.
+The lock records resolved package versions, repository and archive hashes, and
+provider decisions; it does not make the writable system hermetic. Configuration
+changes require snapshots, signed boot artifacts and boot confirmation even when
+package versions do not change.
+
+A general configuration language and broader desired-state management remain
+deferred to Phase 6. The current schema does not configure encryption, Secure Boot,
+services or performance policies by adding settings to this file.
 
 Profile sources under `distro/archiso` contain `@@TOKEN@@` substitutions handled
 by the build script. The generated profile contains no unresolved tokens.

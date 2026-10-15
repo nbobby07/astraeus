@@ -185,7 +185,9 @@ class VM:
         if self.boot_id:
             # KDE may turn ACPI powerdown into an unanswered dialog. Give the
             # command channel time to acknowledge, then request a normal shutdown.
+            # Default timer coalescing can exceed the shutdown deadline.
             self.command('systemd-run --unit=astraeus-validation-poweroff --on-active=1s '
+                         '--timer-property=AccuracySec=1s '
                          '/usr/bin/systemctl poweroff', label='schedule-poweroff')
         else:
             qmp.execute(str(self.monitor), {'execute': 'system_powerdown'})

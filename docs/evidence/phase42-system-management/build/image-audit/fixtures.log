@@ -1,0 +1,12 @@
+test_installed_accounts_and_archive_paths_fail_closed (test_audit_image.ImageAudit.test_installed_accounts_and_archive_paths_fail_closed) ... ok
+test_owners_agents_and_enabled_worker_rejected (test_audit_image.ImageAudit.test_owners_agents_and_enabled_worker_rejected) ... ok
+test_private_key_content_rejected_without_exposing_bytes (test_audit_image.ImageAudit.test_private_key_content_rejected_without_exposing_bytes) ... ok
+test_public_test_material_requires_exact_file_bytes_and_location (test_audit_image.ImageAudit.test_public_test_material_requires_exact_file_bytes_and_location) ... ok
+test_real_signed_repository_stream_matches_packaged_identities (test_audit_image.ImageAudit.test_real_signed_repository_stream_matches_packaged_identities) ... ok
+test_real_squashfs_changed_public_test_file_rejected (test_audit_image.ImageAudit.test_real_squashfs_changed_public_test_file_rejected) ... ok
+test_real_squashfs_stream_and_packaged_file_identity (test_audit_image.ImageAudit.test_real_squashfs_stream_and_packaged_file_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.462s
+
+OK

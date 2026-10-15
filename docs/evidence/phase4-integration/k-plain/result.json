@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "integrated_acceptance": true,
+  "checkpoint": "generation-activation",
+  "started": "2026-10-09T07:42:34.148610+00:00",
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "recoverable_path": "trusted retained root",
+  "journal_reconciled": false,
+  "limitation": "One cut after a completed sync before the loader configuration rename. No arbitrary power-loss guarantee.",
+  "finished": "2026-10-09T07:44:46.335961+00:00"
+}

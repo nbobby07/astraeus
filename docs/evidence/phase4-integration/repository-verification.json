@@ -1,0 +1,47 @@
+[
+  {
+    "file": "/home/ubuntu/p4i/r2/build/repo/distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst",
+    "exit_code": 0,
+    "output": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED D1C5011CA247200E6194FE0E33784DB62DDE4F5F 0\n[GNUPG:] SIG_ID tkx8daIhDMJLUOQp9GuFvlgkgRg 2026-10-09 1791520176\n[GNUPG:] GOODSIG 33784DB62DDE4F5F Phase 0 disposable package signing\n[GNUPG:] VALIDSIG D1C5011CA247200E6194FE0E33784DB62DDE4F5F 2026-10-09 1791520176 0 4 0 22 10 00 D1C5011CA247200E6194FE0E33784DB62DDE4F5F\n[GNUPG:] TRUST_UNDEFINED 0 pgp\ngpg: Signature made Fri Oct  9 04:29:36 2026 UTC\ngpg:                using EDDSA key D1C5011CA247200E6194FE0E33784DB62DDE4F5F\ngpg: Good signature from \"Phase 0 disposable package signing\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: D1C5 011C A247 200E 6194  FE0E 3378 4DB6 2DDE 4F5F\n"
+  },
+  {
+    "file": "/home/ubuntu/p4i/r2/build/repo/calamares-3.4.3-1-x86_64.pkg.tar.zst",
+    "exit_code": 0,
+    "output": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED D1C5011CA247200E6194FE0E33784DB62DDE4F5F 0\n[GNUPG:] SIG_ID 4lJnoAvOsxMQd/RLBOhG/bkIR/g 2026-10-09 1791520175\n[GNUPG:] GOODSIG 33784DB62DDE4F5F Phase 0 disposable package signing\n[GNUPG:] VALIDSIG D1C5011CA247200E6194FE0E33784DB62DDE4F5F 2026-10-09 1791520175 0 4 0 22 10 00 D1C5011CA247200E6194FE0E33784DB62DDE4F5F\n[GNUPG:] TRUST_UNDEFINED 0 pgp\ngpg: Signature made Fri Oct  9 04:29:35 2026 UTC\ngpg:                using EDDSA key D1C5011CA247200E6194FE0E33784DB62DDE4F5F\ngpg: Good signature from \"Phase 0 disposable package signing\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: D1C5 011C A247 200E 6194  FE0E 3378 4DB6 2DDE 4F5F\n"
+  },
+  {
+    "file": "/home/ubuntu/p4i/r2/build/repo/calamares-debug-3.4.3-1-x86_64.pkg.tar.zst",
+    "exit_code": 0,
+    "output": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED D1C5011CA247200E6194FE0E33784DB62DDE4F5F 0\n[GNUPG:] SIG_ID 3c6RTpjFa5PGs2pmeKcOxXKRZjc 2026-10-09 1791520176\n[GNUPG:] GOODSIG 33784DB62DDE4F5F Phase 0 disposable package signing\n[GNUPG:] VALIDSIG D1C5011CA247200E6194FE0E33784DB62DDE4F5F 2026-10-09 1791520176 0 4 0 22 10 00 D1C5011CA247200E6194FE0E33784DB62DDE4F5F\n[GNUPG:] TRUST_UNDEFINED 0 pgp\ngpg: Signature made Fri Oct  9 04:29:36 2026 UTC\ngpg:                using EDDSA key D1C5011CA247200E6194FE0E33784DB62DDE4F5F\ngpg: Good signature from \"Phase 0 disposable package signing\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: D1C5 011C A247 200E 6194  FE0E 3378 4DB6 2DDE 4F5F\n"
+  },
+  {
+    "file": "/home/ubuntu/p4i/r2/build/repo/distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst",
+    "exit_code": 0,
+    "output": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED D1C5011CA247200E6194FE0E33784DB62DDE4F5F 0\n[GNUPG:] SIG_ID ZS/evaHIJFj9x500S+vAc31iRfw 2026-10-09 1791520176\n[GNUPG:] GOODSIG 33784DB62DDE4F5F Phase 0 disposable package signing\n[GNUPG:] VALIDSIG D1C5011CA247200E6194FE0E33784DB62DDE4F5F 2026-10-09 1791520176 0 4 0 22 10 00 D1C5011CA247200E6194FE0E33784DB62DDE4F5F\n[GNUPG:] TRUST_UNDEFINED 0 pgp\ngpg: Signature made Fri Oct  9 04:29:36 2026 UTC\ngpg:                using EDDSA key D1C5011CA247200E6194FE0E33784DB62DDE4F5F\ngpg: Good signature from \"Phase 0 disposable package signing\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: D1C5 011C A247 200E 6194  FE0E 3378 4DB6 2DDE 4F5F\n"
+  },
+  {
+    "file": "/home/ubuntu/p4i/r2/build/repo/distro.db.tar.gz",
+    "exit_code": 0,
+    "output": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED D1C5011CA247200E6194FE0E33784DB62DDE4F5F 0\n[GNUPG:] SIG_ID AJtZAkheFnMvgGlpaXmPGS00Jvo 2026-10-09 1791520177\n[GNUPG:] GOODSIG 33784DB62DDE4F5F Phase 0 disposable package signing\n[GNUPG:] VALIDSIG D1C5011CA247200E6194FE0E33784DB62DDE4F5F 2026-10-09 1791520177 0 4 0 22 10 00 D1C5011CA247200E6194FE0E33784DB62DDE4F5F\n[GNUPG:] TRUST_UNDEFINED 0 pgp\ngpg: Signature made Fri Oct  9 04:29:37 2026 UTC\ngpg:                using EDDSA key D1C5011CA247200E6194FE0E33784DB62DDE4F5F\ngpg: Good signature from \"Phase 0 disposable package signing\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: D1C5 011C A247 200E 6194  FE0E 3378 4DB6 2DDE 4F5F\n"
+  },
+  {
+    "file": "/home/ubuntu/p4i/r2/fixtures/fixture-repo-1/astraeus-validation-fixture-1-1-any.pkg.tar.zst",
+    "exit_code": 0,
+    "output": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED F906EC2B4A5285323BC5B40F4F8CC48CA5C57760 0\n[GNUPG:] SIG_ID tz6Fz2Ejg2LUztOmm8R03MjIJa8 2026-10-08 1791502321\n[GNUPG:] GOODSIG 4F8CC48CA5C57760 Phase 0 disposable package signing\n[GNUPG:] VALIDSIG F906EC2B4A5285323BC5B40F4F8CC48CA5C57760 2026-10-08 1791502321 0 4 0 22 10 00 F906EC2B4A5285323BC5B40F4F8CC48CA5C57760\n[GNUPG:] TRUST_UNDEFINED 0 pgp\ngpg: Signature made Thu Oct  8 23:32:01 2026 UTC\ngpg:                using EDDSA key F906EC2B4A5285323BC5B40F4F8CC48CA5C57760\ngpg: Good signature from \"Phase 0 disposable package signing\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: F906 EC2B 4A52 8532 3BC5  B40F 4F8C C48C A5C5 7760\n"
+  },
+  {
+    "file": "/home/ubuntu/p4i/r2/fixtures/fixture-repo-1/distro.db.tar.gz",
+    "exit_code": 0,
+    "output": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED F906EC2B4A5285323BC5B40F4F8CC48CA5C57760 0\n[GNUPG:] SIG_ID 6MnAz5eJpVR/SiUbL1erYExSHHo 2026-10-08 1791502321\n[GNUPG:] GOODSIG 4F8CC48CA5C57760 Phase 0 disposable package signing\n[GNUPG:] VALIDSIG F906EC2B4A5285323BC5B40F4F8CC48CA5C57760 2026-10-08 1791502321 0 4 0 22 10 00 F906EC2B4A5285323BC5B40F4F8CC48CA5C57760\n[GNUPG:] TRUST_UNDEFINED 0 pgp\ngpg: Signature made Thu Oct  8 23:32:01 2026 UTC\ngpg:                using EDDSA key F906EC2B4A5285323BC5B40F4F8CC48CA5C57760\ngpg: Good signature from \"Phase 0 disposable package signing\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: F906 EC2B 4A52 8532 3BC5  B40F 4F8C C48C A5C5 7760\n"
+  },
+  {
+    "file": "/home/ubuntu/p4i/r2/fixtures/fixture-repo-2/astraeus-validation-fixture-2-1-any.pkg.tar.zst",
+    "exit_code": 0,
+    "output": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED F906EC2B4A5285323BC5B40F4F8CC48CA5C57760 0\n[GNUPG:] SIG_ID UBwlw2FL2EP/+hKXpbB+/5ug0Yc 2026-10-08 1791502326\n[GNUPG:] GOODSIG 4F8CC48CA5C57760 Phase 0 disposable package signing\n[GNUPG:] VALIDSIG F906EC2B4A5285323BC5B40F4F8CC48CA5C57760 2026-10-08 1791502326 0 4 0 22 10 00 F906EC2B4A5285323BC5B40F4F8CC48CA5C57760\n[GNUPG:] TRUST_UNDEFINED 0 pgp\ngpg: Signature made Thu Oct  8 23:32:06 2026 UTC\ngpg:                using EDDSA key F906EC2B4A5285323BC5B40F4F8CC48CA5C57760\ngpg: Good signature from \"Phase 0 disposable package signing\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: F906 EC2B 4A52 8532 3BC5  B40F 4F8C C48C A5C5 7760\n"
+  },
+  {
+    "file": "/home/ubuntu/p4i/r2/fixtures/fixture-repo-2/distro.db.tar.gz",
+    "exit_code": 0,
+    "output": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED F906EC2B4A5285323BC5B40F4F8CC48CA5C57760 0\n[GNUPG:] SIG_ID CNE+JakuUOCIfcEuKvE3nlJayNY 2026-10-08 1791502326\n[GNUPG:] GOODSIG 4F8CC48CA5C57760 Phase 0 disposable package signing\n[GNUPG:] VALIDSIG F906EC2B4A5285323BC5B40F4F8CC48CA5C57760 2026-10-08 1791502326 0 4 0 22 10 00 F906EC2B4A5285323BC5B40F4F8CC48CA5C57760\n[GNUPG:] TRUST_UNDEFINED 0 pgp\ngpg: Signature made Thu Oct  8 23:32:06 2026 UTC\ngpg:                using EDDSA key F906EC2B4A5285323BC5B40F4F8CC48CA5C57760\ngpg: Good signature from \"Phase 0 disposable package signing\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: F906 EC2B 4A52 8532 3BC5  B40F 4F8C C48C A5C5 7760\n"
+  }
+]

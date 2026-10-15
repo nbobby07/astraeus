@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "files": {
+    "c982p/matrix.json": {
+      "bytes": 7311,
+      "sha256": "ca573ad37156f055ccd3366e0725c47f279d1dad36a9a73978ec072f56c40365"
+    },
+    "d982p-inputs/matrix.json": {
+      "bytes": 7283,
+      "sha256": "c23c8974d2d59f40dd057a9f4775a2cc80a36f17ea0595f4115e49ea19c2c78f"
+    },
+    "d982p-inputs-kcalc/matrix.json": {
+      "bytes": 8063,
+      "sha256": "2858d62ae62231ea8ec7b497f030a6c47a6840cf7530138a1fc9ded9050c441b"
+    },
+    "d982p-inputs-layout/matrix.json": {
+      "bytes": 8624,
+      "sha256": "d631a2fc71c7f747d17475157f8139b6995db374c5062796317ab566a12d1ed7"
+    },
+    "c982p/permission-failure.json": {
+      "bytes": 410,
+      "sha256": "606d5c3dfbaf789782af32ba4afe1f2aaade9276799c168dc6a40c03f9e5213b"
+    },
+    "cli-archive-index.json": {
+      "bytes": 79932,
+      "sha256": "9aaff191c9d6709a9c2a4e90a461577ca053dbf014413b949899822ce4011765"
+    },
+    "media/trusted.json": {
+      "bytes": 294360,
+      "sha256": "e1c20a6df3539778015532598124095c28b15f18a710a8bd6ecf0196f586ad9d"
+    },
+    "media/untrusted.json": {
+      "bytes": 2656,
+      "sha256": "0ebb4b1fea3d4fff005b0b7fa8940741ca4930681d3f331c49d820899dbc1a6c"
+    },
+    "media/tampered.json": {
+      "bytes": 2655,
+      "sha256": "eaa2d75e823c74d24799204e3f4f1e016603561ccb7c21b3aef1e577d7a0f8b5"
+    },
+    "media/unsigned.json": {
+      "bytes": 2655,
+      "sha256": "58b7e6286c54c5e46252281526dad8acceda01a3b98c9b8d1de98bd435f947bb"
+    },
+    "media/root-tampered.json": {
+      "bytes": 2660,
+      "sha256": "5eeca4f0c292f33b90c59f57a05796812111325270972bcf814465f1df6cb897"
+    },
+    "media/disabled.json": {
+      "bytes": 2655,
+      "sha256": "daf53940b705a8abe1cded365c239136b54961a0da6593b75d1effea9df5582a"
+    },
+    "media/gui-complete.json": {
+      "bytes": 1122,
+      "sha256": "dfbd21cfeefad88b6580c0c1202c1c4ed659fd1b883d2703a4e0b32489b861f2"
+    },
+    "media/overview.png": {
+      "bytes": 275890,
+      "sha256": "aa1256e6fe2359f6dd36a1a1cb8abc3427ef900ee0d18c36536701a7edae72a9"
+    },
+    "media/review-live.png": {
+      "bytes": 233426,
+      "sha256": "e918d6f646779cfb6d67da120662fb36cc5f9912581162fb1a5116caf15b4128"
+    }
+  }
+}

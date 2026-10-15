@@ -1,0 +1,12 @@
+{
+  "ordinary_close_passed": true,
+  "gui_and_record_processes_gone": true,
+  "latest": {
+    "created_unix_seconds": 1792062798,
+    "elapsed_seconds": 1.211379644,
+    "failure": "cancelled by caller",
+    "id": "067fef334f0f08abcb040e65a52b6ddd",
+    "kind": "record",
+    "state": "cancelled"
+  }
+}

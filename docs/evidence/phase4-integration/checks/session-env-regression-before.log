@@ -1,0 +1,15 @@
+test_session_preserves_xauthority_without_exporting_other_secrets (test_phase4_validation.GuestTests.test_session_preserves_xauthority_without_exporting_other_secrets) ... FAIL
+
+======================================================================
+FAIL: test_session_preserves_xauthority_without_exporting_other_secrets (test_phase4_validation.GuestTests.test_session_preserves_xauthority_without_exporting_other_secrets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Noel/.codex/worktrees/phase4-integration/operating-system/tests/test_phase4_validation.py", line 89, in test_session_preserves_xauthority_without_exporting_other_secrets
+    self.assertIn('XAUTHORITY=/run/user/1000/xauth-test', command)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'XAUTHORITY=/run/user/1000/xauth-test' not found in ['runuser', '-u', 'tester', '--', 'env', 'DISPLAY=:0', 'XDG_SESSION_TYPE=wayland', 'XDG_CURRENT_DESKTOP=KDE']
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (failures=1)

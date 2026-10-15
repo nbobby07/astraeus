@@ -1,0 +1,27 @@
+gpg: keybox '/root/astraeus-native-alpm-15/signing/pubring.kbx' created
+gpg: /root/astraeus-native-alpm-15/signing/trustdb.gpg: trustdb created
+gpg: directory '/root/astraeus-native-alpm-15/signing/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/root/astraeus-native-alpm-15/signing/openpgp-revocs.d/7D1DC2C967C542CC6A7C1D251661326232DC04D2.rev'
+gpg: keybox '/root/astraeus-native-alpm-15/root/etc/pacman.d/gnupg/pubring.kbx' created
+gpg: /root/astraeus-native-alpm-15/root/etc/pacman.d/gnupg/trustdb.gpg: trustdb created
+gpg: key 1661326232DC04D2: public key "Astraeus isolated package tests" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg: inserting ownertrust of 6
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: next trustdb check due at 2026-10-15
+
+running 1 test
+test native_alpm::tests::signed_native_backend ... unresolvable package conflicts detected
+cannot resolve "test-absent>=2", a dependency of "test-missing"
+unresolvable package conflicts detected
+failed retrieving file 'test-unsigned-1-1-any.pkg.tar.gz.sig' from disk : Could not open file /opt/distro/repo/test-unsigned-1-1-any.pkg.tar.gz.sig
+failed to retrieve some files
+test-corrupt: signature from "Astraeus isolated package tests" is invalid
+command failed to execute correctly
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 54 filtered out; finished in 6.21s
+
+

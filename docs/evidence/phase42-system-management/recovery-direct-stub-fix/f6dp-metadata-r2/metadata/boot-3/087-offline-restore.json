@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-14T15:54:45.167233+00:00",
+  "finished": "2026-10-14T15:54:52.730668+00:00",
+  "command": "python3 /mnt/astraeus-validation/phase42-faults.py guest recover 1791993078-49348536-796",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "Traceback (most recent call last):\n  File \"/mnt/astraeus-validation/phase42-faults.py\", line 1398, in <module>\n    main()\n    ~~~~^^\n  File \"/mnt/astraeus-validation/phase42-faults.py\", line 1389, in main\n    guest(args.guest_action, args.value)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/astraeus-validation/phase42-faults.py\", line 765, in guest\n    result = guest_recover(value)\n  File \"/mnt/astraeus-validation/phase42-faults.py\", line 710, in guest_recover\n    restored = json.loads(call('distroctl', 'rollback', snapshot, '--execute', *common, timeout=900)['output'])\n                          ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/astraeus-validation/phase42-faults.py\", line 53, in call\n    require(result.returncode == 0, f'{arguments[0]} exited {result.returncode}: {result.stderr[-2048:]}')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/astraeus-validation/phase42-faults.py\", line 39, in require\n    raise RuntimeError(message)\nRuntimeError: distroctl exited 1: distroctl: bootctl failed: Not booted with a supported boot loader.\n\n",
+    "id": "338b3d8ed2cb46ab800c6b6907887203",
+    "boot_id": "4b558b57-5e9e-464e-a86a-86bf9612a872"
+  }
+}

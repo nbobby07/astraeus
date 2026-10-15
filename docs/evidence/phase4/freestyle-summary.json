@@ -1,0 +1,23 @@
+{
+  "vm_id": "vm-cc9d56de23154de7a22492f24dfaae27",
+  "state": "paused",
+  "resources": {
+    "cpu": 8,
+    "memory": 16384,
+    "storage": 65536
+  },
+  "runtime_before_seconds": 96468,
+  "runtime_after_seconds": 97410,
+  "additional_runtime_seconds": 942,
+  "unrelated_vm_record_unchanged": true,
+  "owned_guests_stopped": true,
+  "rates_usd_per_hour": {
+    "vcpu": 0.04032,
+    "memory_gib": 0.0129,
+    "storage_gib": 8.6e-05
+  },
+  "estimated_active_allocation_usd": 0.1398514133333333,
+  "pricing_source": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+  "caveat": "Before included allowances; transfer and actual invoice not measured; paused storage remains allocated",
+  "auto_delete_seconds": 86400
+}

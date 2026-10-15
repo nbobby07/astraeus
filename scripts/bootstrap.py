@@ -21,7 +21,7 @@ MANIFEST = ROOT / "distro/branding/project.toml"
 sys.path.insert(0, str(ROOT / "scripts"))
 import installer
 
-CUSTOM_PACKAGES = {"distroctl", "calamares"}
+CUSTOM_PACKAGES = {"distroctl", "calamares", "astraeus-control-center"}
 ARCHIVE_DB_LIMIT = 64 * 1024 * 1024
 
 
@@ -89,6 +89,8 @@ def prepare_package(output):
     source = out / "source"
     source.mkdir()
     for file in [ROOT / "Cargo.toml", ROOT / "Cargo.lock", MANIFEST,
+                 ROOT / "scripts/bootstrap.py", ROOT / "scripts/installer.py",
+                 ROOT / "distro/repo/archive.lock.json", ROOT / "distro/installed/packages.x86_64",
                  ROOT / "distro/installed/astraeus-confirm-boot.service", ROOT / "docs/snapshots.md",
                  ROOT / "scripts/secure_boot.py", ROOT / "docs/secure-boot.md",
                  ROOT / "docs/adr/0003-owner-secure-boot.md",
@@ -96,6 +98,12 @@ def prepare_package(output):
                  ROOT / "distro/installed/secure-boot/95-astraeus-sign",
                  ROOT / "distro/installed/80-astraeus-secure-boot.hook",
                  ROOT / "distro/installed/astraeus-bless-boot.conf", ROOT / "docs/boot-generations.md",
+                 ROOT / "scripts/graphics-probe.c", ROOT / "docs/graphics.md",
+                 ROOT / "distro/installed/astraeus-apply@.service",
+                 ROOT / "distro/installed/org.astraeus.system.policy", ROOT / "docs/control-center.md",
+                 ROOT / "docs/performance.md",
+                 *sorted((ROOT / "apps/control-center").rglob("*")),
+                 *sorted((ROOT / "distro/graphics").glob("*.json")),
                  *sorted((ROOT / "crates").rglob("*"))]:
         if file.is_file():
             destination = source / file.relative_to(ROOT)
@@ -118,8 +126,11 @@ def packages(path="distro/archiso/packages.x86_64"):
 
 
 def upstream_packages():
+    graphics = json.loads((ROOT / "distro/graphics/packages.lock.json").read_text())["packages"]
+    gaming = json.loads((ROOT / "crates/distroctl/src/gaming/catalog.json").read_text())["packages"]
     return (set(packages()) | set(packages("distro/installed/packages.x86_64"))
-            | set(packages("distro/packages/calamares/build-packages.x86_64")) | {"archiso", "rust"}) - CUSTOM_PACKAGES
+            | set(packages("distro/packages/calamares/build-packages.x86_64"))
+            | set(packages("distro/packages/distroctl/build-packages.x86_64")) | set(graphics) | set(gaming) | {"archiso", "rust"}) - CUSTOM_PACKAGES
 
 
 def check_archive(destination):
@@ -160,7 +171,7 @@ def check_archive(destination):
     for name, version in lock["direct_packages"].items():
         if found.get(name) != version:
             raise ValueError(f"version mismatch: {name}")
-    print(f"Verified both database hashes and {len(upstream_packages())} upstream package names.")
+    print(f"Verified {len(lock['databases'])} database hashes and {len(upstream_packages())} upstream package names.")
     return lock["databases"]
 
 
@@ -178,7 +189,33 @@ def pinned_archive_config(config, directory):
                           f"CacheServer = {server}\nServer = {directory.as_uri()}")
 
 
-def create_profile(out, repo, fingerprint):
+def stage_live_databases(profile, archive, repo, hashes, epoch):
+    # ArchISO removes sync databases before compression. Keep verified public bytes
+    # outside airootfs so its existing compressor wrapper can restore them afterward.
+    if set(hashes) != {"core", "extra", "multilib"}:
+        raise ValueError("live metadata requires the complete approved archive")
+    verify_archive_files(archive, hashes)
+    target = profile / "pacman-sync"
+    target.mkdir(mode=0o755)
+    sources = {f"{name}.db": (archive / f"{name}.db", digest_value) for name, digest_value in hashes.items()}
+    for name in ["distro.db", "distro.db.sig"]:
+        sources[name] = (repo / name, digest(repo / name))
+    checks = []
+    for name, (source, expected) in sorted(sources.items()):
+        shutil.copyfile(source, target / name)
+        if digest(target / name) != expected:
+            raise ValueError(f"live repository metadata changed while staging: {name}")
+        (target / name).chmod(0o444)
+        os.utime(target / name, (epoch, epoch))
+        checks.append(f"{expected}  {name}\n")
+    write(target / "SHA256SUMS", "".join(checks))
+    (target / "SHA256SUMS").chmod(0o444)
+    os.utime(target / "SHA256SUMS", (epoch, epoch))
+    target.chmod(0o755)
+    os.utime(target, (epoch, epoch))
+
+
+def create_profile(out, repo, fingerprint, archive_hashes):
     data = project()
     repo = repo.resolve(strict=True)
     if not re.fullmatch(r"[A-F0-9]{40}", fingerprint):
@@ -216,6 +253,7 @@ def create_profile(out, repo, fingerprint):
     for template in sorted(profile.rglob("*.in")):
         write(template.with_suffix(""), render(template.read_text(), values))
         template.unlink()
+    stage_live_databases(profile, out / "archive", repo, archive_hashes, values["EPOCH"])
     root = profile / "airootfs"
     shutil.copytree(repo, root / "opt/distro/repo", symlinks=False)
     write(root / "usr/share/distro/repository-key.asc", (repo / "repository-key.asc").read_text())
@@ -248,7 +286,9 @@ def create_profile(out, repo, fingerprint):
     return profile
 
 
-def build_iso(output, repo, fingerprint):
+def build_iso(output, repo, fingerprint, graphics=(), gaming=()):
+    installer.graphics_packages(graphics)  # Validate selection before any build side effects.
+    installer.gaming_packages(gaming)
     data = project()
     if sys.platform != "linux" or platform.machine() != "x86_64":
         raise ValueError("ISO builds require an x86_64 Arch Linux builder; see docs/building.md")
@@ -262,12 +302,14 @@ def build_iso(output, repo, fingerprint):
         raise ValueError(f"archiso version must be {data['build']['archiso_version']}, got {version}")
     out = new_directory(output)
     archive_hashes = check_archive(out / "archive")
-    profile = create_profile(out, repo, fingerprint)
+    profile = create_profile(out, repo, fingerprint, archive_hashes)
     env = dict(os.environ, SOURCE_DATE_EPOCH=str(data["build"]["source_date_epoch"]), TZ="UTC", LC_ALL="C")
     values = dict(ID=data["identity"]["id"], NAME=data["identity"]["name"], VERSION=data["identity"]["version"],
                   ARCHIVE=data["build"]["archive_date"], EPOCH=data["build"]["source_date_epoch"], FINGERPRINT=fingerprint)
     verify_archive_files(out / "archive", archive_hashes)
-    installer.build_payload(out, profile, values, lambda *a, **kw: run(*a, env=env, **kw), write, render)
+    run(sys.executable, ROOT / "scripts/gaming_catalog.py", "--databases", out / "archive")
+    run(sys.executable, ROOT / "scripts/check-graphics-packages.py", out / "archive")
+    installer.build_payload(out, profile, values, lambda *a, **kw: run(*a, env=env, **kw), write, render, graphics, gaming)
     verify_archive_files(out / "archive", archive_hashes)
     run("mkarchiso", "-v", "-w", out / "work", "-o", out / "iso", profile, env=env)
     with (out / "builder-packages.txt").open("w") as builder_log:
@@ -275,9 +317,9 @@ def build_iso(output, repo, fingerprint):
     with (out / "image-packages.txt").open("w") as image_log:
         run("pacman", "--root", out / "work/x86_64/airootfs", "-Q", stdout=image_log)
     write(out / "inputs.json", json.dumps({"project": data, "repository_key": fingerprint,
-          "archive_databases": archive_hashes,
+          "archive_databases": archive_hashes, "graphics_bundles": sorted(set(graphics)), "gaming_features": sorted(set(gaming)),
           "repository": {p.name: digest(p) for p in sorted(repo.iterdir()) if p.is_file()},
-          "sources": {p.relative_to(ROOT).as_posix(): digest(p) for folder in ["crates", "distro", "scripts"]
+          "sources": {p.relative_to(ROOT).as_posix(): digest(p) for folder in ["crates", "distro", "scripts", "apps"]
                       for p in sorted((ROOT / folder).rglob("*")) if p.is_file() and "__pycache__" not in p.parts},
           "cargo_lock_sha256": digest(ROOT / "Cargo.lock")}, indent=2) + "\n")
     write(out / "iso/SHA256SUMS", "".join(f"{digest(p)}  {p.name}\n" for p in sorted((out / "iso").glob("*.iso"))))
@@ -295,6 +337,10 @@ def main():
     iso.add_argument("--output", type=Path, required=True)
     iso.add_argument("--repo", type=Path, required=True)
     iso.add_argument("--fingerprint", required=True)
+    iso.add_argument("--graphics", nargs="*", default=[], choices=["amd", "intel", "nouveau", "virtio", "software"],
+                     help="explicit installed-image graphics bundles, including their 32-bit ICDs")
+    iso.add_argument("--gaming", nargs="*", default=[], choices=["core", "tools", "gamescope", "mangohud", "gamemode", "lutris", "streaming"],
+                     help="explicit installed-image gaming features; optional tools are separate from core")
     args = parser.parse_args()
     try:
         if args.command == "package":
@@ -306,7 +352,7 @@ def main():
                 with tempfile.TemporaryDirectory() as temp:
                     check_archive(Path(temp) / "archive")
         else:
-            build_iso(args.output, args.repo, args.fingerprint)
+            build_iso(args.output, args.repo, args.fingerprint, args.graphics, args.gaming)
     except (ValueError, OSError, KeyError, subprocess.SubprocessError, tarfile.TarError) as error:
         parser.exit(1, f"bootstrap: {error}\n")
 

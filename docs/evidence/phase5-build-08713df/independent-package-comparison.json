@@ -1,0 +1,23 @@
+{
+  "source_commit": "08713dfa7f2096217710ef4f6311e2d6bb264db5",
+  "independent_builder_vms": {
+    "A": "vm-675b0245f2d0430ebfb3a49fa4cc84b8",
+    "B": "vm-566ea9de35f94e22a81b805620a8d67b"
+  },
+  "all_package_bytes_equal": true,
+  "A": {
+    "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": "6a29f4a01826c8df58c6f051931719fc5851cd6a704a9a172adeeadc836bbebc",
+    "calamares-3.4.3-1-x86_64.pkg.tar.zst": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+    "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+    "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": "ced9ee64260243e0c585370c7408455ee749a4492b30a8ced8afd546454527b1",
+    "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": "dd7a4d5e7a3025ef637f650547fdf8e32279aeca7fe69b5576e9d0d9c57700d2"
+  },
+  "B": {
+    "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": "6a29f4a01826c8df58c6f051931719fc5851cd6a704a9a172adeeadc836bbebc",
+    "calamares-3.4.3-1-x86_64.pkg.tar.zst": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+    "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+    "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": "ced9ee64260243e0c585370c7408455ee749a4492b30a8ced8afd546454527b1",
+    "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": "dd7a4d5e7a3025ef637f650547fdf8e32279aeca7fe69b5576e9d0d9c57700d2"
+  },
+  "ISO_byte_comparison_pending": true
+}

@@ -1,0 +1,10 @@
+{
+  "source_commit": "0e8bb00e3edc5382fa177bf0017b2f8595ee8229",
+  "path": "C:\\Users\\Noel\\.codex\\worktrees\\phase4-system-management\\operating-system\\out\\phase42-cloud\\source-0e8bb00e3edc.tar.xz",
+  "bytes": 4991208,
+  "sha256": "f0d5c0019f5e9962506dbcc7359cdc2d98ae4d143528d1ede8943238ea83b0d4",
+  "archive_from_immutable_git_object_only": true,
+  "working_tree_changes_not_included": [
+    " M docs/phase42-acceptance.md"
+  ]
+}

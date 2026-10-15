@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T11:52:46.044308+00:00",
+  "request": "0017.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"cancelled_authentication_did_not_submit\": true, \"kcalc_absent\": true, \"history_records\": 1, \"native_lock_passive_completed\": {\"created_unix_seconds\": 1792064882, \"elapsed_seconds\": 60.01052247, \"failure\": null, \"id\": \"39ade36a1dd5717b0bb16e09c5b862fe\", \"kind\": \"record\", \"state\": \"completed\"}}\n",
+    "id": "b65d84f770e3484595a5aaa8bc3c2d29",
+    "boot_id": "3e040876-db94-475a-996e-db107de00dec"
+  },
+  "finished": "2026-10-15T11:52:46.354425+00:00"
+}

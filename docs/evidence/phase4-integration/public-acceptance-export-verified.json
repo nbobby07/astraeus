@@ -1,0 +1,9 @@
+{
+  "mode": "public",
+  "archive": "D:\\Astraeus-Phase4-Integration-Evidence\\acceptance-public.tar.gz",
+  "sha256": "5fdf3389c2b6f3445f4ae75f43924ccb912ad91e11febf3cd6217d193f999f04",
+  "bytes": 792776880,
+  "payload_members_verified": 3234,
+  "extracted": "D:\\Astraeus-Phase4-Integration-Evidence\\public",
+  "verified": true
+}

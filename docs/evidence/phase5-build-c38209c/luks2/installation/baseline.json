@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "kind": "phase42-fresh-candidate-payload",
+  "accepted": true,
+  "method": "candidate-payload-and-production-provision",
+  "calamares_ui": false,
+  "encryption": "LUKS2",
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "inputs": {
+    "source_commits": [
+      "c38209c523e308d23ff622b32d9cd0ed42682962"
+    ],
+    "iso": {
+      "path": "/home/ubuntu/p50/candidate-c38209c523e3-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "sha256": "174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c"
+    },
+    "ovmf_code": {
+      "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+      "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+    },
+    "setup_ovmf_code": {
+      "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+      "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+    },
+    "pristine_ovmf_vars": {
+      "path": "/usr/share/OVMF/OVMF_VARS_4M.fd",
+      "sha256": "5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e"
+    }
+  },
+  "signer_sha256": "99e49aac780b22e785f2eb7a73f8ad0d42e6e508fbbd4853a72c9c43d13de2ba",
+  "public_fingerprints": {
+    "PK": "a177a35203e3e97a6a26337270e12289bbb2407686e467d71b05c407c445e806",
+    "KEK": "7ff7dccf53c95339f7d10f97b8a29dc1126b291c7426c9e71c75cb464fde4f89",
+    "db": "99e49aac780b22e785f2eb7a73f8ad0d42e6e508fbbd4853a72c9c43d13de2ba"
+  },
+  "boot_ids": [
+    "ab3ae4a1-274d-4f3f-a3ef-6f55facd60ed",
+    "06e2e11c-9aac-4c2a-b937-13269ed887c1"
+  ],
+  "created": "2026-10-15T10:57:24.482768+00:00",
+  "preexisting_application": {
+    "name": "tree",
+    "version": "2.3.2-1",
+    "reason": "explicit",
+    "unmanaged": true,
+    "installed_before_initial_signing": true,
+    "management_sha256": {
+      "etc/astraeus/system.toml": "08920fb9f95ed219b631340b947b149ee8acc4c89bfd54f3c53c4f940a80fff3",
+      "var/lib/astraeus/management/state.json": "7df13fe03e23776df1925c60b09bc1822363b0ebb3ea3490567977a82909171a",
+      "var/lib/astraeus/management/system.lock": "a9b8157b31fc109c4c92c0fac9148bc0fd507ca2f05862f6fe63eb0e055ae763"
+    }
+  },
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "installed_binaries": {
+    "distroctl": "626dd8d916293ba3d587bd04e58665feb69d2bbd6149ce0eea8803e16d7738a2",
+    "astraeus-control-center": "3382576d5a609f4ae7df0a36dc646b835ab6b529936dd29f0c45cbc645f8b757"
+  },
+  "sha256": {
+    "disk.qcow2": "510e0359f18a7d71e7dda5426cfd654886827ce310baa48647e8782f16d092bf",
+    "vars.fd": "88aedf926b17a62a4c18a8049497834af6499303b92044b1d701cc8c58003f52"
+  }
+}

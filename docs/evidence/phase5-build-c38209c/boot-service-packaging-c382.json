@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "package_sha256": "b32cd21d92141964ff7e1d67b3ea98da3e04279c9b018c878947168e8155db19",
+  "package_identity_verified": true,
+  "files": {
+    "usr/lib/systemd/system/astraeus-confirm-boot.service": {
+      "sha256": "0ff896721966a7c3d93c6e93c28a1b83abec9919aa692592b87eafd3a30c8a4a",
+      "source_path": "distro/installed/astraeus-confirm-boot.service",
+      "source_sha256": "0ff896721966a7c3d93c6e93c28a1b83abec9919aa692592b87eafd3a30c8a4a",
+      "bytes": 472
+    },
+    "usr/lib/systemd/system/systemd-bless-boot.service.d/astraeus.conf": {
+      "sha256": "c32e6829bdae169762a7f0831d7a10db0b1a041d73c83070fe5918e4ad1bbd43",
+      "source_path": "distro/installed/astraeus-bless-boot.conf",
+      "source_sha256": "c32e6829bdae169762a7f0831d7a10db0b1a041d73c83070fe5918e4ad1bbd43",
+      "bytes": 323
+    }
+  },
+  "installed_boot_acceptance_complete": false
+}

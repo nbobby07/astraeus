@@ -1,0 +1,7 @@
+{
+  "code": 0,
+  "error": null,
+  "output": "{\"trees\": {\"/etc/pacman.d/gnupg\": {\"files\": 10, \"sha256\": \"f223ad2d53b32df395dffe44171f1453b89d4542a6678e60acb00e27fbaf1221\"}, \"/var/lib/pacman/local\": {\"files\": 2447, \"sha256\": \"5e0af66d1deb99fec82e653b7f6c2a6132fe4f90a879508fb37b4072cd55c8f6\"}, \"/var/lib/pacman/sync\": {\"files\": 5, \"sha256\": \"518d7b352f3ca3e97c5cc466c02574589b0b4215180fddad88ebc2040dc7ff3b\"}}, \"files\": {\"/etc/pacman.conf\": \"dc3dfff693a85f8fc5d7bb9214fe584fbc15d89228df65764f9ab9355d30cf95\", \"/var/lib/pacman/sync/distro.db\": \"7f3515f1cdc3453ed606340f2ac0715faf0e327898e9b51de1f7ec5d975d6dca\", \"/var/lib/pacman/sync/distro.db.sig\": \"653c7fa82350d712a1e47bc4ce582061a21d81d055a561874d7cd9ff5777b16e\", \"/usr/bin/distroctl\": \"19f5474c80db3a7a50c2d92cf50d725f562a39bd7d772139e9462219da12af73\"}}\n",
+  "id": "5348e554afed4c1a8333b62aff3d0007",
+  "boot_id": "b87b8a1e-d250-4645-b6ab-4f5b8af4896a"
+}

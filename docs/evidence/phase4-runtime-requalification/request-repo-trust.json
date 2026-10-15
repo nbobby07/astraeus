@@ -1,0 +1,17 @@
+{
+  "started": "2026-10-11T04:25:01.686466+00:00",
+  "request": {
+    "action": "command",
+    "label": "existing-repository-trust",
+    "command": "pacman-key --finger D1C5011CA247200E6194FE0E33784DB62DDE4F5F; sha256sum /etc/pacman.conf /var/lib/pacman/sync/distro.db /var/lib/pacman/sync/distro.db.sig; cat /etc/pacman.conf",
+    "timeout": 30
+  },
+  "reply": {
+    "code": 0,
+    "error": null,
+    "output": "pub   ed25519 2026-10-09 [SC] [expired: 2026-10-10]\n      D1C5 011C A247 200E 6194  FE0E 3378 4DB6 2DDE 4F5F\nuid           [ expired] Phase 0 disposable package signing\n\ndc3dfff693a85f8fc5d7bb9214fe584fbc15d89228df65764f9ab9355d30cf95  /etc/pacman.conf\n7f3515f1cdc3453ed606340f2ac0715faf0e327898e9b51de1f7ec5d975d6dca  /var/lib/pacman/sync/distro.db\n653c7fa82350d712a1e47bc4ce582061a21d81d055a561874d7cd9ff5777b16e  /var/lib/pacman/sync/distro.db.sig\n[options]\nArchitecture = x86_64\nCheckSpace\nSigLevel = Required DatabaseOptional\nLocalFileSigLevel = Required\nGPGDir = /etc/pacman.d/gnupg\n\n# Curated packages take precedence. Both package and database signatures required.\n[distro]\nSigLevel = Required DatabaseRequired\nServer = file:///var/lib/astraeus-validation/repo\n\n[core]\nServer = https://archive.archlinux.org/repos/2026/10/01/$repo/os/$arch\n\n[extra]\nServer = https://archive.archlinux.org/repos/2026/10/01/$repo/os/$arch\n\n[multilib]\nServer = https://archive.archlinux.org/repos/2026/10/01/$repo/os/$arch\n",
+    "id": "35f857e53ed443279b9467a622eaa8f6",
+    "boot_id": "4305638a-760e-447a-b8c0-9e1a10424402"
+  },
+  "finished": "2026-10-11T04:25:01.822967+00:00"
+}

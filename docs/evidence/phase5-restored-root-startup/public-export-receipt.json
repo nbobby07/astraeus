@@ -1,0 +1,9 @@
+{
+  "path": "/home/ubuntu/p50/failed-awaiting-restore-public.tar.gz",
+  "bytes": 5319222,
+  "sha256": "ad9f10713ee24c1c268409ec0d2e5834fa1f27fbec095fa4a80f068d8b023212",
+  "files": 417,
+  "failure": "RuntimeError: automatic restored-root boot service did not succeed: systemd-bless-boot.service",
+  "source_commit": "08713dfa7f2096217710ef4f6311e2d6bb264db5",
+  "candidate_accepted": false
+}

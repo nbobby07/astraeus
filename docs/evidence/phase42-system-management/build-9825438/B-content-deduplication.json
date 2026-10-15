@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-14T07:20:23.038294+00:00",
+  "method": "readonly local hardlink after independent remote full-file equality",
+  "source_local": "D:\\Astraeus-Phase42-System-Management\\candidate-9825438\\astraeus-dev-0.1.0-dev-x86_64-A.iso",
+  "target_local": "D:\\Astraeus-Phase42-System-Management\\candidate-9825438\\astraeus-dev-0.1.0-dev-x86_64-B.iso",
+  "sha256": "558475af3eb219277786ded7379e1c80a12557064b2e26e245648f355011bb16",
+  "bytes": 3645478912,
+  "remote_b_iso": "/home/ubuntu/p42/candidate-9825438d275c-r1/share/evidence/B/astraeus-dev-0.1.0-dev-x86_64.iso",
+  "remote_cmp_exit_code": 0,
+  "independent_package_bytes_equal": true,
+  "comparison_sha256": "0af85f99c0d633791e646590bccb1f85142cfd216e3e28c08be69778cce0c055",
+  "limitation": "B was independently built and compared remotely. Its identical content was deduplicated locally, not downloaded again."
+}

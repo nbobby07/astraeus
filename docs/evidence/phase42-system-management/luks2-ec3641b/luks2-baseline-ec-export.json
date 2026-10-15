@@ -1,0 +1,8 @@
+{
+  "archive": "/home/ubuntu/p42/luks2-baseline-ec-evidence.tar.gz",
+  "bytes": 1484762,
+  "sha256": "bcaeb44234320cf9d6e57ca7100b753d2aa1b507c85c94be6f49715ff048c336",
+  "files": 132,
+  "private_keys_and_credentials_excluded": true,
+  "base_disks_retained_for_remaining_tests": true
+}

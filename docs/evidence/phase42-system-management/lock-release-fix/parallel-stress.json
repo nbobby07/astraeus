@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "parallel_transactions_runs": 30,
+  "threads_per_run": 16,
+  "passed": true,
+  "scope": "Complete native transaction unit suite including the real child-process image-seeding test; privileged signed-package fixture remains separately ignored"
+}

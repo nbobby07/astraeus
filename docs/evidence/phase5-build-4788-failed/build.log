@@ -1,0 +1,1838 @@
+b0d7419f93d31f2afd03c1f83028d591e7e467e027dde93c9327168208af89de  /mnt/phase0/source.tar.xz
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0100 126.8k 100 126.8k   0      0 130.0k      0                              0100 126.8k 100 126.8k   0      0 130.0k      0                              0100 126.8k 100 126.8k   0      0 130.0k      0                              0
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  9  8.46M   9 815.9k   0      0 592.9k      0   00:14   00:01   00:13 769.9k100  8.46M 100  8.46M   0      0  4.47M      0   00:01   00:01         769.9k100  8.46M 100  8.46M   0      0  4.47M      0   00:01   00:01         769.9k100  8.46M 100  8.46M   0      0  4.47M      0   00:01   00:01         769.9k
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0100  85703 100  85703   0      0 102.2k      0                              0100  85703 100  85703   0      0 102.2k      0                              0100  85703 100  85703   0      0 102.1k      0                              0
+Verified 3 database hashes and 118 upstream package names.
+==> Appending keys from archlinux.gpg...
+==> Updating trust database...
+gpg: next trustdb check due at 2026-10-26
+:: Synchronizing package databases...
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0
+curl: (37) Could not open file /build/archive/core.db.sig
+Warning: Problem (retrying all errors). Retrying in 1 second. 3 retries left.
+curl: (37) Could not open file /build/archive/core.db.sig
+Warning: Problem (retrying all errors). Retrying in 2 seconds. 2 retries left.
+curl: (37) Could not open file /build/archive/core.db.sig
+Warning: Problem (retrying all errors). Retrying in 4 seconds. 1 retry left.
+curl: (37) Could not open file /build/archive/core.db.sig
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0
+curl: (37) Could not open file /build/archive/extra.db.sig
+Warning: Problem (retrying all errors). Retrying in 1 second. 3 retries left.
+curl: (37) Could not open file /build/archive/extra.db.sig
+Warning: Problem (retrying all errors). Retrying in 2 seconds. 2 retries left.
+curl: (37) Could not open file /build/archive/extra.db.sig
+Warning: Problem (retrying all errors). Retrying in 4 seconds. 1 retry left.
+curl: (37) Could not open file /build/archive/extra.db.sig
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0
+curl: (37) Could not open file /build/archive/multilib.db.sig
+Warning: Problem (retrying all errors). Retrying in 1 second. 3 retries left.
+curl: (37) Could not open file /build/archive/multilib.db.sig
+Warning: Problem (retrying all errors). Retrying in 2 seconds. 2 retries left.
+curl: (37) Could not open file /build/archive/multilib.db.sig
+Warning: Problem (retrying all errors). Retrying in 4 seconds. 1 retry left.
+curl: (37) Could not open file /build/archive/multilib.db.sig
+warning: python-3.14.7-1 is up to date -- skipping
+warning: gnupg-2.4.9-3 is up to date -- skipping
+:: Starting full system upgrade...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (56) arch-install-scripts-31-2  autoconf-2.73-1  automake-1.19-1  bison-3.8.2-8  boost-libs-1.92.0-1  compiler-rt-23.1.1-1  cpio-2.15-3  db5.3-5.3.28-7  debugedit-5.3-2  elfutils-0.196-1  erofs-utils-1.9.4-1  fakeroot-1:1.37.2-3  flex-2.6.4-6  gc-8.2.12-1  gcc-16.2.1+r23+gd564253eb6c8-1  gdb-18.1-1  gdb-common-18.1-1  groff-1.24.1-1  guile-3.0.11-1  libburn-1.5.8-1  libdeflate-1.26-1  libgit2-1:1.9.7-1  libisl-0.28-1  libisoburn-1.5.8.2-1  libisofs-1.5.8.2-1  libmpc-1.4.1-1  libtool-2.6.2-5  lld-23.1.1-1  llhttp-9.3.1-1  llvm-libs-23.1.1-1  m4-1.4.21-2  make-4.4.1-3  mtools-1:4.0.49-1  patch-2.8-1  perl-5.42.2-2  perl-error-0.17030-3  perl-mailtools-2.22-3  perl-timedate-2.35-1  pkgconf-3.0.7-1  python-cffi-2.1.1-1  python-cryptography-50.0.2-1  python-pefile-2024.8.26-2  python-pycparser-3.00-1  source-highlight-3.1.9-19  squashfs-tools-4.7.5-1  texinfo-7.3-1  which-2.25-1  xxhash-0.8.4-1  zlib-ng-2.3.3-1  archiso-91-1  base-devel-1-2  efitools-1.9.2-7  git-2.56.0-1  rust-1:1.98.1-2  sbsigntools-0.9.5-4  systemd-ukify-262-1
+
+Total Installed Size:  1071.58 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing m4...
+installing db5.3...
+installing perl...
+installing autoconf...
+installing automake...
+installing bison...
+installing xxhash...
+installing cpio...
+installing elfutils...
+installing boost-libs...
+Optional dependencies for boost-libs
+    openmpi: for mpi support
+installing gc...
+installing guile...
+installing gdb-common...
+installing source-highlight...
+Optional dependencies for source-highlight
+    lesspipe: src-hilite-lesspipe.sh
+installing gdb...
+installing debugedit...
+installing fakeroot...
+installing flex...
+installing libisl...
+installing libmpc...
+installing gcc...
+Optional dependencies for gcc
+    lib32-gcc-libs: for generating code for 32-bit ABI
+installing groff...
+Optional dependencies for groff
+    netpbm: for use together with man -H command interaction in browsers
+    psutils: for use together with man -H command interaction in browsers
+    libxaw: for gxditview
+    perl-file-homedir: for use with glilypond
+installing libtool...
+installing make...
+installing patch...
+Optional dependencies for patch
+    ed: for patch -e functionality
+installing pkgconf...
+installing texinfo...
+Optional dependencies for texinfo
+    perl-archive-zip: EPUB file output via texi2any
+installing which...
+installing base-devel...
+installing arch-install-scripts...
+installing libdeflate...
+installing erofs-utils...
+Optional dependencies for erofs-utils
+    erofsfuse: for FUSE file system client
+installing libburn...
+installing libisofs...
+installing libisoburn...
+Optional dependencies for libisoburn
+    tk: for xorriso-tcltk frontend
+    sudo: for use with xorriso-dd-target [installed]
+installing mtools...
+Optional dependencies for mtools
+    libx11: required by floppyd
+    libxau: required by floppyd
+installing squashfs-tools...
+installing archiso...
+Optional dependencies for archiso
+    edk2-ovmf: for emulating UEFI with run_archiso
+    gnupg: for OpenPGP signature verification of rootfs over PXE [installed]
+    grub: for grub support in the ISO [installed]
+    openssl: for CMS signature verification of PXE artifacts and rootfs over PXE [installed]
+    qemu-desktop: for run_archiso
+installing compiler-rt...
+installing llvm-libs...
+installing lld...
+installing llhttp...
+installing libgit2...
+installing rust...
+Optional dependencies for rust
+    gdb: rust-gdb script [installed]
+    lldb: rust-lldb script
+installing perl-error...
+installing perl-timedate...
+installing perl-mailtools...
+installing zlib-ng...
+installing git...
+Optional dependencies for git
+    git-zsh-completion: upstream zsh completion
+    tk: gitk and git gui
+    openssh: ssh transport and crypto [installed]
+    man: show help with `git command --help`
+    perl-libwww: git svn
+    perl-term-readkey: git svn and interactive.singlekey setting
+    perl-io-socket-ssl: git send-email TLS support
+    perl-authen-sasl: git send-email TLS support
+    perl-cgi: gitweb (web interface) support
+    python: git svn & git p4 [installed]
+    subversion: git svn
+    org.freedesktop.secrets: keyring credential helper
+    libsecret: libsecret credential helper [installed]
+    less: the default pager for git
+installing python-pycparser...
+installing python-cffi...
+Optional dependencies for python-cffi
+    python-setuptools: "limited api" version checking in cffi.setuptools_ext
+installing python-cryptography...
+installing python-pefile...
+installing systemd-ukify...
+Optional dependencies for systemd-ukify
+    python-pillow: Show the size of splash image
+    sbsigntools: Sign the embedded kernel [pending]
+installing sbsigntools...
+installing efitools...
+:: Running post-transaction hooks...
+(1/6) Configuring dynamic linker run-time bindings...
+(2/6) Creating system user accounts...
+Creating group 'git' with GID 969.
+Creating user 'git' (git daemon user) with UID 969 and GID 969.
+(3/6) Reloading system manager configuration...
+(4/6) Arming ConditionNeedsUpdate...
+(5/6) Checking for old perl modules...
+(6/6) Updating the info directory file...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (3) lib32-gcc-libs-16.2.1+r23+gd564253eb6c8-1  lib32-glibc-2.44+r50+g1848099f063e-1  vulkan-headers-1:1.4.357.0-1
+
+Total Installed Size:  104.32 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing lib32-glibc...
+installing lib32-gcc-libs...
+installing vulkan-headers...
+Optional dependencies for vulkan-headers
+    python: Registry tools [installed]
+:: Running post-transaction hooks...
+(1/3) Configuring dynamic linker run-time bindings...
+(2/3) Creating 32bit iconv module configuration cache...
+(3/3) Arming ConditionNeedsUpdate...
+warning: python-3.14.7-1 is up to date -- skipping
+warning: squashfs-tools-4.7.5-1 is up to date -- skipping
+warning: arch-install-scripts-31-2 is up to date -- skipping
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (84) avahi-1:0.9rc5-1  cppdap-1.58.0-3  cracklib-2.10.3-1  default-cursors-3-1  double-conversion-3.4.0-1  duktape-2.7.0-7  fontconfig-2:2.18.3-2  freetype2-2.14.3-1  graphite-1:1.3.15-1  gumbo-parser-0.13.2-1  harfbuzz-14.5.0-1  hicolor-icon-theme-0.18-1  iso-codes-4.20.1-1  jsoncpp-1.9.8-1  kwidgetsaddons-6.30.0-1  libb2-0.98.1-3  libcups-2:2.4.19-1  libdaemon-0.14-6  libdrm-2.4.134-1  libevdev-1.13.7-1  libglvnd-1.7.0-3  libgudev-238-3  libice-1.1.2-1  libinput-1.32.0-1  libjpeg-turbo-3.2.0-2  libpciaccess-0.19-1  libpng-1.6.59-1  libproxy-0.5.12-1  libsm-1.2.6-1  libuv-1.52.1-2  libwacom-2.20.0-1  libx11-1.8.13-1  libxau-1.0.12-1  libxcb-1.17.0-1  libxdmcp-1.1.5-2  libxext-1.3.7-1  libxkbcommon-1.13.2-1  libxkbcommon-x11-1.13.2-1  libxshmfence-1.3.3-1  libxxf86vm-1.1.7-1  litehtml-0.10-1  lm_sensors-1:3.6.2-1  lua54-5.4.9-1  md4c-0.5.3-1  mesa-1:26.2.3-2  mtdev-1.1.7-1  polkit-127-3  qt6-base-6.11.2-3  qt6-shadertools-6.11.2-1  qt6-translations-6.11.2-1  rhash-1.4.6-1  shared-mime-info-2.5.1-2  smartmontools-7.5-1  spirv-tools-1:1.4.357.0-1  tslib-1.24-1  wayland-1.26.0-1  xcb-proto-1.17.0-4  xcb-util-0.4.1-2  xcb-util-cursor-0.1.6-1  xcb-util-image-0.4.1-3  xcb-util-keysyms-0.4.1-5  xcb-util-renderutil-0.3.10-2  xcb-util-wm-0.4.2-2  xdg-utils-1.2.1-2  xkeyboard-config-2.48-1  xorgproto-2025.1-1  cmake-4.4.3-2  extra-cmake-modules-6.30.0-1  kconfig-6.30.0-1  kcoreaddons-6.30.0-1  kcrash-6.30.0-1  ki18n-6.30.0-1  kpmcore-26.08.1-1  kservice-6.30.0-1  libpwquality-1.4.5-7  ninja-1.13.2-3  parted-3.8-1  polkit-qt6-0.201.1-1  qt6-5compat-6.11.2-1  qt6-declarative-6.11.2-2  qt6-svg-6.11.2-1  qt6-tools-6.11.2-2  rsync-3.5.1-1  yaml-cpp-0.9.0-1
+
+Total Installed Size:  536.01 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing cppdap...
+installing hicolor-icon-theme...
+installing jsoncpp...
+Optional dependencies for jsoncpp
+    jsoncpp-doc: documentation
+installing libuv...
+installing rhash...
+installing cmake...
+Optional dependencies for cmake
+    make: for unix Makefile generator [installed]
+    ninja: for ninja generator [pending]
+    qt6-base: cmake-gui [pending]
+installing extra-cmake-modules...
+Optional dependencies for extra-cmake-modules
+    python-pyxdg: to generate fastlane metadata for Android apps
+    python-requests: to generate fastlane metadata for Android apps [installed]
+    python-yaml: to generate fastlane metadata for Android apps [installed]
+installing gumbo-parser...
+installing litehtml...
+installing double-conversion...
+installing libpng...
+installing freetype2...
+Optional dependencies for freetype2
+    harfbuzz: Improved autohinting [pending]
+installing fontconfig...
+Creating fontconfig configuration...
+Rebuilding fontconfig cache...
+installing graphite...
+Optional dependencies for graphite
+    graphite-docs: Documentation
+installing harfbuzz...
+Optional dependencies for harfbuzz
+    harfbuzz-utils: utilities
+installing libb2...
+installing libdaemon...
+installing avahi...
+Optional dependencies for avahi
+    gtk3: avahi-discover, avahi-discover-standalone, bshell, bssh, bvnc
+    libevent: libevent bindings [installed]
+    nss-mdns: NSS support for mDNS
+    python-dbus: avahi-bookmarks, avahi-discover
+    python-gobject: avahi-bookmarks, avahi-discover
+    python-twisted: avahi-bookmarks
+installing libcups...
+installing libpciaccess...
+installing libdrm...
+Optional dependencies for libdrm
+    cairo: needed for modetest tool
+installing xcb-proto...
+installing xorgproto...
+installing libxdmcp...
+installing libxau...
+installing libxcb...
+installing libx11...
+installing libxext...
+installing libxshmfence...
+installing libxxf86vm...
+installing lm_sensors...
+Optional dependencies for lm_sensors
+    rrdtool: for logging with sensord
+    perl: for sensor detection and configuration convert [installed]
+installing spirv-tools...
+installing default-cursors...
+Optional dependencies for default-cursors
+    adwaita-cursors: default cursor theme
+installing wayland...
+installing mesa...
+Optional dependencies for mesa
+    opengl-man-pages: for the OpenGL API man pages
+installing libglvnd...
+installing libice...
+installing libevdev...
+installing libgudev...
+installing libwacom...
+Optional dependencies for libwacom
+    python-libevdev: for libwacom-show-stylus
+    python-pyudev: for libwacom-show-stylus
+installing lua54...
+installing mtdev...
+installing libinput...
+Optional dependencies for libinput
+    libinput-tools: debug utilities
+installing libjpeg-turbo...
+installing duktape...
+installing libproxy...
+installing libsm...
+installing xkeyboard-config...
+installing libxkbcommon...
+Optional dependencies for libxkbcommon
+    libxkbcommon-x11: xkbcli interactive-x11 [pending]
+    wayland: xkbcli interactive-wayland [installed]
+installing libxkbcommon-x11...
+installing md4c...
+installing shared-mime-info...
+installing tslib...
+installing xcb-util-renderutil...
+installing xcb-util...
+installing xcb-util-image...
+installing xcb-util-cursor...
+installing xcb-util-keysyms...
+installing xcb-util-wm...
+installing xdg-utils...
+Optional dependencies for xdg-utils
+    kde-cli-tools: for KDE Plasma5 support in xdg-open
+    exo: for Xfce support in xdg-open
+    pcmanfm: for LXDE support in xdg-open
+    perl-file-mimeinfo: for generic support in xdg-open
+    perl-net-dbus: Perl extension to dbus used in xdg-screensaver
+    perl-x11-protocol: Perl X11 protocol used in xdg-screensaver
+    xorg-xset: for X11 support in xdg-screensaver
+    xorg-xprop: for X11 support in xdg-screensaver
+installing qt6-translations...
+installing qt6-base...
+Optional dependencies for qt6-base
+    freetds: MS SQL driver
+    gdk-pixbuf2: GTK platform plugin
+    gtk3: GTK platform plugin
+    libfbclient: Firebird/iBase driver
+    mariadb-libs: MariaDB driver
+    pango: GTK platform plugin
+    perl: for syncqt [installed]
+    postgresql-libs: PostgreSQL driver
+    unixodbc: ODBC driver
+installing qt6-tools...
+Optional dependencies for qt6-tools
+    clang: for qdoc and lupdate
+    qt6-declarative: for qdistancefieldgenerator, qdoc and lupdate [pending]
+installing ninja...
+installing kcoreaddons...
+Optional dependencies for kcoreaddons
+    pyside6: Python bindings
+    qt6-declarative: QML bindings [pending]
+installing iso-codes...
+installing ki18n...
+Optional dependencies for ki18n
+    python: to compile .ts files [installed]
+    qt6-declarative: ktranscript plugin and QML bindings [pending]
+installing kwidgetsaddons...
+Optional dependencies for kwidgetsaddons
+    pyside6: Python bindings
+installing polkit...
+installing polkit-qt6...
+installing smartmontools...
+Optional dependencies for smartmontools
+    s-nail: to get mail alerts to work
+installing kpmcore...
+Optional dependencies for kpmcore
+    bcachefs-tools: BCacheFS support
+    dosfstools: FAT32 support [installed]
+    e2fsprogs: ext2/3/4 support [installed]
+    exfat-utils: exFAT support
+    exfatprogs: exFAT support (alternative to exfat-utils)
+    f2fs-tools: F2FS support
+    fatresize: FAT resize support
+    jfsutils: JFS support
+    nilfs-utils: nilfs support
+    ntfsprogs: NTFS support
+    udftools: UDF support
+    xfsprogs: XFS support
+installing yaml-cpp...
+installing qt6-svg...
+installing qt6-declarative...
+Optional dependencies for qt6-declarative
+    qt6-svg: for QtQuickVectorImage and svgtoqml [installed]
+installing qt6-shadertools...
+installing qt6-5compat...
+Optional dependencies for qt6-5compat
+    qt6-declarative: for QtGraphicalEffects [installed]
+installing kconfig...
+installing kservice...
+installing kcrash...
+Optional dependencies for kcrash
+    drkonqi: KDE crash handler application
+installing cracklib...
+installing libpwquality...
+Optional dependencies for libpwquality
+    python: Python bindings [installed]
+installing rsync...
+Optional dependencies for rsync
+    python: for rrsync [installed]
+installing parted...
+:: Running post-transaction hooks...
+( 1/11) Creating system user accounts...
+Creating group 'polkitd' with GID 102.
+Creating group 'avahi' with GID 968.
+Creating user 'avahi' (Avahi mDNS/DNS-SD daemon) with UID 968 and GID 968.
+Creating user 'polkitd' (User for polkitd) with UID 102 and GID 102.
+( 2/11) Creating temporary files...
+( 3/11) Updating udev hardware database...
+( 4/11) Reloading system manager configuration...
+( 5/11) Updating the MIME type database...
+( 6/11) Reloading device manager configuration...
+( 7/11) Arming ConditionNeedsUpdate...
+( 8/11) Updating fontconfig configuration...
+( 9/11) Reloading system bus configuration...
+(10/11) Updating fontconfig cache...
+(11/11) Updating the info directory file...
+warning: cmake-4.4.3-2 is up to date -- skipping
+warning: ninja-1.13.2-3 is up to date -- skipping
+warning: qt6-base-6.11.2-3 is up to date -- skipping
+warning: qt6-declarative-6.11.2-2 is up to date -- skipping
+warning: polkit-127-3 is up to date -- skipping
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (76) alsa-lib-1.2.16.1-1  alsa-topology-conf-1.2.5.1-4  alsa-ucm-conf-1.2.16.1-1  attica-6.30.0-1  breeze-cursors-6.7.5-1  breeze-icons-6.30.0-1  flac-1.5.0-1  frameworkintegration-6.30.0-1  gpgmepp-2.2.0-1  json-glib-1.10.8-1  karchive-6.30.0-1  kbookmarks-6.30.0-1  kcmutils-6.30.0-1  kcodecs-6.30.0-1  kcolorscheme-6.30.0-1  kcompletion-6.30.0-1  kconfigwidgets-6.30.0-1  kdbusaddons-6.30.0-1  kdecoration-6.7.5-1  kglobalaccel-6.30.0-1  kguiaddons-6.30.0-1  kiconthemes-6.30.0-1  kio-6.30.0-1  kitemviews-6.30.0-1  kjobwidgets-6.30.0-1  knewstuff-6.30.0-1  knotifications-6.30.0-1  kpackage-6.30.0-1  kwallet-6.30.0-1  kwindowsystem-6.30.0-1  kxmlgui-6.30.0-1  lame-4.0-1  libasyncns-1:0.8+r3+g68cd5af-3  libatasmart-0.19-8  libblockdev-3.5.0-2  libblockdev-crypto-3.5.0-2  libblockdev-fs-3.5.0-2  libblockdev-loop-3.5.0-2  libblockdev-mdraid-3.5.0-2  libblockdev-nvme-3.5.0-2  libblockdev-part-3.5.0-2  libblockdev-smart-3.5.0-2  libblockdev-swap-3.5.0-2  libbytesize-2.12-3  libcanberra-1:0.30+r2+gc0620e4-6  libimobiledevice-1.4.0-2  libimobiledevice-glue-1.3.2-1  libnvme-1.16.2-2  libogg-1.3.6-1  libplist-2.7.0-3  libpulse-17.0+r98+gb096704c0-1  libsndfile-1.2.2-4  libtatsu-1.0.5-1  libusbmuxd-2.1.1-2  libvorbis-1.3.7-4  libxfixes-6.0.2-1  libxslt-1.1.45-2  mdadm-4.6-2  media-player-info-26-1  mpg123-1.33.7-1  nspr-4.40-1  nss-3.130-1  opus-1.6.1-1  qca-qt6-2.3.12-1  solid-6.30.0-1  sonnet-6.30.0-1  sound-theme-freedesktop-0.8-6  syndication-6.30.0-1  tdb-1.4.15-2  udisks2-2.11.2-1  upower-1.91.4-1  volume_key-0.3.12-12  breeze-6.7.5-1  hunspell-1.7.4-1  kirigami-6.30.0-1  qqc2-desktop-style-6.30.0-1
+
+Total Installed Size:  259.67 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing kirigami...
+installing kguiaddons...
+Optional dependencies for kguiaddons
+    pyside6: Python bindings
+    qt6-declarative: QML bindings [installed]
+installing kcolorscheme...
+installing breeze-icons...
+installing karchive...
+installing kiconthemes...
+Optional dependencies for kiconthemes
+    qt6-declarative: QML bindings [installed]
+installing sonnet...
+Optional dependencies for sonnet
+    aspell: spell checking via aspell
+    hspell: spell checking for Hebrew
+    hunspell: spell checking via hunspell [pending]
+    libvoikko: Finnish support via Voikko
+    qt6-declarative: QML bindings [installed]
+installing qqc2-desktop-style...
+installing attica...
+installing kcodecs...
+installing kconfigwidgets...
+installing kbookmarks...
+installing kcompletion...
+installing kdbusaddons...
+installing kitemviews...
+installing libogg...
+installing libvorbis...
+installing alsa-topology-conf...
+installing alsa-ucm-conf...
+installing alsa-lib...
+installing libasyncns...
+installing flac...
+installing mpg123...
+Optional dependencies for mpg123
+    sdl2-compat: for sdl audio support
+    jack: for jack audio support
+    libpulse: for pulse audio support [pending]
+    perl: for conplay [installed]
+installing lame...
+installing opus...
+installing libsndfile...
+Optional dependencies for libsndfile
+    alsa-lib: for sndfile-play [installed]
+installing libpulse...
+Optional dependencies for libpulse
+    pulse-native-provider: PulseAudio backend
+installing tdb...
+Optional dependencies for tdb
+    python: for python bindings [installed]
+installing sound-theme-freedesktop...
+installing libcanberra...
+Optional dependencies for libcanberra
+    gtk3: canberra-gtk-play
+installing knotifications...
+Optional dependencies for knotifications
+    pyside6: Python bindings
+    qt6-declarative: QML bindings [installed]
+installing kjobwidgets...
+Optional dependencies for kjobwidgets
+    pyside6: Python bindings
+installing gpgmepp...
+installing libxfixes...
+installing kwindowsystem...
+Optional dependencies for kwindowsystem
+    qt6-declarative: QML bindings [installed]
+installing nspr...
+installing nss...
+installing qca-qt6...
+Optional dependencies for qca-qt6
+    botan: botan plugin
+    libgcrypt: gcrypt plugin [installed]
+    libsasl: SASL plugin [installed]
+    openssl: SSL plugin [installed]
+    pkcs11-helper: PKCS-11 plugin
+installing kwallet...
+Optional dependencies for kwallet
+    kwalletmanager: Configuration GUI
+installing libxslt...
+Optional dependencies for libxslt
+    python: Python bindings [installed]
+installing libplist...
+Optional dependencies for libplist
+    python: Python bindings [installed]
+installing libimobiledevice-glue...
+installing libtatsu...
+installing libusbmuxd...
+installing libimobiledevice...
+Optional dependencies for libimobiledevice
+    python: Python bindings [installed]
+installing media-player-info...
+installing libblockdev...
+Optional dependencies for libblockdev
+    libblockdev-btrfs: for BTRFS support
+    libblockdev-crypto: for crypto support [pending]
+    libblockdev-dm: for device-mapper support
+    libblockdev-fs: for filesystem support [pending]
+    libblockdev-loop: for loop device support [pending]
+    libblockdev-lvm: for LVM support
+    libblockdev-mdraid: for MDRAID support [pending]
+    libblockdev-mpath: for multipath support
+    libblockdev-nvdimm: for NVDIMM support
+    libblockdev-nvme: for NVME support [pending]
+    libblockdev-part: for partitioning support [pending]
+    libblockdev-smart: for S.M.A.R.T. support [pending]
+    libblockdev-swap: for swap support [pending]
+    python-libblockdev: for Python support
+installing volume_key...
+Optional dependencies for volume_key
+    python-volume_key: for Python bindings
+installing libblockdev-crypto...
+installing libbytesize...
+Optional dependencies for libbytesize
+    python: for Python bindings and for the bscalc command [installed]
+installing libblockdev-fs...
+Optional dependencies for libblockdev-fs
+    btrfs-progs: for BTRFS filesystem support [installed]
+    dosfstools: for VFAT filesystem support [installed]
+    exfatprogs: for exFAT filesystem support
+    f2fs-tools: for F2FS filesystem support
+    nilfs-utils: for nilfs filesystem support
+    ntfsprogs: for NTFS filesystem support
+    udftools: for UDF filesystem support
+    xfsprogs: for XFS filesystem support
+installing mdadm...
+Optional dependencies for mdadm
+    bash: mdcheck [installed]
+installing libblockdev-mdraid...
+installing libblockdev-loop...
+installing libnvme...
+installing libblockdev-nvme...
+installing libblockdev-part...
+installing json-glib...
+installing libatasmart...
+installing libblockdev-smart...
+Optional dependencies for libblockdev-smart
+    smartmontools: for experimental smartmontools-based plugin [installed]
+installing libblockdev-swap...
+installing udisks2...
+Optional dependencies for udisks2
+    udisks2-btrfs: for BTRFS module
+    udisks2-lvm2: for LVM2 module
+    udisks2-docs: API documentation
+    btrfs-progs: for BTRFS support in libblockdev-fs [installed]
+    dosfstools: for FAT support in libblockdev-fs [installed]
+    exfatprogs: for exFAT support in libblockdev-fs
+    e2fsprogs: for Ext2/3/4 support in libblockdev-fs [installed]
+    f2fs-tools: for F2FS support in libblockdev-fs
+    less: for default pager of the udisksctl dump command
+    nilfs-utils: for NILFS support in libblockdev-fs
+    udftools: for UDF support in libblockdev-fs
+    xfsprogs: for XFS support in libblockdev-fs
+installing upower...
+Optional dependencies for upower
+    usbmuxd: Read charge status of iOS devices
+installing solid...
+Optional dependencies for solid
+    qt6-declarative: QML bindings [installed]
+installing kio...
+Optional dependencies for kio
+    audiocd-kio: for accessing audio CDs
+    kded: proxy management and cookie storage
+    kdoctools: for the help kioslave
+    kio-extras: extra protocols support (sftp, fish and more)
+    kio-fuse: to mount remote filesystems via FUSE
+    switcheroo-control: hybrid GPU support
+installing kglobalaccel...
+installing kxmlgui...
+Optional dependencies for kxmlgui
+    pyside6: Python bindings
+installing kcmutils...
+installing kpackage...
+installing syndication...
+installing knewstuff...
+installing frameworkintegration...
+Optional dependencies for frameworkintegration
+    appstream-qt: dependency resolving via AppStream
+    packagekit-qt6: dependency resolving via AppStream
+installing kdecoration...
+installing breeze-cursors...
+installing breeze...
+Optional dependencies for breeze
+    breeze-gtk: Breeze widget style for GTK applications
+    breeze5: Breeze widget style for Qt5 applications
+installing hunspell...
+Optional dependencies for hunspell
+    perl: for ispellaff2myspell [installed]
+:: Running post-transaction hooks...
+(1/7) Creating temporary files...
+(2/7) Updating udev hardware database...
+(3/7) Reloading system manager configuration...
+(4/7) Reloading device manager configuration...
+(5/7) Arming ConditionNeedsUpdate...
+(6/7) Updating linux initcpios...
+(7/7) Reloading system bus configuration...
+Initialized empty Git repository in /build/operating-system/.git/
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0100 126.8k 100 126.8k   0      0 134.9k      0                              0100 126.8k 100 126.8k   0      0 134.9k      0                              0100 126.8k 100 126.8k   0      0 134.9k      0                              0
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  9  8.46M   9 815.9k   0      0 592.1k      0   00:14   00:01   00:13 766.1k100  8.46M 100  8.46M   0      0  4.53M      0   00:01   00:01         766.1k100  8.46M 100  8.46M   0      0  4.53M      0   00:01   00:01         766.1k100  8.46M 100  8.46M   0      0  4.53M      0   00:01   00:01         766.1k
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0100  85703 100  85703   0      0 102.5k      0                              0100  85703 100  85703   0      0 102.4k      0                              0100  85703 100  85703   0      0 102.4k      0                              0
+Verified 3 database hashes and 118 upstream package names.
+/build/operating-system/distro/branding/project.toml: valid project metadata
+ Downloading crates ...
+  Downloaded rsqlite-vfs v0.1.1
+  Downloaded rustversion v1.0.23
+  Downloaded wasm-bindgen-macro v0.2.129
+  Downloaded alpm v5.0.2
+  Downloaded thiserror-impl v2.0.21
+  Downloaded wasm-bindgen-shared v0.2.129
+  Downloaded thiserror v2.0.21
+  Downloaded bumpalo v3.20.3
+  Downloaded once_cell v1.21.4
+  Downloaded wasm-bindgen v0.2.129
+  Downloaded js-sys v0.3.106
+  Downloaded wasm-bindgen-macro-support v0.2.129
+  Downloaded alpm-sys v5.0.1
+  Downloaded sqlite-wasm-rs v0.5.5
+   Vendoring alpm v5.0.2 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/alpm-5.0.2) to /build/operating-system/.build/package/source/vendor/alpm
+   Vendoring alpm-sys v5.0.1 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/alpm-sys-5.0.1) to /build/operating-system/.build/package/source/vendor/alpm-sys
+   Vendoring bitflags v2.13.2 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.13.2) to /build/operating-system/.build/package/source/vendor/bitflags
+   Vendoring block-buffer v0.10.4 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/block-buffer-0.10.4) to /build/operating-system/.build/package/source/vendor/block-buffer
+   Vendoring bumpalo v3.20.3 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.20.3) to /build/operating-system/.build/package/source/vendor/bumpalo
+   Vendoring cc v1.6.0 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cc-1.6.0) to /build/operating-system/.build/package/source/vendor/cc
+   Vendoring cfg-if v1.0.5 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cfg-if-1.0.5) to /build/operating-system/.build/package/source/vendor/cfg-if
+   Vendoring cpufeatures v0.2.17 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cpufeatures-0.2.17) to /build/operating-system/.build/package/source/vendor/cpufeatures
+   Vendoring crypto-common v0.1.7 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/crypto-common-0.1.7) to /build/operating-system/.build/package/source/vendor/crypto-common
+   Vendoring digest v0.10.7 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/digest-0.10.7) to /build/operating-system/.build/package/source/vendor/digest
+   Vendoring equivalent v1.0.2 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/equivalent-1.0.2) to /build/operating-system/.build/package/source/vendor/equivalent
+   Vendoring fallible-iterator v0.3.0 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fallible-iterator-0.3.0) to /build/operating-system/.build/package/source/vendor/fallible-iterator
+   Vendoring fallible-streaming-iterator v0.1.9 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fallible-streaming-iterator-0.1.9) to /build/operating-system/.build/package/source/vendor/fallible-streaming-iterator
+   Vendoring find-msvc-tools v0.1.14 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/find-msvc-tools-0.1.14) to /build/operating-system/.build/package/source/vendor/find-msvc-tools
+   Vendoring foldhash v0.2.0 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.2.0) to /build/operating-system/.build/package/source/vendor/foldhash
+   Vendoring generic-array v0.14.7 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/generic-array-0.14.7) to /build/operating-system/.build/package/source/vendor/generic-array
+   Vendoring hashbrown v0.16.1 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hashbrown-0.16.1) to /build/operating-system/.build/package/source/vendor/hashbrown-0.16.1
+   Vendoring hashbrown v0.17.1 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hashbrown-0.17.1) to /build/operating-system/.build/package/source/vendor/hashbrown
+   Vendoring hashlink v0.11.1 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hashlink-0.11.1) to /build/operating-system/.build/package/source/vendor/hashlink
+   Vendoring indexmap v2.14.2 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/indexmap-2.14.2) to /build/operating-system/.build/package/source/vendor/indexmap
+   Vendoring itoa v1.0.18 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/itoa-1.0.18) to /build/operating-system/.build/package/source/vendor/itoa
+   Vendoring js-sys v0.3.106 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/js-sys-0.3.106) to /build/operating-system/.build/package/source/vendor/js-sys
+   Vendoring libc v0.2.190 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.190) to /build/operating-system/.build/package/source/vendor/libc
+   Vendoring libsqlite3-sys v0.36.0 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libsqlite3-sys-0.36.0) to /build/operating-system/.build/package/source/vendor/libsqlite3-sys
+   Vendoring memchr v2.8.3 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/memchr-2.8.3) to /build/operating-system/.build/package/source/vendor/memchr
+   Vendoring once_cell v1.21.4 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/once_cell-1.21.4) to /build/operating-system/.build/package/source/vendor/once_cell
+   Vendoring pkg-config v0.3.34 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pkg-config-0.3.34) to /build/operating-system/.build/package/source/vendor/pkg-config
+   Vendoring proc-macro2 v1.0.107 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proc-macro2-1.0.107) to /build/operating-system/.build/package/source/vendor/proc-macro2
+   Vendoring quote v1.0.47 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quote-1.0.47) to /build/operating-system/.build/package/source/vendor/quote
+   Vendoring rsqlite-vfs v0.1.1 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rsqlite-vfs-0.1.1) to /build/operating-system/.build/package/source/vendor/rsqlite-vfs
+   Vendoring rusqlite v0.38.0 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rusqlite-0.38.0) to /build/operating-system/.build/package/source/vendor/rusqlite
+   Vendoring rustversion v1.0.23 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rustversion-1.0.23) to /build/operating-system/.build/package/source/vendor/rustversion
+   Vendoring serde v1.0.229 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229) to /build/operating-system/.build/package/source/vendor/serde
+   Vendoring serde_core v1.0.229 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229) to /build/operating-system/.build/package/source/vendor/serde_core
+   Vendoring serde_derive v1.0.229 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_derive-1.0.229) to /build/operating-system/.build/package/source/vendor/serde_derive
+   Vendoring serde_json v1.0.151 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151) to /build/operating-system/.build/package/source/vendor/serde_json
+   Vendoring serde_spanned v0.6.9 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_spanned-0.6.9) to /build/operating-system/.build/package/source/vendor/serde_spanned
+   Vendoring sha2 v0.10.9 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.10.9) to /build/operating-system/.build/package/source/vendor/sha2
+   Vendoring shlex v2.0.1 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/shlex-2.0.1) to /build/operating-system/.build/package/source/vendor/shlex
+   Vendoring smallvec v1.16.2 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/smallvec-1.16.2) to /build/operating-system/.build/package/source/vendor/smallvec
+   Vendoring sqlite-wasm-rs v0.5.5 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sqlite-wasm-rs-0.5.5) to /build/operating-system/.build/package/source/vendor/sqlite-wasm-rs
+   Vendoring syn v3.0.6 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/syn-3.0.6) to /build/operating-system/.build/package/source/vendor/syn
+   Vendoring thiserror v2.0.21 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21) to /build/operating-system/.build/package/source/vendor/thiserror
+   Vendoring thiserror-impl v2.0.21 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-impl-2.0.21) to /build/operating-system/.build/package/source/vendor/thiserror-impl
+   Vendoring toml v0.8.23 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml-0.8.23) to /build/operating-system/.build/package/source/vendor/toml
+   Vendoring toml_datetime v0.6.11 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_datetime-0.6.11) to /build/operating-system/.build/package/source/vendor/toml_datetime
+   Vendoring toml_edit v0.22.27 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_edit-0.22.27) to /build/operating-system/.build/package/source/vendor/toml_edit
+   Vendoring toml_write v0.1.2 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_write-0.1.2) to /build/operating-system/.build/package/source/vendor/toml_write
+   Vendoring typenum v1.20.1 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/typenum-1.20.1) to /build/operating-system/.build/package/source/vendor/typenum
+   Vendoring unicode-ident v1.0.26 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.26) to /build/operating-system/.build/package/source/vendor/unicode-ident
+   Vendoring vcpkg v0.2.15 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/vcpkg-0.2.15) to /build/operating-system/.build/package/source/vendor/vcpkg
+   Vendoring version_check v0.9.5 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/version_check-0.9.5) to /build/operating-system/.build/package/source/vendor/version_check
+   Vendoring wasm-bindgen v0.2.129 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasm-bindgen-0.2.129) to /build/operating-system/.build/package/source/vendor/wasm-bindgen
+   Vendoring wasm-bindgen-macro v0.2.129 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasm-bindgen-macro-0.2.129) to /build/operating-system/.build/package/source/vendor/wasm-bindgen-macro
+   Vendoring wasm-bindgen-macro-support v0.2.129 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasm-bindgen-macro-support-0.2.129) to /build/operating-system/.build/package/source/vendor/wasm-bindgen-macro-support
+   Vendoring wasm-bindgen-shared v0.2.129 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasm-bindgen-shared-0.2.129) to /build/operating-system/.build/package/source/vendor/wasm-bindgen-shared
+   Vendoring winnow v0.7.15 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/winnow-0.7.15) to /build/operating-system/.build/package/source/vendor/winnow
+   Vendoring zmij v1.0.23 (/home/builder/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.23) to /build/operating-system/.build/package/source/vendor/zmij
+To use vendored sources, add this to your .cargo/config.toml for this project:
+
+Prepared /build/operating-system/.build/package. Run makepkg as a non-root user in the pinned Arch builder.
+==> WARNING: PACKAGER should have the format 'Example Name <email@address.invalid>'
+==> Making package: distroctl 0.1.0.dev-1 (Thu Oct 15 05:05:32 2026)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Found platform.tar.xz
+==> Validating source files with sha256sums...
+    platform.tar.xz ... Passed
+==> Removing existing $srcdir/ directory...
+==> Extracting sources...
+  -> Extracting platform.tar.xz with bsdtar
+==> Starting prepare()...
+==> Starting build()...
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling pkg-config v0.3.34
+   Compiling unicode-ident v1.0.26
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling version_check v0.9.5
+   Compiling zmij v1.0.23
+   Compiling find-msvc-tools v0.1.14
+   Compiling generic-array v0.14.7
+   Compiling typenum v1.20.1
+   Compiling alpm-sys v5.0.1
+   Compiling shlex v2.0.1
+   Compiling serde_json v1.0.151
+   Compiling syn v3.0.6
+   Compiling cc v1.6.0
+   Compiling equivalent v1.0.2
+   Compiling itoa v1.0.18
+   Compiling hashbrown v0.17.1
+   Compiling memchr v2.8.3
+   Compiling vcpkg v0.2.15
+   Compiling indexmap v2.14.2
+   Compiling toml_write v0.1.2
+   Compiling libsqlite3-sys v0.36.0
+   Compiling foldhash v0.2.0
+   Compiling winnow v0.7.15
+   Compiling hashbrown v0.16.1
+   Compiling alpm v5.0.2
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling libc v0.2.190
+   Compiling bitflags v2.13.2
+   Compiling hashlink v0.11.1
+   Compiling digest v0.10.7
+   Compiling fallible-iterator v0.3.0
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling smallvec v1.16.2
+   Compiling cpufeatures v0.2.17
+   Compiling serde_derive v1.0.229
+   Compiling cfg-if v1.0.5
+   Compiling sha2 v0.10.9
+   Compiling toml_datetime v0.6.11
+   Compiling serde_spanned v0.6.9
+   Compiling distro-hardware v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/hardware)
+   Compiling distro-snapshots v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/snapshots)
+   Compiling toml_edit v0.22.27
+   Compiling distro-graphics v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/graphics)
+   Compiling toml v0.8.23
+   Compiling distro-config v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/config)
+   Compiling rusqlite v0.38.0
+   Compiling distro-transactions v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/transactions)
+   Compiling distroctl v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/distroctl)
+    Finished `release` profile [optimized] target(s) in 2m 07s
+-- The CXX compiler identification is GNU 16.2.1
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Found OpenGL: /usr/lib/libOpenGL.so
+-- Found WrapOpenGL: TRUE
+-- Found WrapVulkanHeaders: /usr/include
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'Kirigamiplugin' is a dependency of 'control-center-tests',
+  but the link target it defines (KF6Kirigamiplugin) does not exist in the
+  current scope.  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPrivateplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiPrivateplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPolyfillplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiPolyfillplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiControlsplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiControlsplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPlatformplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6::KirigamiPlatformplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPrimitivesplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiPrimitives) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiDelegatesplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiDelegates) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiDialogsplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiDialogsplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiLayoutsplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiLayoutsplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiFormsplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiTemplatesplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiTemplates) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiLayoutsPrivateplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiLayoutsPrivateplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsPrivateTemplatesplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiFormsPrivateTemplatesplugin) does not exist in the current
+  scope.  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsPrivateFlatplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiFormsPrivateFlatplugin) does not exist in the current scope.
+  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsPrivateCardsplugin' is a dependency of
+  'control-center-tests', but the link target it defines
+  (KF6KirigamiFormsPrivateCardsplugin) does not exist in the current scope.
+  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'Kirigamiplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6Kirigamiplugin) does not exist in the current scope.  The plugin will
+  not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPrivateplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiPrivateplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPolyfillplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiPolyfillplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiControlsplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiControlsplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPlatformplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6::KirigamiPlatformplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPrimitivesplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiPrimitives) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiDelegatesplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiDelegates) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiDialogsplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiDialogsplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiLayoutsplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiLayoutsplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiFormsplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiTemplatesplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiTemplates) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiLayoutsPrivateplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiLayoutsPrivateplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsPrivateTemplatesplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiFormsPrivateTemplatesplugin) does not exist in the current
+  scope.  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsPrivateFlatplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiFormsPrivateFlatplugin) does not exist in the current scope.
+  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsPrivateCardsplugin' is a dependency of
+  'control-center-qml-tests', but the link target it defines
+  (KF6KirigamiFormsPrivateCardsplugin) does not exist in the current scope.
+  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:942:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'Kirigamiplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6Kirigamiplugin) does not exist in the current scope.  The plugin will
+  not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPrivateplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiPrivateplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPolyfillplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiPolyfillplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiControlsplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiControlsplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPlatformplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6::KirigamiPlatformplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiPrimitivesplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiPrimitives) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiDelegatesplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiDelegates) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiDialogsplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiDialogsplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiLayoutsplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiLayoutsplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiFormsplugin) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiTemplatesplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiTemplates) does not exist in the current scope.  The plugin
+  will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiLayoutsPrivateplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiLayoutsPrivateplugin) does not exist in the current scope.  The
+  plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsPrivateTemplatesplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiFormsPrivateTemplatesplugin) does not exist in the current
+  scope.  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsPrivateFlatplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiFormsPrivateFlatplugin) does not exist in the current scope.
+  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+CMake Warning at /usr/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake:4840 (message):
+  The qml plugin 'KirigamiFormsPrivateCardsplugin' is a dependency of
+  'astraeus-control-center', but the link target it defines
+  (KF6KirigamiFormsPrivateCardsplugin) does not exist in the current scope.
+  The plugin will not be linked.
+Call Stack (most recent call first):
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (qt6_import_qml_plugins)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:818 (cmake_language)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:898 (_qt_internal_finalize_executable)
+  /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:867:EVAL:1 (qt6_finalize_target)
+  CMakeLists.txt:DEFERRED
+
+
+-- Configuring done (1.6s)
+-- Generating done (0.1s)
+-- Build files have been written to: /build/operating-system/.build/package/src/platform/target/control-center
+[1/43] Copying astraeus-control-center qml sources into build dir
+[2/43] Copying astraeus-control-center qml resources into build dir
+[3/43] Populating .qmlls.ini file at /build/operating-system/.build/package/src/platform/target/control-center/.qt/.qmlls.build.ini
+[4/43] Running qmlimportscanner for astraeus-control-center
+[5/43] Running qmlimportscanner for control-center-tests
+[6/43] Running qmlimportscanner for control-center-qml-tests
+[7/43] Automatic MOC and UIC for target astraeus-control-center
+[8/43] Running AUTOMOC file extraction for target astraeus-control-center
+[9/43] Running rcc for resource qmake_org_astraeus_control
+[10/43] Running moc --collect-json for target astraeus-control-center
+[11/43] Running rcc for resource astraeus-control-center_raw_qml_0
+[12/43] Automatic MOC and UIC for target control-center-qml-tests
+[13/43] Building CXX object CMakeFiles/control-center-qml-tests.dir/control-center-qml-tests_autogen/mocs_compilation.cpp.o
+[14/43] Generating .rcc/qmlcache/astraeus-control-center_qmlcache_loader.cpp
+[15/43] Automatic MOC and UIC for target performance-tests
+[16/43] Automatic QML type registration for target astraeus-control-center
+[17/43] Automatic MOC and UIC for target control-center-tests
+[18/43] Generating .rcc/qmlcache/astraeus-control-center_State_js.cpp
+[19/43] Generating .rcc/qmlcache/astraeus-control-center_Main_qml.cpp, .rcc/qmlcache/astraeus-control-center_Main_qml.cpp.aotstats
+[20/43] Generating .rcc/qmlcache/astraeus-control-center_PerformancePage_qml.cpp, .rcc/qmlcache/astraeus-control-center_PerformancePage_qml.cpp.aotstats
+[21/43] Building CXX object CMakeFiles/performance-tests.dir/performance-tests_autogen/mocs_compilation.cpp.o
+[22/43] Building CXX object CMakeFiles/control-center-tests.dir/control-center-tests_autogen/mocs_compilation.cpp.o
+[23/43] Building CXX object CMakeFiles/astraeus-control-center.dir/astraeus-control-center_autogen/mocs_compilation.cpp.o
+[24/43] Building CXX object CMakeFiles/control-center-qml-tests.dir/tests/qml_test.cpp.o
+[25/43] Building CXX object CMakeFiles/astraeus-control-center.dir/main.cpp.o
+[26/43] Building CXX object CMakeFiles/astraeus-control-center.dir/.qt/rcc/qrc_qmake_org_astraeus_control.cpp.o
+[27/43] Building CXX object CMakeFiles/astraeus-control-center.dir/astraeus-control-center_qmltyperegistrations.cpp.o
+[28/43] Building CXX object CMakeFiles/performance-tests.dir/performance.cpp.o
+[29/43] Building CXX object CMakeFiles/performance-tests.dir/tests/performance_test.cpp.o
+[30/43] Building CXX object CMakeFiles/control-center-tests.dir/controller.cpp.o
+[31/43] Building CXX object CMakeFiles/astraeus-control-center.dir/.qt/rcc/qrc_astraeus-control-center_raw_qml_0.cpp.o
+[32/43] Building CXX object CMakeFiles/astraeus-control-center.dir/.rcc/qmlcache/astraeus-control-center_qmlcache_loader.cpp.o
+[33/43] Linking CXX executable performance-tests
+[34/43] Building CXX object CMakeFiles/astraeus-control-center.dir/.rcc/qmlcache/astraeus-control-center_PerformancePage_qml.cpp.o
+[35/43] Linking CXX executable control-center-qml-tests
+[36/43] Building CXX object CMakeFiles/astraeus-control-center.dir/.rcc/qmlcache/astraeus-control-center_Main_qml.cpp.o
+[37/43] Building CXX object CMakeFiles/astraeus-control-center.dir/.rcc/qmlcache/astraeus-control-center_State_js.cpp.o
+[38/43] Building CXX object CMakeFiles/astraeus-control-center.dir/performance.cpp.o
+[39/43] Building CXX object CMakeFiles/astraeus-control-center.dir/controller.cpp.o
+[40/43] Linking CXX executable astraeus-control-center
+[41/43] Building CXX object CMakeFiles/control-center-tests.dir/tests/controller_test.cpp.o
+[42/43] Building CXX object CMakeFiles/control-center-tests.dir/performance.cpp.o
+[43/43] Linking CXX executable control-center-tests
+==> Starting check()...
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling pkg-config v0.3.34
+   Compiling zmij v1.0.23
+   Compiling serde_json v1.0.151
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.3
+   Compiling version_check v0.9.5
+   Compiling hashbrown v0.17.1
+   Compiling generic-array v0.14.7
+   Compiling equivalent v1.0.2
+   Compiling alpm-sys v5.0.1
+   Compiling indexmap v2.14.2
+   Compiling syn v3.0.6
+   Compiling shlex v2.0.1
+   Compiling winnow v0.7.15
+   Compiling toml_write v0.1.2
+   Compiling find-msvc-tools v0.1.14
+   Compiling typenum v1.20.1
+   Compiling cc v1.6.0
+   Compiling vcpkg v0.2.15
+   Compiling foldhash v0.2.0
+   Compiling alpm v5.0.2
+   Compiling hashbrown v0.16.1
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling bitflags v2.13.2
+   Compiling libc v0.2.190
+   Compiling digest v0.10.7
+   Compiling hashlink v0.11.1
+   Compiling cpufeatures v0.2.17
+   Compiling fallible-iterator v0.3.0
+   Compiling smallvec v1.16.2
+   Compiling cfg-if v1.0.5
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling sha2 v0.10.9
+   Compiling libsqlite3-sys v0.36.0
+   Compiling serde_derive v1.0.229
+   Compiling serde_spanned v0.6.9
+   Compiling toml_datetime v0.6.11
+   Compiling distro-hardware v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/hardware)
+   Compiling distro-snapshots v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/snapshots)
+   Compiling toml_edit v0.22.27
+   Compiling distro-graphics v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/graphics)
+   Compiling toml v0.8.23
+   Compiling distro-config v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/config)
+   Compiling rusqlite v0.38.0
+   Compiling distro-transactions v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/transactions)
+   Compiling distroctl v0.1.0-dev (/build/operating-system/.build/package/src/platform/crates/distroctl)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 31s
+     Running unittests src/lib.rs (target/debug/deps/distro_config-6d103117e271f794)
+
+running 3 tests
+test system::tests::config_rejects_unknown_fields_unsupported_features_and_non_names ... ok
+test tests::metadata_rejects_invalid_inputs ... ok
+test system::tests::config_round_trip_and_shared_feature_owners ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/lib.rs (target/debug/deps/distro_graphics-f72a42a9f49df1a2)
+
+running 15 tests
+test tests::driver_update_guard_preserves_full_transaction_and_multilib_coherence ... ok
+test tests::duplicate_or_malformed_package_database_is_unavailable ... ok
+test tests::amd_integrated_discrete_are_matched_by_pci_and_render_failures_survive ... ok
+test tests::invalid_and_absent_icd_libraries_never_become_present ... ok
+test tests::identical_gpu_ids_without_bus_evidence_are_ambiguous ... ok
+test tests::file_discovery_checks_elf_instead_of_icd_filename ... ok
+test tests::probe_protocol_is_architecture_checked_and_rejects_unknown_fields ... ok
+test tests::json_readiness_keeps_unknown_and_untested ... ok
+test tests::no_discovery_and_no_packages_remain_unknown ... ok
+test tests::software_success_is_not_gpu_rendering_success ... ok
+test tests::hybrid_requirements_union_preserves_binding_and_does_not_guess_primary_renderer ... ok
+test tests::missing_loader_icd_and_32_bit_icd_are_distinct ... ok
+test tests::missing_packages_firmware_and_unsupported_versions ... ok
+test tests::wrong_driver_and_nvidia_version_kernel_mismatches ... ok
+test tests::vendor_policy_fixtures ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src/lib.rs (target/debug/deps/distro_hardware-3c720d7a8a060ae9)
+
+running 9 tests
+test tests::memory_parsing_preserves_bytes_and_rejects_overflow_and_wrong_units ... ok
+test tests::cpu_parsing_counts_socket_core_pairs_and_partial_topology ... ok
+test tests::firmware_fixture_distinguishes_uefi_legacy_and_unavailable ... ok
+test tests::missing_empty_malformed_and_io_errors_are_separate ... ok
+test tests::vm_fallbacks_do_not_guess_physical_hardware_or_generic_dmi ... ok
+test tests::storage_transports_and_malformed_capacity ... ok
+test tests::storage_fixture_follows_partition_parent_without_slaves ... ok
+test tests::gpu_fixture_identifies_vendors_models_and_keeps_incomplete_devices ... ok
+test tests::real_sysfs_symlinks_link_drm_and_partitions_without_duplicates ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/lib.rs (target/debug/deps/distro_snapshots-83d5113888af4bc6)
+
+running 36 tests
+test system::tests::coordinator_snapshots_seal_without_copying_the_owned_live_package_lock ... ignored, requires root-owned libalpm lock fixture
+test system::tests::disposable_linux_btrfs_roundtrip ... ignored, requires ASTRAEUS_LOOPBACK_TEST=1, root, loop devices, Btrfs and FAT tools
+test generations::tests::preferred_respects_assessment_default_preserves_fallback ... ok
+test generations::tests::upstream_counter_transitions_and_exhaustion ... ok
+test system::tests::encrypted_roots_bind_mapper_filesystem_and_luks_header ... ok
+test system::tests::corruption_fstab_and_mount_conflicts_block_execution ... ok
+test system::tests::full_lifecycle_keeps_persistent_data_and_boot_evidence ... ok
+test system::tests::generation_tests::baseline_cannot_promote_a_maintenance_initrd_that_was_not_booted ... ok
+test system::tests::generation_tests::encrypted_generation_keeps_unlock_mapping_but_changes_root_selection ... ok
+test system::tests::generation_tests::candidate_and_independent_prior_remain_coherent ... ok
+test system::tests::each_rollback_durability_boundary_preserves_a_root_and_blocks_retry ... ok
+test system::tests::generation_tests::exhausted_candidate_cannot_be_rearmed_but_last_attempt_can_be_blessed ... ok
+test system::tests::generation_tests::offline_rollback_clears_preferences_when_recovery_booted_directly_from_stub ... ok
+test system::tests::generation_tests::offline_rollback_retires_generation_selection_only_after_restoring_pair ... ok
+test system::tests::generation_tests::missing_root_uki_wrong_pair_and_invalid_metadata_fail_closed ... ok
+test system::tests::generation_tests::retained_boot_is_a_recovery_session_and_never_an_update_root ... ok
+test system::tests::interruption_during_coordinator_snapshot_never_unlinks_live_lock_or_publishes_writable_root ... ignored, requires root-owned libalpm lock fixture
+test system::tests::mutation_guard_releases_lock_while_an_inherited_descriptor_remains_open ... ok
+test system::tests::interrupted_mutations_leave_a_durable_blocker ... ok
+test system::tests::generation_tests::blessing_refuses_wrong_entry_esp_counter_root_or_cmdline ... ok
+test system::tests::generation_tests::unmanaged_entries_and_unfinished_selection_are_not_accepted ... ok
+test system::tests::old_snapshot_is_inspectable_but_cannot_restore_a_protocol_one_coordinator ... ok
+test system::tests::planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots ... ok
+test system::tests::nested_esp_mounts_are_rejected_online_and_offline ... ok
+test system::tests::online_layout_rejects_unprotected_package_mounts ... ok
+test system::tests::protocol_two_binds_the_saved_coordinator_and_rejects_unknown_protocols ... ok
+test system::tests::snapshot_lock_repairs_legacy_permissions_without_replacing_the_inode ... ok
+test system::tests::symlinks_cannot_redirect_store_or_boot_writes ... ok
+test system::tests::online_discovery_and_unprivileged_catalog_do_not_call_btrfs ... ok
+test tests::boot_identity_allows_only_systemd_detected_console_suffixes ... ok
+test system::tests::unfinished_health_change_blocks_all_mutation_and_rollback_planning ... ok
+test tests::identifiers_and_pe_are_checked_at_the_boundary ... ok
+test system::tests::wrong_layout_missing_tools_metadata_and_targets_fail_closed ... ok
+test tests::btrfs_identity_parser_fails_closed ... ok
+test system::tests::generation_tests::first_activation_interruption_keeps_original_and_retained_boot_material ... ok
+test system::tests::generation_tests::interruption_at_every_staging_and_activation_command_preserves_prior ... ok
+
+test result: ok. 33 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 2.88s
+
+     Running unittests src/lib.rs (target/debug/deps/distro_transactions-8a9fd33ff94a4eab)
+
+running 55 tests
+test engine::managed_tests::managed_fingerprints_and_noop_rules_cover_metadata ... ok
+test history::migration_tests::session_releases_lock_while_an_inherited_descriptor_remains_open ... ok
+test history::migration_tests::migration_rejects_linked_private_history_and_does_not_touch_its_target ... ok
+test engine::managed_tests::complete_managed_closure_rejects_kernel_changes_and_untrusted_targets ... ok
+test management::tests::external_reason_or_version_changes_relinquish_ownership ... ok
+test management::tests::preexisting_apps_are_preserved_while_new_requests_are_owned ... ok
+test management_store::tests::dangling_state_link_cannot_look_like_an_unmanaged_system ... ok
+test management_store::tests::absent_explicit_reason_matches_libalpm_but_invalid_or_duplicate_reason_is_rejected ... ok
+test history::migration_tests::legacy_migration_is_read_only_until_writer_lock_and_preserves_raw_publication_digest ... ok
+test management_store::tests::pending_publication_refuses_a_consistent_but_incomplete_receipt ... ok
+test engine::managed_tests::metadata_only_apply_uses_snapshots_and_requires_a_new_boot ... ok
+test history::migration_tests::unknown_record_and_database_versions_fail_without_rewriting_either_database ... ok
+test management_store::tests::rejects_incomplete_or_inconsistent_state ... ok
+test native_alpm::tests::signed_native_backend ... ignored, run only through scripts/validate/native-alpm.py in its isolated chroot
+test package_integrity::tests::empty_inspection_is_portable_and_invalid_names_cannot_be_arguments ... ok
+test native_alpm::tests::installer_receipt_rejects_unknown_schema_invalid_names_and_inconsistent_closure ... ok
+test package_integrity::tests::report_requires_exact_candidate_coverage_and_valid_evidence ... ok
+test tests::boot_refresh_only_reads_matching_installed_loader_copies ... ok
+test native_alpm::tests::installer_receipt_missing_falls_back_but_untrusted_or_oversized_files_fail ... ok
+test management_store::tests::service_umask_does_not_hide_public_management_state ... ok
+test native_alpm::tests::installer_base_closure_is_distinct_from_optional_packages ... ok
+test tests::disk_checks_reject_shortfall_and_overflow ... ok
+test management::tests::shared_requests_idempotence_and_tampering_are_checked ... ok
+test tests::coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution ... ok
+test tests::execution_order_and_boot_confirmation_boundary ... ok
+test tests::generation_tests::activation_failure_keeps_both_snapshots_and_requires_recovery ... ok
+test tests::generation_tests::generation_references_reject_missing_stale_wrong_and_unhealthy_records ... ok
+test tests::generation_tests::baseline_publication_failure_has_durable_recovery_reference_before_packages ... ok
+test tests::generation_tests::fallback_evidence_is_idempotent_and_does_not_claim_restoration_or_success ... ok
+test tests::confirmation_requires_new_boot_matching_generation_and_fresh_health ... ok
+test tests::cancellation_at_every_boundary_never_succeeds ... ok
+test tests::failure_matrix_is_durable_and_stops_at_the_failing_phase ... ok
+test tests::generation_tests::recorded_provider_validation_rejects_invalid_names_and_missing_packages ... ok
+test tests::health_distinguishes_failure_warning_and_unavailable ... ok
+test tests::generation_tests::later_metadata_mutation_makes_previous_generation_and_rollback_stale ... ok
+test tests::generation_tests::removal_integrity_is_validated_and_bound_to_the_reviewed_plan ... ok
+test tests::managed_health_rejects_unknown_or_failed_artifact_trust ... ok
+test tests::history_is_read_only_versioned_and_lock_is_exclusive ... ok
+test tests::missing_snapshots_prevents_all_package_work ... ok
+test tests::no_op_needs_no_snapshot_or_package_mutation ... ok
+test tests::pacman_keeps_signature_policy_and_native_dependency_reasons ... ok
+test tests::generation_tests::metadata_only_confirmation_requires_boot_identity_ownership_and_full_reason_map ... ok
+test tests::pacman_machine_output_rejects_ambiguity ... ok
+test tests::plan_validation_and_removal_state_are_consistent ... ok
+test tests::planner_resolves_real_fields_and_propagates_command_errors ... ok
+test tests::interrupted_transactions_are_recovered_without_replay ... ok
+test tests::rollback_planning_rejects_targets_that_confirmation_cannot_finalize ... ok
+test tests::old_updater_writes_survive_root_rollback_and_divergence_is_preserved ... ok
+test tests::post_snapshot_failure_retains_pre_snapshot_and_requires_rollback ... ok
+test tests::public_sqlite_locks_cannot_block_private_commits_or_migration ... ok
+test tests::system_checks_distinguish_missing_tool_and_failed_check ... ok
+test tests::state_machine_rejects_skipped_and_terminal_transitions ... ok
+test tests::published_history_migrates_and_recovers_failed_publication ... ok
+test tests::stale_confirmation_and_missing_post_snapshot_fail_closed ... ok
+test tests::generation_tests::installed_image_seed_is_accepted_by_the_actual_rust_management_reader ... ok
+
+test result: ok. 54 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.83s
+
+     Running tests/management_publication.rs (target/debug/deps/management_publication-7c4d15130b067cc0)
+
+running 1 test
+test every_management_publication_boundary_retains_evidence_and_blocks_mixed_state ... ignored, requires root; uses only a new /root fixture directory
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/permissions.rs (target/debug/deps/permissions-764049b4bb62fb46)
+
+running 2 tests
+test migration_recovers_a_legacy_hot_journal ... ok
+test unprivileged_process_cannot_open_private_history_or_update_lock ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running unittests src/lib.rs (target/debug/deps/distroctl-e51123063cecc076)
+
+running 31 tests
+test gaming::proton::tests::metadata_parser_is_bounded_and_rejects_ambiguity ... ok
+test gaming::probe::tests::config_is_optional_and_never_written ... ok
+test performance::tests::definitions_respect_limits_and_cli_rejects_unbounded_input ... ok
+test performance::tests::invalid_reports_never_become_success ... ok
+test performance::tests::comparison_is_compatible_and_does_not_claim_significance ... ok
+test performance::tests::comparison_rejects_different_workload_and_execution_class ... ok
+test performance::tests::counters_use_elapsed_time_and_reject_resets ... ok
+test performance::tests::bare_metal_and_kernel_memory_changes_remain_comparable ... ok
+test performance::tests::peripheral_power_supplies_never_enter_reports ... ok
+test performance::tests::zero_denominator_is_unavailable ... ok
+test performance::workload::real_tests::real_workloads_and_stop_cleanup ... ignored, explicit bounded Linux workload and unnamed-file test
+test system::ops::tests::identifiers_cannot_escape_the_fixed_request_directory ... ok
+test performance::tests::storage_refuses_symlinks_and_excludes_parallel_runs ... ok
+test system::ops::tests::only_old_queued_receipts_with_confirmed_idle_units_are_orphans ... ok
+test performance::tests::store_roundtrip_and_failed_publication_preserves_original ... ok
+test system::ops::tests::rebooted_requests_fail_without_replay_and_terminal_receipts_survive ... ok
+test performance::tests::missing_sensors_are_not_zero ... ok
+test performance::tests::temperature_and_pressure_are_bounded ... ok
+test system::ops::tests::receipts_distinguish_mutating_work_and_boot_wait ... ok
+test system::ops::tests::unit_projection_requires_complete_inactive_state_without_a_start_job ... ok
+test system::ops::tests::worker_start_failure_is_persisted_before_submission_returns ... ok
+test system::tests::export_and_parse_share_the_same_configuration ... ok
+test tests::formatting_and_json_share_normalized_hardware ... ok
+test tests::parse_observations_without_inventing_status ... ok
+test system::tests::submission_requires_exact_bounded_intent_and_digest ... ok
+test tests::fixture_detects_encrypted_and_plain_root_and_running_uki ... ok
+test updates::confirmation_tests::automatic_confirmation_leaves_verified_restoration_pending ... ok
+test performance::tests::storage_refuses_future_and_oversized_documents ... ok
+test tests::status_resolves_real_partition_and_mapper_symlinks ... ok
+test system::tests::preview_disables_noops_live_sessions_pending_history_and_active_workers ... ok
+test system::tests::security_observation_keeps_diagnostics_separate_and_bounds_output_and_time ... ok
+
+test result: ok. 30 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.18s
+
+     Running unittests src/main.rs (target/debug/deps/distroctl-51259f114f568710)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-c18b787bd0030a2a)
+
+running 4 tests
+test history_json_does_not_create_a_database ... ok
+test security_status_does_not_invent_success_without_the_installed_helper ... ok
+test dry_run_and_history_share_structured_models ... ok
+test cli_contract ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.58s
+
+     Running tests/gaming.rs (target/debug/deps/gaming-cef06b1acfdca827)
+
+running 13 tests
+test extra_libraries_and_malformed_metadata_are_handled_without_execution ... ok
+test metadata_symlinks_and_nonregular_files_are_not_read ... ok
+test json_contract_and_text_do_not_invent_runtime_success ... ok
+test feature_requests_are_deterministic_and_optional ... ok
+test optional_tools_do_not_prove_execution_hdr_or_vrr ... ok
+test package_probe_only_issues_read_only_query_and_preserves_failure ... ok
+test headless_and_incomplete_wayland_sessions_are_not_ready ... ok
+test missing_or_failed_graphics_and_multilib_are_explicit_blockers ... ok
+test unknown_package_state_never_becomes_missing_or_a_safe_plan ... ok
+test proton_and_ge_discovery_is_metadata_only_and_deduplicated ... ok
+test no_proposal_can_execute_or_guess_removal_ownership ... ok
+test steam_missing_broken_and_incomplete_32_bit_stack_are_distinct ... ok
+test cli_commands_refuse_mutation_and_reject_unsupported_options ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.40s
+
+     Running tests/gaming_graphics.rs (target/debug/deps/gaming_graphics-11189f8d0412551a)
+
+running 4 tests
+test software_multilib_mismatch_is_rejected_by_the_shared_update_guard ... ok
+test installation_and_enumeration_do_not_prove_readback_or_cross_architecture_acceleration ... ok
+test different_devices_or_software_cannot_be_combined_into_physical_acceleration ... ok
+test preserves_raw_graphics_and_separates_software_virtual_and_physical_execution ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/graphics.rs (target/debug/deps/graphics-81796d758cfa7908)
+
+running 1 test
+test graphics_cli_is_read_only_and_schema_versioned ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+     Running tests/performance.rs (target/debug/deps/performance-fd8d6989f7168613)
+
+running 2 tests
+test performance_queries_are_versioned_and_arguments_bounded ... ok
+distroctl: cancelled by caller
+test ordinary_user_recording_and_stop_leave_truthful_private_results ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.36s
+
+     Running tests/system.rs (target/debug/deps/system-21ab6a0e711c3ab4)
+
+running 4 tests
+test plain_export_is_importable_toml_and_matches_json_export ... ok
+test cli_bounds_toml_and_rejects_future_configuration ... ok
+test submission_rejects_malformed_and_oversized_input_before_platform_work ... ok
+test json_cli_parses_user_configuration_and_never_accepts_unreviewed_mutation ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+   Doc-tests distro_config
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_graphics
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_hardware
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_snapshots
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_transactions
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distroctl
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+Test project /build/operating-system/.build/package/src/platform/target/control-center
+    Start 1: control-center-controller
+1/3 Test #1: control-center-controller ........***Failed    2.37 sec
+********* Start testing of ControllerTest *********
+Config: Using QtTest library 6.11.2, Qt 6.11.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 16.2.1 20260810), arch unknown
+PASS   : ControllerTest::initTestCase()
+WARNING: ControllerTest::discardDraftDuringBaselineClosesWindow() testdata ../Main.qml could not be located!
+   Loc: [/usr/src/debug/distroctl/platform/apps/control-center/tests/controller_test.cpp(94)]
+FAIL!  : ControllerTest::discardDraftDuringBaselineClosesWindow() 'component.isReady()' returned FALSE. (<Unknown File>: Invalid empty URL
+)
+   Loc: [/usr/src/debug/distroctl/platform/apps/control-center/tests/controller_test.cpp(95)]
+PASS   : ControllerTest::missingExecutableIsReported()
+PASS   : ControllerTest::unavailableConfigurationPreservesObservedOverview()
+PASS   : ControllerTest::startupIsReadOnlyAndDraftInvalidatesPlan()
+PASS   : ControllerTest::packageSelectionDoesNotDiscardRemovalProtection()
+PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(invalid-json)
+PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(future-schema)
+PASS   : ControllerTest::authenticationCancellationAndDenial(cancel)
+PASS   : ControllerTest::authenticationCancellationAndDenial(deny)
+PASS   : ControllerTest::liveSessionCannotSubmit()
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-false)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-false)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(reasons-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(targets-missing)
+PASS   : ControllerTest::validBlockedPlanRemainsReviewableWithoutAuthentication()
+PASS   : ControllerTest::requestAndOperationSurviveFrontendState()
+PASS   : ControllerTest::reopenPendingBootDoesNotRestartPollingOrSubmit()
+PASS   : ControllerTest::importValidationPreservesDraftAndExportIsAtomic()
+PASS   : ControllerTest::cleanupTestCase()
+Totals: 21 passed, 1 failed, 0 skipped, 0 blacklisted, 2299ms
+********* Finished testing of ControllerTest *********
+
+    Start 2: control-center-performance
+2/3 Test #2: control-center-performance .......   Passed    0.80 sec
+    Start 3: control-center-qml
+3/3 Test #3: control-center-qml ...............   Passed    2.09 sec
+
+67% tests passed, 1 tests failed out of 3
+
+Total Test time (real) =   5.27 sec
+
+The following tests FAILED:
+	  1 - control-center-controller (Failed)
+Errors while running CTest
+==> ERROR: A failure occurred in check().
+    Aborting...

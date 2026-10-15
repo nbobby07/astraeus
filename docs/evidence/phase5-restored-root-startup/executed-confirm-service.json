@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T08:01:26.936423+00:00",
+  "finished": "2026-10-15T08:01:26.990622+00:00",
+  "command": "systemctl show --all --property=Result,ExecMainCode,ExecMainStatus,ExecMainStartTimestampMonotonic,ExecMainExitTimestampMonotonic,ActiveState,Job astraeus-confirm-boot.service",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "ActiveState=inactive\nJob=\nResult=success\nExecMainStartTimestampMonotonic=91018081\nExecMainExitTimestampMonotonic=91531092\nExecMainCode=1\nExecMainStatus=0\n",
+    "id": "d699888692a44b97aa7747eefa1be7e7",
+    "boot_id": "a7ddda88-feca-4561-9a01-3c43aa8092ac"
+  }
+}

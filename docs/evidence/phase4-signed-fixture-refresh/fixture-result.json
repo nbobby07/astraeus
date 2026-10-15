@@ -1,0 +1,372 @@
+{
+  "started": "2026-10-12T02:04:22.768396+00:00",
+  "checks": {
+    "expired-original": {
+      "command": [
+        "runuser",
+        "-u",
+        "tester",
+        "--",
+        "env",
+        "DISPLAY=:0",
+        "XAUTHORITY=/run/user/1000/xauth_dlWQze",
+        "WAYLAND_DISPLAY=wayland-0",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "XDG_SESSION_TYPE=wayland",
+        "XDG_CURRENT_DESKTOP=KDE",
+        "pacman",
+        "--sync",
+        "--list",
+        "distro"
+      ],
+      "code": 1,
+      "output": "error: distro: signature from \"Phase 0 disposable package signing\" is expired\nerror: keyring is not writable\nerror: database 'distro' is not valid (invalid or corrupted database (PGP signature))\n",
+      "error": null,
+      "seconds": 0.102
+    },
+    "mount-0": {
+      "command": [
+        "mount",
+        "-t",
+        "overlay",
+        "overlay",
+        "-o",
+        "lowerdir=/etc/pacman.d/gnupg,upperdir=/tmp/phase41-signing-gxy3jw6v/0/upper,workdir=/tmp/phase41-signing-gxy3jw6v/0/work",
+        "/etc/pacman.d/gnupg"
+      ],
+      "code": 0,
+      "output": "",
+      "error": null,
+      "seconds": 0.051
+    },
+    "mount-1": {
+      "command": [
+        "mount",
+        "-t",
+        "overlay",
+        "overlay",
+        "-o",
+        "lowerdir=/var/lib/pacman/sync,upperdir=/tmp/phase41-signing-gxy3jw6v/1/upper,workdir=/tmp/phase41-signing-gxy3jw6v/1/work",
+        "/var/lib/pacman/sync"
+      ],
+      "code": 0,
+      "output": "",
+      "error": null,
+      "seconds": 0.051
+    },
+    "generate-key": {
+      "command": [
+        "gpg",
+        "--homedir",
+        "/tmp/phase41-signing-gxy3jw6v/signer",
+        "--batch",
+        "--pinentry-mode",
+        "loopback",
+        "--passphrase",
+        "",
+        "--quick-generate-key",
+        "Astraeus Phase 4.1 disposable K-gate database fixture 2026-10-11",
+        "ed25519",
+        "sign",
+        "7d"
+      ],
+      "code": 0,
+      "output": "gpg: keybox '/tmp/phase41-signing-gxy3jw6v/signer/pubring.kbx' created\ngpg: /tmp/phase41-signing-gxy3jw6v/signer/trustdb.gpg: trustdb created\ngpg: directory '/tmp/phase41-signing-gxy3jw6v/signer/openpgp-revocs.d' created\ngpg: revocation certificate stored as '/tmp/phase41-signing-gxy3jw6v/signer/openpgp-revocs.d/266918787E6570FD0B4B6E889E8A79CE8852B557.rev'\n",
+      "error": null,
+      "seconds": 0.101
+    },
+    "signer-identity": {
+      "command": [
+        "gpg",
+        "--homedir",
+        "/tmp/phase41-signing-gxy3jw6v/signer",
+        "--batch",
+        "--with-colons",
+        "--list-keys"
+      ],
+      "code": 0,
+      "output": "gpg: checking the trustdb\ngpg: marginals needed: 3  completes needed: 1  trust model: pgp\ngpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u\ngpg: next trustdb check due at 2026-10-19\ntru:o:1:1791770663:1:3:1:5\npub:u:255:22:9E8A79CE8852B557:1791770662:1792375462::u:::scSC:::::ed25519:::0:\nfpr:::::::::266918787E6570FD0B4B6E889E8A79CE8852B557:\nuid:u::::1791770662::DE6E623A8883C0FE92440FD6878632E3649E0845::Astraeus Phase 4.1 disposable K-gate database fixture 2026-10-11::::::::::0:\n",
+      "error": null,
+      "seconds": 0.051
+    },
+    "sign-database": {
+      "command": [
+        "gpg",
+        "--homedir",
+        "/tmp/phase41-signing-gxy3jw6v/signer",
+        "--batch",
+        "--local-user",
+        "266918787E6570FD0B4B6E889E8A79CE8852B557",
+        "--output",
+        "/tmp/phase41-signing-gxy3jw6v/distro.db.sig",
+        "--detach-sign",
+        "/tmp/phase41-signing-gxy3jw6v/distro.db"
+      ],
+      "code": 0,
+      "output": "",
+      "error": null,
+      "seconds": 0.051
+    },
+    "export-public-key": {
+      "command": [
+        "gpg",
+        "--homedir",
+        "/tmp/phase41-signing-gxy3jw6v/signer",
+        "--batch",
+        "--armor",
+        "--output",
+        "/tmp/phase41-signing-gxy3jw6v/repository-key.asc",
+        "--export",
+        "266918787E6570FD0B4B6E889E8A79CE8852B557"
+      ],
+      "code": 0,
+      "output": "",
+      "error": null,
+      "seconds": 0.051
+    },
+    "verify-detached-signature": {
+      "command": [
+        "gpg",
+        "--homedir",
+        "/tmp/phase41-signing-gxy3jw6v/signer",
+        "--batch",
+        "--status-fd",
+        "1",
+        "--verify",
+        "/tmp/phase41-signing-gxy3jw6v/distro.db.sig",
+        "/tmp/phase41-signing-gxy3jw6v/distro.db"
+      ],
+      "code": 0,
+      "output": "[GNUPG:] NEWSIG\ngpg: Signature made Sun 11 Oct 2026 07:04:23 PM PDT\ngpg:                using EDDSA key 266918787E6570FD0B4B6E889E8A79CE8852B557\n[GNUPG:] KEY_CONSIDERED 266918787E6570FD0B4B6E889E8A79CE8852B557 0\n[GNUPG:] SIG_ID PIRyKlpSsgRasznJN5GIh13hmDQ 2026-10-12 1791770663\n[GNUPG:] GOODSIG 9E8A79CE8852B557 Astraeus Phase 4.1 disposable K-gate database fixture 2026-10-11\ngpg: Good signature from \"Astraeus Phase 4.1 disposable K-gate database fixture 2026-10-11\" [ultimate]\n[GNUPG:] VALIDSIG 266918787E6570FD0B4B6E889E8A79CE8852B557 2026-10-12 1791770663 0 4 0 22 10 00 266918787E6570FD0B4B6E889E8A79CE8852B557\n[GNUPG:] TRUST_ULTIMATE 0 pgp\n",
+      "error": null,
+      "seconds": 0.051
+    },
+    "untrusted-signer": {
+      "command": [
+        "runuser",
+        "-u",
+        "tester",
+        "--",
+        "env",
+        "DISPLAY=:0",
+        "XAUTHORITY=/run/user/1000/xauth_dlWQze",
+        "WAYLAND_DISPLAY=wayland-0",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "XDG_SESSION_TYPE=wayland",
+        "XDG_CURRENT_DESKTOP=KDE",
+        "pacman",
+        "--sync",
+        "--list",
+        "distro"
+      ],
+      "code": 1,
+      "output": "error: distro: key \"266918787E6570FD0B4B6E889E8A79CE8852B557\" is unknown\nerror: keyring is not writable\nerror: database 'distro' is not valid (invalid or corrupted database (PGP signature))\n",
+      "error": null,
+      "seconds": 0.153
+    },
+    "import-namespace-key": {
+      "command": [
+        "pacman-key",
+        "--add",
+        "/tmp/phase41-signing-gxy3jw6v/repository-key.asc"
+      ],
+      "code": 0,
+      "output": "==> Updating trust database...\ngpg: next trustdb check due at 2026-10-26\n",
+      "error": null,
+      "seconds": 0.102
+    },
+    "trust-namespace-key": {
+      "command": [
+        "pacman-key",
+        "--lsign-key",
+        "266918787E6570FD0B4B6E889E8A79CE8852B557"
+      ],
+      "code": 0,
+      "output": "  -> Locally signed 1 key.\n==> Updating trust database...\ngpg: Note: third-party key signatures using the SHA1 algorithm are rejected\ngpg: (use option \"--allow-weak-key-signatures\" to override)\ngpg: marginals needed: 3  completes needed: 1  trust model: pgp\ngpg: depth: 0  valid:   1  signed:   6  trust: 0-, 0q, 0n, 0m, 0f, 1u\ngpg: depth: 1  valid:   6  signed:  89  trust: 1-, 0q, 0n, 5m, 0f, 0u\ngpg: depth: 2  valid:  78  signed:  18  trust: 78-, 0q, 0n, 0m, 0f, 0u\ngpg: next trustdb check due at 2026-10-19\n",
+      "error": null,
+      "seconds": 0.302
+    },
+    "namespace-fingerprint": {
+      "command": [
+        "pacman-key",
+        "--finger",
+        "266918787E6570FD0B4B6E889E8A79CE8852B557"
+      ],
+      "code": 0,
+      "output": "pub   ed25519 2026-10-12 [SC] [expires: 2026-10-19]\n      2669 1878 7E65 70FD 0B4B  6E88 9E8A 79CE 8852 B557\nuid           [  full  ] Astraeus Phase 4.1 disposable K-gate database fixture 2026-10-11\n\n",
+      "error": null,
+      "seconds": 0.051
+    },
+    "signature-policy": {
+      "command": [
+        "pacman-conf",
+        "--repo",
+        "distro",
+        "SigLevel"
+      ],
+      "code": 0,
+      "output": "PackageRequired\nPackageTrustedOnly\nDatabaseRequired\nDatabaseTrustedOnly\n",
+      "error": null,
+      "seconds": 0.051
+    },
+    "signed-database-accepted": {
+      "command": [
+        "runuser",
+        "-u",
+        "tester",
+        "--",
+        "env",
+        "DISPLAY=:0",
+        "XAUTHORITY=/run/user/1000/xauth_dlWQze",
+        "WAYLAND_DISPLAY=wayland-0",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "XDG_SESSION_TYPE=wayland",
+        "XDG_CURRENT_DESKTOP=KDE",
+        "pacman",
+        "--sync",
+        "--list",
+        "distro"
+      ],
+      "code": 0,
+      "output": "distro astraeus-validation-fixture 2-1 [installed: 1-1]\n",
+      "error": null,
+      "seconds": 0.202
+    },
+    "tampered-database": {
+      "command": [
+        "runuser",
+        "-u",
+        "tester",
+        "--",
+        "env",
+        "DISPLAY=:0",
+        "XAUTHORITY=/run/user/1000/xauth_dlWQze",
+        "WAYLAND_DISPLAY=wayland-0",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "XDG_SESSION_TYPE=wayland",
+        "XDG_CURRENT_DESKTOP=KDE",
+        "pacman",
+        "--sync",
+        "--list",
+        "distro"
+      ],
+      "code": 1,
+      "output": "error: distro: signature from \"Astraeus Phase 4.1 disposable K-gate database fixture 2026-10-11\" is invalid\nerror: database 'distro' is not valid (invalid or corrupted database (PGP signature))\n",
+      "error": null,
+      "seconds": 0.202
+    },
+    "restored-signed-database": {
+      "command": [
+        "runuser",
+        "-u",
+        "tester",
+        "--",
+        "env",
+        "DISPLAY=:0",
+        "XAUTHORITY=/run/user/1000/xauth_dlWQze",
+        "WAYLAND_DISPLAY=wayland-0",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "XDG_SESSION_TYPE=wayland",
+        "XDG_CURRENT_DESKTOP=KDE",
+        "pacman",
+        "--sync",
+        "--list",
+        "distro"
+      ],
+      "code": 0,
+      "output": "distro astraeus-validation-fixture 2-1 [installed: 1-1]\n",
+      "error": null,
+      "seconds": 0.151
+    },
+    "dependency-mismatch": {
+      "command": [
+        "unshare",
+        "--mount",
+        "--propagation",
+        "private",
+        "/usr/bin/python3",
+        "/mnt/astraeus-validation/phase4_negatives.py",
+        "--case",
+        "dependency-mismatch"
+      ],
+      "code": 0,
+      "output": "{\"status\": \"PASS\", \"scope\": \"actual production CLI under isolated test mount/environment; no physical qualification\", \"reply\": {\"command\": [\"runuser\", \"-u\", \"tester\", \"--\", \"env\", \"DISPLAY=:0\", \"XAUTHORITY=/run/user/1000/xauth_dlWQze\", \"WAYLAND_DISPLAY=wayland-0\", \"XDG_RUNTIME_DIR=/run/user/1000\", \"DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus\", \"XDG_SESSION_TYPE=wayland\", \"XDG_CURRENT_DESKTOP=KDE\", \"distroctl\", \"update\", \"--dry-run\", \"--json\"], \"code\": 1, \"output\": \"distroctl: inconsistent graphics package state: mesa and lib32-mesa must have matching upstream versions; entire plan rejected\\n\", \"error\": null, \"seconds\": 1.055}, \"package_query\": {\"command\": [\"pacman\", \"-Q\", \"lib32-mesa\"], \"code\": 0, \"output\": \"lib32-mesa 999:999-1\\n\", \"error\": null, \"seconds\": 0.101}}\n",
+      "error": null,
+      "seconds": 1.407
+    }
+  },
+  "desktop": {
+    "DISPLAY": ":0",
+    "XAUTHORITY": "/run/user/1000/xauth_dlWQze",
+    "WAYLAND_DISPLAY": "wayland-0",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "XDG_SESSION_TYPE": "wayland",
+    "XDG_CURRENT_DESKTOP": "KDE"
+  },
+  "scope": "TEST ONLY: unchanged database bytes; ephemeral namespace trust; no package installation",
+  "original": {
+    "database_sha256": "7f3515f1cdc3453ed606340f2ac0715faf0e327898e9b51de1f7ec5d975d6dca",
+    "signature_sha256": "653c7fa82350d712a1e47bc4ce582061a21d81d055a561874d7cd9ff5777b16e",
+    "pacman_conf_sha256": "dc3dfff693a85f8fc5d7bb9214fe584fbc15d89228df65764f9ab9355d30cf95"
+  },
+  "dependency_mismatch": {
+    "status": "PASS",
+    "scope": "actual production CLI under isolated test mount/environment; no physical qualification",
+    "reply": {
+      "command": [
+        "runuser",
+        "-u",
+        "tester",
+        "--",
+        "env",
+        "DISPLAY=:0",
+        "XAUTHORITY=/run/user/1000/xauth_dlWQze",
+        "WAYLAND_DISPLAY=wayland-0",
+        "XDG_RUNTIME_DIR=/run/user/1000",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "XDG_SESSION_TYPE=wayland",
+        "XDG_CURRENT_DESKTOP=KDE",
+        "distroctl",
+        "update",
+        "--dry-run",
+        "--json"
+      ],
+      "code": 1,
+      "output": "distroctl: inconsistent graphics package state: mesa and lib32-mesa must have matching upstream versions; entire plan rejected\n",
+      "error": null,
+      "seconds": 1.055
+    },
+    "package_query": {
+      "command": [
+        "pacman",
+        "-Q",
+        "lib32-mesa"
+      ],
+      "code": 0,
+      "output": "lib32-mesa 999:999-1\n",
+      "error": null,
+      "seconds": 0.101
+    }
+  },
+  "fixture": {
+    "fingerprint": "266918787E6570FD0B4B6E889E8A79CE8852B557",
+    "created_epoch": 1791770662,
+    "expires_epoch": 1792375462,
+    "database_sha256": "7f3515f1cdc3453ed606340f2ac0715faf0e327898e9b51de1f7ec5d975d6dca",
+    "signature_sha256": "06c10c15983135ec7c830c403ae12a71dcd64fbbfc0de290352d8008c174391c",
+    "public_key_sha256": "14544fcfa0a8a1ad4722d0470eaaec99d8c5132bdacf33920dc8ea886c821487",
+    "database_base64": "H4sIAAAAAAAAA+3SzXOaQBQAcM/8FVw4muwCC+bQw/JhpIoSCDHmtsBqMbgaQI3567tOO2mnMymHOtPp9P0uy7Jvv95b1rQ14/umf2BVWbC23Ir+snxt9zXv63183bsAhJBNiCpbbBP8c/tOxUS3dKQbtmWpSEfYtHsqucTmXfZNy2p5lGxfVgWvP4zrGv9+j/f2H8E66l/wJv/TPWQ+LNP8sP4Ymfov9ccIkZ6KLnHBLv95/bVhMPGnNPQ1peMp9Jk4Xe2eV1cyX1dvTasoWuc8GePQpDPmwY+TYDbVFLmN7Hp+4mqKVza7bcOyiqv1tqoylj+rslYtVxsu2lLwSoa6SfAklzd18zwx+NbDSH4nI6oTK0lDOYpQTojJ7dw2zCJH3MDyQQ5M28a8MDKGs0Gec2JlbMkHhWmh5RLLb2IVhs1YQeRq0W2UBLeaUo5SnzqLMXXQPLi7J87+WCfVeBiuD8OW3kTrMAl3+YOxoKnLmpW4WdGxGzs//s9eLHrnZVm7QrsXMV63w01gGe1hvPkyiV5O+cSw4+MTwevX/WY00/Ojdz2/F9zJHoR/FNfWwl5Qk3x+9J3pKA5DNkzmx8ckJmltUGp+kkedBK4/PeccOYkn+zR2R7IA4nQuRhpMPI/en5Nk36AB1gfonKyIumN668eakopnsT0KNZLpZiteK8rffqEAAAAAAAAAAAAAAAAAAAAAAAAAAOB3vgJ7OaggACgAAA==",
+    "signature_base64": "iHUEABYKAB0WIQQmaRh4fmVw/QtLboieinnOiFK1VwUCasxAJwAKCRCeinnOiFK1V9PWAP9EvnktgGlquEYvfLdkE6f4jm+zTWb8CzfiI72kH2ZOVAEAv8GKZtNUxGFe4/Qgsp6vFB23IFWdLXt9XSi+Io/PrwQ=",
+    "public_key_ascii": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmDMEasxAJhYJKwYBBAHaRw8BAQdAXnldA7u6Ek4EOTfyQnIq9LqC0G8bGnlr/zRg\nq6VNkFK0QEFzdHJhZXVzIFBoYXNlIDQuMSBkaXNwb3NhYmxlIEstZ2F0ZSBkYXRh\nYmFzZSBmaXh0dXJlIDIwMjYtMTAtMTGIlgQTFgoAPhYhBCZpGHh+ZXD9C0tuiJ6K\nec6IUrVXBQJqzEAmAhsDBQkACTqABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJ\nEJ6Kec6IUrVXqEoA/jfBM7Jzk+Z6FqAxkSoSJsMJ0BM6VK/sQnZMzxADeD6zAQDx\nJgmQB1GAuTk6/Qa0tfJHHmueyYX8Iz/XeV2uF/TqBA==\n=2HSy\n-----END PGP PUBLIC KEY BLOCK-----\n",
+    "package_signatures": "Unchanged; package installation is outside this dry-run fixture qualification",
+    "trust": "Existing keyring overlaid in private mount namespace; public key imported and locally signed there only"
+  },
+  "status": "PASS",
+  "finished": "2026-10-12T02:04:25.954245+00:00"
+}

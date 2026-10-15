@@ -1,0 +1,59 @@
+{
+  "windows": {
+    "rust_passed": 88,
+    "rust_failed": 0,
+    "rust_ignored": 0,
+    "python_total": 99,
+    "python_passed": 62,
+    "python_skipped": 37,
+    "clippy": "passed"
+  },
+  "linux": {
+    "rust_passed": 95,
+    "rust_failed": 0,
+    "rust_ignored": 1,
+    "python_total": 99,
+    "python_passed": 72,
+    "python_skipped": 27,
+    "clippy": "passed"
+  },
+  "format": "passed",
+  "archive": {
+    "databases": 3,
+    "direct_packages": 98,
+    "status": "passed"
+  },
+  "native": {
+    "elf64_build": "passed",
+    "elf64_render": "software llvmpipe readback passed",
+    "elf32_build": "passed",
+    "elf32_runtime": "loader absent; rendering untested",
+    "root_refusal": "unsupported as intended"
+  },
+  "base_commit": "2e4c1725e6ad9d70654ca32158cf524feabfc91f",
+  "logs": {
+    "archive-check.log": "c0f3e014b6cc78cabff997bca1969a5af8b5e9df99c367efac83d2c64e24404b",
+    "clippy-linux.log": "b2ecd542b54a60b50ca32d097eeb7dbc3328f6fc73f8d6e4ed7cd566bc28f1c5",
+    "clippy-windows.log": "0c60b86b1e5db2e54b9718e4e02121f71d87e87c80c1fd103adb9e5d655e96bf",
+    "fmt.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "python-linux.log": "6b3ff5a778426b672a4b7cd114598c8758b26e19e24d9a8f558eebd399cdef62",
+    "python-windows.log": "2810481da721cec5c0d99bd02bd5baf3e4e7b01c7d61df3f0fd68fcd09e27685",
+    "rust-linux.log": "33315b0470c50774a64df2ba3f16f484179313cb6157912ba15f8ed38fe5c80e",
+    "rust-windows.log": "34ce3cefaed529a8d3b52af3ebee7fa9876b50c2ce0fa479e5227c0e23f52f86"
+  },
+  "graphics_source_sha256": {
+    "crates/graphics/src/discover.rs": "117f460fcea0205b36e0d8d2d25d895db3e324b9bb767199644e6b8fcb874f95",
+    "crates/graphics/src/lib.rs": "e7fafe1189df71cf8dff1bc6789a6f875405b1fe08814d39df14422f3f1f37f3",
+    "crates/graphics/src/policy.rs": "61aa0633f46356d7ff14f32cf5e3508ceca285ce976a9730779bc0be1886a4e6",
+    "crates/graphics/src/tests.rs": "80d1715dd17ef1c9637fef582223fb386b401aed6fddba3e97f6c258d1ed4e59",
+    "scripts/graphics-probe.c": "9460221424cabdfb74a90e8be237469c79f24dec1457c6b9561c1b492d824f33"
+  },
+  "limitations": [
+    "No physical GPU tests",
+    "No pinned Arch image/package build",
+    "No 32-bit Vulkan render pass observed",
+    "No Wayland presentation, OpenGL context, game or shader testing",
+    "No NVIDIA activation/signing qualification",
+    "Existing native signing, root-only, QEMU and loopback tests have explicit host/tool skips"
+  ]
+}

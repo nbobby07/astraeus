@@ -1,10 +1,11 @@
-pkgname=distroctl
+pkgbase=distroctl
+pkgname=('distroctl' 'astraeus-control-center')
 pkgver=@@VERSION@@
 pkgrel=1
 pkgdesc='Distribution status, transactions, snapshots and recovery tools'
 arch=('x86_64')
-depends=('gcc-libs' 'glibc' 'btrfs-progs' 'util-linux' 'coreutils' 'systemd' 'cryptsetup' 'pacman' 'libarchive' 'mkinitcpio' 'systemd-ukify' 'python' 'openssl' 'sbsigntools' 'efitools')
-makedepends=('rust')
+depends=('gcc-libs' 'glibc' 'lib32-glibc' 'btrfs-progs' 'util-linux' 'coreutils' 'systemd' 'cryptsetup' 'pacman' 'libarchive' 'mkinitcpio' 'systemd-ukify' 'python' 'openssl' 'sbsigntools' 'efitools')
+makedepends=('rust' 'gcc' 'lib32-glibc' 'lib32-gcc-libs' 'vulkan-headers' 'cmake' 'ninja' 'qt6-base' 'qt6-declarative' 'kirigami' 'polkit' 'qqc2-desktop-style' 'breeze' 'hunspell')
 source=('platform.tar.xz')
 sha256sums=('@@SHA256@@')
 options=('!lto')
@@ -20,19 +21,28 @@ build() {
   cd "$srcdir/platform"
   export RUSTC=/usr/bin/rustc
   export CARGO_HOME="$srcdir/cargo-home"
-  /usr/bin/cargo build --frozen --release -p distroctl
+  /usr/bin/cargo build --frozen --release -p distroctl --features native-alpm
+  /usr/bin/cc -std=c11 -O2 -Wall -Wextra -Werror scripts/graphics-probe.c -ldl -o target/graphics-probe64
+  /usr/bin/cc -m32 -std=c11 -O2 -Wall -Wextra -Werror scripts/graphics-probe.c -ldl -o target/graphics-probe32
+  /usr/bin/cmake -S apps/control-center -B target/control-center -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTING=ON
+  /usr/bin/cmake --build target/control-center
 }
 
 check() {
   cd "$srcdir/platform"
   export RUSTC=/usr/bin/rustc
   export CARGO_HOME="$srcdir/cargo-home"
-  /usr/bin/cargo test --frozen --workspace
+  /usr/bin/cargo test --frozen --workspace --features distroctl/native-alpm
+  QT_QPA_PLATFORM=offscreen QT_QUICK_BACKEND=software /usr/bin/ctest --test-dir target/control-center --output-on-failure
 }
 
-package() {
+package_distroctl() {
   cd "$srcdir/platform"
   install -Dm755 target/release/distroctl "$pkgdir/usr/bin/distroctl"
+  install -Dm755 target/graphics-probe64 "$pkgdir/usr/lib/distroctl/graphics-probe64"
+  install -Dm755 target/graphics-probe32 "$pkgdir/usr/lib/distroctl/graphics-probe32"
+  install -Dm644 docs/graphics.md "$pkgdir/usr/share/doc/distroctl/graphics.md"
+  install -Dm644 docs/performance.md "$pkgdir/usr/share/doc/distroctl/performance.md"
   install -Dm644 distro/branding/project.toml "$pkgdir/usr/share/distro/project.toml"
   install -Dm644 distro/installed/astraeus-confirm-boot.service "$pkgdir/usr/lib/systemd/system/astraeus-confirm-boot.service"
   install -Dm644 distro/installed/astraeus-bless-boot.conf "$pkgdir/usr/lib/systemd/system/systemd-bless-boot.service.d/astraeus.conf"
@@ -45,4 +55,14 @@ package() {
   install -Dm644 distro/installed/secure-boot/linux.preset "$pkgdir/usr/share/distro/secure-boot/linux.preset"
   install -Dm755 distro/installed/secure-boot/95-astraeus-sign "$pkgdir/usr/lib/initcpio/post/95-astraeus-sign"
   install -Dm644 docs/boot-generations.md "$pkgdir/usr/share/doc/distroctl/boot-generations.md"
+  install -Dm644 distro/installed/astraeus-apply@.service "$pkgdir/usr/lib/systemd/system/astraeus-apply@.service"
+  install -Dm644 distro/installed/org.astraeus.system.policy "$pkgdir/usr/share/polkit-1/actions/org.astraeus.system.policy"
+}
+
+package_astraeus-control-center() {
+  pkgdesc='Native Astraeus software and system configuration manager'
+  depends=("distroctl=$pkgver-$pkgrel" 'qt6-base' 'qt6-declarative' 'kirigami' 'polkit' 'polkit-kde-agent' 'qqc2-desktop-style' 'breeze' 'hunspell')
+  cd "$srcdir/platform"
+  DESTDIR="$pkgdir" /usr/bin/cmake --install target/control-center
+  install -Dm644 docs/control-center.md "$pkgdir/usr/share/doc/astraeus-control-center/README.md"
 }

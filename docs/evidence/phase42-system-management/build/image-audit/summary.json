@@ -1,0 +1,36 @@
+{
+  "result_sha256": "e2bdc2ea831cb24a869b2fb5a7a2ef3662f15e234c160b6230d1f2d394f116d8",
+  "source_commit": "0e8bb00e3edc5382fa177bf0017b2f8595ee8229",
+  "iso_sha256": "2c047e270d6d99e0c0a6a09d81ade25752e4549457052f20d2fbecfa796a3072",
+  "signatures_verified": 6,
+  "free_bytes_after": 21130289152,
+  "payloads": {
+    "live": {
+      "entry_count": 188692,
+      "regular_inventory_paths": 139379,
+      "regular_payload_records": 137540,
+      "content_bytes": 5567115314,
+      "classified_files": [
+        "usr/bin/gnutls-cli",
+        "usr/lib/libgnutls.so.30.42.0"
+      ],
+      "worker_enabled": false,
+      "owner_and_validation_state_absent": true,
+      "embedded_repository_matches": true
+    },
+    "installed": {
+      "entry_count": 186542,
+      "regular_inventory_paths": 136903,
+      "regular_payload_records": 135064,
+      "content_bytes": 4246027296,
+      "classified_files": [
+        "usr/bin/gnutls-cli",
+        "usr/lib/libgnutls.so.30.42.0",
+        "usr/lib32/libgnutls.so.30.42.0"
+      ],
+      "worker_enabled": false,
+      "owner_and_validation_state_absent": true,
+      "embedded_repository_matches": true
+    }
+  }
+}

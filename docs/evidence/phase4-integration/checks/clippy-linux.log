@@ -1,0 +1,4 @@
+    Checking distro-graphics v0.1.0-dev (/mnt/c/Users/Noel/.codex/worktrees/phase4-integration/operating-system/crates/graphics)
+    Checking distro-transactions v0.1.0-dev (/mnt/c/Users/Noel/.codex/worktrees/phase4-integration/operating-system/crates/transactions)
+    Checking distroctl v0.1.0-dev (/mnt/c/Users/Noel/.codex/worktrees/phase4-integration/operating-system/crates/distroctl)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.58s

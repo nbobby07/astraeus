@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-14T18:35:48.156995+00:00",
+  "finished": "2026-10-14T18:35:51.405814+00:00",
+  "command": "python3 /mnt/astraeus-validation/phase42-faults.py guest space-arm",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"allocation_limit_bytes\": 29949427712, \"available_after\": 135589888, \"available_before\": 30083833856, \"filesystem_uuid\": \"d716a114-52b1-484f-adc3-806beb897071\", \"kind\": \"root-space\", \"method\": \"Btrfs-preallocation-without-data-writes\", \"path\": \"/var/lib/astraeus-validation/phase42-space-2b688a2811f74925be479bbd9bad9c7e\", \"required_bytes\": 272591980, \"run_id\": \"2b688a2811f74925be479bbd9bad9c7e\", \"schema_version\": 1, \"target\": \"/\"}\n",
+    "id": "c952666e5f1a488ea5761ff5f065d8b2",
+    "boot_id": "3089959a-7e7b-4d81-91eb-0f0ba7be8ff8"
+  }
+}

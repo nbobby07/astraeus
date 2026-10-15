@@ -1,0 +1,15 @@
+test_no_root_desktop (test_phase4_validation.GuestTests.test_no_root_desktop) ... ok
+test_real_command_timeout_exit_and_output_limit (test_phase4_validation.GuestTests.test_real_command_timeout_exit_and_output_limit) ... ok
+test_runtime_needs_marker_exit_architecture_and_no_timeout (test_phase4_validation.GuestTests.test_runtime_needs_marker_exit_architecture_and_no_timeout) ... ok
+test_session_preserves_xauthority_without_exporting_other_secrets (test_phase4_validation.GuestTests.test_session_preserves_xauthority_without_exporting_other_secrets) ... ok
+test_software_device_never_qualifies_physical_gpu (test_phase4_validation.GuestTests.test_software_device_never_qualifies_physical_gpu) ... ok
+test_failures_and_partial_results_remain_visible (test_phase4_validation.MatrixTests.test_failures_and_partial_results_remain_visible) ... ok
+test_hooks_require_exact_exit_and_diagnostic (test_phase4_validation.MatrixTests.test_hooks_require_exact_exit_and_diagnostic) ... ok
+test_matrix_cli_exclusive_output (test_phase4_validation.MatrixTests.test_matrix_cli_exclusive_output) ... ok
+test_matrix_never_passes_unexecuted_scenarios (test_phase4_validation.MatrixTests.test_matrix_never_passes_unexecuted_scenarios) ... ok
+test_packages_and_enumeration_do_not_pass_execution (test_phase4_validation.MatrixTests.test_packages_and_enumeration_do_not_pass_execution) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.732s
+
+OK

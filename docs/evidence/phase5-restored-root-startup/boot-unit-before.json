@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T08:06:17.816648+00:00",
+  "request": "0013.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "# /usr/lib/systemd/system/systemd-bless-boot.service\n#  SPDX-License-Identifier: LGPL-2.1-or-later\n#\n#  This file is part of systemd.\n#\n#  systemd is free software; you can redistribute it and/or modify it\n#  under the terms of the GNU Lesser General Public License as published by\n#  the Free Software Foundation; either version 2.1 of the License, or\n#  (at your option) any later version.\n\n[Unit]\nDescription=Mark the Current Boot Loader Entry as Good\nDocumentation=man:systemd-bless-boot.service(8)\nDefaultDependencies=no\nRequires=boot-complete.target\nAfter=local-fs.target boot-complete.target\nConflicts=shutdown.target\nBefore=shutdown.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/lib/systemd/systemd-bless-boot good\n\n# /usr/lib/systemd/system/systemd-bless-boot.service.d/astraeus.conf\n[Unit]\nRequires=astraeus-confirm-boot.service\nAfter=astraeus-confirm-boot.service\n\n[Service]\nExecStart=\nExecStart=/usr/bin/distroctl confirm-boot\n# /usr/lib/systemd/system/astraeus-confirm-boot.service\n[Unit]\nDescription=Confirm the pending Astraeus boot using observed health\nAfter=local-fs.target NetworkManager.service sddm.service systemd-logind.service\nConditionPathExists=!/run/archiso\nConditionPathExists=|/var/log/astraeus/transactions.sqlite\nConditionPathExists=|/var/log/astraeus/private/transactions.sqlite\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/distroctl confirm-boot\nTimeoutStartSec=180\n\n[Install]\nWantedBy=graphical.target\n",
+    "id": "907733d4fb8443a3bfe5bb111404f6db",
+    "boot_id": "ee9b3fe5-9458-4170-9c5d-a74365c58c2f"
+  },
+  "finished": "2026-10-15T08:06:17.932878+00:00"
+}

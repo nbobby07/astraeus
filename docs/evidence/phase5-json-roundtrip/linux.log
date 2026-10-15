@@ -1,0 +1,165 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling version_check v0.9.5
+   Compiling zmij v1.0.23
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.14
+   Compiling typenum v1.20.1
+   Compiling serde_json v1.0.151
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
+   Compiling memchr v2.8.3
+   Compiling itoa v1.0.18
+   Compiling pkg-config v0.3.34
+   Compiling vcpkg v0.2.15
+   Compiling toml_write v0.1.2
+   Compiling cc v1.6.0
+   Compiling winnow v0.7.15
+   Compiling foldhash v0.2.0
+   Compiling generic-array v0.14.7
+   Compiling libc v0.2.190
+   Compiling hashbrown v0.16.1
+   Compiling bitflags v2.13.2
+   Compiling smallvec v1.16.2
+   Compiling cpufeatures v0.2.17
+   Compiling cfg-if v1.0.5
+   Compiling fallible-iterator v0.3.0
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling indexmap v2.14.2
+   Compiling hashlink v0.11.1
+   Compiling syn v3.0.6
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling digest v0.10.7
+   Compiling libsqlite3-sys v0.36.0
+   Compiling sha2 v0.10.9
+   Compiling serde_derive v1.0.229
+   Compiling serde_spanned v0.6.9
+   Compiling toml_datetime v0.6.11
+   Compiling distro-hardware v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/hardware)
+   Compiling distro-snapshots v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/snapshots)
+   Compiling toml_edit v0.22.27
+   Compiling distro-graphics v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/graphics)
+   Compiling toml v0.8.23
+   Compiling distro-config v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/config)
+   Compiling rusqlite v0.38.0
+   Compiling distro-transactions v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/transactions)
+   Compiling distroctl v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/distroctl)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.91s
+     Running unittests src/lib.rs (target/debug/deps/distroctl-68056bf1bd74f65b)
+
+running 31 tests
+test gaming::proton::tests::metadata_parser_is_bounded_and_rejects_ambiguity ... ok
+test gaming::probe::tests::config_is_optional_and_never_written ... ok
+test performance::tests::definitions_respect_limits_and_cli_rejects_unbounded_input ... ok
+test performance::tests::invalid_reports_never_become_success ... ok
+test performance::tests::comparison_is_compatible_and_does_not_claim_significance ... ok
+test performance::tests::missing_sensors_are_not_zero ... ok
+test performance::tests::comparison_rejects_different_workload_and_execution_class ... ok
+test performance::workload::real_tests::real_workloads_and_stop_cleanup ... ignored, explicit bounded Linux workload and unnamed-file test
+test performance::tests::bare_metal_and_kernel_memory_changes_remain_comparable ... ok
+test performance::tests::counters_use_elapsed_time_and_reject_resets ... ok
+test performance::tests::storage_refuses_symlinks_and_excludes_parallel_runs ... ok
+test performance::tests::zero_denominator_is_unavailable ... ok
+test performance::tests::temperature_and_pressure_are_bounded ... ok
+test performance::tests::peripheral_power_supplies_never_enter_reports ... ok
+test system::ops::tests::identifiers_cannot_escape_the_fixed_request_directory ... ok
+test performance::tests::store_roundtrip_and_failed_publication_preserves_original ... ok
+test system::ops::tests::only_old_queued_receipts_with_confirmed_idle_units_are_orphans ... ok
+test system::ops::tests::rebooted_requests_fail_without_replay_and_terminal_receipts_survive ... ok
+test system::ops::tests::receipts_distinguish_mutating_work_and_boot_wait ... ok
+test system::ops::tests::unit_projection_requires_complete_inactive_state_without_a_start_job ... ok
+test system::ops::tests::worker_start_failure_is_persisted_before_submission_returns ... ok
+test system::tests::export_and_parse_share_the_same_configuration ... ok
+test performance::tests::storage_refuses_future_and_oversized_documents ... ok
+test system::tests::preview_disables_noops_live_sessions_pending_history_and_active_workers ... ok
+test system::tests::submission_requires_exact_bounded_intent_and_digest ... ok
+test tests::formatting_and_json_share_normalized_hardware ... ok
+test tests::parse_observations_without_inventing_status ... ok
+test tests::fixture_detects_encrypted_and_plain_root_and_running_uki ... ok
+test updates::confirmation_tests::automatic_confirmation_leaves_verified_restoration_pending ... ok
+test tests::status_resolves_real_partition_and_mapper_symlinks ... ok
+test system::tests::security_observation_keeps_diagnostics_separate_and_bounds_output_and_time ... ok
+
+test result: ok. 30 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running unittests src/main.rs (target/debug/deps/distroctl-e08af2c8f893dfe9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cli.rs (target/debug/deps/cli-32f2c21e97b32e1a)
+
+running 4 tests
+test history_json_does_not_create_a_database ... ok
+test security_status_does_not_invent_success_without_the_installed_helper ... ok
+test dry_run_and_history_share_structured_models ... ok
+test cli_contract ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+     Running tests/gaming.rs (target/debug/deps/gaming-2f62f2671c2da2ee)
+
+running 13 tests
+test package_probe_only_issues_read_only_query_and_preserves_failure ... ok
+test metadata_symlinks_and_nonregular_files_are_not_read ... ok
+test extra_libraries_and_malformed_metadata_are_handled_without_execution ... ok
+test optional_tools_do_not_prove_execution_hdr_or_vrr ... ok
+test unknown_package_state_never_becomes_missing_or_a_safe_plan ... ok
+test steam_missing_broken_and_incomplete_32_bit_stack_are_distinct ... ok
+test json_contract_and_text_do_not_invent_runtime_success ... ok
+test proton_and_ge_discovery_is_metadata_only_and_deduplicated ... ok
+test headless_and_incomplete_wayland_sessions_are_not_ready ... ok
+test feature_requests_are_deterministic_and_optional ... ok
+test missing_or_failed_graphics_and_multilib_are_explicit_blockers ... ok
+test no_proposal_can_execute_or_guess_removal_ownership ... ok
+test cli_commands_refuse_mutation_and_reject_unsupported_options ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+     Running tests/gaming_graphics.rs (target/debug/deps/gaming_graphics-eb0ccda2c0b81054)
+
+running 4 tests
+test software_multilib_mismatch_is_rejected_by_the_shared_update_guard ... ok
+test installation_and_enumeration_do_not_prove_readback_or_cross_architecture_acceleration ... ok
+test different_devices_or_software_cannot_be_combined_into_physical_acceleration ... ok
+test preserves_raw_graphics_and_separates_software_virtual_and_physical_execution ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/graphics.rs (target/debug/deps/graphics-d11e81796e93f064)
+
+running 1 test
+test graphics_cli_is_read_only_and_schema_versioned ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/performance.rs (target/debug/deps/performance-db30258c6136b865)
+
+running 2 tests
+test performance_queries_are_versioned_and_arguments_bounded ... ok
+distroctl: cancelled by caller
+test ordinary_user_recording_and_stop_leave_truthful_private_results ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.43s
+
+     Running tests/system.rs (target/debug/deps/system-1267c71d5f24d179)
+
+running 4 tests
+test plain_export_is_importable_toml_and_matches_json_export ... ok
+test cli_bounds_toml_and_rejects_future_configuration ... ok
+test submission_rejects_malformed_and_oversized_input_before_platform_work ... ok
+test json_cli_parses_user_configuration_and_never_accepts_unreviewed_mutation ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+   Doc-tests distroctl
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,94 @@
+{
+  "automaticRestart": false,
+  "cpuTimeSeconds": null,
+  "createdAt": "2026-10-13T20:15:00.225616Z",
+  "debug": {
+    "complete": true,
+    "layers": [
+      {
+        "elapsedMs": 0,
+        "kind": "memory",
+        "layerId": "ly-ged76plqthtb3327",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "memory",
+        "layerId": "ly-7do25329eg1eer69",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-e7ufp32ieoh4nrqg",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-xjljr7q7jheg1ku0",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-agq2sd5f6vt1dcwp",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      }
+    ],
+    "managerId": "vms11-as1018",
+    "phase": "running",
+    "restoreSource": "resume",
+    "timingsMs": {
+      "admissionAndStartingTransitionMs": 5,
+      "backendStartMs": 30,
+      "guestReadyMs": 77,
+      "localLayerLeaseWaitMs": 0,
+      "localStartTotalMs": 222,
+      "recordInstanceMs": 9,
+      "resolveSourceMs": 28,
+      "resumeSourceCheckMs": 0,
+      "runningTransitionMs": 12
+    },
+    "totalMs": 225,
+    "vmId": "vm-3614c8ea177748e8952c562250e9ce09"
+  },
+  "displayName": "Astraeus Phase 4.2 temporary validator",
+  "egressIpv4": "208.72.218.134",
+  "egressIpv6": "2602:f470:40:0:ff49:c808:2c1c:61ab",
+  "id": "vm-3614c8ea177748e8952c562250e9ce09",
+  "idleTimeoutSeconds": 600,
+  "image": null,
+  "ipMode": "dualStack",
+  "lastNetworkActivity": "2026-10-13T20:15:16.488770Z",
+  "metadata": {
+    "compute_budget_usd": "10",
+    "phase": "phase4.2"
+  },
+  "networks": [],
+  "publicIpv6": "2602:f470:40:0:ff49:c808:2c1c:61ab",
+  "resources": {
+    "cpu": 4,
+    "memory": 8192,
+    "storage": 32768
+  },
+  "slug": "astraeus-phase42-validator",
+  "snapshotId": "sh-5779fd551557471792701bdf9bc3214c",
+  "sourceSnapshotDisplayName": "Ubuntu 24.04 LTS (4 vCPU · 8 GiB · 32 GB)",
+  "sourceSnapshotSlug": "ubuntu",
+  "sourceSnapshotSlugAtCreate": "freestyle/ubuntu",
+  "state": "running",
+  "totalRunSeconds": 58,
+  "updatedAt": "2026-10-14T12:33:52.814425Z",
+  "vpcs": []
+}

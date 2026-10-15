@@ -978,7 +978,13 @@ fn coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution() {
     let mut loader = plan();
     loader.boot.update_bootloader = true;
     let mut rejected_plans = vec![loader];
-    for name in ["systemd", "distroctl"] {
+    for name in [
+        "systemd",
+        "distroctl",
+        "nvidia-open",
+        "nvidia-utils",
+        "lib32-nvidia-utils",
+    ] {
         let mut update = plan();
         update.current = CurrentSystemState::new(BTreeMap::from([(name.into(), "1-1".into())]));
         update.packages.changes = vec![PackageChange::Upgrade {
@@ -997,8 +1003,9 @@ fn coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution() {
         let temp = Temp::new();
         let mut packages = Packages::new("");
         let mut snapshots = Snapshots::default();
+        let mut session = temp.session();
         assert!(execute(
-            &mut temp.session(),
+            &mut session,
             rejected,
             &mut packages,
             &mut snapshots,
@@ -1009,7 +1016,7 @@ fn coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution() {
         .is_err());
         assert!(packages.calls.is_empty());
         assert_eq!(snapshots.created, 0);
-        assert!(temp.session().records().unwrap().is_empty());
+        assert!(session.records().unwrap().is_empty());
     }
 }
 

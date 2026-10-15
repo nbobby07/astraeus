@@ -1,0 +1,104 @@
+{
+  "baseline": {
+    "kind": "phase3-integrated",
+    "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+    "encryption": "none",
+    "signer_sha256": "35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8",
+    "installed_binaries": {
+      "/usr/bin/distroctl": "19f5474c80db3a7a50c2d92cf50d725f562a39bd7d772139e9462219da12af73",
+      "/usr/bin/astraeus-secure-boot": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+      "/usr/bin/astraeus-boot-artifact": "fb0c032511bb6c85490f0a265d1f3cde3fa53813d4e2f36ada63c9d41cf24483",
+      "/usr/lib/distroctl/graphics-probe64": "51e61a9c710d2b6f2745aae96cdfa1dd025e6a8eae478a229819ecaeea977099",
+      "/usr/lib/distroctl/graphics-probe32": "f2731cf93ab406518c76eb674cef06ded5c2e57865d1e4c8c921475edbb7cd07"
+    },
+    "iso": {
+      "path": "/home/ubuntu/p4i/r2/build/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "sha256": "bbc3a397dbd34672994e97405e70a5d441b206820b905cfa4f6b4bd36e69905f"
+    },
+    "accepted": true,
+    "created": "2026-10-09T06:15:17.910420+00:00",
+    "sha256": {
+      "disk.qcow2": "eafebca45776fca62b848c77dfbb40dd3189b616727fe0bc9b8c9cb03eaa67a9",
+      "vars.fd": "ea6d7892aa8d2416a1314975eab29547c0d56454ae3cc6949c1b24b8a0947620"
+    },
+    "inputs": {
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+        "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+      }
+    }
+  },
+  "qcow2": {
+    "children": [
+      {
+        "name": "file",
+        "info": {
+          "children": [],
+          "virtual-size": 3305373696,
+          "filename": "/home/ubuntu/p41/base/disk.qcow2",
+          "format": "file",
+          "actual-size": 3305377792,
+          "format-specific": {
+            "type": "file",
+            "data": {}
+          },
+          "dirty-flag": false
+        }
+      }
+    ],
+    "virtual-size": 34359738368,
+    "filename": "/home/ubuntu/p41/base/disk.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 3305377792,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "1.1",
+        "compression-type": "zlib",
+        "lazy-refcounts": false,
+        "refcount-bits": 16,
+        "corrupt": false,
+        "extended-l2": false
+      }
+    },
+    "dirty-flag": false
+  },
+  "firmware_sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d",
+  "controller_sha256": "971ccbf1779a7411d4b34aeb627c537560eb6873d1bf2d0a1761e96289a1e8c3",
+  "guest_memory_mib": 8192,
+  "share_files": {
+    "installed-smoke.sh": "88fa95c0ad7164b681ff6bd527992911cf760f830c4f2782fb36edf188b1a5f5",
+    "phase4_guest.py": "3918e029935eb25d9e053ba390c3a6cd53b2404110880c8e249c896a0a22d399",
+    "guest-focused.py": "da412dcfa20b72bf34bcd9fef02ac5e1d9754e74bbd4446ca114b10e71f5a4a9",
+    "phase4_proton.py": "389cc7b91dce57d15bead3ed1eb705208afa2a7fdcdb1339c5b6dfa0fcb12d71",
+    "gaming-runtime-setup.py": "3083345a0527ffc9562f294e2134ca167dfc4a425c1613cbc5bdd3213f3e5e51",
+    "phase2-guest.py": "24ed9d70b5e6b808f0600cc27660fd24d71a77b5d4a22fd8d7cc335af3faa49f",
+    "gaming-session.py": "8625e0fa66a49791ce6ce65b754e8988801122c60f6723ee6e2cdeb16e9c1a2d",
+    "phase4_negatives.py": "047030d542b1ac1d3172c9181ce324d9153cc2a8d423a496d1893de5eaac87d0",
+    "phase4_gamescope.py": "884a616e709bbe2bb332097b430db785cfb10ccd73a1210fa510b6d0c894e131",
+    "fixtures/windows-smoke.exe": "5cee03d79ce1a46be0fb9e731d2ab5ce10cba1a46de86430e6afa6553c6e1347",
+    "fixtures/vulkan-workload.c": "0d2a52cc0e532ae95f74a4a7a3c4ea17cfd808fb74b3d0b76d3aa34ad7524c51",
+    "fixtures/prebuilt.json": "edef5e02f441e060e8e89bb56d543168761dfd6024bfc501c73fc3d78476c276",
+    "fixtures/windows-smoke.c": "5ef05abfc2a10d7e4f5b573d9fd8c0b5aadb94dfcd9388751c5f6c33045f6208",
+    "fixtures/vulkan32": "3aa436957ef18eb94e1d99ee506cadb1477fff6523cebad52cd73a7309882c88",
+    "fixtures/vulkan64": "cd418a77514b6eba32e09165e39d9920204d48730e61c15ae70ac1d0cf8b8bd7",
+    "fixtures/matrix.json": "9ada0714daba274219fd6e9c4dcf1433a080f8f7ae47c3d71938cf5ac07c2b31",
+    "runtime-inputs/GE-Proton11-7-x86_64.tar.gz": "c5448b76a230384e2d7bc6beb5ccb97bafb7e2c3b6c527cb03a1a546bbcb00a0",
+    "runtime-inputs/SteamLinuxRuntime_4.tar.xz": "3226d8234e7c0542ee767837832bfb1dad5e5e2dc944ec97eb221b437f6b9349"
+  },
+  "runtime_inputs": [
+    {
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton11-7/GE-Proton11-7-x86_64.tar.gz",
+      "sha256": "c5448b76a230384e2d7bc6beb5ccb97bafb7e2c3b6c527cb03a1a546bbcb00a0",
+      "bytes": 563784602,
+      "publisher_signature_verified": false
+    },
+    {
+      "url": "https://repo.steampowered.com/steamrt4/images/4.0.20260805.254769/SteamLinuxRuntime_4.tar.xz",
+      "sha256": "3226d8234e7c0542ee767837832bfb1dad5e5e2dc944ec97eb221b437f6b9349",
+      "bytes": 164895128,
+      "publisher_signature_verified": false
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "automaticRestart": false,
+  "cpuTimeSeconds": null,
+  "createdAt": "2026-10-11T03:44:05.291192Z",
+  "debug": {
+    "complete": true,
+    "layers": [
+      {
+        "elapsedMs": 0,
+        "kind": "memory",
+        "layerId": "ly-w11q90aec1xwcn68",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "memory",
+        "layerId": "ly-8mcepxfxjzva30pk",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "memory",
+        "layerId": "ly-zzlqvuuu24aa13ac",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "memory",
+        "layerId": "ly-w3i8cn11lgr7bqbr",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "memory",
+        "layerId": "ly-biw2q0w9qrncdkt9",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "memory",
+        "layerId": "ly-yocxsvc8wmvntuwj",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "memory",
+        "layerId": "ly-9j57s86zvyc1iim6",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-e7ufp32ieoh4nrqg",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-xjljr7q7jheg1ku0",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-rv30hzeyziycqhae",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-m2khee732flmz37j",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-63y8mmxqw0zpx5mc",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-vt50ye2c8oiyi5yx",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-z21pwunhoz3ejz30",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-2ykjpod3ohr5slbw",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-8hqton8icnovhcf3",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-tsoxg855as94xf50",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-gtyvlrf713nzbk4v",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-8ovq5olw75tvzypx",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-xeqxtn62z9lxn67w",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-ae10455bdqwvolqk",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-0uyrbbixkr3xlqsa",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-ws2g85lvs04ph291",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-5mnmicaer7oex94d",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      },
+      {
+        "elapsedMs": 0,
+        "kind": "disk",
+        "layerId": "dl-91covl91dcbsk5ks",
+        "pulled": false,
+        "source": "local",
+        "status": "ready"
+      }
+    ],
+    "managerId": "vms6-as1014",
+    "phase": "running",
+    "restoreSource": "resume",
+    "timingsMs": {
+      "admissionAndStartingTransitionMs": 3,
+      "backendStartMs": 108,
+      "guestReadyMs": 3,
+      "localLayerLeaseWaitMs": 0,
+      "localStartTotalMs": 225,
+      "recordInstanceMs": 24,
+      "resolveSourceMs": 23,
+      "resumeSourceCheckMs": 0,
+      "runningTransitionMs": 6
+    },
+    "totalMs": 229,
+    "vmId": "vm-9350aa5ae5534cc0a68551e6e040bcf2"
+  },
+  "displayName": "Astraeus Phase 4.1 temporary validator",
+  "egressIpv4": "208.72.218.134",
+  "egressIpv6": "2602:f470:40:1:f68a:3eaa:76c:5c42",
+  "id": "vm-9350aa5ae5534cc0a68551e6e040bcf2",
+  "idleTimeoutSeconds": 600,
+  "image": null,
+  "ipMode": "dualStack",
+  "lastNetworkActivity": "2026-10-14T12:07:29.731796Z",
+  "metadata": {
+    "compute_budget_usd": "5",
+    "max_active_seconds": "7200",
+    "phase": "phase4.1"
+  },
+  "networks": [],
+  "publicIpv6": "2602:f470:40:1:f68a:3eaa:76c:5c42",
+  "resources": {
+    "cpu": 4,
+    "memory": 16384,
+    "storage": 65536
+  },
+  "slug": "astraeus-phase41-validator",
+  "snapshotId": "sh-5779fd551557471792701bdf9bc3214c",
+  "sourceSnapshotDisplayName": "Ubuntu 24.04 LTS (4 vCPU · 8 GiB · 32 GB)",
+  "sourceSnapshotSlug": "ubuntu",
+  "sourceSnapshotSlugAtCreate": "freestyle/ubuntu",
+  "state": "running",
+  "totalRunSeconds": 55510,
+  "updatedAt": "2026-10-14T12:26:18.853178Z",
+  "vpcs": []
+}

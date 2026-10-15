@@ -1,0 +1,1 @@
+{"time": "2026-10-14T14:55:08.260466+00:00", "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112", "free_bytes": 48551211008, "memory": {"MemTotal_bytes": 16917024768, "MemAvailable_bytes": 16260112384}, "qemu_processes": [], "no_qemu": true, "no_nbd": true, "both_builder_disks_retired": true, "baseline_memory_guard_12gib": true}

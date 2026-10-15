@@ -1,0 +1,51 @@
+{
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "vm_id": "vm-bed64b6e1eaa4bd98cbd7d0d309f934c",
+  "builder_disk_retained": true,
+  "closed_and_nbd_disconnected": true,
+  "disk_path": "/home/ubuntu/p50/candidate-c38209c523e3-r1/builder-B/disk.qcow2",
+  "disk_inode": 397037,
+  "disk_file_bytes": 19349831680,
+  "disk_allocated_bytes": 19333619712,
+  "qemu_image_info": {
+    "children": [
+      {
+        "name": "file",
+        "info": {
+          "children": [],
+          "virtual-size": 19349831680,
+          "filename": "/home/ubuntu/p50/candidate-c38209c523e3-r1/builder-B/disk.qcow2",
+          "format": "file",
+          "actual-size": 19333619712,
+          "format-specific": {
+            "type": "file",
+            "data": {}
+          },
+          "dirty-flag": false
+        }
+      }
+    ],
+    "backing-filename-format": "qcow2",
+    "virtual-size": 38654705664,
+    "filename": "/home/ubuntu/p50/candidate-c38209c523e3-r1/builder-B/disk.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 19333619712,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "1.1",
+        "compression-type": "zlib",
+        "lazy-refcounts": false,
+        "refcount-bits": 16,
+        "corrupt": false,
+        "extended-l2": false
+      }
+    },
+    "full-backing-filename": "/home/ubuntu/p50/arch-base.qcow2",
+    "backing-filename": "/home/ubuntu/p50/arch-base.qcow2",
+    "dirty-flag": false
+  },
+  "time": "2026-10-15T10:08:38.517856+00:00",
+  "local_ISO_verified_sha256": "174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c"
+}

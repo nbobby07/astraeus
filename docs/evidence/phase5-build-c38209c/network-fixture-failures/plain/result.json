@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "accepted": false,
+  "calamares_ui": false,
+  "started": "2026-10-15T10:19:45.711813+00:00",
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "error": "RuntimeError: guest command fresh-payload-install exited 1; see /home/ubuntu/p50/p5p2/boot-1/035-fresh-payload-install.json",
+  "finished": "2026-10-15T10:26:32.296848+00:00"
+}

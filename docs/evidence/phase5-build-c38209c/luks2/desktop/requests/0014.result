@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T11:47:28.011042+00:00",
+  "request": "0014.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"native_lock_fixture_passed\": true, \"owned_inode\": 185642, \"removed_only_owned_lock\": true, \"status_while_locked\": {\"baseline_blockers\": [\"A native package transaction is active\"], \"context\": {\"architecture\": \"x86_64\", \"binary_sha256\": \"626dd8d916293ba3d587bd04e58665feb69d2bbd6149ce0eea8803e16d7738a2\", \"cpu_model\": \"19/01\", \"governors\": [], \"kernel\": \"7.2.7-arch1-1\", \"logical_cpus\": 4, \"memory_bytes\": 4056580096, \"power_sources\": {}, \"renderer\": [\"Graphics activation: Unsupported; physical performance unqualified\", \"Virtio: virtio-pci\"], \"version\": \"0.1.0-dev\", \"virtual_machine\": true, \"virtualization\": \"qemu\"}, \"sample\": {\"cpu_busy_percent\": 42.72727272727273, \"cpu_frequency_khz\": {}, \"disk_read_bytes_per_second\": 0.0, \"disk_write_bytes_per_second\": 0.0, \"elapsed_seconds\": 0.250778247, \"load_average\": [0.66, 0.26, 0.09], \"memory_available_bytes\": 2895212544, \"power_microwatts\": {}, \"pressure_avg10_percent\": {\"cpu.full\": 0.0, \"cpu.some\": 0.69, \"io.full\": 0.02, \"io.some\": 0.22, \"memory.full\": 0.0, \"memory.some\": 0.0}, \"swap_in_pages_per_second\": 0.0, \"swap_out_pages_per_second\": 0.0, \"swap_used_bytes\": 0, \"temperatures\": [], \"unavailable\": [\"Readable thermal zones\", \"Readable instantaneous power sensors\", \"CPU frequency policies\"]}, \"schema_version\": 1}}\n",
+    "id": "4a9f27c163364d4da1c25c121335bc46",
+    "boot_id": "3e040876-db94-475a-996e-db107de00dec"
+  },
+  "finished": "2026-10-15T11:48:30.843472+00:00"
+}

@@ -1,0 +1,535 @@
+{
+  "schema_version": 1,
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "layout": "LUKS2",
+  "baseline": "nge",
+  "completed": "2026-10-14T22:37:25.105163+00:00",
+  "core_and_overlap_acceptance_passed": true,
+  "production_backend": true,
+  "gui_uid": 1000,
+  "history": [
+    {
+      "id": 6,
+      "state": "succeeded",
+      "snapshot": "1792017276-39246684-1521",
+      "post_snapshot": "1792017310-928844969-1521",
+      "boot_regenerated": true,
+      "confirmation": {
+        "boot_count": {
+          "state": "counted",
+          "left": 2,
+          "done": 1
+        },
+        "boot_id": "065ee4ee-0b49-496e-8055-7b8e0f9885f0",
+        "snapshot": "1792017310-928844969-1521",
+        "rollback": false,
+        "checks": [
+          {
+            "name": "secure_boot",
+            "status": "pass",
+            "required": true,
+            "detail": "Signed loader/UKI and enforced owner trust verified"
+          },
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "failure": null
+    },
+    {
+      "id": 5,
+      "state": "succeeded",
+      "snapshot": "1792016729-695192073-1518",
+      "post_snapshot": "1792016774-580837837-1518",
+      "boot_regenerated": true,
+      "confirmation": {
+        "boot_count": {
+          "state": "counted",
+          "left": 2,
+          "done": 1
+        },
+        "boot_id": "e53e601b-7468-4871-ab66-edb86213104f",
+        "snapshot": "1792016774-580837837-1518",
+        "rollback": false,
+        "checks": [
+          {
+            "name": "secure_boot",
+            "status": "pass",
+            "required": true,
+            "detail": "Signed loader/UKI and enforced owner trust verified"
+          },
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "failure": null
+    },
+    {
+      "id": 4,
+      "state": "succeeded",
+      "snapshot": "1792016311-90615094-2255",
+      "post_snapshot": "1792016345-315444327-2255",
+      "boot_regenerated": true,
+      "confirmation": {
+        "boot_count": {
+          "state": "counted",
+          "left": 2,
+          "done": 1
+        },
+        "boot_id": "9d4863e0-103b-4faf-a668-75422e114780",
+        "snapshot": "1792016345-315444327-2255",
+        "rollback": false,
+        "checks": [
+          {
+            "name": "secure_boot",
+            "status": "pass",
+            "required": true,
+            "detail": "Signed loader/UKI and enforced owner trust verified"
+          },
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "failure": null
+    },
+    {
+      "id": 3,
+      "state": "succeeded",
+      "snapshot": null,
+      "post_snapshot": null,
+      "boot_regenerated": false,
+      "confirmation": null,
+      "failure": null
+    },
+    {
+      "id": 2,
+      "state": "succeeded",
+      "snapshot": "1792015395-38342974-1636",
+      "post_snapshot": "1792015525-267583395-1636",
+      "boot_regenerated": true,
+      "confirmation": {
+        "boot_count": {
+          "state": "counted",
+          "left": 2,
+          "done": 1
+        },
+        "boot_id": "a26b63be-bb2e-41e3-9af8-e45b9c2acafb",
+        "snapshot": "1792015525-267583395-1636",
+        "rollback": false,
+        "checks": [
+          {
+            "name": "secure_boot",
+            "status": "pass",
+            "required": true,
+            "detail": "Signed loader/UKI and enforced owner trust verified"
+          },
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "failure": null
+    },
+    {
+      "id": 1,
+      "state": "succeeded",
+      "snapshot": "1792014781-441755459-1899",
+      "post_snapshot": "1792014964-31612309-1899",
+      "boot_regenerated": true,
+      "confirmation": {
+        "boot_count": {
+          "state": "counted",
+          "left": 2,
+          "done": 1
+        },
+        "boot_id": "a1004640-2551-4f2b-ac37-8e25eee845bc",
+        "snapshot": "1792014964-31612309-1899",
+        "rollback": false,
+        "checks": [
+          {
+            "name": "secure_boot",
+            "status": "pass",
+            "required": true,
+            "detail": "Signed loader/UKI and enforced owner trust verified"
+          },
+          {
+            "name": "package_database",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "repository_configuration",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "uki",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "boot_loader",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "failed_system_units",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "root_filesystem",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "critical_services",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "display_manager",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "login_service",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          },
+          {
+            "name": "distroctl",
+            "status": "pass",
+            "required": true,
+            "detail": "check passed"
+          }
+        ],
+        "error": null
+      },
+      "failure": null
+    }
+  ],
+  "final_observation_request": 60,
+  "overlap_packages_reasons_home_preserved": true,
+  "gui_cli_reviewed_plans_equal": true,
+  "retained_failures": [
+    "Initial nge desktop smoke curl timeout retained; two subsequent unchanged-image enforcing cold boots passed",
+    "In-flight noop observation retained; post-worker observation request38"
+  ],
+  "limits": [
+    "Physical PC/USB/GPU and full GameMode self-test deferred",
+    "Software rendering is not physical GPU qualification"
+  ],
+  "observed_screenshots": {
+    "config-export-ready.png": "4c46984a4610a700a679d8a7f29676e7cee7082296653338fc1f3e91e8caf1e6",
+    "initial-sddm.png": "ff105fe7e909259944239f1abdc6e08d7c9f5e7bdba435a1de9dd51a66e3c5cc",
+    "reconnected-after-crash.png": "d8e8e5d27fe318f3044dae03a8b545b2373d4b6a7c9d262d4e0e3a461990fb1d",
+    "metadata-polkit.png": "2160e495def815e94d5d91c826516cf3d67bf90ebde24ff272ea68cba0b4612b",
+    "overlap-keyboard-authentication.png": "cd5170e5d1df924064544f874776316297274bb4490d2251692e01e8b4eb45b5",
+    "true-noop-review.png": "6e97c6ffd69912468cbdc57d35b294c76e5a058fdaf9cae3cf0a9ca7c81ec046",
+    "ordinary-noop-terminal.png": "df2d90b6369c0507f8fce2c0913142bc91742afc17df6a5f99989cdece2741a7",
+    "overlap-metadata-review-final.png": "fe9fb8f543031a541061240499006ef22037f40b19f31c041d94ddfd9f09e623",
+    "authentication-denied.png": "12883a5976c1c95c6cf1b5ffb933f5802ba9cd0cea0c0889d6c738c2ab334e18",
+    "metadata-reconciliation-review.png": "3c63b7f670238fec66eb5efb5d811366e3c60052b864aa6db699c74a2c68297b",
+    "install-verified-complete.png": "bfaa2c0beecba60d6bd6861e57d6b2f71142309d63870d4dc75fada372e5a7e1",
+    "actual-native-import-dialog.png": "5d758a540e4be0c523d412dca95ec346cdcd5bf38a048b3d8a313254c54ebdcd",
+    "overlap-install-unlock.png": "dfc1fa20180ecca08bb34747a3bbc439a817c536f694e75b42d968d3695bdd67",
+    "removal-polkit.png": "bc6c0a178d842d478656d539a4687655bd5a087da5683430103298b52c13ee17",
+    "native-export-dialog.png": "7513f45dd30f7cdd82a18070976faee1d84d1b302d3df3c54646596829044f0e",
+    "final-login-observed.png": "3b35f6f26124bb63b1bc4e25b82c65a1818a00e6ea5d3986bdea99773eee135d",
+    "metadata-apply-progress.png": "9ab600eeeefa66c61be6dc22474a05e99399c04dd5b02028911b8739644f6ad3",
+    "actual-removal-verified-complete.png": "59b86d36f160b6046d77f7f2b3efe19e7d8e8f45fc8c1178855a4f56d5bbe914",
+    "install-reboot-unlock.png": "eaf216bda8892f826139702c988407c3878f652b5fc0bd161539cc4527bdfdc9",
+    "denial-prompt.png": "dceffe4e44714864c912d57ee4f8ce27edd8fa209220f9bc1659cc76437a3e7f",
+    "overlap-review.png": "8ae9ffc3dbae8ff59071fa4fcc1c9830e3e7f831ef347c1aee355a016ee6a268",
+    "overlap-install-sddm.png": "f07cd28f43017f87851d6a303ae4ce908e2fdcab4e01b64098e3d880cffb501c",
+    "closed-during-install.png": "c07309d41c5b068dd7929a4142c2b5264634e7976119c3d6e8dc14b1059d2a18",
+    "install-after-release.png": "4d12de72027e7e3a8f30c2feb3acca739b594ca6c96a31843944dca7b3e8736d",
+    "final-reboot-unlock.png": "de01ee417a0831559745a7eae45bfc95512c8eee3f0509dccd08e7eca42f296a",
+    "detected-external-reason-drift.png": "6a4ebc269788a213a85ddbcc2b57cfa14867d13dbe8883169d3bb13dce0ddb2c",
+    "configuration-draft.png": "a2ced5b3f286a066c6c67759ba0a16970a4613a0f5d09057339e303a3a6d36c1",
+    "final-unlock-ready.png": "edc3d72e954d2634621c5658e19e6f1979e1ddf7732d05eb4b3a6316ad217a9a",
+    "kcalc-search.png": "0e5116e016815d98b66030233a86d857f98c90a4929a13db1410f723940a8ad5",
+    "review-apply-ready.png": "105d1c84bb0f9f0dafd9af255716fa2cfe98e801c857ce07246108823c89d3a5",
+    "plasma-ready.png": "cb5ba3afdfc56e1f8e3ae825f97a176b70b1a809ac1ba5eb56e737bfaa59e3ec",
+    "imported-current-draft.png": "a18e7dceee45d707b0498edafd2b8bc00bf361668f46c7ff60cb0b669147319c",
+    "wrong-auth-two.png": "33e5fb0f42aadeec306df323f162d3e6e60574eb24c679b1350cdf86292e368a",
+    "review-core-top.png": "9b32cf091e9f3a4b6a2b1b2637f27aa60179f140cf191d5d5161a37b72ab1f07",
+    "wrong-auth-one.png": "cccfb548357a1acbc56d07b3ed563c249c5b19ebaadc4c5d0e1b482962c89139",
+    "removal-reboot-unlock.png": "0067e95b2bf5e74786f3ec509cd54a02f3e4c46a8507c8dc1fae27bdfdd062ad",
+    "reconnected-applying.png": "0a410319adee1c84da1b5f1c9fd564335ea27adf329416b666ae4ab6ed0fa014",
+    "metadata-verified-complete.png": "18f78690ab9a224f62de64f0418c03833f9b8e3d15487f1667e67da0e80d346e",
+    "crashed-during-removal.png": "65246bb240f528ca8418c39abab861c73a49ff338e441ce129830e27c768b071",
+    "removal-review-ready.png": "31db44b7a02036353d508e129478e551009b37c15d141eee9c391df4948b0f08",
+    "adoption-draft.png": "e29b108783f2596539d06bcda21ed1f45313e95deea0988402b0d26a41e4ecd6",
+    "removal-awaiting-boot.png": "fcc56783c21e402e58c0683439b8bdece6c9386e890bf87c70cad29c99051d9f",
+    "install-reboot-sddm.png": "f8b822d181cb87a592483fce015e79b3fea814ca58990a5dcccc314ee59eadd6",
+    "overlap-polkit.png": "7e056b050d92ce9a2d17f5541067eeca0a2d447196f764386b56f0c38c41b9d1",
+    "polkit-first-prompt.png": "39e5179a5396bebf734222770e38a2ef55be68c8baccd798e72a0cdc9b39e86a",
+    "native-import-dialog.png": "6f03a7e73c8f479b1f81f3937302c9d5684f7bacb36559b7ccdd3da930be21f6",
+    "install-progress.png": "55084aa024ffab67e927d26ad8973e6d94e23c33d9a6c5f9eb760a3029135d46",
+    "authentication-cancelled.png": "45def8f47778beb96fbdadbd51ce99fae847f03ad709074d97043fa8058b5c97",
+    "metadata-reboot-sddm.png": "97f0bf00e65da26fb797d56c034a64103c39acc91134d6d3cbbb97493a09760b",
+    "noop-polkit.png": "31087c1a12f7c4bd494fcb8e4cb47b993c87096e6b3b087061534d66ea7c43f7",
+    "final-login-ready.png": "390ba68ca0aee8eaf0e1422b421880974924934d495c4403af69974fcd6acba2",
+    "removal-reboot-sddm.png": "7d1d98c4ecf6e0e07847c60383bf3731f3f5ac03d6fc8ecf9485ee6046cd5a86",
+    "overlap-installed-selections.png": "ac740169323fb59084277cac8a6072383734b8efb20a068a0b1182a9c145f0f9",
+    "initial-unlock.png": "5352d862a86e355e40150485c64cb3818f5b1a7415aae2f0e7b467566bb7333a",
+    "overlap-install-progress.png": "39dac8402e1019ef2ccf2e6558353497511dde495cea4d0b2e7dc0abf6f31f1b",
+    "valid-polkit.png": "c1f58b27f9b80a33e7dbf583677cdd10d2c84d79b97d918f4e6c463f59fa3231",
+    "after-removal-overview.png": "c6c4a192ab07d2d997988c0800bc9babee75eecb2517d25809937c423f602286",
+    "package-selection.png": "6bc9283dd8d184ac4694efcf2a4720f3d4a2372decb5fb9bbc965285f22ebdb5",
+    "overlap-apply-ready.png": "b6d5b39c224c7a400b3d8c2824cf419284b0d336109f6d4cc046d21f59714b17",
+    "metadata-reboot-unlock.png": "d0881e780d13ae55b2d5fea920b776e78cffd40d2d09d385597a0970ca4e2785",
+    "after-removal-gui-ready.png": "a6d2e14b8cd17d31ab3f46316878f937408907975ffdb9e606a780fa83fa8d8f",
+    "removal-applying.png": "cf5b38ecef9a7eabfa9bf58f5697284c4e71f7bfb238ac11e2756abe09f72a33",
+    "cli-noop-result.png": "bef634d66ea3521d5effb2fee423a65073af2d36119b515a8f300e0682bbe07f",
+    "overlap-metadata-review-ready.png": "a2664beb4c1128c522f90382e750a1a404c1cbf59819e3ad94b008e7a63f908a",
+    "overlap-metadata-applying.png": "758a2ea91a435b6d054f599687d79efdf59db7a18e5abe1eebb0d27dbef5d18a",
+    "removal-verified-complete.png": "67f96f915a876c19145ea3dd66e0bfe5ed3ae543d146feb041968b911bdc2b09"
+  }
+}

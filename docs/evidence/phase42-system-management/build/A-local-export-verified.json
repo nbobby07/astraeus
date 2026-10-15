@@ -1,0 +1,18 @@
+{
+  "time": "2026-10-14T02:49:57.321353+00:00",
+  "label": "A",
+  "source_commit": "0e8bb00e3edc5382fa177bf0017b2f8595ee8229",
+  "archive": {
+    "path": "D:\\Astraeus-Phase42-System-Management\\candidate-0e8bb00\\evidence-A.tar.gz",
+    "sha256": "bb43725b72b87152f8a89bfd319015df9bfea939a1c44a76692a45266aff5cb2",
+    "bytes": 52812545
+  },
+  "iso": {
+    "path": "D:\\Astraeus-Phase42-System-Management\\candidate-0e8bb00\\astraeus-dev-0.1.0-dev-x86_64-A.iso",
+    "sha256": "2c047e270d6d99e0c0a6a09d81ade25752e4549457052f20d2fbecfa796a3072",
+    "bytes": 3636389888
+  },
+  "transport": "Freestyle SCP per verified bounded chunk; normal TLS verification unchanged",
+  "verified": true,
+  "transport_receipt_sha256": "456e3d408403f2d3148dd816790130741d615eeb274ac065db3b943772330432"
+}

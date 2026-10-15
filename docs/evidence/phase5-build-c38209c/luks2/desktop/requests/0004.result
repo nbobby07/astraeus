@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T11:27:25.522219+00:00",
+  "request": "0004.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"ordinary_close_passed\": true, \"gui_and_record_processes_gone\": true, \"latest\": {\"created_unix_seconds\": 1792063222, \"elapsed_seconds\": 1.625307324, \"failure\": \"cancelled by caller\", \"id\": \"e7b219d807609844b8ed0c0618b3f040\", \"kind\": \"record\", \"state\": \"cancelled\"}}\n",
+    "id": "421a6e7afdec40e5937f7e9031e3727c",
+    "boot_id": "40dbb949-0ae4-4ca1-9b84-3c81525a1da0"
+  },
+  "finished": "2026-10-15T11:27:25.822560+00:00"
+}

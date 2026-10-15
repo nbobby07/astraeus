@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "requested_run_passed": true,
+  "qualified": false,
+  "physical_hardware_qualified": false,
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "image_sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+  "started": "2026-10-14T18:36:58.530632+00:00",
+  "scenarios": [
+    {
+      "scenario": "cache-space",
+      "id": "home-sentinel",
+      "status": "PASS",
+      "started": "2026-10-14T18:37:13.443294+00:00",
+      "evidence": [
+        "cache-space/boot-1/",
+        "cache-space/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T18:37:15.855417+00:00"
+    },
+    {
+      "scenario": "cache-space",
+      "id": "candidate-identity-and-state",
+      "status": "PASS",
+      "started": "2026-10-14T18:37:15.855702+00:00",
+      "evidence": [
+        "cache-space/boot-1/",
+        "cache-space/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T18:37:18.355721+00:00"
+    },
+    {
+      "scenario": "cache-space",
+      "id": "baseline-health",
+      "status": "PASS",
+      "started": "2026-10-14T18:37:18.356079+00:00",
+      "evidence": [
+        "cache-space/boot-1/",
+        "cache-space/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T18:37:21.299736+00:00"
+    },
+    {
+      "scenario": "cache-space",
+      "id": "cache-space-plan",
+      "status": "PASS",
+      "started": "2026-10-14T18:37:21.300107+00:00",
+      "evidence": [
+        "cache-space/boot-1/",
+        "cache-space/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T18:37:22.521862+00:00"
+    },
+    {
+      "scenario": "cache-space",
+      "id": "cache-space-actual-shortfall",
+      "status": "PASS",
+      "started": "2026-10-14T18:37:22.522578+00:00",
+      "evidence": [
+        "cache-space/boot-1/",
+        "cache-space/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T18:37:25.040098+00:00"
+    },
+    {
+      "scenario": "cache-space",
+      "id": "cache-space-preflight-refusal",
+      "status": "PASS",
+      "started": "2026-10-14T18:37:25.040836+00:00",
+      "evidence": [
+        "cache-space/boot-1/",
+        "cache-space/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T18:37:34.199474+00:00"
+    },
+    {
+      "scenario": "cache-space",
+      "id": "cache-space-no-replay",
+      "status": "PASS",
+      "started": "2026-10-14T18:37:34.199862+00:00",
+      "evidence": [
+        "cache-space/boot-1/",
+        "cache-space/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T18:37:38.898690+00:00"
+    },
+    {
+      "scenario": "cache-space",
+      "id": "cache-space-remove-only-owned-fixture",
+      "status": "PASS",
+      "started": "2026-10-14T18:37:38.899509+00:00",
+      "evidence": [
+        "cache-space/boot-1/",
+        "cache-space/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T18:37:41.150467+00:00"
+    },
+    {
+      "scenario": "cache-space",
+      "id": "cache-space-reboot-without-replay",
+      "status": "PASS",
+      "started": "2026-10-14T18:37:41.150887+00:00",
+      "evidence": [
+        "cache-space/boot-1/",
+        "cache-space/boot-2/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T18:38:03.025958+00:00"
+    }
+  ],
+  "recovery_manifest": {
+    "schema_version": 1,
+    "kind": "phase42-ram-verified-recovery",
+    "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+    "iso_sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+    "image": "recovery.img",
+    "image_sha256": "fdd88190aad09ab5733f3aa11591b08b5cf54fde148f7862ac4ab697d80ca8c1",
+    "image_bytes": 4294967296,
+    "rootfs_sha256": "f612bbc33f189b916bd21bb40080a447158caa24fa0a9bba9d4184496486ddae",
+    "rootfs_bytes": 3296444416,
+    "certificate_sha256": "e3a43c20de7ad909b13c596a656162c27f6a41b753d8f91e0a251920234e8c7d",
+    "uki_sha256": "4f88e6deaf9d799e0d1fc3563b7f2dc6735b799b0689fa49778f76ddb022ed7b",
+    "unsigned_uki_sha256": "72391de46b735ace772e1d693f71546c38a034c33e756bc6cfae3b726a320a96",
+    "distroctl_sha256": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b",
+    "desktop_sha256": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+    "extracted": {
+      "usr/bin/ukify": "faeaf0656a88d290fba40dc928cac4954286aae094f4d26200f3b5f25a89d918",
+      "usr/lib/systemd/boot/efi/linuxx64.efi.stub": "b16c31a0cff3ca1996aaa4d3e101309830c8c186d4230f1607712c0879ebb8e3",
+      "usr/lib/initcpio/hooks/archiso": "6e7263e703bf9bab16cbf054937f1595e70ed760e296ff8c4ef6967311b25623",
+      "usr/lib/os-release": "71ff7a6e248d9a0718344c957ec709cb6f0b18631682fa404d7cff2af3ff341d",
+      "usr/bin/distroctl": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b",
+      "usr/bin/astraeus-control-center": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41"
+    },
+    "command_line": "archisobasedir=arch archisolabel=ASTRAEUS_SB copytoram=y cow_spacesize=2G console=tty0 console=ttyS0,115200n8",
+    "builder_sha256": "a803cbef6bc6fc4514734454bf974f3b105c953c9ad8a96d1c5fdac27d77152b",
+    "guard_origin_sha256": "23298042ca035c8b2b1e2360e5a6bda66db94fe55d8dc32e035740c937c3c0d0",
+    "baseline_manifest_sha256": "bf5d449fdc5ffec2a47982d05114193be2b50a7ecd29a41283ad7f852d8a1bb3",
+    "qualified": false,
+    "qualification": "Pending candidate enforcing-firmware boot and refusal tests",
+    "minimum_ram_gib": 8,
+    "private_key_in_image": false
+  },
+  "harness_sha256": "66e2aa60d6370f96a334cb026ad2235f3c4c08b5800377facfdb84d74555575b",
+  "harness_commit": "ca10b5fea8e8e869c9e2470d1b7a52473fe7c759",
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "finished": "2026-10-14T18:38:19.479296+00:00"
+}

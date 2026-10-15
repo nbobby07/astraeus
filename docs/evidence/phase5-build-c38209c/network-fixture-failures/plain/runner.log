@@ -1,0 +1,15 @@
+QMP: /home/ubuntu/p50/p5p2/boot-1/qmp.sock
+Start the test command channel from the actual live desktop; see attention.json and private QMP.
+Traceback (most recent call last):
+  File "/home/ubuntu/p50/candidate-c38209c523e3-r1/source-tree/operating-system/scripts/validate/phase42-baseline.py", line 556, in <module>
+    main()
+  File "/home/ubuntu/p50/candidate-c38209c523e3-r1/source-tree/operating-system/scripts/validate/phase42-baseline.py", line 552, in main
+    host_run(args)
+  File "/home/ubuntu/p50/candidate-c38209c523e3-r1/source-tree/operating-system/scripts/validate/phase42-baseline.py", line 461, in host_run
+    reply = vm.command('python3 /mnt/astraeus-validation/phase42-baseline.py guest-install',
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/p50/candidate-c38209c523e3-r1/source-tree/operating-system/scripts/validate/phase2.py", line 159, in command
+    require(result['code'] == 0, f'guest command {label} exited {result["code"]}; see {record}')
+  File "/home/ubuntu/p50/candidate-c38209c523e3-r1/source-tree/operating-system/scripts/validate/phase2.py", line 36, in require
+    raise RuntimeError(message)
+RuntimeError: guest command fresh-payload-install exited 1; see /home/ubuntu/p50/p5p2/boot-1/035-fresh-payload-install.json

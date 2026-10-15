@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "source_commit": "08713dfa7f2096217710ef4f6311e2d6bb264db5",
+  "iso_sha256": "cf5f3d557d5078e7622731b27aa0b5ed1909cc9716afa39de31ae6b478f110c5",
+  "audit_result_sha256": "83e75c874b595891f2c95318f32129aecedd367343b821ca3b1eaa25dcfbb80c",
+  "source_files": 162,
+  "local_ISO_verification_pending": true,
+  "VM_acceptance_pending": true,
+  "bare_metal_comparison": "unit tests only"
+}

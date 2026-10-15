@@ -1,0 +1,14 @@
+Verified 1 database hashes and 1 upstream package names.
+Prepared C:\Users\Noel\AppData\Local\Temp\tmp8jjk6n8m\package. Run makepkg as a non-root user in the pinned Arch builder.
+Prepared C:\Users\Noel\AppData\Local\Temp\tmpjrgm6j3f\package. Run makepkg as a non-root user in the pinned Arch builder.
+Prepared C:\Users\Noel\AppData\Local\Temp\tmpcixu563t\package. Run makepkg as a non-root user in the pinned Arch builder.
+Prepared C:\Users\Noel\AppData\Local\Temp\tmpv2wima35\source. Run makepkg as a non-root user in the pinned Arch builder.
+Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+Recovery ISO: start phase2-guest.py serve as root; unlock LUKS as root if needed.
+QMP: C:\Users\Noel\AppData\Local\Temp\tmpwo_m05nv\boot-1\qmp.sock
+QMP: C:\Users\Noel\AppData\Local\Temp\tmpa1cmrt5y\boot-1\qmp.sock
+Start the recovery command channel and unlock LUKS if needed through private QMP; see attention.json.
+----------------------------------------------------------------------
+Ran 209 tests in 6.177s
+
+OK (skipped=65)

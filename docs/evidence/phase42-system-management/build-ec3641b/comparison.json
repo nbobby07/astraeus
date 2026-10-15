@@ -1,0 +1,63 @@
+{
+  "time": "2026-10-14T18:05:51.554277+00:00",
+  "source": {
+    "created": "2026-10-14T16:03:19.749414+00:00",
+    "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+    "source_sha256": "c4fa142ecb8087090fa03da7c51eaa8e534a4ce10164654243ee97669543c96d",
+    "source_bytes": 7605028,
+    "base_sha256": "360f0fa49db6813bdc8e35bed230a2dc2ae3567b7b5ab74719c0a706e4e34e87",
+    "archived_builder_sha256": "a0e82eb49274d3dc492a469642b16f2151962d3a82fa0bf5b56cb3fa74cec2c3",
+    "host_builder_sha256": "cf529ed6f3f7624f1382e04e35df1d1e2385989adc89b438f7c9a22308e5d26d",
+    "graphics": [
+      "software"
+    ],
+    "gaming": [],
+    "memory_mib": 8192,
+    "disk_cleanup_scope": "only closed builder-A/B disk.qcow2 under this exclusive run"
+  },
+  "iso_bytes_equal": true,
+  "iso_hashes_equal": true,
+  "cmp_exit_code": 0,
+  "independently_built_package_bytes_equal": true,
+  "package_hashes": {
+    "A": {
+      "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": "ef80d32616e39f8d12447cf413efea175a778cdc51bb5c6f47be3a15c9015c3b",
+      "calamares-3.4.3-1-x86_64.pkg.tar.zst": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+      "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+      "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": "40981acea1038fab29f2db61df222091ddcdb2341155ada5c315846dd6c7252a",
+      "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": "f8306dcfd1a68a2215290ff1a096d5f0a534081d178da1b4bcd8eaabd5faf78d"
+    },
+    "B": {
+      "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": "ef80d32616e39f8d12447cf413efea175a778cdc51bb5c6f47be3a15c9015c3b",
+      "calamares-3.4.3-1-x86_64.pkg.tar.zst": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+      "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+      "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": "40981acea1038fab29f2db61df222091ddcdb2341155ada5c315846dd6c7252a",
+      "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": "f8306dcfd1a68a2215290ff1a096d5f0a534081d178da1b4bcd8eaabd5faf78d"
+    }
+  },
+  "images": {
+    "A": {
+      "path": "/home/ubuntu/p42/candidate-ec3641b72ad4-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+      "bytes": 3783227392
+    },
+    "B": {
+      "path": "/home/ubuntu/p42/candidate-ec3641b72ad4-r1/share/evidence/B/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+      "bytes": 3783227392
+    }
+  },
+  "limitation": "Both independent images consume the same signed repository published by A; package equality is a separate result.",
+  "image-packages.txt_equal": true,
+  "installed-packages.txt_equal": true,
+  "builder-packages.txt_equal": true,
+  "packages-before-build.txt_equal": true,
+  "inputs.json_equal": true,
+  "source-sha256.txt_equal": true,
+  "builder-script-sha256.txt_equal": true,
+  "generated_package_source_archive_equal": true,
+  "generated_package_source_hashes": {
+    "A": "47610507dd6de2c492e378bd3071be8d1c1552a4608919ea1487c543a9c696a1",
+    "B": "47610507dd6de2c492e378bd3071be8d1c1552a4608919ea1487c543a9c696a1"
+  }
+}

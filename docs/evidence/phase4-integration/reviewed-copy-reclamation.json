@@ -1,0 +1,13 @@
+{
+  "time": 1791528876.453053,
+  "installation_export": {
+    "bytes": 3243507712,
+    "sha256": "79c73de5744b78458fd6966922f4588fe1fbd50c22a2fdf8934b05656768a466",
+    "path": "D:\\Astraeus-Phase4-Integration-Evidence\\private\\phase4-install-plain.qcow2"
+  },
+  "retired_installation": "/home/ubuntu/p4i/r2/install-plain/disk.qcow2",
+  "iso_storage": "Hardlink identical remote ISO B to A only after independent full-file comparison and verified local exports. Original independent-build evidence remains.",
+  "free_before": 14292090880,
+  "completed": true,
+  "free_after": 21243138048
+}

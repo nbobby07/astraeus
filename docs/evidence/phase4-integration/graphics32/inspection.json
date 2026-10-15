@@ -1,0 +1,93 @@
+{
+  "desktop": {
+    "DISPLAY": ":0",
+    "XAUTHORITY": "/run/user/1000/xauth_rSxKbM",
+    "WAYLAND_DISPLAY": "wayland-0",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "XDG_SESSION_TYPE": "wayland",
+    "XDG_CURRENT_DESKTOP": "KDE"
+  },
+  "package_files": {
+    "command": [
+      "pacman",
+      "-Qlq",
+      "lib32-mesa-utils"
+    ],
+    "code": 0,
+    "output": "/usr/\n/usr/bin/\n/usr/bin/eglinfo32\n/usr/bin/glxgears32\n/usr/bin/glxinfo32\n/usr/share/\n/usr/share/licenses/\n/usr/share/licenses/lib32-mesa-utils/\n/usr/share/licenses/lib32-mesa-utils/LICENSE\n",
+    "error": null,
+    "seconds": 0.101
+  },
+  "gears": "/usr/bin/glxgears32",
+  "info": "/usr/bin/glxinfo32",
+  "scope": "Actual installed ELF32 OpenGL presentation; no hardware or Vulkan WSI qualification",
+  "gears_sha256": "fd6e7aaede0feed58268306e44ba5e22eb45d74ad33a183928e4673472d9fc30",
+  "gears_libraries": {
+    "command": [
+      "runuser",
+      "-u",
+      "tester",
+      "--",
+      "env",
+      "DISPLAY=:0",
+      "XAUTHORITY=/run/user/1000/xauth_rSxKbM",
+      "WAYLAND_DISPLAY=wayland-0",
+      "XDG_RUNTIME_DIR=/run/user/1000",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+      "XDG_SESSION_TYPE=wayland",
+      "XDG_CURRENT_DESKTOP=KDE",
+      "ldd",
+      "/usr/bin/glxgears32"
+    ],
+    "code": 0,
+    "output": "\tlinux-gate.so.1 (0xf7f63000)\n\tlibGL.so.1 => /usr/lib32/libGL.so.1 (0xf7ec6000)\n\tlibX11.so.6 => /usr/lib32/libX11.so.6 (0xf7d8c000)\n\tlibm.so.6 => /usr/lib32/libm.so.6 (0xf7c7a000)\n\tlibc.so.6 => /usr/lib32/libc.so.6 (0xf7a37000)\n\tlibGLdispatch.so.0 => /usr/lib32/libGLdispatch.so.0 (0xf79bb000)\n\tlibGLX.so.0 => /usr/lib32/libGLX.so.0 (0xf7980000)\n\tlibxcb.so.1 => /usr/lib32/libxcb.so.1 (0xf7953000)\n\t/lib/ld-linux.so.2 => /usr/lib/ld-linux.so.2 (0xf7f66000)\n\tlibXau.so.6 => /usr/lib32/libXau.so.6 (0xf794e000)\n\tlibXdmcp.so.6 => /usr/lib32/libXdmcp.so.6 (0xf7947000)\n",
+    "error": null,
+    "seconds": 0.153
+  },
+  "info_sha256": "d518a48fcc02acc7c0b63bf3ae164f2751f10b12e0523966a4d850b8f8781b55",
+  "info_libraries": {
+    "command": [
+      "runuser",
+      "-u",
+      "tester",
+      "--",
+      "env",
+      "DISPLAY=:0",
+      "XAUTHORITY=/run/user/1000/xauth_rSxKbM",
+      "WAYLAND_DISPLAY=wayland-0",
+      "XDG_RUNTIME_DIR=/run/user/1000",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+      "XDG_SESSION_TYPE=wayland",
+      "XDG_CURRENT_DESKTOP=KDE",
+      "ldd",
+      "/usr/bin/glxinfo32"
+    ],
+    "code": 0,
+    "output": "\tlinux-gate.so.1 (0xf7f42000)\n\tlibGL.so.1 => /usr/lib32/libGL.so.1 (0xf7e78000)\n\tlibX11.so.6 => /usr/lib32/libX11.so.6 (0xf7d3e000)\n\tlibc.so.6 => /usr/lib32/libc.so.6 (0xf7afb000)\n\tlibGLdispatch.so.0 => /usr/lib32/libGLdispatch.so.0 (0xf7a7f000)\n\tlibGLX.so.0 => /usr/lib32/libGLX.so.0 (0xf7a44000)\n\tlibxcb.so.1 => /usr/lib32/libxcb.so.1 (0xf7a17000)\n\t/lib/ld-linux.so.2 => /usr/lib/ld-linux.so.2 (0xf7f45000)\n\tlibXau.so.6 => /usr/lib32/libXau.so.6 (0xf7a12000)\n\tlibXdmcp.so.6 => /usr/lib32/libXdmcp.so.6 (0xf7a0b000)\n",
+    "error": null,
+    "seconds": 0.101
+  },
+  "renderer": {
+    "command": [
+      "runuser",
+      "-u",
+      "tester",
+      "--",
+      "env",
+      "DISPLAY=:0",
+      "XAUTHORITY=/run/user/1000/xauth_rSxKbM",
+      "WAYLAND_DISPLAY=wayland-0",
+      "XDG_RUNTIME_DIR=/run/user/1000",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+      "XDG_SESSION_TYPE=wayland",
+      "XDG_CURRENT_DESKTOP=KDE",
+      "/usr/bin/glxinfo32",
+      "-B"
+    ],
+    "code": 0,
+    "output": "name of display: :0\ndisplay: :0  screen: 0\ndirect rendering: Yes\nExtended renderer info (GLX_MESA_query_renderer):\n    Vendor: Mesa (0xffffffff)\n    Device: llvmpipe (LLVM 23.1.1, 256 bits) (0xffffffff)\n    Version: 26.2.3\n    Accelerated: no\n    Video memory: 3868MB\n    Unified memory: yes\n    Preferred profile: core (0x1)\n    Max core profile version: 4.6\n    Max compat profile version: 4.6\n    Max GLES1 profile version: 1.1\n    Max GLES[23] profile version: 3.2\nMemory info (GL_ATI_meminfo):\n    VBO free memory - total: 1424173 MB, largest block: 1424173 MB\n    VBO free aux. memory - total: 2919 MB, largest block: 2919 MB\n    Texture free memory - total: 1424173 MB, largest block: 1424173 MB\n    Texture free aux. memory - total: 2919 MB, largest block: 2919 MB\n    Renderbuffer free memory - total: 1424173 MB, largest block: 1424173 MB\n    Renderbuffer free aux. memory - total: 2919 MB, largest block: 2919 MB\nMemory info (GL_NVX_gpu_memory_info):\n    Dedicated video memory: 0 MB\n    Total available memory: 3868 MB\n    Currently available dedicated video memory: 1424173 MB\nOpenGL vendor string: Mesa\nOpenGL renderer string: llvmpipe (LLVM 23.1.1, 256 bits)\nOpenGL core profile version string: 4.6 (Core Profile) Mesa 26.2.3-arch1.2\nOpenGL core profile shading language version string: 4.60\nOpenGL core profile context flags: (none)\nOpenGL core profile profile mask: core profile\n\nOpenGL version string: 4.6 (Compatibility Profile) Mesa 26.2.3-arch1.2\nOpenGL shading language version string: 4.60\nOpenGL context flags: (none)\nOpenGL profile mask: compatibility profile\n\nOpenGL ES profile version string: OpenGL ES 3.2 Mesa 26.2.3-arch1.2\nOpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20\n\n",
+    "error": null,
+    "seconds": 1.056
+  }
+}

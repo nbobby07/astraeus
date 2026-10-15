@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "uid": 1000,
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "binary_sha256": {
+    "distroctl": "626dd8d916293ba3d587bd04e58665feb69d2bbd6149ce0eea8803e16d7738a2",
+    "astraeus-control-center": "3382576d5a609f4ae7df0a36dc646b835ab6b529936dd29f0c45cbc645f8b757"
+  },
+  "recorded": "04235c004273b7d87a1e595f897b7b79",
+  "baselines": [
+    "c5e7da3d0cc23540e1ac244552e3b7c5",
+    "4b4c448a0ddf19278e1d9002bb3790d8"
+  ],
+  "cancelled": "95b715e0c50dd7daa47f78eef9547eb0",
+  "comparison": {
+    "after": "4b4c448a0ddf19278e1d9002bb3790d8",
+    "before": "c5e7da3d0cc23540e1ac244552e3b7c5",
+    "blockers": [],
+    "comparable": true,
+    "conditions": {
+      "after": {
+        "cpu_busy_percent_median": 29.17705735660848,
+        "minimum_available_memory_bytes": 2575949824,
+        "peak_observed_celsius": null,
+        "power_microwatts_last_observation": {},
+        "samples": 33
+      },
+      "before": {
+        "cpu_busy_percent_median": 24.31077694235589,
+        "minimum_available_memory_bytes": 2798735360,
+        "peak_observed_celsius": null,
+        "power_microwatts_last_observation": {},
+        "samples": 33
+      }
+    },
+    "context_changes": {},
+    "measurements": [
+      {
+        "after": {
+          "median": 4974.516950616323,
+          "spread": 746.2991704857495,
+          "values": [
+            4265.579828009908,
+            5011.8789984956575,
+            4974.516950616323
+          ]
+        },
+        "before": {
+          "median": 5246.015404068511,
+          "spread": 114.80818241064753,
+          "values": [
+            5184.441395091845,
+            5246.015404068511,
+            5299.249577502493
+          ]
+        },
+        "change_percent": -5.175327034717234,
+        "unit": "MiB/s",
+        "workload": {
+          "bytes": 4194304,
+          "name": "sha256",
+          "repetition_seconds": 10,
+          "repetitions": 3,
+          "threads": 4,
+          "version": 1
+        }
+      },
+      {
+        "after": {
+          "median": 14918.089132471436,
+          "spread": 1214.4456490679368,
+          "values": [
+            14706.403124239689,
+            15920.848773307625,
+            14918.089132471436
+          ]
+        },
+        "before": {
+          "median": 15019.488285868327,
+          "spread": 528.8180135351104,
+          "values": [
+            14750.103469810938,
+            15019.488285868327,
+            15278.921483346048
+          ]
+        },
+        "change_percent": -0.6751172308067007,
+        "unit": "MiB/s",
+        "workload": {
+          "bytes": 134217728,
+          "name": "memory-copy",
+          "repetition_seconds": 10,
+          "repetitions": 3,
+          "threads": 1,
+          "version": 1
+        }
+      },
+      {
+        "after": {
+          "median": 767.6043015177761,
+          "spread": 248.6975225164099,
+          "values": [
+            602.1989426120498,
+            767.6043015177761,
+            850.8964651284597
+          ]
+        },
+        "before": {
+          "median": 822.831099665102,
+          "spread": 276.6992670287459,
+          "values": [
+            579.1824226532871,
+            822.831099665102,
+            855.881689682033
+          ]
+        },
+        "change_percent": -6.71180247924557,
+        "unit": "MiB/s",
+        "workload": {
+          "bytes": 134217728,
+          "name": "scratch-sync-read",
+          "repetition_seconds": 10,
+          "repetitions": 3,
+          "threads": 1,
+          "version": 1
+        }
+      }
+    ],
+    "schema_version": 1,
+    "warning": "Three repetitions are descriptive; background load, thermal conditions and filesystem caching affect results. Matching models do not prove the same physical machine."
+  },
+  "completed_at_unix": 1792062646.6921902,
+  "cases": [
+    "real collection",
+    "two bounded baselines",
+    "same-backend show/export",
+    "compatible comparison",
+    "passive comparison refused",
+    "concurrent measurement refused",
+    "SIGTERM persisted",
+    "bounded arguments",
+    "private owned state",
+    "no named scratch residue"
+  ],
+  "limits": [
+    "VM software evidence only; no physical or gaming performance qualification"
+  ]
+}

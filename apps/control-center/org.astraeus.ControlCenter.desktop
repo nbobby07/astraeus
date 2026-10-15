@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Astraeus Control Center
+Comment=Manage software, saved configuration and system changes
+Exec=astraeus-control-center
+Icon=preferences-system
+Terminal=false
+Categories=System;Settings;
+Keywords=Astraeus;packages;software;configuration;updates;recovery;
+StartupNotify=true

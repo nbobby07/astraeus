@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-14T19:50:52.703818+00:00",
+  "finished": "2026-10-14T19:50:54.847749+00:00",
+  "command": "python3 /mnt/astraeus-validation/phase42-faults.py guest space-arm",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"allocation_limit_bytes\": 16777216, \"available_after\": 0, \"available_before\": 30025211904, \"filesystem_uuid\": \"acb98782-eeca-4fe6-9323-3ee1f193e903\", \"kind\": \"cache-space\", \"method\": \"bounded-16MiB-tmpfs-cache\", \"path\": \"/run/astraeus-validation-space/filler\", \"required_bytes\": 272591980, \"run_id\": \"e92f4e6965ab4a7bb9602e59ebb8356d\", \"schema_version\": 1, \"target\": \"/var/cache/pacman/pkg\"}\n",
+    "id": "b2b28dd459a145548360ab7a953c4222",
+    "boot_id": "eeab9d2a-d496-406f-aef0-d56ae6564530"
+  }
+}

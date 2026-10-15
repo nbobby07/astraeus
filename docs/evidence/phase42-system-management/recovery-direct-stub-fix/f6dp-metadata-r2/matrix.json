@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "requested_run_passed": false,
+  "qualified": false,
+  "physical_hardware_qualified": false,
+  "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "image_sha256": "13709ebc3213061daabf2a29db6911520e477e8608d26231ebd8018955629148",
+  "started": "2026-10-14T15:50:38.928238+00:00",
+  "scenarios": [
+    {
+      "scenario": "metadata",
+      "id": "home-sentinel",
+      "status": "PASS",
+      "started": "2026-10-14T15:50:55.353764+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T15:50:57.915044+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "candidate-identity-and-state",
+      "status": "PASS",
+      "started": "2026-10-14T15:50:57.915351+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T15:51:00.412582+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "baseline-health",
+      "status": "PASS",
+      "started": "2026-10-14T15:51:00.413110+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T15:51:03.349585+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "true-noop",
+      "status": "PASS",
+      "started": "2026-10-14T15:51:03.349987+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T15:51:06.745922+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "metadata-plan",
+      "status": "PASS",
+      "started": "2026-10-14T15:51:06.746540+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T15:51:07.718209+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "metadata-apply-and-same-boot-refusal",
+      "status": "PASS",
+      "started": "2026-10-14T15:51:07.718685+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T15:52:04.392170+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "metadata-new-boot-confirmation",
+      "status": "PASS",
+      "started": "2026-10-14T15:52:04.392796+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-2/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T15:52:33.044588+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "metadata-offline-rollback",
+      "status": "FAIL",
+      "started": "2026-10-14T15:52:33.045258+00:00",
+      "evidence": [
+        "metadata/boot-2/",
+        "metadata/boot-3/"
+      ],
+      "detail": "RuntimeError: guest command offline-restore exited 1; see /home/ubuntu/p42/f6dp-metadata-r2/metadata/boot-3/087-offline-restore.json",
+      "finished": "2026-10-14T15:54:52.731387+00:00"
+    }
+  ],
+  "recovery_manifest": {
+    "schema_version": 1,
+    "kind": "phase42-ram-verified-recovery",
+    "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+    "iso_sha256": "13709ebc3213061daabf2a29db6911520e477e8608d26231ebd8018955629148",
+    "image": "recovery.img",
+    "image_sha256": "6fb08d195428a4f935443931a9bdd9d0e1a8a5064e21ee4655418f88da4d65d0",
+    "image_bytes": 4294967296,
+    "rootfs_sha256": "e41ae89e214c05a0d8d667cd7e1df52d990e80fc7951870d6e0dc1e74a349ede",
+    "rootfs_bytes": 3296440320,
+    "certificate_sha256": "9e1810eaf8de9e97e7cc63278316464d6984a21818fcdbb5d6392cadb6c1cdda",
+    "uki_sha256": "29e1931a8d8bfb52bf3b3fb4a0799e0e73e75e89a0a5de98e86d8d9811f26e38",
+    "unsigned_uki_sha256": "8a9b355739a8b47556a75942895b77840e8ceae98879bced7dca6ac2d94bdc86",
+    "distroctl_sha256": "38509da005f4ebe5aa81fb5f5e100c2fb22e66c1d8d008378028c33137573090",
+    "desktop_sha256": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+    "extracted": {
+      "usr/bin/ukify": "faeaf0656a88d290fba40dc928cac4954286aae094f4d26200f3b5f25a89d918",
+      "usr/lib/systemd/boot/efi/linuxx64.efi.stub": "b16c31a0cff3ca1996aaa4d3e101309830c8c186d4230f1607712c0879ebb8e3",
+      "usr/lib/initcpio/hooks/archiso": "6e7263e703bf9bab16cbf054937f1595e70ed760e296ff8c4ef6967311b25623",
+      "usr/lib/os-release": "71ff7a6e248d9a0718344c957ec709cb6f0b18631682fa404d7cff2af3ff341d",
+      "usr/bin/distroctl": "38509da005f4ebe5aa81fb5f5e100c2fb22e66c1d8d008378028c33137573090",
+      "usr/bin/astraeus-control-center": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41"
+    },
+    "command_line": "archisobasedir=arch archisolabel=ASTRAEUS_SB copytoram=y cow_spacesize=2G console=tty0 console=ttyS0,115200n8",
+    "builder_sha256": "a803cbef6bc6fc4514734454bf974f3b105c953c9ad8a96d1c5fdac27d77152b",
+    "guard_origin_sha256": "23298042ca035c8b2b1e2360e5a6bda66db94fe55d8dc32e035740c937c3c0d0",
+    "baseline_manifest_sha256": "b1519a8b063e2594e09e47c68a1c5e25b5237aa11e006694eefcfd4fa9477543",
+    "qualified": false,
+    "qualification": "Pending candidate enforcing-firmware boot and refusal tests",
+    "minimum_ram_gib": 8,
+    "private_key_in_image": false
+  },
+  "harness_sha256": "438028c0b8c4ecab8af72e734d497f526022ae9dfddfb7ac07fbe58d45658000",
+  "harness_commit": "23ab305a46fadee18a645971cdc76c7ee10655ee",
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "error": "RuntimeError: guest command offline-restore exited 1; see /home/ubuntu/p42/f6dp-metadata-r2/metadata/boot-3/087-offline-restore.json",
+  "finished": "2026-10-14T15:55:09.229688+00:00"
+}

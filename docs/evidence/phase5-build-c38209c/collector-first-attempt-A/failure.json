@@ -1,0 +1,10 @@
+{
+  "candidate_build_passed": true,
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "collector_failed": true,
+  "reason": "optional sequential cache directory absent in cold parallel build",
+  "live_nbd_remaining": false,
+  "mount_unmounted_and_empty": true,
+  "original_collector_sha256": "e2afd5632b316bff20325e24505791f6841b4d2b9f1be50886ae28a57ce8ae2e",
+  "image_changed": false
+}

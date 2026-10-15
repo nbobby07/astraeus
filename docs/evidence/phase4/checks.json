@@ -1,0 +1,62 @@
+{
+  "harness_revision": "f4ce16a54337413603fe802754785015ef1464a1",
+  "commands": {
+    "windows": [
+      {
+        "command": "cargo test --workspace --locked",
+        "exit_code": 0
+      },
+      {
+        "command": "cargo fmt --all --check",
+        "exit_code": 0
+      },
+      {
+        "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+        "exit_code": 0
+      },
+      {
+        "command": "python -m unittest discover -s tests -v",
+        "exit_code": 0
+      }
+    ],
+    "linux": [
+      {
+        "command": "cargo test --workspace --locked",
+        "exit_code": 0
+      },
+      {
+        "command": "cargo fmt --all --check",
+        "exit_code": 0
+      },
+      {
+        "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+        "exit_code": 0
+      },
+      {
+        "command": "python3 -m unittest discover -s tests -v",
+        "exit_code": 0
+      },
+      {
+        "command": "ASTRAEUS_LOOPBACK_TEST=1 python3 -m unittest discover -s tests -v (root)",
+        "exit_code": 0
+      },
+      {
+        "command": "disposable_linux_btrfs_roundtrip (root, ignored test)",
+        "exit_code": 0
+      }
+    ]
+  },
+  "python_windows": {
+    "tests": 103,
+    "skips": 40
+  },
+  "python_linux_root": {
+    "tests": 103,
+    "skips": 1
+  },
+  "python_freestyle": {
+    "tests": 103,
+    "skips": 26
+  },
+  "gaming_validated": false
+}

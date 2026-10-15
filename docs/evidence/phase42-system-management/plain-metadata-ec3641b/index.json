@@ -1,0 +1,94 @@
+{
+  "A-chunk-export-receipt.json": {
+    "bytes": 7807,
+    "sha256": "0bbe633e97da85c66628920a753c710075adfb9c57d1399f1f872010bcc24339"
+  },
+  "A-local-export-verified.json": {
+    "bytes": 806,
+    "sha256": "5ec7f6ed6c1815029cd054bf9b4f451fcb48efd2f9893388943380436f26258d"
+  },
+  "full-export-index.json": {
+    "bytes": 49222,
+    "sha256": "43db427a8ca2e45f6e2c3055f5b50d56564ca556679d6099f7f87eeb03bff9ec"
+  },
+  "old6d-local-backup-verified.json": {
+    "bytes": 253,
+    "sha256": "6ff99cf975813bc005cd79313604a080c9982758d5605578707d5cdba2b11c0d"
+  },
+  "recp-build-launch.json": {
+    "bytes": 496,
+    "sha256": "456780d24d0def4772c550e04f7b3d26c3d740faa2cafa1b0eb7c6bd53c4ffb9"
+  },
+  "recp-build.log": {
+    "bytes": 4533,
+    "sha256": "3308675f48b9e29c10b4b46b217b6a1246c8a4f022c80f45a35a9520855fd448"
+  },
+  "fecp-metadata\\matrix.json": {
+    "bytes": 5693,
+    "sha256": "a39d3957aeb0ccf3e9c4a50eb73ef8df98eaa16b65366c88fa851bc11d7f77ba"
+  },
+  "fecp-metadata\\metadata\\metadata-apply-and-same-boot-refusal.json": {
+    "bytes": 410468,
+    "sha256": "9945b2dee518f25f96748c4dd187e57e738b4e7d7e9bd6e1bb865ce9a3ec9f51"
+  },
+  "fecp-metadata\\metadata\\metadata-new-boot-confirmation.json": {
+    "bytes": 414265,
+    "sha256": "f39e86fce83d141b9ec4a479d6361157c6ec332b69f7e61ccc3f4812b5539fc0"
+  },
+  "fecp-metadata\\metadata\\metadata-offline-rollback.json": {
+    "bytes": 416530,
+    "sha256": "47c3453cb0ab93b955395ea8dc8d3c84f99119d9270bfb45692b46a7898837cb"
+  },
+  "fecp-metadata\\metadata\\offline-restore.json": {
+    "bytes": 5078,
+    "sha256": "154fd46cb299668f4adc353e831fb86f3243887fffd338f142d42c06d984e981"
+  },
+  "fecp-metadata\\metadata\\wrong-metadata-finalization-refusal.json": {
+    "bytes": 206,
+    "sha256": "3c29779e196b68dd09ceba98565ea53175fa92bfdc2dff3840390fce52009c92"
+  },
+  "fecp-metadata\\metadata\\screenshots\\recovery-desktop.png": {
+    "bytes": 554254,
+    "sha256": "7e4319b293ecf4cd3c1254c2b1329c1cb8e8441135bbfa4c7f1b58259a9a9ef2"
+  },
+  "fecp-metadata\\metadata\\screenshots\\recovery-terminal.png": {
+    "bytes": 272587,
+    "sha256": "b8d47044ff042f36031a269b6b7a3afd5bd7e4d75ef65e96b21cfd1d789db096"
+  },
+  "necp\\baseline.json": {
+    "bytes": 2229,
+    "sha256": "bf5d449fdc5ffec2a47982d05114193be2b50a7ecd29a41283ad7f852d8a1bb3"
+  },
+  "necp\\fresh-installation.json": {
+    "bytes": 1556,
+    "sha256": "aa0825881298d32aa0ad23b90315f4299c35d8c66827f792a7ed6f2737b17f23"
+  },
+  "necp\\maintained-uki-trust-1.json": {
+    "bytes": 361,
+    "sha256": "27f47f6185d8b0f396e7702986199f7d3d7490d0507718fa773ff72cc34f888e"
+  },
+  "necp\\maintained-uki-trust-2.json": {
+    "bytes": 361,
+    "sha256": "27f47f6185d8b0f396e7702986199f7d3d7490d0507718fa773ff72cc34f888e"
+  },
+  "necp\\result.json": {
+    "bytes": 518,
+    "sha256": "7c24051a7d359eb4ddbcdd8e1077ed3cf8534dbf41f29641d45dbbe99668b54a"
+  },
+  "necp\\screenshots\\installed-one-sddm.png": {
+    "bytes": 220902,
+    "sha256": "0e2238d5248c27123f1ba30a06c178840e8158f6e2840b63c4fa35561d6d211b"
+  },
+  "necp\\screenshots\\installed-two-sddm.png": {
+    "bytes": 220728,
+    "sha256": "6c099ef5cb37e3da53f2a4ca670a372a6d1bd363ea9cf7e9a0c5953cc2f449d3"
+  },
+  "necp\\screenshots\\live-initial.png": {
+    "bytes": 554789,
+    "sha256": "eebdba4b47846e87c41b6baa93fd31ce665661f75251da8cc55abfcd5a245c81"
+  },
+  "recp\\manifest.json": {
+    "bytes": 2121,
+    "sha256": "cb4deea690ebc476bf591394e5f01d7513896e9dbd6c65cc099980478fda3eb1"
+  }
+}

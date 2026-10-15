@@ -1,0 +1,76 @@
+{
+  "environment": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "os_release": "PRETTY_NAME=\"Ubuntu 26.04 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04 (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+  "source_sha256": "0d2a52cc0e532ae95f74a4a7a3c4ea17cfd808fb74b3d0b76d3aa34ad7524c51",
+  "binary_sha256": "bfdf19e4d3f44bd16819b76be1c789df00d00ca9f970ef7f76e91d171b4b17d4",
+  "icd": {
+    "path": "/usr/share/vulkan/icd.d/lvp_icd.json",
+    "sha256": "8c55cd4279a21911e97beff1bd2bd30a779ac5ca390ccfb241ef317f8bb0b3fb",
+    "contents": {
+      "ICD": {
+        "api_version": "1.4.335",
+        "library_path": "libvulkan_lvp.so"
+      },
+      "file_format_version": "1.0.1"
+    }
+  },
+  "compiler": {
+    "command": [
+      "cc",
+      "--version"
+    ],
+    "code": 0,
+    "output": "cc (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "error": null,
+    "seconds": 0.051
+  },
+  "build_command": [
+    "cc",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I/mnt/c/VulkanSDK/1.4.350.0/Include",
+    "tests/fixtures/phase4/vulkan-workload.c",
+    "-o",
+    "out/prebuilt/vulkan64",
+    "-l:libvulkan.so.1"
+  ],
+  "physical_qualified": false,
+  "astraeus_runtime_qualified": false,
+  "workload": {
+    "command": [
+      "/mnt/c/Users/Noel/.codex/worktrees/phase4-validation/operating-system/out/prebuilt/vulkan64"
+    ],
+    "code": 0,
+    "output": "[Vulkan Loader] DRIVER:         Searching for driver manifest files\n[Vulkan Loader] DRIVER:            In following locations:\n[Vulkan Loader] DRIVER:               /usr/share/vulkan/icd.d/lvp_icd.json\n[Vulkan Loader] DRIVER:            Found the following files:\n[Vulkan Loader] DRIVER:               /usr/share/vulkan/icd.d/lvp_icd.json\n[Vulkan Loader] DRIVER:         Found ICD manifest file /usr/share/vulkan/icd.d/lvp_icd.json, version 1.0.1\n[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named libvulkan_lvp.so\n[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:\n[Vulkan Loader] INFO | DRIVER:       Original order:\n[Vulkan Loader] INFO | DRIVER:             [0] llvmpipe (LLVM 21.1.8, 256 bits)\n[Vulkan Loader] INFO | DRIVER:       Sorted order:\n[Vulkan Loader] INFO | DRIVER:             [0] llvmpipe (LLVM 21.1.8, 256 bits)  \n[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:\n[Vulkan Loader] INFO | DRIVER:       Original order:\n[Vulkan Loader] INFO | DRIVER:             [0] llvmpipe (LLVM 21.1.8, 256 bits)\n[Vulkan Loader] INFO | DRIVER:       Sorted order:\n[Vulkan Loader] INFO | DRIVER:             [0] llvmpipe (LLVM 21.1.8, 256 bits)  \n[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0\n[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:\n[Vulkan Loader] INFO | DRIVER:       Original order:\n[Vulkan Loader] INFO | DRIVER:             [0] llvmpipe (LLVM 21.1.8, 256 bits)\n[Vulkan Loader] INFO | DRIVER:       Sorted order:\n[Vulkan Loader] INFO | DRIVER:             [0] llvmpipe (LLVM 21.1.8, 256 bits)  \n[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0\n[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:\n[Vulkan Loader] INFO | DRIVER:       Original order:\n[Vulkan Loader] INFO | DRIVER:             [0] llvmpipe (LLVM 21.1.8, 256 bits)\n[Vulkan Loader] INFO | DRIVER:       Sorted order:\n[Vulkan Loader] INFO | DRIVER:             [0] llvmpipe (LLVM 21.1.8, 256 bits)  \n[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0\n[Vulkan Loader] DRIVER:         vkCreateDevice layer callstack setup to:\n[Vulkan Loader] DRIVER:            <Application>\n[Vulkan Loader] DRIVER:              ||\n[Vulkan Loader] DRIVER:            <Loader>\n[Vulkan Loader] DRIVER:              ||\n[Vulkan Loader] DRIVER:            <Device>\n[Vulkan Loader] DRIVER:                Using \"llvmpipe (LLVM 21.1.8, 256 bits)\" with driver: \"/usr/lib/x86_64-linux-gnu/libvulkan_lvp.so\"\nrenderer=llvmpipe (LLVM 21.1.8, 256 bits)\nvendor=0x10005\ndevice_type=4\narchitecture_bits=64\nPHASE4_VULKAN_OK pixels=256\n",
+    "error": null,
+    "seconds": 0.254
+  },
+  "renderer": {
+    "name": "llvmpipe (LLVM 21.1.8, 256 bits)",
+    "software": true,
+    "device_type": "4",
+    "vendor": "0x10005",
+    "physical_qualified": false
+  },
+  "negatives": {
+    "missing": {
+      "command": [
+        "/mnt/c/Users/Noel/.codex/worktrees/phase4-validation/operating-system/out/prebuilt/vulkan64"
+      ],
+      "code": 1,
+      "output": "[Vulkan Loader] INFO:           Vulkan Loader Version 1.4.341\n[Vulkan Loader] INFO:           No valid vk_loader_settings.json file found, no loader settings will be active\n[Vulkan Loader] LAYER:          Searching for implicit layer manifest files\n[Vulkan Loader] LAYER:             In following locations:\n[Vulkan Loader] LAYER:                /home/noel/.config/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /etc/xdg/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /etc/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /home/noel/.local/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /usr/local/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /var/lib/snapd/desktop/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:             Found the following files:\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json (file version 1.2.1)\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json (file version 1.0.0)\n[Vulkan Loader] LAYER:          Searching for explicit layer manifest files\n[Vulkan Loader] LAYER:             In following locations:\n[Vulkan Loader] LAYER:                /home/noel/.config/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /etc/xdg/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /etc/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /home/noel/.local/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /usr/local/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /var/lib/snapd/desktop/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:             Found the following files:\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d/VkLayer_MESA_screenshot.json\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d/VkLayer_MESA_overlay.json\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d/VkLayer_INTEL_nullhw.json\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/explicit_layer.d/VkLayer_MESA_screenshot.json (file version 1.0.0)\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/explicit_layer.d/VkLayer_MESA_overlay.json (file version 1.0.0)\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/explicit_layer.d/VkLayer_INTEL_nullhw.json (file version 1.0.0)\n[Vulkan Loader] DRIVER:         Searching for driver manifest files\n[Vulkan Loader] DRIVER:            In following locations:\n[Vulkan Loader] DRIVER:               /tmp/tmpnpe2ejvv/missing.json\n[Vulkan Loader] DRIVER:            Found the following files:\n[Vulkan Loader] DRIVER:               /tmp/tmpnpe2ejvv/missing.json\n[Vulkan Loader] ERROR:          loader_get_json: Failed to open JSON file /tmp/tmpnpe2ejvv/missing.json\n[Vulkan Loader] ERROR | DRIVER: vkCreateInstance: Found no drivers!\nvkCreateInstance(&ici, NULL, &instance): VkResult=-9\n",
+      "error": null,
+      "seconds": 0.052
+    },
+    "corrupt": {
+      "command": [
+        "/mnt/c/Users/Noel/.codex/worktrees/phase4-validation/operating-system/out/prebuilt/vulkan64"
+      ],
+      "code": 1,
+      "output": "[Vulkan Loader] INFO:           Vulkan Loader Version 1.4.341\n[Vulkan Loader] INFO:           No valid vk_loader_settings.json file found, no loader settings will be active\n[Vulkan Loader] LAYER:          Searching for implicit layer manifest files\n[Vulkan Loader] LAYER:             In following locations:\n[Vulkan Loader] LAYER:                /home/noel/.config/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /etc/xdg/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /etc/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /home/noel/.local/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /usr/local/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /var/lib/snapd/desktop/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:             Found the following files:\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json (file version 1.2.1)\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json (file version 1.0.0)\n[Vulkan Loader] LAYER:          Searching for explicit layer manifest files\n[Vulkan Loader] LAYER:             In following locations:\n[Vulkan Loader] LAYER:                /home/noel/.config/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /etc/xdg/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /etc/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /home/noel/.local/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /usr/local/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /var/lib/snapd/desktop/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:             Found the following files:\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d/VkLayer_MESA_screenshot.json\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d/VkLayer_MESA_overlay.json\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d/VkLayer_INTEL_nullhw.json\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/explicit_layer.d/VkLayer_MESA_screenshot.json (file version 1.0.0)\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/explicit_layer.d/VkLayer_MESA_overlay.json (file version 1.0.0)\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/explicit_layer.d/VkLayer_INTEL_nullhw.json (file version 1.0.0)\n[Vulkan Loader] DRIVER:         Searching for driver manifest files\n[Vulkan Loader] DRIVER:            In following locations:\n[Vulkan Loader] DRIVER:               /tmp/tmpnpe2ejvv/corrupt.json\n[Vulkan Loader] DRIVER:            Found the following files:\n[Vulkan Loader] DRIVER:               /tmp/tmpnpe2ejvv/corrupt.json\n[Vulkan Loader] ERROR:          loader_get_json: Invalid JSON file /tmp/tmpnpe2ejvv/corrupt.json.\n[Vulkan Loader] ERROR | DRIVER: vkCreateInstance: Found no drivers!\nvkCreateInstance(&ici, NULL, &instance): VkResult=-9\n",
+      "error": null,
+      "seconds": 0.052
+    }
+  }
+}

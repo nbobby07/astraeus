@@ -1,0 +1,89 @@
+{
+  "source_commit": "cac8998ad7730e69ae354c3162ef4a0677cfc162",
+  "archive": "/home/ubuntu/p4i/r2/signed-repository.tar.gz",
+  "bytes": 50181520,
+  "sha256": "edf0a1af982b55ec202856363a854ae6134b8575dcdc4a1fe163b22a76ab2774",
+  "files": {
+    "repo/SHA256SUMS": {
+      "bytes": 1135,
+      "sha256": "842e1c4217bbed466e7d993185dff64d421a23868db42a872c4b87defc705391"
+    },
+    "repo/calamares-3.4.3-1-x86_64.pkg.tar.zst": {
+      "bytes": 4253905,
+      "sha256": "c27cbcc0c5f040927efbbd425abb1859bb22e00a81344fce4fadc258747f5d9f"
+    },
+    "repo/calamares-3.4.3-1-x86_64.pkg.tar.zst.sig": {
+      "bytes": 119,
+      "sha256": "d1cab9ef2692d910b3e090f17cea01d29b1c197f7374c3a1ea3ba464b54680ae"
+    },
+    "repo/calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": {
+      "bytes": 43687878,
+      "sha256": "e13d69113998d0b977e6d3e95d9494a3f677c98eeca280b645fce7a0ac693f19"
+    },
+    "repo/calamares-debug-3.4.3-1-x86_64.pkg.tar.zst.sig": {
+      "bytes": 119,
+      "sha256": "20c6d8ef5e0317a35d91d4e5fc6f3a7acf808a703427ca8304f51510f7d34900"
+    },
+    "repo/distro.db": {
+      "bytes": 1544,
+      "sha256": "8080eaed85e108a6ea39916e07bddd93ffa655a289c78e8ddaf804d03f4bab3e",
+      "link": "distro.db.tar.gz"
+    },
+    "repo/distro.db.sig": {
+      "bytes": 119,
+      "sha256": "e0abc6d2ed42e6d0eb0fcbf3166c7644d013c17992c5732df678a4b88ea574cf",
+      "link": "distro.db.tar.gz.sig"
+    },
+    "repo/distro.db.tar.gz": {
+      "bytes": 1544,
+      "sha256": "8080eaed85e108a6ea39916e07bddd93ffa655a289c78e8ddaf804d03f4bab3e"
+    },
+    "repo/distro.db.tar.gz.sig": {
+      "bytes": 119,
+      "sha256": "e0abc6d2ed42e6d0eb0fcbf3166c7644d013c17992c5732df678a4b88ea574cf"
+    },
+    "repo/distro.files": {
+      "bytes": 9544,
+      "sha256": "8b14dcd4ef0daa05e44b3375f22a23bcc063b51a8ee6fe7cd1974dff10756815",
+      "link": "distro.files.tar.gz"
+    },
+    "repo/distro.files.sig": {
+      "bytes": 119,
+      "sha256": "cbf88033301213e68c8b818feba35c8c3655fb6bd1f06b9aeaeafccbeb75dc21",
+      "link": "distro.files.tar.gz.sig"
+    },
+    "repo/distro.files.tar.gz": {
+      "bytes": 9544,
+      "sha256": "8b14dcd4ef0daa05e44b3375f22a23bcc063b51a8ee6fe7cd1974dff10756815"
+    },
+    "repo/distro.files.tar.gz.sig": {
+      "bytes": 119,
+      "sha256": "cbf88033301213e68c8b818feba35c8c3655fb6bd1f06b9aeaeafccbeb75dc21"
+    },
+    "repo/distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+      "bytes": 2080204,
+      "sha256": "776986ee0c67aa31085ea661c75cf2def1afaae8f0c48cb3ed8f0a1456a78004"
+    },
+    "repo/distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+      "bytes": 119,
+      "sha256": "c1e18a4c550e5440a9e3e08784238c2058de8465eaef4e4fd153ef8e9545fddf"
+    },
+    "repo/distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": {
+      "bytes": 165811,
+      "sha256": "c031ecc5edf3cf3a4bc6c064aa385bdff2d48e64f787431cb17cc588537b5c69"
+    },
+    "repo/distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst.sig": {
+      "bytes": 119,
+      "sha256": "6c2f170faaf32268cae25d6afecaf4212367b3af87e6b77fea445084ade4103c"
+    },
+    "repo/repository-key.asc": {
+      "bytes": 409,
+      "sha256": "c035d705273505f2835b66504a57a45d7b87ebb4b7dd706540c6d951ba99878b"
+    },
+    "repository-fingerprint.txt": {
+      "bytes": 41,
+      "sha256": "ae4038d127a52ba9e55b65463d338bcdaa89b3e3371f765b2f7b47cc3a5a2a35"
+    }
+  },
+  "scope": "Exact signed repository consumed by both clean builds. Disposable signing identity; no private signing key is included."
+}

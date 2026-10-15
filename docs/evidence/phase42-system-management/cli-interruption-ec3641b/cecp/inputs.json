@@ -1,0 +1,73 @@
+{
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "iso_sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+  "distroctl_sha256": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b",
+  "desktop_sha256": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+  "baseline": {
+    "schema_version": 1,
+    "kind": "phase42-fresh-candidate-payload",
+    "accepted": true,
+    "method": "candidate-payload-and-production-provision",
+    "calamares_ui": false,
+    "encryption": "none",
+    "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+    "inputs": {
+      "source_commits": [
+        "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025"
+      ],
+      "iso": {
+        "path": "/home/ubuntu/p42/candidate-ec3641b72ad4-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+        "sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca"
+      },
+      "ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+        "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+      },
+      "setup_ovmf_code": {
+        "path": "/usr/share/OVMF/OVMF_CODE_4M.secboot.fd",
+        "sha256": "1286f2a3217d09b374d05951355d7a561c8bacecd74845c8a1fbb71a48c0de8d"
+      },
+      "pristine_ovmf_vars": {
+        "path": "/usr/share/OVMF/OVMF_VARS_4M.fd",
+        "sha256": "5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e"
+      }
+    },
+    "signer_sha256": "e3a43c20de7ad909b13c596a656162c27f6a41b753d8f91e0a251920234e8c7d",
+    "public_fingerprints": {
+      "PK": "43b3d717d497a91b4d72e502676a491a1dc074dcd0063eb760a5f1a9238f38ed",
+      "KEK": "e045267a98d79b57309024d7c96e7d84dfbf860c6271700584da941b701d2a89",
+      "db": "e3a43c20de7ad909b13c596a656162c27f6a41b753d8f91e0a251920234e8c7d"
+    },
+    "boot_ids": [
+      "b50dbefd-7e87-46d9-89ec-3c13e2e168b9",
+      "64aca9c3-407c-4177-9c8c-4fe45bd465b1"
+    ],
+    "created": "2026-10-14T17:08:35.912661+00:00",
+    "installation_firmware": {
+      "observed": true,
+      "source": "efivarfs-before-partition-write",
+      "SecureBoot": false,
+      "SetupMode": true
+    },
+    "management_firmware_required": {
+      "SecureBoot": true,
+      "SetupMode": false
+    },
+    "installed_binaries": {
+      "distroctl": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b",
+      "astraeus-control-center": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41"
+    },
+    "sha256": {
+      "disk.qcow2": "8aa453c0692f1b790034e57f5be728e8e9a423a1b9a627d984a468493429066e",
+      "vars.fd": "58950c22a1b88f1dc138a5830599a7b4e0047a049a7185e1e97a94688ca1dfd2"
+    }
+  },
+  "package": "kcalc",
+  "harness_sha256": {
+    "phase42.py": "bd0a6b3e70ae9a2c5b3efc5ed74150e49f0b8b703f73bc2112558570addfa56e",
+    "phase2.py": "0b2edcf6c71ac1194f3c0297b40891dcb085b4b178e12ea3f7cc1fde4ca5e0d3",
+    "qmp.py": "79c9edb5d6d3ece66d77b224eadc40c140c0dec0b33b530a10d513a98e2eb5d0",
+    "phase42-faults.py": "438028c0b8c4ecab8af72e734d497f526022ae9dfddfb7ac07fbe58d45658000",
+    "phase42_trust.py": "804332f2a9da8b149e4ba6bf860a8a55998291c994af2a767952219c496525be"
+  }
+}

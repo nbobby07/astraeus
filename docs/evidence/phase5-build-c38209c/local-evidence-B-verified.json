@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "label": "B",
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "source_archive_sha256": "1561a6f9f1f6e67c893f3df0574870d75fe3df81a9969969ac1af9747347303e",
+  "export_archive_sha256": "485dff22c011b710fec9b0815fd6c9349fd3a6d273fe3d55fa71e92f2753da8d",
+  "regular_files": 48,
+  "links": 4,
+  "all_exported_members_verified": true
+}

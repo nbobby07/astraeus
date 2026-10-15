@@ -22,6 +22,12 @@ struct Fake {
 }
 type Calls = Vec<(String, Vec<String>)>;
 impl Commands for Fake {
+    fn authorize_coordinator(&self, root: &Path) -> Result<()> {
+        require(
+            fs::read(root.join("usr/bin/distroctl"))? == b"protocol-2 test coordinator",
+            "fixture coordinator is not protocol 2",
+        )
+    }
     fn boot_artifact(&self, args: &[&str]) -> Result<String> {
         self.run("artifact", args)
     }
@@ -55,7 +61,11 @@ impl Commands for Fake {
             "bootctl" => match args {
                 ["--print-stub-path"] => self.boot.borrow().get("stub_path").cloned().ok_or_else(|| "no boot evidence".into()),
                 ["--version"] => Ok("systemd 262".into()),
-                ["--esp-path", _, "set-default" | "set-oneshot" | "set-preferred", ""] => Ok(String::new()),
+                ["--esp-path", _, "set-default" | "set-oneshot" | "set-preferred", ""] => {
+                    require(!self.boot.borrow().contains_key("direct-stub"), "Not booted with a supported boot loader.")?;
+                    Ok(String::new())
+                },
+                ["--variables=yes", "--esp-path", _, "set-default" | "set-oneshot" | "set-preferred", ""] => Ok(String::new()),
                 _ => Err("unexpected bootctl call".into()),
             },
             "od" => {
@@ -87,6 +97,14 @@ impl Commands for Fake {
             "lsblk" => Ok(FS.into()),
             "btrfs" => {
                 match args {
+                    ["property", "set", "-ts", path, "ro", "true"] => {
+                        let path = Path::new(path);
+                        let mut sub: Subvolume = serde_json::from_slice(&fs::read(path.join(".fake-subvolume"))?)?;
+                        sub.read_only = true;
+                        sub.top_level = 258;
+                        fs::write(path.join(".fake-subvolume"), serde_json::to_vec(&sub)?)?;
+                        Ok(String::new())
+                    }
                     ["subvolume", "show", path] => {
                         let s: Subvolume = serde_json::from_slice(&fs::read(
                             Path::new(path).join(".fake-subvolume"),
@@ -178,6 +196,12 @@ impl Fixture {
         .unwrap();
         fs::create_dir(root.join("boot")).unwrap();
         fs::create_dir_all(root.join("usr/lib/modules/test-release")).unwrap();
+        fs::create_dir_all(root.join("usr/bin")).unwrap();
+        fs::write(
+            root.join("usr/bin/distroctl"),
+            b"protocol-2 test coordinator",
+        )
+        .unwrap();
         let cmdline = format!("root=UUID={FS} rootflags=subvol=@ rw");
         fs::write(root.join("etc/kernel/cmdline"), &cmdline).unwrap();
         fs::write(root.join("boot/vmlinuz-linux"), b"test kernel").unwrap();
@@ -341,6 +365,191 @@ fn planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots() {
         && !args
             .iter()
             .any(|v| matches!(v.as_str(), "snapshot" | "delete"))));
+}
+
+#[cfg(unix)]
+#[test]
+fn mutation_guard_releases_lock_while_an_inherited_descriptor_remains_open() {
+    let f = Fixture::new();
+    let guard = f.manager.lock().unwrap();
+    let inherited = guard._file.try_clone().unwrap();
+    assert!(f.manager.lock().is_err());
+    drop(guard);
+    let next = f.manager.lock().unwrap();
+    drop(inherited);
+    assert!(f.manager.lock().is_err());
+    drop(next);
+    assert!(f.manager.lock().is_ok());
+}
+
+#[test]
+fn old_snapshot_is_inspectable_but_cannot_restore_a_protocol_one_coordinator() {
+    let f = Fixture::new();
+    let s = f.create();
+    let mut old = f
+        .manager
+        .mark(&s.id, Health::KnownGood, "verified")
+        .unwrap();
+    old.schema_version = 1;
+    old.coordinator = None;
+    fs::write(
+        f.manager.entry(&s.id).unwrap().join("metadata.json"),
+        serde_json::to_vec(&old).unwrap(),
+    )
+    .unwrap();
+    assert_eq!(f.manager.inspect(&s.id).unwrap().schema_version, 1);
+    let before = fs::read(f.manager.esp.join(UKI)).unwrap();
+    f.fake.calls.borrow_mut().clear();
+    assert!(f
+        .manager
+        .plan_rollback(&s.id)
+        .unwrap_err()
+        .to_string()
+        .contains("protocol-1"));
+    assert!(f
+        .manager
+        .rollback(&s.id)
+        .unwrap_err()
+        .to_string()
+        .contains("protocol-1"));
+    assert!(!f.manager.store.join("pending.json").exists());
+    assert_eq!(fs::read(f.manager.esp.join(UKI)).unwrap(), before);
+    assert!(f
+        .fake
+        .calls
+        .borrow()
+        .iter()
+        .all(|(cmd, args)| cmd != "sync" && !args.iter().any(|v| v == "snapshot")));
+}
+
+#[test]
+fn protocol_two_binds_the_saved_coordinator_and_rejects_unknown_protocols() {
+    let f = Fixture::new();
+    let s = f.create();
+    assert_eq!(s.schema_version, 2);
+    let saved = f
+        .manager
+        .entry(&s.id)
+        .unwrap()
+        .join("private/root/usr/bin/distroctl");
+    fs::write(saved, b"old coordinator").unwrap();
+    assert!(f
+        .manager
+        .mark(&s.id, Health::KnownGood, "fake")
+        .unwrap_err()
+        .to_string()
+        .contains("coordinator"));
+    let mut invalid = s.clone();
+    invalid.coordinator.as_mut().unwrap().recovery_protocol = 3;
+    assert!(invalid.validate().is_err());
+    let f = Fixture::new();
+    fs::write(f.manager.root.join("usr/bin/distroctl"), b"old coordinator").unwrap();
+    assert!(f.manager.create(Reason::Manual, None).is_err());
+    assert!(!f.manager.store.join("pending.json").exists());
+}
+
+#[cfg(target_os = "linux")]
+#[test]
+#[ignore = "requires root-owned libalpm lock fixture"]
+fn coordinator_snapshots_seal_without_copying_the_owned_live_package_lock() {
+    use std::os::unix::fs::MetadataExt;
+    let f = Fixture::new();
+    assert_eq!(
+        fs::metadata(&f.path).unwrap().uid(),
+        0,
+        "run this fixture as root"
+    );
+    let path = f.manager.root.join("var/lib/pacman/db.lck");
+    fs::create_dir_all(path.parent().unwrap()).unwrap();
+    let content = format!("{}\n", std::process::id());
+    fs::write(&path, &content).unwrap();
+    let identity = fs::metadata(&path).unwrap().ino();
+    let proof = OwnedPackageLock::observe(&path).unwrap();
+    let guard = f.manager.lock().unwrap();
+    assert!(f
+        .manager
+        .create_locked(&guard, Reason::PreUpdate, Some("1".into()))
+        .is_err());
+    for reason in [Reason::PreUpdate, Reason::PostUpdate] {
+        let snapshot = f
+            .manager
+            .create_transaction_locked(&guard, reason, "1".into(), &proof)
+            .unwrap();
+        assert!(snapshot.root.read_only);
+        assert!(!f
+            .manager
+            .entry(&snapshot.id)
+            .unwrap()
+            .join("private/root/var/lib/pacman/db.lck")
+            .exists());
+        assert_eq!(fs::read_to_string(&path).unwrap(), content);
+        assert_eq!(fs::metadata(&path).unwrap().ino(), identity);
+        proof.verify(&path).unwrap();
+    }
+    assert!(f
+        .manager
+        .create_transaction_locked(&guard, Reason::Manual, "1".into(), &proof)
+        .is_err());
+    fs::rename(&path, path.with_extension("original")).unwrap();
+    fs::write(&path, &content).unwrap();
+    assert!(proof.verify(&path).is_err());
+    assert!(f
+        .manager
+        .create_transaction_locked(&guard, Reason::PostUpdate, "2".into(), &proof)
+        .is_err());
+    fs::write(&path, "1\n").unwrap();
+    assert!(OwnedPackageLock::observe(&path).is_err());
+}
+
+#[cfg(target_os = "linux")]
+#[test]
+#[ignore = "requires root-owned libalpm lock fixture"]
+fn interruption_during_coordinator_snapshot_never_unlinks_live_lock_or_publishes_writable_root() {
+    use std::os::unix::fs::MetadataExt;
+    let probe = Fixture::new();
+    assert_eq!(
+        fs::metadata(&probe.path).unwrap().uid(),
+        0,
+        "run this fixture as root"
+    );
+    drop(probe);
+    let mut completed = false;
+    for stop in 0..100 {
+        let f = Fixture::new();
+        let path = f.manager.root.join("var/lib/pacman/db.lck");
+        fs::create_dir_all(path.parent().unwrap()).unwrap();
+        let content = format!("{}\n", std::process::id());
+        fs::write(&path, &content).unwrap();
+        let identity = fs::metadata(&path).unwrap().ino();
+        let proof = OwnedPackageLock::observe(&path).unwrap();
+        let guard = f.manager.lock().unwrap();
+        f.fake.fail_after.set(Some(stop));
+        let result =
+            f.manager
+                .create_transaction_locked(&guard, Reason::PreUpdate, "1".into(), &proof);
+        assert_eq!(fs::read_to_string(&path).unwrap(), content);
+        assert_eq!(fs::metadata(&path).unwrap().ino(), identity);
+        f.fake.fail_after.set(None);
+        for entry in fs::read_dir(&f.manager.store).unwrap() {
+            let metadata = entry.unwrap().path().join("metadata.json");
+            if metadata.is_file() {
+                let snapshot: Snapshot =
+                    serde_json::from_slice(&fs::read(metadata).unwrap()).unwrap();
+                assert!(snapshot.root.read_only);
+                let root = f.manager.entry(&snapshot.id).unwrap().join("private/root");
+                assert!(f.manager.show(&root).unwrap().read_only);
+                assert!(!root.join("var/lib/pacman/db.lck").exists());
+            }
+        }
+        if result.is_ok() {
+            completed = true;
+            break;
+        }
+    }
+    assert!(
+        completed,
+        "fault sweep did not reach successful snapshot publication"
+    );
 }
 
 #[cfg(unix)]
@@ -653,6 +862,16 @@ fn disposable_linux_btrfs_roundtrip() {
         directory: PathBuf,
     }
     impl Commands for LoopCommands {
+        fn authorize_coordinator(&self, root: &Path) -> Result<()> {
+            require(
+                root.starts_with(&self.directory),
+                "coordinator fixture escaped disposable directory",
+            )?;
+            require(
+                fs::read(root.join("usr/bin/distroctl"))? == b"protocol-2 test coordinator",
+                "invalid storage fixture coordinator",
+            )
+        }
         fn boot_artifact(&self, args: &[&str]) -> Result<String> {
             // Synthetic trust is confined to this storage test, never firmware qualification.
             match args {
@@ -688,7 +907,7 @@ fn disposable_linux_btrfs_roundtrip() {
         fn run(&self, program: &str, args: &[&str]) -> Result<String> {
             if program == "bootctl" {
                 require(
-                    matches!(args,["--esp-path", path, "set-default" | "set-oneshot" | "set-preferred", ""] if Path::new(path).starts_with(&self.directory)),
+                    matches!(args,["--variables=yes", "--esp-path", path, "set-default" | "set-oneshot" | "set-preferred", ""] if Path::new(path).starts_with(&self.directory)),
                     "unexpected firmware mutation in storage fixture",
                 )?;
                 return Ok(String::new()); // Never touch host firmware variables.
@@ -819,9 +1038,45 @@ fn disposable_linux_btrfs_roundtrip() {
     for (name, _) in &SUBVOLUMES[1..] {
         fs::write(top.join(name).join("keep"), *name).unwrap();
     }
-    let snapshot = manager
-        .create(Reason::PreUpdate, Some("native-test".into()))
+    let lock_path = top.join("@/var/lib/pacman/db.lck");
+    fs::create_dir_all(lock_path.parent().unwrap()).unwrap();
+    use std::os::unix::fs::OpenOptionsExt;
+    let native_lock_fd = OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .mode(0o000)
+        .open(&lock_path)
         .unwrap();
+    // This test retains the writable descriptor, exactly as libalpm 16 does.
+    let package_lock = unsafe { OwnedPackageLock::from_active_transaction(&lock_path) }.unwrap();
+    let snapshot_guard = manager.lock().unwrap();
+    assert!(manager
+        .create_locked(
+            &snapshot_guard,
+            Reason::PreUpdate,
+            Some("native-test".into())
+        )
+        .is_err());
+    let snapshot = manager
+        .create_transaction_locked(
+            &snapshot_guard,
+            Reason::PreUpdate,
+            "native-test".into(),
+            &package_lock,
+        )
+        .unwrap();
+    package_lock.verify(&lock_path).unwrap();
+    assert!(!manager
+        .entry(&snapshot.id)
+        .unwrap()
+        .join("private/root/var/lib/pacman/db.lck")
+        .exists());
+    drop(snapshot_guard);
+    drop(native_lock_fd);
+    assert!(package_lock.verify(&lock_path).is_err());
+    drop(package_lock);
+    // Release only the lock this test created inside its disposable loopback root.
+    fs::remove_file(&lock_path).unwrap();
     assert!(snapshot.root.read_only);
     assert_eq!(manager.list().unwrap().len(), 1);
     assert_eq!(

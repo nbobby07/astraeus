@@ -1,0 +1,76 @@
+Start testing: Oct 14 16:13 UTC
+----------------------------------------------------------
+1/2 Testing: control-center-controller
+1/2 Test: control-center-controller
+Command: "/build/operating-system/.build/package/src/platform/target/control-center/control-center-tests"
+Directory: /build/operating-system/.build/package/src/platform/target/control-center
+"control-center-controller" start time: Oct 14 16:13 UTC
+Output:
+----------------------------------------------------------
+********* Start testing of ControllerTest *********
+Config: Using QtTest library 6.11.2, Qt 6.11.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 16.2.1 20260810), arch unknown
+PASS   : ControllerTest::initTestCase()
+PASS   : ControllerTest::missingExecutableIsReported()
+PASS   : ControllerTest::unavailableConfigurationPreservesObservedOverview()
+PASS   : ControllerTest::startupIsReadOnlyAndDraftInvalidatesPlan()
+PASS   : ControllerTest::packageSelectionDoesNotDiscardRemovalProtection()
+PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(invalid-json)
+PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(future-schema)
+PASS   : ControllerTest::authenticationCancellationAndDenial(cancel)
+PASS   : ControllerTest::authenticationCancellationAndDenial(deny)
+PASS   : ControllerTest::liveSessionCannotSubmit()
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-false)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-false)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(reasons-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(targets-missing)
+PASS   : ControllerTest::validBlockedPlanRemainsReviewableWithoutAuthentication()
+PASS   : ControllerTest::requestAndOperationSurviveFrontendState()
+PASS   : ControllerTest::reopenPendingBootDoesNotRestartPollingOrSubmit()
+PASS   : ControllerTest::importValidationPreservesDraftAndExportIsAtomic()
+PASS   : ControllerTest::cleanupTestCase()
+Totals: 21 passed, 0 failed, 0 skipped, 0 blacklisted, 3161ms
+********* Finished testing of ControllerTest *********
+<end of output>
+Test time =   3.18 sec
+----------------------------------------------------------
+Test Passed.
+"control-center-controller" end time: Oct 14 16:13 UTC
+"control-center-controller" time elapsed: 00:00:03
+----------------------------------------------------------
+
+2/2 Testing: control-center-qml
+2/2 Test: control-center-qml
+Command: "/build/operating-system/.build/package/src/platform/target/control-center/control-center-qml-tests"
+Directory: /build/operating-system/.build/package/src/platform/target/control-center
+"control-center-qml" start time: Oct 14 16:13 UTC
+Output:
+----------------------------------------------------------
+********* Start testing of astraeus_control_center *********
+Config: Using QtTest library 6.11.2, Qt 6.11.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 16.2.1 20260810), arch unknown
+QWARN  : astraeus_control_center::ControlCenter::initTestCase() kf.iconthemes: Icon theme "breeze-internal" not found.
+PASS   : astraeus_control_center::ControlCenter::initTestCase()
+PASS   : astraeus_control_center::ControlCenter::test_applyRequiresInstalledIdleReviewedSystem()
+PASS   : astraeus_control_center::ControlCenter::test_errorCanReappearAfterDismiss()
+PASS   : astraeus_control_center::ControlCenter::test_existingAppsCanBeSelectedWithoutRemovingProtection()
+PASS   : astraeus_control_center::ControlCenter::test_inconsistentFlagsNeverEnableAuthentication()
+PASS   : astraeus_control_center::ControlCenter::test_labelsPreservePendingAndUnknownStates()
+PASS   : astraeus_control_center::ControlCenter::test_metadataChangesStillExplainVerifiedRestart()
+PASS   : astraeus_control_center::ControlCenter::test_overviewReviewsUpdatesWithoutDiscardingDrafts()
+PASS   : astraeus_control_center::ControlCenter::test_populatedPagesRender()
+PASS   : astraeus_control_center::ControlCenter::test_reviewGroupsUseResolvedKindsAndRecordedOwnership()
+PASS   : astraeus_control_center::ControlCenter::test_reviewIsKeyboardAccessible()
+PASS   : astraeus_control_center::ControlCenter::test_validatedTextBecomesCleanWithoutDiscardingLaterEdits()
+PASS   : astraeus_control_center::ControlCenter::cleanupTestCase()
+Totals: 13 passed, 0 failed, 0 skipped, 0 blacklisted, 1089ms
+********* Finished testing of astraeus_control_center *********
+<end of output>
+Test time =   2.03 sec
+----------------------------------------------------------
+Test Passed.
+"control-center-qml" end time: Oct 14 16:13 UTC
+"control-center-qml" time elapsed: 00:00:02
+----------------------------------------------------------
+
+End testing: Oct 14 16:13 UTC

@@ -1,0 +1,2 @@
+# Preserve the exact bytes of copied validation receipts.
+* -text whitespace=-trailing-space,cr-at-eol

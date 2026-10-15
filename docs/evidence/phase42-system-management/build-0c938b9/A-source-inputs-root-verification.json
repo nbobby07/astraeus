@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "source_commit": "0c938b94f44956fd77890d851e35650b62b1e6da",
+  "source_files_compared_to_git_blobs": 151,
+  "mismatches": [],
+  "build_inputs_sha256": "f1ad8f7c3a99e1ca0d4a74592aef929514b068c0cf5334d0dfc2d8455cc210ce",
+  "all_non_iso_manifest_entries_verified": 49
+}

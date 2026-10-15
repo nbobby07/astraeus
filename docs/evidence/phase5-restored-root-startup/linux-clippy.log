@@ -1,0 +1,7 @@
+    Checking distro-hardware v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/hardware)
+    Checking distro-snapshots v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/snapshots)
+    Checking distro-graphics v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/graphics)
+    Checking distro-config v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/config)
+    Checking distro-transactions v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/transactions)
+    Checking distroctl v0.1.0-dev (/home/noel/astraeus-p5-float-roundtrip-087/crates/distroctl)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.45s

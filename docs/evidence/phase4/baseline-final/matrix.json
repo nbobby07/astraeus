@@ -1,0 +1,692 @@
+{
+  "schema_version": 1,
+  "scenarios": [
+    {
+      "id": "A",
+      "name": "Base install and boot",
+      "expected_behavior": "Fresh integrated ISO installs plain/LUKS2 Btrfs, then two UEFI disk-only boots and installed-smoke.sh pass",
+      "status": "NOT RUN",
+      "actual_result": "Not executed",
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [],
+      "exit_code": null
+    },
+    {
+      "id": "B",
+      "name": "Gaming packages",
+      "expected_behavior": "Signed package resolution succeeds, pacman -Dk is coherent; package presence alone establishes no runtime result",
+      "status": "FAIL",
+      "actual_result": {
+        "gaming-packages": {
+          "status": "FAIL",
+          "detail": "error: package 'steam' was not found\nerror: package 'gamescope' was not found\nerror: package 'mangohud' was not found\nerror: package 'gamemode' was not found\nerror: package 'lib32-vulkan-icd-loader' was not found\nvulkan-icd-loader 1.4.357.0-1\n"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "detail": "No database errors have been found!\n"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [
+        "guest.json#/checks/gaming-packages",
+        "guest.json#/checks/dependencies"
+      ],
+      "exit_code": {
+        "gaming-packages": 1,
+        "dependencies": 0
+      }
+    },
+    {
+      "id": "C",
+      "name": "Native Vulkan loader and ICD",
+      "expected_behavior": "Valid ICD manifests, architecture-compatible loader libraries and real vulkaninfo enumeration with exact device/driver observations",
+      "status": "NOT RUN",
+      "actual_result": {
+        "icds": {
+          "status": "PASS",
+          "detail": "manifest discovery only"
+        },
+        "vulkan-enumeration": {
+          "status": "NOT RUN",
+          "detail": "env: \u2018vulkaninfo\u2019: No such file or directory\n"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [
+        "guest.json#/checks/icds",
+        "guest.json#/checks/vulkan-enumeration"
+      ],
+      "exit_code": {
+        "icds": null,
+        "vulkan-enumeration": 127
+      }
+    },
+    {
+      "id": "D",
+      "name": "Vulkan execution",
+      "expected_behavior": "64-bit queue submission clears an image, fence completes and 256 pixels match; record renderer/ICD, software status and separately qualify WSI",
+      "status": "FAIL",
+      "actual_result": {
+        "vulkan-64": {
+          "status": "FAIL",
+          "detail": "[Vulkan Loader] DRIVER:         Searching for driver manifest files\n[Vulkan Loader] DRIVER:            In following locations:\n[Vulkan Loader] DRIVER:               /home/tester/.config/vulkan/icd.d\n[Vulkan Loader] DRIVER:               /etc/xdg/vulkan/icd.d\n[Vulkan Loader] DRIVER:               /etc/vulkan/icd.d\n[Vulkan Loader] DRIVER:               /home/tester/.local/share/vulkan/icd.d\n[Vulkan Loader] DRIVER:               /var/lib/flatpak/exports/share/vulkan/icd.d\n[Vulkan Loader] DRIVER:               /usr/local/share/vulkan/icd.d\n[Vulkan Loader] DRIVER:               /usr/share/vulkan/icd.d\n[Vulkan Loader] DRIVER:            Found the following files:\n[Vulkan Loader] DRIVER:               /usr/share/vulkan/icd.d/intel_hasvk_icd.json\n[Vulkan Loader] DRIVER:               /usr/share/vulkan/icd.d/intel_icd.json\n[Vulkan Loader] DRIVER:               /usr/share/vulkan/icd.d/nouveau_icd.json\n[Vulkan Loader] DRIVER:               /usr/share/vulkan/icd.d/radeon_icd.json\n[Vulkan Loader] DRIVER:         Found ICD manifest file /usr/share/vulkan/icd.d/intel_hasvk_icd.json, version 1.0.1\n[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named libvulkan_intel_hasvk.so\n[Vulkan Loader] DRIVER:         Found ICD manifest file /usr/share/vulkan/icd.d/intel_icd.json, version 1.0.1\n[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named libvulkan_intel.so\n[Vulkan Loader] DRIVER:         Found ICD manifest file /usr/share/vulkan/icd.d/nouveau_icd.json, version 1.0.1\n[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named libvulkan_nouveau.so\n[Vulkan Loader] DRIVER:         Found ICD manifest file /usr/share/vulkan/icd.d/radeon_icd.json, version 1.0.1\n[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named libvulkan_radeon.so\nMESA: info: could not get caps: Function not implemented\nMESA: error: vdrm_device_connect failed\nradv/amdgpu: failed to initialize device.\nMESA: info: could not get caps: Function not implemented\nvkEnumeratePhysicalDevices(instance, &count, NULL): VkResult=-3\n"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [
+        "guest.json#/checks/vulkan-64"
+      ],
+      "exit_code": {
+        "vulkan-64": 1
+      }
+    },
+    {
+      "id": "E",
+      "name": "32-bit Vulkan",
+      "expected_behavior": "lib32 dependency checks plus ELF32 loader/ICD execution and verified readback; missing runtime remains UNVERIFIED even if packages pass",
+      "status": "FAIL",
+      "actual_result": {
+        "lib32-packages": {
+          "status": "FAIL",
+          "detail": "error: package 'lib32-vulkan-icd-loader' was not found\n"
+        },
+        "link-32": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        },
+        "vulkan-32": {
+          "status": "NOT RUN",
+          "detail": "Fixture compilation unavailable; inspect build evidence"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [
+        "guest.json#/checks/lib32-packages",
+        "guest.json#/checks/vulkan-32"
+      ],
+      "exit_code": {
+        "lib32-packages": 1,
+        "link-32": null,
+        "vulkan-32": null
+      }
+    },
+    {
+      "id": "F",
+      "name": "Steam runtime and session",
+      "expected_behavior": "Dependencies and runtime diagnosed, unprivileged Wayland/XWayland launch inspected, process lifetime/exit/logs captured; stop at login boundary",
+      "status": "NOT RUN",
+      "actual_result": {
+        "steam-runtime": {
+          "status": "NOT RUN",
+          "detail": "Inspect downloaded runtime tools and dependency diagnostics in disposable Steam HOME; download presence alone is insufficient"
+        },
+        "steam-launch": {
+          "status": "NOT RUN",
+          "detail": "env: \u2018steam\u2019: No such file or directory\n"
+        },
+        "xwayland": {
+          "status": "NOT RUN",
+          "detail": "env: \u2018xdpyinfo\u2019: No such file or directory\n"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [
+        "guest.json#/checks/steam-runtime",
+        "guest.json#/checks/steam-launch",
+        "guest.json#/checks/xwayland"
+      ],
+      "exit_code": {
+        "steam-runtime": null,
+        "steam-launch": 127,
+        "xwayland": 127
+      }
+    },
+    {
+      "id": "G",
+      "name": "Proton Win32 smoke",
+      "expected_behavior": "Explicit Steam Linux Runtime starts inspected Proton; checksum-pinned own Win32 fixture creates a window and returns a fresh nonce with exit zero",
+      "status": "NOT RUN",
+      "actual_result": {
+        "proton-execution": {
+          "status": "NOT RUN",
+          "detail": "Provide inspected Proton script and Steam Linux Runtime _v2-entry-point; no raw Wine substitution"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [
+        "guest.json#/checks/proton-execution"
+      ],
+      "exit_code": {
+        "proton-execution": null
+      }
+    },
+    {
+      "id": "H",
+      "name": "Gamescope nested launch",
+      "expected_behavior": "Nested gamescope starts bounded vkcube presentation or documents unsupported virtual-device prerequisites and exact launch diagnostics",
+      "status": "NOT RUN",
+      "actual_result": {
+        "gamescope-launch": {
+          "status": "NOT RUN",
+          "detail": "env: \u2018gamescope\u2019: No such file or directory\n"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [
+        "guest.json#/checks/gamescope-launch"
+      ],
+      "exit_code": {
+        "gamescope-launch": 127
+      }
+    },
+    {
+      "id": "I",
+      "name": "MangoHud and GameMode",
+      "expected_behavior": "Wrapper workloads run, visible overlay is independently inspected, daemon readiness/test/invocation and restoration pass; no FPS benefit claim",
+      "status": "FAIL",
+      "actual_result": {
+        "mangohud-invoke": {
+          "status": "NOT RUN",
+          "detail": "env: \u2018mangohud\u2019: No such file or directory\n"
+        },
+        "mangohud-wsi": {
+          "status": "NOT RUN",
+          "detail": "env: \u2018mangohud\u2019: No such file or directory\n"
+        },
+        "overlay-visible": {
+          "status": "NOT RUN",
+          "detail": "Invocation is separate from visible overlay acceptance; retain private QMP screenshot and manual inspection"
+        },
+        "gamemode-test": {
+          "status": "NOT RUN",
+          "detail": "env: \u2018gamemoded\u2019: No such file or directory\n"
+        },
+        "gamemode-invoke": {
+          "status": "NOT RUN",
+          "detail": "env: \u2018gamemoderun\u2019: No such file or directory\n"
+        },
+        "gamemode-restoration": {
+          "status": "FAIL",
+          "detail": "daemon status restored; gamemoded -t separately checks its configured optimizations"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [
+        "guest.json#/checks/mangohud-invoke",
+        "guest.json#/checks/mangohud-wsi",
+        "guest.json#/checks/overlay-visible",
+        "guest.json#/checks/gamemode-test",
+        "guest.json#/checks/gamemode-invoke",
+        "guest.json#/checks/gamemode-restoration"
+      ],
+      "exit_code": {
+        "mangohud-invoke": 127,
+        "mangohud-wsi": 127,
+        "overlay-visible": null,
+        "gamemode-test": 127,
+        "gamemode-invoke": 127,
+        "gamemode-restoration": null
+      }
+    },
+    {
+      "id": "J",
+      "name": "Gaming readiness CLI JSON",
+      "expected_behavior": "Real production interface returns parseable JSON matching actual driver/runtime limitations, without claiming physical GPU qualification",
+      "status": "NOT RUN",
+      "actual_result": {
+        "readiness-json": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [],
+      "exit_code": {
+        "readiness-json": null
+      }
+    },
+    {
+      "id": "K",
+      "name": "Controlled negatives",
+      "expected_behavior": "Missing/corrupt ICD, wrong ELF architecture, missing lib32 ICD, no device, unknown vendor, absent Steam/Proton, unsupported gamescope, dependency mismatch, transaction refusal and invalid preset yield actionable diagnostics without crashes or false readiness",
+      "status": "NOT RUN",
+      "actual_result": {
+        "missing-icd": {
+          "status": "PASS",
+          "detail": "[Vulkan Loader] INFO:           Vulkan Loader Version 1.4.357\n[Vulkan Loader] INFO:           vkCreateInstance: applicationName: \"\", applicationVersion: 0, engineName: \"\", engineVersion: 0, apiVersion: 0.0.0\n[Vulkan Loader] INFO:           vkCreateInstance: Requested 0 instance layer(s):\n[Vulkan Loader] INFO:           vkCreateInstance: Requested 0 instance extension(s):\n[Vulkan Loader] INFO:           No valid vk_loader_settings.json file found, no loader settings will be active\n[Vulkan Loader] LAYER:          Searching for implicit layer manifest files\n[Vulkan Loader] LAYER:             In following locations:\n[Vulkan Loader] LAYER:                /home/tester/.config/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /etc/xdg/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /etc/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /home/tester/.local/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /var/lib/flatpak/exports/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /usr/local/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:             Found the following files:\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json (file version 1.2.1)\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json (file version 1.0.0)\n[Vulkan Loader] LAYER:          Searching for explicit layer manifest files\n[Vulkan Loader] LAYER:             In following locations:\n[Vulkan Loader] LAYER:                /home/tester/.config/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /etc/xdg/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /etc/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /home/tester/.local/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /var/lib/flatpak/exports/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /usr/local/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:             Found no files\n[Vulkan Loader] DRIVER:         Searching for driver manifest files\n[Vulkan Loader] DRIVER:            In following locations:\n[Vulkan Loader] DRIVER:               /var/tmp/phase4-008htnzs/missing-icd.json\n[Vulkan Loader] DRIVER:            Found the following files:\n[Vulkan Loader] DRIVER:               /var/tmp/phase4-008htnzs/missing-icd.json\n[Vulkan Loader] ERROR:          loader_get_json: Failed to open JSON file /var/tmp/phase4-008htnzs/missing-icd.json\n[Vulkan Loader] ERROR | DRIVER: vkCreateInstance: Found no drivers!\nvkCreateInstance(&ici, NULL, &instance): VkResult=-9\n"
+        },
+        "corrupt-icd": {
+          "status": "PASS",
+          "detail": "[Vulkan Loader] INFO:           Vulkan Loader Version 1.4.357\n[Vulkan Loader] INFO:           vkCreateInstance: applicationName: \"\", applicationVersion: 0, engineName: \"\", engineVersion: 0, apiVersion: 0.0.0\n[Vulkan Loader] INFO:           vkCreateInstance: Requested 0 instance layer(s):\n[Vulkan Loader] INFO:           vkCreateInstance: Requested 0 instance extension(s):\n[Vulkan Loader] INFO:           No valid vk_loader_settings.json file found, no loader settings will be active\n[Vulkan Loader] LAYER:          Searching for implicit layer manifest files\n[Vulkan Loader] LAYER:             In following locations:\n[Vulkan Loader] LAYER:                /home/tester/.config/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /etc/xdg/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /etc/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /home/tester/.local/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /var/lib/flatpak/exports/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /usr/local/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d\n[Vulkan Loader] LAYER:             Found the following files:\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json\n[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json (file version 1.2.1)\n[Vulkan Loader] INFO:           Found manifest file /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json (file version 1.0.0)\n[Vulkan Loader] LAYER:          Searching for explicit layer manifest files\n[Vulkan Loader] LAYER:             In following locations:\n[Vulkan Loader] LAYER:                /home/tester/.config/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /etc/xdg/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /etc/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /home/tester/.local/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /var/lib/flatpak/exports/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /usr/local/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:                /usr/share/vulkan/explicit_layer.d\n[Vulkan Loader] LAYER:             Found no files\n[Vulkan Loader] DRIVER:         Searching for driver manifest files\n[Vulkan Loader] DRIVER:            In following locations:\n[Vulkan Loader] DRIVER:               /var/tmp/phase4-008htnzs/corrupt-icd.json\n[Vulkan Loader] DRIVER:            Found the following files:\n[Vulkan Loader] DRIVER:               /var/tmp/phase4-008htnzs/corrupt-icd.json\n[Vulkan Loader] ERROR:          loader_get_json: Invalid JSON file /var/tmp/phase4-008htnzs/corrupt-icd.json.\n[Vulkan Loader] ERROR | DRIVER: vkCreateInstance: Found no drivers!\nvkCreateInstance(&ici, NULL, &instance): VkResult=-9\n"
+        },
+        "wrong-architecture": {
+          "status": "NOT RUN",
+          "detail": "No real ELF32 Vulkan library available; a missing path cannot prove ELFCLASS32 refusal"
+        },
+        "missing-lib32-icd": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        },
+        "no-device": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        },
+        "unknown-vendor": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        },
+        "missing-steam": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        },
+        "missing-proton": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        },
+        "gamescope-unsupported": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        },
+        "dependency-mismatch": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        },
+        "transaction-refusal": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        },
+        "invalid-preset": {
+          "status": "NOT RUN",
+          "detail": "Missing integration hook or prerequisite"
+        }
+      },
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [
+        "guest.json#/checks/missing-icd",
+        "guest.json#/checks/corrupt-icd",
+        "guest.json#/checks/wrong-architecture"
+      ],
+      "exit_code": {
+        "missing-icd": 1,
+        "corrupt-icd": 1,
+        "wrong-architecture": null,
+        "missing-lib32-icd": null,
+        "no-device": null,
+        "unknown-vendor": null,
+        "missing-steam": null,
+        "missing-proton": null,
+        "gamescope-unsupported": null,
+        "dependency-mismatch": null,
+        "transaction-refusal": null,
+        "invalid-preset": null
+      }
+    },
+    {
+      "id": "L",
+      "name": "Encrypted gaming setup",
+      "expected_behavior": "Signed feature setup through authorized product transaction in disposable LUKS2 installation, user-session smoke and disk-only reboot preserve encryption",
+      "status": "NOT RUN",
+      "actual_result": "Not executed",
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [],
+      "exit_code": null
+    },
+    {
+      "id": "M",
+      "name": "Signed update and rollback",
+      "expected_behavior": "Existing Phase 3 H/I/J/K/M plus Phase 2 payload/space/package/health/service/interruption regressions pass after gaming integration; known-good pairs, histories, snapshots, recovery and direct-package guard preserved",
+      "status": "NOT RUN",
+      "actual_result": "Not executed",
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [],
+      "exit_code": null
+    },
+    {
+      "id": "N",
+      "name": "Enforcing Secure Boot",
+      "expected_behavior": "Existing trusted boot and unsigned/untrusted/tampered loader/UKI tests refuse exact integrated bytes with authentication evidence; native UKI signing retained",
+      "status": "NOT RUN",
+      "actual_result": "Not executed",
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [],
+      "exit_code": null
+    },
+    {
+      "id": "O",
+      "name": "Independent ISO bytes",
+      "expected_behavior": "Only after production merges, two clean signed builds have identical complete ISO bytes, package manifests and hashes",
+      "status": "NOT RUN",
+      "actual_result": "Not executed",
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [],
+      "exit_code": null
+    },
+    {
+      "id": "P",
+      "name": "Physical GPU qualification",
+      "expected_behavior": "Actual NVIDIA/AMD/Intel/hybrid hardware supplies driver, Vulkan64/32, display, controller and recovery evidence; virtual/software runs cannot pass",
+      "status": "NOT RUN",
+      "actual_result": "Not executed",
+      "environment": "nested Astraeus KVM baseline",
+      "relevant_hardware": {
+        "qemu_device": "virtio-vga",
+        "physical_passthrough": false,
+        "desktop": {
+          "DISPLAY": ":0",
+          "WAYLAND_DISPLAY": "wayland-0",
+          "XDG_RUNTIME_DIR": "/run/user/1000",
+          "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+          "XDG_SESSION_TYPE": "wayland",
+          "XDG_CURRENT_DESKTOP": "KDE"
+        },
+        "renderer": {
+          "name": "unobserved",
+          "software": false,
+          "device_type": null,
+          "vendor": null,
+          "physical_qualified": false
+        }
+      },
+      "evidence_path": [],
+      "exit_code": null
+    }
+  ],
+  "gaming_validated": false,
+  "physical_gpu_qualified": false,
+  "observed_boot": {
+    "status": "PASS",
+    "scope": "sealed baseline cold boot, not a fresh Phase 4 install",
+    "evidence_path": "before.json",
+    "boot_id": "efbabb92-2b24-45d9-b468-b242920bb83d"
+  },
+  "observed_secure_boot": {
+    "status": "PASS",
+    "scope": "trusted cold boot only; negative refusal not rerun",
+    "evidence_path": "boot-1/security"
+  }
+}

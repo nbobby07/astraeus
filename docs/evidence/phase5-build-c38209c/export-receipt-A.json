@@ -1,0 +1,10 @@
+{
+  "path": "/home/ubuntu/p50/candidate-c38209c523e3-r1/evidence-A.tar.gz",
+  "sha256": "d5e03bf6726045e703b20a9075dbc11de3a03f015956a14baba5f124fa2119ba",
+  "bytes": 53696971,
+  "iso": {
+    "path": "/home/ubuntu/p50/candidate-c38209c523e3-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+    "sha256": "174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c",
+    "bytes": 3785349120
+  }
+}

@@ -1,8 +1,10 @@
 # Milestones and releases
 
 There is no stable release or public ISO download yet. `0.1.0-dev` now includes
-validated package updates and manual offline rollback on the recorded QEMU/KVM
-target. It does not promise production support or automatic recovery.
+validated package updates, Control Center, performance baselines and manual
+offline rollback on the recorded QEMU/KVM target. It does not promise production
+support or automatic recovery. The [current handoff](release-readiness.md) records
+the Phase 5 candidate, signing expiry, physical boot limits and outstanding work.
 
 ## Source milestones
 
@@ -52,4 +54,5 @@ automatic source archives are source downloads, not installation media. Host CI
 success alone cannot authorize an image release.
 
 Do not create production signing automation until custody, review, rotation,
-revocation and recovery are defined. See the [signing model](security.md).
+revocation and recovery are defined. See the [signing model](security.md) and
+the [release signing plan](release-signing-plan.md).

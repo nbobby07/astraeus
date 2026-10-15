@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "requested_run_passed": true,
+  "qualified": false,
+  "physical_hardware_qualified": false,
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "image_sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+  "started": "2026-10-14T17:12:02.637673+00:00",
+  "scenarios": [
+    {
+      "scenario": "metadata",
+      "id": "home-sentinel",
+      "status": "PASS",
+      "started": "2026-10-14T17:12:17.543506+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T17:12:19.813005+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "candidate-identity-and-state",
+      "status": "PASS",
+      "started": "2026-10-14T17:12:19.813305+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T17:12:22.103624+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "baseline-health",
+      "status": "PASS",
+      "started": "2026-10-14T17:12:22.103983+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T17:12:24.954834+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "true-noop",
+      "status": "PASS",
+      "started": "2026-10-14T17:12:24.955184+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T17:12:28.780035+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "metadata-plan",
+      "status": "PASS",
+      "started": "2026-10-14T17:12:28.780421+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T17:12:29.951538+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "metadata-apply-and-same-boot-refusal",
+      "status": "PASS",
+      "started": "2026-10-14T17:12:29.951958+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T17:13:20.465765+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "metadata-new-boot-confirmation",
+      "status": "PASS",
+      "started": "2026-10-14T17:13:20.466282+00:00",
+      "evidence": [
+        "metadata/boot-1/",
+        "metadata/boot-2/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T17:13:47.556603+00:00"
+    },
+    {
+      "scenario": "metadata",
+      "id": "metadata-offline-rollback",
+      "status": "PASS",
+      "started": "2026-10-14T17:13:47.557288+00:00",
+      "evidence": [
+        "metadata/boot-2/",
+        "metadata/boot-4/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-14T17:18:37.482817+00:00"
+    }
+  ],
+  "recovery_manifest": {
+    "schema_version": 1,
+    "kind": "phase42-ram-verified-recovery",
+    "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+    "iso_sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+    "image": "recovery.img",
+    "image_sha256": "fdd88190aad09ab5733f3aa11591b08b5cf54fde148f7862ac4ab697d80ca8c1",
+    "image_bytes": 4294967296,
+    "rootfs_sha256": "f612bbc33f189b916bd21bb40080a447158caa24fa0a9bba9d4184496486ddae",
+    "rootfs_bytes": 3296444416,
+    "certificate_sha256": "e3a43c20de7ad909b13c596a656162c27f6a41b753d8f91e0a251920234e8c7d",
+    "uki_sha256": "4f88e6deaf9d799e0d1fc3563b7f2dc6735b799b0689fa49778f76ddb022ed7b",
+    "unsigned_uki_sha256": "72391de46b735ace772e1d693f71546c38a034c33e756bc6cfae3b726a320a96",
+    "distroctl_sha256": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b",
+    "desktop_sha256": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41",
+    "extracted": {
+      "usr/bin/ukify": "faeaf0656a88d290fba40dc928cac4954286aae094f4d26200f3b5f25a89d918",
+      "usr/lib/systemd/boot/efi/linuxx64.efi.stub": "b16c31a0cff3ca1996aaa4d3e101309830c8c186d4230f1607712c0879ebb8e3",
+      "usr/lib/initcpio/hooks/archiso": "6e7263e703bf9bab16cbf054937f1595e70ed760e296ff8c4ef6967311b25623",
+      "usr/lib/os-release": "71ff7a6e248d9a0718344c957ec709cb6f0b18631682fa404d7cff2af3ff341d",
+      "usr/bin/distroctl": "fe6b67010ac1b9858276a45044365ff5af301784b85d475854554c930be19d5b",
+      "usr/bin/astraeus-control-center": "a09c05d9706e2d2fc5ffa75214818e5006efe0ac6d20f4c37f7b465d9db01b41"
+    },
+    "command_line": "archisobasedir=arch archisolabel=ASTRAEUS_SB copytoram=y cow_spacesize=2G console=tty0 console=ttyS0,115200n8",
+    "builder_sha256": "a803cbef6bc6fc4514734454bf974f3b105c953c9ad8a96d1c5fdac27d77152b",
+    "guard_origin_sha256": "23298042ca035c8b2b1e2360e5a6bda66db94fe55d8dc32e035740c937c3c0d0",
+    "baseline_manifest_sha256": "bf5d449fdc5ffec2a47982d05114193be2b50a7ecd29a41283ad7f852d8a1bb3",
+    "qualified": false,
+    "qualification": "Pending candidate enforcing-firmware boot and refusal tests",
+    "minimum_ram_gib": 8,
+    "private_key_in_image": false
+  },
+  "harness_sha256": "438028c0b8c4ecab8af72e734d497f526022ae9dfddfb7ac07fbe58d45658000",
+  "harness_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "finished": "2026-10-14T17:18:55.965581+00:00"
+}

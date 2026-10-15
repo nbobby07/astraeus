@@ -1,0 +1,577 @@
+{
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "kind": "phase5-desktop-observed-session",
+  "milestone_complete": false,
+  "private_material_excluded": true,
+  "disks_retained": true,
+  "files": {
+    "attention.json": {
+      "bytes": 74,
+      "sha256": "597450b1587cf2ac10ab9d06f87504cb2927a59da3dc1c28924c1e48175c1724"
+    },
+    "baseline-reference.json": {
+      "bytes": 2967,
+      "sha256": "aabec2d87aecbd293bed9708f7487c8946eb3628af2ba6627cd4206850abe2ec"
+    },
+    "boot-1/001-ready.json": {
+      "bytes": 219,
+      "sha256": "3021c756069c07b1ca41e91146aa2894ddec9e1c4e4ea6d63d72dcdefbc98a40"
+    },
+    "boot-1/002-ready.json": {
+      "bytes": 219,
+      "sha256": "a08dcce350b6faf02ed1e5ad7a13457f3754868f33382a40bbc4f633728ff0b0"
+    },
+    "boot-1/003-ready.json": {
+      "bytes": 219,
+      "sha256": "13f6cf151e8c241afdd3cc06465be4ab4ba25093976562a457091e1e039f4db3"
+    },
+    "boot-1/004-ready.json": {
+      "bytes": 219,
+      "sha256": "f52222c1469fc971b18eac09aa78faa9b87ab7d28b662df6d30bc0f7145591bd"
+    },
+    "boot-1/005-ready.json": {
+      "bytes": 219,
+      "sha256": "64a65766f41af12abf4694f90ed56a7f44bbf1465205d5a80cdd42603e3efabc"
+    },
+    "boot-1/006-ready.json": {
+      "bytes": 219,
+      "sha256": "4c1a0accd063601bef54781ef867f2d02f6af74e19ee3d0f4af626bda81a98ab"
+    },
+    "boot-1/007-ready.json": {
+      "bytes": 219,
+      "sha256": "bb4238eb9cbfaeeb2a545f065fe5e73a8eafc9d8baa844016508385baf107991"
+    },
+    "boot-1/008-ready.json": {
+      "bytes": 219,
+      "sha256": "4857c56ff24b96554187325e20982f1b9909d6d3210e10cf0eda025bb9574832"
+    },
+    "boot-1/009-ready.json": {
+      "bytes": 219,
+      "sha256": "2da69219c9ecdcecb62dd6ad79dd16b906f551e77c314f60689e447ac0f4e461"
+    },
+    "boot-1/010-ready.json": {
+      "bytes": 219,
+      "sha256": "64ec296bd77bf69266dc9f6bcba52f4a7d79e80029193966dc774930f716966d"
+    },
+    "boot-1/011-ready.json": {
+      "bytes": 219,
+      "sha256": "4c83bc7a7bd43436e1c36ebccde36be155ad658cf6b06295226a74433502a1fe"
+    },
+    "boot-1/012-ready.json": {
+      "bytes": 219,
+      "sha256": "72f34815c4006eb1a7d0c6c9a9d7485a6cc806b3ad6f8deab438c99b5332173f"
+    },
+    "boot-1/013-ready.json": {
+      "bytes": 219,
+      "sha256": "2a18213c7b2ae4862f88a0ea3ba9dbe0eacec8efac2b97acf730ac70295f0b90"
+    },
+    "boot-1/014-ready.json": {
+      "bytes": 219,
+      "sha256": "150bdf0761efff1f28d7368f2c567ae02e01d34dd6e3f55a4bb16f89bd4c0514"
+    },
+    "boot-1/015-ready.json": {
+      "bytes": 356,
+      "sha256": "a5544c8a7897e3e8ce9c57838dcef0050598a4109f8e551fc0b4a2dbffdca60e"
+    },
+    "boot-1/016-identity-distroctl.json": {
+      "bytes": 404,
+      "sha256": "e15a1ff5c725e5225efdcd7bcb40f9fee5a65476d0e5b2a0fa79b8b917f3ccd5"
+    },
+    "boot-1/017-identity-astraeus-control-center.json": {
+      "bytes": 432,
+      "sha256": "ed0f5b1a4a3e100860342d5c13f140bfea0e6cf1edf294d5747673eef40dca12"
+    },
+    "boot-1/018-performance-fixture.json": {
+      "bytes": 1762,
+      "sha256": "ac921ccf4959d590d717e9e405380b73a2b07a2362583f5e645a83a950537e58"
+    },
+    "boot-1/019-performance-state-before.json": {
+      "bytes": 287593,
+      "sha256": "f20c3dc65f7832cffd9dfc1ab929029cb0e29fd4b514c00121136b1f4702a68e"
+    },
+    "boot-1/020-ordinary-user-cli.json": {
+      "bytes": 3686,
+      "sha256": "1b736158fe06aff4107f7bb5238a7e33b117c48ed8703655a26fc6c0f011ef9e"
+    },
+    "boot-1/021-ordinary-record-close.json": {
+      "bytes": 1798,
+      "sha256": "9a9d2645dbd9432e7f46269bb8fa394a21e4b5facc3ea393d0f911c587235577"
+    },
+    "boot-1/022-confirmed-close-native-export.json": {
+      "bytes": 3674,
+      "sha256": "03923a8232cb5295169807058d36e214f97d630a8531b0f4db8d35305fe0c27b"
+    },
+    "boot-1/023-forced-gui-death-during-scratch.json": {
+      "bytes": 3314,
+      "sha256": "90ed9226189b9ee2dfcfc30f43623d172f136145a7c0c931c374279e42907700"
+    },
+    "boot-1/024-same-user-lock-refusal-fixture.json": {
+      "bytes": 1325,
+      "sha256": "25e8de0c588f9c43664fa53405f75cd5421573fb31cab7b3296d3c399261bd83"
+    },
+    "boot-1/025-performance-state-after.json": {
+      "bytes": 287593,
+      "sha256": "ad5ba0c35939593ea6f037e0dbb342e3967583dd1d2ad52350dee96bf12bbb10"
+    },
+    "boot-1/026-metadata-plan-review.json": {
+      "bytes": 324881,
+      "sha256": "531e0e989b9b36482224dee7908a72c52fdc334687b1f85b3a9ab4b1f37d264c"
+    },
+    "boot-1/027-metadata-worker-during-gui-baseline.json": {
+      "bytes": 2530,
+      "sha256": "1a28ee6b4cdd7d8c0c052943f81d2c2af027b2b2de8ba37663a91e81e8e3da3e"
+    },
+    "boot-1/028-management-baseline-passive-proof.json": {
+      "bytes": 4089,
+      "sha256": "8db04e6fb636d8b49ad1bc2b6f4af4e7598a921f28339bc2b0f759382ff6941b"
+    },
+    "boot-1/029-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "cfcd86a0e5d19b595a0dd27c22069c03921ee14a5f93193d893556fcb0fd15b0"
+    },
+    "boot-1/process.json": {
+      "bytes": 82,
+      "sha256": "106d56e51dc9ddacd97ff306ffaed6f460afc31874916e41623cbbfddd74917c"
+    },
+    "boot-1/qemu-command.json": {
+      "bytes": 1165,
+      "sha256": "322a8842bfbaeefb0cd91b71523d5e45005c4f7945dd22d9140f254644746acf"
+    },
+    "boot-1/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "boot-1/qmp-ready.json": {
+      "bytes": 4448,
+      "sha256": "24a205bb01ef1ea7bc053ca2c278a2bc9adb4468e0923a2bd7588cbe3ff8be15"
+    },
+    "boot-1/serial.log": {
+      "bytes": 2131,
+      "sha256": "a4f85bfbe7a0474199a2d4115928875744f533e8ebadb5e2e117032299693e2d"
+    },
+    "boot-1/shutdown.json": {
+      "bytes": 86,
+      "sha256": "7d39826178a502cf77e5facba5e31946d1c1b5af095e19b91866f936e883548f"
+    },
+    "boot-2/030-ready.json": {
+      "bytes": 219,
+      "sha256": "5a138949988748b0926a29a5af0216e086dd9f82f1ad95ec10f9a1b2d0a7d3bf"
+    },
+    "boot-2/031-ready.json": {
+      "bytes": 219,
+      "sha256": "3d4c9c8c7d41276ecb6dad91f7231a678b8da7d4a390d735ca903e01f752414d"
+    },
+    "boot-2/032-ready.json": {
+      "bytes": 219,
+      "sha256": "5c29510f4c3566a2f272fdfc793486f8daa08af3e8c3295909d9208b7046a4f7"
+    },
+    "boot-2/033-ready.json": {
+      "bytes": 219,
+      "sha256": "afa253a3b516f8134606a2af80538393992e5074fbd01b618657fb771e0025dd"
+    },
+    "boot-2/034-ready.json": {
+      "bytes": 219,
+      "sha256": "b4c03614b85c7a9a4cd56b5f2396bcfbd9ae1d8e0e20ffe6a314653267258e77"
+    },
+    "boot-2/035-ready.json": {
+      "bytes": 219,
+      "sha256": "d038432cb32d2d3ada1f4bb803c4b1bfd699221089df62cba73ab9c2f8176c6e"
+    },
+    "boot-2/036-ready.json": {
+      "bytes": 219,
+      "sha256": "5b03124ce5346faa12a8aa3bc45949a4ef5cdd51365fc437a156fb25e52d9a51"
+    },
+    "boot-2/037-ready.json": {
+      "bytes": 219,
+      "sha256": "59f5ea7f748a7d46d0acebdf0a43670f5441e9f1b3747fa45b04365f23a01e9e"
+    },
+    "boot-2/038-ready.json": {
+      "bytes": 219,
+      "sha256": "31a41e71c179df037dc3aed2aec4519652e71e9e44c39e243b4b5836c9f86487"
+    },
+    "boot-2/039-ready.json": {
+      "bytes": 356,
+      "sha256": "a1a35e11b73a500fae9852f4b7b038d0b5bcd1464065111f4eac0d9771c4965a"
+    },
+    "boot-2/040-metadata-boot-services-and-state.json": {
+      "bytes": 617112,
+      "sha256": "acd2c25d1ce31af10485bc3ed411d4110dc02538c510143f31eda343ee8d5ab0"
+    },
+    "boot-2/041-owned-native-package-lock-fixture.json": {
+      "bytes": 2895,
+      "sha256": "3567395a48bf97d0f2109980fb0dd564c5a65399f808289143c4b0e9f6dc3cd2"
+    },
+    "boot-2/042-arm-disposable-signing-failure.json": {
+      "bytes": 708,
+      "sha256": "26601a3a8e90f3579477c98347fdb32049d197746c220b55e6ea38d2bf1f845f"
+    },
+    "boot-2/043-arm-real-worker-desktop-barrier.json": {
+      "bytes": 1533,
+      "sha256": "5091121cfb0b8f4b208b4cad14c60891c6b596d1bee554ba9ee5b3451ead0cb3"
+    },
+    "boot-2/044-cancelled-authentication-no-mutation.json": {
+      "bytes": 1666,
+      "sha256": "a1491f71f24a2b910d72689aa21fbb923d4fb58724086cc22e5cde791fccccb8"
+    },
+    "boot-2/045-real-worker-posttransaction-barrier.json": {
+      "bytes": 326393,
+      "sha256": "748a24487682b2793e45625f47a7ed89fa8a27db3a33e7ee3536a382cf8f610b"
+    },
+    "boot-2/046-closed-gui-worker-still-applying.json": {
+      "bytes": 326808,
+      "sha256": "c52ad773ec6e599789502d3764684d7c2e7d63f2700b8d84561dd0436bbc45d5"
+    },
+    "boot-2/047-release-held-production-worker.json": {
+      "bytes": 325840,
+      "sha256": "0c7b0072f0a16e03e379c2e172e372a79d63d23e7944cfbddadefc7383db6fb5"
+    },
+    "boot-2/048-real-gui-worker-signing-failure.json": {
+      "bytes": 329162,
+      "sha256": "4685dcf234a5c85da577a31e3c52aaa5715d0d897a0ed5f0aaee51fa69802a68"
+    },
+    "boot-2/049-recovery-passive-recording-proof.json": {
+      "bytes": 331431,
+      "sha256": "108f2eff95fdc4b2a0d0ad084ae55fb1cd4942842e0b84455763c05a1c0f9868"
+    },
+    "boot-2/050-schedule-poweroff.json": {
+      "bytes": 535,
+      "sha256": "07c60a890894e5e1fd72d90215046c4116669396917f12da2daec2388649d77d"
+    },
+    "boot-2/process.json": {
+      "bytes": 83,
+      "sha256": "1a277697b1f253678594c1a62f5d2a4994ff908d6f0a37686391f6da708e1d5c"
+    },
+    "boot-2/qemu-command.json": {
+      "bytes": 1165,
+      "sha256": "267968be5e52af6c07e59a8494caaa2e79be93bce7b137bc7d2b55d10089a609"
+    },
+    "boot-2/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "boot-2/qmp-ready.json": {
+      "bytes": 4450,
+      "sha256": "f0bf93e1d67f0a11692104848e1ef672b16dd2177d41b9fc1e1e0d9f24bee374"
+    },
+    "boot-2/serial.log": {
+      "bytes": 2264,
+      "sha256": "f9dbd1feadb4dcbcbecef76293125d19384a21fb0bb40eddf510caf632d134ab"
+    },
+    "boot-2/shutdown.json": {
+      "bytes": 86,
+      "sha256": "ce0d1092c2216b9112690feff186ccb1c6a66e733275a5ef691226d4fa83a847"
+    },
+    "performance-unchanged.json": {
+      "bytes": 642,
+      "sha256": "1f7c31b6eebf8f218b7334b0bf0effbedb9499fc8cf3163e390b29b85e82a520"
+    },
+    "phase5-public-inputs.json": {
+      "bytes": 848,
+      "sha256": "7239e35d21282114fdaa420019d52be827ae48647cd1817bc4dc4d153eeeaf4a"
+    },
+    "requests/0001.result": {
+      "bytes": 846,
+      "sha256": "c30d608f323eb3587227538c0934b491c20730fdc50f990b4dd9f23570a7f02c"
+    },
+    "requests/0002.result": {
+      "bytes": 287539,
+      "sha256": "dfd15f3f12bdea181cd8b4af05522982518454a760901cdd2124386bddadbd58"
+    },
+    "requests/0003.result": {
+      "bytes": 3591,
+      "sha256": "6caa480e975a141c9e44bceb74ffaa751c8737d29a022434b0ababbb36e19342"
+    },
+    "requests/0004.result": {
+      "bytes": 593,
+      "sha256": "dc32ab94bb735b21ff618ac513b1053f43fd94667fc888b0be6cde36e5bcc5c3"
+    },
+    "requests/0005.result": {
+      "bytes": 2372,
+      "sha256": "8a9ba34b9ed2ebf3dec882fcea932ff01d00e38ce4e3a0dafd8f50677e8a63b1"
+    },
+    "requests/0006.result": {
+      "bytes": 811,
+      "sha256": "00aa15f2f10b3a67919971c37edcd27a75545958f9e81ae33022c25273e942a8"
+    },
+    "requests/0007.result": {
+      "bytes": 430,
+      "sha256": "48dde2c15ffbc221636988c7b026026bd4e858c2016175231db0ad1a25d5609b"
+    },
+    "requests/0008.result": {
+      "bytes": 287539,
+      "sha256": "4c0bea36e3679e18d6a2ffdce7893f96af7c1e9395a60fe960d3b3ea3c425099"
+    },
+    "requests/0009.result": {
+      "bytes": 323354,
+      "sha256": "9353f13f6112e5372c4eeac5970b2e09da9ae537b4bd3703fa96233d40aa130b"
+    },
+    "requests/0010.result": {
+      "bytes": 599,
+      "sha256": "fd2306bde8ec13a9541f477b70ea95a6439b7a30228e7576a009fd01d7bb1e12"
+    },
+    "requests/0011.result": {
+      "bytes": 2270,
+      "sha256": "4a9b0c3779e4016067012e7a51d47402092d5fa1d5f6570b73087753dab62901"
+    },
+    "requests/0012.result": {
+      "bytes": 232,
+      "sha256": "a1ec839d67c1ae15defaaefb900b89d05fe3e25e200ba5cdb83f3b2b11b79e83"
+    },
+    "requests/0013.result": {
+      "bytes": 615320,
+      "sha256": "c125e66d95295522b8cad9debbceb7d84bb25459df899662ed6c3146f6fea03b"
+    },
+    "requests/0014.result": {
+      "bytes": 1679,
+      "sha256": "17e7180bc0dc4bb878a87e8aa5dbb29f6a4e6539fd0c4d8ebcd1504a054f929f"
+    },
+    "requests/0015.result": {
+      "bytes": 633,
+      "sha256": "eee777c2e1f6150c31a6cd102b451588e7d485ab6b3c83454a000cbfc179f309"
+    },
+    "requests/0016.result": {
+      "bytes": 788,
+      "sha256": "5a5633bcf9462b164e57558e13eeebb87df4b68365506b62ad19cc3f7476b9b2"
+    },
+    "requests/0017.result": {
+      "bytes": 622,
+      "sha256": "77087ef38bcd6831cd5c06b0e12ab56eb2585a7a83a59f431174bd53d1a56678"
+    },
+    "requests/0018.result": {
+      "bytes": 325755,
+      "sha256": "c6f01828ffbeb79be2f4cec263d0d64d16f259ff03d57e0c523645b856dcdca7"
+    },
+    "requests/0019.result": {
+      "bytes": 325806,
+      "sha256": "c6607abea8797ed0c788cd3dc2f6954a72fd95078b3e242eab748720538f5679"
+    },
+    "requests/0020.result": {
+      "bytes": 325752,
+      "sha256": "b089b77a84e8adcaa400504ed39719c0c6f0e36a01140eb0568c33a486f18273"
+    },
+    "requests/0021.result": {
+      "bytes": 326804,
+      "sha256": "3225c7061cd7ee3f7f7ad743bf0b36436412f16d036da3e7f4b22af831a90f0a"
+    },
+    "requests/0022.result": {
+      "bytes": 330142,
+      "sha256": "93ec47460967683d9db9eb35bbee3266869e4ac1a2153d417a309609f30279fc"
+    },
+    "requests/0023.result": {
+      "bytes": 107,
+      "sha256": "6c6212d6598358e177c84b082fb12518da0663ddf0a440649e3cd7b0fc19b5ce"
+    },
+    "screenshots/authenticated-barrier-worker.png": {
+      "bytes": 181827,
+      "sha256": "00fec4d1f3216a3fd8b9c3c297209ec079ef2bcf478752482aee07a9be217b0d"
+    },
+    "screenshots/authentication-cancelled.png": {
+      "bytes": 226204,
+      "sha256": "856a1dadaf26f218dca208f9479f9e1572f2ee16d2784e3ee18e1f4012278b22"
+    },
+    "screenshots/authentication-ready.png": {
+      "bytes": 239528,
+      "sha256": "641fbef59f0eb7560b99032cba5934cc0d1bc51a581d769e150c8dfc1d7205c1"
+    },
+    "screenshots/backend-refusal-ready.png": {
+      "bytes": 213076,
+      "sha256": "a46dcbfee70a70faf9e8ff653e7ec63b32de9487d57917a6e6370b40cf5d1ac3"
+    },
+    "screenshots/barrier-native-authentication.png": {
+      "bytes": 239560,
+      "sha256": "a8384f6a88d34f39ca1edb67ed61ad0a6d28adb2beed8aa6f34b271358a9df68"
+    },
+    "screenshots/barrier-reviewed-plan.png": {
+      "bytes": 223691,
+      "sha256": "4fb1738bf58b0d442917ba3fff9837def79bf12e39ad3b9d7a45f0dec0722d47"
+    },
+    "screenshots/baseline-app-reopen.png": {
+      "bytes": 326512,
+      "sha256": "f7940e74051d84f8687d914341e0a016856446bfde5f02b50f5fb1021060581f"
+    },
+    "screenshots/baseline-before-metadata-worker.png": {
+      "bytes": 218832,
+      "sha256": "ec902f1c5e89cad7c89d60b2dca0d8f799f1d7081d91443f3838cb0062d3c6a5"
+    },
+    "screenshots/baseline-reopened-unlocked.png": {
+      "bytes": 199006,
+      "sha256": "f0cd4bddd42d5b83519d4ecb5bd0200fb154f268e4f98681a693bdbf6a10cd22"
+    },
+    "screenshots/before-forced-gui-death.png": {
+      "bytes": 218696,
+      "sha256": "3d79b03006093c607f229e9e6836a67bdd1427eac7ecb64e1b78c60ba6fb8e65"
+    },
+    "screenshots/cancel-close-keeps-baseline.png": {
+      "bytes": 223658,
+      "sha256": "d83aa386ca6369f9150a7d6160238c648eb876c8d0223b043b706c9276b5e928"
+    },
+    "screenshots/closed-during-held-package-worker.png": {
+      "bytes": 552924,
+      "sha256": "b60d779da0de4dd3945f17534ed58485913edd2492baf9118f34735e11479c75"
+    },
+    "screenshots/compare-controls.png": {
+      "bytes": 220608,
+      "sha256": "22bb36cf2efb83f37923e50d3da99550b2c6f474e7dbc8075328ef01057e8c30"
+    },
+    "screenshots/compare-dropdown.png": {
+      "bytes": 225725,
+      "sha256": "81a238ff958ef9197d97106cd5ec8aada291e4684b69b0c56b73b3a0ce00c50b"
+    },
+    "screenshots/confirm-close-dialog.png": {
+      "bytes": 234106,
+      "sha256": "8daa3b4bb3bddf3ab2871a28d13007821aabe00e41e2447f5655cae23ffc8988"
+    },
+    "screenshots/confirmed-close-desktop.png": {
+      "bytes": 552984,
+      "sha256": "d16d073aaed26dbbef44995d6f4a5e119cbf9b695da260940ec6f0a5747f3c7f"
+    },
+    "screenshots/desktop-encrypted-unlock.png": {
+      "bytes": 25009,
+      "sha256": "174a5014af5f8fe19f514032a7618752f6b81c212b17b7d07809208f8d393962"
+    },
+    "screenshots/desktop-unlock-prompt.png": {
+      "bytes": 320108,
+      "sha256": "66213e68eabc448994774794bf878e628a810313e7db6fa5792b942679088790"
+    },
+    "screenshots/dirty-baseline-review.png": {
+      "bytes": 236120,
+      "sha256": "db41499d110b5bccc0b7ac44b4a5a5b4f20c8d1800f789b1405e37021e382e61"
+    },
+    "screenshots/dirty-close-dialog.png": {
+      "bytes": 232677,
+      "sha256": "60b43217f5e423bfd356fce4beb5661b0dc87b02e8472415e91a23075503dc50"
+    },
+    "screenshots/dirty-software-ready.png": {
+      "bytes": 200496,
+      "sha256": "1bbb1b285359d5a4bde7f57cf46658be62d579adf96f9b0f2fea4376d3f26bb3"
+    },
+    "screenshots/encrypted-desktop-login.png": {
+      "bytes": 221105,
+      "sha256": "1a6a795f5488c95e61c10513c45eaccf44cba55ef478ef7e054543096add189a"
+    },
+    "screenshots/encrypted-performance-page.png": {
+      "bytes": 212464,
+      "sha256": "2ce945d3aeb9a8158dd5885353eef319c08cf8909d37206cb4252c7ee05c6c45"
+    },
+    "screenshots/forced-death-performance.png": {
+      "bytes": 212887,
+      "sha256": "a8b01282b30f94d9a920051697d407b1339c0bcb1d2e6bfea243ebb2ea9254e9"
+    },
+    "screenshots/forced-death-ready.png": {
+      "bytes": 289203,
+      "sha256": "c0704c3dc9ffffdfb6c17ec513984ecd7677f6fab6c5c71e23acf62fb7ef1a57"
+    },
+    "screenshots/full-baseline-finished.png": {
+      "bytes": 211274,
+      "sha256": "8e7224f8d9450c4c71d1b8f5143811bcc6a92fd4b358059b3ea6939f71b55b6b"
+    },
+    "screenshots/full-baseline-ready.png": {
+      "bytes": 212395,
+      "sha256": "f0825c7b68c603ef11f4c49a1bccc5550ca44803f0f432d5f34ac71627186392"
+    },
+    "screenshots/full-baseline-result.png": {
+      "bytes": 226688,
+      "sha256": "9f0d5f45b060cdc6e24e0d29fe5dc5a5a5c3bb99d43111bba6207e3fe4ba80b6"
+    },
+    "screenshots/full-baseline-review.png": {
+      "bytes": 226199,
+      "sha256": "018c160c5e843e761032b1b5b7f9bd97e611b6c4bdc6118c7a5ab392fd4e7b94"
+    },
+    "screenshots/full-baseline-running.png": {
+      "bytes": 218327,
+      "sha256": "dc03e794ea3ea896fe6c9c36ea0819d61a6958a6878212e26ad9292a8e0c603e"
+    },
+    "screenshots/kcalc-resolved-review.png": {
+      "bytes": 226101,
+      "sha256": "5535604baea643c486e9683912004d2af48dc8f42c54de7b4e8a73ee7687faa9"
+    },
+    "screenshots/kcalc-review-apply.png": {
+      "bytes": 223636,
+      "sha256": "bb8b83d87a1bacf6fb193586daebc355993a1e8cf4b25a2814a52f43cdfab6be"
+    },
+    "screenshots/kcalc-search.png": {
+      "bytes": 177946,
+      "sha256": "a0114d8e4b904638a5c31213064dcd7b308b35296d82c9da77dfa8a70cc4b876"
+    },
+    "screenshots/kcalc-selected.png": {
+      "bytes": 178611,
+      "sha256": "e0b17cc40375a49e5a9d341d9869697f5b96d0ddc8913ba966a274da3c33b1cc"
+    },
+    "screenshots/management-baseline-review.png": {
+      "bytes": 228951,
+      "sha256": "a4d17c45e69772d7a4bdc380bcd414255efa2e90966ceff92a9dcc8abb1c6a38"
+    },
+    "screenshots/metadata-new-boot-login.png": {
+      "bytes": 220533,
+      "sha256": "5e0fcc6fab0fbd112a8176d78998e4a9b5e990141cf68063904aa8b47286d97c"
+    },
+    "screenshots/metadata-new-boot-unlock.png": {
+      "bytes": 25513,
+      "sha256": "e6267f6c5604eea6729892ca983c9fb55d01d65514c2db1bdc3cbe3f8d26ce54"
+    },
+    "screenshots/metadata-worker-observed.png": {
+      "bytes": 223376,
+      "sha256": "bd7a7dff2a920a8b74f24dd25bf87beca088b130247657264a51fe69b885a190"
+    },
+    "screenshots/native-administrator-authentication.png": {
+      "bytes": 224420,
+      "sha256": "bdc15a5c1663d1b529cc614669db3a7329300fc0e5772d058ffa5bdcde862cc8"
+    },
+    "screenshots/native-comparison.png": {
+      "bytes": 226675,
+      "sha256": "8240d974d1eec13fcf58d2699d8db32ca68c1bb3b10996df5fb29b79a725c980"
+    },
+    "screenshots/native-export-dialog.png": {
+      "bytes": 214854,
+      "sha256": "91d10ac670944fde3b42e641577adf4a4ddc9e408b3f342b941d924c74d0dc52"
+    },
+    "screenshots/native-lock-passive-recording.png": {
+      "bytes": 220942,
+      "sha256": "0ebe1f63410085239db7df06135824acf587c1ba682aea4a22150debfa6742bc"
+    },
+    "screenshots/native-package-lock-blocker.png": {
+      "bytes": 215731,
+      "sha256": "82caef2d2452fff3c4c56c3cc77dea526b9598769044bc80ab0d738cc522f692"
+    },
+    "screenshots/passive-after-signing-failure.png": {
+      "bytes": 219942,
+      "sha256": "cea11ee11cc63bcfdff7bc8b7c98310b8fe48791f480bb064f97cc6e711fc2ad"
+    },
+    "screenshots/passive-before-worker-release.png": {
+      "bytes": 215320,
+      "sha256": "6942a411566799091b728cc7195d2207d9df8b6a83d479d1c2a412e1ebf3a72f"
+    },
+    "screenshots/passive-during-management.png": {
+      "bytes": 223751,
+      "sha256": "3aa3e820c8604884e7d8cfbde699751a124ae1805081c51e92d7d14892881e8e"
+    },
+    "screenshots/reconnected-to-held-package-worker.png": {
+      "bytes": 220624,
+      "sha256": "848baaa11b0119af1465f5789147b0647ab7edd644d6162bba7ff98d82972177"
+    },
+    "screenshots/record-keyboard-restarted.png": {
+      "bytes": 211081,
+      "sha256": "b1ee6bd8bce2af017bf7960c86c71aa0b67898ecf695c3aeba64dc8beb1b02ee"
+    },
+    "screenshots/record-ordinary-closed.png": {
+      "bytes": 552977,
+      "sha256": "0cfea5e234a35ddbb013191f4613361bab78de21056b8467d17b43a2cd9fc015"
+    },
+    "screenshots/record-stop-focus.png": {
+      "bytes": 212007,
+      "sha256": "a663143297f8559ed1b46a4769aa86397f026a35aa762795789d4a60b1c1bd15"
+    },
+    "screenshots/record-stopped.png": {
+      "bytes": 214416,
+      "sha256": "62b5c5abbf628ae146b97991528d7ff83017d230a68644806a55917e4a093667"
+    },
+    "screenshots/specific-backend-refusal.png": {
+      "bytes": 215950,
+      "sha256": "c64f09c5cabc5faaddf4ad62433e1ca7233ba934caf59d66f7798ccdd9207892"
+    },
+    "session.json": {
+      "bytes": 312,
+      "sha256": "bcb915d77b96cd7076af2ff51e162a1f3ef9d6f8e792cffa42fbdf15b71b9091"
+    }
+  }
+}

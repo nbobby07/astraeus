@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "packaged_files": {
+    "usr/lib/systemd/system/astraeus-apply@.service": "ec5d55f92b588a6fbd7d6a945794cdb96dde4eae7baa99de3a18797e25d4de13",
+    "usr/share/polkit-1/actions/org.astraeus.system.policy": "8a06872fc36e73c59c35de84332bfed679fed472dc4e076ccbc5ff9e5afe0000"
+  },
+  "public_test_material_sha256": "bd8699e1bb344b7ea58b6cd534248be5cacfa5d227fd479c548b442698a40e17",
+  "build_inputs_sha256": "77f568b36b4f5805f0432d52ed90828fc7393f2269ea0ad688fdceace636bc65",
+  "archive_databases": {
+    "core": "48984a2b5a339954dc1a7c21bce7ff651b6b0c7747d0545c36ca454bee005a73",
+    "extra": "b2c0d01420d9bc1da17589c622fbf12c49af15d60e54f46cad8f6c307b5497ba",
+    "multilib": "17e1a87e6ecd932e053e6553187a468820c9dbc2e3a0954162f7ca349c4d47cf"
+  }
+}

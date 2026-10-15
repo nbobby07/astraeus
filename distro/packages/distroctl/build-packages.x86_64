@@ -1,0 +1,9 @@
+cmake
+ninja
+qt6-base
+qt6-declarative
+kirigami
+polkit
+qqc2-desktop-style
+breeze
+hunspell

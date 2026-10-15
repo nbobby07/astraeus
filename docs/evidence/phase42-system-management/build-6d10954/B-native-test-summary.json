@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "label": "B",
+  "evidence_kind": "derived extraction from retained native test output; not an independently closed native receipt",
+  "source_commit": "6d10954a501f5b65d5b38ed680d7efb681c28112",
+  "original_build_log": {
+    "sha256": "87781bc5863ce1643d7ac848cf84a9bd58e373994290eb01c1f4419215979235",
+    "bytes": 387960
+  },
+  "retained_evidence_archive": {
+    "sha256": "6e8eeb6ad8cff793bf697d1fae372e7c10fe641cd726f84905766c19a59fb068",
+    "bytes": 52723685
+  },
+  "original_export_manifest_sha256": "5124068f84fa1e98aa083314c605add54247076ad3f0cec5c51d6ecf74a6a0c5",
+  "generated_platform_source_sha256": "6b1a56b4cc101ab7f0b18447a2f04b237612d03ad8bf41a14fc8a459379f634d",
+  "recipe_sha256": "498fb9502665d0f7f6750fb90b50861d8d7cbe2824c4ace94021e43af7eb23e9",
+  "totals": {
+    "passed": 158,
+    "failed": 0,
+    "ignored": 5,
+    "measured": 0,
+    "filtered_out": 0
+  },
+  "result_count": 20,
+  "results": [
+    {
+      "line": 1316,
+      "context": "Running unittests src/lib.rs (target/debug/deps/distro_config-6d103117e271f794)",
+      "summary": "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s",
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1337,
+      "context": "Running unittests src/lib.rs (target/debug/deps/distro_graphics-f72a42a9f49df1a2)",
+      "summary": "test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s",
+      "passed": 15,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1352,
+      "context": "Running unittests src/lib.rs (target/debug/deps/distro_hardware-3c720d7a8a060ae9)",
+      "summary": "test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s",
+      "passed": 9,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1393,
+      "context": "Running unittests src/lib.rs (target/debug/deps/distro_snapshots-83d5113888af4bc6)",
+      "summary": "test result: ok. 32 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 3.10s",
+      "passed": 32,
+      "failed": 0,
+      "ignored": 3,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1454,
+      "context": "Running unittests src/lib.rs (target/debug/deps/distro_transactions-8a9fd33ff94a4eab)",
+      "summary": "test result: ok. 54 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.24s",
+      "passed": 54,
+      "failed": 0,
+      "ignored": 1,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1461,
+      "context": "Running tests/management_publication.rs (target/debug/deps/management_publication-7c4d15130b067cc0)",
+      "summary": "test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "passed": 0,
+      "failed": 0,
+      "ignored": 1,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1469,
+      "context": "Running tests/permissions.rs (target/debug/deps/permissions-764049b4bb62fb46)",
+      "summary": "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s",
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1492,
+      "context": "Running unittests src/lib.rs (target/debug/deps/distroctl-fbb2202b6b51823e)",
+      "summary": "test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s",
+      "passed": 17,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1498,
+      "context": "Running unittests src/main.rs (target/debug/deps/distroctl-81e0cbf5d1e6f2ee)",
+      "summary": "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "passed": 0,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1508,
+      "context": "Running tests/cli.rs (target/debug/deps/cli-181a13451689684c)",
+      "summary": "test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.65s",
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1527,
+      "context": "Running tests/gaming.rs (target/debug/deps/gaming-3ab4d950c02e008d)",
+      "summary": "test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.50s",
+      "passed": 13,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1537,
+      "context": "Running tests/gaming_graphics.rs (target/debug/deps/gaming_graphics-d9aa81df70f817be)",
+      "summary": "test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s",
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1544,
+      "context": "Running tests/graphics.rs (target/debug/deps/graphics-61874d612140338c)",
+      "summary": "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s",
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1554,
+      "context": "Running tests/system.rs (target/debug/deps/system-a9a424a22c3b0804)",
+      "summary": "test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s",
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1560,
+      "context": "Doc-tests distro_config",
+      "summary": "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "passed": 0,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1566,
+      "context": "Doc-tests distro_graphics",
+      "summary": "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "passed": 0,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1572,
+      "context": "Doc-tests distro_hardware",
+      "summary": "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "passed": 0,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1578,
+      "context": "Doc-tests distro_snapshots",
+      "summary": "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "passed": 0,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1584,
+      "context": "Doc-tests distro_transactions",
+      "summary": "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "passed": 0,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    },
+    {
+      "line": 1590,
+      "context": "Doc-tests distroctl",
+      "summary": "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "passed": 0,
+      "failed": 0,
+      "ignored": 0,
+      "measured": 0,
+      "filtered_out": 0
+    }
+  ],
+  "scope": "Native Rust results executed by the original clean package build before compression retry, when present. Does not claim VM or physical hardware acceptance."
+}

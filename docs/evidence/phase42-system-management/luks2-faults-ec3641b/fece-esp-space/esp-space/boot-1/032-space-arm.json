@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-14T19:54:24.477432+00:00",
+  "finished": "2026-10-14T19:54:30.942586+00:00",
+  "command": "python3 /mnt/astraeus-validation/phase42-faults.py guest space-arm",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"allocation_limit_bytes\": 630194176, \"available_after\": 402972672, \"available_before\": 1033170944, \"filesystem_uuid\": \"0552-0781\", \"kind\": \"esp-space\", \"method\": \"bounded-ESP-reservation\", \"path\": \"/efi/EFI/Astraeus/phase42-space-9e335a24ed9048c5ad450ee33b2d15ab.reserve\", \"required_bytes\": 536870912, \"run_id\": \"9e335a24ed9048c5ad450ee33b2d15ab\", \"schema_version\": 1, \"target\": \"/efi\"}\n",
+    "id": "83fcbf0e32224123ada80e3433989d0c",
+    "boot_id": "aff7bf8e-8f51-4f3f-8f29-483796418fb0"
+  }
+}

@@ -1,0 +1,42 @@
+Test project /home/noel/.cache/astraeus-4788-remap-qt
+    Start 1: control-center-controller
+1/1 Test #1: control-center-controller ........***Failed    2.38 sec
+********* Start testing of ControllerTest *********
+Config: Using QtTest library 6.10.2, Qt 6.10.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 15.2.0), ubuntu 26.04
+PASS   : ControllerTest::initTestCase()
+WARNING: ControllerTest::discardDraftDuringBaselineClosesWindow() testdata ../Main.qml could not be located!
+   Loc: [/usr/src/debug/distroctl/platform/apps/control-center/tests/controller_test.cpp(94)]
+FAIL!  : ControllerTest::discardDraftDuringBaselineClosesWindow() 'component.isReady()' returned FALSE. (:-1 Invalid empty URL
+)
+   Loc: [/usr/src/debug/distroctl/platform/apps/control-center/tests/controller_test.cpp(95)]
+PASS   : ControllerTest::missingExecutableIsReported()
+PASS   : ControllerTest::unavailableConfigurationPreservesObservedOverview()
+PASS   : ControllerTest::startupIsReadOnlyAndDraftInvalidatesPlan()
+PASS   : ControllerTest::packageSelectionDoesNotDiscardRemovalProtection()
+PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(invalid-json)
+PASS   : ControllerTest::malformedAndUnknownSchemaAreRejected(future-schema)
+PASS   : ControllerTest::authenticationCancellationAndDenial(cancel)
+PASS   : ControllerTest::authenticationCancellationAndDenial(deny)
+PASS   : ControllerTest::liveSessionCannotSubmit()
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(snapshot-false)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(boot-false)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(reasons-missing)
+PASS   : ControllerTest::contradictoryPlanCannotAuthenticate(targets-missing)
+PASS   : ControllerTest::validBlockedPlanRemainsReviewableWithoutAuthentication()
+PASS   : ControllerTest::requestAndOperationSurviveFrontendState()
+PASS   : ControllerTest::reopenPendingBootDoesNotRestartPollingOrSubmit()
+PASS   : ControllerTest::importValidationPreservesDraftAndExportIsAtomic()
+PASS   : ControllerTest::cleanupTestCase()
+Totals: 21 passed, 1 failed, 0 skipped, 0 blacklisted, 2299ms
+********* Finished testing of ControllerTest *********
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   2.38 sec
+
+The following tests FAILED:
+	  1 - control-center-controller (Failed)
+Errors while running CTest

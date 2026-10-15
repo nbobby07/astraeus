@@ -27,6 +27,7 @@ impl CurrentSystemState {
 #[serde(rename_all = "snake_case")]
 pub enum DesiredUpdate {
     SystemUpgrade,
+    ManagedSystem,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -92,10 +93,13 @@ pub struct ExecutionPlan {
     pub boot: BootArtifacts,
     pub snapshot_required: bool,
     pub notes: Vec<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub management: Option<crate::ManagementPlan>,
 }
 
 impl ExecutionPlan {
     pub fn validate(&self) -> Result<()> {
+        distro_graphics::validate_update(&self.current.packages, &self.expected_state().packages)?;
         if self.boot.update_bootloader
             || self.packages.changes.iter().any(|c| c.name() == "systemd")
         {
@@ -110,14 +114,19 @@ impl ExecutionPlan {
             // shortcut: reject self-updates until signing can authenticate a replaced coordinator executable.
             return Err("distroctl self-updates are unsupported until coordinator authorization survives executable replacement; entire plan rejected".into());
         }
-        if self.schema_version != 1
-            || self.current != CurrentSystemState::new(self.current.packages.clone())
+        if !matches!(
+            (self.schema_version, &self.management, self.desired),
+            (1, None, DesiredUpdate::SystemUpgrade) | (2, Some(_), DesiredUpdate::ManagedSystem)
+        ) || self.current != CurrentSystemState::new(self.current.packages.clone())
         {
             return Err("invalid plan schema or current-state identifier".into());
         }
         let mut names = BTreeSet::new();
         let mut expected_targets = BTreeMap::new();
         for change in &self.packages.changes {
+            if !distro_config::valid_package_name(change.name()) {
+                return Err("invalid package name in transaction".into());
+            }
             if !names.insert(change.name()) {
                 return Err("duplicate package change".into());
             }
@@ -148,6 +157,20 @@ impl ExecutionPlan {
             .map(|t| (&t.name, &t.version))
             .collect();
         let total = self.packages.targets.iter().try_fold(0u64, |sum, t| {
+            if !distro_config::valid_package_name(&t.repository)
+                || t.version.is_empty()
+                || t.version.len() > 256
+                || t.version
+                    .chars()
+                    .any(|character| character.is_whitespace() || character.is_control())
+                || t.sha256.len() != 64
+                || !t
+                    .sha256
+                    .bytes()
+                    .all(|byte| byte.is_ascii_hexdigit() && !byte.is_ascii_uppercase())
+            {
+                return Err("invalid package target identity");
+            }
             sum.checked_add(t.archive_bytes)
                 .ok_or("download size overflow")
         })?;
@@ -157,8 +180,40 @@ impl ExecutionPlan {
         {
             return Err("package targets or download total disagree with changes".into());
         }
-        if !self.packages.changes.is_empty() && !self.snapshot_required {
-            return Err("package mutation requires a snapshot".into());
+        if self.has_mutation() && (!self.snapshot_required || !self.boot.regenerate_uki) {
+            return Err("system mutation requires a snapshot and boot regeneration".into());
+        }
+        if let Some(management) = &self.management {
+            management.validate(&self.current, &self.expected_state())?;
+            let candidate = self.expected_state();
+            for family in ["amd", "intel", "nouveau", "virtio", "software"] {
+                for name in distro_graphics::bundle_packages(Some(family)) {
+                    if self.current.packages.contains_key(&name)
+                        != candidate.packages.contains_key(&name)
+                    {
+                        return Err("graphics-stack installation, removal and driver-family changes are outside the qualified managed-system scope".into());
+                    }
+                }
+            }
+            if self.packages.changes.iter().any(|change| {
+                matches!(
+                    change.name(),
+                    "linux"
+                        | "linux-headers"
+                        | "linux-lts"
+                        | "linux-lts-headers"
+                        | "linux-zen"
+                        | "linux-zen-headers"
+                        | "linux-hardened"
+                        | "linux-hardened-headers"
+                        | "linux-rt"
+                        | "linux-rt-headers"
+                        | "linux-rt-lts"
+                        | "linux-rt-lts-headers"
+                )
+            }) {
+                return Err("kernel changes are outside the qualified managed-system transaction scope; entire plan rejected".into());
+            }
         }
         Ok(())
     }
@@ -175,6 +230,7 @@ impl ExecutionPlan {
             },
             packages,
             snapshot_required: changed,
+            management: None,
             notes: vec![
                 "Uses existing sync databases; does not refresh repositories.".into(),
                 "Boot regeneration is conservative for every nonempty update.".into(),
@@ -182,6 +238,38 @@ impl ExecutionPlan {
                 "Plans changing distroctl are rejected until coordinator self-updates are supported.".into(),
             ],
         }
+    }
+
+    pub fn with_management(mut self, management: crate::ManagementPlan) -> Self {
+        self.schema_version = 2;
+        self.desired = DesiredUpdate::ManagedSystem;
+        self.management = Some(management);
+        self.snapshot_required = self.has_mutation();
+        self.boot.regenerate_uki = self.has_mutation();
+        self
+    }
+
+    pub fn has_mutation(&self) -> bool {
+        !self.packages.changes.is_empty()
+            || self
+                .management
+                .as_ref()
+                .is_some_and(crate::ManagementPlan::has_mutation)
+    }
+
+    pub fn fingerprint(&self) -> String {
+        let mut canonical = self.clone();
+        canonical
+            .packages
+            .changes
+            .sort_by(|a, b| a.name().cmp(b.name()));
+        canonical
+            .packages
+            .targets
+            .sort_by(|a, b| a.name.cmp(&b.name));
+        canonical.notes.clear();
+        let bytes = serde_json::to_vec(&canonical).expect("execution plan serializes");
+        format!("sha256:{:x}", Sha256::digest(bytes))
     }
 
     pub fn expected_state(&self) -> CurrentSystemState {
@@ -302,6 +390,8 @@ pub struct StateEvent {
 pub struct TransactionRecord {
     pub schema_version: u32,
     pub id: i64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub operation_id: Option<String>,
     pub timestamp: u64,
     pub state: TransactionState,
     pub outcome: TransactionOutcome,
@@ -345,8 +435,9 @@ impl TransactionRecord {
     pub fn new(plan: ExecutionPlan) -> Self {
         let timestamp = now();
         Self {
-            schema_version: 1,
+            schema_version: 2,
             id: 0,
+            operation_id: None,
             timestamp,
             state: TransactionState::Planned,
             outcome: TransactionOutcome::InProgress,
@@ -371,7 +462,7 @@ impl TransactionRecord {
     pub fn transition(&mut self, next: TransactionState) -> Result<()> {
         if self.state == TransactionState::Planned
             && next == TransactionState::Succeeded
-            && !self.plan.packages.changes.is_empty()
+            && self.plan.has_mutation()
         {
             return Err("only an empty transaction can succeed without execution".into());
         }

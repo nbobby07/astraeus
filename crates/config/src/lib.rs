@@ -1,6 +1,9 @@
 //! Bootstrap release metadata. This is not the future desired-system-state model.
 use serde::{Deserialize, Serialize};
 
+mod system;
+pub use system::*;
+
 pub const BUNDLED: &str = include_str!("../../../distro/branding/project.toml");
 
 #[derive(Debug, Deserialize, Serialize)]

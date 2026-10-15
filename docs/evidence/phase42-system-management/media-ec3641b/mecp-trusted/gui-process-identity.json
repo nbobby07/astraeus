@@ -1,0 +1,15 @@
+{
+  "ordinary_user": "live",
+  "uid": 1000,
+  "process": {
+    "pid": 1728,
+    "uids": [
+      1000,
+      1000,
+      1000,
+      1000
+    ],
+    "start_tick": 18575,
+    "executable": "/usr/bin/astraeus-control-center"
+  }
+}

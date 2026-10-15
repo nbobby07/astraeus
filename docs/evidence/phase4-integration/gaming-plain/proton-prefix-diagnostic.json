@@ -1,0 +1,10 @@
+{
+  "command": "python3 /mnt/astraeus-validation/proton-prefix-diagnostic.py\n",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"scope\": \"Diagnostic through genuine Proton runinprefix in the initialized test prefix, not Steam game acceptance\", \"nonce\": \"fd80504268a2485783806e49cc75c814\", \"reply\": {\"command\": [\"runuser\", \"-u\", \"tester\", \"--\", \"env\", \"DISPLAY=:0\", \"XAUTHORITY=/run/user/1000/xauth_frvJIB\", \"WAYLAND_DISPLAY=wayland-0\", \"XDG_RUNTIME_DIR=/run/user/1000\", \"DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus\", \"XDG_SESSION_TYPE=wayland\", \"XDG_CURRENT_DESKTOP=KDE\", \"env\", \"STEAM_COMPAT_DATA_PATH=/var/tmp/phase4-proton-r2-45vcq118/compatdata\", \"STEAM_COMPAT_INSTALL_PATH=/var/tmp/phase4-proton-r2-45vcq118\", \"STEAM_COMPAT_CLIENT_INSTALL_PATH=/home/tester/phase4-session/steam-home/.local/share/Steam\", \"SteamAppId=0\", \"SteamGameId=0\", \"PROTON_LOG=0\", \"/home/tester/phase4-runtimes/SteamLinuxRuntime_4/_v2-entry-point\", \"--verb=waitforexitandrun\", \"--\", \"/home/tester/.local/share/Steam/compatibilitytools.d/GE-Proton11-7-x86_64/proton\", \"runinprefix\", \"/var/tmp/phase4-proton-r2-45vcq118/windows-smoke.exe\", \"fd80504268a2485783806e49cc75c814\"], \"code\": 0, \"output\": \"pressure-vessel-wrap[5694]: W: Unable to share \\\"/\\\" with container: Path \\\"/.flatpak-info\\\" is reserved by the container framework\\nProtonFixes[5787] WARN: Skipping fix execution. We are probably running a unit test.\\nProtonFixes[5787] WARN: Skipping fix execution. We are probably running a unit test.\\nfsync: up and running.\\nPHASE4_WINDOWS_OK fd80504268a2485783806e49cc75c814\\r\\nwine client error:164: read: Bad file descriptor\\n\", \"error\": null, \"seconds\": 5.827}, \"marker_observed\": true}\n",
+    "id": "817a41afec574ae0994d110dbf174174",
+    "boot_id": "a46e5c3d-4126-4f78-b621-f49071b9c097"
+  }
+}

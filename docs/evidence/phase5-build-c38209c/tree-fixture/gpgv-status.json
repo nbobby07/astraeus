@@ -1,0 +1,5 @@
+{
+  "code": 0,
+  "stdout": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED E499C79F53C96A54E572FEE1C06086337C50773E 0\n[GNUPG:] SIG_ID jbPlzf5jXOi8WlMj1eLuPVnzl9Q 2026-03-29 1774794213\n[GNUPG:] GOODSIG C06086337C50773E Jelle van der Waa <jelle@vdwaa.nl>\n[GNUPG:] VALIDSIG E499C79F53C96A54E572FEE1C06086337C50773E 2026-03-29 1774794213 0 4 0 1 10 00 E499C79F53C96A54E572FEE1C06086337C50773E\n",
+  "stderr": "gpgv: Signature made Sun Mar 29 14:23:33 2026 UTC\ngpgv:                using RSA key E499C79F53C96A54E572FEE1C06086337C50773E\ngpgv: Good signature from \"Jelle van der Waa <jelle@vdwaa.nl>\"\ngpgv:                 aka \"Jelle van der Waa <jelle@archlinux.org>\"\n"
+}

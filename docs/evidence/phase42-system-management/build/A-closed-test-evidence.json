@@ -1,0 +1,40 @@
+{
+  "read_only": true,
+  "source_commit": "0e8bb00e3edc5382fa177bf0017b2f8595ee8229",
+  "label": "A",
+  "test_log_sha256": "98b2bbb5d19257d5f4bd43210123d8c46903adedeca0edcd149db066dc031d8d",
+  "platform_source_sha256": "a2c7f88c4f4573ef93db04dbbc0b5af8816947bb34a0e9df14db80e05eb377d2",
+  "platform_source_bytes": 11019192,
+  "recipe_sha256": "5fa2241af22ebb87ff812100fcfbd6831047fe8f6655c5831dc717083e23c49f",
+  "totals": [
+    "Totals: 21 passed, 0 failed, 0 skipped, 0 blacklisted, 2254ms",
+    "Totals: 13 passed, 0 failed, 0 skipped, 0 blacklisted, 816ms"
+  ],
+  "manifest_completeness": {
+    "image": {
+      "local_records": 691,
+      "manifest_lines": 691,
+      "manifest_sha256": "b890964f8e0a6c2653ae1b1044029289b592a6915f6fe010c4fbcd6ec293ac2f",
+      "exact_match": true,
+      "missing": [],
+      "extra": []
+    },
+    "installed": {
+      "local_records": 736,
+      "manifest_lines": 736,
+      "manifest_sha256": "2fc23a0683ff27ce8696225419502b0fdcfb0c2b62a3b5abe8d5ebc87512bf92",
+      "exact_match": true,
+      "missing": [],
+      "extra": []
+    }
+  },
+  "mkarchiso_package_lists": [
+    {
+      "path": "work/iso/arch/pkglist.x86_64.txt",
+      "bytes": 13686,
+      "lines": 691,
+      "sha256": "b890964f8e0a6c2653ae1b1044029289b592a6915f6fe010c4fbcd6ec293ac2f"
+    }
+  ],
+  "nbd_disconnected": true
+}

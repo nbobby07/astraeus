@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "files": {
+    "A-audit-result.json": {
+      "bytes": 32167,
+      "sha256": "34a833a8d8126d36005d1b11cd617df1361a00112790766a98dc7c91d36f909b"
+    },
+    "A-audit-local-verification.json": {
+      "bytes": 486,
+      "sha256": "23ae46222b67d0c8da18f49d64b975ada92dca0d180570105aac3e6c8ebfe029"
+    },
+    "A-closed-test-evidence.json": {
+      "bytes": 1331,
+      "sha256": "3d5499e8aafc8071b977d2e00aa030c4ceb8f1d41c4fd59667270780dd677e7a"
+    },
+    "A-native-test-summary.json": {
+      "bytes": 7964,
+      "sha256": "c999dc365ff0af83656b4907bb5c7a02b8f2702d2ccc03e8b3eb499384411882"
+    },
+    "A-inputs.json": {
+      "bytes": 19906,
+      "sha256": "f1ad8f7c3a99e1ca0d4a74592aef929514b068c0cf5334d0dfc2d8455cc210ce"
+    },
+    "A-source-inputs-root-verification.json": {
+      "bytes": 294,
+      "sha256": "ff42f47ac910fac64ceb1bd4a296fe41e8e9f80f2a2571679a385dd2a092f1ce"
+    },
+    "A-repository-public-key.json": {
+      "bytes": 469,
+      "sha256": "cde6e3522ec5e05bb3ca464b0c2afcb14cf36eb4777e982000820571a82a9438"
+    },
+    "source-archive.json": {
+      "bytes": 270,
+      "sha256": "d02ba7e4ca45c77eabdc6077013ceb7b8f68a945cd0d2e451775d0e9e5d670c4"
+    },
+    "packaged-fstab-contract.json": {
+      "bytes": 2352,
+      "sha256": "d7a4bd80d9d180f3b974e78d5a01c1e621b506885368fa2257bad330545fa782"
+    },
+    "audit-image.py": {
+      "bytes": 27485,
+      "sha256": "193677419a881d5ce87d5a30ece7a00b3365bb9a83dea2469c5ff60183d091b2"
+    },
+    "test_audit_image.py": {
+      "bytes": 18956,
+      "sha256": "4b3b146b91de46660f1cfe26d4844cd32255e5c590a566d93f857a3d78ae386e"
+    },
+    "audit-input-manifest.json": {
+      "bytes": 1867,
+      "sha256": "691a975b87e5581bcc61a80e64c107603ac1946099fc30939bdf3accf2cb6a1f"
+    }
+  }
+}

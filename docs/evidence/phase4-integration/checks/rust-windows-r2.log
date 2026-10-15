@@ -1,0 +1,218 @@
+   Compiling distro-graphics v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase4-integration\operating-system\crates\graphics)
+   Compiling distro-transactions v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase4-integration\operating-system\crates\transactions)
+   Compiling distroctl v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase4-integration\operating-system\crates\distroctl)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.47s
+     Running unittests src\lib.rs (target\debug\deps\distro_config-d086a072c2f4e7a7.exe)
+
+running 1 test
+test tests::metadata_rejects_invalid_inputs ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\distro_graphics-15603a6161d5a12f.exe)
+
+running 15 tests
+test tests::driver_update_guard_preserves_full_transaction_and_multilib_coherence ... ok
+test tests::no_discovery_and_no_packages_remain_unknown ... ok
+test tests::missing_loader_icd_and_32_bit_icd_are_distinct ... ok
+test tests::probe_protocol_is_architecture_checked_and_rejects_unknown_fields ... ok
+test tests::software_success_is_not_gpu_rendering_success ... ok
+test tests::identical_gpu_ids_without_bus_evidence_are_ambiguous ... ok
+test tests::missing_packages_firmware_and_unsupported_versions ... ok
+test tests::amd_integrated_discrete_are_matched_by_pci_and_render_failures_survive ... ok
+test tests::json_readiness_keeps_unknown_and_untested ... ok
+test tests::wrong_driver_and_nvidia_version_kernel_mismatches ... ok
+test tests::hybrid_requirements_union_preserves_binding_and_does_not_guess_primary_renderer ... ok
+test tests::invalid_and_absent_icd_libraries_never_become_present ... ok
+test tests::vendor_policy_fixtures ... ok
+test tests::file_discovery_checks_elf_instead_of_icd_filename ... ok
+test tests::duplicate_or_malformed_package_database_is_unavailable ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src\lib.rs (target\debug\deps\distro_hardware-b9072853a4b9c041.exe)
+
+running 8 tests
+test tests::cpu_parsing_counts_socket_core_pairs_and_partial_topology ... ok
+test tests::memory_parsing_preserves_bytes_and_rejects_overflow_and_wrong_units ... ok
+test tests::storage_transports_and_malformed_capacity ... ok
+test tests::vm_fallbacks_do_not_guess_physical_hardware_or_generic_dmi ... ok
+test tests::firmware_fixture_distinguishes_uefi_legacy_and_unavailable ... ok
+test tests::missing_empty_malformed_and_io_errors_are_separate ... ok
+test tests::storage_fixture_follows_partition_parent_without_slaves ... ok
+test tests::gpu_fixture_identifies_vendors_models_and_keeps_incomplete_devices ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running unittests src\lib.rs (target\debug\deps\distro_snapshots-d7996b643dda0888.exe)
+
+running 27 tests
+test generations::tests::preferred_respects_assessment_default_preserves_fallback ... ok
+test generations::tests::upstream_counter_transitions_and_exhaustion ... ok
+test system::tests::interrupted_mutations_leave_a_durable_blocker ... ok
+test system::tests::corruption_fstab_and_mount_conflicts_block_execution ... ok
+test system::tests::nested_esp_mounts_are_rejected_online_and_offline ... ok
+test system::tests::encrypted_roots_bind_mapper_filesystem_and_luks_header ... ok
+test system::tests::online_layout_rejects_unprotected_package_mounts ... ok
+test system::tests::generation_tests::offline_rollback_retires_generation_selection_only_after_restoring_pair ... ok
+test system::tests::generation_tests::retained_boot_is_a_recovery_session_and_never_an_update_root ... ok
+test tests::boot_identity_allows_only_systemd_detected_console_suffixes ... ok
+test tests::btrfs_identity_parser_fails_closed ... ok
+test tests::identifiers_and_pe_are_checked_at_the_boundary ... ok
+test system::tests::generation_tests::exhausted_candidate_cannot_be_rearmed_but_last_attempt_can_be_blessed ... ok
+test system::tests::generation_tests::encrypted_generation_keeps_unlock_mapping_but_changes_root_selection ... ok
+test system::tests::online_discovery_and_unprivileged_catalog_do_not_call_btrfs ... ok
+test system::tests::generation_tests::candidate_and_independent_prior_remain_coherent ... ok
+test system::tests::generation_tests::unmanaged_entries_and_unfinished_selection_are_not_accepted ... ok
+test system::tests::generation_tests::baseline_cannot_promote_a_maintenance_initrd_that_was_not_booted ... ok
+test system::tests::planning_is_read_only_and_lock_can_cover_pre_and_post_snapshots ... ok
+test system::tests::full_lifecycle_keeps_persistent_data_and_boot_evidence ... ok
+test system::tests::wrong_layout_missing_tools_metadata_and_targets_fail_closed ... ok
+test system::tests::unfinished_health_change_blocks_all_mutation_and_rollback_planning ... ok
+test system::tests::each_rollback_durability_boundary_preserves_a_root_and_blocks_retry ... ok
+test system::tests::generation_tests::missing_root_uki_wrong_pair_and_invalid_metadata_fail_closed ... ok
+test system::tests::generation_tests::blessing_refuses_wrong_entry_esp_counter_root_or_cmdline ... ok
+test system::tests::generation_tests::first_activation_interruption_keeps_original_and_retained_boot_material ... ok
+test system::tests::generation_tests::interruption_at_every_staging_and_activation_command_preserves_prior ... ok
+
+test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 41.40s
+
+     Running unittests src\lib.rs (target\debug\deps\distro_transactions-de196c53831fc4d4.exe)
+
+running 28 tests
+test tests::disk_checks_reject_shortfall_and_overflow ... ok
+test tests::health_distinguishes_failure_warning_and_unavailable ... ok
+test tests::boot_refresh_only_reads_matching_installed_loader_copies ... ok
+test tests::generation_tests::generation_references_reject_missing_stale_wrong_and_unhealthy_records ... ok
+test tests::managed_health_rejects_unknown_or_failed_artifact_trust ... ok
+test tests::pacman_machine_output_rejects_ambiguity ... ok
+test tests::plan_validation_and_removal_state_are_consistent ... ok
+test tests::planner_resolves_real_fields_and_propagates_command_errors ... ok
+test tests::pacman_keeps_signature_policy_and_native_dependency_reasons ... ok
+test tests::rollback_planning_rejects_targets_that_confirmation_cannot_finalize ... ok
+test tests::history_is_read_only_versioned_and_lock_is_exclusive ... ok
+test tests::state_machine_rejects_skipped_and_terminal_transitions ... ok
+test tests::system_checks_distinguish_missing_tool_and_failed_check ... ok
+test tests::generation_tests::fallback_evidence_is_idempotent_and_does_not_claim_restoration_or_success ... ok
+test tests::no_op_needs_no_snapshot_or_package_mutation ... ok
+test tests::missing_snapshots_prevents_all_package_work ... ok
+test tests::generation_tests::baseline_publication_failure_has_durable_recovery_reference_before_packages ... ok
+test tests::coordinator_or_loader_mutation_rejects_the_entire_plan_before_execution ... ok
+test tests::post_snapshot_failure_retains_pre_snapshot_and_requires_rollback ... ok
+test tests::execution_order_and_boot_confirmation_boundary ... ok
+test tests::generation_tests::activation_failure_keeps_both_snapshots_and_requires_recovery ... ok
+test tests::stale_confirmation_and_missing_post_snapshot_fail_closed ... ok
+test tests::published_history_migrates_and_recovers_failed_publication ... ok
+test tests::old_updater_writes_survive_root_rollback_and_divergence_is_preserved ... ok
+test tests::confirmation_requires_new_boot_matching_generation_and_fresh_health ... ok
+test tests::interrupted_transactions_are_recovered_without_replay ... ok
+test tests::cancellation_at_every_boundary_never_succeeds ... ok
+test tests::failure_matrix_is_durable_and_stops_at_the_failing_phase ... ok
+
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.41s
+
+     Running tests\permissions.rs (target\debug\deps\permissions-bc1d957fde3b6331.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\distroctl-478521a76b8734fa.exe)
+
+running 6 tests
+test gaming::proton::tests::metadata_parser_is_bounded_and_rejects_ambiguity ... ok
+test updates::confirmation_tests::automatic_confirmation_leaves_restoration_pending ... ok
+test tests::parse_observations_without_inventing_status ... ok
+test tests::formatting_and_json_share_normalized_hardware ... ok
+test gaming::probe::tests::config_is_optional_and_never_written ... ok
+test tests::fixture_detects_encrypted_and_plain_root_and_running_uki ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src\main.rs (target\debug\deps\distroctl-ce95c123147a509e.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\cli.rs (target\debug\deps\cli-92add896c1d30f1a.exe)
+
+running 4 tests
+test history_json_does_not_create_a_database ... ok
+test security_status_does_not_invent_success_without_the_installed_helper ... ok
+test dry_run_and_history_share_structured_models ... ok
+test cli_contract ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s
+
+     Running tests\gaming.rs (target\debug\deps\gaming-f7a29fd2093e6c59.exe)
+
+running 12 tests
+test package_probe_only_issues_read_only_query_and_preserves_failure ... ok
+test unknown_package_state_never_becomes_missing_or_a_safe_plan ... ok
+test optional_tools_do_not_prove_execution_hdr_or_vrr ... ok
+test steam_missing_broken_and_incomplete_32_bit_stack_are_distinct ... ok
+test headless_and_incomplete_wayland_sessions_are_not_ready ... ok
+test json_contract_and_text_do_not_invent_runtime_success ... ok
+test feature_requests_are_deterministic_and_optional ... ok
+test missing_or_failed_graphics_and_multilib_are_explicit_blockers ... ok
+test proton_and_ge_discovery_is_metadata_only_and_deduplicated ... ok
+test no_proposal_can_execute_or_guess_removal_ownership ... ok
+test extra_libraries_and_malformed_metadata_are_handled_without_execution ... ok
+test cli_commands_refuse_mutation_and_reject_unsupported_options ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+     Running tests\gaming_graphics.rs (target\debug\deps\gaming_graphics-a269c28a81114d67.exe)
+
+running 4 tests
+test software_multilib_mismatch_is_rejected_by_the_shared_update_guard ... ok
+test installation_and_enumeration_do_not_prove_readback_or_cross_architecture_acceleration ... ok
+test different_devices_or_software_cannot_be_combined_into_physical_acceleration ... ok
+test preserves_raw_graphics_and_separates_software_virtual_and_physical_execution ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests\graphics.rs (target\debug\deps\graphics-994ed3fc7396dfa3.exe)
+
+running 1 test
+test graphics_cli_is_read_only_and_schema_versioned ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests distro_config
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_graphics
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_hardware
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_snapshots
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distro_transactions
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests distroctl
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

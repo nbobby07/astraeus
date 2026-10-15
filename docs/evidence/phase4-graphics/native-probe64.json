@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "architecture": 64,
+  "loader_version": 4211029,
+  "status": "passed",
+  "devices": [
+    {
+      "name": "llvmpipe (LLVM 21.1.8, 256 bits)",
+      "vendor_id": 65541,
+      "device_id": 0,
+      "device_type": 4,
+      "api_version": 4211023,
+      "driver_version": 109051907,
+      "driver_name": "llvmpipe",
+      "driver_info": "Mesa 26.0.3-1ubuntu1 (LLVM 21.1.8)",
+      "driver_id": 13,
+      "pci_address": null,
+      "software": true,
+      "rendering": "passed"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+test_bundle_selection_and_multilib_are_coherent (test_graphics.GraphicsPackages.test_bundle_selection_and_multilib_are_coherent) ... ok
+test_gaming_image_selection_preserves_optional_and_mutation_boundaries (test_graphics.GraphicsPackages.test_gaming_image_selection_preserves_optional_and_mutation_boundaries) ... ok
+test_live_installed_and_signature_boundaries (test_graphics.GraphicsPackages.test_live_installed_and_signature_boundaries) ... ok
+test_metadata_check_rejects_changed_dependencies_and_database_bytes (test_graphics.GraphicsPackages.test_metadata_check_rejects_changed_dependencies_and_database_bytes) ... ok
+test_native_probe_build_and_protocol (test_graphics.GraphicsPackages.test_native_probe_build_and_protocol) ... skipped 'requires C compiler and Vulkan headers; isolated native check also documented'
+test_nvidia_activation_and_unknown_bundles_are_refused (test_graphics.GraphicsPackages.test_nvidia_activation_and_unknown_bundles_are_refused) ... ok
+test_probe_build_inputs_include_both_compiler_runtimes (test_graphics.GraphicsPackages.test_probe_build_inputs_include_both_compiler_runtimes) ... FAIL
+
+======================================================================
+FAIL: test_probe_build_inputs_include_both_compiler_runtimes (test_graphics.GraphicsPackages.test_probe_build_inputs_include_both_compiler_runtimes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Noel\.codex\worktrees\phase4-integration\operating-system\tests\test_graphics.py", line 29, in test_probe_build_inputs_include_both_compiler_runtimes
+    self.assertTrue({"gcc", "lib32-glibc", "lib32-gcc-libs", "vulkan-headers"} <= set(bundles["build"]))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.027s
+
+FAILED (failures=1, skipped=1)

@@ -1,0 +1,10 @@
+{
+  "command": "systemctl status --no-pager -l astraeus-apply@2e8196949f2dc20da71edbe1c6a2132c.service",
+  "result": {
+    "code": 3,
+    "error": null,
+    "output": "\u25cb astraeus-apply@2e8196949f2dc20da71edbe1c6a2132c.service - Apply reviewed Astraeus system configuration 2e8196949f2dc20da71edbe1c6a2132c\n     Loaded: loaded (/usr/lib/systemd/system/astraeus-apply@.service; static)\n     Active: inactive (dead)\n\nOct 14 18:11:44 astraeus-validation systemd[1]: Starting Apply reviewed Astraeus system configuration 2e8196949f2dc20da71edbe1c6a2132c...\nOct 14 18:11:44 astraeus-validation systemd[1]: Started Apply reviewed Astraeus system configuration 2e8196949f2dc20da71edbe1c6a2132c.\nOct 14 18:12:24 astraeus-validation systemd[1]: astraeus-apply@2e8196949f2dc20da71edbe1c6a2132c.service: Sent signal SIGKILL to main process 926 (systemd-inhibit) on client request.\nOct 14 18:12:24 astraeus-validation systemd[1]: astraeus-apply@2e8196949f2dc20da71edbe1c6a2132c.service: Killed unit cgroup '/system.slice/system-astraeus\\x2dapply.slice/astraeus-apply@2e8196949f2dc20da71edbe1c6a2132c.service' with SIGKILL on client request.\nOct 14 18:12:24 astraeus-validation systemd[1]: astraeus-apply@2e8196949f2dc20da71edbe1c6a2132c.service: Main process exited, code=killed, status=9/KILL\nOct 14 18:12:24 astraeus-validation systemd[1]: astraeus-apply@2e8196949f2dc20da71edbe1c6a2132c.service: Control process exited, code=killed, status=9/KILL\nOct 14 18:12:24 astraeus-validation systemd[1]: astraeus-apply@2e8196949f2dc20da71edbe1c6a2132c.service: Failed with result 'signal'.\nOct 14 18:12:24 astraeus-validation systemd[1]: astraeus-apply@2e8196949f2dc20da71edbe1c6a2132c.service: Consumed 23.061s CPU time over 39.806s wall clock time, 439.6M memory peak.\n",
+    "id": "832a3ee172014a269ede47073aee097f",
+    "boot_id": "788cfc9d-1833-4668-a4ed-53c831b35cc2"
+  }
+}

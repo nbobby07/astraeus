@@ -1,0 +1,588 @@
+"""Fault harness guard/adapter tests. These tests are not installed-VM acceptance."""
+import copy
+import importlib.util
+import json
+import os
+from pathlib import Path
+from types import SimpleNamespace
+import subprocess
+import shutil
+import sys
+import tempfile
+import unittest
+from unittest.mock import Mock, patch
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts/validate'))
+SPEC = importlib.util.spec_from_file_location('phase42_faults', ROOT / 'scripts/validate/phase42-faults.py')
+faults = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(faults)
+
+
+def baseline():
+    return {'accepted': True, 'kind': 'phase42-fresh-candidate-payload', 'source_commit': 'a' * 40,
+            'encryption': 'none', 'signer_sha256': 'd' * 64, 'public_fingerprints': {'db': 'd' * 64},
+            'boot_ids': ['first', 'second'],
+            'installation_firmware': {'SecureBoot': False, 'SetupMode': True, 'observed': True,
+                                      'source': 'efivarfs-before-partition-write'},
+            'management_firmware_required': {'SecureBoot': True, 'SetupMode': False},
+            'installed_binaries': {'distroctl': 'e' * 64, 'astraeus-control-center': 'f' * 64},
+            'inputs': {'source_commits': ['a' * 40], 'iso': {'sha256': 'b' * 64},
+                       'ovmf_code': {'sha256': 'c' * 64}}}
+
+
+def arguments(**changes):
+    values = dict(source_commit='a' * 40, image_sha256='b' * 64, distroctl_sha256='e' * 64,
+                  desktop_sha256='f' * 64, encryption='none', timeout=1)
+    values.update(changes)
+    return SimpleNamespace(**values)
+
+
+def observation():
+    return dict(packages={'app': '1'}, reasons={'app': 'explicit'}, configuration={'packages': []},
+                management={'schema_version': 1}, system_lock={'schema_version': 1}, config_toml='schema_version=1\n',
+                root_uuid='root', esp_uuid='esp', firmware={'SecureBoot': True, 'SetupMode': False},
+                home={'sha256': 'user-data', 'uid': 1000}, package_lock_present=False, boot_id='first')
+
+
+class Phase42FaultsTests(unittest.TestCase):
+    def test_restored_boot_requires_executed_successful_services_and_unchanged_pending_record(self):
+        properties = ('Result=success\nExecMainCode=1\nExecMainStatus=0\n'
+                      'ExecMainStartTimestampMonotonic=100\nExecMainExitTimestampMonotonic=200\n'
+                      'ActiveState=inactive\nJob=\n')
+        self.assertTrue(faults.restored_boot_service(properties))
+        self.assertTrue(faults.restored_boot_service(properties.replace('ActiveState=inactive', 'ActiveState=active')))
+        for old, new in [('Result=success', 'Result=exit-code'), ('ExecMainStatus=0', 'ExecMainStatus=1'),
+                         ('ExecMainCode=1', 'ExecMainCode=0'), ('Monotonic=100', 'Monotonic=0'),
+                         ('Monotonic=200', 'Monotonic=99'), ('Job=\n', 'Job=42 start\n'),
+                         ('ActiveState=inactive', 'ActiveState=activating')]:
+            self.assertFalse(faults.restored_boot_service(properties.replace(old, new)))
+        with self.assertRaises(RuntimeError):
+            faults.restored_boot_service(properties.replace('Result=success\n', ''))
+        record = dict(id=1, state='awaiting_boot', confirmation=None, failure=None, events=[{'state': 'awaiting_boot'}])
+        backend = SimpleNamespace(json_command=Mock(return_value=(None, [record])))
+        vm = SimpleNamespace(boot_id='a' * 32, command=Mock(side_effect=lambda command, **options:
+            {'code': 0, 'output': json.dumps({'_BOOT_ID': 'a' * 32}) if command.startswith('journalctl') else properties}))
+        with patch.object(faults, 'host_modules', return_value=(backend, None)):
+            result = faults.pending_restored_boot(vm, record, 1)
+            self.assertEqual(set(result['services']), {'astraeus-confirm-boot.service', 'systemd-bless-boot.service'})
+            self.assertTrue(all('start ' not in call.args[0] for call in vm.command.call_args_list))
+            for changed in [dict(record, confirmation={'error': 'failed'}), dict(record, state='succeeded'),
+                            dict(record, events=[*record['events'], {'state': 'failed'}])]:
+                backend.json_command.return_value = (None, [changed])
+                with self.assertRaisesRegex(RuntimeError, 'changed the pending transaction'):
+                    faults.pending_restored_boot(vm, record, 1)
+            vm.command.side_effect = lambda command, **options: {'code': 0,
+                'output': json.dumps({'_BOOT_ID': 'b' * 32}) if command.startswith('journalctl') else properties}
+            with self.assertRaisesRegex(RuntimeError, 'another boot'):
+                faults.pending_restored_boot(vm, record, 1)
+
+    def test_same_boot_refusal_checks_initial_and_managed_boot_errors_and_durable_state(self):
+        record = {'id': 1, 'state': 'awaiting_boot', 'events': [{'state': 'awaiting_boot'}]}
+        backend = SimpleNamespace(json_command=Mock(return_value=(None, [record])))
+        vm = SimpleNamespace(command=Mock())
+        with patch.object(faults, 'host_modules', return_value=(backend, None)):
+            for message in ['a different kernel boot is required; update remains unconfirmed',
+                            'running boot entry is not a managed generation']:
+                vm.command.return_value = {'code': 1, 'output': message}
+                faults.reject_same_boot(vm, record)
+            for code, message in [(0, 'different kernel boot'), (1, 'unrelated error')]:
+                vm.command.return_value = {'code': code, 'output': message}
+                with self.assertRaisesRegex(RuntimeError, 'boot-evidence refusal'):
+                    faults.reject_same_boot(vm, record)
+            vm.command.return_value = {'code': 1, 'output': 'different kernel boot'}
+            for state, events in [('succeeded', []), ('awaiting_boot', [{'state': 'succeeded'}])]:
+                backend.json_command.return_value = (None, [{'id': 1, 'state': state, 'events': events}])
+                with self.assertRaisesRegex(RuntimeError, 'blessed'):
+                    faults.reject_same_boot(vm, record)
+
+    def test_installed_guard_checks_public_image_trust_while_signing_key_and_running_uki_are_unavailable(self):
+        from test_phase42_trust import PIN, security, verdict
+        config = dict(schema_version=1, run_id='a' * 32, source_commit='b' * 40, image_sha256='c' * 64,
+                      certificate_sha256=PIN, distroctl_sha256='e' * 64, desktop_sha256='f' * 64,
+                      encryption='none', user='tester', package='hello')
+        exists = Path.exists
+        for revoked in [False, True]:
+            with self.subTest(revoked=revoked), tempfile.TemporaryDirectory() as directory:
+                share = Path(directory)
+                (share / 'fault-config.json').write_text(json.dumps(config))
+                commands = []
+
+                def call(*args, **kwargs):
+                    commands.append(args)
+                    if args == ('systemd-detect-virt',):
+                        return {'output': 'kvm\n'}
+                    if args == ('astraeus-secure-boot', 'status', '--json'):
+                        return {'output': json.dumps(security())}
+                    if args == ('astraeus-boot-artifact', 'verify', '/efi/EFI/Astraeus/maintenance.efi'):
+                        if revoked:
+                            raise RuntimeError('image is revoked by firmware dbx')
+                        return {'output': json.dumps(verdict())}
+                    self.fail('unexpected command during public fault guard: ' + repr(args))
+
+                def path_exists(path):
+                    if path == Path('/dev/virtio-ports/org.astraeus.validation'):
+                        return True
+                    return False if path == Path('/run/archiso') else exists(path)
+
+                with patch.object(faults, 'SHARE', share), patch.object(faults.sys, 'platform', 'linux'), \
+                        patch.object(faults.os, 'geteuid', return_value=0, create=True), \
+                        patch.object(Path, 'exists', path_exists), patch.object(faults, 'call', side_effect=call), \
+                        patch.object(faults, 'digest', side_effect=['e' * 64, 'f' * 64]), \
+                        patch.object(faults, 'firmware', return_value={'SecureBoot': True, 'SetupMode': False}):
+                    if revoked:
+                        with self.assertRaisesRegex(RuntimeError, 'image is revoked'):
+                            faults.guest_guard()
+                    else:
+                        result = faults.guest_guard()['maintained_uki_verification']
+                        self.assertEqual(result['scope'], 'maintained-installed-uki')
+                        self.assertFalse(result['provider_readiness_checked'])
+                self.assertEqual(len(commands), 3)
+
+    def test_staged_fault_guest_contains_exact_shared_helper_and_imports_independently(self):
+        with tempfile.TemporaryDirectory() as directory:
+            share = Path(directory)
+            faults.stage_guest_scripts(share)
+            for name in ['phase42-faults.py', 'phase2-guest.py', 'phase42_trust.py']:
+                self.assertEqual((share / name).read_bytes(), (ROOT / 'scripts/validate' / name).read_bytes())
+            subprocess.run([sys.executable, '-E', '-s', str(share / 'phase42-faults.py'), '--help'],
+                           cwd=share, capture_output=True, check=True)
+
+    def test_only_fresh_exact_candidate_baseline_is_accepted(self):
+        manifest = baseline()
+        faults.candidate_guard(arguments(), manifest, 'c' * 64)
+        for field, value in [('kind', 'phase3-qualified'), ('source_commit', '9' * 40),
+                             ('accepted', False), ('boot_ids', ['first', 'first']),
+                             ('signer_sha256', '8' * 64), ('installed_binaries', {'distroctl': 'e' * 64})]:
+            changed = copy.deepcopy(manifest)
+            changed[field] = value
+            with self.subTest(field=field), self.assertRaises(RuntimeError):
+                faults.candidate_guard(arguments(), changed, 'c' * 64)
+        with self.assertRaises(RuntimeError):
+            faults.candidate_guard(arguments(), manifest, '9' * 64)
+
+    def test_report_preserves_observed_bootstrap_scope_and_enforcing_workload_policy(self):
+        manifest = baseline()
+        provenance = faults.firmware_provenance(manifest)
+        self.assertEqual(provenance['installation_firmware'], manifest['installation_firmware'])
+        self.assertEqual(provenance['management_firmware_required'], {'SecureBoot': True, 'SetupMode': False})
+        provenance['installation_firmware']['SecureBoot'] = True
+        self.assertIs(manifest['installation_firmware']['SecureBoot'], False)
+        for section in ['installation_firmware', 'management_firmware_required']:
+            for value in [None, {}, False, {'SecureBoot': False, 'SetupMode': True}]:
+                changed = copy.deepcopy(manifest)
+                changed[section] = value
+                with self.subTest(section=section, value=value), self.assertRaises(RuntimeError):
+                    faults.candidate_guard(arguments(), changed, 'c' * 64)
+        for field, value in [('observed', False), ('SecureBoot', True), ('SecureBoot', 0),
+                             ('SetupMode', False), ('SetupMode', 1), ('source', 'assumed-from-host-flags')]:
+            changed = copy.deepcopy(manifest)
+            changed['installation_firmware'][field] = value
+            with self.subTest(field=field, value=value), self.assertRaises(RuntimeError):
+                faults.firmware_provenance(changed)
+
+    def test_recovery_medium_binds_origin_actual_bytes_coordinator_and_owner(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            image = root / 'recovery.img'
+            image.write_bytes(b'test raw image')
+            manifest = baseline()
+            (root / 'baseline.json').write_text(json.dumps(manifest))
+            args = arguments(base=root, recovery_image=image)
+            recovery = dict(schema_version=1, kind='phase42-ram-verified-recovery', source_commit='a' * 40,
+                            iso_sha256='b' * 64, image='recovery.img', image_sha256=faults.digest(image),
+                            image_bytes=image.stat().st_size, certificate_sha256='d' * 64, distroctl_sha256='e' * 64,
+                            baseline_manifest_sha256=faults.digest(root / 'baseline.json'), private_key_in_image=False,
+                            rootfs_sha256='0' * 64, uki_sha256='1' * 64, minimum_ram_gib=8)
+            faults.recovery_guard(args, manifest, recovery)
+            for field, value in [('source_commit', '2' * 40), ('iso_sha256', '2' * 64), ('image_sha256', '2' * 64),
+                                 ('certificate_sha256', '2' * 64), ('distroctl_sha256', '2' * 64),
+                                 ('private_key_in_image', True), ('minimum_ram_gib', 0), ('minimum_ram_gib', True),
+                                 ('baseline_manifest_sha256', '2' * 64), ('rootfs_sha256', '')]:
+                changed = dict(recovery, **{field: value})
+                with self.subTest(field=field), self.assertRaises(RuntimeError):
+                    faults.recovery_guard(args, manifest, changed)
+            image.write_bytes(b'tampered bytes')
+            with self.assertRaises(RuntimeError):
+                faults.recovery_guard(args, manifest, recovery)
+
+    def test_restoration_must_match_metadata_reasons_files_and_home(self):
+        before = observation()
+        after = copy.deepcopy(before)
+        after['boot_id'] = 'new-boot'
+        faults.state_equal(before, after)
+        for field in ['packages', 'reasons', 'configuration', 'management', 'system_lock', 'config_toml',
+                      'root_uuid', 'esp_uuid', 'firmware', 'home']:
+            bad = copy.deepcopy(after)
+            bad[field] = 'changed'
+            with self.subTest(field=field), self.assertRaisesRegex(RuntimeError, field):
+                faults.state_equal(before, bad)
+        after['package_lock_present'] = True
+        with self.assertRaisesRegex(RuntimeError, 'lock'):
+            faults.state_equal(before, after)
+
+    def test_metadata_only_plan_requires_real_intent_and_boot_boundary(self):
+        before = observation()
+        plan = {'executable': True, 'blockers': [], 'plan': {'packages': {'changes': [], 'targets': []},
+                'management': {'before': before['management'], 'before_digest': 'old', 'after_digest': 'new',
+                               'reasons_before': before['reasons'], 'reasons_after': before['reasons']},
+                'snapshot_required': True, 'boot': {'regenerate_uki': True}}}
+        faults.metadata_plan(plan, before)
+        for kind in ['package', 'target', 'same-state', 'reason-change', 'stale-reasons',
+                     'missing-reasons-before', 'missing-reasons-after', 'snapshot', 'uki', 'blocked']:
+            bad = copy.deepcopy(plan)
+            if kind in ['package', 'target']:
+                bad['plan']['packages']['changes' if kind == 'package' else 'targets'] = [{'name': 'other'}]
+            elif kind == 'same-state':
+                bad['plan']['management']['after_digest'] = 'old'
+            elif kind == 'reason-change':
+                bad['plan']['management']['reasons_after'] = {'app': 'dependency'}
+            elif kind == 'stale-reasons':
+                bad['plan']['management'].update(reasons_before={}, reasons_after={})
+            elif kind.startswith('missing-reasons-'):
+                del bad['plan']['management']['reasons_' + kind.removeprefix('missing-reasons-')]
+            elif kind == 'snapshot':
+                bad['plan']['snapshot_required'] = False
+            elif kind == 'uki':
+                bad['plan']['boot']['regenerate_uki'] = False
+            else:
+                bad['blockers'] = ['previous operation']
+            with self.subTest(kind=kind), self.assertRaises(RuntimeError):
+                faults.metadata_plan(bad, before)
+
+    def test_snapshot_evidence_must_precede_actual_mutation(self):
+        record = {'snapshot': 'pre', 'post_snapshot': 'post', 'boot_regenerated': True,
+                  'events': [{'state': 'snapshot_created'}, {'state': 'applying'}]}
+        faults.transaction_boundary(record, post=True)
+        record['events'].reverse()
+        with self.assertRaises(RuntimeError):
+            faults.transaction_boundary(record)
+        record['events'].reverse()
+        record['post_snapshot'] = None
+        with self.assertRaises(RuntimeError):
+            faults.transaction_boundary(record, post=True)
+
+    def test_terminal_transaction_waits_for_actual_worker_and_finalizer_exit(self):
+        self.assertTrue(faults.unit_idle('LoadState=not-found\nActiveState=inactive\nJob=\n'))
+        self.assertFalse(faults.unit_idle('LoadState=loaded\nActiveState=active\nJob=\n'))
+        self.assertFalse(faults.unit_idle('LoadState=loaded\nActiveState=deactivating\nJob=\n'))
+        self.assertFalse(faults.unit_idle('LoadState=loaded\nActiveState=inactive\nJob=23 start\n'))
+        self.assertFalse(faults.unit_idle('LoadState=loaded\nActiveState=failed\nJob=\n'))
+        self.assertTrue(faults.unit_idle('LoadState=loaded\nActiveState=failed\nJob=\n', allow_failed=True))
+        masked = 'LoadState=masked\nActiveState=inactive\nJob=\n'
+        self.assertFalse(faults.unit_idle(masked))
+        self.assertTrue(faults.unit_idle(masked, allow_masked=True))
+        self.assertFalse(faults.unit_idle(masked.replace('Job=\n', 'Job=42 start\n'), allow_masked=True))
+        for value in ['LoadState=not-found\n', 'LoadState=not-found\nActiveState=inactive\nJob=\nJob=1\n']:
+            with self.assertRaises(RuntimeError):
+                faults.unit_idle(value)
+
+    def test_submission_faults_require_a_reviewed_true_noop(self):
+        plan = {'executable': False, 'blockers': [], 'plan': {'packages': {'changes': [], 'targets': []},
+                'management': {'before_digest': 'same', 'after_digest': 'same', 'reasons_before': {}, 'reasons_after': {}},
+                'snapshot_required': False, 'boot': {'regenerate_uki': False}}}
+        faults.require_noop(plan)
+        for section, key, value in [('packages', 'changes', ['install']), ('packages', 'targets', ['app']),
+                                     ('management', 'after_digest', 'changed'), ('management', 'reasons_after', {'app': 'explicit'}),
+                                     ('boot', 'regenerate_uki', True)]:
+            changed = copy.deepcopy(plan)
+            changed['plan'][section][key] = value
+            with self.subTest(key=key), self.assertRaises(RuntimeError):
+                faults.require_noop(changed)
+        for key, value in [('executable', True), ('blockers', ['pending transaction'])]:
+            with self.assertRaises(RuntimeError):
+                faults.require_noop(dict(plan, **{key: value}))
+
+    def test_concurrent_submit_requires_same_worker_inventories_and_system(self):
+        identifier = 'a' * 32
+        config = {'run_id': 'b' * 32}
+        marker = {'operation_id': identifier}
+        value = {'config': {'packages': ['hello']}}
+        operation = {'state': 'applying', 'transaction': {'plan': {'management': {'after': {'applied': value['config']}}}}}
+        identity = {'pid': 99, 'start_ticks': 123, 'operation_id': identifier}
+        inventory = {'requests': {'request': 'original'}, 'receipts': {}, 'active': identifier, 'history': ['applying']}
+        for changed in ['none', 'worker', 'inventory', 'state', 'wrong-refusal']:
+            with self.subTest(changed=changed), tempfile.TemporaryDirectory() as directory:
+                after_identity = dict(identity, start_ticks=124) if changed == 'worker' else identity
+                after_inventory = dict(inventory, active='other') if changed == 'inventory' else inventory
+                after_state = dict(observation(), management='changed') if changed == 'state' else observation()
+                reply = {'code': 1, 'output': '', 'error': 'another system operation is queued or running'}
+                if changed == 'wrong-refusal':
+                    reply['error'] = 'package lock busy'
+                with patch.object(faults, 'guest_guard', return_value=config), \
+                        patch.object(faults, 'guest_barrier', return_value=marker), \
+                        patch.object(faults, 'envelope', return_value=value), \
+                        patch.object(faults, 'call', return_value={'output': json.dumps(operation)}), \
+                        patch.object(faults, 'submission_fixture', return_value=Path(directory)), \
+                        patch.object(faults, 'worker_identity', side_effect=[identity, after_identity]), \
+                        patch.object(faults, 'submission_inventory', side_effect=[inventory, after_inventory]), \
+                        patch.object(faults, 'guest_observe', side_effect=[observation(), after_state]), \
+                        patch.object(faults, 'json_input', return_value=reply):
+                    if changed == 'none':
+                        self.assertTrue(faults.guest_concurrent_submit(identifier)['passed'])
+                    else:
+                        with self.assertRaises(RuntimeError):
+                            faults.guest_concurrent_submit(identifier)
+                self.assertEqual(json.loads((Path(directory) / 'result.json').read_text())['passed'], changed == 'none')
+
+    @unittest.skipUnless(os.name == 'posix', 'symlink identity cleanup')
+    def test_symlink_cleanup_removes_only_its_exact_owned_link_and_keeps_target_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target, link = root / 'canary', root / 'requests'
+            target.mkdir()
+            (target / 'unexpected').write_text('preserve this evidence')
+            link.symlink_to(target, target_is_directory=True)
+            info = link.lstat()
+            identity = (info.st_dev, info.st_ino)
+            with self.assertRaises(RuntimeError):
+                faults.unlink_owned_symlink(link, (identity[0], identity[1] + 1), target)
+            self.assertTrue(link.is_symlink())
+            with self.assertRaises(RuntimeError):
+                faults.unlink_owned_symlink(link, identity, root / 'wrong-target')
+            self.assertTrue(link.is_symlink())
+            faults.unlink_owned_symlink(link, identity, target)
+            self.assertFalse(os.path.lexists(link))
+            self.assertEqual((target / 'unexpected').read_text(), 'preserve this evidence')
+
+    @unittest.skipUnless(os.name == 'posix' and getattr(os, 'geteuid', lambda: -1)() == 0, 'root Linux submission fixture')
+    def test_symlink_fixture_refuses_existing_requests_and_preserves_unexpected_writes(self):
+        for writes in [False, True]:
+            with self.subTest(writes=writes), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                submissions, fixture = root / 'run', root / 'evidence'
+                fixture.mkdir()
+                value = {'schema_version': 1}
+                inventory = {'requests': None, 'receipts': None, 'active': None, 'history': []}
+                def submit(*_args):
+                    self.assertTrue((submissions / 'requests').is_symlink())
+                    if writes:
+                        (fixture / 'canary/unexpected').write_text('saved evidence')
+                    return {'code': 1, 'output': '', 'error': 'management path contains a link or non-directory'}
+                with patch.object(faults, 'guest_guard', return_value={'run_id': 'a' * 32}), \
+                        patch.object(faults, 'idle_noop', return_value=value), \
+                        patch.object(faults, 'SUBMISSIONS', submissions), \
+                        patch.object(faults, 'submission_fixture', return_value=fixture), \
+                        patch.object(faults, 'submission_inventory', return_value=inventory), \
+                        patch.object(faults, 'json_input', side_effect=submit) as invoked:
+                    if writes:
+                        with self.assertRaisesRegex(RuntimeError, 'wrote through'):
+                            faults.guest_submission_symlink()
+                        self.assertEqual((fixture / 'canary/unexpected').read_text(), 'saved evidence')
+                    else:
+                        self.assertTrue(faults.guest_submission_symlink()['passed'])
+                    self.assertFalse(os.path.lexists(submissions / 'requests'))
+                    (submissions / 'requests').mkdir()
+                    invoked.reset_mock()
+                    with self.assertRaisesRegex(RuntimeError, 'absent request staging'):
+                        faults.guest_submission_symlink()
+                    invoked.assert_not_called()
+                self.assertEqual(json.loads((fixture / 'result.json').read_text())['passed'], not writes)
+
+    def test_worker_start_fixture_preserves_an_existing_runtime_override(self):
+        with tempfile.TemporaryDirectory() as directory:
+            mask = Path(directory) / 'astraeus-apply@.service'
+            mask.write_text('existing override')
+            with patch.object(faults, 'guest_guard', return_value={}), \
+                    patch.object(faults, 'idle_noop', return_value={}), \
+                    patch.object(faults, 'RUNTIME_MASK', mask), patch.object(faults, 'call') as call:
+                with self.assertRaisesRegex(RuntimeError, 'override already exists'):
+                    faults.guest_worker_start_failure()
+                call.assert_not_called()
+            self.assertEqual(mask.read_text(), 'existing override')
+
+    @unittest.skipUnless(os.name == 'posix' and getattr(os, 'geteuid', lambda: -1)() == 0, 'root Linux runtime mask fixture')
+    def test_worker_start_fixture_unmasks_only_owned_override_after_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixture = root / 'evidence'
+            fixture.mkdir()
+            mask = root / 'astraeus-apply@.service'
+            with patch.object(faults, 'guest_guard', return_value={'run_id': 'a' * 32}), \
+                    patch.object(faults, 'idle_noop', return_value={}), \
+                    patch.object(faults, 'RUNTIME_MASK', mask), \
+                    patch.object(faults, 'submission_fixture', return_value=fixture), \
+                    patch.object(faults, 'submission_inventory', return_value={}), \
+                    patch.object(faults, 'guest_observe', return_value={}), \
+                    patch.object(faults, 'call', side_effect=[RuntimeError('injected reload failure'), {}]) as call:
+                with self.assertRaisesRegex(RuntimeError, 'injected reload failure'):
+                    faults.guest_worker_start_failure()
+                self.assertEqual(call.call_args_list, [unittest.mock.call('systemctl', 'daemon-reload')] * 2)
+            self.assertFalse(os.path.lexists(mask))
+            self.assertFalse(json.loads((fixture / 'result.json').read_text())['passed'])
+
+    def test_guest_invocations_are_fixed_and_quoted(self):
+        vm = Mock()
+        vm.command.return_value = {'output': '{}'}
+        faults.guest_command(vm, 'recover', '123-456')
+        command = vm.command.call_args.args[0]
+        self.assertEqual(command, 'python3 /mnt/astraeus-validation/phase42-faults.py guest recover 123-456')
+        self.assertEqual(vm.command.call_args.kwargs['timeout'], 1000)
+
+    def test_real_package_hook_uses_posttransaction_worker_ancestor_and_durable_marker(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            paths = root / 'runtime', root / 'hooks/fault.hook', root / 'logs/barrier.json'
+            with patch.object(faults, 'guest_guard', return_value={'run_id': 'a' * 32, 'package': 'hello'}), \
+                    patch.object(faults, 'barrier_paths', return_value=paths), patch.object(faults.os, 'sync', create=True):
+                result = faults.guest_arm_hook()
+            self.assertEqual(result['when'], 'PostTransaction')
+            self.assertIn('Target = hello', paths[1].read_text())
+            self.assertIn('When = PostTransaction', paths[1].read_text())
+            source = (paths[0] / 'barrier.py').read_text()
+            compile(source, 'barrier.py', 'exec')
+            self.assertIn("args[1:3]==[b'system',b'worker']", source)
+            self.assertIn('os.fsync', source)
+            self.assertIn('time.sleep(3600)', source)
+
+    def test_hook_and_signer_faults_have_distinct_real_mutation_boundaries(self):
+        for kind in ['failed-hook', 'signing-failure']:
+            with self.subTest(kind=kind), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                paths = root / 'runtime', root / 'hooks/fault.hook', root / 'logs/marker.json'
+                with patch.object(faults, 'guest_guard', return_value={'run_id': 'a' * 32, 'package': 'hello'}), \
+                        patch.object(faults, 'barrier_paths', return_value=paths), patch.object(faults.os, 'sync', create=True):
+                    result = faults.guest_arm_hook(kind)
+                self.assertEqual(result['fault'], kind)
+                script = (paths[0] / 'barrier.py').read_text()
+                compile(script, 'fault.py', 'exec')
+                if kind == 'failed-hook':
+                    self.assertIn('When = PreTransaction', paths[1].read_text())
+                    self.assertIn('AbortOnFail', paths[1].read_text())
+                    self.assertIn('sys.exit(1)', script)
+                    self.assertNotIn('key.rename', script)
+                else:
+                    self.assertIn('When = PostTransaction', paths[1].read_text())
+                    self.assertIn('key.rename(backup)', script)
+                    self.assertIn('expected_private_key_missing', script)
+                    self.assertNotIn('key.read_bytes', script)
+                    self.assertNotIn('key.open', script)
+
+    def test_failed_mutation_requires_prior_snapshot_exact_cause_and_no_candidate(self):
+        record = {'state': 'rollback_required', 'failure': {'at': 'validating', 'message': 'boot artifact regeneration: missing key'},
+                  'snapshot': 'pre', 'post_snapshot': None, 'boot_regenerated': False, 'confirmation': None,
+                  'events': [{'state': 'snapshot_created'}, {'state': 'applying'}]}
+        faults.failed_mutation(record, 'validating', 'boot artifact regeneration')
+        for field, value in [('state', 'succeeded'), ('snapshot', None), ('post_snapshot', 'published'),
+                             ('boot_regenerated', True), ('confirmation', {'passed': True})]:
+            with self.subTest(field=field), self.assertRaises(RuntimeError):
+                faults.failed_mutation(dict(record, **{field: value}), 'validating', 'boot artifact regeneration')
+        with self.assertRaises(RuntimeError):
+            faults.failed_mutation(record, 'applying', 'package application')
+
+    def test_capacity_budget_matches_native_preflight_and_fault_is_bounded(self):
+        mib = 1024 * 1024
+        plan = {'plan': {'boot': {'regenerate_uki': True}, 'packages': {'download_bytes': 10, 'targets': [{'installed_bytes': 20}]}}}
+        self.assertEqual(faults.capacity_budget(plan, 'root-space'), 256 * mib + 30)
+        self.assertEqual(faults.capacity_budget(plan, 'cache-space'), 256 * mib + 30)
+        self.assertEqual(faults.capacity_budget(plan, 'esp-space'), 512 * mib)
+        self.assertEqual(faults.capacity_target('root-space', 30 * 1024 * mib, 256 * mib), (30 * 1024 - 128) * mib)
+        self.assertEqual(faults.capacity_target('esp-space', 800 * mib, 512 * mib), 416 * mib)
+        for kind, before, required in [('root-space', 256 * mib, 256 * mib), ('esp-space', 2048 * mib, 512 * mib),
+                                       ('root-space', 100 * 1024 * mib, 256 * mib), ('root-space', 1024 * mib, 64 * mib)]:
+            with self.subTest(kind=kind, before=before), self.assertRaises(RuntimeError):
+                faults.capacity_target(kind, before, required)
+
+    def test_capacity_refusal_must_be_the_injected_preflight_cause_without_mutation(self):
+        record = {'state': 'failed', 'failure': {'at': 'preparing', 'message': 'package prerequisites: insufficient disk space: 123 bytes required, 12 available'}}
+        faults.capacity_failure(record, 123)
+        for field, value in [('state', 'rollback_required'), ('snapshot', 'pre'), ('post_snapshot', 'post'),
+                             ('boot_regenerated', True), ('confirmation', {'passed': True})]:
+            with self.subTest(field=field), self.assertRaises(RuntimeError):
+                faults.capacity_failure(dict(record, **{field: value}), 123)
+        with self.assertRaises(RuntimeError):
+            faults.capacity_failure(record, 124)
+
+    @unittest.skipUnless(sys.platform == 'linux' and os.environ.get('ASTRAEUS_CAPACITY_LOOPBACK') == '1',
+                         'explicit Linux root Btrfs loopback check')
+    def test_real_btrfs_capacity_reservation_does_not_fill_outer_image(self):
+        self.assertEqual(os.geteuid(), 0)
+        for tool in ['losetup', 'mkfs.btrfs', 'mount', 'umount']:
+            self.assertIsNotNone(shutil.which(tool), tool)
+        with tempfile.TemporaryDirectory(prefix='astraeus-capacity-test-', dir='/root') as directory:
+            root = Path(directory)
+            image, mount = root / 'filesystem.img', root / 'mount'
+            with image.open('xb') as stream:
+                stream.truncate(1024 ** 3)
+            mount.mkdir()
+            device = subprocess.check_output(['losetup', '--find', '--show', str(image)], text=True).strip()
+            self.assertRegex(device, r'^/dev/loop[0-9]+$')
+            mounted = False
+            try:
+                subprocess.run(['mkfs.btrfs', '-f', device], check=True, capture_output=True)
+                subprocess.run(['mount', device, str(mount)], check=True, capture_output=True)
+                mounted = True
+                os.sync()
+                before_outer = faults.allocated_bytes(image)
+                before_free = faults.available(mount)
+                allocation = faults.capacity_target('root-space', before_free, 256 * 1024 ** 2)
+                filler = mount / 'reservation'
+                with filler.open('xb') as stream:
+                    faults.reserve_btrfs(stream.fileno(), allocation)
+                    os.fsync(stream.fileno())
+                os.sync()
+                self.assertLess(faults.available(mount), 256 * 1024 ** 2)
+                self.assertEqual(filler.stat().st_size, allocation)
+                self.assertLess(faults.allocated_bytes(image) - before_outer, 64 * 1024 ** 2)
+                filler.unlink()
+                os.sync()
+                self.assertGreaterEqual(faults.available(mount), 256 * 1024 ** 2)
+            finally:
+                if mounted:
+                    subprocess.run(['umount', str(mount)], check=True, capture_output=True)
+                subprocess.run(['losetup', '--detach', device], check=True, capture_output=True)
+
+    def test_recovery_attach_is_readonly_secondary_and_does_not_change_firmware(self):
+        _, p2 = faults.host_modules()
+        original = p2.install.qemu_command
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            session = root / 'boot-1'
+            session.mkdir()
+            (session / 'serial.log').write_text(faults.SECURE_LIVE_MARKER + '\n' + faults.LIVE_DESKTOP_MARKER)
+            vm = Mock(session=session, out=root, monitor=root / 'qmp.sock')
+            def start():
+                vm.actual_command = p2.install.qemu_command(root / 'secure.fd', root / 'vars.fd', root / 'disk.qcow2',
+                                                            root / 'serial.log', root / 'qmp.sock', secure_boot=True)
+            vm.start.side_effect = start
+            faults.start_recovery(vm, arguments(recovery_image=root / 'recovery.img'), {'minimum_ram_gib': 8})
+            self.assertIs(p2.install.qemu_command, original)
+            self.assertIn('virtio-blk-pci,drive=osdisk,bootindex=2', vm.actual_command)
+            self.assertIn('usb-storage,drive=recovery,bootindex=1', vm.actual_command)
+            self.assertTrue(any('id=recovery,format=raw,readonly=on' in part for part in vm.actual_command))
+            self.assertEqual(vm.actual_command[vm.actual_command.index('-m') + 1], '8192')
+            self.assertIn('q35,accel=kvm,smm=on', vm.actual_command)
+            vm.ready.assert_called_once()
+            vm.start.side_effect = RuntimeError('launch failed')
+            with self.assertRaisesRegex(RuntimeError, 'launch failed'):
+                faults.start_recovery(vm, arguments(recovery_image=root / 'recovery.img'), {'minimum_ram_gib': 8})
+            self.assertIs(p2.install.qemu_command, original)
+
+    def test_guest_actions_refuse_an_ordinary_host_before_running_commands(self):
+        with patch.object(faults.sys, 'platform', 'linux'), patch.object(faults.os, 'geteuid', return_value=0, create=True), \
+                patch.object(faults, 'Path') as path, patch.object(faults, 'call') as call:
+            path.return_value.exists.return_value = False
+            with self.assertRaisesRegex(RuntimeError, 'dedicated KVM'):
+                faults.guest_guard()
+            call.assert_not_called()
+
+    def test_configuration_rejects_paths_and_shell_arguments_as_identifiers(self):
+        config = dict(schema_version=1, run_id='a' * 32, source_commit='b' * 40, distroctl_sha256='c' * 64,
+                      desktop_sha256='d' * 64, certificate_sha256='e' * 64, image_sha256='f' * 64,
+                      user='tester', package='hello', encryption='none')
+        faults.configuration(config)
+        for field, value in [('user', 'root'), ('package', '--config=/bad'), ('run_id', '../outside'),
+                             ('distroctl_sha256', 'unknown'), ('encryption', 'luks1')]:
+            with self.subTest(field=field), self.assertRaises(RuntimeError):
+                faults.configuration(dict(config, **{field: value}))
+
+    def test_command_help_does_not_start_a_vm(self):
+        result = subprocess.run([sys.executable, str(ROOT / 'scripts/validate/phase42-faults.py'), 'run', '--help'],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for option in ['--metadata-package', '--recovery-image', '--recovery-manifest', '--harness-commit']:
+            self.assertIn(option, result.stdout)
+
+
+if __name__ == '__main__':
+    unittest.main()

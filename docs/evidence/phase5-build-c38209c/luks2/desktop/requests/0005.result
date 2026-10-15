@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T11:35:38.918778+00:00",
+  "request": "0005.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"confirmed_close_passed\": true, \"latest\": {\"created_unix_seconds\": 1792064082, \"elapsed_seconds\": 54.910040108, \"failure\": \"cancelled by caller\", \"id\": \"c630c3b49004a985ed4008d024679a48\", \"kind\": \"baseline\", \"state\": \"cancelled\"}, \"native_export_exact\": true, \"export_id\": \"825395348b250bbd394ced6905a9e760\", \"export_sha256\": \"f9ae3a981bf90ee6c452b3098673546af51fe031a7f85adac66f50a047c48887\", \"export_bytes\": 37756, \"export_uid\": 1000, \"runs\": [{\"created_unix_seconds\": 1792064082, \"elapsed_seconds\": 54.910040108, \"failure\": \"cancelled by caller\", \"id\": \"c630c3b49004a985ed4008d024679a48\", \"kind\": \"baseline\", \"state\": \"cancelled\"}, {\"created_unix_seconds\": 1792063801, \"elapsed_seconds\": 99.850416664, \"failure\": null, \"id\": \"825395348b250bbd394ced6905a9e760\", \"kind\": \"baseline\", \"state\": \"completed\"}, {\"created_unix_seconds\": 1792063222, \"elapsed_seconds\": 1.625307324, \"failure\": \"cancelled by caller\", \"id\": \"e7b219d807609844b8ed0c0618b3f040\", \"kind\": \"record\", \"state\": \"cancelled\"}, {\"created_unix_seconds\": 1792063219, \"elapsed_seconds\": 1.817737586, \"failure\": \"cancelled by caller\", \"id\": \"ccc547eacf08812ffa38a09b931169ca\", \"kind\": \"record\", \"state\": \"cancelled\"}, {\"created_unix_seconds\": 1792062646, \"elapsed_seconds\": 0.051539604, \"failure\": \"cancelled by caller\", \"id\": \"95b715e0c50dd7daa47f78eef9547eb0\", \"kind\": \"record\", \"state\": \"cancelled\"}, {\"created_unix_seconds\": 1792062548, \"elapsed_seconds\": 97.684440907, \"failure\": null, \"id\": \"4b4c448a0ddf19278e1d9002bb3790d8\", \"kind\": \"baseline\", \"state\": \"completed\"}, {\"created_unix_seconds\": 1792062450, \"elapsed_seconds\": 98.037405496, \"failure\": null, \"id\": \"c5e7da3d0cc23540e1ac244552e3b7c5\", \"kind\": \"baseline\", \"state\": \"completed\"}, {\"created_unix_seconds\": 1792062448, \"elapsed_seconds\": 2.038175697, \"failure\": null, \"id\": \"04235c004273b7d87a1e595f897b7b79\", \"kind\": \"record\", \"state\": \"completed\"}]}\n",
+    "id": "b37e18b310a947e2a300271225ca35f4",
+    "boot_id": "40dbb949-0ae4-4ca1-9b84-3c81525a1da0"
+  },
+  "finished": "2026-10-15T11:35:49.882370+00:00"
+}

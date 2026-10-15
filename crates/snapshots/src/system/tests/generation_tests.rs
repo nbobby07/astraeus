@@ -564,3 +564,33 @@ fn offline_rollback_retires_generation_selection_only_after_restoring_pair() {
     assert!(f.manager.generation_counter(&prior.id).unwrap().is_none());
     assert!(!f.manager.generation_pending().unwrap());
 }
+
+#[test]
+fn offline_rollback_clears_preferences_when_recovery_booted_directly_from_stub() {
+    let f = Fixture::new();
+    let prior = baseline(&f);
+    candidate(&f, &prior);
+    f.fake
+        .boot
+        .borrow_mut()
+        .insert("direct-stub".into(), "1".into());
+    f.fake.calls.borrow_mut().clear();
+    f.manager.rollback(&prior.snapshot).unwrap();
+    assert!(f.manager.generation_selection().unwrap().is_none());
+    for verb in ["set-oneshot", "set-default", "set-preferred"] {
+        assert_eq!(
+            f.fake
+                .calls
+                .borrow()
+                .iter()
+                .filter(|(program, args)| {
+                    program == "bootctl"
+                        && args.first().map(String::as_str) == Some("--variables=yes")
+                        && args.get(3).map(String::as_str) == Some(verb)
+                        && args.get(4).map(String::as_str) == Some("")
+                })
+                .count(),
+            2
+        );
+    }
+}

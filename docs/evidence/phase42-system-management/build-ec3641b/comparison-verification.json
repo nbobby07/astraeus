@@ -1,0 +1,48 @@
+{
+  "time": "2026-10-14T18:05:55.877840+00:00",
+  "passed": true,
+  "source_commit": "ec3641b72ad48d0ed24d4d9c8aa1a39cce938025",
+  "comparison_sha256": "ec69e9452ce9981d87c5e9724fdb3ed6dca7b5c02ad6facbc672dc4044fcff34",
+  "required_true_fields": [
+    "iso_bytes_equal",
+    "iso_hashes_equal",
+    "independently_built_package_bytes_equal",
+    "generated_package_source_archive_equal",
+    "image-packages.txt_equal",
+    "installed-packages.txt_equal",
+    "builder-packages.txt_equal",
+    "packages-before-build.txt_equal",
+    "inputs.json_equal",
+    "source-sha256.txt_equal",
+    "builder-script-sha256.txt_equal"
+  ],
+  "cmp_exit_code": 0,
+  "images": {
+    "A": {
+      "path": "/home/ubuntu/p42/candidate-ec3641b72ad4-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+      "bytes": 3783227392
+    },
+    "B": {
+      "path": "/home/ubuntu/p42/candidate-ec3641b72ad4-r1/share/evidence/B/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "sha256": "2bfc2f021c2bbe0a31de19339909dea45ede0452aef8f5946cb740f3a6ad55ca",
+      "bytes": 3783227392
+    }
+  },
+  "independently_built_package_hashes": {
+    "A": {
+      "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": "ef80d32616e39f8d12447cf413efea175a778cdc51bb5c6f47be3a15c9015c3b",
+      "calamares-3.4.3-1-x86_64.pkg.tar.zst": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+      "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+      "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": "40981acea1038fab29f2db61df222091ddcdb2341155ada5c315846dd6c7252a",
+      "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": "f8306dcfd1a68a2215290ff1a096d5f0a534081d178da1b4bcd8eaabd5faf78d"
+    },
+    "B": {
+      "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": "ef80d32616e39f8d12447cf413efea175a778cdc51bb5c6f47be3a15c9015c3b",
+      "calamares-3.4.3-1-x86_64.pkg.tar.zst": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+      "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+      "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": "40981acea1038fab29f2db61df222091ddcdb2341155ada5c315846dd6c7252a",
+      "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": "f8306dcfd1a68a2215290ff1a096d5f0a534081d178da1b4bcd8eaabd5faf78d"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "archive_sha256": "ff51b09a1342f8091d6ba4cb9548b3e106b6f16e45a41e33bc8ddd39b94edf58",
+  "checks": [
+    "draft adoption unchanged",
+    "cancel and deny unchanged",
+    "same worker survives close and guarded GUI crash",
+    "removal only MangoHud; all retained versions/reasons preserved",
+    "pre-existing unmanaged tree and personal sentinel preserved",
+    "true noop unchanged after worker exit",
+    "external reason drift preserved by metadata reconciliation",
+    "all five independent CLI/GUI plan digests and UID1000 match",
+    "bundle overlap preserves every package and reason",
+    "six successful audit records; five new-root boot confirmations, one true noop",
+    "native export owned by ordinary user",
+    "graceful final shutdown"
+  ],
+  "note": "Root request channel is test observation/injection only. Actual GUI interaction and authentication are separately retained in QMP screenshots. Original failed and premature screenshots are retained, not treated as passing observations."
+}

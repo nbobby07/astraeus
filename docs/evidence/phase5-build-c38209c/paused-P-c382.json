@@ -1,0 +1,39 @@
+{
+  "confirmed_at": "2026-10-15T12:07:34.049Z",
+  "retained_disk": true,
+  "evidence_export_verified": true,
+  "data": {
+    "id": "vm-2522219a90d843388cb120130215bd5f",
+    "state": "paused",
+    "slug": "astraeus-phase5-plain-tests",
+    "displayName": "Astraeus Phase 5 plain installation tests",
+    "resources": {
+      "cpu": 4,
+      "memory": 16384,
+      "storage": 65536
+    },
+    "image": null,
+    "snapshotId": "sh-5779fd551557471792701bdf9bc3214c",
+    "sourceSnapshotSlugAtCreate": "freestyle/ubuntu",
+    "sourceSnapshotSlug": "ubuntu",
+    "sourceSnapshotDisplayName": "Ubuntu 24.04 LTS (4 vCPU · 8 GiB · 32 GB)",
+    "idleTimeoutSeconds": 3600,
+    "totalRunSeconds": 14430,
+    "automaticRestart": false,
+    "ipMode": "dualStack",
+    "publicIpv6": "2602:f470:40:1:65e9:7b7e:9964:e8ec",
+    "egressIpv4": "208.72.218.134",
+    "egressIpv6": "2602:f470:40:1:65e9:7b7e:9964:e8ec",
+    "metadata": {
+      "phase": "phase5.0",
+      "role": "plain-install",
+      "source_commit": "08713dfa7f2096217710ef4f6311e2d6bb264db5"
+    },
+    "cpuTimeSeconds": null,
+    "lastNetworkActivity": "2026-10-15T12:06:35.649412Z",
+    "vpcs": [],
+    "networks": [],
+    "createdAt": "2026-10-15T06:21:54.978576Z",
+    "updatedAt": "2026-10-15T12:07:30.927607Z"
+  }
+}

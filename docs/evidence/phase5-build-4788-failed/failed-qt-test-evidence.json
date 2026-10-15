@@ -1,0 +1,16 @@
+{
+  "read_only": true,
+  "source_commit": "4788cb295a89bcb27d96db940c24507e9b1a27d1",
+  "label": "A",
+  "test_log_sha256": "9d56845f68afc92f51ac33fc53a3ceb2fdd87a472cfa73533dc55a1daa83d38e",
+  "platform_source_sha256": "8a7ba6c4f4fc0e19685b69c793d1fcf8d82c2652070e2343637bcaa874f5ec67",
+  "platform_source_bytes": 11040588,
+  "recipe_sha256": "e4339c1549c6f3335d4ccfb475eb1cf21a5c1785f125580fa7a152dab5c10a45",
+  "totals": [
+    "Totals: 21 passed, 1 failed, 0 skipped, 0 blacklisted, 2299ms",
+    "Totals: 13 passed, 0 failed, 0 skipped, 0 blacklisted, 792ms",
+    "Totals: 16 passed, 0 failed, 0 skipped, 0 blacklisted, 1997ms"
+  ],
+  "nbd_disconnected": true,
+  "accepted": false
+}

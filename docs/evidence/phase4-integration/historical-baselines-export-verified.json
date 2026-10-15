@@ -1,0 +1,12 @@
+{
+  "plain": {
+    "sha256": "ff6f8f335641fd6f47cb9d510370a031f5ddb458b5ad76153578d0a49e125b11",
+    "bytes": 3005284352,
+    "path": "D:\\Astraeus-Phase4-Integration-Evidence\\private\\phase3-base-plain.qcow2"
+  },
+  "luks": {
+    "sha256": "98f535cd09849e5a99f779d715a5e84673fbb0860eaf22b4d3104166dbbaaa05",
+    "bytes": 3001679872,
+    "path": "D:\\Astraeus-Phase4-Integration-Evidence\\private\\phase3-base-luks.qcow2"
+  }
+}

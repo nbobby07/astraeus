@@ -1,0 +1,10 @@
+{
+  "fingerprint": "266918787E6570FD0B4B6E889E8A79CE8852B557",
+  "created_epoch": 1791770662,
+  "expires_epoch": 1792375462,
+  "database_sha256": "7f3515f1cdc3453ed606340f2ac0715faf0e327898e9b51de1f7ec5d975d6dca",
+  "signature_sha256": "06c10c15983135ec7c830c403ae12a71dcd64fbbfc0de290352d8008c174391c",
+  "public_key_sha256": "14544fcfa0a8a1ad4722d0470eaaec99d8c5132bdacf33920dc8ea886c821487",
+  "package_signatures": "Unchanged; package installation is outside this dry-run fixture qualification",
+  "trust": "Existing keyring overlaid in private mount namespace; public key imported and locally signed there only"
+}

@@ -1,0 +1,10 @@
+{
+  "started": "2026-10-14T16:51:16.978373+00:00",
+  "passed": true,
+  "guest_execution": false,
+  "audit_result_sha256": "7ea90d8ea46ffed217900218d2186207dcde4cfd501ccfc272070493b29c4141",
+  "decoder_preflight_sha256": "72760ff0c93d5400079417272aad286c2aec27ac60de510bba34b1b2db1eead7",
+  "finished": "2026-10-14T16:53:34.437188+00:00",
+  "free_bytes": 34459488256,
+  "scratch_exists": false
+}

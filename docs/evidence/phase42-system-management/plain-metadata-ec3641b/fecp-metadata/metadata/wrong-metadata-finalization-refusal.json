@@ -1,0 +1,5 @@
+{
+  "diagnostic": "distroctl: booted applied configuration, ownership or package reasons differ from intended generation\n",
+  "method": "consistent-wrong-management-negative-control",
+  "rejected": true
+}

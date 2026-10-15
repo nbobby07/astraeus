@@ -1,0 +1,17 @@
+{
+  "started": "2026-10-11T04:33:33.810655+00:00",
+  "request": {
+    "action": "command",
+    "label": "security-and-no-workloads",
+    "command": "distroctl security status --json; systemctl --failed --no-legend --plain; pgrep -u tester -a -f 'windows-smoke.exe|vkcube|glxgears|ubuntu12_32/steam' || test $? = 1; sha256sum /etc/pacman.conf /var/lib/pacman/sync/distro.db /var/lib/pacman/sync/distro.db.sig",
+    "timeout": 45
+  },
+  "reply": {
+    "code": 0,
+    "error": null,
+    "output": "{\n  \"artifacts\": {\n    \"bootloader\": {\n      \"path\": \"/efi/EFI/systemd/systemd-bootx64.efi\",\n      \"sha256\": \"8e3f3c64456da14d36db44855dcfe47580f10618476e66f0994daa92449e5c1b\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"fallback_bootloader\": {\n      \"path\": \"/efi/EFI/BOOT/BOOTX64.EFI\",\n      \"sha256\": \"8e3f3c64456da14d36db44855dcfe47580f10618476e66f0994daa92449e5c1b\",\n      \"signature\": \"valid-for-configured-certificate\"\n    },\n    \"uki\": {\n      \"path\": \"/efi/EFI/Linux/astraeus-dev-linux.efi\",\n      \"sha256\": \"5622541b18bfd076d8bc5e6c5776bdc82b9d52c48a3d4ba14dc0f7536dd8edba\",\n      \"signature\": \"valid-for-configured-certificate\"\n    }\n  },\n  \"certificate_sha256\": \"35b131177d53a681d5d2808a992ed237d7a9f457f733eb4e040616bceb6073e8\",\n  \"enrollment_readiness\": \"manual-firmware-review-required\",\n  \"firmware\": {\n    \"AuditMode\": null,\n    \"DeployedMode\": null,\n    \"KEK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"PK\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"SecureBoot\": true,\n    \"SetupMode\": false,\n    \"db\": {\n      \"contains_signer_certificate\": true,\n      \"empty\": false,\n      \"other_signature_types\": false,\n      \"readable\": true\n    },\n    \"dbx\": {\n      \"contains_signer_certificate\": false,\n      \"empty\": false,\n      \"other_signature_types\": true,\n      \"readable\": true,\n      \"sha256_images\": [\n        \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n      ]\n    },\n    \"image_authorization\": \"not-evaluated\"\n  },\n  \"identity\": \"valid\",\n  \"policy\": \"configured\",\n  \"schema_version\": 1,\n  \"signing_key_present\": true\n}\ndc3dfff693a85f8fc5d7bb9214fe584fbc15d89228df65764f9ab9355d30cf95  /etc/pacman.conf\n7f3515f1cdc3453ed606340f2ac0715faf0e327898e9b51de1f7ec5d975d6dca  /var/lib/pacman/sync/distro.db\n653c7fa82350d712a1e47bc4ce582061a21d81d055a561874d7cd9ff5777b16e  /var/lib/pacman/sync/distro.db.sig\n",
+    "id": "b1b972d0b4bd41d588e3a9b487dcb7d2",
+    "boot_id": "4305638a-760e-447a-b8c0-9e1a10424402"
+  },
+  "finished": "2026-10-11T04:33:34.917689+00:00"
+}

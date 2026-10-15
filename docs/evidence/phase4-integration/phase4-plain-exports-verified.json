@@ -1,0 +1,12 @@
+{
+  "base": {
+    "bytes": 3305373696,
+    "sha256": "eafebca45776fca62b848c77dfbb40dd3189b616727fe0bc9b8c9cb03eaa67a9",
+    "path": "D:\\Astraeus-Phase4-Integration-Evidence\\private\\phase4-base-plain.qcow2"
+  },
+  "install": {
+    "bytes": 3243507712,
+    "sha256": "79c73de5744b78458fd6966922f4588fe1fbd50c22a2fdf8934b05656768a466",
+    "path": "D:\\Astraeus-Phase4-Integration-Evidence\\private\\phase4-install-plain.qcow2"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "rust": {
+    "passed": 114,
+    "ignored": 1
+  },
+  "formatting": "PASS",
+  "clippy": "PASS",
+  "python": {
+    "total_each": 119,
+    "linux_unprivileged": {
+      "passed": 92,
+      "skipped": 27
+    },
+    "linux_root": {
+      "passed": 116,
+      "skipped": 3
+    },
+    "windows": {
+      "passed": 72,
+      "skipped": 47
+    }
+  },
+  "focused_tests": 15,
+  "package_catalogs": "PASS",
+  "host_schema_documents": 4,
+  "guest_gaming_schemas": "PASS",
+  "graphics_report_integration": "Exact equality with actual graphics command report",
+  "software_readiness": "Native and compat32 runtime passed, graphics acceleration unsupported/untested",
+  "mangohud_visual": "Two inspected changing cube/overlay frames, normal close 0",
+  "steam_runtime": "ELF32, library and runtime diagnostics passed; normal shutdown 0",
+  "negative_cases": {
+    "passed": 16,
+    "failed": 1
+  }
+}

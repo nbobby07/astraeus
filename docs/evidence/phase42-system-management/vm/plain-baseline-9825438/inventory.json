@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "source_commit": "9825438d275c3037fcb41fbd768eebc71ef3f38c",
+  "files": {
+    "actual-desktop-1.json": {
+      "sha256": "a3e00a8c5b7f87fdf68965b5658b12a4d0618d9caade853f85997b4d9b74017f",
+      "bytes": 7418
+    },
+    "actual-desktop-2.json": {
+      "sha256": "07e0e9878aaf05c8e3dbc8a20413f20e7fe8b72b80d26062278eb0a9e99dfde4",
+      "bytes": 7409
+    },
+    "baseline.json": {
+      "sha256": "73f4e7f972d4d7f5db52982d8f9ab32b7a45ea0631c36e530f798124eb47ded0",
+      "bytes": 2229
+    },
+    "fresh-installation.json": {
+      "sha256": "262773844dd753809b012589c598fd2affc8139969b304ccf76b56fec38b95e9",
+      "bytes": 1556
+    },
+    "fresh-installed-1.json": {
+      "sha256": "7d93c5a3191a53e050d0bbddd6f4ba91431be6bad2f31884042a692c0147339c",
+      "bytes": 149701
+    },
+    "fresh-installed-2.json": {
+      "sha256": "c42769ff43d164b536b39252d8b477a00b9cc964d33d4cd51d75d2ba34b92bdf",
+      "bytes": 149436
+    },
+    "maintained-uki-trust-1.json": {
+      "sha256": "3108c721bb68de0d88ef352f8268ab89ec0cf635a31cb8e1aab81fb08740e7da",
+      "bytes": 361
+    },
+    "maintained-uki-trust-2.json": {
+      "sha256": "3108c721bb68de0d88ef352f8268ab89ec0cf635a31cb8e1aab81fb08740e7da",
+      "bytes": 361
+    },
+    "result.json": {
+      "sha256": "c6ee7c1c6b60b6dc31f3ae49b9c7d991be393ca79025ca40f84218674203e1db",
+      "bytes": 518
+    }
+  }
+}
