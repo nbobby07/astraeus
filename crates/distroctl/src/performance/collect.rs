@@ -435,6 +435,20 @@ pub(super) fn power_sources(root: &Path) -> BTreeMap<String, String> {
     }
     sources
 }
+pub(super) fn binary_digest(source: impl Read) -> std::io::Result<String> {
+    let mut source = source.take(128 * 1024 * 1024);
+    let mut hash = Sha256::new();
+    let mut buffer = [0; 64 * 1024];
+    loop {
+        match source.read(&mut buffer) {
+            Ok(0) => return Ok(distro_transactions::hex(&hash.finalize())),
+            Ok(count) => hash.update(&buffer[..count]),
+            Err(error) if error.kind() == std::io::ErrorKind::Interrupted => continue,
+            Err(error) => return Err(error),
+        }
+    }
+}
+
 pub(super) fn context() -> Context {
     let root = Path::new("/");
     let observed = crate::status();
@@ -469,9 +483,7 @@ pub(super) fn context() -> Context {
     }
     let binary_sha256 = std::env::current_exe().ok().and_then(|p| {
         let file = fs::File::open(p).ok()?;
-        let mut bytes = Vec::new();
-        file.take(128 * 1024 * 1024).read_to_end(&mut bytes).ok()?;
-        Some(distro_transactions::hex(&Sha256::digest(bytes)))
+        binary_digest(file).ok()
     });
     Context {
         architecture: hw.cpu.architecture,
