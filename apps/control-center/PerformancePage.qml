@@ -26,10 +26,11 @@ ScrollView {
     Dialog {
         id: baselineDialog
         title: qsTr("Run a short system baseline?")
+        modal: true
         anchors.centerIn: parent
         width: Math.min(page.width - 24, 540)
         standardButtons: Dialog.Ok | Dialog.Cancel
-        Label { width: parent.width; wrapMode: Text.WordWrap; text: qsTr("Allow roughly two minutes. The tests use at most 4 CPU threads, 128 MiB of memory and one 128 MiB scratch file. Close demanding applications for a useful comparison. You can stop at any time. Results include filesystem caching and are development measurements.") }
+        contentItem: Label { wrapMode: Text.WordWrap; text: qsTr("Allow roughly two minutes. The tests use at most 4 CPU threads, 128 MiB of memory and one 128 MiB scratch file. Close demanding applications for a useful comparison. You can stop at any time. Results include filesystem caching and are development measurements.") }
         onAccepted: page.backend.start("baseline")
     }
     ColumnLayout {

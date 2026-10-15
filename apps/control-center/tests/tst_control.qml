@@ -255,4 +255,18 @@ TestCase {
         tryCompare(findChild(app, "baselinePerformance"), "enabled", false);
         perf.blocked = true; tryCompare(record, "enabled", false);
     }
+    function test_performanceBaselineReviewDialog() {
+        app.section = 4;
+        const baseline = findChild(app, "baselinePerformance");
+        tryCompare(baseline, "enabled", true);
+        baseline.forceActiveFocus(); keyClick(Qt.Key_Space);
+        wait(300);
+        verify(waitForPolish(app)); waitForRendering(app.contentItem);
+        const image = grabImage(app.contentItem);
+        image.save(testOutputDirectory + "/performance-baseline-dialog.png");
+        compare(perf.starts, 0);
+        keyClick(Qt.Key_Return);
+        tryCompare(perf, "starts", 1);
+        perf.stop();
+    }
 }
