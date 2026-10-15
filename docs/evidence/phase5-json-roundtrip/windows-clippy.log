@@ -1,0 +1,7 @@
+    Checking serde_json v1.0.151
+    Checking distro-snapshots v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\snapshots)
+    Checking distro-graphics v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\graphics)
+    Checking distro-config v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\config)
+    Checking distro-transactions v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\transactions)
+    Checking distroctl v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\distroctl)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.38s

@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T07:35:12.386375+00:00",
+  "request": "0005.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"uid\": 1000, \"saved_reports\": [{\"id\": \"8a2f8c890afe91d6776972318ac3261e\", \"kind\": \"baseline\", \"saved_vs_show\": [], \"show_vs_export\": []}, {\"id\": \"2c508e5f0a6f340cc440002ea0953a99\", \"kind\": \"baseline\", \"saved_vs_show\": [{\"path\": \"/samples/18/cpu_busy_percent\", \"before\": 13.165680473372781, \"after\": 13.16568047337278, \"absolute_difference\": 1.7763568394002505e-15}, {\"path\": \"/measurements/1/values/2\", \"before\": 14696.678710017999, \"after\": 14696.678710018, \"absolute_difference\": 1.8189894035458565e-12}, {\"path\": \"/measurements/2/values/2\", \"before\": 921.9176614809459, \"after\": 921.917661480946, \"absolute_difference\": 1.1368683772161603e-13}], \"show_vs_export\": []}, {\"id\": \"a2c658a4784c2825b557f1159835bbd7\", \"kind\": \"record\", \"saved_vs_show\": [], \"show_vs_export\": []}], \"short_record\": {\"id\": \"0616c7ff4f86690b0f65253ebe37b0c1\", \"stream_vs_saved\": [], \"stream_vs_show\": []}, \"numeric_identity_required\": true}\n",
+    "id": "cd73d4cc9e7449318aacc9e54b8b2460",
+    "boot_id": "ee9b3fe5-9458-4170-9c5d-a74365c58c2f"
+  },
+  "finished": "2026-10-15T07:35:14.710737+00:00"
+}

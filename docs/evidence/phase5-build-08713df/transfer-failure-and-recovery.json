@@ -1,0 +1,27 @@
+{
+  "source_commit": "08713dfa7f2096217710ef4f6311e2d6bb264db5",
+  "historical_failures_retained": true,
+  "transport_failures": [
+    "whole SDK uploads failed ECONNRESET/TLS bad record MAC",
+    "HTTP2 32/8/4 MiB resumable or atomic uploads interrupted",
+    "HTTP1 4/1 MiB parts encountered connection resets; completed parts retained"
+  ],
+  "successful_fallback": {
+    "method": "single pinned public ISO through temporary source-VM-specific TCP rules",
+    "port": 41387,
+    "source_vm": "vm-566ea9de35f94e22a81b805620a8d67b",
+    "destination_vms": [
+      "vm-2522219a90d843388cb120130215bd5f",
+      "vm-777bd3d45634463482a7931727635f20"
+    ],
+    "both_complete_copies_match_approved_SHA256": true,
+    "rules_removed": true,
+    "server_stopped": true,
+    "credentials_transferred": false,
+    "TLS_validation_disabled": false
+  },
+  "candidate_installation_started": false,
+  "bare_metal_comparison": "unit tests only",
+  "physical_qualification": false,
+  "recorded_utc": "2026-10-15T07:11:35.748810+00:00"
+}

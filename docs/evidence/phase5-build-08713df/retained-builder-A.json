@@ -1,0 +1,48 @@
+{
+  "time": "2026-10-15T06:25:51.214908+00:00",
+  "builder_disk_retained": true,
+  "disk": "/home/ubuntu/p50/candidate-08713dfa7f20-r1/builder-A/disk.qcow2",
+  "disk_stat_bytes": 19334561792,
+  "image_info": {
+    "children": [
+      {
+        "name": "file",
+        "info": {
+          "children": [],
+          "virtual-size": 19334561792,
+          "filename": "/home/ubuntu/p50/candidate-08713dfa7f20-r1/builder-A/disk.qcow2",
+          "format": "file",
+          "actual-size": 19333730304,
+          "format-specific": {
+            "type": "file",
+            "data": {}
+          },
+          "dirty-flag": false
+        }
+      }
+    ],
+    "backing-filename-format": "qcow2",
+    "virtual-size": 38654705664,
+    "filename": "/home/ubuntu/p50/candidate-08713dfa7f20-r1/builder-A/disk.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 19333730304,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "1.1",
+        "compression-type": "zlib",
+        "lazy-refcounts": false,
+        "refcount-bits": 16,
+        "corrupt": false,
+        "extended-l2": false
+      }
+    },
+    "full-backing-filename": "/home/ubuntu/p50/arch-base.qcow2",
+    "backing-filename": "/home/ubuntu/p50/arch-base.qcow2",
+    "dirty-flag": false
+  },
+  "local_evidence_export_verified_sha256": "2b23605d524961f7a1799c2bbc69d8aadd7699191ef1ce220d92a61dc5698862",
+  "local_ISO_verified_sha256": "cf5f3d557d5078e7622731b27aa0b5ed1909cc9716afa39de31ae6b478f110c5",
+  "purpose": "Retain completed A disk unchanged while pausing idle validator; no cleanup"
+}

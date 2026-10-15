@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T07:28:48.923244+00:00",
+  "request": "0003.json",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "Traceback (most recent call last):\n  File \"/mnt/astraeus-validation/phase5.py\", line 105, in <module>\n    main()\n    ~~~~^^\n  File \"/mnt/astraeus-validation/phase5.py\", line 68, in main\n    require(shown.returncode == exported.returncode == 0 and\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            json.loads(shown.stdout) == json.loads(exported.stdout) == report, 'stored/exported result differs')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/astraeus-validation/phase5.py\", line 21, in require\n    raise RuntimeError(message)\nRuntimeError: stored/exported result differs\n",
+    "id": "af42e1dc189f4244896e6f091ad8be13",
+    "boot_id": "ee9b3fe5-9458-4170-9c5d-a74365c58c2f"
+  },
+  "finished": "2026-10-15T07:32:08.152554+00:00"
+}

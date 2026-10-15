@@ -232,9 +232,15 @@ fn store_roundtrip_and_failed_publication_preserves_original() {
     let t = Temp::new();
     let store = store::Store::at(t.0.clone()).unwrap();
     let mut r = fixture();
+    r.samples[0].cpu_busy_percent = Some(13.165680473372781);
+    r.measurements[1].values[2] = 14696.678710017999;
+    r.measurements[2].values[2] = 921.9176614809459;
     store.create(&r.id).unwrap();
     store.write(&r).unwrap();
-    assert_eq!(store.read(&r.id).unwrap().state, "completed");
+    assert_eq!(
+        serde_json::to_value(store.read(&r.id).unwrap()).unwrap(),
+        serde_json::to_value(&r).unwrap()
+    );
     fs::write(
         t.0.join(&r.id)
             .join(format!("result-{}.tmp", std::process::id())),

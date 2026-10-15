@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "archive_sha256": "2b23605d524961f7a1799c2bbc69d8aadd7699191ef1ce220d92a61dc5698862",
+  "verified_regular_files": 49,
+  "verified_symlinks": 4,
+  "iso_verified_locally": false,
+  "iso": {
+    "path": "/home/ubuntu/p50/candidate-08713dfa7f20-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+    "sha256": "cf5f3d557d5078e7622731b27aa0b5ed1909cc9716afa39de31ae6b478f110c5",
+    "bytes": 3785316352
+  }
+}

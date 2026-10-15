@@ -1,0 +1,14 @@
+   Compiling serde_json v1.0.151
+   Compiling distro-graphics v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\graphics)
+   Compiling distro-snapshots v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\snapshots)
+   Compiling distro-config v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\config)
+   Compiling distro-transactions v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\transactions)
+   Compiling distroctl v0.1.0-dev (C:\Users\Noel\.codex\worktrees\phase5-performance-baselines\operating-system\crates\distroctl)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.09s
+     Running unittests src\lib.rs (target\debug\deps\distroctl-cb8950726566daa9.exe)
+
+running 1 test
+test performance::tests::store_roundtrip_and_failed_publication_preserves_original ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.01s
+
