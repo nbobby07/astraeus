@@ -12,6 +12,7 @@ Usage:
   distroctl graphics [--probe] [--json]  Inspect graphics; --probe tests both Vulkan architectures
   distroctl gaming --help      Gaming readiness and reviewed feature changes
   distroctl system --help      Native software, configuration and operation progress
+  distroctl performance --help  System observations and bounded performance baselines
   distroctl validate <path>    Validate a project release TOML file
   distroctl snapshot --help   Snapshot commands and recovery usage
   distroctl boot list|status [--json]
@@ -31,6 +32,9 @@ Planning/history are read-only. Package mutation requires root and a snapshot ba
 Rollback execution requires offline recovery. Success requires a verified new boot.";
 
 fn run(args: &[String]) -> Result<(), String> {
+    if args.first().map(String::as_str) == Some("performance") {
+        return distroctl::performance::run(&args[1..]);
+    }
     if args.first().map(String::as_str) == Some("system") {
         return distroctl::system::run(&args[1..]);
     }

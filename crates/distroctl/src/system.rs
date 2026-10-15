@@ -300,6 +300,10 @@ fn status() -> Result<serde_json::Value> {
     )
 }
 
+pub(crate) fn performance_operation_active() -> Result<bool> {
+    Ok(ops::active()?.is_some_and(|operation| operation.in_progress()))
+}
+
 fn security_observation() -> serde_json::Value {
     match security_query() {
         Ok(value) => value,
