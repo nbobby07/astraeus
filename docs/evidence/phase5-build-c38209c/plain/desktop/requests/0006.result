@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T11:32:57.398945+00:00",
+  "request": "0006.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"forced_gui_death_passed\": true, \"process_evidence\": {\"gui_pid\": 1744, \"backend_pid\": 1807, \"scratch\": [{\"target\": \"/home/tester/.local/state/astraeus/performance/894ebcf67d7d107e707971ee7166d2f4/#1075 (deleted)\", \"bytes\": 22020096}]}, \"latest\": {\"created_unix_seconds\": 1792063946, \"elapsed_seconds\": 91.57676602, \"failure\": \"cancelled by caller\", \"id\": \"894ebcf67d7d107e707971ee7166d2f4\", \"kind\": \"baseline\", \"state\": \"cancelled\"}, \"no_named_scratch_residue\": true}\n",
+    "id": "3de27265e86e46b4a9306c0c97dd6904",
+    "boot_id": "ccf03cc7-6fc6-4ca9-9166-27475bce8245"
+  },
+  "finished": "2026-10-15T11:34:00.567614+00:00"
+}

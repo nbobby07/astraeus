@@ -1,0 +1,54 @@
+{
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "all_qemu_stopped": true,
+  "no_nbd_pids": true,
+  "disks_retained": true,
+  "files": {
+    "p5e2/disk.qcow2": {
+      "bytes": 3186884608,
+      "mtime_ns": 1792061843497744662
+    },
+    "p5ge2/disk.qcow2": {
+      "bytes": 990642176,
+      "mtime_ns": 1792065523181639459
+    },
+    "p5re2/awaiting-boot-restore/disk.qcow2": {
+      "bytes": 693501952,
+      "mtime_ns": 1792066276087255560
+    },
+    "p5e2-network-failed/disk.qcow2": {
+      "bytes": 3112501248,
+      "mtime_ns": 1792060023194861011
+    },
+    "p5e/disk.qcow2": {
+      "bytes": 3253993472,
+      "mtime_ns": 1792049087222638094
+    },
+    "p5ge/disk.qcow2": {
+      "bytes": 77266944,
+      "mtime_ns": 1792050384665448354
+    },
+    "p5rece2/recovery.img": {
+      "bytes": 4294967296,
+      "mtime_ns": 1792061974957865127
+    }
+  },
+  "public_exports": [
+    {
+      "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+      "path": "/home/ubuntu/p50/c382-p5ge2-public.tar.gz",
+      "bytes": 13890254,
+      "sha256": "9178587d19420c3c1ea8592a9e9127689e8cd9ace1558ba60ef2d406e9f89a2a",
+      "files": 142,
+      "private_material_excluded": true
+    },
+    {
+      "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+      "path": "/home/ubuntu/p50/c382-p5re2-public.tar.gz",
+      "bytes": 5500472,
+      "sha256": "4716d6a1e3545e3001fb758f093048afb1d09ec46786414616de594f1bca1ccd",
+      "files": 214,
+      "private_material_excluded": true
+    }
+  ]
+}

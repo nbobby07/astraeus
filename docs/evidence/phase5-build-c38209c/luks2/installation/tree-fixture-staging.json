@@ -1,0 +1,9 @@
+{
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "fixture_sha256": "8a6230468cc31a2c984a41c092035dd16bf97e737ec3241490724a5419903739",
+  "official_signature_verified": true,
+  "mounted_readonly_test_share_staged": true,
+  "candidate_source_unchanged": true,
+  "frozen_validator_unchanged": true,
+  "cache_helper_sha256": "eaae1c2dfc29a7ed9861d859c8dbd7a659e37ac71f335efeabcb2856c9df880a"
+}

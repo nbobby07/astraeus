@@ -1,0 +1,39 @@
+{
+  "confirmed_at": "2026-10-15T12:12:47.087Z",
+  "retained_disk": true,
+  "evidence_export_verified": true,
+  "data": {
+    "id": "vm-777bd3d45634463482a7931727635f20",
+    "state": "paused",
+    "slug": "astraeus-phase5-luks2-tests",
+    "displayName": "Astraeus Phase 5 LUKS2 installation tests",
+    "resources": {
+      "cpu": 4,
+      "memory": 16384,
+      "storage": 65536
+    },
+    "image": null,
+    "snapshotId": "sh-5779fd551557471792701bdf9bc3214c",
+    "sourceSnapshotSlugAtCreate": "freestyle/ubuntu",
+    "sourceSnapshotSlug": "ubuntu",
+    "sourceSnapshotDisplayName": "Ubuntu 24.04 LTS (4 vCPU · 8 GiB · 32 GB)",
+    "idleTimeoutSeconds": 3600,
+    "totalRunSeconds": 14275,
+    "automaticRestart": false,
+    "ipMode": "dualStack",
+    "publicIpv6": "2602:f470:40:1:2cc9:e950:bc5d:d9b8",
+    "egressIpv4": "208.72.218.134",
+    "egressIpv6": "2602:f470:40:1:2cc9:e950:bc5d:d9b8",
+    "metadata": {
+      "phase": "phase5.0",
+      "role": "luks2-install",
+      "source_commit": "08713dfa7f2096217710ef4f6311e2d6bb264db5"
+    },
+    "cpuTimeSeconds": null,
+    "lastNetworkActivity": "2026-10-15T12:12:41.879135Z",
+    "vpcs": [],
+    "networks": [],
+    "createdAt": "2026-10-15T06:21:55.262825Z",
+    "updatedAt": "2026-10-15T12:12:45.564271Z"
+  }
+}

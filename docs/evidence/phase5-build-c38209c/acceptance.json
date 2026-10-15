@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "status": "vm_acceptance_passed_awaiting_review",
+  "is_stable_release": false,
+  "physical_hardware_qualified": false,
+  "bare_metal_comparison": "unit tests only",
+  "iso_sha256": "174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c",
+  "iso_bytes": 3785349120,
+  "required_gates": {
+    "independent_iso_byte_comparison": true,
+    "separate_five_package_comparison": true,
+    "exact_A_signed_repository_used_by_parallel_B": true,
+    "plain_fresh_enforcing_install_and_two_boots": true,
+    "luks2_fresh_enforcing_install_and_two_boots": true,
+    "plain_and_luks2_ordinary_user_cli": true,
+    "plain_and_luks2_native_gui": true,
+    "exact_protected_state_unchanged": true,
+    "metadata_apply_and_new_boot_confirmation": true,
+    "active_management_pending_reboot_recovery_and_native_lock_gating": true,
+    "forced_gui_death_during_unnamed_scratch": true,
+    "live_session_baseline_refusal_and_passive_recording": true,
+    "plain_and_luks2_awaiting_boot_offline_restore": true,
+    "actual_automatic_confirmation_and_blessing_execution": true,
+    "pending_record_unchanged_until_explicit_finalize": true,
+    "public_evidence_members_verified_and_disks_retained": true,
+    "all_validators_paused": true
+  },
+  "scope_limits": [
+    "Initial installer uses approved SetupMode bootstrap; installed management and recovery enforce SecureBoot=1 SetupMode=0.",
+    "Fresh installation uses production provisioner; no new Calamares GUI acceptance is claimed.",
+    "Full Phase 4.2 original scenario matrix remains tied to its earlier qualified source; this run repeats the changed restored-root case on both layouts and current management/performance interactions.",
+    "Physical PC/USB/GPU and bare-metal performance acceptance deferred.",
+    "GameMode full self-test remains incomplete.",
+    "No tuning, performance improvement, sustained stress or production signing qualification."
+  ],
+  "instrumentation_failures_preserved": {
+    "plain/desktop/requests/0010.result": "Observer omitted running from transient operation states; same worker observed again.",
+    "plain/desktop/requests/0011.result": "Observer omitted validating from transient operation states; same worker observed to terminal state in 0012.",
+    "plain/desktop/requests/0015.result": "Read-only test module import lacked its sibling directory; 0016 repeats observation with correct import path."
+  },
+  "additional_cost_estimate_usd": 6.71679368888889,
+  "cost_exclusions": [
+    "network",
+    "paused storage"
+  ],
+  "merged": false
+}

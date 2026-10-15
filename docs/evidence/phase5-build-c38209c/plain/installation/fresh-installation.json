@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "method": "candidate-payload-and-production-provision",
+  "calamares_ui": false,
+  "payload_sha256": "3e5ced227bed07d259b4af68503c2318d70e0c159ba76ca8a057b248ff2fb03d",
+  "provision_sha256": "913f42f7c19096dc2bc90854fc202336c891d367c7ae65e1a2e5a60c7bca45ee",
+  "configuration": {
+    "gaming": [],
+    "packages": [],
+    "providers": {},
+    "schema_version": 1
+  },
+  "signing": {
+    "bootloader": {
+      "artifact_sha256": "388682cd98713d78f0a0ecedafdaa202f92ae1ea25039a25674232e04ca32276",
+      "certificate_sha256": "eec9d2fa67ca358f4995e4c5a4ed9228eebb0250e6ca5a0bbb2b18841e438628",
+      "firmware_trust": "not-evaluated",
+      "input_sha256": "15826b474fe9a4de16322e469edac3475dc061084d260082496a6d74ce894ed1",
+      "kind": "bootloader",
+      "purpose": "disposable-ovmf",
+      "schema_version": 1
+    },
+    "uki": {
+      "artifact_sha256": "154c3d01725b4979cf85d163369808eb6f8f91e85f095964fe7361e25f1226ea",
+      "certificate_sha256": "eec9d2fa67ca358f4995e4c5a4ed9228eebb0250e6ca5a0bbb2b18841e438628",
+      "firmware_trust": "not-evaluated",
+      "input_sha256": "15cc14fd7ccb532a151562a93b61653cc3dfbf7c80baaa10cdeab7435d98cfae",
+      "kind": "uki",
+      "purpose": "disposable-ovmf",
+      "schema_version": 1
+    }
+  },
+  "disk_serial": "AS425996c8e1b57c1dbb",
+  "preexisting_application": {
+    "name": "tree",
+    "version": "2.3.2-1",
+    "reason": "explicit",
+    "unmanaged": true,
+    "installed_before_initial_signing": true,
+    "management_sha256": {
+      "etc/astraeus/system.toml": "08920fb9f95ed219b631340b947b149ee8acc4c89bfd54f3c53c4f940a80fff3",
+      "var/lib/astraeus/management/state.json": "7df13fe03e23776df1925c60b09bc1822363b0ebb3ea3490567977a82909171a",
+      "var/lib/astraeus/management/system.lock": "a9b8157b31fc109c4c92c0fac9148bc0fd507ca2f05862f6fe63eb0e055ae763"
+    }
+  },
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  }
+}

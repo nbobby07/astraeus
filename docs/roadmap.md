@@ -31,7 +31,8 @@ failures, screenshots and qualification limits.
 | 4 | Integrated, not fully qualified | Connected graphics/gaming reports and pinned multilib image selections | Preserve the original runtime evidence and failures; subsequent checks are recorded under 4.1 |
 | 4.1 | Partially requalified | Normal Proton diagnostic and recorded negatives passed | Full GameMode self-test and physical gaming qualification remain incomplete; software rendering does not qualify a physical GPU |
 | 4.2 | VM acceptance passed, awaiting review | Selected package/gaming state, native transactions, saved configuration and Qt/Kirigami Control Center | Passed two identical clean images and fresh plain/LUKS2 enforcing management, authorization, failure, reboot and recovery checks; review remains |
-| 5 | Planned | Measured performance policies | Recorded baselines, power/thermal context, safety checks, restoration and repeatable improvements |
+| 5.0 | VM acceptance passed, awaiting review | Unprivileged observations, bounded baselines and native saved-result comparison | Two identical clean images and plain/LUKS2 enforcing CLI/GUI, conflict and restored-root recovery checks passed at `c38209c`; [evidence](phase5-acceptance.md). Bare-metal comparison has unit coverage only. |
+| 5, later work | Planned | Measured performance policies | Physical measurements, safe restoration and repeatable improvements; 5.0 does not tune the system or qualify physical performance. |
 | 6 | Planned | General configuration language and broader desired state | Extend beyond the implemented package/gaming subset with explicit validation, migration and recovery guarantees |
 
 ## Validated boundary and remaining limits

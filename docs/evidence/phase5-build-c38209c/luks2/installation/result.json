@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "accepted": true,
+  "calamares_ui": false,
+  "started": "2026-10-15T10:40:59.736738+00:00",
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "boot_ids": [
+    "ab3ae4a1-274d-4f3f-a3ef-6f55facd60ed",
+    "06e2e11c-9aac-4c2a-b937-13269ed887c1"
+  ],
+  "finished": "2026-10-15T10:57:30.892583+00:00"
+}

@@ -1,0 +1,7 @@
+{
+  "started": "2026-10-15T11:44:59.555292+00:00",
+  "request": "0012.json",
+  "boot_id": "3e040876-db94-475a-996e-db107de00dec",
+  "qmp": "/home/ubuntu/p50/p5ge2/boot-2/qmp.sock",
+  "finished": "2026-10-15T11:46:04.108843+00:00"
+}

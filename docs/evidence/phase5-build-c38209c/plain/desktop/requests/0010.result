@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T11:38:22.582570+00:00",
+  "request": "0010.json",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "Traceback (most recent call last):\n  File \"<string>\", line 13, in <module>\n    assert operation['state']=='awaiting_boot',operation\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'schema_version': 1, 'operation_id': '32b08858d2bc26a3be87fe12bf603162', 'state': 'running', 'transaction': None, 'error': None}\n",
+    "id": "ae62d2b25bde430d85de54902b541ddc",
+    "boot_id": "ccf03cc7-6fc6-4ca9-9166-27475bce8245"
+  },
+  "finished": "2026-10-15T11:38:22.843386+00:00"
+}

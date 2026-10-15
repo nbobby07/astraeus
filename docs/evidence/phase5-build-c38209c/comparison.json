@@ -1,0 +1,63 @@
+{
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "source_archive_sha256": "1561a6f9f1f6e67c893f3df0574870d75fe3df81a9969969ac1af9747347303e",
+  "iso_bytes_equal": true,
+  "iso_hashes_equal": true,
+  "cmp_exit_code": 0,
+  "cmp_command": [
+    "wsl",
+    "-d",
+    "Ubuntu-D-Recovery",
+    "--",
+    "cmp",
+    "--silent",
+    "/mnt/c/Astraeus-Phase5-Performance/candidate-c38209c523e3/candidate-A.iso",
+    "/mnt/c/Astraeus-Phase5-Performance/candidate-c38209c523e3/candidate-B.iso"
+  ],
+  "independently_built_package_bytes_equal": true,
+  "package_hashes": {
+    "A": {
+      "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": "d26b37cfd4ee373ed4c37791bf9bee79f76ef261cdeab3e956782832546d98ee",
+      "calamares-3.4.3-1-x86_64.pkg.tar.zst": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+      "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+      "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": "b32cd21d92141964ff7e1d67b3ea98da3e04279c9b018c878947168e8155db19",
+      "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": "4b66f5b2cb91320edb7f0172c0a1bfcd1d4a894be2891d28305389303b47842e"
+    },
+    "B": {
+      "astraeus-control-center-0.1.0.dev-1-x86_64.pkg.tar.zst": "d26b37cfd4ee373ed4c37791bf9bee79f76ef261cdeab3e956782832546d98ee",
+      "calamares-3.4.3-1-x86_64.pkg.tar.zst": "b240193e7d692cc21764905d6f78e3802903cce5eb64b528afb359368761df33",
+      "calamares-debug-3.4.3-1-x86_64.pkg.tar.zst": "c33940f98f05444f9c7d33f155813f3763cd9cd38318de4751c3fd4390796900",
+      "distroctl-0.1.0.dev-1-x86_64.pkg.tar.zst": "b32cd21d92141964ff7e1d67b3ea98da3e04279c9b018c878947168e8155db19",
+      "distroctl-debug-0.1.0.dev-1-x86_64.pkg.tar.zst": "4b66f5b2cb91320edb7f0172c0a1bfcd1d4a894be2891d28305389303b47842e"
+    }
+  },
+  "images": {
+    "A": {
+      "path": "/home/ubuntu/p50/candidate-c38209c523e3-r1/share/evidence/A/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "sha256": "174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c",
+      "bytes": 3785349120,
+      "local_path": "C:\\Astraeus-Phase5-Performance\\candidate-c38209c523e3\\candidate-A.iso"
+    },
+    "B": {
+      "path": "/home/ubuntu/p50/candidate-c38209c523e3-r1/share/evidence/B/astraeus-dev-0.1.0-dev-x86_64.iso",
+      "sha256": "174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c",
+      "bytes": 3785349120,
+      "local_path": "C:\\Astraeus-Phase5-Performance\\candidate-c38209c523e3\\candidate-B.iso"
+    }
+  },
+  "generated_package_source_archive_equal": true,
+  "generated_package_source_hashes": {
+    "A": "1e2af4cb6d4ee21374819e31534b29b4dd5297e7593a3b41406a54c1696ce23a",
+    "B": "1e2af4cb6d4ee21374819e31534b29b4dd5297e7593a3b41406a54c1696ce23a"
+  },
+  "limitation": "Both independent images consume the exact signed repository published by A. Independently compiled package archives are compared separately.",
+  "image-packages.txt_equal": true,
+  "installed-packages.txt_equal": true,
+  "builder-packages.txt_equal": true,
+  "packages-before-build.txt_equal": true,
+  "inputs.json_equal": true,
+  "source-sha256.txt_equal": true,
+  "builder-script-sha256.txt_equal": true,
+  "signed_repository_files_equal": true,
+  "signed_repository_links_equal": true
+}

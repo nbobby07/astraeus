@@ -1,0 +1,15 @@
+{
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "source_vm": "vm-a20f2a0bf652450dbe14dbf25aa37f4c",
+  "destination_vm": "vm-bed64b6e1eaa4bd98cbd7d0d309f934c",
+  "path": "/home/ubuntu/p50/published-repository-c382.tar",
+  "bytes": 53422080,
+  "sha256": "49cc381e99b01cd63fe52ea17b451662f428c78733879534a40534078de26e62",
+  "manifest_sha256": "8aaf37ae6ec28309c5fc257c80e85c30d0cb4db0c2bd95fd134c3df1e67708ef",
+  "repository_fingerprint": "27CCE96199D30A7ABA1BE86CC6722DAA8014EE89",
+  "signatures_verified": true,
+  "A_ISO_required": false,
+  "A_disk_cleanup_required": false,
+  "regular_files": 16,
+  "links": 4
+}

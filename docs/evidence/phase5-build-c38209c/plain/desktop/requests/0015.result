@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T11:42:48.707305+00:00",
+  "request": "0015.json",
+  "result": {
+    "code": 1,
+    "error": null,
+    "output": "Traceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    spec=importlib.util.spec_from_file_location('faults','/mnt/astraeus-validation/phase42-faults.py');f=importlib.util.module_from_spec(spec);spec.loader.exec_module(f)\n                                                                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"<frozen importlib._bootstrap_external>\", line 759, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 491, in _call_with_frames_removed\n  File \"/mnt/astraeus-validation/phase42-faults.py\", line 23, in <module>\n    from phase42_trust import verify_maintained_uki\nModuleNotFoundError: No module named 'phase42_trust'\n",
+    "id": "576a9c2ec15c4dcdbd4c8221c9b52bfb",
+    "boot_id": "c4c83612-e313-4d98-a7d1-0905cf05db95"
+  },
+  "finished": "2026-10-15T11:42:48.932701+00:00"
+}

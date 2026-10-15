@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "requested_run_passed": true,
+  "qualified": false,
+  "physical_hardware_qualified": false,
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "image_sha256": "174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c",
+  "started": "2026-10-15T11:59:31.438508+00:00",
+  "scenarios": [
+    {
+      "scenario": "awaiting-boot-restore",
+      "id": "home-sentinel",
+      "status": "PASS",
+      "started": "2026-10-15T12:01:25.359878+00:00",
+      "evidence": [
+        "awaiting-boot-restore/boot-1/",
+        "awaiting-boot-restore/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-15T12:01:27.421307+00:00"
+    },
+    {
+      "scenario": "awaiting-boot-restore",
+      "id": "candidate-identity-and-state",
+      "status": "PASS",
+      "started": "2026-10-15T12:01:27.421581+00:00",
+      "evidence": [
+        "awaiting-boot-restore/boot-1/",
+        "awaiting-boot-restore/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-15T12:01:29.637734+00:00"
+    },
+    {
+      "scenario": "awaiting-boot-restore",
+      "id": "baseline-health",
+      "status": "PASS",
+      "started": "2026-10-15T12:01:29.638099+00:00",
+      "evidence": [
+        "awaiting-boot-restore/boot-1/",
+        "awaiting-boot-restore/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-15T12:01:32.641766+00:00"
+    },
+    {
+      "scenario": "awaiting-boot-restore",
+      "id": "awaiting-boot-plan",
+      "status": "PASS",
+      "started": "2026-10-15T12:01:32.642488+00:00",
+      "evidence": [
+        "awaiting-boot-restore/boot-1/",
+        "awaiting-boot-restore/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-15T12:01:33.862540+00:00"
+    },
+    {
+      "scenario": "awaiting-boot-restore",
+      "id": "update-awaiting-boot",
+      "status": "PASS",
+      "started": "2026-10-15T12:01:33.862947+00:00",
+      "evidence": [
+        "awaiting-boot-restore/boot-1/",
+        "awaiting-boot-restore/boot-1/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-15T12:02:38.389722+00:00"
+    },
+    {
+      "scenario": "awaiting-boot-restore",
+      "id": "awaiting-boot-offline-restore",
+      "status": "PASS",
+      "started": "2026-10-15T12:02:38.390225+00:00",
+      "evidence": [
+        "awaiting-boot-restore/boot-1/",
+        "awaiting-boot-restore/boot-3/"
+      ],
+      "detail": "Actual assertions passed",
+      "finished": "2026-10-15T12:11:11.660846+00:00"
+    }
+  ],
+  "recovery_manifest": {
+    "schema_version": 1,
+    "kind": "phase42-ram-verified-recovery",
+    "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+    "iso_sha256": "174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c",
+    "image": "recovery.img",
+    "image_sha256": "3bf10217afb5ad53d476fbbf2682f0f396b70b222cc0ac996570911297431874",
+    "image_bytes": 4294967296,
+    "rootfs_sha256": "e90b4837ed2ea86d57d8c9310b6401c25708882080bccb2d7fce0228a7f5db58",
+    "rootfs_bytes": 3298566144,
+    "certificate_sha256": "99e49aac780b22e785f2eb7a73f8ad0d42e6e508fbbd4853a72c9c43d13de2ba",
+    "uki_sha256": "cc546ade876d40ee10f3817ba8220f2e2ff11ef9dd188d1e8f793ce67ab5be43",
+    "unsigned_uki_sha256": "1218b2effbb4afa11c1e55f2dbfc6e060265e83bee1c7023ebaca4ea8fa695ec",
+    "distroctl_sha256": "626dd8d916293ba3d587bd04e58665feb69d2bbd6149ce0eea8803e16d7738a2",
+    "desktop_sha256": "3382576d5a609f4ae7df0a36dc646b835ab6b529936dd29f0c45cbc645f8b757",
+    "extracted": {
+      "usr/bin/ukify": "faeaf0656a88d290fba40dc928cac4954286aae094f4d26200f3b5f25a89d918",
+      "usr/lib/systemd/boot/efi/linuxx64.efi.stub": "b16c31a0cff3ca1996aaa4d3e101309830c8c186d4230f1607712c0879ebb8e3",
+      "usr/lib/initcpio/hooks/archiso": "6e7263e703bf9bab16cbf054937f1595e70ed760e296ff8c4ef6967311b25623",
+      "usr/lib/os-release": "71ff7a6e248d9a0718344c957ec709cb6f0b18631682fa404d7cff2af3ff341d",
+      "usr/bin/distroctl": "626dd8d916293ba3d587bd04e58665feb69d2bbd6149ce0eea8803e16d7738a2",
+      "usr/bin/astraeus-control-center": "3382576d5a609f4ae7df0a36dc646b835ab6b529936dd29f0c45cbc645f8b757"
+    },
+    "command_line": "archisobasedir=arch archisolabel=ASTRAEUS_SB copytoram=y cow_spacesize=2G console=tty0 console=ttyS0,115200n8",
+    "builder_sha256": "a803cbef6bc6fc4514734454bf974f3b105c953c9ad8a96d1c5fdac27d77152b",
+    "guard_origin_sha256": "23298042ca035c8b2b1e2360e5a6bda66db94fe55d8dc32e035740c937c3c0d0",
+    "baseline_manifest_sha256": "d53b75c8cfd95a84df6396e73bc9ede5ddce6cb2f0ffa95b3f67f59494118364",
+    "qualified": false,
+    "qualification": "Pending candidate enforcing-firmware boot and refusal tests",
+    "minimum_ram_gib": 8,
+    "private_key_in_image": false
+  },
+  "harness_sha256": "5404ab2c45c9653b94f173820c5ac23d76ef1d8ed6d751d561ebe793545d308a",
+  "harness_commit": null,
+  "installation_firmware": {
+    "observed": true,
+    "source": "efivarfs-before-partition-write",
+    "SecureBoot": false,
+    "SetupMode": true
+  },
+  "management_firmware_required": {
+    "SecureBoot": true,
+    "SetupMode": false
+  },
+  "finished": "2026-10-15T12:11:35.861157+00:00"
+}

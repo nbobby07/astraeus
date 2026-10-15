@@ -49,6 +49,10 @@ public ISO download yet.
 - Phase 4.2 selected-package and gaming configuration, reviewed apply, import/export
   and adoption through the CLI and Control Center. Plain and LUKS2 enforcing
   management, authorization, reboot and recovery acceptance passed.
+- Phase 5.0 unprivileged observations, bounded CPU/memory/filesystem baselines,
+  private saved results and native comparison/export. Independent images and
+  plain/LUKS2 Secure Boot VM acceptance passed at `c38209c`; the draft remains
+  unmerged. See the [performance acceptance report](docs/phase5-acceptance.md).
 - Explicit offline rollback through the existing live ISO, preserving all five
   persistent subvolumes. Recovery requires manual intervention; root and ESP
   changes are not atomic, and general power-loss safety is not qualified.

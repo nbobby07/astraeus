@@ -1,0 +1,6 @@
+{
+  "public_export_complete": false,
+  "label": "A",
+  "error": "Command '['python3', '/home/ubuntu/p50/collect-closed-test-evidence.py', 'candidate-c38209c523e3-r1', 'A']' returned non-zero exit status 1.",
+  "time": "2026-10-15T09:39:31.267122+00:00"
+}

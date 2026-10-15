@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "exact_protected_state_unchanged": true,
+  "fields": [
+    "boot_id",
+    "config_toml",
+    "configuration",
+    "esp_uuid",
+    "firmware",
+    "history",
+    "home",
+    "maintained_uki_verification",
+    "management",
+    "package_lock_present",
+    "packages",
+    "protected_files",
+    "reasons",
+    "root_uuid",
+    "schema_version",
+    "snapshots",
+    "system_lock"
+  ],
+  "before_sha256": "dfd15f3f12bdea181cd8b4af05522982518454a760901cdd2124386bddadbd58",
+  "after_sha256": "4c0bea36e3679e18d6a2ffdce7893f96af7c1e9395a60fe960d3b3ea3c425099",
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962"
+}

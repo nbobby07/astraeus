@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "phase": "5.0",
+  "budget_usd": null,
+  "stop_threshold_usd": null,
+  "closed_seconds": 20489,
+  "interval_started_utc": null,
+  "vm_id": "vm-675b0245f2d0430ebfb3a49fa4cc84b8",
+  "rate_per_hour": 0.373184,
+  "rates": {
+    "vcpu_hour": 0.04032,
+    "gib_memory_hour": 0.0129,
+    "gib_storage_hour": 8.6e-05
+  },
+  "resources": {
+    "vcpu": 4,
+    "memory_gib": 16,
+    "disk_gib": 64
+  },
+  "rate_source": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+  "rate_checked_utc": "2026-10-14T22:24:03.0640237-07:00",
+  "inventory": "Four VMs paused. Resume only phase5 validator vm-675b0245f2d0430ebfb3a49fa4cc84b8, unchanged 4CPU/16GiB/64GiB; all original validators untouched.",
+  "previous_phase_compute_active_storage_estimate_usd": 9.495977866666667,
+  "separate_allowance": true,
+  "estimate_usd": 6.71679368888889,
+  "status": "c38209c_vm_acceptance_passed_all_validators_paused",
+  "excluded_from_compute_active_storage_estimate": [
+    "network",
+    "pre-existing paused storage"
+  ],
+  "failed_resume": {
+    "vm": "vm-3614c8ea177748e8952c562250e9ce09",
+    "started": "2026-10-14T17:20:11.339613-07:00",
+    "closed_conservative": "2026-10-14T17:23:37.849974-07:00",
+    "state": "paused",
+    "reason": "Provider INTERNAL_ERROR; explicit pause returned CONFLICT because already Paused",
+    "seconds_upper_bound": 207
+  },
+  "checkpoint_utc": "2026-10-15T12:12:47.440048+00:00",
+  "seconds_upper_bound": 20489,
+  "interval_closed_utc": "2026-10-15T06:26:14.564140+00:00",
+  "pause_confirmed_utc": "2026-10-15T06:26:14.564140+00:00",
+  "cost_cap_lifted_by_user": "Parallel builders authorized at 08713df; retain A disk; separate plain/LUKS2 validators after image equality.",
+  "parallel_started_utc": "2026-10-15T05:52:10.6748187+00:00",
+  "additional_vms": [
+    {
+      "vm_id": "vm-566ea9de35f94e22a81b805620a8d67b",
+      "role": "independent-builder-B",
+      "interval_started_utc": null,
+      "closed_seconds": 4834,
+      "rate_per_hour": 0.373184,
+      "resources": {
+        "vcpu": 4,
+        "memory_gib": 16,
+        "disk_gib": 64
+      },
+      "conservative_startup_accounting": "Full resized allocation counted from creation",
+      "estimate_usd": 0.5011031822222222,
+      "confirmed_paused_utc": "2026-10-15T07:12:44.747893+00:00",
+      "disk_retained": true
+    },
+    {
+      "vm_id": "vm-2522219a90d843388cb120130215bd5f",
+      "role": "plain-install-preparation",
+      "interval_started_utc": null,
+      "closed_seconds": 14448,
+      "rate_per_hour": 0.373184,
+      "resources": {
+        "vcpu": 4,
+        "memory_gib": 16,
+        "disk_gib": 64
+      },
+      "conservative_startup_accounting": "Full resized allocation counted from creation",
+      "candidate_installation_gated_on_image_equality": true,
+      "estimate_usd": 1.4977117866666667,
+      "confirmed_paused_utc": "2026-10-15T12:07:34.049Z",
+      "failure_evidence_export_verified": true,
+      "current_source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+      "disk_retained": true,
+      "evidence_export_verified": true
+    },
+    {
+      "vm_id": "vm-777bd3d45634463482a7931727635f20",
+      "role": "luks2-install-preparation",
+      "interval_started_utc": null,
+      "closed_seconds": 14338,
+      "rate_per_hour": 0.373184,
+      "resources": {
+        "vcpu": 4,
+        "memory_gib": 16,
+        "disk_gib": 64
+      },
+      "conservative_startup_accounting": "Full resized allocation counted from creation",
+      "candidate_installation_gated_on_image_equality": true,
+      "estimate_usd": 1.4863089422222222,
+      "confirmed_paused_utc": "2026-10-15T12:12:47.087Z",
+      "failure_evidence_export_verified": true,
+      "current_source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+      "disk_retained": true,
+      "evidence_export_verified": true
+    },
+    {
+      "vm_id": "vm-a20f2a0bf652450dbe14dbf25aa37f4c",
+      "role": "c382-independent-builder-A",
+      "interval_started_utc": null,
+      "closed_seconds": 4297,
+      "rate_per_hour": 0.373184,
+      "resources": {
+        "vcpu": 4,
+        "memory_gib": 16,
+        "disk_gib": 64
+      },
+      "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+      "conservative_startup_accounting": "Full resized allocation counted from creation",
+      "estimate_usd": 0.44543656888888894,
+      "confirmed_paused_utc": "2026-10-15T09:44:18.747Z",
+      "disk_retained": true,
+      "audit_export_verified": true
+    },
+    {
+      "vm_id": "vm-bed64b6e1eaa4bd98cbd7d0d309f934c",
+      "role": "c382-independent-builder-B",
+      "interval_started_utc": null,
+      "closed_seconds": 6389,
+      "rate_per_hour": 0.373184,
+      "resources": {
+        "vcpu": 4,
+        "memory_gib": 16,
+        "disk_gib": 64
+      },
+      "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+      "conservative_startup_accounting": "Full resized allocation counted from creation",
+      "estimate_usd": 0.6622979377777779,
+      "confirmed_paused_utc": "2026-10-15T10:19:11.211Z",
+      "disk_retained": true,
+      "audit_export_verified": true
+    }
+  ],
+  "primary_estimate_usd": 2.1239352711111112,
+  "primary_state": "paused_A_disk_retained",
+  "acceptance_source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "evidence_export_verified": true
+}

@@ -1,0 +1,39 @@
+{
+  "confirmed_at": "2026-10-15T09:44:18.747Z",
+  "retained_disk": true,
+  "audit_export_verified": true,
+  "data": {
+    "id": "vm-a20f2a0bf652450dbe14dbf25aa37f4c",
+    "state": "paused",
+    "slug": "astraeus-p5-c38209c-a",
+    "displayName": "Astraeus c38209c independent builder A",
+    "resources": {
+      "cpu": 4,
+      "memory": 16384,
+      "storage": 65536
+    },
+    "image": null,
+    "snapshotId": "sh-5779fd551557471792701bdf9bc3214c",
+    "sourceSnapshotSlugAtCreate": "freestyle/ubuntu",
+    "sourceSnapshotSlug": "ubuntu",
+    "sourceSnapshotDisplayName": "Ubuntu 24.04 LTS (4 vCPU · 8 GiB · 32 GB)",
+    "idleTimeoutSeconds": 3600,
+    "totalRunSeconds": 4290,
+    "automaticRestart": false,
+    "ipMode": "dualStack",
+    "publicIpv6": "2602:f470:40:1:3890:631f:7693:d4c",
+    "egressIpv4": "208.72.218.134",
+    "egressIpv6": "2602:f470:40:1:3890:631f:7693:d4c",
+    "metadata": {
+      "phase": "phase5.0",
+      "role": "builder-a",
+      "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962"
+    },
+    "cpuTimeSeconds": null,
+    "lastNetworkActivity": "2026-10-15T09:43:47.313678Z",
+    "vpcs": [],
+    "networks": [],
+    "createdAt": "2026-10-15T08:32:42.252984Z",
+    "updatedAt": "2026-10-15T09:44:17.556926Z"
+  }
+}

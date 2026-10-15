@@ -1,0 +1,15 @@
+{
+  "source_commit": "c38209c523e308d23ff622b32d9cd0ed42682962",
+  "package": "tree-2.3.2-1-x86_64.pkg.tar.zst",
+  "version": "2.3.2-1",
+  "sha256": "8a6230468cc31a2c984a41c092035dd16bf97e737ec3241490724a5419903739",
+  "bytes": 44562,
+  "signature_sha256": "0438397747363045fef0cbf859d35f363f8c0ddb195c55b1e0b3b778602e8788",
+  "signature_bytes": 310,
+  "extra_db_sha256": "b2c0d01420d9bc1da17589c622fbf12c49af15d60e54f46cad8f6c307b5497ba",
+  "official_signature_verified": true,
+  "gpgv_status": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED E499C79F53C96A54E572FEE1C06086337C50773E 0\n[GNUPG:] SIG_ID jbPlzf5jXOi8WlMj1eLuPVnzl9Q 2026-03-29 1774794213\n[GNUPG:] GOODSIG C06086337C50773E Jelle van der Waa <jelle@vdwaa.nl>\n[GNUPG:] VALIDSIG E499C79F53C96A54E572FEE1C06086337C50773E 2026-03-29 1774794213 0 4 0 1 10 00 E499C79F53C96A54E572FEE1C06086337C50773E\n",
+  "cache_source": "read-only accepted earlier plain baseline; approved upstream bytes only",
+  "baseline_disk_unchanged": true,
+  "nbd_disconnected": true
+}

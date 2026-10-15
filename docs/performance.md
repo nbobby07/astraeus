@@ -4,6 +4,11 @@ Open Performance in Astraeus Control Center, or use `distroctl performance --hel
 All measurement and result commands run as your ordinary desktop user. They do
 not request administrator authentication or change system settings.
 
+The packaged `c38209c` build passed plain and LUKS2 Secure Boot VM acceptance,
+including the native interface, exact saved/exported results, management conflicts
+and restored-root recovery. See the [acceptance report](phase5-acceptance.md).
+Bare-metal comparison remains covered by unit tests only.
+
 | Command | Output |
 | --- | --- |
 | `performance status --json` | Schema 1, context, current sample, baseline blockers |
