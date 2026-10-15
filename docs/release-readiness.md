@@ -30,6 +30,8 @@ the accepted candidate. Original branches and evidence remain preserved.
 ## PR map
 
 This is the inventory before consolidation. GitHub records the final PR states.
+The combined source integration is [#14](https://github.com/nbobby07/astraeus/pull/14);
+the separate dependency candidate is [#15](https://github.com/nbobby07/astraeus/pull/15).
 
 | PR | Purpose | Integration disposition |
 | --- | --- | --- |
@@ -78,9 +80,14 @@ needs refreshed signed inputs and a newly qualified image.
 The owner confirmed a Ryzen 7 7800X3D and RTX 5070, using Rufus for a live-only
 USB session, with no disk installation. Read-only Windows inventory reports an
 ASUS B650E MAX GAMING WIFI motherboard and both RTX 5070 and AMD Radeon graphics.
-Windows denied this session's Secure Boot and BitLocker status queries; those
-states remain unknown until checked in Windows or firmware. NVIDIA open-module
-activation remains unsupported in this source.
+Windows denied this session's Secure Boot and BitLocker status queries. The owner
+corrected an initial misclick and reported **Secure Boot on and BitLocker off**.
+This is an owner-reported preflight result, not an automated firmware check.
+The current unsigned ISO will be refused under that policy. Today's live boot
+therefore requires the owner to choose a temporary manual disable of Secure Boot
+enforcement, restoring it afterward, or to postpone the boot. Keep factory keys
+intact; no enrollment or key clearing is needed. NVIDIA open-module activation
+remains unsupported in this source.
 
 1. Verify the ISO before writing. In PowerShell:
 
@@ -93,6 +100,10 @@ activation remains unsupported in this source.
    between ISO and DD modes. Verify the written bytes; an extracted ISO or another
    boot manager does not preserve this image's tested boot path. See the
    [Rufus FAQ](https://github.com/pbatard/rufus/wiki/FAQ#why-doesnt-rufus-recommend-dd-mode-over-iso-mode-for-isohybrid-images-surely-dd-is-better).
+   Windows can modify an exposed FAT partition or GPT records after a raw write;
+   DD mode alone is not proof of a matching readback. Retain and investigate a
+   mismatch rather than reporting the USB as byte-identical. Rufus documents
+   this [Windows auto-mount limitation](https://github.com/pbatard/rufus/wiki/FAQ#im-using-an-iso-with-a-checksum-validation-test-and-the-test-fails-despite-using-dd-mode-in-rufus).
 3. Use the firmware's one-time boot menu. This ISO will not boot under factory
    Secure Boot enforcement. Do not clear or enroll firmware keys to try to make
    the disposable VM keys work. Changes to the owner's Windows boot policy are

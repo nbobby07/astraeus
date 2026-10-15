@@ -416,7 +416,7 @@ last known-good state with a new evidence directory.
 ## Owner decisions
 
 - **D1** Authorize disposable-machine testing and amend the "never enroll" rule for those machines only.
-- **D2** Owner confirmed live-USB testing only on the 7800X3D/RTX 5070 on 2026-10-15. No installation or firmware-key change is authorized. Current Secure Boot and BitLocker states still need checking before choosing the boot procedure.
+- **D2** Owner confirmed live-USB testing only on the 7800X3D/RTX 5070 on 2026-10-15. Corrected preflight: Secure Boot on, BitLocker off. The unsigned ISO requires a separate choice to temporarily disable enforcement manually or postpone boot. No installation, key enrollment or key clearing is authorized.
 - **D3** Enrollment mode per round: A, B, or C (C not recommended).
 - **D4** Physical test owner key generation, offline custody, and whether `db.key` may leave the installed machine to build recovery media.
 - **D5** Dual-boot policy: unsupported (recommended), separate-disk later, or same-disk.
