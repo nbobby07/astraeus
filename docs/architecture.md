@@ -101,7 +101,7 @@ submission, then a systemd worker runs the transaction independently of the
 window. It has no automatic restart or boot replay. Live sessions allow inspection
 and planning only. Configuration-only changes still require snapshots, signed
 boot artifacts and verified boot confirmation. Implementation checks have passed;
-[installed-VM acceptance](phase42-acceptance.md) remains pending.
+[installed-VM acceptance](phase42-acceptance.md) passed on plain and LUKS2 layouts.
 
 ## Deferred platform boundaries
 

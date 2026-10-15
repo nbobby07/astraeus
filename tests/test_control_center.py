@@ -26,7 +26,9 @@ class ControlCenterPackaging(unittest.TestCase):
                                  "apps/control-center/controller.cpp", "apps/control-center/tests/controller_test.cpp",
                                  "apps/control-center/tests/tst_control.qml", "apps/control-center/State.js",
                                  "distro/installed/astraeus-apply@.service", "distro/installed/org.astraeus.system.policy",
-                                 "docs/control-center.md"]:
+                                 "docs/control-center.md", "docs/performance.md",
+                                 "apps/control-center/PerformancePage.qml", "apps/control-center/performance.cpp",
+                                 "apps/control-center/performance.h", "apps/control-center/tests/performance_test.cpp"]:
                     self.assertEqual(archive.extractfile("platform/" + relative).read(), (ROOT / relative).read_bytes())
                 for rust in (ROOT / "crates").rglob("*.rs"):
                     for embedded in re.findall(r'include_(?:str|bytes)!\(\s*"([^"\n]+)"\s*\)', rust.read_text()):

@@ -101,6 +101,7 @@ def prepare_package(output):
                  ROOT / "scripts/graphics-probe.c", ROOT / "docs/graphics.md",
                  ROOT / "distro/installed/astraeus-apply@.service",
                  ROOT / "distro/installed/org.astraeus.system.policy", ROOT / "docs/control-center.md",
+                 ROOT / "docs/performance.md",
                  *sorted((ROOT / "apps/control-center").rglob("*")),
                  *sorted((ROOT / "distro/graphics").glob("*.json")),
                  *sorted((ROOT / "crates").rglob("*"))]:
