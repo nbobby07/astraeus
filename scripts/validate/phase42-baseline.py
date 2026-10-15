@@ -244,10 +244,10 @@ def installed_disk(inventory, config):
     disk = disks[0]
     require(disk.get('path') == '/dev/vda' and disk.get('type') == 'disk'
             and disk.get('serial') == config['serial'] and disk.get('size') == DISK_BYTES
-            and disk.get('mountpoints') == [None], 'installed disk identity or mounts differ')
+            and disk.get('mountpoints') in ([], [None]), 'installed disk identity or mounts differ')
     parts = disk.get('children', [])
     require([part.get('path') for part in parts] == ['/dev/vda1', '/dev/vda2'], 'unexpected installed partitions')
-    require(all(part.get('type') == 'part' and part.get('mountpoints') == [None] for part in parts),
+    require(all(part.get('type') == 'part' and part.get('mountpoints') in ([], [None]) for part in parts),
             'installed partitions remain mounted')
     esp, root = parts
     require(esp.get('fstype') == 'vfat' and not esp.get('children'), 'unexpected ESP')
@@ -259,7 +259,7 @@ def installed_disk(inventory, config):
     require(expected == 'crypto_LUKS' and len(children) == 1, 'unexpected root mapping')
     child = children[0]
     require(child.get('type') == 'crypt' and child.get('fstype') == 'btrfs'
-            and child.get('mountpoints') == [None] and not child.get('children')
+            and child.get('mountpoints') in ([], [None]) and not child.get('children')
             and re.fullmatch(r'/dev/mapper/[a-zA-Z0-9_-]+', child.get('path', '')),
             'unexpected or mounted encrypted root')
     return child['path']
@@ -270,7 +270,7 @@ def guest_adopt_ui():
     firmware = installation_firmware()
     require(subprocess.run(['pgrep', '-x', 'calamares'], capture_output=True).returncode == 1,
             'close Calamares after observing its successful finished page')
-    inventory = json.loads(run('lsblk', '--json', '--bytes', '--output',
+    inventory = json.loads(run('lsblk', '--tree', '--json', '--bytes', '--output',
                                'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS,FSTYPE', '/dev/vda'))
     device = installed_disk(inventory, config)
     require(not TARGET.exists(), 'adoption target already exists; do not retry on a modified disk')
@@ -300,8 +300,9 @@ def guest_adopt_ui():
         storage_path = TARGET / 'var/log/installer/storage.json'
         storage = json.loads(storage_path.read_text())
         root = storage['root']
+        # Calamares records the containing LUKS device's UUID for encrypted roots.
         require(root['device'] == '/dev/vda2' and root['fs'] == 'btrfs' and root['mountPoint'] == '/'
-                and root['uuid'] == run('blkid', '-s', 'UUID', '-o', 'value', device),
+                and root['uuid'] == run('blkid', '-s', 'UUID', '-o', 'value', '/dev/vda2'),
                 'Calamares storage receipt differs from installed root')
         require(storage['subvolumes'] == [{'mountPoint': point, 'subvolume': sub} for point, sub in SUBVOLUMES],
                 'Calamares subvolume receipt differs')
@@ -345,7 +346,7 @@ def ui_evidence(out, config):
 def guest_install():
     config = guest_guard(live=True)
     require(run('blockdev', '--getro', '/dev/vda') == '0', 'validation disk is read-only')
-    inventory = json.loads(run('lsblk', '--json', '--bytes', '--output', 'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS', '/dev/vda'))
+    inventory = json.loads(run('lsblk', '--tree', '--json', '--bytes', '--output', 'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS', '/dev/vda'))
     blank_disk(inventory, json.loads(run('wipefs', '--no-act', '--json', '/dev/vda')), config['serial'])
     firmware = installation_firmware()
     require(not TARGET.exists(), 'installation target already exists; retries require a new blank VM')
@@ -673,7 +674,7 @@ def main():
         guest_install()
     elif args.action == 'guest-ui-ready':
         config = guest_guard(live=True)
-        inventory = json.loads(run('lsblk', '--json', '--bytes', '--output', 'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS', '/dev/vda'))
+        inventory = json.loads(run('lsblk', '--tree', '--json', '--bytes', '--output', 'PATH,TYPE,SIZE,SERIAL,MOUNTPOINTS', '/dev/vda'))
         blank_disk(inventory, json.loads(run('wipefs', '--no-act', '--json', '/dev/vda')), config['serial'])
         print(json.dumps(installation_firmware()))
     elif args.action == 'guest-adopt-ui':

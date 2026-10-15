@@ -28,14 +28,18 @@ class FreshCandidateBaseline(unittest.TestCase):
     def test_ui_adoption_accepts_only_serial_pinned_unmounted_expected_storage(self):
         cfg = config()
         disk = dict(path='/dev/vda', type='disk', size=baseline.DISK_BYTES,
-                    serial=cfg['serial'], mountpoints=[None], children=[
-                        dict(path='/dev/vda1', type='part', fstype='vfat', mountpoints=[None]),
-                        dict(path='/dev/vda2', type='part', fstype='crypto_LUKS', mountpoints=[None])])
+                    serial=cfg['serial'], mountpoints=[], children=[
+                        dict(path='/dev/vda1', type='part', fstype='vfat', mountpoints=[]),
+                        dict(path='/dev/vda2', type='part', fstype='crypto_LUKS', mountpoints=[])])
         self.assertIsNone(baseline.installed_disk({'blockdevices': [disk]}, cfg))
-        mapper = dict(path='/dev/mapper/luks-test', type='crypt', fstype='btrfs', mountpoints=[None])
+        mapper = dict(path='/dev/mapper/luks-test', type='crypt', fstype='btrfs', mountpoints=[])
         disk['children'][1]['children'] = [mapper]
         self.assertEqual(baseline.installed_disk({'blockdevices': [disk]}, cfg), mapper['path'])
+        for node in [disk, *disk['children'], mapper]:
+            node['mountpoints'] = [None]
+        self.assertEqual(baseline.installed_disk({'blockdevices': [disk]}, cfg), mapper['path'])
         for target, field, value in [(disk, 'serial', 'wrong'), (disk, 'size', 1),
+                (disk, 'mountpoints', None), (disk['children'][0], 'mountpoints', ['']),
                 (disk['children'][0], 'fstype', 'ext4'), (disk['children'][1], 'mountpoints', ['/']),
                 (mapper, 'path', '/dev/sda'), (mapper, 'mountpoints', ['/']), (mapper, 'type', 'part')]:
             original = target[field]
@@ -80,6 +84,7 @@ class FreshCandidateBaseline(unittest.TestCase):
                 baseline.guest_adopt_ui()
             self.assertEqual(command.call_count, 1)
             self.assertEqual(command.call_args.args[0], 'lsblk')
+            self.assertIn('--tree', command.call_args.args)
             finish.assert_not_called()
 
     def test_ui_adoption_checks_receipt_without_replaying_installer(self):
@@ -89,7 +94,8 @@ class FreshCandidateBaseline(unittest.TestCase):
                     target = Path(directory) / 'adopt'
                     cfg = {**config(), 'encryption': encryption}
                     storage = {'root': dict(device='/dev/vda2', fs='btrfs', mountPoint='/',
-                                uuid='wrong' if corrupt else 'root-uuid', luksUuid='luks-uuid' if encryption == 'LUKS2' else None),
+                                uuid='wrong' if corrupt else ('luks-uuid' if encryption == 'LUKS2' else 'root-uuid'),
+                                luksUuid='luks-uuid' if encryption == 'LUKS2' else None),
                                'subvolumes': [{'mountPoint': point, 'subvolume': sub} for point, sub in baseline.SUBVOLUMES],
                                'luks': {'uuid': 'luks-uuid'} if encryption == 'LUKS2' else None}
                     commands = []
@@ -110,7 +116,7 @@ class FreshCandidateBaseline(unittest.TestCase):
                             relative = '/' if args[3] == target else '/' + args[3].relative_to(target).as_posix()
                             return 'btrfs ' + dict(baseline.SUBVOLUMES)[relative]
                         if args[0] == 'blkid':
-                            return 'root-uuid'
+                            return 'luks-uuid' if encryption == 'LUKS2' and args[-1] == '/dev/vda2' else 'root-uuid'
                         if args[:3] == ('arch-chroot', target, 'id'):
                             return '1000'
                         return ''
