@@ -5,7 +5,7 @@ use std::{
     io::Write,
     process::Command,
     sync::Arc,
-    time::{SystemTime, UNIX_EPOCH},
+    time::{Duration, SystemTime, UNIX_EPOCH},
 };
 
 /// Argument-array execution boundary. Tests use captured output and injected failures.
@@ -842,6 +842,30 @@ impl<C: Commands> Manager<C> {
         self.create_inner(guard, reason, Some(transaction_id), Some(package_lock))
     }
 
+    // The store lock serializes allocation, but wall-clock timestamps can repeat.
+    fn next_snapshot_id(&self, now: Duration) -> Result<SnapshotId> {
+        let base = format!(
+            "{}-{}-{}",
+            now.as_secs(),
+            now.subsec_nanos(),
+            std::process::id()
+        );
+        for sequence in 0..=u64::MAX {
+            let id = SnapshotId::parse(&if sequence == 0 {
+                base.clone()
+            } else {
+                format!("{base}-{sequence}")
+            })?;
+            let entry = self.entry(&id)?;
+            let history = self.store.join(format!("operation-{}.json", id.as_str()));
+            no_links(&history)?;
+            if !entry.try_exists()? && !history.try_exists()? {
+                return Ok(id);
+            }
+        }
+        Err("snapshot ID space exhausted".into())
+    }
+
     fn create_inner(
         &self,
         guard: &MutationGuard,
@@ -882,14 +906,8 @@ impl<C: Commands> Manager<C> {
         self.verify_uki(&self.root, &self.working_uki()?)?;
         self.verify_loader()?;
         let now = SystemTime::now().duration_since(UNIX_EPOCH)?;
-        let id = SnapshotId::parse(&format!(
-            "{}-{}-{}",
-            now.as_secs(),
-            now.subsec_nanos(),
-            std::process::id()
-        ))?;
+        let id = self.next_snapshot_id(now)?;
         let entry = self.entry(&id)?;
-        require(!entry.try_exists()?, "snapshot ID collision")?;
         self.begin(&serde_json::json!({"schema_version":1,"operation":"create","id":id,"filesystem_uuid":plan.filesystem_uuid}))?;
         fs::create_dir(&entry)?;
         set_mode(&entry, 0o755)?;

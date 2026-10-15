@@ -270,8 +270,11 @@ This handles archive stalls that caused pacman's default low-speed timeout to
 abort two real runs. TLS verification and package/database signature requirements
 remain enabled. The live image retains pacman's normal downloader configuration.
 
-Wait for `evidence/A/exit-code` and guest shutdown before launching B with a new
-output directory and label `B`. No public ports, SSH credentials or outer-host
+On one host, wait for `evidence/A/exit-code` and guest shutdown before launching B
+with a new output directory and label `B`. On two hosts, B can start as soon as
+A has published its signed repository and fingerprint. Verify their exact bytes
+after transfer to B; B must still compile its own packages from a fresh overlay.
+No public ports, SSH credentials or outer-host
 package-manager replacement are involved. Failed attempts require a new overlay;
 preserve their evidence under a separate attempt directory before retrying. Never
 delete or overwrite the base image or an unrelated VM.
