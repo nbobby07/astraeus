@@ -57,7 +57,8 @@ own build identity and acceptance; the old ISO hash cannot qualify new bytes.
 | Runtime source | `c38209c523e308d23ff622b32d9cd0ed42682962` |
 | Length | 3,785,349,120 bytes |
 | SHA-256 | `174197f2878e8bb03ddef517878550ebfa4f16ede30a50c177c06a905fac0c6c` |
-| Image selections | `graphics_bundles = ["software"]`, `gaming_features = []` |
+| Installed payload selections | `graphics_bundles = ["software"]`, `gaming_features = []` |
+| Live graphics packages | Native `vulkan-intel`, `vulkan-radeon`, `vulkan-nouveau`, each `1:26.2.3-2` |
 | Repository key | `27CCE96199D30A7ABA1BE86CC6722DAA8014EE89` |
 | Repository key expires | October 16, 2026, 08:55:39 UTC, or 01:55:39 Pacific |
 | Boot | Unsigned x86-64 UEFI setup ISO, no factory-trusted shim |
@@ -133,11 +134,14 @@ remains unsupported in this source.
    before publishing them. Shut down and remove the USB to return to the normal
    boot device.
 
-The current image supplies software Vulkan, not AMD/Intel/Nouveau vendor Vulkan
-bundles or NVIDIA's driver stack. A desktop may still use the hardware through
-its kernel driver and Mesa OpenGL; the actual report decides. Do not equate a
-visible desktop with accelerated Vulkan or gaming support. Live sessions allow
-passive performance recording and intentionally refuse baselines.
+The live environment and installed payload have different package manifests.
+The accepted live environment already contains native AMD, Intel and Nouveau
+Vulkan packages. The separate installed payload selected the software bundle,
+including native and 32-bit software Vulkan; that selection does not describe
+the live root. Neither manifest includes NVIDIA's `nvidia-open` driver stack.
+Package presence does not prove that the RTX 5070 renders correctly: record the
+actual device, kernel driver and probe results during the physical test. Live
+sessions allow passive performance recording and intentionally refuse baselines.
 
 ## Work remaining before production
 
