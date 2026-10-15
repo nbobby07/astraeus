@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T08:03:27.236453+00:00",
+  "finished": "2026-10-15T08:03:27.290821+00:00",
+  "command": "systemctl show --all --property=Result,ExecMainCode,ExecMainStatus,ExecMainStartTimestampMonotonic,ExecMainExitTimestampMonotonic,ActiveState,Job systemd-bless-boot.service",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "ActiveState=inactive\nJob=\nResult=success\nExecMainStartTimestampMonotonic=0\nExecMainExitTimestampMonotonic=0\nExecMainCode=0\nExecMainStatus=0\n",
+    "id": "01950c137b3c43c49eb7e75fc5610f56",
+    "boot_id": "a7ddda88-feca-4561-9a01-3c43aa8092ac"
+  }
+}

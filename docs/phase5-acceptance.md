@@ -42,8 +42,31 @@ that closed failed builder disk.
 Validation commit `1063ce8` adds the `awaiting-boot-restore` recovery case. It
 requires a real update, signed offline restoration before confirmation, successful
 automatic `astraeus-confirm-boot` and `systemd-bless-boot` execution, an unchanged
-pending transaction and explicit rollback finalization. Its harness tests pass;
-the VM case remains unexecuted. Bare-metal detection and memory-tolerant comparison
+pending transaction and explicit rollback finalization. The LUKS2 case reached a
+real update and signed offline restoration, then failed because
+`systemd-bless-boot.service` was not requested on the restored non-counted entry.
+`astraeus-confirm-boot` executed successfully. A success property with zero
+execution timestamps did not satisfy the blessing-service gate; explicit
+finalization was not reached. All 417 public failure files were exported and
+verified before pausing the LUKS2 validator. Its disks remain retained.
+
+The proposed correction requests the blessing service from Astraeus confirmation,
+orders it after the graphical target to preserve boot-health ordering, and keeps
+the same history-presence and live-session guards. The pinned systemd verifier
+accepts the graph with and without its optional boot-health checker. Windows and
+Linux workspace tests, Clippy and the existing recovery harness tests pass. This
+is static and unit evidence; the corrected packaged cold-boot case remains
+required. [Recovery failure and static verification](evidence/phase5-restored-root-startup/matrix.json).
+
+The plain installed GUI completed a 99.2-second baseline and exported through the
+native file dialog. The export matched the production backend. With an unapplied
+MangoHud draft, cancelling Close left the baseline advancing; confirming Discard
+closed the application and persisted a cancelled 51.7-second baseline. Space
+activated the review's focused OK button; Enter did not. The signed live GUI
+blocked baselines, allowed passive recording and stopped it with Space. These
+observations do not override the CLI and recovery failures.
+
+Bare-metal detection and memory-tolerant comparison
 remain covered by `bare_metal_and_kernel_memory_changes_remain_comparable` unit
 tests only. No physical-machine comparison is claimed.
 

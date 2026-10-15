@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T08:12:55.788472+00:00",
+  "request": "0015.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"passed\": true, \"units_installed_or_started\": false, \"original_history_and_live_guards_preserved\": true, \"cases\": [{\"optional_boot_checker_enabled\": false, \"code\": 0, \"diagnostics\": \"\"}, {\"optional_boot_checker_enabled\": true, \"code\": 0, \"diagnostics\": \"\"}], \"hashes\": {\"astraeus-confirm-boot.service\": \"0ff896721966a7c3d93c6e93c28a1b83abec9919aa692592b87eafd3a30c8a4a\", \"astraeus-bless-boot.conf\": \"c32e6829bdae169762a7f0831d7a10db0b1a041d73c83070fe5918e4ad1bbd43\"}}\n",
+    "id": "749656fd28674d8798b07dc691c0b010",
+    "boot_id": "ee9b3fe5-9458-4170-9c5d-a74365c58c2f"
+  },
+  "finished": "2026-10-15T08:12:56.152211+00:00"
+}

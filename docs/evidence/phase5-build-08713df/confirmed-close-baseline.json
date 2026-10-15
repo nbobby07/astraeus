@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T08:19:20.653114+00:00",
+  "request": "0017.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"passed\": true, \"confirmed_close_exited\": true, \"latest_run\": {\"created_unix_seconds\": 1792052267, \"elapsed_seconds\": 51.739426668, \"failure\": \"cancelled by caller\", \"id\": \"b0171f5c7bc8368780c4e0641ce6305f\", \"kind\": \"baseline\", \"state\": \"cancelled\"}}\n",
+    "id": "4c310bc59bfb4445a23d89049a65da4f",
+    "boot_id": "ee9b3fe5-9458-4170-9c5d-a74365c58c2f"
+  },
+  "finished": "2026-10-15T08:19:20.901198+00:00"
+}

@@ -1,0 +1,6 @@
+Start the recovery command channel and unlock LUKS if needed through private QMP; see attention.json.
+............s..........ss..s
+----------------------------------------------------------------------
+Ran 28 tests in 2.074s
+
+OK (skipped=4)

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "candidate_source_commit": "08713dfa7f2096217710ef4f6311e2d6bb264db5",
+  "candidate_accepted": false,
+  "failure": "Restored entry does not request systemd-bless-boot.service automatically",
+  "assertions_relaxed": false,
+  "proposed_units_installed_in_test_guest": false,
+  "native_static_graph_verification_passed": true,
+  "optional_boot_checker_cases": [
+    false,
+    true
+  ],
+  "original_history_and_live_guards_preserved": true,
+  "windows_workspace_tests_and_clippy_passed": true,
+  "linux_workspace_tests_and_clippy_passed": true,
+  "recovery_harness_tests": {
+    "run": 28,
+    "skipped": 4,
+    "failures": 0
+  },
+  "corrected_cold_boot_acceptance": "not run",
+  "evidence_sha256": {
+    "boot-unit-before.json": "87b05a9f7039272ae7290e7d14af02115caaeff227c061e5ac5d39ab2797cd82",
+    "bootstrap.log": "d3e14a381f31d89497338f675775348b2649a8469383011093efdd31e330d717",
+    "executed-confirm-service.json": "ad3c25cfa2aa88ff92e8e4b1595599bf660584c955aec77c880c14f8401e824f",
+    "linux-clippy.log": "ed9b17e4040ffc9ed04c9eb90fe5b443f79e7f82ca51be3fcf5505e22c660af2",
+    "linux.log": "c2f6d57228a18ab0f5110700ddd0336090012e554c4e9e1c5699d322cacb7964",
+    "local-export-verified.json": "41312460c9ddd9a325ccc986ccaf04552d0c1edad933e91626fe5f9bb508b7a2",
+    "matrix.json": "27ed5a6fba2f15aefd9c9ee6679e99b5052de60df8972cf0213e3e170eff37e3",
+    "native-unit-graph.json": "6f5bdbd54f5de6c38a6be3546b6d06ccaf935860232004de1fba32f4584167e7",
+    "public-export-receipt.json": "e7dcbc79725b906270411ca472ef91fab71ce1a5858a65bb47f889113967982d",
+    "python.log": "ac3896569e673431289c05a59cb8dd946d477b208c4b5a64a2abddd0c5fc388c",
+    "skipped-bless-service.json": "d179d094cb155087fef9d0a62c738656eee9cc08d1b6d11e8c40e47935916e1d",
+    "verify-boot-unit-graph.py": "30293a304195b4abdc3771aeb90bb0463f27a166a20ac78f649a8c5ddf17c8e5",
+    "windows-clippy.log": "cabb8ddbdac30af94a24ddd2efdcbd5b62864c58e2e7d262f1a044c23cbeb6a6",
+    "workspace.log": "22664d596a67d0e9e11b1991c9367bee9fb8131d2d66ce447da3ff6c867d953c"
+  },
+  "bootstrap_tests": {
+    "run": 9,
+    "skipped": 3,
+    "failures": 0
+  }
+}

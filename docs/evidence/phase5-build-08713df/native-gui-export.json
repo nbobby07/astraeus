@@ -1,0 +1,12 @@
+{
+  "started": "2026-10-15T08:14:22.717645+00:00",
+  "request": "0016.json",
+  "result": {
+    "code": 0,
+    "error": null,
+    "output": "{\"passed\": true, \"id\": \"e552b4b268059e1a5e9393ad64b27f86\", \"state\": \"completed\", \"bytes\": 37615, \"sha256\": \"cd49b5f4b1022763848a1d1f850a620c3b98757293d7c154097d741c2f1f4b3b\", \"mode\": \"0o644\", \"kind\": \"baseline\"}\n",
+    "id": "1cfb06ba9cbb4935a326f46cfcaf4d91",
+    "boot_id": "ee9b3fe5-9458-4170-9c5d-a74365c58c2f"
+  },
+  "finished": "2026-10-15T08:14:22.938866+00:00"
+}
