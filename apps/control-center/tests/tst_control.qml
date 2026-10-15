@@ -265,7 +265,7 @@ TestCase {
         const image = grabImage(app.contentItem);
         image.save(testOutputDirectory + "/performance-baseline-dialog.png");
         compare(perf.starts, 0);
-        keyClick(Qt.Key_Return);
+        keyClick(Qt.Key_Space);
         tryCompare(perf, "starts", 1);
         perf.stop();
     }
