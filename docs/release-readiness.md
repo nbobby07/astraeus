@@ -80,8 +80,10 @@ needs refreshed signed inputs and a newly qualified image.
 The owner confirmed a Ryzen 7 7800X3D and RTX 5070, using Rufus for a live-only
 USB session, with no disk installation. Read-only Windows inventory reports an
 ASUS B650E MAX GAMING WIFI motherboard and both RTX 5070 and AMD Radeon graphics.
-Windows denied this session's Secure Boot and BitLocker status queries; those
-states remain unknown until checked in Windows or firmware. NVIDIA open-module
+Windows denied this session's Secure Boot and BitLocker status queries. The owner
+then checked and reported **Secure Boot off and encryption off**. This is an
+owner-reported preflight result, not an automated firmware check. No firmware
+policy change is needed for today's unsigned live boot. NVIDIA open-module
 activation remains unsupported in this source.
 
 1. Verify the ISO before writing. In PowerShell:
