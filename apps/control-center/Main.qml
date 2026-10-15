@@ -12,6 +12,7 @@ ApplicationWindow {
     property int section: 0
     property var selectedRecord: ({})
     property bool editorDirty: false
+    property bool closeConfirmed: false
     readonly property bool editing: !window.backend.busy && !window.backend.active && !!window.backend.draft.schema_version && window.backend.status.configuration_available !== false && !window.backend.status.recovery_required
     readonly property var packagePlan: window.backend.plan.plan ? window.backend.plan.plan.packages || {} : ({})
     visible: true
@@ -48,10 +49,10 @@ ApplicationWindow {
         anchors.centerIn: parent
         standardButtons: Dialog.Discard | Dialog.Cancel
         Label { text: qsTr("Your changes have not been applied or saved."); wrapMode: Text.WordWrap }
-        onDiscarded: { window.backend.discard(); window.editorDirty = false; window.close(); }
+        onDiscarded: { window.closeConfirmed = true; window.close(); }
     }
     onClosing: function(close) {
-        if ((window.backend.dirty || window.editorDirty) && !window.backend.active) { close.accepted = false; closeDialog.open(); return; }
+        if (!window.closeConfirmed && (window.backend.dirty || window.editorDirty) && !window.backend.active) { close.accepted = false; closeDialog.open(); return; }
         if (window.backend.performance.running) window.backend.performance.stop();
     }
     header: ToolBar {

@@ -3,6 +3,11 @@
 #include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QtTest>
+#include <QQmlComponent>
+#include <QQmlEngine>
+#include <QQuickStyle>
+#include <QQuickWindow>
+#include <memory>
 
 class ControllerTest : public QObject {
     Q_OBJECT
@@ -27,6 +32,15 @@ if args[0] == '--disable-internal-agent':
     args = args[2:]
 if mode == 'malformed':
     print('this is not JSON'); sys.exit()
+if args[0] == 'performance':
+    import time
+    if args[1] == 'status': print(json.dumps(dict(schema_version=1,context={},sample=dict(elapsed_seconds=0,unavailable=[],temperatures=[],pressure_avg10_percent={},cpu_busy_percent=None),baseline_blockers=[])))
+    elif args[1] == 'list': print(json.dumps(dict(schema_version=1,runs=[])))
+    else:
+        print(json.dumps(dict(schema_version=1,event='started',data=dict(id='a'*32,kind='baseline',requested_seconds=180))),flush=True)
+        print(json.dumps(dict(schema_version=1,event='phase',data=dict(name='idle'))),flush=True)
+        time.sleep(30)
+    sys.exit()
 config = dict(schema_version=1, packages=['nano'], gaming=[], providers={})
 result = dict(schema_version=1)
 if args[0] == 'history': result = []
@@ -72,6 +86,37 @@ print(json.dumps(result))
         return QString::fromUtf8(log.readAll());
     }
 private slots:
+    void discardDraftDuringBaselineClosesWindow() {
+        fixture();
+        Controller controller(executable, executable);
+        QQuickStyle::setStyle("org.kde.desktop");
+        QQmlEngine engine;
+        QQmlComponent component(&engine, QUrl::fromLocalFile(QFINDTESTDATA("../Main.qml")));
+        QVERIFY2(component.isReady(), qPrintable(component.errorString()));
+        std::unique_ptr<QObject> object(component.createWithInitialProperties({{"backend", QVariant::fromValue(&controller)}}));
+        QVERIFY2(object, qPrintable(component.errorString()));
+        auto *window = qobject_cast<QQuickWindow*>(object.get());
+        QVERIFY(window);
+        controller.refresh(); QTRY_VERIFY(!controller.loading());
+        controller.setPackage("kate", true); QVERIFY(controller.dirty());
+        controller.performance()->refresh(); QTRY_VERIFY(!controller.performance()->loading());
+        controller.performance()->start("baseline");
+        QTRY_COMPARE(controller.performance()->phase(), QString("idle"));
+        QVERIFY(controller.performance()->baselineRunning());
+        QVERIFY(controller.busy());
+        window->close();
+        auto *dialog = object->findChild<QObject*>("closeDialog"); QVERIFY(dialog);
+        QTRY_VERIFY(dialog->property("opened").toBool());
+        QVERIFY(QMetaObject::invokeMethod(dialog, "reject"));
+        QTRY_VERIFY(!dialog->property("visible").toBool());
+        QVERIFY(window->isVisible()); QVERIFY(controller.performance()->running());
+        window->close(); QTRY_VERIFY(dialog->property("opened").toBool());
+        QVERIFY(QMetaObject::invokeMethod(dialog, "discarded"));
+        QTRY_VERIFY(!window->isVisible());
+        QTRY_VERIFY(!controller.performance()->running());
+        QTRY_VERIFY(!controller.performance()->loading());
+        QTRY_VERIFY(!controller.loading());
+    }
     void missingExecutableIsReported() {
         Controller controller(directory.filePath("missing"), directory.filePath("missing-authenticator"));
         controller.refresh();
@@ -256,5 +301,5 @@ private slots:
         QVERIFY(!controller.loading());
     }
 };
-QTEST_GUILESS_MAIN(ControllerTest)
+QTEST_MAIN(ControllerTest)
 #include "controller_test.moc"
