@@ -265,20 +265,31 @@ fn repeated_clock_skips_existing_snapshots_and_retained_history() {
     let f = Fixture::new();
     let _guard = f.manager.lock().unwrap();
     let now = Duration::new(123, 456);
-    let first = f.manager.next_snapshot_id(now).unwrap();
+    let first = f.manager.next_store_id(now, "").unwrap();
     assert_eq!(first.as_str(), format!("123-456-{}", std::process::id()));
     fs::create_dir(f.manager.entry(&first).unwrap()).unwrap();
-    let second = f.manager.next_snapshot_id(now).unwrap();
+    let second = f.manager.next_store_id(now, "").unwrap();
     assert_eq!(second.as_str(), format!("{}-1", first.as_str()));
     let history = f
         .manager
         .store
         .join(format!("operation-{}.json", second.as_str()));
     fs::write(&history, b"retained evidence").unwrap();
-    let third = f.manager.next_snapshot_id(now).unwrap();
+    let third = f.manager.next_store_id(now, "").unwrap();
     assert_eq!(third.as_str(), format!("{}-2", first.as_str()));
     assert!(f.manager.entry(&first).unwrap().is_dir());
     assert_eq!(fs::read(history).unwrap(), b"retained evidence");
+
+    let selection = f.manager.store.join(format!(
+        "operation-generation-select-{}.json",
+        second.as_str()
+    ));
+    fs::write(&selection, b"retained selection").unwrap();
+    assert_eq!(
+        f.manager.next_store_id(now, "generation-select-").unwrap(),
+        third
+    );
+    assert_eq!(fs::read(selection).unwrap(), b"retained selection");
 }
 
 #[test]

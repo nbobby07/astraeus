@@ -482,10 +482,13 @@ impl<C: Commands> Manager<C> {
                 self.verify_blessing_receipt(&current.id)?;
             }
         }
-        let stamp = SystemTime::now()
-            .duration_since(UNIX_EPOCH)?
-            .as_nanos()
-            .to_string();
+        let stamp = self
+            .next_store_id(
+                SystemTime::now().duration_since(UNIX_EPOCH)?,
+                "generation-select-",
+            )?
+            .as_str()
+            .to_owned();
         self.begin(&serde_json::json!({"schema_version":1,"operation":"generation-select","selection":selection,"previous_selection":self.generation_selection()?}))?;
         let entries = self.esp.join("loader/entries");
         no_links(&entries)?;

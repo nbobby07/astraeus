@@ -1,5 +1,9 @@
 use super::*;
-use std::{fs, path::PathBuf};
+use std::{
+    fs,
+    path::PathBuf,
+    sync::atomic::{AtomicU64, Ordering},
+};
 pub(super) fn fixture() -> Report {
     Report {
         schema_version: 1,
@@ -46,13 +50,11 @@ pub(super) fn fixture() -> Report {
 struct Temp(PathBuf);
 impl Temp {
     fn new() -> Self {
+        static NEXT: AtomicU64 = AtomicU64::new(0);
         let p = std::env::temp_dir().join(format!(
             "astraeus-performance-{}-{}",
             std::process::id(),
-            std::time::SystemTime::now()
-                .duration_since(std::time::UNIX_EPOCH)
-                .unwrap()
-                .as_nanos()
+            NEXT.fetch_add(1, Ordering::Relaxed)
         ));
         fs::create_dir(&p).unwrap();
         #[cfg(unix)]

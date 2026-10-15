@@ -843,7 +843,7 @@ impl<C: Commands> Manager<C> {
     }
 
     // The store lock serializes allocation, but wall-clock timestamps can repeat.
-    fn next_snapshot_id(&self, now: Duration) -> Result<SnapshotId> {
+    fn next_store_id(&self, now: Duration, history_prefix: &str) -> Result<SnapshotId> {
         let base = format!(
             "{}-{}-{}",
             now.as_secs(),
@@ -857,7 +857,9 @@ impl<C: Commands> Manager<C> {
                 format!("{base}-{sequence}")
             })?;
             let entry = self.entry(&id)?;
-            let history = self.store.join(format!("operation-{}.json", id.as_str()));
+            let history = self
+                .store
+                .join(format!("operation-{history_prefix}{}.json", id.as_str()));
             no_links(&history)?;
             if !entry.try_exists()? && !history.try_exists()? {
                 return Ok(id);
@@ -906,7 +908,7 @@ impl<C: Commands> Manager<C> {
         self.verify_uki(&self.root, &self.working_uki()?)?;
         self.verify_loader()?;
         let now = SystemTime::now().duration_since(UNIX_EPOCH)?;
-        let id = self.next_snapshot_id(now)?;
+        let id = self.next_store_id(now, "")?;
         let entry = self.entry(&id)?;
         self.begin(&serde_json::json!({"schema_version":1,"operation":"create","id":id,"filesystem_uuid":plan.filesystem_uuid}))?;
         fs::create_dir(&entry)?;
@@ -1182,10 +1184,10 @@ impl<C: Commands> Manager<C> {
         let _lock = self.lock()?;
         let plan = self.plan_rollback(id)?;
         let top = self.top.as_ref().ok_or("recovery mount missing")?;
-        let stamp = SystemTime::now()
-            .duration_since(UNIX_EPOCH)?
-            .as_nanos()
-            .to_string();
+        let stamp = self
+            .next_store_id(SystemTime::now().duration_since(UNIX_EPOCH)?, "")?
+            .as_str()
+            .to_owned();
         let candidate = top.join(format!("@restore-{stamp}"));
         let previous = top.join(format!("@previous-{stamp}"));
         let old_uki = self.store.join(format!("operation-{stamp}-previous.efi"));
@@ -1289,10 +1291,10 @@ impl<C: Commands> Manager<C> {
                 )?;
             }
         }
-        let stamp = SystemTime::now()
-            .duration_since(UNIX_EPOCH)?
-            .as_nanos()
-            .to_string();
+        let stamp = self
+            .next_store_id(SystemTime::now().duration_since(UNIX_EPOCH)?, "")?
+            .as_str()
+            .to_owned();
         self.begin(&serde_json::json!({"schema_version":1,"operation":"delete","id":id,"root":snapshot.root}))?;
         self.commands.run(
             "btrfs",
