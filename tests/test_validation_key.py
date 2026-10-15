@@ -2,6 +2,7 @@ import importlib.util
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import time
 import unittest
@@ -47,7 +48,8 @@ class ValidationKeyTests(unittest.TestCase):
             with self.subTest(text=text, fingerprint=fingerprint), self.assertRaises(ValueError):
                 key.inspect(text, fingerprint, NOW)
 
-    @unittest.skipUnless(shutil.which("gpg") and shutil.which("gpgconf"), "requires GnuPG")
+    @unittest.skipUnless(sys.platform == "linux" and shutil.which("gpg") and shutil.which("gpgconf"),
+                         "requires the Linux builder's GnuPG agent")
     def test_real_export_is_read_without_importing_into_the_operator_keyring(self):
         with tempfile.TemporaryDirectory() as directory:
             home = Path(directory) / "signer"
