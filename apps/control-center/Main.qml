@@ -23,7 +23,7 @@ ApplicationWindow {
 
     Connections {
         target: window.backend
-        function onPlanReady() { window.section = 4; }
+        function onPlanReady() { window.section = 5; }
         function onSubmitted() { window.section = 3; }
         function onConfigurationParsed(text) { if (configurationEditor.text === text) window.editorDirty = false; }
     }
@@ -50,6 +50,7 @@ ApplicationWindow {
         onDiscarded: { window.backend.discard(); window.editorDirty = false; window.close(); }
     }
     onClosing: function(close) {
+        if (window.backend.performance.running) window.backend.performance.stop();
         if ((window.backend.dirty || window.editorDirty) && !window.backend.active) { close.accepted = false; closeDialog.open(); }
     }
     header: ToolBar {
@@ -72,7 +73,7 @@ ApplicationWindow {
                 anchors.fill: parent
                 spacing: Kirigami.Units.smallSpacing
                 Repeater {
-                    model: [qsTr("Overview"), qsTr("Software"), qsTr("Configuration"), qsTr("Activity")]
+                    model: [qsTr("Overview"), qsTr("Software"), qsTr("Configuration"), qsTr("Activity"), qsTr("Performance")]
                     delegate: ItemDelegate {
                         required property string modelData
                         required property int index
@@ -351,6 +352,8 @@ ApplicationWindow {
                         onLinkActivated: function(link) { Qt.openUrlExternally(link); }
                     }
                 }
+
+                PerformancePage { backend: window.backend.performance }
 
                 ScrollView {
                     clip: true

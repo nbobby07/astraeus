@@ -8,7 +8,29 @@ TestCase {
     when: windowShown
     property var app: null
     QtObject {
+        id: perf
+        property var status: ({schema_version: 1, context: {virtual_machine: true}, baseline_blockers: []})
+        property var runs: []
+        property var result: ({})
+        property var comparison: ({})
+        property var sample: ({cpu_busy_percent: null, unavailable: ["Thermal sensors"]})
+        property string error: ""
+        property string phase: ""
+        property bool running: false
+        property bool blocked: false
+        property bool loading: false
+        property int starts: 0
+        function refresh() {}
+        function observe() {}
+        function start(kind) { starts++; running = true; }
+        function stop() { running = false; }
+        function show(id) {}
+        function compare(a, b) {}
+        function exportFile(id, url) {}
+    }
+    QtObject {
         id: fake
+        property var performance: perf
         property var status: ({schema_version: 1, live: false, reboot_required: false, drift: [], configuration: {packages: []}})
         property var draft: ({schema_version: 1, packages: [], gaming: [], providers: {}})
         property var plan: installPlanFixture
@@ -53,12 +75,14 @@ TestCase {
         fake.plan = installPlanFixture; fake.planValid = true;
         fake.reviews = 0; fake.applications = 0;
         fake.lastPackage = ""; fake.lastSelected = false;
+        perf.running = false; perf.blocked = false; perf.starts = 0;
+        perf.status = {schema_version: 1, context: {virtual_machine: true}, baseline_blockers: []};
         fake.packages = [];
         app.editorDirty = false;
         findChild(app, "softwareTabs").currentIndex = 0;
     }
     function test_applyRequiresInstalledIdleReviewedSystem() {
-        app.section = 4;
+        app.section = 5;
         const button = findChild(app, "applyButton");
         verify(button);
         tryCompare(button, "enabled", true);
@@ -76,7 +100,7 @@ TestCase {
         compare(fake.applications, 0);
     }
     function test_inconsistentFlagsNeverEnableAuthentication() {
-        app.section = 4;
+        app.section = 5;
         const button = findChild(app, "applyButton");
         let invalid = JSON.parse(JSON.stringify(installPlanFixture));
         invalid.plan.snapshot_required = false;
@@ -92,7 +116,7 @@ TestCase {
         button.forceActiveFocus();
         keyClick(Qt.Key_Space);
         tryCompare(fake, "reviews", 1);
-        compare(app.section, 4);
+        compare(app.section, 5);
     }
     function test_overviewReviewsUpdatesWithoutDiscardingDrafts() {
         app.section = 0;
@@ -109,7 +133,7 @@ TestCase {
         keyClick(Qt.Key_Space);
         tryCompare(fake, "reviews", 1);
         compare(fake.applications, 0);
-        compare(app.section, 4);
+        compare(app.section, 5);
     }
     function test_labelsPreservePendingAndUnknownStates() {
         compare(State.stateLabel("awaiting_boot"), "Restart required");
@@ -136,7 +160,7 @@ TestCase {
         compare(State.packageGroups(installPlanFixture.plan)[0].id, "requested");
     }
     function test_metadataChangesStillExplainVerifiedRestart() {
-        app.section = 4;
+        app.section = 5;
         fake.plan = metadataPlanFixture;
         verify(findChild(app, "restartExplanation").text.includes("verified restart"));
     }
@@ -209,7 +233,7 @@ TestCase {
         fake.packages = [{name: "kate", version: "26.08.1-1", repository: "extra", installed_version: "26.08.1-1", description: "Advanced text editor", protected: false, system_package: false, selectable: true}];
         fake.history = [{id: 7, state: "awaiting_boot"}];
         fake.plan = installPlanFixture;
-        for (let section = 0; section < 5; ++section) {
+        for (let section = 0; section < 6; ++section) {
             app.section = section;
             verify(waitForPolish(app));
             waitForRendering(app.contentItem);
@@ -217,5 +241,18 @@ TestCase {
             verify(image.width >= 760);
             image.save(testOutputDirectory + "/control-center-page-" + section + ".png");
         }
+    }
+    function test_performanceKeyboardStopAndUnavailableMeasurements() {
+        app.section = 4;
+        const record = findChild(app, "recordPerformance");
+        const stop = findChild(app, "stopPerformance");
+        verify(findChild(app, "cpuMetric").text.includes("Unavailable"));
+        tryCompare(record, "enabled", true);
+        record.forceActiveFocus(); keyClick(Qt.Key_Space);
+        tryCompare(perf, "starts", 1); tryCompare(stop, "enabled", true);
+        stop.forceActiveFocus(); keyClick(Qt.Key_Space); tryCompare(perf, "running", false);
+        perf.status = {schema_version: 1, context: {}, baseline_blockers: ["Live session"]};
+        tryCompare(findChild(app, "baselinePerformance"), "enabled", false);
+        perf.blocked = true; tryCompare(record, "enabled", false);
     }
 }

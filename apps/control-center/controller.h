@@ -7,6 +7,7 @@
 #include <QUrl>
 #include <QVariantMap>
 #include <functional>
+#include "performance.h"
 
 class Controller : public QObject {
     Q_OBJECT
@@ -25,6 +26,7 @@ class Controller : public QObject {
     Q_PROPERTY(bool dirty READ dirty NOTIFY changed)
     Q_PROPERTY(bool active READ active NOTIFY changed)
     Q_PROPERTY(bool planValid READ planValid NOTIFY changed)
+    Q_PROPERTY(Performance* performance READ performance CONSTANT)
 public:
     explicit Controller(QObject *parent = nullptr);
     Controller(QString executable, QString authenticator, QObject *parent = nullptr);
@@ -43,6 +45,7 @@ public:
     bool dirty() const { return m_dirty; }
     bool active() const;
     bool planValid() const { return m_planValid; }
+    Performance *performance() const { return m_performance; }
     Q_INVOKABLE void refresh();
     Q_INVOKABLE void search(const QString &query);
     Q_INVOKABLE void installed();
@@ -74,6 +77,7 @@ private:
     QVariantList m_packages, m_features, m_history;
     QSet<QString> m_pending;
     QTimer m_poll;
+    Performance *m_performance = nullptr;
     bool m_dirty = false, m_haveDraft = false, m_planValid = false;
     quint64 m_searchRevision = 0, m_draftRevision = 0;
 };

@@ -114,11 +114,17 @@ Controller::Controller(QObject *parent) : Controller("/usr/bin/distroctl", "/usr
 Controller::Controller(QString executable, QString authenticator, QObject *parent)
     : QObject(parent), m_executable(std::move(executable)), m_authenticator(std::move(authenticator))
 {
+    m_performance = new Performance(m_executable, this);
+    connect(m_performance, &Performance::changed, this, &Controller::changed);
+    connect(this, &Controller::changed, m_performance, [this] {
+        m_performance->setBlocked(active() || m_pending.contains("submit") || m_status.value("reboot_required").toBool() || m_status.value("recovery_required").toBool());
+    });
     m_poll.setInterval(2000);
     connect(&m_poll, &QTimer::timeout, this, &Controller::poll);
 }
 bool Controller::busy() const
 {
+    if (m_performance && m_performance->running()) return true;
     for (const auto &key : {"plan", "submit", "parse", "adopt", "export"})
         if (m_pending.contains(key)) return true;
     return false;
